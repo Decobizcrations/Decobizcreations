@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement - Decobizcreations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+    body {
+      background-color: #fdfdfd;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .total {
+      text-align: center;
+      font-size: 22px;
+      margin: 30px 0;
+      color: #222;
+      font-weight: bold;
+    }
+    button {
+      background-color: #e4c3a4;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #c89f7e;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Finaliser votre commande</h2>
+    <form id="payment-form">
+      <div class="form-group">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+      </div>
+      <div class="form-group">
+        <label for="card">Numéro de carte</label>
+        <input type="text" id="card" placeholder="XXXX-XXXX-XXXX-XXXX" required>
+      </div>
+      <div class="form-group">
+        <label for="expiration">Date d’expiration</label>
+        <input type="text" id="expiration" placeholder="MM/AA" required>
+      </div>
+      <div class="form-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" required>
+      </div>
+      <div class="total" id="total-amount">Total: 0 DH</div>
+      <button type="submit">Payer maintenant</button>
+    </form>
+  </div>
+
+  <script>
+    const totalElement = document.getElementById('total-amount');
+    const panier = JSON.parse(localStorage.getItem('panier')) || [];
+    const total = panier.reduce((acc, item) => acc + item.prix, 0);
+    totalElement.textContent = `Total: ${total} DH`;
+
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Paiement réussi ! Merci pour votre commande.');
+      localStorage.removeItem('panier');
+      window.location.href = 'decobizcreations.html';
+    });
+  </script>
+</body>
+</html>
