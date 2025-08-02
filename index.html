@@ -1,62 +1,2655 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Decobizcreations - Décoration Artisanale en Béton et Gypse</title>
-  <meta name="description" content="Découvrez Decobizcreations : des décorations uniques en béton et gypse, faites main au Maroc. Plateaux, boîtes et créations personnalisées. Livraison rapide.">
-  <meta name="keywords" content="décoration béton, gypse, plateau personnalisé, cadeau fait main, maroc, decobizcreations">
-  <meta name="author" content="Hajar Agrar" />
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph pour les réseaux sociaux -->
-  <meta property="og:title" content="Decobizcreations - Décoration Artisanale">
-  <meta property="og:description" content="Ajoutez une touche élégante à votre intérieur avec nos créations en béton et gypse faites main.">
-  <meta property="og:image" content="https://decobizcrations.github.io/Decobizcreations/mai.jpg">
-  <meta property="og:url" content="https://decobizcrations.github.io/Decobizcreations/">
-  <meta property="og:type" content="website">
-
-  <!-- Icône de l'onglet -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- Feuille de style -->
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Decobizcreations - Artisanat Béton & Gypse | Décoration Marocaine</title>
+    <meta name="description" content="Découvrez nos créations artisanales uniques en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc. Livraison rapide." />
+    <meta name="keywords" content="décoration béton, gypse, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
+    <meta name="author" content="Hajar Agrar" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.decobizcreations.com/" />
+    <meta property="og:title" content="Decobizcreations - Artisanat Béton & Gypse" />
+    <meta property="og:description" content="Décorations artisanales uniques en béton et gypse. Plateaux, vases, boîtes faites main au Maroc." />
+    <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.decobizcreations.com/" />
+    <meta property="twitter:title" content="Decobizcreations - Artisanat Béton & Gypse" />
+    <meta property="twitter:description" content="Décorations artisanales uniques en béton et gypse. Plateaux, vases, boîtes faites main au Maroc." />
+    <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .product-card {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .about-section,
+        body.dark-mode .values-section,
+        body.dark-mode .process-section,
+        body.dark-mode .testimonials,
+        body.dark-mode .advantages-section {
+            background: #252525;
+        }
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fffaf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #loader div {
+            border: 6px solid #b27952;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+        /* Scroll Progress Bar */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #b27952;
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.2s ease;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 2px solid #b27952;
+            transition: background 0.3s ease;
+        }
+        header:hover {
+            background: #fdf6ef;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+            cursor: default;
+            user-select: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Bouton mode sombre */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid #b27952;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #b27952;
+        }
+        .dark-mode-toggle:hover {
+            background: #b27952;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Recherche */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        .search-input:focus {
+            width: 250px;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* Panier compteur */
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #b27952;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #5a4a24;
+            transition: background 0.2s ease;
+        }
+        .submenu a:hover {
+            background: #f9f3e8;
+            color: #b27952;
+        }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            overflow: hidden;
+            background: linear-gradient(-45deg, #fceabb, #f8b500, #d99c39, #f9edbe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #3a2e00;
+            text-align: center;
+            padding: 0 1rem;
+            text-shadow: 1px 1px 5px rgba(255,255,255,0.6);
+        }
+        @keyframes gradientShift {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+            animation: slideDown 1.2s ease forwards;
+            opacity: 0;
+        }
+        .hero p {
+            font-size: 1.8rem;
+            max-width: 700px;
+            line-height: 1.4;
+            animation: slideUp 1.2s ease forwards 0.4s;
+            opacity: 0;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: rgba(255,255,255,0.9);
+            color: #b27952;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: fadeIn 1.2s ease forwards 0.8s;
+            opacity: 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            background: white;
+        }
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+            from {
+                opacity: 0;
+            }
+        }
+        
+        /* Section de confiance */
+        .trust-section {
+            background: white;
+            padding: 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .trust-icon {
+            color: #b27952;
+            font-size: 2rem;
+        }
+        .trust-text {
+            font-weight: 600;
+            color: #5a4a24;
+        }
+        
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 3rem auto 5rem auto;
+            padding: 0 2rem;
+        }
+        main h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            text-align: center;
+            margin-bottom: 1.8rem;
+            color: #5a4a24;
+            letter-spacing: 0.5px;
+        }
+        main p {
+            max-width: 750px;
+            margin: 0 auto 3.5rem auto;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #6b5e34;
+            font-weight: 500;
+        }
+        
+        /* Filtres de produits */
+        .filter-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+        .filter-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #b27952;
+            background: transparent;
+            color: #b27952;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #b27952;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Section Produits Vedettes */
+        .featured-products {
+            margin: 4rem 0;
+        }
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #5a4a24;
+        }
+        .featured-link {
+            color: #b27952;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .featured-link:hover {
+            color: #8c5a34;
+            text-decoration: underline;
+        }
+        
+        /* Products Carousel */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .carousel-btn {
+            background: #b27952;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .carousel-btn:hover {
+            background: #8c5a34;
+            transform: scale(1.1);
+        }
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+            flex: 0 0 280px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.07);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.15) rotate(2deg);
+        }
+        /* Badge nouveau produit */
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+        .sale-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+        /* Boutons d'action sur les produits */
+        .product-actions {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+        .action-btn {
+            background: rgba(178, 121, 82, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .action-btn:hover {
+            background: #b27952;
+            transform: scale(1.1);
+        }
+        .product-info {
+            padding: 1.6rem 2rem;
+            text-align: center;
+        }
+        .product-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+            color: #5b4824;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .product-info span {
+            font-size: 1rem;
+            color: #7e6a3e;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #b27952;
+            margin-top: 0.5rem;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        
+        /* Message aucun résultat */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.2rem;
+            display: none;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border: 2px dashed #b27952;
+        }
+        .no-results i {
+            font-size: 3rem;
+            color: #b27952;
+            margin-bottom: 1rem;
+        }
+        
+        /* Bouton principal */
+        .btn-discover {
+            display: block;
+            margin: 0 auto 5rem auto;
+            background: linear-gradient(45deg, #b27952, #f8b500);
+            padding: 14px 48px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(180,121,82,0.7);
+            border: none;
+            outline: none;
+            transition: all 0.3s ease;
+            user-select: none;
+            letter-spacing: 1.3px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+        .btn-discover:hover {
+            background: linear-gradient(45deg, #f8b500, #b27952);
+            box-shadow: 0 9px 20px rgba(180,121,82,0.9);
+            transform: translateY(-4px) scale(1.05);
+        }
+        
+        /* Section Processus de Fabrication */
+        .process-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 3rem 2rem;
+            margin: 5rem 0;
+        }
+        .process-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            color: #5a4a24;
+            margin-bottom: 3rem;
+        }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+        }
+        .process-step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 40px;
+            right: -15%;
+            width: 30%;
+            height: 2px;
+            background: #ddd;
+        }
+        .step-number {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        .step-title {
+            font-weight: 600;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .step-desc {
+            color: #6b5e34;
+            font-size: 0.95rem;
+        }
+        
+        /* Section Galerie */
+        .gallery-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .gallery-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #5a4a24;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            height: 250px;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-icon {
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Modal pour galerie */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 800px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-modal:hover {
+            color: #bbb;
+        }
+        
+        /* Section À Propos */
+        .about-section {
+            max-width: 1000px;
+            margin: 0 auto 6rem auto;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 3rem 2rem;
+            flex-wrap: wrap;
+            color: #5c5034;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+        .about-img {
+            flex: 1 1 320px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: default;
+        }
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .about-img:hover {
+            transform: scale(1.03);
+        }
+        .about-text {
+            flex: 2 1 450px;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        .about-text h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #5b4824;
+        }
+        
+        /* Section Avantages */
+        .advantages-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 3rem 2rem;
+            margin: 5rem 0;
+        }
+        .advantages-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            text-align: center;
+            color: #5a4a24;
+            margin-bottom: 3rem;
+        }
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .advantage-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+        .advantage-item:hover {
+            transform: translateY(-5px);
+        }
+        .advantage-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+        .advantage-title {
+            font-weight: 600;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .advantage-desc {
+            color: #6b5e34;
+        }
+        
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, #f8b500, #b27952);
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: white;
+            border-radius: 16px;
+        }
+        .newsletter-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+        }
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: white;
+            color: #b27952;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Témoignages */
+        .testimonials {
+            max-width: 900px;
+            margin: 0 auto 6rem auto;
+            padding: 3rem 2rem;
+            text-align: center;
+            color: #5a4a24;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+        .testimonials h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            margin-bottom: 2rem;
+        }
+        .testimonial-container {
+            position: relative;
+            min-height: 150px;
+            margin-bottom: 2rem;
+        }
+        .testimonial-slide {
+            font-style: italic;
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #6b5e34;
+            transition: opacity 0.5s ease;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+        }
+        .testimonial-slide.active {
+            opacity: 1;
+            position: relative;
+        }
+        .testimonial-author {
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: #7e6a3e;
+            margin-top: 1rem;
+        }
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .testimonial-controls button {
+            background: #b27952;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s ease;
+        }
+        .testimonial-controls button:hover {
+            background: #f8b500;
+        }
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .dot.active {
+            background: #b27952;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .faq-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #5a4a24;
+        }
+        .faq-item {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .faq-question {
+            background: #f9f3e8;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        .faq-question:hover {
+            background: #f0e6d6;
+        }
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 300px;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Valeurs */
+        .values-section {
+            max-width: 1000px;
+            margin: 0 auto 6rem auto;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 3rem;
+            color: #5a4a24;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+        .value-item {
+            flex: 1 1 220px;
+            background: #f9f3e8;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            cursor: default;
+            transition: transform 0.3s ease;
+        }
+        .value-item:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .value-icon {
+            font-size: 3.2rem;
+            color: #b27952;
+            margin-bottom: 1rem;
+            user-select: none;
+        }
+        .value-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .value-desc {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #7e6a3e;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            margin-top: 2rem;
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #b27952;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .newsletter-form-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input-footer {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .newsletter-btn-footer {
+            padding: 10px 15px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .newsletter-btn-footer:hover {
+            background: #8c5a34;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .footer-bottom a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2.5s infinite ease-in-out;
+            transition: box-shadow 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            box-shadow: 0 10px 25px rgba(37,211,102,0.7);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            background: #8c5a34;
+            transform: translateY(-3px);
+        }
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* Animations */
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Notifications toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.error {
+            background: #f44336;
+        }
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .hero h2 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+            }
+            
+            .process-step:not(:last-child)::after {
+                display: none;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-  <header>
-    <h1>Decobizcreations</h1>
-    <nav>
-      <a href="index.html">Accueil</a>
-      <a href="produits.html">Produits</a>
-      <a href="panier.html">Panier</a>
-      <a href="paiment.html">Paiement</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h2>Décoration Élégante & Unique</h2>
-    <p>Ajoutez une touche chic à votre maison avec nos pièces artisanales en béton et gypse.</p>
-  </section>
-
-  <main>
-    <h3>Bienvenue chez Decobizcreations</h3>
-    <p>Des créations faites main alliant style moderne et charme naturel.<br>
-       Explorez nos collections exclusives et laissez-vous inspirer.</p>
-    <div class="images">
-      <img src="mai.jpg" alt="Décoration 1" />
-      <img src="maisa.jpeg" alt="Décoration 2" />
-      <img src="pack.jpg" alt="Décoration 3" />
+    <div id="loader" role="alert" aria-live="assertive">
+        <div aria-label="Chargement en cours"></div>
     </div>
-  </main>
-
-  <footer>
-    © 2025 Decobizcreations. Tous droits réservés.
-  </footer>
-
+    
+    <div id="progressbar" aria-hidden="true"></div>
+    
+    <header>
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        <div class="header-controls">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
+                <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <nav aria-label="Navigation principale">
+            <div class="nav-item">
+                <a href="index.html" tabindex="0">Accueil</a>
+            </div>
+            <div class="nav-item">
+                <a href="produits.html" tabindex="0">Produits</a>
+                <div class="submenu">
+                    <a href="produits.html?category=plateau">Plateaux</a>
+                    <a href="produits.html?category=vase">Vases</a>
+                    <a href="produits.html?category=boite">Boîtes</a>
+                    <a href="produits.html?category=decoration">Décorations</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="a-propos.html" tabindex="0">À propos</a>
+                <div class="submenu">
+                    <a href="a-propos.html#histoire">Notre histoire</a>
+                    <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                    <a href="a-propos.html#atelier">Notre atelier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" tabindex="0">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" tabindex="0">Contact</a>
+            </div>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0">Panier</a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+            <div class="nav-item">
+                <a href="compte.html" tabindex="0">Mon compte</a>
+            </div>
+        </nav>
+    </header>
+    
+    <section class="hero" role="banner" aria-label="Présentation de Decobizcreations">
+        <div class="hero-content">
+            <h2>Décoration Élégante & Unique</h2>
+            <p>Ajoutez une touche chic à votre maison avec nos pièces artisanales en béton et gypse.</p>
+            <a href="#produits" class="hero-cta">Découvrir nos créations</a>
+        </div>
+    </section>
+    
+    <section class="trust-section">
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-truck"></i></div>
+            <div class="trust-text">Livraison rapide</div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="trust-text">Paiement sécurisé</div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-undo"></i></div>
+            <div class="trust-text">Retour 14 jours</div>
+        </div>
+        <div class="trust-item">
+            <div class="trust-icon"><i class="fas fa-headset"></i></div>
+            <div class="trust-text">Service client</div>
+        </div>
+    </section>
+    
+    <main id="produits">
+        <h3 class="fade-slide">Bienvenue chez Decobizcreations</h3>
+        <p class="fade-slide" style="margin-bottom: 3rem; max-width: 650px; margin-left: auto; margin-right: auto;">
+            Des créations faites main alliant style moderne et charme naturel.<br />
+            Explorez nos collections exclusives et laissez-vous inspirer.
+        </p>
+        
+        <!-- Section de filtres -->
+        <div class="filter-section fade-slide">
+            <h3>Filtrer par catégorie</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="plateau">Plateaux</button>
+                <button class="filter-btn" data-filter="vase">Vases</button>
+                <button class="filter-btn" data-filter="boite">Boîtes</button>
+                <button class="filter-btn" data-filter="decoration">Décorations</button>
+            </div>
+        </div>
+        
+        <!-- Section Produits Vedettes -->
+        <div class="featured-products fade-slide">
+            <div class="featured-header">
+                <h3 class="featured-title">Nos coups de cœur</h3>
+                <a href="produits.html" class="featured-link">Voir tout <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <section class="carousel" aria-label="Produits phares">
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevBtn" aria-label="Produit précédent">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="carousel-btn" id="nextBtn" aria-label="Produit suivant">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="carousel-track" id="carouselTrack">
+                    <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond béton décoratif">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Plateau+Rond+16cm" alt="Plateau rond 16 cm" loading="lazy" />
+                            <div class="new-badge">Nouveau</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('plateau-rond-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('plateau-rond-16')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('plateau-rond-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Plateau Rond</h4>
+                            <span>Diamètre 16 cm</span>
+                            <div class="product-price">120 DH</div>
+                        </div>
+                    </article>
+                    <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau ovale béton décoratif">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Plateau+Ovale+18cm" alt="Plateau ovale 18 cm" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('plateau-ovale-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('plateau-ovale-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Plateau Ovale</h4>
+                            <span>18 cm</span>
+                            <div class="product-price">140 DH</div>
+                        </div>
+                    </article>
+                    <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond grand béton décoratif">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Plateau+Rond+27cm" alt="Grand plateau rond 27 cm" loading="lazy" />
+                            <div class="sale-badge">-15%</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('plateau-rond-27')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('plateau-rond-27')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Plateau Rond</h4>
+                            <span>27 cm</span>
+                            <div class="product-price">
+                                <span class="old-price">235 DH</span>
+                                200 DH
+                            </div>
+                        </div>
+                    </article>
+                    <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase nordique design béton">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Vase+Nordique+16cm" alt="Vase nordique 16 cm" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('vase-nordique-16')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('vase-nordique-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Vase Nordique</h4>
+                            <span>16 cm</span>
+                            <div class="product-price">180 DH</div>
+                        </div>
+                    </article>
+                    <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="mini vase moderne béton">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Mini+Vase+14cm" alt="Mini vase 14 cm" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('mini-vase-14')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('mini-vase-14')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Mini Vase</h4>
+                            <span>14 cm</span>
+                            <div class="product-price">150 DH</div>
+                        </div>
+                    </article>
+                    <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite décorative béton rangement">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Boite+Decorative+12cm" alt="Boîte décorative 12 cm" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('boite-12')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('boite-12')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Boîte Décorative</h4>
+                            <span>12 cm</span>
+                            <div class="product-price">100 DH</div>
+                        </div>
+                    </article>
+                    <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="arc-en-ciel décoratif gypse mural">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/280x220?text=Arc-en-ciel+26cm" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
+                            <div class="new-badge">Nouveau</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="addToWishlist('arc-en-ciel-26')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('arc-en-ciel-26')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Arc-en-ciel Décoratif</h4>
+                            <span>26 cm</span>
+                            <div class="product-price">250 DH</div>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Message aucun résultat -->
+                <div class="no-results" id="noResults">
+                    <i class="fas fa-search"></i>
+                    <p>Aucun produit trouvé pour votre recherche.</p>
+                    <p>Essayez d'autres mots-clés ou parcourez nos catégories.</p>
+                </div>
+            </section>
+        </div>
+        
+        <button class="btn-discover fade-slide" aria-label="Découvrir tous les produits">Découvrir plus</button>
+        <div id="contenuDecouvrir" style="display:none; max-width: 900px; margin: 2rem auto 4rem auto; color: #5a4a24; font-weight: 500; line-height: 1.6; text-align: center;">
+            <p>
+                Découvrez notre collection complète qui comprend également des plateaux ovales, des boîtes décoratives et des vases minimalistes conçus pour s'adapter à tout style d'intérieur.<br><br>
+                Chaque pièce est soigneusement travaillée à la main, avec une attention particulière portée à la durabilité et à l'esthétique naturelle du béton et du gypse.<br><br>
+                Nous proposons aussi des options de personnalisation pour rendre votre décoration vraiment unique.
+            </p>
+        </div>
+        
+        <!-- Section Processus de Fabrication -->
+        <section class="process-section fade-slide">
+            <h2 class="process-title">Notre Processus de Fabrication</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Conception</div>
+                    <div class="step-desc">Nous créons des designs uniques qui allient esthétique moderne et inspiration traditionnelle.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Préparation</div>
+                    <div class="step-desc">Sélection minutieuse des matériaux et préparation du mélange de béton ou de gypse.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Moulage</div>
+                    <div class="step-desc">Coulage du mélange dans des moules conçus pour obtenir des formes parfaites.</div>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Finition</div>
+                    <div class="step-desc">Polissage, ponçage et application de traitements de surface pour une texture parfaite.</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Galerie -->
+        <section class="gallery-section fade-slide">
+            <h3>Galerie de nos créations</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal('https://via.placeholder.com/600x400?text=Plateau+Rond')">
+                    <img src="https://via.placeholder.com/250x250?text=Plateau+Rond" alt="Plateau rond" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://via.placeholder.com/600x400?text=Vase+Nordique')">
+                    <img src="https://via.placeholder.com/250x250?text=Vase+Nordique" alt="Vase nordique" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://via.placeholder.com/600x400?text=Boite+Decorative')">
+                    <img src="https://via.placeholder.com/250x250?text=Boite+Decorative" alt="Boîte décorative" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://via.placeholder.com/600x400?text=Arc-en-ciel')">
+                    <img src="https://via.placeholder.com/250x250?text=Arc-en-ciel" alt="Arc-en-ciel" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://via.placeholder.com/600x400?text=Plateau+Ovale')">
+                    <img src="https://via.placeholder.com/250x250?text=Plateau+Ovale" alt="Plateau ovale" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item" onclick="openModal('https://via.placeholder.com/600x400?text=Mini+Vase')">
+                    <img src="https://via.placeholder.com/250x250?text=Mini+Vase" alt="Mini vase" loading="lazy">
+                    <div class="gallery-overlay">
+                        <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Modal pour galerie -->
+        <div id="imageModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()" aria-label="Fermer">&times;</span>
+                <img id="modalImage" src="" alt="">
+            </div>
+        </div>
+        
+        <!-- Section À Propos -->
+        <section class="about-section fade-slide" aria-labelledby="about-title">
+            <div class="about-img" tabindex="0">
+                <img src="https://via.placeholder.com/500x400?text=Artisan+au+travail" alt="Artisan travaillant le béton et gypse" loading="lazy" />
+            </div>
+            <div class="about-text">
+                <h3 id="about-title">À propos de Decobizcreations</h3>
+                <p>
+                    Chez Decobizcreations, chaque pièce est créée avec passion et savoir-faire artisanal. Nous mêlons tradition marocaine et design moderne pour vous offrir des décorations uniques qui apportent chaleur et élégance à votre intérieur. Que ce soit pour un cadeau ou pour embellir votre maison, nos créations en béton et gypse sont pensées pour durer et séduire.
+                </p>
+                <p>
+                    Fondée en 2018 par Hajar Agrar, notre entreprise s'engage à promouvoir l'artisanat local tout en innovant dans les techniques de travail du béton et du gypse. Chaque pièce est fabriquée à la main dans notre atelier de Casablanca, avec une attention particulière portée aux détails et à la qualité des finitions.
+                </p>
+            </div>
+        </section>
+        
+        <!-- Section Avantages -->
+        <section class="advantages-section fade-slide">
+            <h2 class="advantages-title">Pourquoi choisir nos créations ?</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon"><i class="fas fa-hand-sparkles"></i></div>
+                    <div class="advantage-title">Fait main</div>
+                    <div class="advantage-desc">Chaque pièce est unique, réalisée avec soin par nos artisans qualifiés.</div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="advantage-title">Écologique</div>
+                    <div class="advantage-desc">Nous utilisons des matériaux naturels et des processus respectueux de l'environnement.</div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon"><i class="fas fa-certificate"></i></div>
+                    <div class="advantage-title">Qualité</div>
+                    <div class="advantage-desc">Des produits durables et résistants, conçus pour durer dans le temps.</div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon"><i class="fas fa-palette"></i></div>
+                    <div class="advantage-title">Personnalisation</div>
+                    <div class="advantage-desc">Possibilité de créer des pièces sur mesure selon vos goûts et besoins.</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Newsletter -->
+        <section class="newsletter-section fade-slide">
+            <h3>Restez informé de nos nouveautés</h3>
+            <p>Inscrivez-vous à notre newsletter pour recevoir nos dernières créations et offres exclusives</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                <input type="email" class="newsletter-input" placeholder="Votre email" required aria-label="Votre adresse email">
+                <button type="submit" class="newsletter-btn">S'inscrire</button>
+            </form>
+        </section>
+        
+        <!-- Section Témoignages -->
+        <section class="testimonials fade-slide" aria-label="Témoignages clients">
+            <h3>Témoignages</h3>
+            <div class="testimonial-container">
+                <div class="testimonial-slide active" aria-live="polite" aria-atomic="true">
+                    "J'ai adoré la qualité et l'originalité des plateaux, parfaits pour offrir !"
+                    <div class="testimonial-author">— Fatima B.</div>
+                </div>
+                <div class="testimonial-slide" aria-live="polite" aria-atomic="true">
+                    "Service client exceptionnel et produits magnifiques. Je recommande vivement !"
+                    <div class="testimonial-author">— Ahmed K.</div>
+                </div>
+                <div class="testimonial-slide" aria-live="polite" aria-atomic="true">
+                    "Les vases sont exactement comme sur les photos, très belle finition artisanale."
+                    <div class="testimonial-author">— Leila M.</div>
+                </div>
+                <div class="testimonial-slide" aria-live="polite" aria-atomic="true">
+                    "Livraison rapide et emballage soigné. Mes invités ont adoré mes nouveaux plateaux !"
+                    <div class="testimonial-author">— Youssef T.</div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" onclick="goToTestimonial(0)"></span>
+                <span class="dot" onclick="goToTestimonial(1)"></span>
+                <span class="dot" onclick="goToTestimonial(2)"></span>
+                <span class="dot" onclick="goToTestimonial(3)"></span>
+            </div>
+            <div class="testimonial-controls" role="group" aria-label="Navigation des témoignages">
+                <button type="button" aria-label="Précédent témoignage" id="prevTestimonial">←</button>
+                <button type="button" aria-label="Suivant témoignage" id="nextTestimonial">→</button>
+            </div>
+        </section>
+        
+        <!-- Section FAQ -->
+        <section class="faq-section fade-slide">
+            <h3>Questions fréquentes</h3>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Quels sont les délais de livraison ?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nos délais de livraison sont de 3 à 7 jours ouvrables pour le Maroc. Pour les commandes personnalisées, comptez 10 à 15 jours supplémentaires.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Proposez-vous des créations sur mesure ?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Oui, nous réalisons des pièces personnalisées selon vos goûts et dimensions. Contactez-nous pour discuter de votre projet.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Comment entretenir les produits en béton ?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nos produits en béton sont traités pour résister à l'humidité. Un simple nettoyage à l'eau tiède et au savon doux suffit.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Acceptez-vous les retours ?</span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nous acceptons les retours dans les 14 jours suivant la réception, à condition que les produits soient en parfait état.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section Valeurs -->
+        <section class="values-section fade-slide" aria-label="Nos valeurs">
+            <div class="value-item" tabindex="0">
+                <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                <h4 class="value-title">Durabilité</h4>
+                <p class="value-desc">Matériaux naturels et respectueux de l'environnement.</p>
+            </div>
+            <div class="value-item" tabindex="0">
+                <div class="value-icon"><i class="fas fa-hands-helping"></i></div>
+                <h4 class="value-title">Savoir-faire</h4>
+                <p class="value-desc">Artisanat marocain traditionnel associé à la modernité.</p>
+            </div>
+            <div class="value-item" tabindex="0">
+                <div class="value-icon"><i class="fas fa-star"></i></div>
+                <h4 class="value-title">Qualité</h4>
+                <p class="value-desc">Finitions soignées et souci du détail à chaque étape.</p>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/212123456789" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>À propos</h4>
+                <ul class="footer-links">
+                    <li><a href="a-propos.html">Notre histoire</a></li>
+                    <li><a href="a-propos.html#savoir-faire">Notre savoir-faire</a></li>
+                    <li><a href="a-propos.html#atelier">Notre atelier</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Produits</h4>
+                <ul class="footer-links">
+                    <li><a href="produits.html?category=plateau">Plateaux</a></li>
+                    <li><a href="produits.html?category=vase">Vases</a></li>
+                    <li><a href="produits.html?category=boite">Boîtes</a></li>
+                    <li><a href="produits.html?category=decoration">Décorations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Service client</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="livraison.html">Livraison</a></li>
+                    <li><a href="retours.html">Retours</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                <form class="newsletter-form-footer" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input-footer" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn-footer">OK</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/decobizcreations" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/decobizcreations" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://pinterest.com/decobizcreations" target="_blank" class="social-link" aria-label="Pinterest">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Decobizcreations — Artisanat marocain fait main. Tous droits réservés.</p>
+            <p><a href="conditions.html">Conditions générales</a> | <a href="confidentialite.html">Politique de confidentialité</a> | <a href="mentions-legales.html">Mentions légales</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales
+        let currentSlide = 0;
+        let cartCount = 0;
+        let currentTestimonial = 0;
+        let carouselPosition = 0;
+        
+        // Données des témoignages
+        const testimonials = [
+            {
+                text: "J'ai adoré la qualité et l'originalité des plateaux, parfaits pour offrir !",
+                author: "— Fatima B."
+            },
+            {
+                text: "Service client exceptionnel et produits magnifiques. Je recommande vivement !",
+                author: "— Ahmed K."
+            },
+            {
+                text: "Les vases sont exactement comme sur les photos, très belle finition artisanale.",
+                author: "— Leila M."
+            },
+            {
+                text: "Livraison rapide et emballage soigné. Mes invités ont adoré mes nouveaux plateaux !",
+                author: "— Youssef T."
+            }
+        ];
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Masquer le loader
+            document.getElementById('loader').style.display = 'none';
+            
+            // Initialiser les animations
+            initScrollAnimations();
+            initCarousel();
+            initTestimonials();
+            initScrollProgress();
+            initBackToTop();
+            initDarkMode();
+            initSearch(); // La fonction de recherche est maintenant initialisée ici
+            initFilters();
+            
+            // Charger le compteur du panier depuis localStorage
+            loadCartCount();
+            
+            // Initialiser le service worker pour PWA
+            initServiceWorker();
+            
+            // Initialiser le consentement aux cookies
+            initCookieConsent();
+        });
+        
+        // Barre de progression du scroll
+        function initScrollProgress() {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressbar').style.width = scrollPercent + '%';
+            });
+        }
+        
+        // Animations au scroll
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-slide').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Gestion du carousel
+        function initCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const cards = document.querySelectorAll('.product-card');
+            const cardWidth = 300; // largeur + gap
+            
+            prevBtn.addEventListener('click', () => {
+                if (carouselPosition > 0) {
+                    carouselPosition--;
+                    updateCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const maxPosition = Math.max(0, cards.length - 4);
+                if (carouselPosition < maxPosition) {
+                    carouselPosition++;
+                    updateCarousel();
+                }
+            });
+            
+            function updateCarousel() {
+                track.style.transform = `translateX(-${carouselPosition * cardWidth}px)`;
+            }
+            
+            // Auto-scroll du carousel
+            setInterval(() => {
+                const maxPosition = Math.max(0, cards.length - 4);
+                carouselPosition = (carouselPosition + 1) % (maxPosition + 1);
+                updateCarousel();
+            }, 5000);
+        }
+        
+        // Gestion des témoignages
+        function initTestimonials() {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.getElementById('prevTestimonial');
+            const nextBtn = document.getElementById('nextTestimonial');
+            
+            function updateTestimonial() {
+                slides.forEach((slide, index) => {
+                    slide.classList.toggle('active', index === currentTestimonial);
+                });
+                
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentTestimonial);
+                });
+            }
+            
+            prevBtn.addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                updateTestimonial();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                updateTestimonial();
+            });
+            
+            // Auto-rotation des témoignages
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                updateTestimonial();
+            }, 6000);
+        }
+        
+        // Fonction pour naviguer directement à un témoignage
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            const slides = document.querySelectorAll('.testimonial-slide');
+            const dots = document.querySelectorAll('.dot');
+            
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        // Bouton retour en haut
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Mode sombre
+        function initDarkMode() {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Charger la préférence sauvegardée
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+        
+        // Fonction de recherche en temps réel
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const noResultsMsg = document.getElementById('noResults');
+            
+            // Vérifier si les éléments existent
+            if (!searchInput || !searchBtn || !noResultsMsg) {
+                console.error("Un ou plusieurs éléments de recherche sont manquants");
+                return;
+            }
+            
+            function performSearch(event) {
+                // Empêcher le rechargement de la page
+                if (event) {
+                    event.preventDefault();
+                }
+                
+                const query = searchInput.value.toLowerCase().trim();
+                console.log("Recherche en cours pour:", query);
+                
+                // Sélectionner toutes les cartes de produits
+                const productCards = document.querySelectorAll('.product-card');
+                console.log("Nombre de cartes trouvées:", productCards.length);
+                
+                if (!query) {
+                    // Si la recherche est vide, afficher tous les produits
+                    productCards.forEach(card => {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                    });
+                    noResultsMsg.style.display = 'none';
+                    console.log("Affichage de tous les produits");
+                    return;
+                }
+                
+                let hasResults = false;
+                
+                productCards.forEach(card => {
+                    // Récupérer toutes les informations pertinentes de la carte
+                    const title = card.querySelector('h4') ? card.querySelector('h4').textContent.toLowerCase() : '';
+                    const description = card.querySelector('span') ? card.querySelector('span').textContent.toLowerCase() : '';
+                    const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+                    const keywords = card.getAttribute('data-keywords') ? card.getAttribute('data-keywords').toLowerCase() : '';
+                    
+                    console.log("Titre:", title);
+                    console.log("Description:", description);
+                    console.log("Catégorie:", category);
+                    console.log("Mots-clés:", keywords);
+                    
+                    // Vérifier si le terme de recherche correspond à l'un des champs
+                    if (title.includes(query) || description.includes(query) || 
+                        category.includes(query) || keywords.includes(query)) {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                        hasResults = true;
+                        console.log("Correspondance trouvée pour:", title);
+                    } else {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                        card.style.visibility = 'hidden';
+                        console.log("Aucune correspondance pour:", title);
+                    }
+                });
+                
+                // Afficher ou masquer le message "aucun résultat"
+                if (hasResults) {
+                    noResultsMsg.style.display = 'none';
+                    console.log("Résultats trouvés");
+                } else {
+                    noResultsMsg.style.display = 'block';
+                    console.log("Aucun résultat trouvé");
+                }
+            }
+            
+            // Lancer la recherche lors du clic sur le bouton
+            searchBtn.addEventListener('click', (event) => {
+                console.log("Clic sur le bouton de recherche");
+                performSearch(event);
+            });
+            
+            // Lancer la recherche lors de l'appui sur Entrée
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    console.log("Appui sur Entrée dans le champ de recherche");
+                    performSearch(e);
+                }
+            });
+            
+            // Lancer la recherche en temps réel pendant la saisie
+            searchInput.addEventListener('input', () => {
+                console.log("Saisie dans le champ de recherche");
+                performSearch();
+            });
+            
+            // Message de confirmation que la recherche est initialisée
+            console.log("Fonction de recherche initialisée avec succès");
+        }
+        
+        // Filtres de produits
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Retirer la classe active de tous les boutons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Ajouter la classe active au bouton cliqué
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    
+                    productCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Gestion du panier
+        function addToCart(productId) {
+            cartCount++;
+            updateCartBadge();
+            saveCartCount();
+            showToast('Produit ajouté au panier !', 'success');
+            
+            // Animation du badge
+            const badge = document.getElementById('cartBadge');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Suivi Analytics
+            trackEvent('add_to_cart', { product_id: productId });
+        }
+        
+        function addToWishlist(productId) {
+            showToast('Produit ajouté aux favoris !', 'success');
+            
+            // Sauvegarder dans le localStorage
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            
+            // Suivi Analytics
+            trackEvent('add_to_wishlist', { product_id: productId });
+        }
+        
+        function quickView(productId) {
+            // Rediriger vers la page produit avec un paramètre pour l'aperçu rapide
+            window.location.href = `produit-detail.html?id=${productId}&quickview=true`;
+        }
+        
+        function updateCartBadge() {
+            document.getElementById('cartBadge').textContent = cartCount;
+        }
+        
+        function saveCartCount() {
+            localStorage.setItem('cartCount', cartCount.toString());
+        }
+        
+        function loadCartCount() {
+            const saved = localStorage.getItem('cartCount');
+            if (saved) {
+                cartCount = parseInt(saved);
+                updateCartBadge();
+            }
+        }
+        
+        // Gestion de la galerie
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+            
+            // Empêcher le défilement du corps quand le modal est ouvert
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            
+            // Rétablir le défilement du corps
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Fermer le modal en cliquant à l'extérieur
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('imageModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Fermer le modal avec la touche Échap
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Gestion des FAQ
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = element.querySelector('.faq-icon');
+            
+            // Fermer toutes les autres FAQ
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').classList.remove('active');
+                }
+            });
+            
+            // Toggle la FAQ actuelle
+            faqItem.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+        
+        // Newsletter
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Validation email simple
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                showToast('Merci pour votre inscription !', 'success');
+                event.target.reset();
+                
+                // Sauvegarder l'email dans le localStorage
+                let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+                
+                // Suivi Analytics
+                trackEvent('newsletter_subscription', { email: email });
+            } else {
+                showToast('Veuillez entrer une adresse email valide', 'error');
+            }
+        }
+        
+        // Gestion du bouton "Découvrir plus"
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnDecouvrir = document.querySelector('.btn-discover');
+            const contenuDecouvrir = document.getElementById('contenuDecouvrir');
+            
+            if (btnDecouvrir && contenuDecouvrir) {
+                btnDecouvrir.addEventListener('click', function() {
+                    if (contenuDecouvrir.style.display === 'none' || contenuDecouvrir.style.display === '') {
+                        contenuDecouvrir.style.display = 'block';
+                        contenuDecouvrir.style.opacity = '0';
+                        contenuDecouvrir.style.transform = 'translateY(20px)';
+                        
+                        setTimeout(() => {
+                            contenuDecouvrir.style.opacity = '1';
+                            contenuDecouvrir.style.transform = 'translateY(0)';
+                        }, 50);
+                        
+                        btnDecouvrir.textContent = 'Masquer';
+                        
+                        // Scroll vers le contenu
+                        setTimeout(() => {
+                            contenuDecouvrir.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'start' 
+                            });
+                        }, 100);
+                        
+                        // Suivi Analytics
+                        trackEvent('discover_more_click');
+                    } else {
+                        contenuDecouvrir.style.opacity = '0';
+                        contenuDecouvrir.style.transform = 'translateY(-20px)';
+                        
+                        setTimeout(() => {
+                            contenuDecouvrir.style.display = 'none';
+                        }, 300);
+                        
+                        btnDecouvrir.textContent = 'Découvrir plus';
+                    }
+                });
+            }
+        });
+        
+        // Gestion des touches clavier pour l'accessibilité
+        document.addEventListener('keydown', function(event) {
+            // Navigation du carousel avec les flèches
+            if (event.key === 'ArrowLeft') {
+                document.getElementById('prevBtn').click();
+            } else if (event.key === 'ArrowRight') {
+                document.getElementById('nextBtn').click();
+            }
+            
+            // Navigation des témoignages avec les flèches
+            if (event.key === 'ArrowLeft') {
+                document.getElementById('prevTestimonial').click();
+            } else if (event.key === 'ArrowRight') {
+                document.getElementById('nextTestimonial').click();
+            }
+        });
+        
+        // Système de notifications toast
+        function showToast(message, type = 'info') {
+            // Supprimer les anciens toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'polite');
+            
+            document.body.appendChild(toast);
+            
+            // Afficher le toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Masquer et supprimer le toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Service Worker pour PWA (Progressive Web App)
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
+                    });
+            }
+        }
+        
+        // Gestion des cookies (RGPD)
+        function initCookieConsent() {
+            // Vérifier si le consentement a déjà été donné
+            if (!localStorage.getItem('cookieConsent')) {
+                // Créer la bannière de consentement
+                const cookieBanner = document.createElement('div');
+                cookieBanner.id = 'cookieBanner';
+                cookieBanner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2c2c2c;
+                    color: white;
+                    padding: 1rem;
+                    z-index: 10000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                `;
+                
+                cookieBanner.innerHTML = `
+                    <div style="margin-right: 1rem;">
+                        <p style="margin: 0;">Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer sur ce site, vous acceptez notre politique de cookies.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="acceptCookies" style="background: #b27952; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Accepter</button>
+                        <button id="declineCookies" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Refuser</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(cookieBanner);
+                
+                // Gérer les clics sur les boutons
+                document.getElementById('acceptCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    document.getElementById('cookieBanner').remove();
+                    
+                    // Activer le suivi si accepté
+                    enableTracking();
+                });
+                
+                document.getElementById('declineCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    document.getElementById('cookieBanner').remove();
+                });
+            } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+                // Activer le suivi si déjà accepté
+                enableTracking();
+            }
+        }
+        
+        // Activer le suivi (Analytics)
+        function enableTracking() {
+            // Ici, vous pourriez intégrer Google Analytics, Facebook Pixel, etc.
+            console.log('Le suivi est activé');
+            
+            // Exemple de suivi de page vue
+            trackEvent('page_view', { page: 'home' });
+        }
+        
+        // Fonction de suivi des événements
+        function trackEvent(eventName, eventData = {}) {
+            // Ici, vous pourriez envoyer les données à Google Analytics, Facebook Pixel, etc.
+            console.log('Événement suivi:', eventName, eventData);
+            
+            // Exemple d'envoi à Google Analytics (si gtag.js est chargé)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+        }
+        
+        console.log('🎨 Decobizcreations - Site chargé avec succès !');
+        console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+    </script>
 </body>
 </html>
