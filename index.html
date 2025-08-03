@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,7 +25,7 @@
     <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     
     <!-- Fonts -->
@@ -292,22 +293,26 @@
         
         /* Hero Section */
         .hero {
-            position: relative;
-            height: 90vh;
-            min-height: 600px;
-            overflow: hidden;
-            background: linear-gradient(-45deg, #fceabb, #f8b500, #d99c39, #f9edbe);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: #3a2e00;
-            text-align: center;
-            padding: 0 1rem;
-            text-shadow: 1px 1px 5px rgba(255,255,255,0.6);
-        }
+    position: relative;
+    height: 90vh;
+    min-height: 600px;
+    overflow: hidden;
+
+    background-image: url("packo.jpeg"); /* Remplace par le chemin réel */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #070604;
+    text-align: center;
+    padding: 0 1rem;
+    text-shadow: 1px 1px 5px rgba(15, 11, 11, 0.6);
+}
+
         @keyframes gradientShift {
             0% {background-position: 0% 50%;}
             50% {background-position: 100% 50%;}
@@ -1542,7 +1547,7 @@
                 <div class="carousel-track" id="carouselTrack">
                     <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond béton décoratif">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Plateau+Rond+16cm" alt="Plateau rond 16 cm" loading="lazy" />
+                            <img src="mini plateau rond.jpeg" alt="Plateau rond 16 cm" loading="lazy" />
                             <div class="new-badge">Nouveau</div>
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('plateau-rond-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
@@ -1564,7 +1569,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau ovale béton décoratif">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Plateau+Ovale+18cm" alt="Plateau ovale 18 cm" loading="lazy" />
+                            <img src="mini plateau ovale.jpeg" alt="Plateau ovale 18 cm" loading="lazy" />
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
@@ -1585,7 +1590,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond grand béton décoratif">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Plateau+Rond+27cm" alt="Grand plateau rond 27 cm" loading="lazy" />
+                            <img src="plateau rond 26 (2).jpeg" alt="Grand plateau rond 27 cm" loading="lazy" />
                             <div class="sale-badge">-15%</div>
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
@@ -1610,7 +1615,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase nordique design béton">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Vase+Nordique+16cm" alt="Vase nordique 16 cm" loading="lazy" />
+                            <img src="vase nordique.jpeg" alt="Vase nordique 16 cm" loading="lazy" />
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
@@ -1631,7 +1636,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="mini vase moderne béton">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Mini+Vase+14cm" alt="Mini vase 14 cm" loading="lazy" />
+                            <img src="mini vase" alt="Mini vase 14 cm" loading="lazy" />
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
@@ -1652,7 +1657,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite décorative béton rangement">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Boite+Decorative+12cm" alt="Boîte décorative 12 cm" loading="lazy" />
+                            <img src="boite" alt="Boîte décorative 12 cm" loading="lazy" />
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
@@ -1673,7 +1678,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="arc-en-ciel décoratif gypse mural">
                         <div class="product-image">
-                            <img src="https://via.placeholder.com/280x220?text=Arc-en-ciel+26cm" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
+                            <img src="arc en ciel.jpeg" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
                             <div class="new-badge">Nouveau</div>
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
