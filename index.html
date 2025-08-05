@@ -126,6 +126,7 @@
             z-index: 10;
             border-bottom: 2px solid #b27952;
             transition: background 0.3s ease;
+            flex-wrap: wrap;
         }
         header:hover {
             background: #fdf6ef;
@@ -224,6 +225,9 @@
             display: flex;
             align-items: center;
             gap: 1rem;
+            width: 100%;
+            justify-content: center;
+            margin-top: 0.5rem;
         }
         nav a {
             text-decoration: none;
@@ -290,6 +294,17 @@
         .submenu a:hover {
             background: #f9f3e8;
             color: #b27952;
+        }
+        
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #b27952;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
         }
         
         .hero {
@@ -1472,8 +1487,75 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header-controls {
+                order: 1;
+                width: 100%;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+            }
+            
+            .logo {
+                order: 0;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
                 flex-direction: column;
-                gap: 0.5rem;
+                background: white;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                border-radius: 0 0 8px 8px;
+                padding: 1rem;
+                z-index: 100;
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            nav a {
+                padding: 0.5rem 0;
+                border-bottom: 1px solid #eee;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-item {
+                width: 100%;
+            }
+            
+            .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: #f9f3e8;
+                border-radius: 8px;
+                margin-top: 0.5rem;
+                display: none;
+            }
+            
+            .nav-item.active .submenu {
+                display: block;
+            }
+            
+            .submenu a {
+                padding: 0.5rem;
+                border-bottom: none;
             }
             
             .search-input {
@@ -1521,17 +1603,6 @@
             
             .social-links {
                 justify-content: center;
-            }
-            
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem;
-            }
-            
-            nav a {
-                font-size: 0.8rem;
-                padding: 0.2rem 0.4rem;
             }
             
             .product-card {
@@ -1658,7 +1729,7 @@
         
         @media (max-width: 480px) {
             header h1 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
             }
             
             .hero h2 {
@@ -1835,6 +1906,29 @@
                 padding: 10px 15px;
                 max-width: 90%;
             }
+            
+            .header-controls {
+                gap: 0.5rem;
+            }
+            
+            .search-input {
+                width: 100px;
+            }
+            
+            .search-input:focus {
+                width: 120px;
+            }
+            
+            .dark-mode-toggle {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .cart-badge {
+                width: 16px;
+                height: 16px;
+                font-size: 0.65rem;
+            }
         }
     </style>
 </head>
@@ -1846,9 +1940,10 @@
     <div id="progressbar" aria-hidden="true"></div>
     
     <header>
-        <a href="index.html" class="logo">
-            <h1>Decobizcreations</h1>
-        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
         <div class="header-controls">
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
@@ -1859,8 +1954,19 @@
             <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
                 <i class="fas fa-moon"></i>
             </button>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0" aria-label="Panier">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
         </div>
-        <nav aria-label="Navigation principale">
+        
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        
+        <nav id="mainNav" aria-label="Navigation principale">
             <div class="nav-item">
                 <a href="index.html" tabindex="0">Accueil</a>
             </div>
@@ -1878,10 +1984,6 @@
             </div>
             <div class="nav-item">
                 <a href="contact.html" tabindex="0">Contact</a>
-            </div>
-            <div class="cart-counter">
-                <a href="panier.html" tabindex="0">Panier</a>
-                <span class="cart-badge" id="cartBadge">0</span>
             </div>
         </nav>
     </header>
@@ -2707,6 +2809,7 @@
             initDarkMode();
             initSearch();
             initFilters();
+            initMobileMenu();
             
             // Charger le compteur du panier depuis localStorage
             loadCartCount();
@@ -2717,6 +2820,51 @@
             // Initialiser le consentement aux cookies
             initCookieConsent();
         });
+        
+        // Initialisation du menu mobile
+        function initMobileMenu() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mainNav = document.getElementById('mainNav');
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                
+                // Changer l'icône du menu
+                const icon = menuToggle.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Gestion des sous-menus sur mobile
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const submenu = item.querySelector('.submenu');
+                
+                if (submenu) {
+                    link.addEventListener('click', function(e) {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            item.classList.toggle('active');
+                        }
+                    });
+                }
+            });
+            
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', function(e) {
+                if (!header.contains(e.target) && mainNav.classList.contains('active')) {
+                    mainNav.classList.remove('active');
+                    menuToggle.querySelector('i').classList.remove('fa-times');
+                    menuToggle.querySelector('i').classList.add('fa-bars');
+                }
+            });
+        }
         
         // Barre de progression du scroll
         function initScrollProgress() {
