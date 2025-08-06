@@ -2,7 +2,12 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#b27952" />
+    
     <title>Decobizcreations - Artisanat Béton & Gypse | Décoration Marocaine</title>
     <meta name="description" content="Découvrez nos créations artisanales uniques en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc. Livraison rapide." />
     <meta name="keywords" content="décoration béton, gypse, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
@@ -26,6 +31,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -40,9 +46,11 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
         body {
             background: #fffaf5;
@@ -50,6 +58,8 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.5s ease;
+            position: relative;
+            padding-bottom: env(safe-area-inset-bottom);
         }
         
         /* Mode sombre */
@@ -127,6 +137,7 @@
             border-bottom: 2px solid #b27952;
             transition: background 0.3s ease;
             flex-wrap: wrap;
+            padding-top: env(safe-area-inset-top);
         }
         header:hover {
             background: #fdf6ef;
@@ -552,6 +563,7 @@
             overflow-x: auto;
             scrollbar-width: none; /* Firefox */
             -ms-overflow-style: none; /* IE and Edge */
+            -webkit-overflow-scrolling: touch; /* Pour iPhone */
         }
         .carousel-track::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
@@ -566,6 +578,7 @@
             position: relative;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
+            -webkit-user-select: none;
         }
         .product-card:hover {
             transform: translateY(-10px) scale(1.05);
@@ -710,6 +723,7 @@
             outline: none;
             transition: all 0.3s ease;
             user-select: none;
+            -webkit-user-select: none;
             letter-spacing: 1px;
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
@@ -849,6 +863,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.9);
+            padding-top: env(safe-area-inset-top);
         }
         .modal-content {
             position: relative;
@@ -872,6 +887,7 @@
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 10001;
         }
         .close-modal:hover {
             color: #bbb;
@@ -1265,6 +1281,7 @@
             color: #b27952;
             margin-bottom: 0.8rem;
             user-select: none;
+            -webkit-user-select: none;
         }
         .value-title {
             font-family: 'Playfair Display', serif;
@@ -1284,6 +1301,7 @@
             color: #777;
             margin-top: 1.5rem;
             padding: 2rem 0 0.8rem;
+            padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
         }
         .footer-content {
             max-width: 100%;
@@ -1411,6 +1429,8 @@
             cursor: pointer;
             animation: pulse 2.5s infinite ease-in-out;
             transition: box-shadow 0.3s ease;
+            bottom: calc(20px + env(safe-area-inset-bottom));
+            right: calc(20px + env(safe-area-inset-right));
         }
         .whatsapp-float:hover {
             box-shadow: 0 8px 20px rgba(37,211,102,0.7);
@@ -1438,6 +1458,8 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             z-index: 1000;
+            bottom: calc(80px + env(safe-area-inset-bottom));
+            right: calc(20px + env(safe-area-inset-right));
         }
         .back-to-top:hover {
             background: #8c5a34;
@@ -1473,6 +1495,8 @@
             transition: transform 0.3s ease;
             font-size: 0.9rem;
             max-width: 80%;
+            top: calc(80px + env(safe-area-inset-top));
+            right: calc(15px + env(safe-area-inset-right));
         }
         .toast.show {
             transform: translateX(0);
@@ -1929,6 +1953,80 @@
                 height: 16px;
                 font-size: 0.65rem;
             }
+            
+            /* Améliorations spécifiques pour iPhone */
+            .product-card {
+                flex: 0 0 140px;
+            }
+            
+            .product-image {
+                height: 120px;
+            }
+            
+            .action-btn {
+                width: 28px;
+                height: 28px;
+            }
+            
+            .hero {
+                min-height: 400px;
+            }
+            
+            .carousel-track {
+                gap: 1rem;
+                padding-bottom: 10px;
+            }
+            
+            .carousel-btn {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .modal {
+                padding-top: calc(env(safe-area-inset-top) + 20px);
+            }
+            
+            .close-modal {
+                top: calc(env(safe-area-inset-top) + 15px);
+                right: 15px;
+            }
+        }
+        
+        /* Optimisations pour iPhone X et modèles ultérieurs (avec encoche) */
+        @supports (padding: max(0px)) {
+            header {
+                padding-top: max(0.8rem, env(safe-area-inset-top));
+            }
+            
+            .modal {
+                padding-top: max(20px, env(safe-area-inset-top));
+            }
+            
+            .close-modal {
+                top: max(15px, env(safe-area-inset-top));
+            }
+            
+            .toast {
+                top: max(80px, env(safe-area-inset-top));
+            }
+            
+            .whatsapp-float {
+                bottom: max(20px, env(safe-area-inset-bottom));
+                right: max(20px, env(safe-area-inset-right));
+            }
+            
+            .back-to-top {
+                bottom: max(80px, env(safe-area-inset-bottom));
+                right: max(20px, env(safe-area-inset-right));
+            }
+            
+            footer {
+                padding-bottom: max(0.8rem, env(safe-area-inset-bottom));
+            }
+            
+            body {
+                padding-bottom: max(0px, env(safe-area-inset-bottom));
+            }
         }
     </style>
 </head>
@@ -1991,7 +2089,7 @@
     <section class="hero" role="banner" aria-label="Présentation de Decobizcreations">
         <div class="hero-content">
             <h2>Décoration Élégante & Unique</h2>
-            <p>Ajoutez une touche chic à votre maison avec nos pièces artisanales en béton et gypse.</p>
+            <p>Ajoutez une touche chic à votre maison avec nos pièces artisanales en béton.</p>
             <a href="#produits" class="hero-cta">Découvrir nos créations</a>
         </div>
     </section>
@@ -2142,7 +2240,7 @@
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="mini vase moderne béton">
                         <div class="product-image">
-                            <img src="mini vase" alt="Mini vase 14 cm" loading="lazy" />
+                            <img src="mini vase.jpeg" alt="Mini vase 14 cm" loading="lazy" />
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
@@ -2320,7 +2418,7 @@
                     <!-- Pack spécial -->
                     <article class="product-card fade-slide" tabindex="0">
                         <div class="product-image">
-                            <img src="pack-special.jpg" alt="Pack Spécial" loading="lazy" />
+                            <img src="pack8.jpg" alt="Pack Spécial" loading="lazy" />
                             <div class="new-badge">Offre</div>
                             <div class="product-actions">
                                 <button class="action-btn" onclick="addToCart('pack-special')" title="Ajouter au panier" aria-label="Ajouter au panier">
@@ -2368,7 +2466,7 @@
         <div id="contenuDecouvrir" style="display:none; max-width: 90%; margin: 1.5rem auto 3rem auto; color: #5a4a24; font-weight: 500; line-height: 1.5; text-align: center;">
             <p>
                 Découvrez notre collection complète qui comprend également des plateaux ovales, des boîtes décoratives et des vases minimalistes conçus pour s'adapter à tout style d'intérieur.<br><br>
-                Chaque pièce est soigneusement travaillée à la main, avec une attention particulière portée à la durabilité et à l'esthétique naturelle du béton et du gypse.<br><br>
+                Chaque pièce est soigneusement travaillée à la main, avec une attention particulière portée à la durabilité et à l'esthétique naturelle du béton.<br><br>
                 Nous proposons aussi des options de personnalisation pour rendre votre décoration vraiment unique.
             </p>
         </div>
@@ -2385,7 +2483,7 @@
                 <div class="process-step">
                     <div class="step-number">2</div>
                     <div class="step-title">Préparation</div>
-                    <div class="step-desc">Sélection minutieuse des matériaux et préparation du mélange de béton ou de gypse.</div>
+                    <div class="step-desc">Sélection minutieuse des matériaux et préparation du mélange de béton.</div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
@@ -2480,10 +2578,10 @@
             <div class="about-text">
                 <h3 id="about-title">À propos de Decobizcreations</h3>
                 <p>
-                    Chez Decobizcreations, chaque pièce est créée avec passion et savoir-faire artisanal. Nous mêlons tradition marocaine et design moderne pour vous offrir des décorations uniques qui apportent chaleur et élégance à votre intérieur. Que ce soit pour un cadeau ou pour embellir votre maison, nos créations en béton et gypse sont pensées pour durer et séduire.
+                    Chez Decobizcreations, chaque pièce est créée avec passion et savoir-faire artisanal. Nous mêlons tradition marocaine et design moderne pour vous offrir des décorations uniques qui apportent chaleur et élégance à votre intérieur. Que ce soit pour un cadeau ou pour embellir votre maison, nos créations en béton sont pensées pour durer et séduire.
                 </p>
                 <p>
-                    Fondée en 2018 par Hajar Agrar, notre entreprise s'engage à promouvoir l'artisanat local tout en innovant dans les techniques de travail du béton et du gypse. Chaque pièce est fabriquée à la main dans notre atelier de Casablanca, avec une attention particulière portée aux détails et à la qualité des finitions.
+                    Fondée en 2018 par Hajar Agrar, notre entreprise s'engage à promouvoir l'artisanat local tout en innovant dans les techniques de travail du béton. Chaque pièce est fabriquée à la main dans notre atelier de Casablanca, avec une attention particulière portée aux détails et à la qualité des finitions.
                 </p>
             </div>
         </section>
@@ -2819,7 +2917,79 @@
             
             // Initialiser le consentement aux cookies
             initCookieConsent();
+            
+            // Optimisation spécifique pour iPhone
+            optimizeForIPhone();
         });
+        
+        // Optimisations spécifiques pour iPhone
+        function optimizeForIPhone() {
+            // Détecter si l'appareil est un iPhone
+            const isIPhone = /iPhone/.test(navigator.userAgent);
+            
+            if (isIPhone) {
+                // Ajuster la hauteur du viewport pour les iPhones avec encoche
+                document.documentElement.style.setProperty('--viewport-height', window.innerHeight + 'px');
+                
+                // Gérer le changement d'orientation
+                window.addEventListener('orientationchange', function() {
+                    // Mettre à jour la hauteur du viewport après le changement d'orientation
+                    setTimeout(function() {
+                        document.documentElement.style.setProperty('--viewport-height', window.innerHeight + 'px');
+                    }, 500);
+                });
+                
+                // Optimiser le défilement pour un effet plus fluide
+                document.body.style.webkitOverflowScrolling = 'touch';
+                
+                // Améliorer les performances de défilement
+                let ticking = false;
+                function updateScrollProgress() {
+                    const scrollTop = window.pageYOffset;
+                    const docHeight = document.body.scrollHeight - window.innerHeight;
+                    const scrollPercent = (scrollTop / docHeight) * 100;
+                    document.getElementById('progressbar').style.width = scrollPercent + '%';
+                    ticking = false;
+                }
+                
+                function requestTick() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateScrollProgress);
+                        ticking = true;
+                    }
+                }
+                
+                window.addEventListener('scroll', requestTick);
+                
+                // Optimiser le carousel pour le tactile
+                const carousels = document.querySelectorAll('.carousel-track');
+                carousels.forEach(carousel => {
+                    let isDown = false;
+                    let startX;
+                    let scrollLeft;
+                    
+                    carousel.addEventListener('touchstart', (e) => {
+                        isDown = true;
+                        startX = e.touches[0].pageX - carousel.offsetLeft;
+                        scrollLeft = carousel.scrollLeft;
+                    }, { passive: true });
+                    
+                    carousel.addEventListener('touchmove', (e) => {
+                        if (!isDown) return;
+                        e.preventDefault();
+                        const x = e.touches[0].pageX - carousel.offsetLeft;
+                        const walk = (x - startX) * 2; // Vitesse de défilement
+                        carousel.scrollLeft = scrollLeft - walk;
+                    }, { passive: false });
+                    
+                    carousel.addEventListener('touchend', () => {
+                        isDown = false;
+                    }, { passive: true });
+                });
+                
+                console.log('Optimisations iPhone activées');
+            }
+        }
         
         // Initialisation du menu mobile
         function initMobileMenu() {
@@ -3462,6 +3632,7 @@
                     justify-content: space-between;
                     align-items: center;
                     flex-wrap: wrap;
+                    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
                 `;
                 
                 cookieBanner.innerHTML = `
