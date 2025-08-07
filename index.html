@@ -3680,31 +3680,81 @@
         }
         
         // Connexion avec Google
-        function signInWithGoogle() {
-            const provider = new firebase.auth.GoogleAuthProvider();
+        // Connexion avec Google
+function signInWithGoogle() {
+    // Créer une instance du fournisseur Google
+    const provider = new firebase.auth.GoogleAuthProvider();
     
-            auth.signInWithPopup(provider)
-            .then((result) => {
-            // Le code existant...
-             })
-            .catch((error) => {
-            console.error('Erreur détaillée lors de la connexion avec Google:', error);
+    // Ajouter des scopes si nécessaire
+    provider.addScope('profile');
+    provider.addScope('email');
+    
+    // Paramètres personnalisés
+    provider.setCustomParameters({
+        'prompt': 'select_account' // Force à sélectionner un compte même si déjà connecté
+    });
+    
+    auth.signInWithPopup(provider)
+        .then((result) => {
+            // Connexion réussie
+            const user = result.user;
+            const credential = result.credential;
+            const accessToken = credential.accessToken;
             
-            // Afficher un message d'erreur plus spécifique
-            let errorMessage = 'Erreur lors de la connexion';
+            console.log("Utilisateur connecté:", user);
+            console.log("Token d'accès:", accessToken);
             
-            if (error.code === 'auth/popup-blocked') {
-                errorMessage = 'Veuillez autoriser les pop-ups pour vous connecter avec Google';
-            } else if (error.code === 'auth/unauthorized-domain') {
-                errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification';
-            } else if (error.code === 'auth/cancelled-popup-request') {
-                errorMessage = 'La connexion a été annulée';
+            // Sauvegarder les informations de l'utilisateur
+            saveUserData(user, true);
+            
+            // Afficher une notification
+            showNotification('Connexion réussie avec Google !', 'success');
+            
+            // Rediriger vers la page d'accueil après un court délai
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        })
+        .catch((error) => {
+            // Gestion détaillée des erreurs
+            console.error('Erreur de connexion avec Google:', error);
+            console.error('Code d\'erreur:', error.code);
+            console.error('Message d\'erreur:', error.message);
+            console.error('Email:', error.email);
+            console.error('Identifiant d\'authentification:', error.credential);
+            
+            let errorMessage = 'Erreur lors de la connexion avec Google';
+            
+            // Personnaliser le message d'erreur en fonction du code
+            switch (error.code) {
+                case 'auth/popup-closed-by-user':
+                    errorMessage = 'La fenêtre de connexion a été fermée avant la fin de l\'authentification';
+                    break;
+                case 'auth/cancelled-popup-request':
+                    errorMessage = 'Une autre demande d\'authentification est déjà en cours';
+                    break;
+                case 'auth/popup-blocked':
+                    errorMessage = 'La fenêtre de connexion a été bloquée par le navigateur. Veuillez autoriser les popups pour ce site.';
+                    break;
+                case 'auth/unauthorized-domain':
+                    errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification. Veuillez contacter l\'administrateur.';
+                    break;
+                case 'auth/account-exists-with-different-credential':
+                    errorMessage = 'Un compte existe déjà avec la même adresse email mais avec des identifiants différents.';
+                    break;
+                case 'auth/operation-not-allowed':
+                    errorMessage = 'L\'authentification avec Google n\'est pas activée. Veuillez contacter l\'administrateur.';
+                    break;
+                case 'auth/invalid-api-key':
+                    errorMessage = 'Votre clé API Firebase est invalide. Veuillez vérifier votre configuration.';
+                    break;
+                default:
+                    errorMessage = `Erreur: ${error.message}`;
             }
             
-            showToast(errorMessage, 'error');
-           });
-       }
-        
+            showNotification(errorMessage, 'error');
+        });
+}
         // Connexion avec GitHub
         function signInWithGitHub() {
             const provider = new firebase.auth.GithubAuthProvider();
@@ -4656,3 +4706,4 @@
     </script>
 </body>
 </html>
+
