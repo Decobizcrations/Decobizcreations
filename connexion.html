@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#b27952" />
+    
+    <title>Connexion - Decobizcreations</title>
+    <meta name="description" content="Connectez-vous à votre compte Decobizcreations pour accéder à une expérience personnalisée." />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8b500, #b27952);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #2c2c2c;
+        }
+        
+        .login-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .login-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+        }
+        
+        .login-header p {
+            color: #6b5e34;
+            font-size: 0.95rem;
+        }
+        
+        .login-form {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5a4a24;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #b27952;
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember-me input {
+            margin-right: 0.5rem;
+        }
+        
+        .remember-me label {
+            font-size: 0.9rem;
+            color: #6b5e34;
+            cursor: pointer;
+        }
+        
+        .forgot-password {
+            font-size: 0.9rem;
+            color: #b27952;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .forgot-password:hover {
+            color: #8c5a34;
+            text-decoration: underline;
+        }
+        
+        .login-btn {
+            width: 100%;
+            background: #b27952;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            background: #8c5a34;
+        }
+        
+        .divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #ddd;
+        }
+        
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            position: relative;
+            color: #6b5e34;
+            font-size: 0.9rem;
+        }
+        
+        .social-login {
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .google-btn {
+            background: #4285F4;
+            color: white;
+        }
+        
+        .google-btn:hover {
+            background: #3367d6;
+        }
+        
+        .github-btn {
+            background: #333;
+            color: white;
+        }
+        
+        .github-btn:hover {
+            background: #24292e;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #6b5e34;
+            font-size: 0.95rem;
+        }
+        
+        .register-link a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .register-link a:hover {
+            color: #8c5a34;
+            text-decoration: underline;
+        }
+        
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #b27952;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-to-home:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .notification.error {
+            border-left: 4px solid #f44336;
+        }
+        
+        .notification.info {
+            border-left: 4px solid #2196F3;
+        }
+        
+        .notification-icon {
+            font-size: 1.2rem;
+        }
+        
+        .notification.success .notification-icon {
+            color: #4CAF50;
+        }
+        
+        .notification.error .notification-icon {
+            color: #f44336;
+        }
+        
+        .notification.info .notification-icon {
+            color: #2196F3;
+        }
+        
+        .notification-message {
+            flex: 1;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #999;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 1.5rem;
+            }
+            
+            .login-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-to-home {
+                top: 15px;
+                left: 15px;
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-to-home" onclick="goToHome()" title="Retour à l'accueil">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+    
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Connexion</h1>
+            <p>Connectez-vous à votre compte Decobizcreations</p>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="email">Adresse email</label>
+                <input type="email" id="email" placeholder="Votre email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="Votre mot de passe" required>
+            </div>
+            
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe">Se souvenir de moi</label>
+                </div>
+                <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+            </div>
+            
+            <button type="submit" class="login-btn">Se connecter</button>
+        </form>
+        
+        <div class="divider">
+            <span>OU</span>
+        </div>
+        
+        <div class="social-login">
+            <button class="social-btn google-btn" onclick="signInWithGoogle()">
+                <i class="fab fa-google"></i> Continuer avec Google
+            </button>
+            
+            <button class="social-btn github-btn" onclick="signInWithGitHub()">
+                <i class="fab fa-github"></i> Continuer avec GitHub
+            </button>
+        </div>
+        
+        <div class="register-link">
+            Vous n'avez pas de compte ? <a href="inscription.html">Inscrivez-vous</a>
+        </div>
+    </div>
+    
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message"></div>
+        <button class="notification-close" onclick="closeNotification()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <script>
+        // Configuration Firebase (remplacez par vos propres informations)
+        const firebaseConfig = {
+            apiKey: "AIzaSyA9sX6m8x6xXxXxXxXxXxXxXxXxXxXxXx",
+            authDomain: "votre-projet.firebaseapp.com",
+            databaseURL: "https://votre-projet-default-rtdb.firebaseio.com",
+            projectId: "votre-projet",
+            storageBucket: "votre-projet.appspot.com",
+            messagingSenderId: "123456789",
+            appId: "1:123456789:web:abcdef123456"
+        };
+        
+        // Initialiser Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+        
+        // Variables globales
+        let currentUser = null;
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Vérifier si l'utilisateur est déjà connecté
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    // L'utilisateur est déjà connecté, rediriger vers la page d'accueil
+                    window.location.href = 'index.html';
+                }
+            });
+            
+            // Initialiser le formulaire de connexion
+            initLoginForm();
+        });
+        
+        // Initialiser le formulaire de connexion
+        function initLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                // Connexion avec email et mot de passe
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Connexion réussie
+                        const user = userCredential.user;
+                        
+                        // Sauvegarder les informations de l'utilisateur
+                        saveUserData(user, rememberMe);
+                        
+                        // Afficher une notification
+                        showNotification('Connexion réussie !', 'success');
+                        
+                        // Rediriger vers la page d'accueil après un court délai
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    })
+                    .catch((error) => {
+                        // Erreur lors de la connexion
+                        console.error('Erreur de connexion:', error);
+                        showNotification('Email ou mot de passe incorrect', 'error');
+                    });
+            });
+        }
+        
+        // Connexion avec Google
+        function signInWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // Connexion réussie
+                    const user = result.user;
+                    
+                    // Sauvegarder les informations de l'utilisateur
+                    saveUserData(user, true);
+                    
+                    // Afficher une notification
+                    showNotification('Connexion réussie avec Google !', 'success');
+                    
+                    // Rediriger vers la page d'accueil après un court délai
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    // Erreur lors de la connexion
+                    console.error('Erreur de connexion avec Google:', error);
+                    showNotification('Erreur lors de la connexion avec Google', 'error');
+                });
+        }
+        
+        // Connexion avec GitHub
+        function signInWithGitHub() {
+            const provider = new firebase.auth.GithubAuthProvider();
+            
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // Connexion réussie
+                    const user = result.user;
+                    
+                    // Sauvegarder les informations de l'utilisateur
+                    saveUserData(user, true);
+                    
+                    // Afficher une notification
+                    showNotification('Connexion réussie avec GitHub !', 'success');
+                    
+                    // Rediriger vers la page d'accueil après un court délai
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
+                })
+                .catch((error) => {
+                    // Erreur lors de la connexion
+                    console.error('Erreur de connexion avec GitHub:', error);
+                    showNotification('Erreur lors de la connexion avec GitHub', 'error');
+                });
+        }
+        
+        // Sauvegarder les données de l'utilisateur
+        function saveUserData(user, rememberMe) {
+            // Créer l'objet utilisateur
+            const userData = {
+                uid: user.uid,
+                name: user.displayName || user.email.split('@')[0],
+                email: user.email,
+                photoURL: user.photoURL || null,
+                provider: user.providerData[0].providerId,
+                lastLogin: new Date().toISOString(),
+                devices: [] // Sera mis à jour avec les informations de l'appareil
+            };
+            
+            // Ajouter les informations de l'appareil
+            const deviceInfo = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                timestamp: new Date().toISOString()
+            };
+            
+            userData.devices.push(deviceInfo);
+            
+            // Sauvegarder dans localStorage pour un accès rapide
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            
+            // Sauvegarder dans Firebase pour la synchronisation entre appareils
+            database.ref('users/' + user.uid).update(userData)
+                .then(() => {
+                    console.log('Données utilisateur sauvegardées dans Firebase');
+                })
+                .catch((error) => {
+                    console.error('Erreur lors de la sauvegarde des données utilisateur:', error);
+                });
+        }
+        
+        // Afficher une notification
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            const messageElement = notification.querySelector('.notification-message');
+            const iconElement = notification.querySelector('.notification-icon');
+            
+            // Mettre à jour le message
+            messageElement.textContent = message;
+            
+            // Mettre à jour le type et l'icône
+            notification.className = 'notification ' + type;
+            
+            if (type === 'success') {
+                iconElement.innerHTML = '<i class="fas fa-check-circle"></i>';
+            } else if (type === 'error') {
+                iconElement.innerHTML = '<i class="fas fa-exclamation-circle"></i>';
+            } else {
+                iconElement.innerHTML = '<i class="fas fa-info-circle"></i>';
+            }
+            
+            // Afficher la notification
+            notification.classList.add('show');
+            
+            // Masquer la notification après 5 secondes
+            setTimeout(() => {
+                closeNotification();
+            }, 5000);
+        }
+        
+        // Fermer la notification
+        function closeNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.remove('show');
+        }
+        
+        // Retour à la page d'accueil
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
