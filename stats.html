@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Statistiques Secrètes</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: #fffaf5; 
+            color: #2c2c2c;
+            padding: 20px;
+        }
+        .container { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .hidden { display: none; }
+        .form-group { margin-bottom: 20px; }
+        input[type="password"] { 
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid #b27952; 
+            border-radius: 5px; 
+            font-size: 16px;
+        }
+        button { 
+            background: #b27952; 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 16px;
+            width: 100%;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .stat-card {
+            background: #f9f3e8;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #b27952;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .section h3 {
+            color: #b27952;
+            margin-bottom: 15px;
+        }
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .clear-btn {
+            background: #e74c3c;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center; color: #b27952; margin-bottom: 30px;">🔐 Accès Statistiques</h1>
+        
+        <div id="loginForm">
+            <div class="form-group">
+                <input type="password" id="password" placeholder="Entrez le mot de passe">
+            </div>
+            <button onclick="checkPassword()">Accéder aux statistiques</button>
+        </div>
+        
+        <div id="statsContent" class="hidden">
+            <h2 style="text-align: center; margin-bottom: 30px;">📊 Statistiques du Site</h2>
+            
+            <div class="stats-grid" id="summaryCards">
+                <!-- Les cartes de résumé seront générées ici -->
+            </div>
+            
+            <div class="section">
+                <h3>📄 Pages les plus visitées</h3>
+                <div id="pagesList"></div>
+            </div>
+            
+            <div class="section">
+                <h3>📱 Appareils utilisés</h3>
+                <div id="devicesList"></div>
+            </div>
+            
+            <div class="section">
+                <h3>🌐 Sources de trafic</h3>
+                <div id="referrersList"></div>
+            </div>
+            
+            <button class="clear-btn" onclick="clearStats()">Effacer toutes les statistiques</button>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('password').value;
+            // Changez ce mot de passe !
+            if (password === 'decobiz2025') {
+                document.getElementById('loginForm').classList.add('hidden');
+                document.getElementById('statsContent').classList.remove('hidden');
+                displayStats();
+            } else {
+                alert('Mot de passe incorrect');
+            }
+        }
+        
+        function displayStats() {
+            const visits = JSON.parse(localStorage.getItem('siteVisits') || '[]');
+            
+            if (visits.length === 0) {
+                document.getElementById('statsContent').innerHTML = '<p style="text-align: center;">Aucune visite enregistrée</p>';
+                return;
+            }
+            
+            // Calculer les statistiques
+            const stats = {
+                totalVisits: visits.length,
+                uniqueVisitors: [...new Set(visits.map(v => v.sessionId))].length,
+                pageViews: {},
+                devices: {},
+                referrers: {}
+            };
+            
+            visits.forEach(visit => {
+                // Pages visitées
+                stats.pageViews[visit.page] = (stats.pageViews[visit.page] || 0) + 1;
+                
+                // Appareils
+                const device = visit.userAgent.includes('Mobile') ? 'Mobile' : 'Desktop';
+                stats.devices[device] = (stats.devices[device] || 0) + 1;
+                
+                // Référents
+                if (visit.referrer && visit.referrer !== '' && !visit.referrer.includes(window.location.hostname)) {
+                    try {
+                        const referrer = new URL(visit.referrer).hostname;
+                        stats.referrers[referrer] = (stats.referrers[referrer] || 0) + 1;
+                    } catch (e) {
+                        stats.referrers['Autre'] = (stats.referrers['Autre'] || 0) + 1;
+                    }
+                } else {
+                    stats.referrers['Direct'] = (stats.referrers['Direct'] || 0) + 1;
+                }
+            });
+            
+            // Afficher les cartes de résumé
+            document.getElementById('summaryCards').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${stats.totalVisits}</div>
+                    <div class="stat-label">Visites totales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.uniqueVisitors}</div>
+                    <div class="stat-label">Visiteurs uniques</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${Object.keys(stats.pageViews).length}</div>
+                    <div class="stat-label">Pages visitées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${new Date().toLocaleDateString('fr-FR')}</div>
+                    <div class="stat-label">Dernière mise à jour</div>
+                </div>
+            `;
+            
+            // Afficher les listes
+            displayList('pagesList', stats.pageViews, 'page');
+            displayList('devicesList', stats.devices, 'device');
+            displayList('referrersList', stats.referrers, 'referrer');
+        }
+        
+        function displayList(elementId, data, type) {
+            const element = document.getElementById(elementId);
+            const sortedData = Object.entries(data).sort((a, b) => b[1] - a[1]);
+            
+            let html = '';
+            sortedData.forEach(([key, value]) => {
+                const percentage = ((value / Object.values(data).reduce((a, b) => a + b, 0)) * 100).toFixed(1);
+                html += `
+                    <div class="list-item">
+                        <span>${key === '/' ? 'Accueil' : key}</span>
+                        <span>${value} (${percentage}%)</span>
+                    </div>
+                `;
+            });
+            
+            element.innerHTML = html;
+        }
+        
+        function clearStats() {
+            if (confirm('Êtes-vous sûr de vouloir effacer toutes les statistiques ? Cette action est irréversible.')) {
+                localStorage.removeItem('siteVisits');
+                alert('Statistiques effacées avec succès');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>
