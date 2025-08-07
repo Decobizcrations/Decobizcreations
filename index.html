@@ -3421,14 +3421,14 @@
         
         // Configuration Firebase (remplacez par vos propres informations)
         const firebaseConfig = {
-            apiKey: "AIzaSyA9sX6m8x6xXxXxXxXxXxXxXxXxXxXxXx",
-            authDomain: "votre-projet.firebaseapp.com",
-            databaseURL: "https://votre-projet-default-rtdb.firebaseio.com",
-            projectId: "votre-projet",
-            storageBucket: "votre-projet.appspot.com",
-            messagingSenderId: "123456789",
-            appId: "1:123456789:web:abcdef123456"
-        };
+    apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
+    authDomain: "decobizcreations.firebaseapp.com",
+    projectId: "decobizcreations",
+    storageBucket: "decobizcreations.firebasestorage.app",
+    messagingSenderId: "634879666090",
+    appId: "1:634879666090:web:769602d96fccb81855add3",
+    measurementId: "G-5M237WCPFR"
+};
         
         // Initialiser Firebase
         firebase.initializeApp(firebaseConfig);
@@ -3682,56 +3682,28 @@
         // Connexion avec Google
         function signInWithGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
-            
+    
             auth.signInWithPopup(provider)
-                .then((result) => {
-                    const user = result.user;
-                    
-                    // Créer l'objet utilisateur
-                    const userData = {
-                        id: user.uid,
-                        name: user.displayName,
-                        email: user.email,
-                        photoURL: user.photoURL,
-                        registrationDate: new Date().toISOString(),
-                        lastVisit: new Date().toISOString(),
-                        provider: 'google'
-                    };
-                    
-                    // Sauvegarder l'utilisateur courant
-                    currentUser = userData;
-                    localStorage.setItem('currentUser', JSON.stringify(userData));
-                    
-                    // Ajouter l'utilisateur à la liste des utilisateurs enregistrés
-                    if (!users.find(u => u.email === userData.email)) {
-                        users.push(userData);
-                        localStorage.setItem('registeredUsers', JSON.stringify(users));
-                        
-                        // Envoyer les données à Firebase (si disponible)
-                        if (database) {
-                            database.ref('users/' + userData.id).set(userData).catch(error => {
-                                console.error('Erreur lors de l\'envoi des données à Firebase:', error);
-                            });
-                        }
-                    }
-                    
-                    // Afficher le message de bienvenue
-                    showUserWelcome();
-                    
-                    // Fermer le formulaire
-                    closeUserForm();
-                    
-                    // Mettre à jour les statistiques
-                    updateAdminStats();
-                    
-                    // Afficher une notification
-                    showToast(`Bienvenue ${userData.name} !`, 'success');
-                })
-                .catch((error) => {
-                    console.error('Erreur lors de la connexion avec Google:', error);
-                    showToast('Erreur lors de la connexion', 'error');
-                });
-        }
+            .then((result) => {
+            // Le code existant...
+             })
+            .catch((error) => {
+            console.error('Erreur détaillée lors de la connexion avec Google:', error);
+            
+            // Afficher un message d'erreur plus spécifique
+            let errorMessage = 'Erreur lors de la connexion';
+            
+            if (error.code === 'auth/popup-blocked') {
+                errorMessage = 'Veuillez autoriser les pop-ups pour vous connecter avec Google';
+            } else if (error.code === 'auth/unauthorized-domain') {
+                errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification';
+            } else if (error.code === 'auth/cancelled-popup-request') {
+                errorMessage = 'La connexion a été annulée';
+            }
+            
+            showToast(errorMessage, 'error');
+           });
+       }
         
         // Connexion avec GitHub
         function signInWithGitHub() {
