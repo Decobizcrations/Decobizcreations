@@ -2614,6 +2614,9 @@
             <div class="nav-item">
                 <a href="contact.html" tabindex="0">Contact</a>
             </div>
+            <div class="nav-item">
+                <a href="connexion.html" tabindex="0">Connexion</a>
+            </div>
         </nav>
     </header>
     
@@ -3598,25 +3601,7 @@
         }
         
         // Système d'identification des utilisateurs
-        function initUserSystem() {
-            // Vérifier si l'utilisateur est déjà connecté
-            const savedUser = localStorage.getItem('currentUser');
-            
-            if (savedUser) {
-                try {
-                    currentUser = JSON.parse(savedUser);
-                    showUserWelcome();
-                } catch (e) {
-                    console.error('Erreur lors de la lecture des données utilisateur:', e);
-                    localStorage.removeItem('currentUser');
-                }
-            } else {
-                // Afficher le formulaire d'identification après 3 secondes
-                setTimeout(() => {
-                    document.getElementById('userFormOverlay').classList.add('active');
-                }, 3000);
-            }
-        }
+        
         
         // Sauvegarder les informations de l'utilisateur
         function saveUserInfo(event) {
