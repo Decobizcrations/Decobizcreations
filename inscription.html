@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     
     <style>
         * {
@@ -456,16 +456,16 @@
     </div>
     
     <script>
-        // Configuration Firebase (remplacez par vos propres informations)
-       const firebaseConfig = {
-    apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
-    authDomain: "decobizcreations.firebaseapp.com",
-    projectId: "decobizcreations",
-    storageBucket: "decobizcreations.firebasestorage.app",
-    messagingSenderId: "634879666090",
-    appId: "1:634879666090:web:769602d96fccb81855add3",
-    measurementId: "G-5M237WCPFR"
-};
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
+            authDomain: "decobizcreations.firebaseapp.com",
+            projectId: "decobizcreations",
+            storageBucket: "decobizcreations.firebasestorage.app",
+            messagingSenderId: "634879666090",
+            appId: "1:634879666090:web:769602d96fccb81855add3",
+            measurementId: "G-5M237WCPFR"
+        };
         
         // Initialiser Firebase
         firebase.initializeApp(firebaseConfig);
@@ -487,6 +487,9 @@
             
             // Initialiser le formulaire d'inscription
             initRegisterForm();
+            
+            // Test de la connexion Firebase (pour le débogage)
+            testFirebaseConnection();
         });
         
         // Initialiser le formulaire d'inscription
@@ -504,6 +507,11 @@
                 const terms = document.getElementById('terms').checked;
                 
                 // Valider le formulaire
+                if (!firstName.trim() || !lastName.trim()) {
+                    showNotification('Veuillez remplir tous les champs', 'error');
+                    return;
+                }
+                
                 if (!terms) {
                     showNotification('Vous devez accepter les conditions d\'utilisation', 'error');
                     return;
@@ -514,6 +522,14 @@
                     return;
                 }
                 
+                if (password.length < 6) {
+                    showNotification('Le mot de passe doit contenir au moins 6 caractères', 'error');
+                    return;
+                }
+                
+                // Afficher un message de chargement
+                showNotification('Création du compte en cours...', 'info');
+                
                 // Créer l'utilisateur avec email et mot de passe
                 auth.createUserWithEmailAndPassword(email, password)
                     .then((userCredential) => {
@@ -521,34 +537,47 @@
                         const user = userCredential.user;
                         
                         // Mettre à jour le profil de l'utilisateur avec le prénom et le nom
-                        user.updateProfile({
+                        return user.updateProfile({
                             displayName: `${firstName} ${lastName}`
                         }).then(() => {
+                            // Envoyer un email de vérification
+                            return user.sendEmailVerification();
+                        }).then(() => {
                             // Sauvegarder les informations supplémentaires de l'utilisateur
-                            saveUserData(user, firstName, lastName);
-                            
+                            return saveUserData(user, firstName, lastName);
+                        }).then(() => {
                             // Afficher une notification
-                            showNotification('Inscription réussie !', 'success');
+                            showNotification('Inscription réussie ! Un email de vérification vous a été envoyé.', 'success');
                             
                             // Rediriger vers la page d'accueil après un court délai
                             setTimeout(() => {
                                 window.location.href = 'index.html';
-                            }, 1500);
-                        }).catch((error) => {
-                            console.error('Erreur lors de la mise à jour du profil:', error);
-                            showNotification('Erreur lors de la création du compte', 'error');
+                            }, 2000);
                         });
                     })
                     .catch((error) => {
                         // Erreur lors de l'inscription
                         console.error('Erreur d\'inscription:', error);
                         
-                        if (error.code === 'auth/email-already-in-use') {
-                            showNotification('Cette adresse email est déjà utilisée', 'error');
-                        } else if (error.code === 'auth/weak-password') {
-                            showNotification('Le mot de passe est trop faible', 'error');
-                        } else {
-                            showNotification('Erreur lors de la création du compte', 'error');
+                        // Messages d'erreur spécifiques
+                        switch (error.code) {
+                            case 'auth/email-already-in-use':
+                                showNotification('Cette adresse email est déjà utilisée', 'error');
+                                break;
+                            case 'auth/invalid-email':
+                                showNotification('Adresse email invalide', 'error');
+                                break;
+                            case 'auth/operation-not-allowed':
+                                showNotification('L\'inscription par email/mot de passe n\'est pas activée', 'error');
+                                break;
+                            case 'auth/weak-password':
+                                showNotification('Le mot de passe est trop faible', 'error');
+                                break;
+                            case 'auth/network-request-failed':
+                                showNotification('Erreur réseau. Veuillez vérifier votre connexion', 'error');
+                                break;
+                            default:
+                                showNotification(`Erreur: ${error.message}`, 'error');
                         }
                     });
             });
@@ -601,6 +630,9 @@
         
         // Inscription avec Google
         function signInWithGoogle() {
+            // Afficher un message de chargement
+            showNotification('Connexion avec Google en cours...', 'info');
+            
             const provider = new firebase.auth.GoogleAuthProvider();
             
             auth.signInWithPopup(provider)
@@ -608,9 +640,15 @@
                     // Inscription réussie
                     const user = result.user;
                     
-                    // Sauvegarder les informations de l'utilisateur
-                    saveUserData(user, user.displayName ? user.displayName.split(' ')[0] : '', user.displayName ? user.displayName.split(' ')[1] : '');
+                    // Extraire le prénom et le nom du displayName
+                    const names = user.displayName ? user.displayName.split(' ') : ['', ''];
+                    const firstName = names[0] || '';
+                    const lastName = names.slice(1).join(' ') || '';
                     
+                    // Sauvegarder les informations de l'utilisateur
+                    return saveUserData(user, firstName, lastName);
+                })
+                .then(() => {
                     // Afficher une notification
                     showNotification('Inscription réussie avec Google !', 'success');
                     
@@ -622,12 +660,36 @@
                 .catch((error) => {
                     // Erreur lors de l'inscription
                     console.error('Erreur d\'inscription avec Google:', error);
-                    showNotification('Erreur lors de l\'inscription avec Google', 'error');
+                    
+                    // Messages d'erreur spécifiques
+                    let errorMessage = 'Erreur lors de l\'inscription avec Google';
+                    
+                    switch (error.code) {
+                        case 'auth/popup-blocked':
+                            errorMessage = 'Veuillez autoriser les pop-ups pour vous connecter avec Google';
+                            break;
+                        case 'auth/unauthorized-domain':
+                            errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification';
+                            break;
+                        case 'auth/cancelled-popup-request':
+                            errorMessage = 'La connexion a été annulée';
+                            break;
+                        case 'auth/account-exists-with-different-credential':
+                            errorMessage = 'Un compte existe déjà avec cette adresse email';
+                            break;
+                        default:
+                            errorMessage = `Erreur: ${error.message}`;
+                    }
+                    
+                    showNotification(errorMessage, 'error');
                 });
         }
         
         // Inscription avec GitHub
         function signInWithGitHub() {
+            // Afficher un message de chargement
+            showNotification('Connexion avec GitHub en cours...', 'info');
+            
             const provider = new firebase.auth.GithubAuthProvider();
             
             auth.signInWithPopup(provider)
@@ -635,9 +697,22 @@
                     // Inscription réussie
                     const user = result.user;
                     
-                    // Sauvegarder les informations de l'utilisateur
-                    saveUserData(user, user.displayName ? user.displayName.split(' ')[0] : '', user.displayName ? user.displayName.split(' ')[1] : '');
+                    // Extraire le prénom et le nom du displayName ou du username
+                    let firstName = '';
+                    let lastName = '';
                     
+                    if (user.displayName) {
+                        const names = user.displayName.split(' ');
+                        firstName = names[0] || '';
+                        lastName = names.slice(1).join(' ') || '';
+                    } else if (user.reloadUserInfo && user.reloadUserInfo.screenName) {
+                        firstName = user.reloadUserInfo.screenName;
+                    }
+                    
+                    // Sauvegarder les informations de l'utilisateur
+                    return saveUserData(user, firstName, lastName);
+                })
+                .then(() => {
                     // Afficher une notification
                     showNotification('Inscription réussie avec GitHub !', 'success');
                     
@@ -649,47 +724,73 @@
                 .catch((error) => {
                     // Erreur lors de l'inscription
                     console.error('Erreur d\'inscription avec GitHub:', error);
-                    showNotification('Erreur lors de l\'inscription avec GitHub', 'error');
+                    
+                    // Messages d'erreur spécifiques
+                    let errorMessage = 'Erreur lors de l\'inscription avec GitHub';
+                    
+                    switch (error.code) {
+                        case 'auth/popup-blocked':
+                            errorMessage = 'Veuillez autoriser les pop-ups pour vous connecter avec GitHub';
+                            break;
+                        case 'auth/unauthorized-domain':
+                            errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification';
+                            break;
+                        case 'auth/cancelled-popup-request':
+                            errorMessage = 'La connexion a été annulée';
+                            break;
+                        case 'auth/account-exists-with-different-credential':
+                            errorMessage = 'Un compte existe déjà avec cette adresse email';
+                            break;
+                        default:
+                            errorMessage = `Erreur: ${error.message}`;
+                    }
+                    
+                    showNotification(errorMessage, 'error');
                 });
         }
         
         // Sauvegarder les données de l'utilisateur
         function saveUserData(user, firstName, lastName) {
-            // Créer l'objet utilisateur
-            const userData = {
-                uid: user.uid,
-                firstName: firstName,
-                lastName: lastName,
-                name: user.displayName || `${firstName} ${lastName}`,
-                email: user.email,
-                photoURL: user.photoURL || null,
-                provider: user.providerData[0].providerId,
-                registrationDate: new Date().toISOString(),
-                lastLogin: new Date().toISOString(),
-                devices: [] // Sera mis à jour avec les informations de l'appareil
-            };
-            
-            // Ajouter les informations de l'appareil
-            const deviceInfo = {
-                userAgent: navigator.userAgent,
-                platform: navigator.platform,
-                language: navigator.language,
-                timestamp: new Date().toISOString()
-            };
-            
-            userData.devices.push(deviceInfo);
-            
-            // Sauvegarder dans localStorage pour un accès rapide
-            localStorage.setItem('currentUser', JSON.stringify(userData));
-            
-            // Sauvegarder dans Firebase pour la synchronisation entre appareils
-            database.ref('users/' + user.uid).set(userData)
-                .then(() => {
-                    console.log('Données utilisateur sauvegardées dans Firebase');
-                })
-                .catch((error) => {
-                    console.error('Erreur lors de la sauvegarde des données utilisateur:', error);
-                });
+            return new Promise((resolve, reject) => {
+                // Créer l'objet utilisateur
+                const userData = {
+                    uid: user.uid,
+                    firstName: firstName,
+                    lastName: lastName,
+                    name: user.displayName || `${firstName} ${lastName}`,
+                    email: user.email,
+                    photoURL: user.photoURL || null,
+                    provider: user.providerData[0].providerId,
+                    registrationDate: new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    emailVerified: user.emailVerified,
+                    devices: [] // Sera mis à jour avec les informations de l'appareil
+                };
+                
+                // Ajouter les informations de l'appareil
+                const deviceInfo = {
+                    userAgent: navigator.userAgent,
+                    platform: navigator.platform,
+                    language: navigator.language,
+                    timestamp: new Date().toISOString()
+                };
+                
+                userData.devices.push(deviceInfo);
+                
+                // Sauvegarder dans localStorage pour un accès rapide
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                
+                // Sauvegarder dans Firebase pour la synchronisation entre appareils
+                database.ref('users/' + user.uid).set(userData)
+                    .then(() => {
+                        console.log('Données utilisateur sauvegardées dans Firebase');
+                        resolve(userData);
+                    })
+                    .catch((error) => {
+                        console.error('Erreur lors de la sauvegarde des données utilisateur:', error);
+                        reject(error);
+                    });
+            });
         }
         
         // Afficher une notification
@@ -730,6 +831,33 @@
         // Retour à la page d'accueil
         function goToHome() {
             window.location.href = 'index.html';
+        }
+        
+        // Fonction de test pour diagnostiquer les problèmes
+        function testFirebaseConnection() {
+            console.log("Test de la connexion Firebase...");
+            
+            // Tester la configuration Firebase
+            try {
+                const testApp = firebase.initializeApp(firebaseConfig, "testApp");
+                console.log("Configuration Firebase valide");
+                
+                // Tester la connexion à l'authentification
+                const testAuth = testApp.auth();
+                console.log("Service d'authentification initialisé");
+                
+                // Tester la connexion à la base de données
+                const testDb = testApp.database();
+                console.log("Service de base de données initialisé");
+                
+                // Supprimer l'application de test
+                testApp.delete().then(() => {
+                    console.log("Test Firebase réussi !");
+                });
+            } catch (error) {
+                console.error("Erreur lors du test Firebase:", error);
+                showNotification("Erreur de configuration Firebase: " + error.message, 'error');
+            }
         }
     </script>
 </body>
