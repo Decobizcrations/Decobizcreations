@@ -2614,9 +2614,6 @@
             <div class="nav-item">
                 <a href="contact.html" tabindex="0">Contact</a>
             </div>
-            <div class="nav-item">
-                <a href="connexion.html" tabindex="0">Connexion</a>
-            </div>
         </nav>
     </header>
     
@@ -3420,14 +3417,15 @@
         let users = [];
         
         // Configuration Firebase (remplacez par vos propres informations)
-        const firebaseConfig = {
-    apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
-    authDomain: "decobizcreations.firebaseapp.com",
-    projectId: "decobizcreations",
-    storageBucket: "decobizcreations.firebasestorage.app",
-    messagingSenderId: "634879666090",
-    appId: "1:634879666090:web:769602d96fccb81855add3",
-    measurementId: "G-5M237WCPFR"
+        // Configuration Firebase (remplacez par vos propres informations)
+const firebaseConfig = {
+    apiKey: "VOTRE_API_KEY",
+    authDomain: "votre-projet.firebaseapp.com",
+    databaseURL: "https://votre-projet-default-rtdb.firebaseio.com",
+    projectId: "votre-projet",
+    storageBucket: "votre-projet.appspot.com",
+    messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
+    appId: "VOTRE_APP_ID"
 };
         
         // Initialiser Firebase
@@ -3579,31 +3577,109 @@
             optimizeForIPhone();
         });
         
-        // Système de suivi des visiteurs
+        // Système de suivi des visiteurs - MODIFIÉ
         function initVisitorTracking() {
-            // Récupérer le nombre de visiteurs depuis localStorage
-            visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
+            // Récupérer le nombre de visiteurs depuis Firebase
+            const visitorsRef = database.ref('visitors/visitorCount');
             
-            // Incrémenter le compteur
-            visitorCount++;
+            visitorsRef.transaction(function(currentCount) {
+                // Si currentCount est null, c'est la première visite
+                return (currentCount || 0) + 1;
+            }).then(function(result) {
+                // Mettre à jour le compteur local
+                visitorCount = result.snapshot.val();
+                
+                // Mettre à jour l'affichage
+                document.getElementById('visitorCount').textContent = visitorCount;
+                
+                // Sauvegarder dans localStorage pour utilisation hors ligne
+                localStorage.setItem('visitorCount', visitorCount.toString());
+                
+                // Récupérer la liste des utilisateurs depuis Firebase
+                database.ref('users').once('value').then(function(snapshot) {
+                    users = [];
+                    snapshot.forEach(function(childSnapshot) {
+                        users.push(childSnapshot.val());
+                    });
+                    
+                    // Sauvegarder dans localStorage pour utilisation hors ligne
+                    localStorage.setItem('registeredUsers', JSON.stringify(users));
+                    
+                    // Mettre à jour les statistiques du panneau d'administration
+                    updateAdminStats();
+                }).catch(function(error) {
+                    console.error('Erreur lors de la récupération des utilisateurs:', error);
+                    
+                    // En cas d'erreur, utiliser les données locales
+                    users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                    updateAdminStats();
+                });
+            }).catch(function(error) {
+                console.error('Erreur lors de la mise à jour du compteur de visiteurs:', error);
+                
+                // En cas d'erreur, utiliser le compteur local
+                visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
+                visitorCount++;
+                localStorage.setItem('visitorCount', visitorCount.toString());
+                document.getElementById('visitorCount').textContent = visitorCount;
+                
+                // Utiliser les données locales
+                users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                updateAdminStats();
+            });
             
-            // Sauvegarder le nouveau compteur
-            localStorage.setItem('visitorCount', visitorCount.toString());
+            // Si l'utilisateur est connecté, mettre à jour sa dernière visite
+            if (currentUser) {
+                database.ref('users/' + currentUser.id + '/lastVisit').set(new Date().toISOString());
+            }
             
-            // Mettre à jour l'affichage
-            document.getElementById('visitorCount').textContent = visitorCount;
+            // Écouter les changements en temps réel sur le compteur de visiteurs
+            database.ref('visitors/visitorCount').on('value', function(snapshot) {
+                const newCount = snapshot.val();
+                if (newCount !== visitorCount) {
+                    visitorCount = newCount;
+                    document.getElementById('visitorCount').textContent = visitorCount;
+                    localStorage.setItem('visitorCount', visitorCount.toString());
+                }
+            });
             
-            // Récupérer la liste des utilisateurs depuis localStorage
-            users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-            
-            // Mettre à jour les statistiques du panneau d'administration
-            updateAdminStats();
+            // Écouter les changements en temps réel sur la liste des utilisateurs
+            database.ref('users').on('value', function(snapshot) {
+                users = [];
+                snapshot.forEach(function(childSnapshot) {
+                    users.push(childSnapshot.val());
+                });
+                
+                // Sauvegarder dans localStorage pour utilisation hors ligne
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+                
+                // Mettre à jour les statistiques du panneau d'administration
+                updateAdminStats();
+            });
         }
         
         // Système d'identification des utilisateurs
+        function initUserSystem() {
+            // Vérifier si l'utilisateur est déjà connecté
+            const savedUser = localStorage.getItem('currentUser');
+            
+            if (savedUser) {
+                try {
+                    currentUser = JSON.parse(savedUser);
+                    showUserWelcome();
+                } catch (e) {
+                    console.error('Erreur lors de la lecture des données utilisateur:', e);
+                    localStorage.removeItem('currentUser');
+                }
+            } else {
+                // Afficher le formulaire d'identification après 3 secondes
+                setTimeout(() => {
+                    document.getElementById('userFormOverlay').classList.add('active');
+                }, 3000);
+            }
+        }
         
-        
-        // Sauvegarder les informations de l'utilisateur
+        // Sauvegarder les informations de l'utilisateur - MODIFIÉ
         function saveUserInfo(event) {
             event.preventDefault();
             
@@ -3629,12 +3705,21 @@
                     users.push(user);
                     localStorage.setItem('registeredUsers', JSON.stringify(users));
                     
-                    // Envoyer les données à Firebase (si disponible)
-                    if (database) {
-                        database.ref('users/' + user.id).set(user).catch(error => {
-                            console.error('Erreur lors de l\'envoi des données à Firebase:', error);
-                        });
-                    }
+                    // Envoyer les données à Firebase
+                    database.ref('users/' + user.id).set(user).then(function() {
+                        console.log('Utilisateur enregistré avec succès dans Firebase');
+                    }).catch(function(error) {
+                        console.error('Erreur lors de l\'enregistrement de l\'utilisateur dans Firebase:', error);
+                    });
+                } else {
+                    // Mettre à jour la dernière visite de l'utilisateur existant
+                    const existingUser = users.find(u => u.email === email);
+                    existingUser.lastVisit = new Date().toISOString();
+                    localStorage.setItem('registeredUsers', JSON.stringify(users));
+                    
+                    database.ref('users/' + existingUser.id + '/lastVisit').set(new Date().toISOString()).catch(function(error) {
+                        console.error('Erreur lors de la mise à jour de la dernière visite:', error);
+                    });
                 }
                 
                 // Afficher le message de bienvenue
@@ -3679,83 +3764,122 @@
             showToast('Vous avez été déconnecté', 'info');
         }
         
-        // Connexion avec Google
-        // Connexion avec Google
+        // Connexion avec Google - MODIFIÉ
+        // Connexion avec Google - VERSION CORRIGÉE
 function signInWithGoogle() {
-    // Créer une instance du fournisseur Google
+    // Vérifier si Firebase est initialisé
+    if (!firebase.apps.length) {
+        showToast('Firebase non initialisé', 'error');
+        return;
+    }
+    
+    // Vérifier si l'authentification est disponible
+    if (!firebase.auth) {
+        showToast('Service d\'authentification non disponible', 'error');
+        return;
+    }
+    
+    console.log('Tentative de connexion avec Google...');
+    
     const provider = new firebase.auth.GoogleAuthProvider();
     
-    // Ajouter des scopes si nécessaire
+    // Ajouter des scopes supplémentaires
     provider.addScope('profile');
     provider.addScope('email');
     
-    // Paramètres personnalisés
-    provider.setCustomParameters({
-        'prompt': 'select_account' // Force à sélectionner un compte même si déjà connecté
-    });
-    
-    auth.signInWithPopup(provider)
+    firebase.auth().signInWithPopup(provider)
         .then((result) => {
-            // Connexion réussie
+            console.log('Connexion Google réussie:', result);
+            
             const user = result.user;
-            const credential = result.credential;
-            const accessToken = credential.accessToken;
             
-            console.log("Utilisateur connecté:", user);
-            console.log("Token d'accès:", accessToken);
+            // Créer l'objet utilisateur
+            const userData = {
+                id: user.uid,
+                name: user.displayName || 'Utilisateur Google',
+                email: user.email,
+                photoURL: user.photoURL,
+                registrationDate: new Date().toISOString(),
+                lastVisit: new Date().toISOString(),
+                provider: 'google'
+            };
             
-            // Sauvegarder les informations de l'utilisateur
-            saveUserData(user, true);
+            // Sauvegarder l'utilisateur courant
+            currentUser = userData;
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            
+            // Ajouter l'utilisateur à la liste des utilisateurs enregistrés
+            if (!users.find(u => u.email === userData.email)) {
+                users.push(userData);
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+                
+                // Envoyer les données à Firebase
+                if (database) {
+                    database.ref('users/' + userData.id).set(userData).then(function() {
+                        console.log('Utilisateur Google enregistré avec succès dans Firebase');
+                    }).catch(function(error) {
+                        console.error('Erreur lors de l\'enregistrement de l\'utilisateur Google dans Firebase:', error);
+                    });
+                }
+            } else {
+                // Mettre à jour la dernière visite de l'utilisateur existant
+                const existingUser = users.find(u => u.email === userData.email);
+                existingUser.lastVisit = new Date().toISOString();
+                localStorage.setItem('registeredUsers', JSON.stringify(users));
+                
+                if (database) {
+                    database.ref('users/' + existingUser.id + '/lastVisit').set(new Date().toISOString()).catch(function(error) {
+                        console.error('Erreur lors de la mise à jour de la dernière visite:', error);
+                    });
+                }
+            }
+            
+            // Afficher le message de bienvenue
+            showUserWelcome();
+            
+            // Fermer le formulaire
+            closeUserForm();
+            
+            // Mettre à jour les statistiques
+            updateAdminStats();
             
             // Afficher une notification
-            showNotification('Connexion réussie avec Google !', 'success');
-            
-            // Rediriger vers la page d'accueil après un court délai
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
+            showToast(`Bienvenue ${userData.name} !`, 'success');
         })
         .catch((error) => {
-            // Gestion détaillée des erreurs
-            console.error('Erreur de connexion avec Google:', error);
-            console.error('Code d\'erreur:', error.code);
-            console.error('Message d\'erreur:', error.message);
-            console.error('Email:', error.email);
-            console.error('Identifiant d\'authentification:', error.credential);
+            console.error('Erreur détaillée lors de la connexion avec Google:', error);
             
+            // Gérer les erreurs spécifiques
             let errorMessage = 'Erreur lors de la connexion avec Google';
             
-            // Personnaliser le message d'erreur en fonction du code
             switch (error.code) {
+                case 'auth/popup-blocked':
+                    errorMessage = 'La popup de connexion a été bloquée. Veuillez autoriser les popups pour ce site.';
+                    break;
                 case 'auth/popup-closed-by-user':
-                    errorMessage = 'La fenêtre de connexion a été fermée avant la fin de l\'authentification';
+                    errorMessage = 'Vous avez fermé la fenêtre de connexion avant de finaliser le processus.';
                     break;
                 case 'auth/cancelled-popup-request':
-                    errorMessage = 'Une autre demande d\'authentification est déjà en cours';
+                    errorMessage = 'La demande de connexion a été annulée.';
                     break;
-                case 'auth/popup-blocked':
-                    errorMessage = 'La fenêtre de connexion a été bloquée par le navigateur. Veuillez autoriser les popups pour ce site.';
+                case 'auth/network-request-failed':
+                    errorMessage = 'Erreur réseau. Vérifiez votre connexion Internet.';
                     break;
                 case 'auth/unauthorized-domain':
-                    errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification. Veuillez contacter l\'administrateur.';
-                    break;
-                case 'auth/account-exists-with-different-credential':
-                    errorMessage = 'Un compte existe déjà avec la même adresse email mais avec des identifiants différents.';
+                    errorMessage = 'Ce domaine n\'est pas autorisé pour la connexion OAuth. Veuillez contacter l\'administrateur.';
                     break;
                 case 'auth/operation-not-allowed':
-                    errorMessage = 'L\'authentification avec Google n\'est pas activée. Veuillez contacter l\'administrateur.';
-                    break;
-                case 'auth/invalid-api-key':
-                    errorMessage = 'Votre clé API Firebase est invalide. Veuillez vérifier votre configuration.';
+                    errorMessage = 'La connexion avec Google n\'est pas activée. Veuillez contacter l\'administrateur.';
                     break;
                 default:
                     errorMessage = `Erreur: ${error.message}`;
             }
             
-            showNotification(errorMessage, 'error');
+            showToast(errorMessage, 'error');
         });
 }
-        // Connexion avec GitHub
+        
+        // Connexion avec GitHub - MODIFIÉ
         function signInWithGitHub() {
             const provider = new firebase.auth.GithubAuthProvider();
             
@@ -3783,12 +3907,21 @@ function signInWithGoogle() {
                         users.push(userData);
                         localStorage.setItem('registeredUsers', JSON.stringify(users));
                         
-                        // Envoyer les données à Firebase (si disponible)
-                        if (database) {
-                            database.ref('users/' + userData.id).set(userData).catch(error => {
-                                console.error('Erreur lors de l\'envoi des données à Firebase:', error);
-                            });
-                        }
+                        // Envoyer les données à Firebase
+                        database.ref('users/' + userData.id).set(userData).then(function() {
+                            console.log('Utilisateur GitHub enregistré avec succès dans Firebase');
+                        }).catch(function(error) {
+                            console.error('Erreur lors de l\'enregistrement de l\'utilisateur GitHub dans Firebase:', error);
+                        });
+                    } else {
+                        // Mettre à jour la dernière visite de l'utilisateur existant
+                        const existingUser = users.find(u => u.email === userData.email);
+                        existingUser.lastVisit = new Date().toISOString();
+                        localStorage.setItem('registeredUsers', JSON.stringify(users));
+                        
+                        database.ref('users/' + existingUser.id + '/lastVisit').set(new Date().toISOString()).catch(function(error) {
+                            console.error('Erreur lors de la mise à jour de la dernière visite:', error);
+                        });
                     }
                     
                     // Afficher le message de bienvenue
@@ -4706,4 +4839,3 @@ function signInWithGoogle() {
     </script>
 </body>
 </html>
-
