@@ -1915,6 +1915,11 @@
             border-radius: 8px;
             padding: 1rem;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .admin-stat-card:hover {
+            transform: translateY(-5px);
         }
         
         .admin-stat-value {
@@ -1943,6 +1948,43 @@
         
         .export-users-btn:hover {
             background: #8c5a34;
+        }
+        
+        /* Styles pour le spinner de chargement et les messages d'erreur */
+        .loading-spinner {
+            text-align: center;
+            padding: 20px;
+            color: #b27952;
+        }
+        
+        .loading-spinner i {
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 20px;
+            color: #e74c3c;
+            background-color: #fdecea;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .session-info {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .active-session {
+            border-left: 3px solid #4CAF50;
+            padding-left: 10px;
+        }
+        
+        .inactive-session {
+            border-left: 3px solid #f44336;
+            padding-left: 10px;
         }
         
         /* Responsive */
@@ -3334,7 +3376,7 @@
                     <div class="admin-stat-label">Visiteurs totaux</div>
                 </div>
                 <div class="admin-stat-card">
-                    <div class="admin-stat-value" id="registeredUsers">0</div>
+                    <div class="admin-stat-value" id="activeSessions">0</div>
                     <div class="admin-stat-label">Sessions actives</div>
                 </div>
                 <div class="admin-stat-card">
@@ -3346,7 +3388,9 @@
             <div class="user-list-section">
                 <h3>Sessions actives</h3>
                 <div class="user-list-container" id="userListContainer">
-                    <p>Chargement des sessions...</p>
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i> Chargement des sessions...
+                    </div>
                 </div>
                 <button class="export-users-btn" onclick="exportSessionData()">Exporter les données</button>
             </div>
@@ -3418,14 +3462,14 @@
         
         // Configuration Firebase (remplacez par vos propres informations)
         const firebaseConfig = {
-    apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
-    authDomain: "decobizcreations.firebaseapp.com",
-    projectId: "decobizcreations",
-    storageBucket: "decobizcreations.firebasestorage.app",
-    messagingSenderId: "634879666090",
-    appId: "1:634879666090:web:769602d96fccb81855add3",
-    measurementId: "G-5M237WCPFR"
-};
+            apiKey: "VOTRE_API_KEY",
+            authDomain: "votre-projet.firebaseapp.com",
+            databaseURL: "https://votre-projet-default-rtdb.firebaseio.com",
+            projectId: "votre-projet",
+            storageBucket: "votre-projet.appspot.com",
+            messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
+            appId: "VOTRE_APP_ID"
+        };
         
         // Initialiser Firebase
         firebase.initializeApp(firebaseConfig);
@@ -4120,107 +4164,136 @@
         function updateAdminStats() {
             document.getElementById('totalVisitors').textContent = visitorCount;
             
-            // Récupérer le nombre de sessions actives
+            // Récupérer le nombre de sessions actives avec un indicateur de chargement
+            const userListContainer = document.getElementById('userListContainer');
+            userListContainer.innerHTML = '<div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Chargement des sessions...</div>';
+            
             database.ref('sessions').once('value').then(function(snapshot) {
                 const sessionCount = snapshot.numChildren();
-                document.getElementById('registeredUsers').textContent = sessionCount;
-                
-                // Calculer le nombre de visiteurs aujourd'hui
-                const today = new Date().toDateString();
                 let todaySessions = 0;
+                let activeSessions = 0;
+                
+                // Calculer le nombre de sessions actives et de visiteurs aujourd'hui
+                const now = new Date();
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).toDateString();
                 
                 snapshot.forEach(function(childSnapshot) {
                     const session = childSnapshot.val();
-                    if (new Date(session.timestamp).toDateString() === today) {
+                    const sessionDate = new Date(session.timestamp);
+                    const lastActive = new Date(session.lastActive);
+                    
+                    // Vérifier si la session est d'aujourd'hui
+                    if (sessionDate.toDateString() === today) {
                         todaySessions++;
+                    }
+                    
+                    // Vérifier si la session est active (activité dans les dernières 30 minutes)
+                    const diffMinutes = (now - lastActive) / (1000 * 60);
+                    if (diffMinutes < 30) {
+                        activeSessions++;
                     }
                 });
                 
+                document.getElementById('activeSessions').textContent = activeSessions;
                 document.getElementById('todayVisitors').textContent = todaySessions;
+                
+                // Afficher la liste des sessions
+                displayUserList(snapshot);
             }).catch(function(error) {
                 console.error('Erreur lors de la récupération des sessions:', error);
-                document.getElementById('registeredUsers').textContent = '0';
+                userListContainer.innerHTML = '<div class="error-message">Erreur lors du chargement des sessions</div>';
+                document.getElementById('activeSessions').textContent = '0';
                 document.getElementById('todayVisitors').textContent = '0';
             });
         }
         
         // Afficher la liste des sessions
-        function displayUserList() {
+        function displayUserList(snapshot) {
             const userListContainer = document.getElementById('userListContainer');
             
-            // Récupérer les sessions depuis Firebase
-            database.ref('sessions').once('value').then(function(snapshot) {
-                const sessions = [];
-                snapshot.forEach(function(childSnapshot) {
-                    sessions.push({
-                        id: childSnapshot.key,
-                        ...childSnapshot.val()
-                    });
+            if (!snapshot || snapshot.numChildren() === 0) {
+                userListContainer.innerHTML = '<p>Aucune session active pour le moment.</p>';
+                return;
+            }
+            
+            const sessions = [];
+            snapshot.forEach(function(childSnapshot) {
+                sessions.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
                 });
+            });
+            
+            // Trier les sessions par dernière activité (du plus récent au plus ancien)
+            const sortedSessions = [...sessions].sort((a, b) => 
+                new Date(b.lastActive) - new Date(a.lastActive)
+            );
+            
+            let userListHTML = '';
+            const now = new Date();
+            
+            sortedSessions.forEach(session => {
+                const lastActive = new Date(session.lastActive);
+                const timestamp = new Date(session.timestamp);
+                const diffMinutes = (now - lastActive) / (1000 * 60);
                 
-                if (sessions.length === 0) {
-                    userListContainer.innerHTML = '<p>Aucune session active pour le moment.</p>';
-                    return;
+                // Déterminer si la session est active
+                const isActive = diffMinutes < 30;
+                
+                // Extraire des informations sur l'appareil
+                const deviceInfo = session.deviceInfo;
+                let deviceName = 'Appareil inconnu';
+                let deviceIcon = 'fas fa-desktop';
+                
+                if (deviceInfo.userAgent) {
+                    if (deviceInfo.userAgent.includes('iPhone')) {
+                        deviceName = 'iPhone';
+                        deviceIcon = 'fab fa-apple';
+                    } else if (deviceInfo.userAgent.includes('iPad')) {
+                        deviceName = 'iPad';
+                        deviceIcon = 'fab fa-apple';
+                    } else if (deviceInfo.userAgent.includes('Android')) {
+                        deviceName = 'Android';
+                        deviceIcon = 'fab fa-android';
+                    } else if (deviceInfo.userAgent.includes('Windows')) {
+                        deviceName = 'Windows';
+                        deviceIcon = 'fab fa-windows';
+                    } else if (deviceInfo.userAgent.includes('Mac')) {
+                        deviceName = 'Mac';
+                        deviceIcon = 'fab fa-apple';
+                    } else if (deviceInfo.userAgent.includes('Linux')) {
+                        deviceName = 'Linux';
+                        deviceIcon = 'fab fa-linux';
+                    }
                 }
                 
-                let userListHTML = '';
+                // Formater les dates
+                const formatDate = (date) => {
+                    return date.toLocaleDateString('fr-FR') + ' ' + date.toLocaleTimeString('fr-FR');
+                };
                 
-                // Trier les sessions par dernière activité (du plus récent au plus ancien)
-                const sortedSessions = [...sessions].sort((a, b) => 
-                    new Date(b.lastActive) - new Date(a.lastActive)
-                );
-                
-                sortedSessions.forEach(session => {
-                    const lastActive = new Date(session.lastActive).toLocaleDateString('fr-FR') + ' ' + new Date(session.lastActive).toLocaleTimeString('fr-FR');
-                    const timestamp = new Date(session.timestamp).toLocaleDateString('fr-FR') + ' ' + new Date(session.timestamp).toLocaleTimeString('fr-FR');
-                    
-                    // Extraire des informations sur l'appareil
-                    const deviceInfo = session.deviceInfo;
-                    let deviceName = 'Appareil inconnu';
-                    let deviceIcon = 'fas fa-desktop';
-                    
-                    if (deviceInfo.userAgent) {
-                        if (deviceInfo.userAgent.includes('iPhone')) {
-                            deviceName = 'iPhone';
-                            deviceIcon = 'fab fa-apple';
-                        } else if (deviceInfo.userAgent.includes('iPad')) {
-                            deviceName = 'iPad';
-                            deviceIcon = 'fab fa-apple';
-                        } else if (deviceInfo.userAgent.includes('Android')) {
-                            deviceName = 'Android';
-                            deviceIcon = 'fab fa-android';
-                        } else if (deviceInfo.userAgent.includes('Windows')) {
-                            deviceName = 'Windows';
-                            deviceIcon = 'fab fa-windows';
-                        } else if (deviceInfo.userAgent.includes('Mac')) {
-                            deviceName = 'Mac';
-                            deviceIcon = 'fab fa-apple';
-                        } else if (deviceInfo.userAgent.includes('Linux')) {
-                            deviceName = 'Linux';
-                            deviceIcon = 'fab fa-linux';
-                        }
-                    }
-                    
-                    userListHTML += `
-                        <div class="user-list-item">
-                            <div class="user-list-avatar">
-                                <i class="${deviceIcon}"></i>
-                            </div>
-                            <div class="user-list-info">
-                                <div class="user-list-name">${session.userEmail}</div>
-                                <div class="user-list-email">Appareil: ${deviceName}</div>
-                                <div class="user-list-date">Connecté le: ${timestamp}</div>
-                                <div class="user-list-date">Dernière activité: ${lastActive}</div>
+                userListHTML += `
+                    <div class="user-list-item ${isActive ? 'active-session' : 'inactive-session'}">
+                        <div class="user-list-avatar">
+                            <i class="${deviceIcon}"></i>
+                        </div>
+                        <div class="user-list-info">
+                            <div class="user-list-name">${session.userEmail}</div>
+                            <div class="user-list-email">Appareil: ${deviceName}</div>
+                            <div class="user-list-date">Connecté le: ${formatDate(timestamp)}</div>
+                            <div class="user-list-date">Dernière activité: ${formatDate(lastActive)}</div>
+                            <div class="session-info">
+                                ${isActive ? 
+                                    '<span style="color: #4CAF50; font-weight: bold;">Actif</span>' : 
+                                    `<span style="color: #f44336;">Inactif depuis ${Math.round(diffMinutes)} minutes</span>`
+                                }
                             </div>
                         </div>
-                    `;
-                });
-                
-                userListContainer.innerHTML = userListHTML;
-            }).catch(function(error) {
-                console.error('Erreur lors de la récupération des sessions:', error);
-                userListContainer.innerHTML = '<p>Erreur lors de la récupération des sessions.</p>';
+                    </div>
+                `;
             });
+            
+            userListContainer.innerHTML = userListHTML;
         }
         
         // Exporter les données des sessions
@@ -4242,11 +4315,15 @@
                 
                 // Créer un fichier CSV
                 let csvContent = "data:text/csv;charset=utf-8,";
-                csvContent += "ID Session,Email Utilisateur,Appareil,Date de connexion,Dernière activité\n";
+                csvContent += "ID Session,Email Utilisateur,Appareil,Date de connexion,Dernière activité,Statut\n";
+                
+                const now = new Date();
                 
                 sessions.forEach(session => {
                     const timestamp = new Date(session.timestamp).toLocaleString('fr-FR');
                     const lastActive = new Date(session.lastActive).toLocaleString('fr-FR');
+                    const diffMinutes = (now - new Date(session.lastActive)) / (1000 * 60);
+                    const status = diffMinutes < 30 ? 'Actif' : 'Inactif';
                     
                     // Extraire des informations sur l'appareil
                     let deviceName = 'Appareil inconnu';
@@ -4266,7 +4343,7 @@
                         }
                     }
                     
-                    csvContent += `${session.id},${session.userEmail},"${deviceName}","${timestamp}","${lastActive}"\n`;
+                    csvContent += `${session.id},${session.userEmail},"${deviceName}","${timestamp}","${lastActive}","${status}"\n`;
                 });
                 
                 // Créer un lien de téléchargement
@@ -5070,4 +5147,5 @@
     </script>
 </body>
 </html>
+
 
