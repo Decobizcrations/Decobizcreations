@@ -1,56 +1,2577 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nos Produits - Decobizcreations</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Produits - Decobizcreations | Artisanat Concrete</title>
+    <meta name="description" content="Découvrez notre collection complète de créations artisanales en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc." />
+    <meta name="keywords" content="décoration béton, gypse, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
+    <meta name="author" content="Hajar Agrar" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.decobizcreations.com/produits.html" />
+    <meta property="og:title" content="Produits - Decobizcreations | Artisanat Béton & Gypse" />
+    <meta property="og:description" content="Découvrez notre collection complète de créations artisanales en béton et gypse." />
+    <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.decobizcreations.com/produits.html" />
+    <meta property="twitter:title" content="Produits - Decobizcreations | Artisanat Béton & Gypse" />
+    <meta property="twitter:description" content="Découvrez notre collection complète de créations artisanales en béton et gypse." />
+    <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .product-card {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .about-section,
+        body.dark-mode .values-section,
+        body.dark-mode .process-section,
+        body.dark-mode .testimonials,
+        body.dark-mode .advantages-section {
+            background: #252525;
+        }
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fffaf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #loader div {
+            border: 6px solid #b27952;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+        /* Scroll Progress Bar */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #b27952;
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.2s ease;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 2px solid #b27952;
+            transition: background 0.3s ease;
+        }
+        header:hover {
+            background: #fdf6ef;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+            cursor: default;
+            user-select: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Bouton mode sombre */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid #b27952;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #b27952;
+        }
+        .dark-mode-toggle:hover {
+            background: #b27952;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Recherche */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        .search-input:focus {
+            width: 250px;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* Panier compteur */
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #b27952;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #5a4a24;
+            transition: background 0.2s ease;
+        }
+        .submenu a:hover {
+            background: #f9f3e8;
+            color: #b27952;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .breadcrumb-list {
+            display: flex;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .breadcrumb-item {
+            font-size: 0.9rem;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: "›";
+            margin: 0 0.5rem;
+            color: #b27952;
+        }
+        .breadcrumb-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb-link:hover {
+            color: #b27952;
+        }
+        .breadcrumb-current {
+            color: #b27952;
+            font-weight: 600;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #f8b500, #b27952);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .page-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .products-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Filtres de produits */
+        .filter-section {
+            margin-bottom: 2rem;
+        }
+        .filter-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #5a4a24;
+            margin-bottom: 1rem;
+        }
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #b27952;
+            background: transparent;
+            color: #b27952;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #b27952;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Trier par */
+        .sort-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .results-count {
+            color: #666;
+            font-weight: 500;
+        }
+        .sort-dropdown {
+            padding: 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            background: white;
+            color: #5a4a24;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .sort-dropdown:hover {
+            background: #f9f3e8;
+        }
+        
+        /* Grille de produits */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+        .product-image {
+            height: 220px;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.15) rotate(2deg);
+        }
+        /* Badge nouveau produit */
+        .new-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+        .sale-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+        /* Boutons d'action sur les produits */
+        .product-actions {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+        .action-btn {
+            background: rgba(178, 121, 82, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .action-btn:hover {
+            background: #b27952;
+            transform: scale(1.1);
+        }
+        .product-info {
+            padding: 1.6rem 2rem;
+            text-align: center;
+        }
+        .product-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 0.4rem;
+            color: #5b4824;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .product-info span {
+            font-size: 1rem;
+            color: #7e6a3e;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .product-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #b27952;
+            margin-top: 0.5rem;
+        }
+        .old-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        }
+        
+        /* Message aucun résultat */
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+            font-size: 1.2rem;
+            display: none;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border: 2px dashed #b27952;
+        }
+        .no-results i {
+            font-size: 3rem;
+            color: #b27952;
+            margin-bottom: 1rem;
+        }
+        
+        /* Section Packs */
+        .packs-section {
+            margin: 4rem 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .packs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .packs-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #5a4a24;
+        }
+        .packs-link {
+            color: #b27952;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .packs-link:hover {
+            color: #8c5a34;
+            text-decoration: underline;
+        }
+        
+        /* Carousel des packs */
+        .packs-carousel {
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+        .packs-carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .packs-carousel-btn {
+            background: #b27952;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .packs-carousel-btn:hover {
+            background: #8c5a34;
+            transform: scale(1.1);
+        }
+        .packs-carousel-track {
+            display: flex;
+            gap: 2rem;
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+            gap: 0.5rem;
+        }
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #b27952;
+            background: transparent;
+            color: #b27952;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .page-btn:hover,
+        .page-btn.active {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .page-btn:disabled:hover {
+            background: transparent;
+            color: #b27952;
+            transform: none;
+        }
+        
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, #f8b500, #b27952);
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: white;
+            border-radius: 16px;
+        }
+        .newsletter-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 30px;
+            outline: none;
+        }
+        .newsletter-btn {
+            padding: 15px 30px;
+            background: white;
+            color: #b27952;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            margin-top: 2rem;
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #b27952;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .newsletter-form-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input-footer {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .newsletter-btn-footer {
+            padding: 10px 15px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .newsletter-btn-footer:hover {
+            background: #8c5a34;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .footer-bottom a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2.5s infinite ease-in-out;
+            transition: box-shadow 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            box-shadow: 0 10px 25px rgba(37,211,102,0.7);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            background: #8c5a34;
+            transform: translateY(-3px);
+        }
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* Animations */
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Modal pour l'aperçu rapide */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 90%;
+            max-width: 900px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .quick-view-content {
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+        }
+        .quick-view-container {
+            display: flex;
+            gap: 2rem;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .quick-view-image {
+            flex: 1;
+        }
+        .quick-view-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .quick-view-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .quick-view-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #5a4a24;
+            margin-bottom: 1rem;
+        }
+        .quick-view-details p {
+            color: #6b5e34;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .quick-view-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #b27952;
+            margin-bottom: 1.5rem;
+        }
+        .quick-view-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn-add-to-cart, .btn-add-to-wishlist {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-add-to-cart {
+            background: #b27952;
+            color: white;
+        }
+        .btn-add-to-wishlist {
+            background: transparent;
+            color: #b27952;
+            border: 2px solid #b27952;
+        }
+        .btn-add-to-cart:hover {
+            background: #8c5a34;
+        }
+        .btn-add-to-wishlist:hover {
+            background: #f9f3e8;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-modal:hover {
+            color: #bbb;
+        }
+        
+        /* Notifications toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.error {
+            background: #f44336;
+        }
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .page-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .sort-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .packs-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .quick-view-container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Decobizcreations</h1>
-    <nav>
-      <a href="decobizcrations.html">Accueil</a>
-      <a href="produits.html">Produits</a>
-      <a href="panier.html">Panier</a>
-      <a href="paiment.html">Paiement</a>
-    </nav>
-  </header>
-
-  <main class="produits">
-    <h3>Nos Produits</h3>
-    <div class="product-list">
-      <div class="product-card">
-        <img src="plateau rond s.jpg" alt="Plateau Rond" />
-        <h4>Plateau Rond</h4>
-        <p class="prix">30 MAD</p>
-        <label>Personnalisation :</label>
-        <input type="text" placeholder="Nom, couleur..." />
-        <button>Ajouter au panier</button>
-      </div>
-      <div class="product-card">
-        <img src="plateau boules.jpg" alt="Mini boules" />
-        <h4>Plateau Mini Boules</h4>
-        <p class="prix">35 MAD</p>
-        <label>Personnalisation :</label>
-        <input type="text" placeholder="Texte, couleur..." />
-        <button>Ajouter au panier</button>
-      </div>
-      <div class="product-card">
-        <img src="plateau nuage.jpg" alt="Nuage" />
-        <h4>Plateau Nuage</h4>
-        <p class="prix">35 MAD</p>
-        <label>Personnalisation :</label>
-        <input type="text" placeholder="Message..." />
-        <button>Ajouter au panier</button>
-      </div>
+    <div id="loader" role="alert" aria-live="assertive">
+        <div aria-label="Chargement en cours"></div>
     </div>
-  </main>
+    
+    <div id="progressbar" aria-hidden="true"></div>
+    
+    <header>
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        <div class="header-controls">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
+                <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <nav aria-label="Navigation principale">
+            <div class="nav-item">
+                <a href="index.html" tabindex="0">Accueil</a>
+            </div>
+            <div class="nav-item">
+                <a href="produits.html" tabindex="0">Produits</a>
+                <div class="submenu">
+                    <a href="produits.html?category=plateau">Plateaux</a>
+                    <a href="produits.html?category=vase">Vases</a>
+                    <a href="produits.html?category=boite">Boîtes</a>
+                    <a href="produits.html?category=decoration">Décorations</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="packs.html" tabindex="0">Packs</a>
+            </div>
+            <div class="nav-item">
+                <a href="a-propos.html" tabindex="0">À propos</a>
+                <div class="submenu">
+                    <a href="a-propos.html#histoire">Notre histoire</a>
+                    <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                    <a href="a-propos.html#atelier">Notre atelier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" tabindex="0">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" tabindex="0">Contact</a>
+            </div>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0">Panier</a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+            <div class="nav-item">
+                <a href="compte.html" tabindex="0">Mon compte</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Accueil</a></li>
+            <li class="breadcrumb-item"><span class="breadcrumb-current">Produits</span></li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>Nos Produits</h2>
+        <p>Découvrez notre collection complète de créations artisanales en Concrete</p>
+    </div>
+    
+    <main class="products-container">
+        <!-- Section de filtres -->
+        <div class="filter-section fade-slide">
+            <h3>Filtrer par catégorie</h3>
+            <div class="filter-options">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="plateau">Plateaux</button>
+                <button class="filter-btn" data-filter="vase">Vases</button>
+                <button class="filter-btn" data-filter="boite">Boîtes</button>
+                <button class="filter-btn" data-filter="decoration">Décorations</button>
+            </div>
+        </div>
+        
+        <!-- Section de tri -->
+        <div class="sort-section fade-slide">
+            <div class="results-count" id="resultsCount">Affichage de 12 produits</div>
+            <select class="sort-dropdown" id="sortDropdown">
+                <option value="default">Trier par</option>
+                <option value="price-asc">Prix croissant</option>
+                <option value="price-desc">Prix décroissant</option>
+                <option value="name-asc">Nom (A-Z)</option>
+                <option value="name-desc">Nom (Z-A)</option>
+                <option value="newest">Nouveautés</option>
+            </select>
+        </div>
+        
+        <!-- Grille de produits -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Produit 1 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond béton décoratif">
+                <div class="product-image">
+                    <img src="mini plateau rond.jpeg" alt="Plateau rond 16 cm" loading="lazy" />
+                    <div class="new-badge">Nouveau</div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('plateau-rond-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('plateau-rond-16')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('plateau-rond-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Plateau Rond</h4>
+                    <span>Diamètre 16 cm</span>
+                    <div class="product-price">29 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 2 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau ovale béton décoratif">
+                <div class="product-image">
+                    <img src="mini plateau ovale.jpeg" alt="Plateau ovale 18 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('plateau-ovale-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('plateau-ovale-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Plateau Ovale</h4>
+                    <span>18 cm</span>
+                    <div class="product-price">35 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 3 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond grand béton décoratif">
+                <div class="product-image">
+                    <img src="plateau rond 26 (2).jpeg" alt="Grand plateau rond 27 cm" loading="lazy" />
+                    <div class="sale-badge">-15%</div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('plateau-rond-27')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('plateau-rond-27')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Plateau Rond</h4>
+                    <span>27 cm</span>
+                    <div class="product-price">
+                        <span class="old-price">99 DH</span>
+                        69 DH
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Produit 4 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase nordique design béton">
+                <div class="product-image">
+                    <img src="vase nordique.jpeg" alt="Vase nordique 16 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('vase-nordique-16')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('vase-nordique-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Vase Nordique</h4>
+                    <span>16 cm</span>
+                    <div class="product-price">59 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 5 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="mini vase moderne béton">
+                <div class="product-image">
+                    <img src="mini vase.jpeg" alt="Mini vase 14 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('mini-vase-14')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('mini-vase-14')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Mini Vase</h4>
+                    <span>14 cm</span>
+                    <div class="product-price">45 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 6 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite décorative béton rangement">
+                <div class="product-image">
+                    <img src="boite.jpeg" alt="Boîte décorative 12 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('boite-12')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('boite-12')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Boîte Décorative</h4>
+                    <span>12 cm</span>
+                    <div class="product-price">29 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 7 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="arc-en-ciel décoratif gypse mural">
+                <div class="product-image">
+                    <img src="arc en ciel.jpeg" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
+                    <div class="new-badge">Nouveau</div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('arc-en-ciel-26')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('arc-en-ciel-26')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Arc-en-ciel Décoratif</h4>
+                    <span>26 cm</span>
+                    <div class="product-price">69 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 8 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau boules concrete design">
+                <div class="product-image">
+                    <img src="boules.jpg" alt="Plateau boules" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('plateau-carre-20')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('plateau-carre-20')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('plateau-carre-20')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+            
+            
+            
+            
+            <!-- Produit 11 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="croissant lune décoratif gypse mural">
+                <div class="product-image">
+                    <img src="lune.png" alt="Croissant de lune décoratif 22 cm" loading="lazy" />
+                    <div class="new-badge">Nouveau</div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('croissant-lune-22')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('croissant-lune-22')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('croissant-lune-22')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Croissant de Lune</h4>
+                    <span>22 cm</span>
+                    <div class="product-price">29 DH</div>
+                </div>
+            </article>
+            
+            <!-- Produit 12 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau nuage concrete design">
+                <div class="product-image">
+                    <img src="nuages.jpeg" alt="Plateau triangulaire 18 cm" loading="lazy" />
+                    <div class="sale-badge">-10%</div>
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('plateau-triangulaire-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('plateau-triangulaire-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('plateau-triangulaire-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <!-- Message aucun résultat -->
+        <div class="no-results" id="noResults">
+            <i class="fas fa-search"></i>
+            <p>Aucun produit trouvé pour votre recherche.</p>
+            <p>Essayez d'autres mots-clés ou parcourez nos catégories.</p>
+        </div>
+        
+        <!-- Section Packs -->
+        <section class="packs-section fade-slide">
+            <div class="packs-header">
+                <h3 class="packs-title">Nos Packs Exclusifs</h3>
+                <a href="packs.html" class="packs-link">Voir tous les packs <i class="fas fa-arrow-right"></i></a>
+            </div>
+            
+            <div class="packs-carousel">
+                <div class="packs-carousel-controls">
+                    <button class="packs-carousel-btn" id="prevPackBtn" aria-label="Pack précédent">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="packs-carousel-btn" id="nextPackBtn" aria-label="Pack suivant">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="packs-carousel-track" id="packsCarouselTrack">
+                    <!-- Pack 0 -->
+                    <article class="product-card fade-slide" tabindex="0">
+                        <div class="product-image">
+                            <img src="pack0.jpg" alt="Pack 0" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('pack0')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('pack0')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pack 0</h4>
+                            <span>3 articles en concrete</span>
+                            <div class="product-price">110 DH</div>
+                        </div>
+                    </article>
+                    
+                    <!-- Pack 4 -->
+                    <article class="product-card fade-slide" tabindex="0">
+                        <div class="product-image">
+                            <img src="pack4.png" alt="Pack 4" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('pack4')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('pack4')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pack 4</h4>
+                            <span>2 articles design</span>
+                            <div class="product-price">79 DH</div>
+                        </div>
+                    </article>
+                    
+                    <!-- Pack 7 -->
+                    <article class="product-card fade-slide" tabindex="0">
+                        <div class="product-image">
+                            <img src="pack7.jpg" alt="Pack 7" loading="lazy" />
+                            <div class="new-badge">Complet</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('pack7')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('pack7')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pack 7</h4>
+                            <span>6 articles variés</span>
+                            <div class="product-price">199 DH</div>
+                        </div>
+                    </article>
+                    
+                    <!-- Pack 2 -->
+                    <article class="product-card fade-slide" tabindex="0">
+                        <div class="product-image">
+                            <img src="pack2.jpg" alt="Pack 2" loading="lazy" />
+                            <div class="sale-badge">-30%</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('pack2')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('pack2')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pack 2</h4>
+                            <span>9 articles premium</span>
+                            <div class="product-price">
+                                <span class="old-price">429 DH</span>
+                                299 DH
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Pack spécial -->
+                    <article class="product-card fade-slide" tabindex="0">
+                        <div class="product-image">
+                            <img src="pack8.jpg" alt="Pack Spécial" loading="lazy" />
+                            <div class="new-badge">Offre</div>
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('pack-special')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('pack-special')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pack Spécial</h4>
+                            <span>Duo parfait</span>
+                            <div class="product-price">
+                                <span class="old-price">99 DH</span>
+                                69 DH
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Pack 3 -->
+                    <article class="product-card fade-slide" tabindex="0">
+                        <div class="product-image">
+                            <img src="pack3.jpg" alt="Pack 3" loading="lazy" />
+                            <div class="product-actions">
+                                <button class="action-btn" onclick="addToCart('pack3')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </button>
+                                <button class="action-btn" onclick="quickView('pack3')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h4>Pack 3</h4>
+                            <span>4 articles assortis</span>
+                            <div class="product-price">149 DH</div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="page-btn" id="prevPage" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn" id="nextPage">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        
+        <!-- Section Newsletter -->
+        <section class="newsletter-section fade-slide">
+            <h3>Restez informé de nos nouveautés</h3>
+            <p>Inscrivez-vous à notre newsletter pour recevoir nos dernières créations et offres exclusives</p>
+            <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                <input type="email" class="newsletter-input" placeholder="Votre email" required aria-label="Votre adresse email">
+                <button type="submit" class="newsletter-btn">S'inscrire</button>
+            </form>
+        </section>
+    </main>
+    
+    <!-- Modal pour l'aperçu rapide -->
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content quick-view-content">
+            <span class="close-modal" onclick="closeQuickView()" aria-label="Fermer">&times;</span>
+            <div class="quick-view-container">
+                <div class="quick-view-image">
+                    <img id="quickViewImage" src="" alt="">
+                </div>
+                <div class="quick-view-details">
+                    <h3 id="quickViewTitle"></h3>
+                    <p id="quickViewDescription"></p>
+                    <div class="quick-view-price" id="quickViewPrice"></div>
+                    <div class="quick-view-actions">
+                        <button class="btn-add-to-cart" onclick="addToCartFromQuickView()">Ajouter au panier</button>
+                        <button class="btn-add-to-wishlist" onclick="addToWishlistFromQuickView()">Ajouter aux favoris</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/212123456789" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>À propos</h4>
+                <ul class="footer-links">
+                    <li><a href="a-propos.html">Notre histoire</a></li>
+                    <li><a href="a-propos.html#savoir-faire">Notre savoir-faire</a></li>
+                    <li><a href="a-propos.html#atelier">Notre atelier</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Produits</h4>
+                <ul class="footer-links">
+                    <li><a href="produits.html?category=plateau">Plateaux</a></li>
+                    <li><a href="produits.html?category=vase">Vases</a></li>
+                    <li><a href="produits.html?category=boite">Boîtes</a></li>
+                    <li><a href="produits.html?category=decoration">Décorations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Packs</h4>
+                <ul class="footer-links">
+                    <li><a href="packs.html">Tous nos packs</a></li>
+                    <li><a href="packs.html#essentiels">Packs essentiels</a></li>
+                    <li><a href="packs.html#premium">Packs premium</a></li>
+                    <li><a href="packs.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Service client</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                <form class="newsletter-form-footer" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input-footer" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn-footer">OK</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/decobizcreations" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/decobizcreations" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://pinterest.com/decobizcreations" target="_blank" class="social-link" aria-label="Pinterest">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Decobizcreations — Artisanat marocain fait main. Tous droits réservés.</p>
+            <p><a href="conditions.html">Conditions générales</a> | <a href="confidentialite.html">Politique de confidentialité</a> | <a href="mentions-legales.html">Mentions légales</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales
+        let cartCount = 0;
+        let currentQuickViewProduct = null;
+        let packsCarouselPosition = 0;
+        
+        // Données des produits pour le panier
+        const productsData = {
+            'plateau-rond-16': {
+                title: 'Plateau Rond',
+                description: 'Diamètre 16 cm',
+                price: 120,
+                image: 'mini plateau rond.jpeg'
+            },
+            'plateau-ovale-18': {
+                title: 'Plateau Ovale',
+                description: '18 cm',
+                price: 140,
+                image: 'mini plateau ovale.jpeg'
+            },
+            'plateau-rond-27': {
+                title: 'Grand Plateau Rond',
+                description: '27 cm',
+                price: 200,
+                image: 'plateau rond 26 (2).jpeg'
+            },
+            'vase-nordique-16': {
+                title: 'Vase Nordique',
+                description: '16 cm',
+                price: 180,
+                image: 'vase nordique.jpeg'
+            },
+            'mini-vase-14': {
+                title: 'Mini Vase',
+                description: '14 cm',
+                price: 150,
+                image: 'mini vase'
+            },
+            'boite-12': {
+                title: 'Boîte Décorative',
+                description: '12 cm',
+                price: 100,
+                image: 'boite'
+            },
+            'arc-en-ciel-26': {
+                title: 'Arc-en-ciel Décoratif',
+                description: '26 cm',
+                price: 250,
+                image: 'arc en ciel.jpeg'
+            },
+            'plateau-carre-20': {
+                title: 'Plateau boules',
+                description: '20 cm',
+                price: 160,
+                image: 'boules.jpeg'
+            },
+            'vase-cylindrique-18': {
+                title: 'Vase Cylindrique',
+                description: '18 cm',
+                price: 190,
+                image: 'vase cylindrique.jpeg'
+            },
+            'boite-rectangulaire-15': {
+                title: 'Boîte Rectangulaire',
+                description: '15 cm',
+                price: 120,
+                image: 'boite rectangulaire.jpeg'
+            },
+            'croissant-lune-22': {
+                title: 'Croissant de Lune',
+                description: '22 cm',
+                price: 220,
+                image: 'croissant lune.jpeg'
+            },
+            'plateau-triangulaire-18': {
+                title: 'Plateau Triangulaire',
+                description: '18 cm',
+                price: 150,
+                image: 'plateau triangulaire.jpeg'
+            },
+            // Packs
+            'pack0': {
+                title: 'Pack 0',
+                description: '3 articles en béton',
+                price: 199,
+                image: 'pack0.jpg'
+            },
+            'pack4': {
+                title: 'Pack 4',
+                description: '2 articles design',
+                price: 149,
+                image: 'pack4.png'
+            },
+            'pack7': {
+                title: 'Pack 7',
+                description: '6 articles variés',
+                price: 399,
+                image: 'pack7.jpg'
+            },
+            'pack2': {
+                title: 'Pack 2',
+                description: '9 articles premium',
+                price: 299,
+                image: 'pack2.jpg'
+            },
+            'pack-special': {
+                title: 'Pack Spécial',
+                description: 'Duo parfait',
+                price: 69,
+                image: 'pack8.jpg'
+            },
+            'pack3': {
+                title: 'Pack 3',
+                description: '4 articles assortis',
+                price: 149,
+                image: 'pack3.jpg'
+            }
+        };
+        
+        // Données des produits pour l'aperçu rapide
+        const quickViewData = {
+            'plateau-rond-16': {
+                title: 'Plateau Rond',
+                description: 'Un plateau élégant en béton, parfait pour présenter vos collations ou comme élément décoratif.',
+                price: '120 DH',
+                image: 'mini plateau rond.jpeg'
+            },
+            'plateau-ovale-18': {
+                title: 'Plateau Ovale',
+                description: 'Design ovale moderne en béton, idéal pour les tables de salon ou les commodes.',
+                price: '140 DH',
+                image: 'mini plateau ovale.jpeg'
+            },
+            'plateau-rond-27': {
+                title: 'Grand Plateau Rond',
+                description: 'Un grand plateau de 27 cm de diamètre, parfait pour les présentations ou comme centre de table.',
+                price: '200 DH',
+                image: 'plateau rond 26 (2).jpeg'
+            },
+            'vase-nordique-16': {
+                title: 'Vase Nordique',
+                description: 'Vase au design scandinave, parfait pour vos fleurs séchées ou comme objet décoratif.',
+                price: '180 DH',
+                image: 'vase nordique.jpeg'
+            },
+            'mini-vase-14': {
+                title: 'Mini Vase',
+                description: 'Petit vase moderne, idéal pour les petites fleurs ou comme élément décoratif.',
+                price: '150 DH',
+                image: 'mini vase'
+            },
+            'boite-12': {
+                title: 'Boîte Décorative',
+                description: 'Boîte multifonction en béton, parfaite pour le rangement ou comme élément décoratif.',
+                price: '100 DH',
+                image: 'boite'
+            },
+            'arc-en-ciel-26': {
+                title: 'Arc-en-ciel Décoratif',
+                description: 'Décoration murale en forme d\'arc-en-ciel, ajoute une touche de couleur à votre intérieur.',
+                price: '250 DH',
+                image: 'arc en ciel.jpeg'
+            },
+            'plateau-carre-20': {
+                title: 'Plateau Carré',
+                description: 'Plateau carré en béton avec des bords arrondis, idéal pour un style moderne et épuré.',
+                price: '160 DH',
+                image: 'plateau carré.jpeg'
+            },
+            'vase-cylindrique-18': {
+                title: 'Vase Cylindrique',
+                description: 'Vase cylindrique en béton, parfait pour les compositions florales modernes.',
+                price: '190 DH',
+                image: 'vase cylindrique.jpeg'
+            },
+            'boite-rectangulaire-15': {
+                title: 'Boîte Rectangulaire',
+                description: 'Boîte rectangulaire en béton, idéale pour le rangement de petits objets.',
+                price: '120 DH',
+                image: 'boite rectangulaire.jpeg'
+            },
+            'croissant-lune-22': {
+                title: 'Croissant de Lune',
+                description: 'Décoration murale en forme de croissant de lune, ajoute une touche poétique à votre intérieur.',
+                price: '220 DH',
+                image: 'croissant lune.jpeg'
+            },
+            'plateau-triangulaire-18': {
+                title: 'Plateau Triangulaire',
+                description: 'Plateau triangulaire en béton, design original pour une décoration moderne.',
+                price: '150 DH',
+                image: 'plateau triangulaire.jpeg'
+            },
+            // Données des packs pour l'aperçu rapide
+            'pack0': {
+                title: 'Pack 0',
+                description: 'Ensemble essentiel en béton avec des pièces décoratives parfaites pour votre intérieur. Contient un mini vase, une boîte et un plateau ovale en béton.',
+                price: '199 DH',
+                image: 'pack0.jpg'
+            },
+            'pack4': {
+                title: 'Pack 4',
+                description: 'Combinaison élégante de plateau nuage et mini vase pour une touche moderne à votre décoration.',
+                price: '149 DH',
+                image: 'pack4.png'
+            },
+            'pack7': {
+                title: 'Pack 7',
+                description: 'Notre pack le plus complet avec 6 pièces variées pour décorer toute votre maison : grand plateau rond, plateau ovale, mini vase, moyenne vase, arc en ciel et croissant mibkhara.',
+                price: '399 DH',
+                image: 'pack7.jpg'
+            },
+            'pack2': {
+                title: 'Pack 2',
+                description: 'Notre pack premium avec 9 articles pour un ensemble complet et harmonieux : mibkhara, plateau rond 16 cm, plateau boules, mini vase, moyenne vase, boîte, plateau ovale et arc en ciel.',
+                price: '299 DH',
+                image: 'pack2.jpg'
+            },
+            'pack-special': {
+                title: 'Pack Spécial',
+                description: 'Offre exclusive sur ce duo parfait : plateau ovale et mini vase en béton.',
+                price: '69 DH',
+                image: 'pack8.jpg'
+            },
+            'pack3': {
+                title: 'Pack 3',
+                description: 'Ensemble varié de 4 pièces pour une décoration harmonieuse : plateau ovale, mini vase, plateau nuage et plateau boules.',
+                price: '149 DH',
+                image: 'pack3.jpg'
+            }
+        };
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Masquer le loader
+            document.getElementById('loader').style.display = 'none';
+            
+            // Initialiser les animations
+            initScrollAnimations();
+            initScrollProgress();
+            initBackToTop();
+            initDarkMode();
+            initSearch();
+            initFilters();
+            initSortDropdown();
+            initPagination();
+            initPacksCarousel();
+            
+            // Charger le compteur du panier depuis localStorage
+            loadCartCount();
+            
+            // Vérifier s'il y a un paramètre de catégorie dans l'URL
+            checkUrlParams();
+            
+            // Initialiser le service worker pour PWA
+            initServiceWorker();
+            
+            // Initialiser le consentement aux cookies
+            initCookieConsent();
+        });
+        
+        // Initialisation du carousel des packs
+        function initPacksCarousel() {
+            const track = document.getElementById('packsCarouselTrack');
+            const prevBtn = document.getElementById('prevPackBtn');
+            const nextBtn = document.getElementById('nextPackBtn');
+            const cards = document.querySelectorAll('.packs-section .product-card');
+            const cardWidth = 300; // largeur + gap
+            
+            if (!track || !prevBtn || !nextBtn || cards.length === 0) return;
+            
+            prevBtn.addEventListener('click', () => {
+                if (packsCarouselPosition > 0) {
+                    packsCarouselPosition--;
+                    updatePacksCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                const maxPosition = Math.max(0, cards.length - 3);
+                if (packsCarouselPosition < maxPosition) {
+                    packsCarouselPosition++;
+                    updatePacksCarousel();
+                }
+            });
+            
+            function updatePacksCarousel() {
+                track.style.transform = `translateX(-${packsCarouselPosition * cardWidth}px)`;
+            }
+            
+            // Auto-scroll du carousel des packs
+            setInterval(() => {
+                const maxPosition = Math.max(0, cards.length - 3);
+                packsCarouselPosition = (packsCarouselPosition + 1) % (maxPosition + 1);
+                updatePacksCarousel();
+            }, 5000);
+        }
+        
+        // Vérifier les paramètres d'URL pour les filtres
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const category = urlParams.get('category');
+            
+            if (category) {
+                // Trouver le bouton de filtre correspondant
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                filterBtns.forEach(btn => {
+                    if (btn.getAttribute('data-filter') === category) {
+                        // Activer le bouton
+                        btn.click();
+                        
+                        // Faire défiler jusqu'à la section des produits
+                        document.querySelector('.products-grid').scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            }
+        }
+        
+        // Barre de progression du scroll
+        function initScrollProgress() {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressbar').style.width = scrollPercent + '%';
+            });
+        }
+        
+        // Animations au scroll
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-slide').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Bouton retour en haut
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Mode sombre
+        function initDarkMode() {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Charger la préférence sauvegardée
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+        
+        // Fonction de recherche en temps réel
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const noResultsMsg = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            function performSearch(event) {
+                // Empêcher le rechargement de la page
+                if (event) {
+                    event.preventDefault();
+                }
+                
+                const query = searchInput.value.toLowerCase().trim();
+                const productCards = document.querySelectorAll('.products-grid .product-card');
+                let visibleCount = 0;
+                
+                if (!query) {
+                    // Si la recherche est vide, afficher tous les produits
+                    productCards.forEach(card => {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                        visibleCount++;
+                    });
+                    noResultsMsg.style.display = 'none';
+                    resultsCount.textContent = `Affichage de ${visibleCount} produits`;
+                    return;
+                }
+                
+                productCards.forEach(card => {
+                    // Récupérer toutes les informations pertinentes de la carte
+                    const title = card.querySelector('h4') ? card.querySelector('h4').textContent.toLowerCase() : '';
+                    const description = card.querySelector('span') ? card.querySelector('span').textContent.toLowerCase() : '';
+                    const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+                    const keywords = card.getAttribute('data-keywords') ? card.getAttribute('data-keywords').toLowerCase() : '';
+                    
+                    // Vérifier si le terme de recherche correspond à l'un des champs
+                    if (title.includes(query) || description.includes(query) || 
+                        category.includes(query) || keywords.includes(query)) {
+                        card.style.display = 'block';
+                        card.style.opacity = '1';
+                        card.style.visibility = 'visible';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                        card.style.opacity = '0';
+                        card.style.visibility = 'hidden';
+                    }
+                });
+                
+                // Afficher ou masquer le message "aucun résultat"
+                if (visibleCount > 0) {
+                    noResultsMsg.style.display = 'none';
+                    resultsCount.textContent = `Affichage de ${visibleCount} produits`;
+                } else {
+                    noResultsMsg.style.display = 'block';
+                    resultsCount.textContent = 'Aucun produit trouvé';
+                }
+            }
+            
+            // Lancer la recherche lors du clic sur le bouton
+            searchBtn.addEventListener('click', (event) => {
+                performSearch(event);
+            });
+            
+            // Lancer la recherche lors de l'appui sur Entrée
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(e);
+                }
+            });
+            
+            // Lancer la recherche en temps réel pendant la saisie
+            searchInput.addEventListener('input', () => {
+                performSearch();
+            });
+        }
+        
+        // Filtres de produits
+        function initFilters() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.products-grid .product-card');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Retirer la classe active de tous les boutons
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // Ajouter la classe active au bouton cliqué
+                    btn.classList.add('active');
+                    
+                    const filter = btn.getAttribute('data-filter');
+                    let visibleCount = 0;
+                    
+                    productCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                            visibleCount++;
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                    
+                    // Mettre à jour le compteur de résultats
+                    resultsCount.textContent = `Affichage de ${visibleCount} produits`;
+                    
+                    // Masquer le message "aucun résultat"
+                    document.getElementById('noResults').style.display = 'none';
+                });
+            });
+        }
+        
+        // Dropdown de tri
+        function initSortDropdown() {
+            const sortDropdown = document.getElementById('sortDropdown');
+            const productsGrid = document.getElementById('productsGrid');
+            const productCards = Array.from(productsGrid.querySelectorAll('.product-card'));
+            
+            sortDropdown.addEventListener('change', () => {
+                const sortValue = sortDropdown.value;
+                
+                if (sortValue === 'default') {
+                    // Restaurer l'ordre original
+                    productCards.forEach(card => {
+                        productsGrid.appendChild(card);
+                    });
+                    return;
+                }
+                
+                // Trier les produits
+                const sortedCards = [...productCards].sort((a, b) => {
+                    switch (sortValue) {
+                        case 'price-asc':
+                            const priceA = parseFloat(a.querySelector('.product-price').textContent.replace(' DH', '').replace(',', '.'));
+                            const priceB = parseFloat(b.querySelector('.product-price').textContent.replace(' DH', '').replace(',', '.'));
+                            return priceA - priceB;
+                            
+                        case 'price-desc':
+                            const priceDescA = parseFloat(a.querySelector('.product-price').textContent.replace(' DH', '').replace(',', '.'));
+                            const priceDescB = parseFloat(b.querySelector('.product-price').textContent.replace(' DH', '').replace(',', '.'));
+                            return priceDescB - priceDescA;
+                            
+                        case 'name-asc':
+                            const nameA = a.querySelector('h4').textContent;
+                            const nameB = b.querySelector('h4').textContent;
+                            return nameA.localeCompare(nameB);
+                            
+                        case 'name-desc':
+                            const nameDescA = a.querySelector('h4').textContent;
+                            const nameDescB = b.querySelector('h4').textContent;
+                            return nameDescB.localeCompare(nameDescA);
+                            
+                        case 'newest':
+                            // Trier par présence du badge "Nouveau"
+                            const hasNewA = a.querySelector('.new-badge') !== null;
+                            const hasNewB = b.querySelector('.new-badge') !== null;
+                            if (hasNewA && !hasNewB) return -1;
+                            if (!hasNewA && hasNewB) return 1;
+                            return 0;
+                            
+                        default:
+                            return 0;
+                    }
+                });
+                
+                // Vider la grille et ajouter les produits triés
+                productsGrid.innerHTML = '';
+                sortedCards.forEach(card => {
+                    productsGrid.appendChild(card);
+                });
+            });
+        }
+        
+        // Pagination
+        function initPagination() {
+            const pageBtns = document.querySelectorAll('.page-btn:not(#prevPage):not(#nextPage)');
+            const prevBtn = document.getElementById('prevPage');
+            const nextBtn = document.getElementById('nextPage');
+            let currentPage = 1;
+            const totalPages = pageBtns.length;
+            
+            pageBtns.forEach((btn, index) => {
+                btn.addEventListener('click', () => {
+                    // Mettre à jour la page actuelle
+                    currentPage = index + 1;
+                    
+                    // Mettre à jour les classes actives
+                    pageBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Mettre à jour l'état des boutons précédent/suivant
+                    prevBtn.disabled = currentPage === 1;
+                    nextBtn.disabled = currentPage === totalPages;
+                    
+                    // Faire défiler jusqu'en haut de la grille de produits
+                    document.querySelector('.products-grid').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+            
+            // Bouton précédent
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    pageBtns.forEach(b => b.classList.remove('active'));
+                    pageBtns[currentPage - 1].classList.add('active');
+                    
+                    // Mettre à jour l'état des boutons
+                    prevBtn.disabled = currentPage === 1;
+                    nextBtn.disabled = currentPage === totalPages;
+                    
+                    // Faire défiler jusqu'en haut de la grille de produits
+                    document.querySelector('.products-grid').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+            
+            // Bouton suivant
+            nextBtn.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    pageBtns.forEach(b => b.classList.remove('active'));
+                    pageBtns[currentPage - 1].classList.add('active');
+                    
+                    // Mettre à jour l'état des boutons
+                    prevBtn.disabled = currentPage === 1;
+                    nextBtn.disabled = currentPage === totalPages;
+                    
+                    // Faire défiler jusqu'en haut de la grille de produits
+                    document.querySelector('.products-grid').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+        
+        // Gestion du panier
+        function addToCart(productId) {
+            const product = productsData[productId];
+            if (!product) return;
 
-  <footer>
-    © 2025 Decobizcreations. Tous droits réservés.
-  </footer>
-
-  <script src="script.js"></script>
+            // Récupérer le panier actuel depuis localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+            
+            // Vérifier si le produit est déjà dans le panier
+            const existingItemIndex = cartItems.findIndex(item => item.id === productId);
+            
+            if (existingItemIndex !== -1) {
+                // Augmenter la quantité si le produit est déjà dans le panier
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // Ajouter le produit au panier
+                cartItems.push({
+                    id: productId,
+                    title: product.title,
+                    description: product.description,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            // Sauvegarder le panier dans localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Mettre à jour le compteur
+            cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+            updateCartBadge();
+            saveCartCount();
+            showToast('Produit ajouté au panier !', 'success');
+            
+            // Animation du badge
+            const badge = document.getElementById('cartBadge');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+            
+            // Suivi Analytics
+            trackEvent('add_to_cart', { product_id: productId });
+        }
+        
+        function addToWishlist(productId) {
+            showToast('Produit ajouté aux favoris !', 'success');
+            
+            // Sauvegarder dans le localStorage
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            
+            // Suivi Analytics
+            trackEvent('add_to_wishlist', { product_id: productId });
+        }
+        
+        function quickView(productId) {
+            currentQuickViewProduct = productId;
+            const product = quickViewData[productId];
+            
+            if (product) {
+                document.getElementById('quickViewImage').src = product.image;
+                document.getElementById('quickViewTitle').textContent = product.title;
+                document.getElementById('quickViewDescription').textContent = product.description;
+                document.getElementById('quickViewPrice').textContent = product.price;
+                
+                document.getElementById('quickViewModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeQuickView() {
+            document.getElementById('quickViewModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function addToCartFromQuickView() {
+            if (currentQuickViewProduct) {
+                addToCart(currentQuickViewProduct);
+                closeQuickView();
+            }
+        }
+        
+        function addToWishlistFromQuickView() {
+            if (currentQuickViewProduct) {
+                addToWishlist(currentQuickViewProduct);
+                closeQuickView();
+            }
+        }
+        
+        function updateCartBadge() {
+            document.getElementById('cartBadge').textContent = cartCount;
+        }
+        
+        function saveCartCount() {
+            localStorage.setItem('cartCount', cartCount.toString());
+        }
+        
+        function loadCartCount() {
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                const cartItems = JSON.parse(savedCart);
+                cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+                updateCartBadge();
+            }
+        }
+        
+        // Fermer le modal en cliquant à l'extérieur
+        window.addEventListener('click', (event) => {
+            const quickViewModal = document.getElementById('quickViewModal');
+            if (event.target === quickViewModal) {
+                closeQuickView();
+            }
+        });
+        
+        // Fermer le modal avec la touche Échap
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeQuickView();
+            }
+        });
+        
+        // Newsletter
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Validation email simple
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                showToast('Merci pour votre inscription !', 'success');
+                event.target.reset();
+                
+                // Sauvegarder l'email dans le localStorage
+                let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+                
+                // Suivi Analytics
+                trackEvent('newsletter_subscription', { email: email });
+            } else {
+                showToast('Veuillez entrer une adresse email valide', 'error');
+            }
+        }
+        
+        // Système de notifications toast
+        function showToast(message, type = 'info') {
+            // Supprimer les anciens toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'polite');
+            
+            document.body.appendChild(toast);
+            
+            // Afficher le toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Masquer et supprimer le toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Service Worker pour PWA (Progressive Web App)
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
+                    });
+            }
+        }
+        
+        // Gestion des cookies (RGPD)
+        function initCookieConsent() {
+            // Vérifier si le consentement a déjà été donné
+            if (!localStorage.getItem('cookieConsent')) {
+                // Créer la bannière de consentement
+                const cookieBanner = document.createElement('div');
+                cookieBanner.id = 'cookieBanner';
+                cookieBanner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2c2c2c;
+                    color: white;
+                    padding: 1rem;
+                    z-index: 10000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                `;
+                
+                cookieBanner.innerHTML = `
+                    <div style="margin-right: 1rem;">
+                        <p style="margin: 0;">Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer sur ce site, vous acceptez notre politique de cookies.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="acceptCookies" style="background: #b27952; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Accepter</button>
+                        <button id="declineCookies" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Refuser</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(cookieBanner);
+                
+                // Gérer les clics sur les boutons
+                document.getElementById('acceptCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    document.getElementById('cookieBanner').remove();
+                    
+                    // Activer le suivi si accepté
+                    enableTracking();
+                });
+                
+                document.getElementById('declineCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    document.getElementById('cookieBanner').remove();
+                });
+            } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+                // Activer le suivi si déjà accepté
+                enableTracking();
+            }
+        }
+        
+        // Activer le suivi (Analytics)
+        function enableTracking() {
+            // Ici, vous pourriez intégrer Google Analytics, Facebook Pixel, etc.
+            console.log('Le suivi est activé');
+            
+            // Exemple de suivi de page vue
+            trackEvent('page_view', { page: 'products' });
+        }
+        
+        // Fonction de suivi des événements
+        function trackEvent(eventName, eventData = {}) {
+            // Ici, vous pourriez envoyer les données à Google Analytics, Facebook Pixel, etc.
+            console.log('Événement suivi:', eventName, eventData);
+            
+            // Exemple d'envoi à Google Analytics (si gtag.js est chargé)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+        }
+        
+        console.log('🎨 Decobizcreations - Page produits chargée avec succès !');
+        console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+    </script>
 </body>
 </html>
