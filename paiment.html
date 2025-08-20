@@ -1,111 +1,1895 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paiement - Decobizcreations</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Montserrat', sans-serif;
-    }
-    body {
-      background-color: #fdfdfd;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 600px;
-      margin: 50px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-    .form-group {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    .total {
-      text-align: center;
-      font-size: 22px;
-      margin: 30px 0;
-      color: #222;
-      font-weight: bold;
-    }
-    button {
-      background-color: #e4c3a4;
-      color: #fff;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-    button:hover {
-      background-color: #c89f7e;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paiement - Decobizcreations | Artisanat Béton & Gypse</title>
+    <meta name="description" content="Finalisez votre commande de créations artisanales en béton et gypse. Paiement sécurisé par carte bancaire, virement ou WhatsApp." />
+    <meta name="keywords" content="paiement, commande, artisanat marocain, béton, gypse, décoration, livraison" />
+    <meta name="author" content="Hajar Agrar" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.decobizcreations.com/paiement.html" />
+    <meta property="og:title" content="Paiement - Decobizcreations | Artisanat Béton & Gypse" />
+    <meta property="og:description" content="Finalisez votre commande de créations artisanales en béton et gypse." />
+    <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.decobizcreations.com/paiement.html" />
+    <meta property="twitter:title" content="Paiement - Decobizcreations | Artisanat Béton & Gypse" />
+    <meta property="twitter:description" content="Finalisez votre commande de créations artisanales en béton et gypse." />
+    <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .payment-container,
+        body.dark-mode .order-summary,
+        body.dark-mode .payment-method {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select,
+        body.dark-mode .form-group textarea {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border-color: #555;
+        }
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fffaf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #loader div {
+            border: 6px solid #b27952;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+        /* Scroll Progress Bar */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #b27952;
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.2s ease;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 2px solid #b27952;
+            transition: background 0.3s ease;
+        }
+        header:hover {
+            background: #fdf6ef;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+            cursor: default;
+            user-select: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Bouton mode sombre */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid #b27952;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #b27952;
+        }
+        .dark-mode-toggle:hover {
+            background: #b27952;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Recherche */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        .search-input:focus {
+            width: 250px;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* Panier compteur */
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #b27952;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #5a4a24;
+            transition: background 0.2s ease;
+        }
+        .submenu a:hover {
+            background: #f9f3e8;
+            color: #b27952;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .breadcrumb-list {
+            display: flex;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .breadcrumb-item {
+            font-size: 0.9rem;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: "›";
+            margin: 0 0.5rem;
+            color: #b27952;
+        }
+        .breadcrumb-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb-link:hover {
+            color: #b27952;
+        }
+        .breadcrumb-current {
+            color: #b27952;
+            font-weight: 600;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #f8b500, #b27952);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .page-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Main Content */
+        .payment-page-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        /* Payment Form */
+        .payment-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #5a4a24;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #b27952;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        /* Payment Methods */
+        .payment-methods {
+            margin-top: 2rem;
+        }
+        
+        .payment-method {
+            background: #f9f9f9;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover {
+            border-color: #b27952;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .payment-method.selected {
+            border-color: #b27952;
+            background: #fdf6ef;
+        }
+        
+        .payment-method-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .payment-method-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #b27952;
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+        
+        .payment-method-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #5a4a24;
+        }
+        
+        .payment-method-content {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .payment-method.selected .payment-method-content {
+            display: block;
+        }
+        
+        .rib-info {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        .rib-info h4 {
+            margin-bottom: 0.5rem;
+            color: #5a4a24;
+        }
+        
+        .rib-info p {
+            margin: 0.3rem 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .whatsapp-message {
+            background: #eaf6ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid #25d366;
+        }
+        
+        .whatsapp-message h4 {
+            margin-bottom: 0.5rem;
+            color: #25d366;
+        }
+        
+        .whatsapp-message p {
+            margin: 0.3rem 0;
+            white-space: pre-line;
+        }
+        
+        .copy-btn {
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            transition: background 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #8c5a34;
+        }
+        
+        /* Order Summary */
+        .order-summary {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            height: fit-content;
+        }
+        
+        .order-items {
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-item-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #5a4a24;
+        }
+        
+        .order-item-description {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 0.3rem;
+        }
+        
+        .order-item-price {
+            font-weight: bold;
+            color: #b27952;
+        }
+        
+        .order-item-quantity {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .summary-label {
+            color: #666;
+        }
+        
+        .summary-value {
+            font-weight: 600;
+        }
+        
+        .summary-divider {
+            height: 1px;
+            background: #eee;
+            margin: 1.5rem 0;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .checkout-btn:hover {
+            background: #8c5a34;
+            transform: translateY(-2px);
+        }
+        
+        .checkout-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            margin-top: 2rem;
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #b27952;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .newsletter-form-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input-footer {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .newsletter-btn-footer {
+            padding: 10px 15px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .newsletter-btn-footer:hover {
+            background: #8c5a34;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .footer-bottom a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2.5s infinite ease-in-out;
+            transition: box-shadow 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            box-shadow: 0 10px 25px rgba(37,211,102,0.7);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            background: #8c5a34;
+            transform: translateY(-3px);
+        }
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* Animations */
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Notifications toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.error {
+            background: #f44336;
+        }
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .payment-page-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-controls {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Finaliser votre commande</h2>
-    <form id="payment-form">
-      <div class="form-group">
-        <label for="name">Nom complet</label>
-        <input type="text" id="name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" required>
-      </div>
-      <div class="form-group">
-        <label for="card">Numéro de carte</label>
-        <input type="text" id="card" placeholder="XXXX-XXXX-XXXX-XXXX" required>
-      </div>
-      <div class="form-group">
-        <label for="expiration">Date d’expiration</label>
-        <input type="text" id="expiration" placeholder="MM/AA" required>
-      </div>
-      <div class="form-group">
-        <label for="cvv">CVV</label>
-        <input type="text" id="cvv" required>
-      </div>
-      <div class="total" id="total-amount">Total: 0 DH</div>
-      <button type="submit">Payer maintenant</button>
-    </form>
-  </div>
-
-  <script>
-    const totalElement = document.getElementById('total-amount');
-    const panier = JSON.parse(localStorage.getItem('panier')) || [];
-    const total = panier.reduce((acc, item) => acc + item.prix, 0);
-    totalElement.textContent = `Total: ${total} DH`;
-
-    const form = document.getElementById('payment-form');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('Paiement réussi ! Merci pour votre commande.');
-      localStorage.removeItem('panier');
-      window.location.href = 'decobizcreations.html';
-    });
-  </script>
+    <div id="loader" role="alert" aria-live="assertive">
+        <div aria-label="Chargement en cours"></div>
+    </div>
+    
+    <div id="progressbar" aria-hidden="true"></div>
+    
+    <header>
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        <div class="header-controls">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
+                <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <nav aria-label="Navigation principale">
+            <div class="nav-item">
+                <a href="index.html" tabindex="0">Accueil</a>
+            </div>
+            <div class="nav-item">
+                <a href="produits.html" tabindex="0">Produits</a>
+                <div class="submenu">
+                    <a href="produits.html?category=plateau">Plateaux</a>
+                    <a href="produits.html?category=vase">Vases</a>
+                    <a href="produits.html?category=boite">Boîtes</a>
+                    <a href="produits.html?category=decoration">Décorations</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="packs.html" tabindex="0">Packs</a>
+            </div>
+            <div class="nav-item">
+                <a href="a-propos.html" tabindex="0">À propos</a>
+                <div class="submenu">
+                    <a href="a-propos.html#histoire">Notre histoire</a>
+                    <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                    <a href="a-propos.html#atelier">Notre atelier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" tabindex="0">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" tabindex="0">Contact</a>
+            </div>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0">Panier</a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+            <div class="nav-item">
+                <a href="compte.html" tabindex="0">Mon compte</a>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="panier.html" class="breadcrumb-link">Panier</a></li>
+            <li class="breadcrumb-item"><span class="breadcrumb-current">Paiement</span></li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>Finaliser votre commande</h2>
+        <p>Complétez vos informations de livraison et choisissez votre méthode de paiement</p>
+    </div>
+    
+    <main class="payment-page-container">
+        <!-- Payment Form -->
+        <div class="payment-container fade-slide">
+            <h3 class="section-title">Informations de livraison</h3>
+            
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i> Votre commande a été validée avec succès ! Vous recevrez un email de confirmation.
+            </div>
+            
+            <form id="paymentForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">Prénom *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Nom *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Téléphone *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Adresse *</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">Ville *</label>
+                        <input type="text" id="city" name="city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Code postal *</label>
+                        <input type="text" id="postalCode" name="postalCode" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="notes">Notes (optionnel)</label>
+                    <textarea id="notes" name="notes" rows="3" placeholder="Instructions de livraison spéciales..."></textarea>
+                </div>
+                
+                <h3 class="section-title">Méthode de paiement</h3>
+                
+                <div class="payment-methods">
+                    <div class="payment-method" data-method="card">
+                        <div class="payment-method-header">
+                            <div class="payment-method-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <div class="payment-method-title">Carte bancaire</div>
+                        </div>
+                        <div class="payment-method-content">
+                            <p>Paiement sécurisé par carte bancaire. Vos informations sont cryptées et ne seront pas stockées.</p>
+                            <div class="form-group">
+                                <label for="cardNumber">Numéro de carte</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="cardExpiry">Date d'expiration</label>
+                                    <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardCVC">CVC</label>
+                                    <input type="text" id="cardCVC" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Nom sur la carte</label>
+                                <input type="text" id="cardName" placeholder="Nom complet">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method" data-method="transfer">
+                        <div class="payment-method-header">
+                            <div class="payment-method-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="payment-method-title">Virement bancaire</div>
+                        </div>
+                        <div class="payment-method-content">
+                            <p>Veuillez effectuer un virement bancaire sur notre compte avec votre numéro de commande comme référence.</p>
+                            <div class="rib-info">
+                                <h4>Coordonnées bancaires (RIB)</h4>
+                                <p><strong>Titulaire:</strong> Decobizcreations</p>
+                                <p><strong>IBAN:</strong> MA64 0123 4567 8901 2345 6789 012</p>
+                                <p><strong>BIC:</strong> BCPMAAMC</p>
+                                <p><strong>Banque:</strong> Banque Populaire</p>
+                                <button type="button" class="copy-btn" onclick="copyRIB()">Copier le RIB</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-method" data-method="whatsapp">
+                        <div class="payment-method-header">
+                            <div class="payment-method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="payment-method-title">Paiement via WhatsApp</div>
+                        </div>
+                        <div class="payment-method-content">
+                            <p>Envoyez-nous un message sur WhatsApp pour finaliser votre commande. Nous vous enverrons les instructions de paiement.</p>
+                            <div class="whatsapp-message">
+                                <h4>Message pré-rempli</h4>
+                                <p id="whatsappMessage">Bonjour, je souhaite finaliser ma commande. Voici mes informations de livraison :
+Prénom: [Votre prénom]
+Nom: [Votre nom]
+Adresse: [Votre adresse]
+Ville: [Votre ville]
+Code postal: [Votre code postal]
+Téléphone: [Votre téléphone]
+Merci de me confirmer la disponibilité et les modalités de paiement.</p>
+                                <button type="button" class="copy-btn" onclick="copyWhatsAppMessage()">Copier le message</button>
+                                <a href="https://wa.me/212610236889?text=Bonjour,%20je%20souhaite%20finaliser%20ma%20commande.%20Voici%20mes%20informations%20de%20livraison%20%3A%0APr%C3%A9nom%3A%20%5BVotre%20pr%C3%A9nom%5D%0ANom%3A%20%5BVotre%20nom%5D%0AAdresse%3A%20%5BVotre%20adresse%5D%0AVille%3A%20%5BVotre%20ville%5D%0ACode%20postal%3A%20%5BVotre%20code%20postal%5D%0AT%C3%A9l%C3%A9phone%3A%20%5BVotre%20t%C3%A9l%C3%A9phone%5D%0AMerci%20de%20me%20confirmer%20la%20disponibilit%C3%A9%20et%20les%20modalit%C3%A9s%20de%20paiement." target="_blank" class="copy-btn" style="display: inline-block; text-decoration: none; margin-top: 10px;">Envoyer sur WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nouvelle méthode de paiement : WhatsApp avec virement de 50% d'avance -->
+                    <div class="payment-method" data-method="whatsapp_advance">
+                        <div class="payment-method-header">
+                            <div class="payment-method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="payment-method-title">Paiement via WhatsApp (50% d'avance)</div>
+                        </div>
+                        <div class="payment-method-content">
+                            <p><strong>Paiement en deux étapes :</strong></p>
+                            <ol style="margin-left: 20px; margin-top: 10px;">
+                                <li>Effectuez un virement bancaire de 50% du montant total pour confirmer votre commande</li>
+                                <li>Le reste sera payé à la livraison</li>
+                            </ol>
+                            <p style="margin-top: 10px;">Envoyez-nous un message sur WhatsApp avec vos informations de livraison et la preuve de virement.</p>
+                            
+                            <div class="rib-info">
+                                <h4>Coordonnées bancaires (RIB)</h4>
+                                <p><strong>Titulaire:</strong> Decobizcreations</p>
+                                <p><strong>IBAN:</strong> MA64 0123 4567 8901 2345 6789 012</p>
+                                <p><strong>BIC:</strong> BCPMAAMC</p>
+                                <p><strong>Banque:</strong> Banque Populaire</p>
+                                <button type="button" class="copy-btn" onclick="copyRIB()">Copier le RIB</button>
+                            </div>
+                            
+                            <div class="whatsapp-message">
+                                <h4>Message pré-rempli</h4>
+                                <p id="whatsappAdvanceMessage">Bonjour, je souhaite finaliser ma commande avec paiement de 50% d'avance. Voici mes informations :
+Prénom: [Votre prénom]
+Nom: [Votre nom]
+Adresse: [Votre adresse]
+Ville: [Votre ville]
+Code postal: [Votre code postal]
+Téléphone: [Votre téléphone]
+Montant total: [Montant total DH]
+Montant d'avance (50%): [Montant d'avance DH]
+J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception et la préparation de ma commande.</p>
+                                <button type="button" class="copy-btn" onclick="copyWhatsAppAdvanceMessage()">Copier le message</button>
+                                <a href="https://wa.me/212610236889?text=Bonjour,%20je%20souhaite%20finaliser%20ma%20commande%20avec%20paiement%20de%2050%25%20d'avance.%20Voici%20mes%20informations%20%3A%0APr%C3%A9nom%3A%20%5BVotre%20pr%C3%A9nom%5D%0ANom%3A%20%5BVotre%20nom%5D%0AAdresse%3A%20%5BVotre%20adresse%5D%0AVille%3A%20%5BVotre%20ville%5D%0ACode%20postal%3A%20%5BVotre%20code%20postal%5D%0AT%C3%A9l%C3%A9phone%3A%20%5BVotre%20t%C3%A9l%C3%A9phone%5D%0AMontant%20total%3A%20%5BMontant%20total%20DH%5D%0AMontant%20d'avance%20(50%25)%3A%20%5BMontant%20d'avance%20DH%5D%0AJ'ai%20effectu%C3%A9%20le%20virement%20de%2050%25%20d'avance.%20Merci%20de%20me%20confirmer%20la%20r%C3%A9ception%20et%20la%20pr%C3%A9paration%20de%20ma%20commande." target="_blank" class="copy-btn" style="display: inline-block; text-decoration: none; margin-top: 10px;">Envoyer sur WhatsApp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="checkout-btn" id="submitBtn">Valider la commande</button>
+            </form>
+        </div>
+        
+        <!-- Order Summary -->
+        <div class="order-summary fade-slide">
+            <h3 class="section-title">Résumé de la commande</h3>
+            
+            <div class="order-items" id="orderItems">
+                <!-- Les articles de la commande seront ajoutés dynamiquement ici -->
+            </div>
+            
+            <div class="summary-row">
+                <span class="summary-label">Sous-total</span>
+                <span class="summary-value" id="subtotal">0 DH</span>
+            </div>
+            
+            <div class="summary-row">
+                <span class="summary-label">Livraison</span>
+                <span class="summary-value" id="shipping">30 DH</span>
+            </div>
+            
+            <div class="summary-row" id="discountRow" style="display: none;">
+                <span class="summary-label">Réduction</span>
+                <span class="summary-value" id="discount">0 DH</span>
+            </div>
+            
+            <div class="summary-divider"></div>
+            
+            <div class="summary-total">
+                <span>Total</span>
+                <span id="total">30 DH</span>
+            </div>
+            
+            <!-- Affichage du montant de l'avance si la méthode WhatsApp avec avance est sélectionnée -->
+            <div id="advancePaymentInfo" style="display: none; margin-top: 20px; padding: 15px; background-color: #f9f3e8; border-radius: 8px;">
+                <h4 style="margin-bottom: 10px; color: #b27952;">Paiement de 50% d'avance</h4>
+                <div class="summary-row">
+                    <span class="summary-label">Montant total</span>
+                    <span class="summary-value" id="advanceTotal">0 DH</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Montant de l'avance (50%)</span>
+                    <span class="summary-value" id="advanceAmount">0 DH</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Reste à payer à la livraison</span>
+                    <span class="summary-value" id="remainingAmount">0 DH</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/212610236889" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>À propos</h4>
+                <ul class="footer-links">
+                    <li><a href="a-propos.html">Notre histoire</a></li>
+                    <li><a href="a-propos.html#savoir-faire">Notre savoir-faire</a></li>
+                    <li><a href="a-propos.html#atelier">Notre atelier</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Produits</h4>
+                <ul class="footer-links">
+                    <li><a href="produits.html?category=plateau">Plateaux</a></li>
+                    <li><a href="produits.html?category=vase">Vases</a></li>
+                    <li><a href="produits.html?category=boite">Boîtes</a></li>
+                    <li><a href="produits.html?category=decoration">Décorations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Packs</h4>
+                <ul class="footer-links">
+                    <li><a href="packs.html">Tous nos packs</a></li>
+                    <li><a href="packs.html#essentiels">Packs essentiels</a></li>
+                    <li><a href="packs.html#premium">Packs premium</a></li>
+                    <li><a href="packs.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Service client</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                <form class="newsletter-form-footer" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input-footer" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn-footer">OK</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/decobizcreations" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/decobizcreations" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://pinterest.com/decobizcreations" target="_blank" class="social-link" aria-label="Pinterest">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Decobizcreations — Artisanat marocain fait main. Tous droits réservés.</p>
+            <p><a href="conditions.html">Conditions générales</a> | <a href="confidentialite.html">Politique de confidentialité</a> | <a href="mentions-legales.html">Mentions légales</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales
+        let orderData = null;
+        let selectedPaymentMethod = null;
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Masquer le loader
+            document.getElementById('loader').style.display = 'none';
+            
+            // Initialiser les animations
+            initScrollAnimations();
+            initScrollProgress();
+            initBackToTop();
+            initDarkMode();
+            initSearch();
+            initPaymentMethods();
+            initFormValidation();
+            
+            // Charger les données de la commande
+            loadOrderData();
+            
+            // Initialiser le service worker pour PWA
+            initServiceWorker();
+            
+            // Initialiser le consentement aux cookies
+            initCookieConsent();
+        });
+        
+        // Charger les données de la commande depuis localStorage
+        function loadOrderData() {
+            const savedOrder = localStorage.getItem('currentOrder');
+            if (savedOrder) {
+                orderData = JSON.parse(savedOrder);
+                renderOrderItems();
+                updateOrderSummary();
+            } else {
+                // Rediriger vers le panier si aucune commande n'est trouvée
+                window.location.href = 'panier.html';
+            }
+        }
+        
+        // Afficher les articles de la commande
+        function renderOrderItems() {
+            const orderItemsContainer = document.getElementById('orderItems');
+            orderItemsContainer.innerHTML = '';
+            
+            orderData.items.forEach(item => {
+                const orderItemElement = document.createElement('div');
+                orderItemElement.className = 'order-item';
+                orderItemElement.innerHTML = `
+                    <div class="order-item-image">
+                        <img src="${item.image}" alt="${item.title}">
+                    </div>
+                    <div class="order-item-details">
+                        <div class="order-item-title">${item.title}</div>
+                        <div class="order-item-description">${item.description}</div>
+                        <div class="order-item-price">${item.price} DH</div>
+                        <div class="order-item-quantity">Quantité: ${item.quantity}</div>
+                    </div>
+                `;
+                orderItemsContainer.appendChild(orderItemElement);
+            });
+        }
+        
+        // Mettre à jour le résumé de la commande
+        function updateOrderSummary() {
+            document.getElementById('subtotal').textContent = `${orderData.subtotal} DH`;
+            document.getElementById('shipping').textContent = `${orderData.shipping} DH`;
+            document.getElementById('discount').textContent = `${orderData.discount} DH`;
+            document.getElementById('total').textContent = `${orderData.total} DH`;
+            
+            // Afficher ou masquer la ligne de réduction
+            const discountRow = document.getElementById('discountRow');
+            if (orderData.discount > 0) {
+                discountRow.style.display = 'flex';
+            } else {
+                discountRow.style.display = 'none';
+            }
+            
+            // Mettre à jour les informations de paiement d'avance si nécessaire
+            if (selectedPaymentMethod === 'whatsapp_advance') {
+                updateAdvancePaymentInfo();
+            }
+        }
+        
+        // Mettre à jour les informations de paiement d'avance
+        function updateAdvancePaymentInfo() {
+            const totalAmount = orderData.total;
+            const advanceAmount = Math.round(totalAmount * 0.5);
+            const remainingAmount = totalAmount - advanceAmount;
+            
+            document.getElementById('advanceTotal').textContent = `${totalAmount} DH`;
+            document.getElementById('advanceAmount').textContent = `${advanceAmount} DH`;
+            document.getElementById('remainingAmount').textContent = `${remainingAmount} DH`;
+            
+            document.getElementById('advancePaymentInfo').style.display = 'block';
+        }
+        
+        // Initialiser les méthodes de paiement
+        function initPaymentMethods() {
+            const paymentMethods = document.querySelectorAll('.payment-method');
+            
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', () => {
+                    // Désélectionner toutes les méthodes
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+                    
+                    // Sélectionner la méthode cliquée
+                    method.classList.add('selected');
+                    selectedPaymentMethod = method.getAttribute('data-method');
+                    
+                    // Afficher ou masquer les informations de paiement d'avance
+                    const advancePaymentInfo = document.getElementById('advancePaymentInfo');
+                    if (selectedPaymentMethod === 'whatsapp_advance') {
+                        updateAdvancePaymentInfo();
+                    } else {
+                        advancePaymentInfo.style.display = 'none';
+                    }
+                    
+                    // Mettre à jour le message WhatsApp avec les informations du formulaire
+                    if (selectedPaymentMethod === 'whatsapp' || selectedPaymentMethod === 'whatsapp_advance') {
+                        updateWhatsAppMessage();
+                    }
+                });
+            });
+        }
+        
+        // Mettre à jour le message WhatsApp avec les informations du formulaire
+        function updateWhatsAppMessage() {
+            const firstName = document.getElementById('firstName').value || '[Votre prénom]';
+            const lastName = document.getElementById('lastName').value || '[Votre nom]';
+            const address = document.getElementById('address').value || '[Votre adresse]';
+            const city = document.getElementById('city').value || '[Votre ville]';
+            const postalCode = document.getElementById('postalCode').value || '[Votre code postal]';
+            const phone = document.getElementById('phone').value || '[Votre téléphone]';
+            
+            if (selectedPaymentMethod === 'whatsapp') {
+                const message = `Bonjour, je souhaite finaliser ma commande. Voici mes informations de livraison :
+Prénom: ${firstName}
+Nom: ${lastName}
+Adresse: ${address}
+Ville: ${city}
+Code postal: ${postalCode}
+Téléphone: ${phone}
+Merci de me confirmer la disponibilité et les modalités de paiement.`;
+                
+                document.getElementById('whatsappMessage').textContent = message;
+                
+                // Mettre à jour le lien WhatsApp
+                const whatsappLink = document.querySelector('.payment-method[data-method="whatsapp"] .whatsapp-message a');
+                whatsappLink.href = `https://wa.me/212610236889?text=${encodeURIComponent(message)}`;
+            } else if (selectedPaymentMethod === 'whatsapp_advance') {
+                const totalAmount = orderData.total;
+                const advanceAmount = Math.round(totalAmount * 0.5);
+                
+                const message = `Bonjour, je souhaite finaliser ma commande avec paiement de 50% d'avance. Voici mes informations :
+Prénom: ${firstName}
+Nom: ${lastName}
+Adresse: ${address}
+Ville: ${city}
+Code postal: ${postalCode}
+Téléphone: ${phone}
+Montant total: ${totalAmount} DH
+Montant d'avance (50%): ${advanceAmount} DH
+J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception et la préparation de ma commande.`;
+                
+                document.getElementById('whatsappAdvanceMessage').textContent = message;
+                
+                // Mettre à jour le lien WhatsApp
+                const whatsappLink = document.querySelector('.payment-method[data-method="whatsapp_advance"] .whatsapp-message a');
+                whatsappLink.href = `https://wa.me/212610236889?text=${encodeURIComponent(message)}`;
+            }
+        }
+        
+        // Initialiser la validation du formulaire
+        function initFormValidation() {
+            const form = document.getElementById('paymentForm');
+            
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                
+                // Vérifier si une méthode de paiement est sélectionnée
+                if (!selectedPaymentMethod) {
+                    showToast('Veuillez sélectionner une méthode de paiement', 'error');
+                    return;
+                }
+                
+                // Valider le formulaire
+                if (!form.checkValidity()) {
+                    showToast('Veuillez remplir tous les champs obligatoires', 'error');
+                    return;
+                }
+                
+                // Si tout est valide, traiter la commande
+                processOrder();
+            });
+            
+            // Formater le numéro de carte
+            const cardNumberInput = document.getElementById('cardNumber');
+            cardNumberInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\s/g, '');
+                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                e.target.value = formattedValue;
+            });
+            
+            // Formater la date d'expiration
+            const cardExpiryInput = document.getElementById('cardExpiry');
+            cardExpiryInput.addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length >= 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                e.target.value = value;
+            });
+            
+            // N'autoriser que les chiffres pour le CVC
+            const cardCVCInput = document.getElementById('cardCVC');
+            cardCVCInput.addEventListener('input', (e) => {
+                e.target.value = e.target.value.replace(/\D/g, '');
+            });
+            
+            // Mettre à jour le message WhatsApp lorsque les champs changent
+            const formInputs = form.querySelectorAll('input, textarea');
+            formInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    if (selectedPaymentMethod === 'whatsapp' || selectedPaymentMethod === 'whatsapp_advance') {
+                        updateWhatsAppMessage();
+                    }
+                });
+            });
+        }
+        
+        // Traiter la commande
+        function processOrder() {
+            // Désactiver le bouton de soumission
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Traitement en cours...';
+            
+            // Récupérer les données du formulaire
+            const formData = new FormData(document.getElementById('paymentForm'));
+            const orderDetails = {
+                items: orderData.items,
+                subtotal: orderData.subtotal,
+                shipping: orderData.shipping,
+                discount: orderData.discount,
+                total: orderData.total,
+                customer: {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    email: formData.get('email'),
+                    phone: formData.get('phone'),
+                    address: formData.get('address'),
+                    city: formData.get('city'),
+                    postalCode: formData.get('postalCode'),
+                    notes: formData.get('notes')
+                },
+                paymentMethod: selectedPaymentMethod,
+                orderDate: new Date().toISOString(),
+                orderNumber: generateOrderNumber()
+            };
+            
+            // Ajouter les informations de paiement d'avance si nécessaire
+            if (selectedPaymentMethod === 'whatsapp_advance') {
+                orderDetails.advancePayment = {
+                    amount: Math.round(orderData.total * 0.5),
+                    status: 'pending'
+                };
+                orderDetails.remainingPayment = {
+                    amount: orderData.total - Math.round(orderData.total * 0.5),
+                    status: 'pending',
+                    dueDate: 'delivery'
+                };
+            }
+            
+            // Simuler un traitement asynchrone
+            setTimeout(() => {
+                // Sauvegarder la commande
+                saveOrder(orderDetails);
+                
+                // Afficher le message de succès
+                document.getElementById('successMessage').classList.add('show');
+                
+                // Réinitialiser le panier
+                localStorage.removeItem('cartItems');
+                localStorage.removeItem('cartCount');
+                localStorage.removeItem('currentOrder');
+                
+                // Mettre à jour le badge du panier
+                document.getElementById('cartBadge').textContent = '0';
+                
+                // Faire défiler jusqu'au message de succès
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                
+                // Réactiver le bouton
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Valider la commande';
+                
+                // Suivi Analytics
+                trackEvent('purchase', {
+                    order_number: orderDetails.orderNumber,
+                    value: orderDetails.total,
+                    payment_method: selectedPaymentMethod
+                });
+                
+                // Si paiement par WhatsApp, ouvrir la conversation
+                if (selectedPaymentMethod === 'whatsapp') {
+                    setTimeout(() => {
+                        window.open(document.querySelector('.payment-method[data-method="whatsapp"] .whatsapp-message a').href, '_blank');
+                    }, 1000);
+                } else if (selectedPaymentMethod === 'whatsapp_advance') {
+                    setTimeout(() => {
+                        window.open(document.querySelector('.payment-method[data-method="whatsapp_advance"] .whatsapp-message a').href, '_blank');
+                    }, 1000);
+                }
+            }, 2000);
+        }
+        
+        // Générer un numéro de commande unique
+        function generateOrderNumber() {
+            const date = new Date();
+            const timestamp = date.getTime();
+            const random = Math.floor(Math.random() * 1000);
+            return `DC-${timestamp}-${random}`;
+        }
+        
+        // Sauvegarder la commande
+        function saveOrder(orderDetails) {
+            // Récupérer les commandes existantes
+            let orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            
+            // Ajouter la nouvelle commande
+            orders.push(orderDetails);
+            
+            // Sauvegarder
+            localStorage.setItem('orders', JSON.stringify(orders));
+            
+            // Sauvegarder également la dernière commande pour l'accès facile
+            localStorage.setItem('lastOrder', JSON.stringify(orderDetails));
+        }
+        
+        // Copier le RIB
+        function copyRIB() {
+            const ribText = `Titulaire: Decobizcreations\nIBAN: MA64 0123 4567 8901 2345 6789 012\nBIC: BCPMAAMC\nBanque: Banque Populaire`;
+            
+            navigator.clipboard.writeText(ribText).then(() => {
+                showToast('RIB copié dans le presse-papiers', 'success');
+            }).catch(() => {
+                showToast('Erreur lors de la copie du RIB', 'error');
+            });
+        }
+        
+        // Copier le message WhatsApp
+        function copyWhatsAppMessage() {
+            const messageText = document.getElementById('whatsappMessage').textContent;
+            
+            navigator.clipboard.writeText(messageText).then(() => {
+                showToast('Message copié dans le presse-papiers', 'success');
+            }).catch(() => {
+                showToast('Erreur lors de la copie du message', 'error');
+            });
+        }
+        
+        // Copier le message WhatsApp avec paiement d'avance
+        function copyWhatsAppAdvanceMessage() {
+            const messageText = document.getElementById('whatsappAdvanceMessage').textContent;
+            
+            navigator.clipboard.writeText(messageText).then(() => {
+                showToast('Message copié dans le presse-papiers', 'success');
+            }).catch(() => {
+                showToast('Erreur lors de la copie du message', 'error');
+            });
+        }
+        
+        // Barre de progression du scroll
+        function initScrollProgress() {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressbar').style.width = scrollPercent + '%';
+            });
+        }
+        
+        // Animations au scroll
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.fade-slide').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Bouton retour en haut
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Mode sombre
+        function initDarkMode() {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Charger la préférence sauvegardée
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+        
+        // Fonction de recherche
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            function performSearch(event) {
+                // Empêcher le rechargement de la page
+                if (event) {
+                    event.preventDefault();
+                }
+                
+                const query = searchInput.value.toLowerCase().trim();
+                
+                if (query) {
+                    // Rediriger vers la page produits avec le terme de recherche
+                    window.location.href = `produits.html?search=${encodeURIComponent(query)}`;
+                }
+            }
+            
+            // Lancer la recherche lors du clic sur le bouton
+            searchBtn.addEventListener('click', (event) => {
+                performSearch(event);
+            });
+            
+            // Lancer la recherche lors de l'appui sur Entrée
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(e);
+                }
+            });
+        }
+        
+        // Newsletter
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Validation email simple
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                showToast('Merci pour votre inscription !', 'success');
+                event.target.reset();
+                
+                // Sauvegarder l'email dans le localStorage
+                let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+            } else {
+                showToast('Veuillez entrer une adresse email valide', 'error');
+            }
+        }
+        
+        // Système de notifications toast
+        function showToast(message, type = 'info') {
+            // Supprimer les anciens toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'polite');
+            
+            document.body.appendChild(toast);
+            
+            // Afficher le toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Masquer et supprimer le toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Service Worker pour PWA (Progressive Web App)
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
+                    });
+            }
+        }
+        
+        // Gestion des cookies (RGPD)
+        function initCookieConsent() {
+            // Vérifier si le consentement a déjà été donné
+            if (!localStorage.getItem('cookieConsent')) {
+                // Créer la bannière de consentement
+                const cookieBanner = document.createElement('div');
+                cookieBanner.id = 'cookieBanner';
+                cookieBanner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2c2c2c;
+                    color: white;
+                    padding: 1rem;
+                    z-index: 10000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                `;
+                
+                cookieBanner.innerHTML = `
+                    <div style="margin-right: 1rem;">
+                        <p style="margin: 0;">Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer sur ce site, vous acceptez notre politique de cookies.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="acceptCookies" style="background: #b27952; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Accepter</button>
+                        <button id="declineCookies" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Refuser</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(cookieBanner);
+                
+                // Gérer les clics sur les boutons
+                document.getElementById('acceptCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    document.getElementById('cookieBanner').remove();
+                    
+                    // Activer le suivi si accepté
+                    enableTracking();
+                });
+                
+                document.getElementById('declineCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    document.getElementById('cookieBanner').remove();
+                });
+            } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+                // Activer le suivi si déjà accepté
+                enableTracking();
+            }
+        }
+        
+        // Activer le suivi (Analytics)
+        function enableTracking() {
+            // Ici, vous pourriez intégrer Google Analytics, Facebook Pixel, etc.
+            console.log('Le suivi est activé');
+            
+            // Exemple de suivi de page vue
+            trackEvent('page_view', { page: 'payment' });
+        }
+        
+        // Fonction de suivi des événements
+        function trackEvent(eventName, eventData = {}) {
+            // Ici, vous pourriez envoyer les données à Google Analytics, Facebook Pixel, etc.
+            console.log('Événement suivi:', eventName, eventData);
+            
+            // Exemple d'envoi à Google Analytics (si gtag.js est chargé)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+        }
+        
+        console.log('💳 Decobizcreations - Page paiement chargée avec succès !');
+        console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+    </script>
 </body>
 </html>
