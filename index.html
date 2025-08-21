@@ -3932,14 +3932,14 @@
         let cartItems = []; // Tableau pour stocker les articles du panier
         
         // Configuration Firebase (remplacez par vos propres informations)
-        const firebaseConfig = {
-apiKey: "AIzaSyA9sX6m8x6xXxXxXxXxXxXxXxXxXxXxXx",
-authDomain: "votre-projet.firebaseapp.com",
-databaseURL: "https://votre-projet-default-rtdb.firebaseio.com",
-projectId: "votre-projet",
-storageBucket: "votre-projet.appspot.com",
-messagingSenderId: "123456789",
-appId: "1:123456789:web:abcdef123456"
+       const firebaseConfig = {
+    apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
+    authDomain: "decobizcreations-d906a.firebaseapp.com",
+    databaseURL: "https://decobizcreations-default-rtdb.firebaseio.com",
+    projectId: "decobizcreations",
+    storageBucket: "decobizcreations-d906a.appspot.com",
+    messagingSenderId: "634879666090",
+    appId: "1:634879666090:web:769602d96fccb81855add3"
 };
         
         // Initialiser Firebase
@@ -4139,73 +4139,163 @@ appId: "1:123456789:web:abcdef123456"
         }
         
         // Système de suivi des visiteurs INVISIBLE
-        function initVisitorTracking() {
-            // Clé de stockage pour les données des visiteurs
-            const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
-            const DETECTION_INTERVAL = 60000; // 1 minute
-            
-            // Charger les données existantes
-            let visitors = JSON.parse(localStorage.getItem(VISITOR_STORAGE_KEY) || '[]');
-            
-            // Fonction pour détecter un nouveau visiteur
-            function detectVisitor() {
-                // Vérifier si c'est un nouveau visiteur (session unique)
-                const sessionId = getSessionId();
-                const now = new Date().toISOString();
-                
-                // Vérifier si cette session existe déjà
-                const existingSession = visitors.find(v => v.sessionId === sessionId);
-                
-                if (!existingSession) {
-                    // Créer un nouvel objet visiteur
-                    const visitor = {
-                        id: Date.now() + Math.random(),
-                        sessionId: sessionId,
-                        timestamp: now,
-                        userAgent: navigator.userAgent,
-                        device: getDeviceType(),
-                        browser: getBrowserType(),
-                        os: getOperatingSystem(),
-                        screenResolution: `${screen.width}x${screen.height}`,
-                        language: navigator.language,
-                        referrer: document.referrer || 'Direct',
-                        page: window.location.pathname,
-                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                        city: '', // Sera rempli plus tard
-                        country: '' // Sera rempli plus tard
-                    };
-                    
-                    // Ajouter le visiteur à la liste
-                    visitors.unshift(visitor);
-                    
-                    // Limiter la taille de la liste (garder les 1000 derniers visiteurs)
-                    if (visitors.length > 1000) {
-                        visitors = visitors.slice(0, 1000);
-                    }
-                    
-                    // Sauvegarder les données
-                    localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
-                    
-                    console.log('Nouveau visiteur détecté (invisible):', visitor);
-                    
-                    // Obtenir la localisation du visiteur
-                    getVisitorLocation(visitor.id);
-                }
-            }
-            
-            // Détecter immédiatement au chargement
-            detectVisitor();
-            
-            // Détecter périodiquement
-            setInterval(detectVisitor, DETECTION_INTERVAL);
-            
-            // Rendre les données accessibles globalement pour l'admin
-            window.getVisitorData = function() {
-                return visitors;
+        // Système de suivi des visiteurs INVISIBLE
+function initVisitorTracking() {
+    // Clé de stockage pour les données des visiteurs
+    const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
+    const DETECTION_INTERVAL = 60000; // 1 minute
+    
+    // Charger les données existantes
+    let visitors = JSON.parse(localStorage.getItem(VISITOR_STORAGE_KEY) || '[]');
+    
+    // Fonction pour détecter un nouveau visiteur
+    function detectVisitor() {
+        // Vérifier si c'est un nouveau visiteur (session unique)
+        const sessionId = getSessionId();
+        const now = new Date().toISOString();
+        
+        // Vérifier si cette session existe déjà
+        const existingSession = visitors.find(v => v.sessionId === sessionId);
+        
+        if (!existingSession) {
+            // Créer un nouvel objet visiteur
+            const visitor = {
+                id: Date.now() + Math.random(),
+                sessionId: sessionId,
+                timestamp: now,
+                userAgent: navigator.userAgent,
+                device: getDeviceType(),
+                browser: getBrowserType(),
+                os: getOperatingSystem(),
+                screenResolution: `${screen.width}x${screen.height}`,
+                language: navigator.language,
+                referrer: document.referrer || 'Direct',
+                page: window.location.pathname,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                city: '', // Sera rempli plus tard
+                country: '' // Sera rempli plus tard
             };
             
-            console.log('🔍 Système de suivi des visiteurs initialisé (invisible)');
+            // Ajouter le visiteur à la liste
+            visitors.unshift(visitor);
+            
+            // Limiter la taille de la liste (garder les 1000 derniers visiteurs)
+            if (visitors.length > 1000) {
+                visitors = visitors.slice(0, 1000);
+            }
+            
+            // Sauvegarder les données localement
+            localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
+            
+            console.log('Nouveau visiteur détecté (invisible):', visitor);
+            
+            // Mettre à jour le compteur de visiteurs
+            updateVisitorCount();
+            
+            // Sauvegarder dans Firebase
+            saveVisitorToFirebase(visitor);
+            
+            // Obtenir la localisation du visiteur
+            getVisitorLocation(visitor.id);
         }
+    }
+    
+    // Fonction pour mettre à jour le compteur de visiteurs
+    function updateVisitorCount() {
+        const count = visitors.length;
+        document.getElementById('visitorCount').textContent = count;
+        document.getElementById('visitorCounter').classList.add('visible');
+        
+        // Sauvegarder dans localStorage
+        localStorage.setItem('visitorCount', count.toString());
+    }
+    
+    // Fonction pour sauvegarder un visiteur dans Firebase
+    function saveVisitorToFirebase(visitor) {
+        if (database) {
+            // Sauvegarder le visiteur
+            database.ref('visitors/' + visitor.id).set(visitor).then(() => {
+                console.log('Visiteur sauvegardé dans Firebase:', visitor.id);
+            }).catch(error => {
+                console.error('Erreur lors de la sauvegarde du visiteur:', error);
+            });
+            
+            // Mettre à jour le compteur total
+            database.ref('visitorCount').transaction(currentCount => {
+                return (currentCount || 0) + 1;
+            }).then(() => {
+                console.log('Compteur de visiteurs mis à jour');
+            }).catch(error => {
+                console.error('Erreur lors de la mise à jour du compteur:', error);
+            });
+        }
+    }
+    
+    // Détecter immédiatement au chargement
+    detectVisitor();
+    
+    // Détecter périodiquement
+    setInterval(detectVisitor, DETECTION_INTERVAL);
+    
+    // Rendre les données accessibles globalement pour l'admin
+    window.getVisitorData = function() {
+        return visitors;
+    };
+    
+    console.log('🔍 Système de suivi des visiteurs initialisé (invisible)');
+    // Fonction pour obtenir la localisation du visiteur
+function getVisitorLocation(visitorId) {
+    // Utiliser l'API ipapi.co pour obtenir la localisation
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.city && data.country_name) {
+                updateVisitorLocation(visitorId, data.city, data.country_name);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération de la localisation:', error);
+            // En cas d'erreur, essayer avec une autre API
+            getVisitorLocationAlternative(visitorId);
+        });
+}
+
+// Alternative si la première API échoue
+function getVisitorLocationAlternative(visitorId) {
+    fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.city && data.country_name) {
+                updateVisitorLocation(visitorId, data.city, data.country_name);
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la récupération alternative de la localisation:', error);
+        });
+}
+
+// Mettre à jour la localisation du visiteur
+function updateVisitorLocation(visitorId, city, country) {
+    const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
+    const visitors = JSON.parse(localStorage.getItem(VISITOR_STORAGE_KEY) || '[]');
+    
+    const visitorIndex = visitors.findIndex(v => v.id === visitorId);
+    if (visitorIndex !== -1) {
+        visitors[visitorIndex].city = city;
+        visitors[visitorIndex].country = country;
+        localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
+        
+        // Mettre à jour dans Firebase
+        if (database) {
+            database.ref('visitors/' + visitorId + '/city').set(city);
+            database.ref('visitors/' + visitorId + '/country').set(country);
+        }
+        
+        console.log(`Localisation mise à jour pour le visiteur ${visitorId}: ${city}, ${country}`);
+    }
+}
+    
+}
         
         // Fonctions utilitaires pour le suivi
         function getSessionId() {
@@ -4451,7 +4541,8 @@ appId: "1:123456789:web:abcdef123456"
                         
                         // Sauvegarder dans localStorage pour utilisation hors ligne
                         localStorage.setItem('registeredUsers', JSON.stringify(users));
-                        
+
+                    
                         // Mettre à jour les statistiques du panneau d'administration
                         updateAdminStats();
                     }).catch(function(error) {
@@ -5883,26 +5974,33 @@ appId: "1:123456789:web:abcdef123456"
         }
         
         // Mettre à jour les statistiques du panneau d'administration
-        function updateAdminStats() {
-            const visitors = window.getVisitorData() || [];
-            const totalVisitors = visitors.length;
-            
-            // Calculer les visiteurs par période
-            const now = new Date();
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-            const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-            
-            const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
-            const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
-            const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
-            
-            document.getElementById('totalVisitors').textContent = totalVisitors.toLocaleString();
-            document.getElementById('todayVisitors').textContent = todayVisitors.toLocaleString();
-            document.getElementById('weekVisitors').textContent = weekVisitors.toLocaleString();
-            document.getElementById('monthVisitors').textContent = monthVisitors.toLocaleString();
-        }
         
+        // Mettre à jour les statistiques du panneau d'administration
+function updateAdminStats() {
+    const visitors = window.getVisitorData() || [];
+    const totalVisitors = visitors.length;
+    
+    // Calculer les visiteurs par période
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    
+    const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
+    const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
+    const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
+    
+    document.getElementById('totalVisitors').textContent = totalVisitors.toLocaleString();
+    document.getElementById('todayVisitors').textContent = todayVisitors.toLocaleString();
+    document.getElementById('weekVisitors').textContent = weekVisitors.toLocaleString();
+    document.getElementById('monthVisitors').textContent = monthVisitors.toLocaleString();
+    
+    // Mettre à jour le compteur visible
+    document.getElementById('visitorCount').textContent = totalVisitors;
+    if (totalVisitors > 0) {
+        document.getElementById('visitorCounter').classList.add('visible');
+    }
+}
         // Afficher la liste des visiteurs
         function displayVisitorList() {
             const visitors = window.getVisitorData() || [];
@@ -6098,4 +6196,5 @@ appId: "1:123456789:web:abcdef123456"
     </script>
 </body>
 </html>
+
 
