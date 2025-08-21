@@ -1,13 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Vos métadonnées existantes -->
+    <!-- Métadonnées existantes avec améliorations SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="theme-color" content="#b27952" />
+    
+    <!-- Données structurées JSON-LD pour le référencement -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Decobizcreations",
+        "description": "Créations artisanales uniques en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc.",
+        "image": "https://www.decobizcreations.com/images/og-image.jpg",
+        "url": "https://www.decobizcreations.com/",
+        "telephone": "+212123456789",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Rue Artisanale",
+            "addressLocality": "Casablanca",
+            "postalCode": "20000",
+            "addressCountry": "MA"
+        },
+        "openingHours": "Mo-Fr 09:00-18:00",
+        "priceRange": "100 DH - 399 DH",
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 33.5731,
+            "longitude": -7.5898
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "Hajar Agrar"
+        },
+        "makesOffer": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Product",
+                    "name": "Plateau Rond",
+                    "description": "Plateau élégant en béton, parfait pour présenter vos collations",
+                    "image": "https://www.decobizcreations.com/images/mini-plateau-rond.jpeg",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "120",
+                        "priceCurrency": "MAD"
+                    }
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Product",
+                    "name": "Vase Nordique",
+                    "description": "Vase au design scandinave, parfait pour vos fleurs",
+                    "image": "https://www.decobizcreations.com/images/vase-nordique.jpeg",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "180",
+                        "priceCurrency": "MAD"
+                    }
+                }
+            }
+        ]
+    }
+    </script>
     
     <title>Decobizcreations - Artisanat Béton & Gypse | Décoration Marocaine</title>
     <meta name="description" content="Découvrez nos créations artisanales uniques en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc. Livraison rapide." />
@@ -21,6 +82,8 @@
     <meta property="og:title" content="Decobizcreations - Artisanat Béton & Gypse" />
     <meta property="og:description" content="Décorations artisanales uniques en béton et gypse. Plateaux, vases, boîtes faites main au Maroc." />
     <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    <meta property="og:site_name" content="Decobizcreations" />
+    <meta property="og:locale" content="fr_FR" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -30,7 +93,7 @@
     <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
@@ -45,8 +108,27 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
     
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
     <style>
-        /* Vos styles existants */
+        /* Vos styles existants avec améliorations */
+        :root {
+            --primary-color: #b27952;
+            --secondary-color: #f8b500;
+            --text-color: #2c2c2c;
+            --light-bg: #fffaf5;
+            --dark-bg: #1a1a1a;
+            --card-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            --transition-speed: 0.3s;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -54,33 +136,38 @@
             font-family: 'Montserrat', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
+        
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
         }
+        
         body {
-            background: #fffaf5;
-            color: #2c2c2c;
+            background: var(--light-bg);
+            color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color 0.5s ease, color 0.5s ease;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
             position: relative;
             padding-bottom: env(safe-area-inset-bottom);
         }
         
-        /* Mode sombre */
+        /* Mode sombre amélioré */
         body.dark-mode {
-            background: #1a1a1a;
+            background: var(--dark-bg);
             color: #e0e0e0;
         }
+        
         body.dark-mode header {
             background: #2d2d2d;
             color: #e0e0e0;
         }
+        
         body.dark-mode .product-card {
             background: #2d2d2d;
             color: #e0e0e0;
         }
+        
         body.dark-mode .about-section,
         body.dark-mode .values-section,
         body.dark-mode .process-section,
@@ -88,48 +175,61 @@
         body.dark-mode .advantages-section {
             background: #252525;
         }
+        
         body.dark-mode footer {
             background: #222222;
         }
         
-        /* Loader */
+        body.dark-mode .newsletter-section {
+            background: linear-gradient(135deg, #8c5a34, #b27952);
+        }
+        
+        /* Loader amélioré */
         #loader {
             position: fixed;
             width: 100vw;
             height: 100vh;
-            background: #fffaf5;
+            background: var(--light-bg);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            transition: opacity 0.5s ease;
         }
+        
+        body.dark-mode #loader {
+            background: var(--dark-bg);
+        }
+        
         #loader div {
-            border: 6px solid #b27952;
+            border: 6px solid var(--primary-color);
             border-top: 6px solid transparent;
             border-radius: 50%;
             width: 50px;
             height: 50px;
             animation: spin 1.2s linear infinite;
         }
+        
         @keyframes spin {
             0% {transform: rotate(0deg);}
             100% {transform: rotate(360deg);}
         }
         
-        /* Scroll Progress Bar */
+        /* Scroll Progress Bar améliorée */
         #progressbar {
             position: fixed;
             top: 0;
             left: 0;
             height: 5px;
-            background: #b27952;
+            background: var(--primary-color);
             width: 0%;
             z-index: 10000;
             transition: width 0.2s ease;
             border-radius: 0 0 8px 8px;
+            box-shadow: 0 2px 5px rgba(178, 121, 82, 0.3);
         }
         
-        /* Header */
+        /* Header amélioré */
         header {
             position: sticky;
             top: 0;
@@ -140,19 +240,22 @@
             justify-content: space-between;
             align-items: center;
             z-index: 10;
-            border-bottom: 2px solid #b27952;
-            transition: background 0.3s ease;
+            border-bottom: 2px solid var(--primary-color);
+            transition: background var(--transition-speed) ease;
             flex-wrap: wrap;
             padding-top: env(safe-area-inset-top);
         }
+        
         header:hover {
             background: #fdf6ef;
         }
+        
         .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
+        
         header h1 {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
@@ -162,16 +265,17 @@
             cursor: default;
             user-select: none;
         }
+        
         .header-controls {
             display: flex;
             align-items: center;
             gap: 0.8rem;
         }
         
-        /* Bouton mode sombre */
+        /* Bouton mode sombre amélioré */
         .dark-mode-toggle {
             background: none;
-            border: 2px solid #b27952;
+            border: 2px solid var(--primary-color);
             border-radius: 50%;
             width: 35px;
             height: 35px;
@@ -179,48 +283,54 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            color: #b27952;
+            transition: all var(--transition-speed) ease;
+            color: var(--primary-color);
         }
+        
         .dark-mode-toggle:hover {
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
             transform: scale(1.1);
         }
         
-        /* Recherche */
+        /* Recherche améliorée */
         .search-container {
             position: relative;
             display: flex;
             align-items: center;
         }
+        
         .search-input {
             padding: 6px 35px 6px 12px;
-            border: 2px solid #b27952;
+            border: 2px solid var(--primary-color);
             border-radius: 25px;
             outline: none;
             width: 150px;
-            transition: width 0.3s ease;
+            transition: width var(--transition-speed) ease;
             font-size: 0.9rem;
         }
+        
         .search-input:focus {
             width: 180px;
+            box-shadow: 0 0 0 3px rgba(178, 121, 82, 0.2);
         }
+        
         .search-btn {
             position: absolute;
             right: 8px;
             background: none;
             border: none;
-            color: #b27952;
+            color: var(--primary-color);
             cursor: pointer;
             font-size: 1rem;
         }
         
-        /* Panier compteur */
+        /* Panier compteur amélioré */
         .cart-counter {
             position: relative;
             display: inline-block;
         }
+        
         .cart-badge {
             position: absolute;
             top: -6px;
@@ -235,9 +345,11 @@
             justify-content: center;
             font-size: 0.7rem;
             font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease;
         }
         
-        /* Navigation */
+        /* Navigation améliorée */
         nav {
             display: flex;
             align-items: center;
@@ -246,16 +358,18 @@
             justify-content: center;
             margin-top: 0.5rem;
         }
+        
         nav a {
             text-decoration: none;
             color: #666;
             font-weight: 600;
             font-size: 0.9rem;
             padding-bottom: 4px;
-            transition: color 0.25s ease, box-shadow 0.3s ease;
+            transition: color 0.25s ease, box-shadow var(--transition-speed) ease;
             position: relative;
             overflow: hidden;
         }
+        
         nav a::after {
             content: "";
             position: absolute;
@@ -263,24 +377,27 @@
             bottom: 0;
             width: 0;
             height: 2px;
-            background: #b27952;
-            transition: all 0.3s ease;
+            background: var(--primary-color);
+            transition: all var(--transition-speed) ease;
             transform: translateX(-50%);
             border-radius: 2px;
         }
+        
         nav a:hover,
         nav a:focus {
-            color: #b27952;
+            color: var(--primary-color);
         }
+        
         nav a:hover::after,
         nav a:focus::after {
             width: 100%;
         }
         
-        /* Sous-menu */
+        /* Sous-menu amélioré */
         .nav-item {
             position: relative;
         }
+        
         .submenu {
             position: absolute;
             top: 100%;
@@ -293,14 +410,16 @@
             opacity: 0;
             visibility: hidden;
             transform: translateY(10px);
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             z-index: 100;
         }
+        
         .nav-item:hover .submenu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
+        
         .submenu a {
             display: block;
             padding: 0.6rem 1.2rem;
@@ -308,22 +427,24 @@
             transition: background 0.2s ease;
             font-size: 0.85rem;
         }
+        
         .submenu a:hover {
             background: #f9f3e8;
-            color: #b27952;
+            color: var(--primary-color);
         }
         
-        /* Menu mobile */
+        /* Menu mobile amélioré */
         .menu-toggle {
             display: none;
             background: none;
             border: none;
-            color: #b27952;
+            color: var(--primary-color);
             font-size: 1.5rem;
             cursor: pointer;
             padding: 5px;
         }
         
+        /* Hero section améliorée */
         .hero {
             position: relative;
             height: 80vh;
@@ -342,15 +463,29 @@
             padding: 0 1rem;
             text-shadow: 1px 1px 5px rgba(15, 11, 11, 0.6);
         }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+        
         @keyframes gradientShift {
             0% {background-position: 0% 50%;}
             50% {background-position: 100% 50%;}
             100% {background-position: 0% 50%;}
         }
+        
         .hero-content {
             max-width: 90%;
             z-index: 2;
         }
+        
         .hero h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2.8rem;
@@ -360,6 +495,7 @@
             animation: slideDown 1.2s ease forwards;
             opacity: 0;
         }
+        
         .hero p {
             font-size: 1.4rem;
             max-width: 90%;
@@ -369,25 +505,28 @@
             font-weight: 500;
             margin-bottom: 1.5rem;
         }
+        
         .hero-cta {
             display: inline-block;
             background: rgba(255,255,255,0.9);
-            color: #b27952;
+            color: var(--primary-color);
             padding: 12px 30px;
             border-radius: 50px;
             font-weight: 700;
             font-size: 1rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             animation: fadeIn 1.2s ease forwards 0.8s;
             opacity: 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+        
         .hero-cta:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
             background: white;
         }
+        
         @keyframes slideDown {
             to {
                 opacity: 1;
@@ -398,6 +537,7 @@
                 transform: translateY(-30px);
             }
         }
+        
         @keyframes slideUp {
             to {
                 opacity: 1;
@@ -408,6 +548,7 @@
                 transform: translateY(30px);
             }
         }
+        
         @keyframes fadeIn {
             to {
                 opacity: 1;
@@ -417,7 +558,7 @@
             }
         }
         
-        /* Section de confiance */
+        /* Section de confiance améliorée */
         .trust-section {
             background: white;
             padding: 1.5rem;
@@ -427,27 +568,36 @@
             gap: 1.5rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
+        
         .trust-item {
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            transition: transform var(--transition-speed) ease;
         }
+        
+        .trust-item:hover {
+            transform: translateY(-3px);
+        }
+        
         .trust-icon {
-            color: #b27952;
+            color: var(--primary-color);
             font-size: 1.6rem;
         }
+        
         .trust-text {
             font-weight: 600;
             color: #5a4a24;
             font-size: 0.9rem;
         }
         
-        /* Main Content */
+        /* Main Content amélioré */
         main {
             max-width: 100%;
             margin: 2rem auto 3rem auto;
             padding: 0 1rem;
         }
+        
         main h3 {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -456,6 +606,7 @@
             color: #5a4a24;
             letter-spacing: 0.5px;
         }
+        
         main p {
             max-width: 90%;
             margin: 0 auto 2.5rem auto;
@@ -465,19 +616,21 @@
             font-weight: 500;
         }
         
-        /* Filtres de produits */
+        /* Filtres de produits améliorés */
         .filter-section {
             max-width: 100%;
             margin: 2rem auto;
             padding: 0 1rem;
             text-align: center;
         }
+        
         .filter-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             color: #5a4a24;
             margin-bottom: 1.2rem;
         }
+        
         .filter-buttons {
             display: flex;
             justify-content: center;
@@ -485,28 +638,32 @@
             flex-wrap: wrap;
             margin-bottom: 1.5rem;
         }
+        
         .filter-btn {
             padding: 8px 16px;
-            border: 2px solid #b27952;
+            border: 2px solid var(--primary-color);
             background: transparent;
-            color: #b27952;
+            color: var(--primary-color);
             border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             font-weight: 600;
             font-size: 0.85rem;
         }
+        
         .filter-btn:hover,
         .filter-btn.active {
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(178, 121, 82, 0.3);
         }
         
-        /* Section Produits Vedettes */
+        /* Section Produits Vedettes améliorée */
         .featured-products {
             margin: 3rem 0;
         }
+        
         .featured-header {
             display: flex;
             justify-content: space-between;
@@ -515,37 +672,42 @@
             flex-wrap: wrap;
             gap: 1rem;
         }
+        
         .featured-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             color: #5a4a24;
         }
+        
         .featured-link {
-            color: #b27952;
+            color: var(--primary-color);
             font-weight: 600;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color var(--transition-speed) ease;
             font-size: 0.9rem;
         }
+        
         .featured-link:hover {
             color: #8c5a34;
             text-decoration: underline;
         }
         
-        /* Products Carousel */
+        /* Products Carousel amélioré */
         .carousel {
             position: relative;
             overflow: hidden;
             margin-bottom: 2rem;
         }
+        
         .carousel-controls {
             display: flex;
             justify-content: center;
             gap: 0.8rem;
             margin-bottom: 0.8rem;
         }
+        
         .carousel-btn {
-            background: #b27952;
+            background: var(--primary-color);
             border: none;
             border-radius: 50%;
             width: 35px;
@@ -555,12 +717,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
         }
+        
         .carousel-btn:hover {
             background: #8c5a34;
             transform: scale(1.1);
         }
+        
         .carousel-track {
             display: flex;
             gap: 1.5rem;
@@ -571,13 +735,15 @@
             -ms-overflow-style: none; /* IE and Edge */
             -webkit-overflow-scrolling: touch; /* Pour iPhone */
         }
+        
         .carousel-track::-webkit-scrollbar {
             display: none; /* Chrome, Safari, Opera */
         }
+        
         .product-card {
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--card-shadow);
             flex: 0 0 220px;
             overflow: hidden;
             cursor: pointer;
@@ -586,27 +752,32 @@
             user-select: none;
             -webkit-user-select: none;
         }
+        
         .product-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             z-index: 10;
         }
+        
         .product-image {
             height: 180px;
             overflow: hidden;
             border-bottom: 1px solid #eee;
             position: relative;
         }
+        
         .product-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
+        
         .product-card:hover .product-image img {
             transform: scale(1.1) rotate(1deg);
         }
-        /* Badge nouveau produit */
+        
+        /* Badge nouveau produit amélioré */
         .new-badge {
             position: absolute;
             top: 8px;
@@ -618,7 +789,9 @@
             font-size: 0.7rem;
             font-weight: bold;
             z-index: 5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        
         .sale-badge {
             position: absolute;
             top: 8px;
@@ -630,8 +803,10 @@
             font-size: 0.7rem;
             font-weight: bold;
             z-index: 5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-        /* Boutons d'action sur les produits */
+        
+        /* Boutons d'action sur les produits améliorés */
         .product-actions {
             position: absolute;
             top: 50%;
@@ -640,11 +815,13 @@
             display: flex;
             gap: 8px;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-speed) ease;
         }
+        
         .product-card:hover .product-actions {
             opacity: 1;
         }
+        
         .action-btn {
             background: rgba(178, 121, 82, 0.9);
             border: none;
@@ -656,16 +833,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
         }
+        
         .action-btn:hover {
-            background: #b27952;
+            background: var(--primary-color);
             transform: scale(1.1);
         }
+        
         .product-info {
             padding: 1.2rem 1.5rem;
             text-align: center;
         }
+        
         .product-info h4 {
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
@@ -675,18 +855,21 @@
             text-transform: uppercase;
             font-weight: 700;
         }
+        
         .product-info span {
             font-size: 0.9rem;
             color: #7e6a3e;
             font-weight: 600;
             letter-spacing: 0.05em;
         }
+        
         .product-price {
             font-size: 1.1rem;
             font-weight: bold;
-            color: #b27952;
+            color: var(--primary-color);
             margin-top: 0.4rem;
         }
+        
         .old-price {
             text-decoration: line-through;
             color: #999;
@@ -694,7 +877,7 @@
             margin-right: 0.4rem;
         }
         
-        /* Message aucun résultat */
+        /* Message aucun résultat amélioré */
         .no-results {
             text-align: center;
             padding: 2rem;
@@ -704,19 +887,20 @@
             background: #f9f9f9;
             border-radius: 10px;
             margin-top: 1.5rem;
-            border: 2px dashed #b27952;
+            border: 2px dashed var(--primary-color);
         }
+        
         .no-results i {
             font-size: 2.5rem;
-            color: #b27952;
+            color: var(--primary-color);
             margin-bottom: 0.8rem;
         }
         
-        /* Bouton principal */
+        /* Bouton principal amélioré */
         .btn-discover {
             display: block;
             margin: 0 auto 3rem auto;
-            background: linear-gradient(45deg, #b27952, #f8b500);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             padding: 12px 36px;
             border-radius: 40px;
             font-weight: 700;
@@ -727,20 +911,21 @@
             box-shadow: 0 4px 12px rgba(180,121,82,0.7);
             border: none;
             outline: none;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             user-select: none;
             -webkit-user-select: none;
             letter-spacing: 1px;
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
         }
+        
         .btn-discover:hover {
-            background: linear-gradient(45deg, #f8b500, #b27952);
+            background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
             box-shadow: 0 7px 15px rgba(180,121,82,0.9);
             transform: translateY(-3px) scale(1.03);
         }
         
-        /* Section Processus de Fabrication */
+        /* Section Processus de Fabrication améliorée */
         .process-section {
             background: white;
             border-radius: 12px;
@@ -748,6 +933,7 @@
             padding: 2rem 1.5rem;
             margin: 3rem 0;
         }
+        
         .process-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -755,18 +941,26 @@
             color: #5a4a24;
             margin-bottom: 2rem;
         }
+        
         .process-steps {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 1.5rem;
         }
+        
         .process-step {
             flex: 1;
             min-width: 150px;
             text-align: center;
             position: relative;
+            transition: transform var(--transition-speed) ease;
         }
+        
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+        
         .process-step:not(:last-child)::after {
             content: "";
             position: absolute;
@@ -776,36 +970,47 @@
             height: 2px;
             background: #ddd;
         }
+        
         .step-number {
             width: 60px;
             height: 60px;
             border-radius: 50%;
             background: #f9f3e8;
-            color: #b27952;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.6rem;
             font-weight: 700;
             margin: 0 auto 0.8rem;
+            transition: all var(--transition-speed) ease;
         }
+        
+        .process-step:hover .step-number {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
         .step-title {
             font-weight: 600;
             color: #5a4a24;
             margin-bottom: 0.4rem;
             font-size: 1rem;
         }
+        
         .step-desc {
             color: #6b5e34;
             font-size: 0.85rem;
         }
         
-        /* Section Galerie */
+        /* Section Galerie améliorée */
         .gallery-section {
             max-width: 100%;
             margin: 3rem auto;
             padding: 0 1rem;
         }
+        
         .gallery-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -813,31 +1018,37 @@
             margin-bottom: 1.5rem;
             color: #5a4a24;
         }
+        
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 0.8rem;
         }
+        
         .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
             height: 150px;
         }
+        
         .gallery-item:hover {
             transform: scale(1.03);
         }
+        
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
         }
+        
         .gallery-item:hover img {
             transform: scale(1.08);
         }
+        
         .gallery-overlay {
             position: absolute;
             top: 0;
@@ -849,17 +1060,19 @@
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity var(--transition-speed) ease;
         }
+        
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
         }
+        
         .gallery-icon {
             color: white;
             font-size: 1.5rem;
         }
         
-        /* Modal pour galerie */
+        /* Modal pour galerie amélioré */
         .modal {
             display: none;
             position: fixed;
@@ -871,6 +1084,7 @@
             background-color: rgba(0,0,0,0.9);
             padding-top: env(safe-area-inset-top);
         }
+        
         .modal-content {
             position: relative;
             margin: auto;
@@ -880,11 +1094,13 @@
             top: 50%;
             transform: translateY(-50%);
         }
+        
         .modal-content img {
             width: 100%;
             height: auto;
             border-radius: 10px;
         }
+        
         .close-modal {
             position: absolute;
             top: 15px;
@@ -894,90 +1110,105 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 10001;
+            transition: color var(--transition-speed) ease;
         }
+        
         .close-modal:hover {
             color: #bbb;
         }
         
-        /* Modal pour l'aperçu rapide */
+        /* Modal pour l'aperçu rapide amélioré */
         .quick-view-content {
             max-width: 90%;
             display: flex;
             flex-direction: column;
         }
+        
         .quick-view-container {
             display: flex;
             gap: 1.5rem;
             flex-direction: column;
         }
+        
         .quick-view-image {
             flex: 1;
         }
+        
         .quick-view-image img {
             width: 100%;
             height: auto;
             border-radius: 10px;
         }
+        
         .quick-view-details {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
+        
         .quick-view-details h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.6rem;
             color: #5a4a24;
             margin-bottom: 0.8rem;
         }
+        
         .quick-view-details p {
             color: #6b5e34;
             margin-bottom: 1.2rem;
             line-height: 1.5;
             font-size: 0.95rem;
         }
+        
         .quick-view-price {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #b27952;
+            color: var(--primary-color);
             margin-bottom: 1.2rem;
         }
+        
         .quick-view-actions {
             display: flex;
             gap: 0.8rem;
             flex-direction: column;
         }
+        
         .btn-add-to-cart, .btn-add-to-wishlist {
             padding: 10px 20px;
             border: none;
             border-radius: 30px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             font-size: 0.9rem;
         }
+        
         .btn-add-to-cart {
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
         }
+        
         .btn-add-to-wishlist {
             background: transparent;
-            color: #b27952;
-            border: 2px solid #b27952;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
         }
+        
         .btn-add-to-cart:hover {
             background: #8c5a34;
         }
+        
         .btn-add-to-wishlist:hover {
             background: #f9f3e8;
         }
         
-        /* Section Packs */
+        /* Section Packs améliorée */
         .packs-section {
             margin: 3rem 0;
         }
         
-        /* Section À Propos */
+        /* Section À Propos améliorée */
         .about-section {
             max-width: 100%;
             margin: 0 auto 4rem auto;
@@ -991,28 +1222,33 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
+        
         .about-img {
             flex: 1 1 250px;
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
             cursor: default;
         }
+        
         .about-img img {
             width: 100%;
             height: auto;
             display: block;
         }
+        
         .about-img:hover {
             transform: scale(1.02);
         }
+        
         .about-text {
             flex: 2 1 300px;
             font-size: 1rem;
             line-height: 1.6;
             font-weight: 500;
         }
+        
         .about-text h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -1020,7 +1256,7 @@
             color: #5b4824;
         }
         
-        /* Section Avantages */
+        /* Section Avantages améliorée */
         .advantages-section {
             background: white;
             border-radius: 12px;
@@ -1028,6 +1264,7 @@
             padding: 2rem 1.5rem;
             margin: 3rem 0;
         }
+        
         .advantages-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
@@ -1035,57 +1272,72 @@
             color: #5a4a24;
             margin-bottom: 2rem;
         }
+        
         .advantages-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
         }
+        
         .advantage-item {
             text-align: center;
             padding: 1.2rem;
             border-radius: 10px;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
         }
+        
         .advantage-item:hover {
             transform: translateY(-3px);
         }
+        
         .advantage-icon {
             width: 60px;
             height: 60px;
             border-radius: 50%;
             background: #f9f3e8;
-            color: #b27952;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
             margin: 0 auto 0.8rem;
+            transition: all var(--transition-speed) ease;
         }
+        
+        .advantage-item:hover .advantage-icon {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+        
         .advantage-title {
             font-weight: 600;
             color: #5a4a24;
             margin-bottom: 0.4rem;
             font-size: 1.1rem;
         }
+        
         .advantage-desc {
             color: #6b5e34;
             font-size: 0.9rem;
         }
         
-        /* Newsletter */
+        /* Newsletter améliorée */
         .newsletter-section {
-            background: linear-gradient(135deg, #f8b500, #b27952);
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             padding: 2rem 1.5rem;
             margin: 3rem 0;
             text-align: center;
             color: white;
             border-radius: 12px;
         }
+        
         .newsletter-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
             margin-bottom: 0.8rem;
         }
+        
         .newsletter-form {
             max-width: 100%;
             margin: 0 auto;
@@ -1094,6 +1346,7 @@
             margin-top: 1.5rem;
             flex-direction: column;
         }
+        
         .newsletter-input {
             flex: 1;
             padding: 12px;
@@ -1102,24 +1355,26 @@
             outline: none;
             font-size: 0.9rem;
         }
+        
         .newsletter-btn {
             padding: 12px 24px;
             background: white;
-            color: #b27952;
+            color: var(--primary-color);
             border: none;
             border-radius: 30px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             white-space: nowrap;
             font-size: 0.9rem;
         }
+        
         .newsletter-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         
-        /* Témoignages */
+        /* Témoignages améliorés */
         .testimonials {
             max-width: 100%;
             margin: 0 auto 4rem auto;
@@ -1130,16 +1385,19 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
+        
         .testimonials h3 {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
             margin-bottom: 1.5rem;
         }
+        
         .testimonial-container {
             position: relative;
             min-height: 120px;
             margin-bottom: 1.5rem;
         }
+        
         .testimonial-slide {
             font-style: italic;
             font-weight: 500;
@@ -1150,10 +1408,12 @@
             width: 100%;
             opacity: 0;
         }
+        
         .testimonial-slide.active {
             opacity: 1;
             position: relative;
         }
+        
         .testimonial-author {
             font-weight: 700;
             font-family: 'Playfair Display', serif;
@@ -1161,49 +1421,56 @@
             margin-top: 0.8rem;
             font-size: 0.95rem;
         }
+        
         .testimonial-controls {
             display: flex;
             justify-content: center;
             gap: 15px;
         }
+        
         .testimonial-controls button {
-            background: #b27952;
+            background: var(--primary-color);
             border: none;
             padding: 6px 12px;
             border-radius: 30px;
             color: white;
             cursor: pointer;
             font-weight: 700;
-            transition: background 0.3s ease;
+            transition: background var(--transition-speed) ease;
             font-size: 0.85rem;
         }
+        
         .testimonial-controls button:hover {
-            background: #f8b500;
+            background: var(--secondary-color);
         }
+        
         .testimonial-dots {
             display: flex;
             justify-content: center;
             gap: 8px;
             margin-top: 0.8rem;
         }
+        
         .dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
             background: #ddd;
             cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .dot.active {
-            background: #b27952;
+            transition: background var(--transition-speed) ease;
         }
         
-        /* FAQ Section */
+        .dot.active {
+            background: var(--primary-color);
+        }
+        
+        /* FAQ Section améliorée */
         .faq-section {
             max-width: 100%;
             margin: 3rem auto;
             padding: 0 1rem;
         }
+        
         .faq-section h3 {
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
@@ -1211,16 +1478,19 @@
             margin-bottom: 1.5rem;
             color: #5a4a24;
         }
+        
         .faq-item {
             border: 1px solid #ddd;
             border-radius: 8px;
             margin-bottom: 0.8rem;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
         }
+        
         .faq-item:hover {
             box-shadow: 0 3px 6px rgba(0,0,0,0.1);
         }
+        
         .faq-question {
             background: #f9f3e8;
             padding: 1.2rem;
@@ -1229,32 +1499,37 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 600;
-            transition: background 0.3s ease;
+            transition: background var(--transition-speed) ease;
             font-size: 0.95rem;
         }
+        
         .faq-question:hover {
             background: #f0e6d6;
         }
+        
         .faq-answer {
             padding: 0 1.2rem;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             background: white;
             font-size: 0.9rem;
         }
+        
         .faq-answer.active {
             padding: 1.2rem;
             max-height: 300px;
         }
+        
         .faq-icon {
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
         }
+        
         .faq-item.active .faq-icon {
             transform: rotate(180deg);
         }
         
-        /* Valeurs */
+        /* Valeurs améliorées */
         .values-section {
             max-width: 100%;
             margin: 0 auto 4rem auto;
@@ -1268,6 +1543,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
+        
         .value-item {
             flex: 1 1 180px;
             background: #f9f3e8;
@@ -1276,32 +1552,41 @@
             padding: 1.5rem 1.2rem;
             text-align: center;
             cursor: default;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
         }
+        
         .value-item:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 6px 15px rgba(0,0,0,0.12);
         }
+        
         .value-icon {
             font-size: 2.5rem;
-            color: #b27952;
+            color: var(--primary-color);
             margin-bottom: 0.8rem;
             user-select: none;
             -webkit-user-select: none;
+            transition: transform var(--transition-speed) ease;
         }
+        
+        .value-item:hover .value-icon {
+            transform: scale(1.1);
+        }
+        
         .value-title {
             font-family: 'Playfair Display', serif;
             font-weight: 700;
             font-size: 1.2rem;
             margin-bottom: 0.6rem;
         }
+        
         .value-desc {
             font-weight: 500;
             font-size: 0.9rem;
             color: #7e6a3e;
         }
         
-        /* Footer */
+        /* Footer amélioré */
         footer {
             background: #f3f0eb;
             color: #777;
@@ -1309,6 +1594,7 @@
             padding: 2rem 0 0.8rem;
             padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
         }
+        
         .footer-content {
             max-width: 100%;
             margin: 0 auto;
@@ -1317,6 +1603,7 @@
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
         }
+        
         .footer-column h4 {
             font-family: 'Playfair Display', serif;
             font-size: 1.2rem;
@@ -1324,6 +1611,7 @@
             margin-bottom: 1.2rem;
             position: relative;
         }
+        
         .footer-column h4::after {
             content: "";
             position: absolute;
@@ -1331,52 +1619,61 @@
             bottom: -6px;
             width: 30px;
             height: 2px;
-            background: #b27952;
+            background: var(--primary-color);
         }
+        
         .footer-links {
             list-style: none;
         }
+        
         .footer-links li {
             margin-bottom: 0.6rem;
         }
+        
         .footer-links a {
             color: #777;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: color var(--transition-speed) ease;
             font-size: 0.9rem;
         }
+        
         .footer-links a:hover {
-            color: #b27952;
+            color: var(--primary-color);
         }
+        
         .social-links {
             display: flex;
             gap: 0.8rem;
             margin-top: 0.8rem;
             justify-content: center;
         }
+        
         .social-link {
             width: 35px;
             height: 35px;
             border-radius: 50%;
             background: #f9f3e8;
-            color: #b27952;
+            color: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
         }
+        
         .social-link:hover {
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
             transform: translateY(-2px);
         }
+        
         .newsletter-form-footer {
             margin-top: 0.8rem;
             display: flex;
             gap: 0.5rem;
             flex-direction: column;
         }
+        
         .newsletter-input-footer {
             flex: 1;
             padding: 8px;
@@ -1385,19 +1682,22 @@
             outline: none;
             font-size: 0.9rem;
         }
+        
         .newsletter-btn-footer {
             padding: 8px 12px;
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background var(--transition-speed) ease;
             font-size: 0.9rem;
         }
+        
         .newsletter-btn-footer:hover {
             background: #8c5a34;
         }
+        
         .footer-bottom {
             text-align: center;
             padding: 1.5rem 0 0.8rem;
@@ -1405,17 +1705,19 @@
             border-top: 1px solid #e0e0e0;
             font-size: 0.85rem;
         }
+        
         .footer-bottom a {
-            color: #b27952;
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
             margin: 0 3px;
         }
+        
         .footer-bottom a:hover {
             text-decoration: underline;
         }
         
-        /* WhatsApp flottant */
+        /* WhatsApp flottant amélioré */
         .whatsapp-float {
             position: fixed;
             width: 50px;
@@ -1434,24 +1736,26 @@
             justify-content: center;
             cursor: pointer;
             animation: pulse 2.5s infinite ease-in-out;
-            transition: box-shadow 0.3s ease;
+            transition: box-shadow var(--transition-speed) ease;
             bottom: calc(20px + env(safe-area-inset-bottom));
             right: calc(20px + env(safe-area-inset-right));
         }
+        
         .whatsapp-float:hover {
             box-shadow: 0 8px 20px rgba(37,211,102,0.7);
         }
+        
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
         
-        /* Bouton retour en haut */
+        /* Bouton retour en haut amélioré */
         .back-to-top {
             position: fixed;
             bottom: 80px;
             right: 20px;
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
             border: none;
             border-radius: 50%;
@@ -1462,31 +1766,34 @@
             align-items: center;
             justify-content: center;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             z-index: 1000;
             bottom: calc(80px + env(safe-area-inset-bottom));
             right: calc(20px + env(safe-area-inset-right));
         }
+        
         .back-to-top:hover {
             background: #8c5a34;
             transform: translateY(-2px);
         }
+        
         .back-to-top.show {
             display: flex;
         }
         
-        /* Animations */
+        /* Animations améliorées */
         .fade-slide {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.7s ease, transform 0.7s ease;
         }
+        
         .fade-slide.visible {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* Notifications toast */
+        /* Notifications toast améliorées */
         .toast {
             position: fixed;
             top: 80px;
@@ -1498,23 +1805,26 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 10000;
             transform: translateX(400px);
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
             font-size: 0.9rem;
             max-width: 80%;
             top: calc(80px + env(safe-area-inset-top));
             right: calc(15px + env(safe-area-inset-right));
         }
+        
         .toast.show {
             transform: translateX(0);
         }
+        
         .toast.error {
             background: #f44336;
         }
+        
         .toast.info {
             background: #2196F3;
         }
         
-        /* Styles pour le système de suivi invisible */
+        /* Styles pour le système de suivi invisible amélioré */
         .admin-trigger {
             position: fixed;
             bottom: 10px;
@@ -1575,7 +1885,7 @@
             font-size: 2rem;
             cursor: pointer;
             color: #999;
-            transition: color 0.3s ease;
+            transition: color var(--transition-speed) ease;
         }
         
         .admin-close:hover {
@@ -1594,7 +1904,7 @@
             border-radius: 10px;
             padding: 20px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform var(--transition-speed) ease;
         }
         
         .admin-stat-card:hover {
@@ -1604,7 +1914,7 @@
         .admin-stat-value {
             font-size: 2.5rem;
             font-weight: bold;
-            color: #b27952;
+            color: var(--primary-color);
             margin-bottom: 10px;
         }
         
@@ -1639,6 +1949,11 @@
             align-items: center;
             padding: 12px 15px;
             border-bottom: 1px solid #f0f0f0;
+            transition: background var(--transition-speed) ease;
+        }
+        
+        .visitor-item:hover {
+            background: #f9f9f9;
         }
         
         .visitor-item:last-child {
@@ -1671,6 +1986,7 @@
             margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid #eee;
+            flex-wrap: wrap;
         }
         
         .admin-btn {
@@ -1679,12 +1995,12 @@
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
             font-size: 0.95rem;
         }
         
         .admin-btn-primary {
-            background: #b27952;
+            background: var(--primary-color);
             color: white;
         }
         
@@ -1710,7 +2026,263 @@
             background: #c82333;
         }
         
-        /* Responsive */
+        /* Styles pour les statistiques */
+        .stats-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .stat-label {
+            font-weight: 600;
+        }
+        
+        .stat-value {
+            background: #b27952;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+        
+        /* Styles pour le formulaire d'utilisateur */
+        .user-form-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all var(--transition-speed) ease;
+            padding: 20px;
+        }
+        
+        .user-form-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .user-form {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .user-form h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border var(--transition-speed) ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(178, 121, 82, 0.2);
+        }
+        
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .form-buttons button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            font-size: 1rem;
+        }
+        
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-submit:hover {
+            background: #8c5a34;
+        }
+        
+        .btn-cancel {
+            background: #f0f0f0;
+            color: #555;
+        }
+        
+        .btn-cancel:hover {
+            background: #e0e0e0;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .auth-button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .auth-button.google {
+            background: #db4437;
+            color: white;
+        }
+        
+        .auth-button.google:hover {
+            background: #c23321;
+        }
+        
+        .auth-button.github {
+            background: #333;
+            color: white;
+        }
+        
+        .auth-button.github:hover {
+            background: #222;
+        }
+        
+        /* Message de bienvenue utilisateur */
+        .user-welcome {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border-radius: 10px;
+            padding: 10px 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+            max-width: 300px;
+            top: calc(10px + env(safe-area-inset-top));
+            right: calc(10px + env(safe-area-inset-right));
+        }
+        
+        .user-welcome.active {
+            display: flex;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        
+        .user-email {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .user-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .user-action-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .user-action-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Compteur de visiteurs amélioré */
+        .visitor-counter {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+            bottom: calc(10px + env(safe-area-inset-bottom));
+            left: calc(10px + env(safe-area-inset-left));
+        }
+        
+        .visitor-counter.visible {
+            display: block;
+        }
+        
+        /* Responsive amélioré */
         @media (max-width: 768px) {
             .header-controls {
                 order: 1;
@@ -2324,6 +2896,148 @@
                 left: max(10px, env(safe-area-inset-left));
             }
         }
+        
+        /* Animations d'apparition améliorées */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .animate-fadeInDown {
+            animation: fadeInDown 0.8s ease forwards;
+        }
+        
+        .animate-fadeInLeft {
+            animation: fadeInLeft 0.8s ease forwards;
+        }
+        
+        .animate-fadeInRight {
+            animation: fadeInRight 0.8s ease forwards;
+        }
+        
+        /* Effet de parallaxe pour la section hero */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Améliorations pour l'accessibilité */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        /* Focus visible pour une meilleure navigation au clavier */
+        a:focus, button:focus, input:focus, textarea:focus, select:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+        
+        /* Améliorations pour le mode contraste élevé */
+        @media (prefers-contrast: high) {
+            .product-card {
+                border: 2px solid var(--text-color);
+            }
+            
+            .btn-discover, .newsletter-btn, .carousel-btn {
+                border: 2px solid var(--text-color);
+            }
+        }
+        
+        /* Améliorations pour le mode réduit mouvement */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Améliorations pour l'impression */
+        @media print {
+            .menu-toggle, .dark-mode-toggle, .cart-counter, .search-container, 
+            .whatsapp-float, .back-to-top, .admin-trigger, .admin-panel, 
+            .user-form-overlay, .user-welcome, .visitor-counter, .toast {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            header {
+                position: static !important;
+                box-shadow: none !important;
+                border-bottom: 1px solid #ccc !important;
+            }
+            
+            .hero {
+                height: auto !important;
+                min-height: 200px !important;
+                background: none !important;
+                color: black !important;
+                text-shadow: none !important;
+            }
+            
+            .product-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2334,7 +3048,7 @@
     <div id="progressbar" aria-hidden="true"></div>
     
     <header>
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
             <i class="fas fa-bars"></i>
         </button>
         
@@ -2356,7 +3070,7 @@
             </div>
         </div>
         
-        <a href="index.html" class="logo">
+        <a href="index.html" class="logo" aria-label="Decobizcreations - Accueil">
             <h1>Decobizcreations</h1>
         </a>
         
@@ -2382,7 +3096,7 @@
         </nav>
     </header>
     
-    <section class="hero" role="banner" aria-label="Présentation de Decobizcreations">
+    <section class="hero parallax" role="banner" aria-label="Présentation de Decobizcreations">
         <div class="hero-content">
             <h2>Décoration Élégante & Unique</h2>
             <p>Ajoutez une touche chic à votre maison avec nos pièces artisanales en béton.</p>
@@ -2810,7 +3524,7 @@
                         <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openModal('boite')">
+                <div class="gallery-item" onclick="openModal('boite.jpeg')">
                     <img src="boite.jpeg" alt="Boîte décorative" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
@@ -2828,8 +3542,8 @@
                         <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
                     </div>
                 </div>
-                <div class="gallery-item" onclick="openModal('mini vase')">
-                    <img src="pack8.jpg" alt="Mini vase" loading="lazy">
+                <div class="gallery-item" onclick="openModal('mini vase.jpeg')">
+                    <img src="mini vase.jpeg" alt="Mini vase" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-icon"><i class="fas fa-search-plus"></i></div>
                     </div>
@@ -2860,6 +3574,7 @@
                         <div class="quick-view-actions">
                             <button class="btn-add-to-cart" onclick="addToCartFromQuickView()">Ajouter au panier</button>
                             <button class="btn-add-to-wishlist" onclick="addToWishlistFromQuickView()">Ajouter aux favoris</button>
+                            <button class="btn-add-to-wishlist" onclick="shareProduct(currentQuickViewProduct)">Partager</button>
                         </div>
                     </div>
                 </div>
@@ -3023,6 +3738,11 @@
         <i class="fab fa-whatsapp"></i>
     </a>
     
+    <!-- Compteur de visiteurs -->
+    <div class="visitor-counter" id="visitorCounter">
+        <i class="fas fa-eye"></i> <span id="visitorCount">0</span> visiteurs
+    </div>
+    
     <!-- Bouton d'administration invisible (déclencheur) -->
     <button class="admin-trigger" id="adminTrigger" aria-label="Administration"></button>
     
@@ -3062,9 +3782,30 @@
                 </div>
             </div>
             
+            <div class="admin-section stats-section">
+                <h3>🌍 Top Villes</h3>
+                <div class="stats-list" id="cityStats">
+                    <div style="padding: 20px; text-align: center; color: #666;">
+                        Chargement des données...
+                    </div>
+                </div>
+            </div>
+            
+            <div class="admin-section stats-section">
+                <h3>📱 Appareils</h3>
+                <div class="stats-list" id="deviceStats">
+                    <div style="padding: 20px; text-align: center; color: #666;">
+                        Chargement des données...
+                    </div>
+                </div>
+            </div>
+            
             <div class="admin-actions">
                 <button class="admin-btn admin-btn-primary" onclick="exportVisitorData()">
                     📊 Exporter les données
+                </button>
+                <button class="admin-btn admin-btn-primary" onclick="exportVisitorDataByLocation()">
+                    🌍 Exporter par ville
                 </button>
                 <button class="admin-btn admin-btn-secondary" onclick="refreshVisitorData()">
                     🔄 Actualiser
@@ -3073,6 +3814,54 @@
                     🗑️ Effacer les données
                 </button>
             </div>
+        </div>
+    </div>
+    
+    <!-- Formulaire d'utilisateur -->
+    <div class="user-form-overlay" id="userFormOverlay">
+        <div class="user-form">
+            <h3>Bienvenue chez Decobizcreations</h3>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: #666;">
+                Veuillez vous identifier pour une expérience personnalisée
+            </p>
+            
+            <form onsubmit="saveUserInfo(event)">
+                <div class="form-group">
+                    <label for="userName">Nom</label>
+                    <input type="text" id="userName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" required>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" class="btn-submit">S'inscrire</button>
+                    <button type="button" class="btn-cancel" onclick="closeUserForm()">Annuler</button>
+                </div>
+            </form>
+            
+            <div class="auth-buttons">
+                <button type="button" class="auth-button google" onclick="signInWithGoogle()">
+                    <i class="fab fa-google"></i> Continuer avec Google
+                </button>
+                <button type="button" class="auth-button github" onclick="signInWithGitHub()">
+                    <i class="fab fa-github"></i> Continuer avec GitHub
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Message de bienvenue utilisateur -->
+    <div class="user-welcome" id="userWelcome">
+        <div class="user-avatar" id="userAvatar"></div>
+        <div class="user-info">
+            <div class="user-name" id="userNameDisplay"></div>
+            <div class="user-email" id="userEmailDisplay"></div>
+        </div>
+        <div class="user-actions">
+            <button class="user-action-btn" onclick="logoutUser()">Déconnexion</button>
         </div>
     </div>
     
@@ -3101,6 +3890,8 @@
                 <ul class="footer-links">
                     <li><a href="contact.html">Contactez-nous</a></li>
                     <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="livraison.html">Livraison</a></li>
+                    <li><a href="retours.html">Retours</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -3142,20 +3933,26 @@
         
         // Configuration Firebase (remplacez par vos propres informations)
         const firebaseConfig = {
-apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
-authDomain: "decobizcreations.firebaseapp.com",
-projectId: "decobizcreations",
-storageBucket: "decobizcreations.firebasestorage.app",
-messagingSenderId: "634879666090",
-appId: "1:634879666090:web:769602d96fccb81855add3",
-measurementId: "G-5M237WCPFR"
-};
-
+            apiKey: "VOTRE_API_KEY",
+            authDomain: "votre-projet.firebaseapp.com",
+            databaseURL: "https://votre-projet-default-rtdb.firebaseio.com",
+            projectId: "votre-projet",
+            storageBucket: "votre-projet.appspot.com",
+            messagingSenderId: "VOTRE_MESSAGING_SENDER_ID",
+            appId: "VOTRE_APP_ID"
+        };
         
         // Initialiser Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const database = firebase.database();
+        let firebaseApp, auth, database;
+        
+        try {
+            firebaseApp = firebase.initializeApp(firebaseConfig);
+            auth = firebase.auth();
+            database = firebase.database();
+            console.log("Firebase initialisé avec succès");
+        } catch (error) {
+            console.error("Erreur lors de l'initialisation de Firebase:", error);
+        }
         
         // Données des témoignages
         const testimonials = [
@@ -3207,13 +4004,13 @@ measurementId: "G-5M237WCPFR"
                 title: 'Mini Vase',
                 description: 'Petit vase moderne, idéal pour les petites fleurs ou comme élément décoratif.',
                 price: '150 DH',
-                image: 'mini vase'
+                image: 'mini vase.jpeg'
             },
             'boite-12': {
                 title: 'Boîte Décorative',
                 description: 'Boîte multifonction en béton, parfaite pour le rangement ou comme élément décoratif.',
                 price: '100 DH',
-                image: 'boite'
+                image: 'boite.jpeg'
             },
             'arc-en-ciel-26': {
                 title: 'Arc-en-ciel Décoratif',
@@ -3250,7 +4047,7 @@ measurementId: "G-5M237WCPFR"
                 title: 'Pack Spécial',
                 description: 'Offre exclusive sur ce duo parfait : plateau ovale et mini vase en béton.',
                 price: '69 DH',
-                image: 'pack-special.jpg'
+                image: 'pack8.jpg'
             },
             'pack3': {
                 title: 'Pack 3',
@@ -3264,8 +4061,14 @@ measurementId: "G-5M237WCPFR"
         
         // Initialisation au chargement de la page
         window.addEventListener('load', function() {
-            // Masquer le loader
-            document.getElementById('loader').style.display = 'none';
+            // Masquer le loader avec une transition
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }, 1000);
             
             // Initialiser les animations
             initScrollAnimations();
@@ -3304,6 +4107,15 @@ measurementId: "G-5M237WCPFR"
             
             // Optimisation spécifique pour iPhone
             optimizeForIPhone();
+            
+            // Initialiser l'effet parallaxe
+            initParallaxEffect();
+            
+            // Initialiser les animations de chargement différé
+            initLazyLoading();
+            
+            // Suivre la page vue
+            trackEvent('page_view', { page: 'home' });
         });
         
         // Fonction pour charger les articles du panier depuis localStorage
@@ -3358,7 +4170,9 @@ measurementId: "G-5M237WCPFR"
                         language: navigator.language,
                         referrer: document.referrer || 'Direct',
                         page: window.location.pathname,
-                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        city: '', // Sera rempli plus tard
+                        country: '' // Sera rempli plus tard
                     };
                     
                     // Ajouter le visiteur à la liste
@@ -3373,6 +4187,9 @@ measurementId: "G-5M237WCPFR"
                     localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
                     
                     console.log('Nouveau visiteur détecté (invisible):', visitor);
+                    
+                    // Obtenir la localisation du visiteur
+                    getVisitorLocation(visitor.id);
                 }
             }
             
@@ -3400,37 +4217,71 @@ measurementId: "G-5M237WCPFR"
             return sessionId;
         }
         
+        // Fonction pour obtenir le type d'appareil
         function getDeviceType() {
             const userAgent = navigator.userAgent;
-            if (/tablet|ipad|playbook|silk/i.test(userAgent)) {
-                return 'Tablet';
-            }
+            
+            // Vérifier si c'est un mobile
             if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile/i.test(userAgent)) {
+                // Vérifier si c'est une tablette
+                if (/tablet|ipad|playbook|silk/i.test(userAgent)) {
+                    return 'Tablette';
+                }
                 return 'Mobile';
             }
-            return 'Desktop';
+            
+            // Vérifier si c'est un ordinateur
+            if (/Windows|Macintosh|Linux|X11/i.test(userAgent)) {
+                return 'Ordinateur';
+            }
+            
+            // Vérifier si c'est une console de jeu
+            if (/PlayStation|Xbox|Nintendo/i.test(userAgent)) {
+                return 'Console de jeu';
+            }
+            
+            // Vérifier si c'est un téléviseur
+            if (/TV|SmartTV|Internet TV/i.test(userAgent)) {
+                return 'Téléviseur';
+            }
+            
+            return 'Inconnu';
         }
         
+        // Fonction pour obtenir le type de navigateur
         function getBrowserType() {
             const userAgent = navigator.userAgent;
-            if (userAgent.indexOf('Chrome') > -1) {
+            
+            if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) {
                 return 'Chrome';
-            } else if (userAgent.indexOf('Safari') > -1) {
+            } else if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) {
                 return 'Safari';
             } else if (userAgent.indexOf('Firefox') > -1) {
                 return 'Firefox';
             } else if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident') > -1) {
                 return 'Internet Explorer';
-            } else if (userAgent.indexOf('Edge') > -1) {
-                return 'Edge';
+            } else if (userAgent.indexOf('Edg') > -1) {
+                return 'Microsoft Edge';
+            } else if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) {
+                return 'Opera';
+            } else if (userAgent.indexOf('Brave') > -1) {
+                return 'Brave';
             } else {
-                return 'Unknown';
+                return 'Inconnu';
             }
         }
         
+        // Fonction pour obtenir le système d'exploitation
         function getOperatingSystem() {
             const userAgent = navigator.userAgent;
+            
             if (userAgent.indexOf('Windows') > -1) {
+                if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10';
+                if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
+                if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
+                if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
+                if (userAgent.indexOf('Windows NT 6.0') > -1) return 'Windows Vista';
+                if (userAgent.indexOf('Windows NT 5.1') > -1) return 'Windows XP';
                 return 'Windows';
             } else if (userAgent.indexOf('Mac') > -1) {
                 return 'macOS';
@@ -3443,176 +4294,52 @@ measurementId: "G-5M237WCPFR"
             } else if (/like Mac OS X/.test(userAgent)) {
                 return 'iOS';
             } else {
-                return 'Unknown';
+                return 'Inconnu';
             }
         }
         
-        // Initialisation du panneau d'administration
-        function initAdminPanel() {
-            const adminTrigger = document.getElementById('adminTrigger');
-            const adminPanel = document.getElementById('adminPanel');
-            let clickCount = 0;
-            let clickTimer = null;
-            
-            // Méthode secrète pour afficher le panneau : cliquer 5 fois sur le coin inférieur gauche
-            adminTrigger.addEventListener('click', function() {
-                clickCount++;
-                
-                if (clickCount === 1) {
-                    // Démarrer le timer
-                    clickTimer = setTimeout(() => {
-                        clickCount = 0;
-                    }, 3000); // 3 secondes pour faire les 5 clics
-                }
-                
-                if (clickCount === 5) {
-                    // Afficher le panneau d'administration
-                    showAdminPanel();
-                    clickCount = 0;
-                    clearTimeout(clickTimer);
-                }
-            });
-            
-            // Alternative : taper "admin" puis Entrée
-            let typedKeys = '';
-            document.addEventListener('keydown', function(e) {
-                typedKeys += e.key.toLowerCase();
-                
-                // Garder seulement les 10 derniers caractères
-                if (typedKeys.length > 10) {
-                    typedKeys = typedKeys.slice(-10);
-                }
-                
-                // Vérifier si "admin" a été tapé
-                if (typedKeys.includes('admin') && e.key === 'Enter') {
-                    showAdminPanel();
-                    typedKeys = '';
-                }
-            });
+        // Fonction pour obtenir la localisation du visiteur
+        function getVisitorLocation(visitorId) {
+            // Utiliser l'API ipapi.co pour obtenir la localisation
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.city && data.country_name) {
+                        updateVisitorLocation(visitorId, data.city, data.country_name);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération de la localisation:', error);
+                    // En cas d'erreur, essayer avec une autre API
+                    getVisitorLocationAlternative(visitorId);
+                });
         }
         
-        // Afficher le panneau d'administration
-        function showAdminPanel() {
-            const adminPanel = document.getElementById('adminPanel');
-            adminPanel.style.display = 'flex';
-            
-            // Mettre à jour les statistiques
-            updateAdminStats();
-            
-            // Afficher la liste des visiteurs
-            displayVisitorList();
+        // Alternative si la première API échoue
+        function getVisitorLocationAlternative(visitorId) {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.city && data.country_name) {
+                        updateVisitorLocation(visitorId, data.city, data.country_name);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur lors de la récupération alternative de la localisation:', error);
+                });
         }
         
-        // Fermer le panneau d'administration
-        function closeAdminPanel() {
-            const adminPanel = document.getElementById('adminPanel');
-            adminPanel.style.display = 'none';
-        }
-        
-        // Mettre à jour les statistiques du panneau d'administration
-        function updateAdminStats() {
-            const visitors = window.getVisitorData() || [];
-            const totalVisitors = visitors.length;
+        // Mettre à jour la localisation du visiteur
+        function updateVisitorLocation(visitorId, city, country) {
+            const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
+            const visitors = JSON.parse(localStorage.getItem(VISITOR_STORAGE_KEY) || '[]');
             
-            // Calculer les visiteurs par période
-            const now = new Date();
-            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-            const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-            
-            const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
-            const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
-            const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
-            
-            document.getElementById('totalVisitors').textContent = totalVisitors.toLocaleString();
-            document.getElementById('todayVisitors').textContent = todayVisitors.toLocaleString();
-            document.getElementById('weekVisitors').textContent = weekVisitors.toLocaleString();
-            document.getElementById('monthVisitors').textContent = monthVisitors.toLocaleString();
-        }
-        
-        // Afficher la liste des visiteurs
-        function displayVisitorList() {
-            const visitors = window.getVisitorData() || [];
-            const visitorList = document.getElementById('visitorList');
-            
-            if (visitors.length === 0) {
-                visitorList.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Aucun visiteur enregistré</div>';
-                return;
-            }
-            
-            // Afficher les 20 derniers visiteurs
-            const recentVisitors = visitors.slice(0, 20);
-            
-            visitorList.innerHTML = recentVisitors.map(visitor => `
-                <div class="visitor-item">
-                    <div class="visitor-info">
-                        <div class="visitor-ip">Session: ${visitor.sessionId.substring(0, 12)}...</div>
-                        <div class="visitor-details">
-                            ${visitor.device} • ${visitor.browser} • ${visitor.os}
-                        </div>
-                    </div>
-                    <div class="visitor-time">
-                        ${formatDateTime(visitor.timestamp)}
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Formater la date et l'heure
-        function formatDateTime(timestamp) {
-            const date = new Date(timestamp);
-            return date.toLocaleString('fr-FR', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            });
-        }
-        
-        // Exporter les données des visiteurs
-        function exportVisitorData() {
-            const visitors = window.getVisitorData() || [];
-            
-            if (visitors.length === 0) {
-                alert('Aucune donnée à exporter');
-                return;
-            }
-            
-            // Créer le contenu CSV
-            const csvContent = "data:text/csv;charset=utf-8," 
-                + "ID Session,Timestamp,Appareil,Navigateur,Système d'exploitation,Résolution d'écran,Langue,Référent,Page,Fuseau horaire\n"
-                + visitors.map(v => 
-                    `"${v.sessionId}","${v.timestamp}","${v.device}","${v.browser}","${v.os}","${v.screenResolution}","${v.language}","${v.referrer}","${v.page}","${v.timezone}"`
-                ).join("\n");
-            
-            // Créer un lien de téléchargement
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `visiteurs_decobizcreations_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('Données exportées avec succès !');
-        }
-        
-        // Actualiser les données
-        function refreshVisitorData() {
-            updateAdminStats();
-            displayVisitorList();
-            alert('Données actualisées !');
-        }
-        
-        // Effacer les données des visiteurs
-        function clearVisitorData() {
-            if (confirm('Êtes-vous sûr de vouloir effacer toutes les données de visiteurs ? Cette action est irréversible.')) {
-                localStorage.removeItem('decobizcreations_visitor_data');
-                window.getVisitorData = function() { return []; };
-                updateAdminStats();
-                displayVisitorList();
-                alert('Données effacées avec succès !');
+            const visitorIndex = visitors.findIndex(v => v.id === visitorId);
+            if (visitorIndex !== -1) {
+                visitors[visitorIndex].city = city;
+                visitors[visitorIndex].country = country;
+                localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
+                console.log(`Localisation mise à jour pour le visiteur ${visitorId}: ${city}, ${country}`);
             }
         }
         
@@ -3642,26 +4369,32 @@ measurementId: "G-5M237WCPFR"
             };
             
             // Enregistrer la session dans Firebase
-            database.ref('sessions/' + sessionId).set(session).then(function() {
-                console.log('Session enregistrée avec succès:', sessionId);
-                
-                // Sauvegarder l'ID de session localement pour cette session
-                sessionStorage.setItem('currentSessionId', sessionId);
-                
-                // Mettre à jour la dernière activité périodiquement
-                setInterval(function() {
-                    updateSessionActivity(sessionId);
-                }, 60000); // Toutes les minutes
-            }).catch(function(error) {
-                console.error('Erreur lors de l\'enregistrement de la session:', error);
-            });
+            if (database) {
+                database.ref('sessions/' + sessionId).set(session).then(function() {
+                    console.log('Session enregistrée avec succès:', sessionId);
+                    
+                    // Sauvegarder l'ID de session localement pour cette session
+                    sessionStorage.setItem('currentSessionId', sessionId);
+                    
+                    // Mettre à jour la dernière activité périodiquement
+                    setInterval(function() {
+                        updateSessionActivity(sessionId);
+                    }, 60000); // Toutes les minutes
+                }).catch(function(error) {
+                    console.error('Erreur lors de l\'enregistrement de la session:', error);
+                });
+            } else {
+                console.warn('Firebase non disponible, impossible d\'enregistrer la session');
+            }
         }
         
         // Fonction pour mettre à jour l'activité de la session
         function updateSessionActivity(sessionId) {
-            database.ref('sessions/' + sessionId + '/lastActive').set(new Date().toISOString()).catch(function(error) {
-                console.error('Erreur lors de la mise à jour de l\'activité de la session:', error);
-            });
+            if (database) {
+                database.ref('sessions/' + sessionId + '/lastActive').set(new Date().toISOString()).catch(function(error) {
+                    console.error('Erreur lors de la mise à jour de l\'activité de la session:', error);
+                });
+            }
         }
         
         // Fonction pour nettoyer les anciennes sessions
@@ -3669,45 +4402,96 @@ measurementId: "G-5M237WCPFR"
             const oneDayAgo = new Date();
             oneDayAgo.setDate(oneDayAgo.getDate() - 1);
             
-            database.ref('sessions').once('value').then(function(snapshot) {
-                snapshot.forEach(function(childSnapshot) {
-                    const session = childSnapshot.val();
-                    const lastActive = new Date(session.lastActive);
-                    
-                    if (lastActive < oneDayAgo) {
-                        // Supprimer la session
-                        database.ref('sessions/' + childSnapshot.key).remove().then(function() {
-                            console.log('Session supprimée:', childSnapshot.key);
-                        }).catch(function(error) {
-                            console.error('Erreur lors de la suppression de la session:', error);
-                        });
-                    }
+            if (database) {
+                database.ref('sessions').once('value').then(function(snapshot) {
+                    snapshot.forEach(function(childSnapshot) {
+                        const session = childSnapshot.val();
+                        const lastActive = new Date(session.lastActive);
+                        
+                        if (lastActive < oneDayAgo) {
+                            // Supprimer la session
+                            database.ref('sessions/' + childSnapshot.key).remove().then(function() {
+                                console.log('Session supprimée:', childSnapshot.key);
+                            }).catch(function(error) {
+                                console.error('Erreur lors de la suppression de la session:', error);
+                            });
+                        }
+                    });
+                }).catch(function(error) {
+                    console.error('Erreur lors du nettoyage des sessions:', error);
                 });
-            }).catch(function(error) {
-                console.error('Erreur lors du nettoyage des sessions:', error);
-            });
+            }
         }
         
         // Système de suivi des visiteurs
         function initVisitorTracking() {
             // Récupérer le nombre de visiteurs depuis Firebase
-            const visitorsRef = database.ref('visitors/visitorCount');
-            
-            visitorsRef.transaction(function(currentCount) {
-                // Si currentCount est null, c'est la première visite
-                return (currentCount || 0) + 1;
-            }).then(function(result) {
-                // Mettre à jour le compteur local
-                visitorCount = result.snapshot.val();
+            if (database) {
+                const visitorsRef = database.ref('visitors/visitorCount');
                 
-                // Mettre à jour l'affichage
-                document.getElementById('visitorCount').textContent = visitorCount;
+                visitorsRef.transaction(function(currentCount) {
+                    // Si currentCount est null, c'est la première visite
+                    return (currentCount || 0) + 1;
+                }).then(function(result) {
+                    // Mettre à jour le compteur local
+                    visitorCount = result.snapshot.val();
+                    
+                    // Mettre à jour l'affichage
+                    document.getElementById('visitorCount').textContent = visitorCount;
+                    
+                    // Sauvegarder dans localStorage pour utilisation hors ligne
+                    localStorage.setItem('visitorCount', visitorCount.toString());
+                    
+                    // Récupérer la liste des utilisateurs depuis Firebase
+                    database.ref('users').once('value').then(function(snapshot) {
+                        users = [];
+                        snapshot.forEach(function(childSnapshot) {
+                            users.push(childSnapshot.val());
+                        });
+                        
+                        // Sauvegarder dans localStorage pour utilisation hors ligne
+                        localStorage.setItem('registeredUsers', JSON.stringify(users));
+                        
+                        // Mettre à jour les statistiques du panneau d'administration
+                        updateAdminStats();
+                    }).catch(function(error) {
+                        console.error('Erreur lors de la récupération des utilisateurs:', error);
+                        
+                        // En cas d'erreur, utiliser les données locales
+                        users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                        updateAdminStats();
+                    });
+                }).catch(function(error) {
+                    console.error('Erreur lors de la mise à jour du compteur de visiteurs:', error);
+                    
+                    // En cas d'erreur, utiliser le compteur local
+                    visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
+                    visitorCount++;
+                    localStorage.setItem('visitorCount', visitorCount.toString());
+                    document.getElementById('visitorCount').textContent = visitorCount;
+                    
+                    // Utiliser les données locales
+                    users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
+                    updateAdminStats();
+                });
                 
-                // Sauvegarder dans localStorage pour utilisation hors ligne
-                localStorage.setItem('visitorCount', visitorCount.toString());
+                // Si l'utilisateur est connecté, mettre à jour sa dernière visite
+                if (currentUser) {
+                    database.ref('users/' + currentUser.id + '/lastVisit').set(new Date().toISOString());
+                }
                 
-                // Récupérer la liste des utilisateurs depuis Firebase
-                database.ref('users').once('value').then(function(snapshot) {
+                // Écouter les changements en temps réel sur le compteur de visiteurs
+                database.ref('visitors/visitorCount').on('value', function(snapshot) {
+                    const newCount = snapshot.val();
+                    if (newCount !== visitorCount) {
+                        visitorCount = newCount;
+                        document.getElementById('visitorCount').textContent = visitorCount;
+                        localStorage.setItem('visitorCount', visitorCount.toString());
+                    }
+                });
+                
+                // Écouter les changements en temps réel sur la liste des utilisateurs
+                database.ref('users').on('value', function(snapshot) {
                     users = [];
                     snapshot.forEach(function(childSnapshot) {
                         users.push(childSnapshot.val());
@@ -3718,17 +4502,11 @@ measurementId: "G-5M237WCPFR"
                     
                     // Mettre à jour les statistiques du panneau d'administration
                     updateAdminStats();
-                }).catch(function(error) {
-                    console.error('Erreur lors de la récupération des utilisateurs:', error);
-                    
-                    // En cas d'erreur, utiliser les données locales
-                    users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-                    updateAdminStats();
                 });
-            }).catch(function(error) {
-                console.error('Erreur lors de la mise à jour du compteur de visiteurs:', error);
+            } else {
+                console.warn('Firebase non disponible, utilisation du stockage local uniquement');
                 
-                // En cas d'erreur, utiliser le compteur local
+                // Utiliser le compteur local
                 visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
                 visitorCount++;
                 localStorage.setItem('visitorCount', visitorCount.toString());
@@ -3737,36 +4515,7 @@ measurementId: "G-5M237WCPFR"
                 // Utiliser les données locales
                 users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
                 updateAdminStats();
-            });
-            
-            // Si l'utilisateur est connecté, mettre à jour sa dernière visite
-            if (currentUser) {
-                database.ref('users/' + currentUser.id + '/lastVisit').set(new Date().toISOString());
             }
-            
-            // Écouter les changements en temps réel sur le compteur de visiteurs
-            database.ref('visitors/visitorCount').on('value', function(snapshot) {
-                const newCount = snapshot.val();
-                if (newCount !== visitorCount) {
-                    visitorCount = newCount;
-                    document.getElementById('visitorCount').textContent = visitorCount;
-                    localStorage.setItem('visitorCount', visitorCount.toString());
-                }
-            });
-            
-            // Écouter les changements en temps réel sur la liste des utilisateurs
-            database.ref('users').on('value', function(snapshot) {
-                users = [];
-                snapshot.forEach(function(childSnapshot) {
-                    users.push(childSnapshot.val());
-                });
-                
-                // Sauvegarder dans localStorage pour utilisation hors ligne
-                localStorage.setItem('registeredUsers', JSON.stringify(users));
-                
-                // Mettre à jour les statistiques du panneau d'administration
-                updateAdminStats();
-            });
         }
         
         // Système d'identification des utilisateurs
@@ -3817,20 +4566,24 @@ measurementId: "G-5M237WCPFR"
                     localStorage.setItem('registeredUsers', JSON.stringify(users));
                     
                     // Envoyer les données à Firebase
-                    database.ref('users/' + user.id).set(user).then(function() {
-                        console.log('Utilisateur enregistré avec succès dans Firebase');
-                    }).catch(function(error) {
-                        console.error('Erreur lors de l\'enregistrement de l\'utilisateur dans Firebase:', error);
-                    });
+                    if (database) {
+                        database.ref('users/' + user.id).set(user).then(function() {
+                            console.log('Utilisateur enregistré avec succès dans Firebase');
+                        }).catch(function(error) {
+                            console.error('Erreur lors de l\'enregistrement de l\'utilisateur dans Firebase:', error);
+                        });
+                    }
                 } else {
                     // Mettre à jour la dernière visite de l'utilisateur existant
                     const existingUser = users.find(u => u.email === email);
                     existingUser.lastVisit = new Date().toISOString();
                     localStorage.setItem('registeredUsers', JSON.stringify(users));
                     
-                    database.ref('users/' + existingUser.id + '/lastVisit').set(new Date().toISOString()).catch(function(error) {
-                        console.error('Erreur lors de la mise à jour de la dernière visite:', error);
-                    });
+                    if (database) {
+                        database.ref('users/' + existingUser.id + '/lastVisit').set(new Date().toISOString()).catch(function(error) {
+                            console.error('Erreur lors de la mise à jour de la dernière visite:', error);
+                        });
+                    }
                 }
                 
                 // Enregistrer la session
@@ -3847,6 +4600,9 @@ measurementId: "G-5M237WCPFR"
                 
                 // Afficher une notification
                 showToast(`Bienvenue ${name} !`, 'success');
+                
+                // Suivre l'événement d'inscription
+                trackEvent('user_registration', { method: 'email' });
             }
         }
         
@@ -3874,7 +4630,7 @@ measurementId: "G-5M237WCPFR"
         function logoutUser() {
             // Supprimer la session actuelle de Firebase
             const currentSessionId = sessionStorage.getItem('currentSessionId');
-            if (currentSessionId) {
+            if (currentSessionId && database) {
                 database.ref('sessions/' + currentSessionId).remove().then(function() {
                     console.log('Session supprimée:', currentSessionId);
                 }).catch(function(error) {
@@ -3887,9 +4643,12 @@ measurementId: "G-5M237WCPFR"
             localStorage.removeItem('currentUser');
             document.getElementById('userWelcome').classList.remove('active');
             showToast('Vous avez été déconnecté', 'info');
+            
+            // Suivre l'événement de déconnexion
+            trackEvent('user_logout');
         }
         
-        // Connexion avec Google - VERSION CORRIGÉE
+        // Connexion avec Google - VERSION AMÉLIORÉE
         function signInWithGoogle() {
             // Vérifier si Firebase est initialisé
             if (!firebase.apps.length) {
@@ -3910,6 +4669,9 @@ measurementId: "G-5M237WCPFR"
             // Ajouter des scopes supplémentaires
             provider.addScope('profile');
             provider.addScope('email');
+            
+            // Définir les paramètres personnalisés
+            firebase.auth().languageCode = 'fr';
             
             firebase.auth().signInWithPopup(provider)
                 .then((result) => {
@@ -3972,6 +4734,9 @@ measurementId: "G-5M237WCPFR"
                     
                     // Afficher une notification
                     showToast(`Bienvenue ${userData.name} !`, 'success');
+                    
+                    // Suivre l'événement de connexion
+                    trackEvent('user_login', { method: 'google' });
                 })
                 .catch((error) => {
                     console.error('Erreur détaillée lors de la connexion avec Google:', error);
@@ -4006,7 +4771,7 @@ measurementId: "G-5M237WCPFR"
                 });
         }
         
-        // Connexion avec GitHub - VERSION CORRIGÉE
+        // Connexion avec GitHub - VERSION AMÉLIORÉE
         function signInWithGitHub() {
             // Vérifier si Firebase est initialisé
             if (!firebase.apps.length) {
@@ -4026,6 +4791,9 @@ measurementId: "G-5M237WCPFR"
             
             // Ajouter des scopes supplémentaires
             provider.addScope('user:email');
+            
+            // Définir les paramètres personnalisés
+            firebase.auth().languageCode = 'fr';
             
             firebase.auth().signInWithPopup(provider)
                 .then((result) => {
@@ -4088,6 +4856,9 @@ measurementId: "G-5M237WCPFR"
                     
                     // Afficher une notification
                     showToast(`Bienvenue ${userData.name} !`, 'success');
+                    
+                    // Suivre l'événement de connexion
+                    trackEvent('user_login', { method: 'github' });
                 })
                 .catch((error) => {
                     console.error('Erreur détaillée lors de la connexion avec GitHub:', error);
@@ -4205,9 +4976,11 @@ measurementId: "G-5M237WCPFR"
                 if (mainNav.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
+                    menuToggle.setAttribute('aria-expanded', 'true');
                 } else {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
             
@@ -4228,10 +5001,12 @@ measurementId: "G-5M237WCPFR"
             
             // Fermer le menu en cliquant à l'extérieur
             document.addEventListener('click', function(e) {
+                const header = document.querySelector('header');
                 if (!header.contains(e.target) && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     menuToggle.querySelector('i').classList.remove('fa-times');
                     menuToggle.querySelector('i').classList.add('fa-bars');
+                    menuToggle.setAttribute('aria-expanded', 'false');
                 }
             });
         }
@@ -4391,10 +5166,17 @@ measurementId: "G-5M237WCPFR"
             const toggle = document.getElementById('darkModeToggle');
             const body = document.body;
             
-            // Charger la préférence sauvegardée
-            if (localStorage.getItem('darkMode') === 'enabled') {
+            // Vérifier la préférence du système
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Charger la préférence sauvegardée ou utiliser la préférence du système
+            if (localStorage.getItem('darkMode') === 'enabled' || 
+                (localStorage.getItem('darkMode') === null && prefersDarkScheme)) {
                 body.classList.add('dark-mode');
                 toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                toggle.setAttribute('aria-label', 'Passer en mode clair');
+            } else {
+                toggle.setAttribute('aria-label', 'Passer en mode sombre');
             }
             
             toggle.addEventListener('click', () => {
@@ -4402,10 +5184,25 @@ measurementId: "G-5M237WCPFR"
                 
                 if (body.classList.contains('dark-mode')) {
                     toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    toggle.setAttribute('aria-label', 'Passer en mode clair');
                     localStorage.setItem('darkMode', 'enabled');
                 } else {
                     toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    toggle.setAttribute('aria-label', 'Passer en mode sombre');
                     localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+            
+            // Écouter les changements de préférence du système
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                if (localStorage.getItem('darkMode') === null) {
+                    if (e.matches) {
+                        body.classList.add('dark-mode');
+                        toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    } else {
+                        body.classList.remove('dark-mode');
+                        toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    }
                 }
             });
         }
@@ -4485,6 +5282,11 @@ measurementId: "G-5M237WCPFR"
                     noResultsMsg.style.display = 'block';
                     console.log("Aucun résultat trouvé");
                 }
+                
+                // Suivre l'événement de recherche
+                if (query) {
+                    trackEvent('search', { query: query, results: hasResults });
+                }
             }
             
             // Lancer la recherche lors du clic sur le bouton
@@ -4540,11 +5342,14 @@ measurementId: "G-5M237WCPFR"
                             }, 300);
                         }
                     });
+                    
+                    // Suivre l'événement de filtrage
+                    trackEvent('filter', { category: filter });
                 });
             });
         }
         
-        // Gestion du panier - MODIFIÉE
+        // Gestion du panier - AMÉLIORÉE
         function addToCart(productId) {
             // Récupérer les informations du produit
             const product = productsData[productId];
@@ -4556,6 +5361,7 @@ measurementId: "G-5M237WCPFR"
                 if (existingItemIndex !== -1) {
                     // Si le produit est déjà dans le panier, augmenter la quantité
                     cartItems[existingItemIndex].quantity += 1;
+                    showToast(`Quantité de ${product.title} mise à jour !`, 'info');
                 } else {
                     // Sinon, ajouter le produit au panier
                     cartItems.push({
@@ -4565,6 +5371,7 @@ measurementId: "G-5M237WCPFR"
                         image: product.image,
                         quantity: 1
                     });
+                    showToast(`${product.title} ajouté au panier !`, 'success');
                 }
                 
                 // Mettre à jour le compteur
@@ -4572,9 +5379,6 @@ measurementId: "G-5M237WCPFR"
                 
                 // Sauvegarder les articles du panier
                 saveCartItems();
-                
-                // Afficher une notification
-                showToast('Produit ajouté au panier !', 'success');
                 
                 // Animation du badge
                 const badge = document.getElementById('cartBadge');
@@ -4584,7 +5388,10 @@ measurementId: "G-5M237WCPFR"
                 }, 200);
                 
                 // Suivi Analytics
-                trackEvent('add_to_cart', { product_id: productId });
+                trackEvent('add_to_cart', { product_id: productId, product_name: product.title });
+            } else {
+                showToast('Erreur: produit non trouvé', 'error');
+                console.error('Produit non trouvé:', productId);
             }
         }
         
@@ -4614,6 +5421,9 @@ measurementId: "G-5M237WCPFR"
                 
                 document.getElementById('quickViewModal').style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                
+                // Suivre l'événement de vue rapide
+                trackEvent('quick_view', { product_id: productId });
             }
         }
         
@@ -4636,7 +5446,37 @@ measurementId: "G-5M237WCPFR"
             }
         }
         
-        // Mettre à jour le compteur du panier - MODIFIÉE
+        // Fonction de partage de produit
+        function shareProduct(productId) {
+            const product = productsData[productId];
+            
+            if (product && navigator.share) {
+                navigator.share({
+                    title: product.title,
+                    text: product.description,
+                    url: window.location.href + '?product=' + productId
+                })
+                .then(() => {
+                    showToast('Produit partagé avec succès !', 'success');
+                    trackEvent('share', { product_id: productId });
+                })
+                .catch((error) => {
+                    console.log('Erreur lors du partage:', error);
+                });
+            } else {
+                // Fallback pour les navigateurs qui ne supportent pas l'API Web Share
+                const url = window.location.href + '?product=' + productId;
+                navigator.clipboard.writeText(url)
+                    .then(() => {
+                        showToast('Lien copié dans le presse-papiers !', 'success');
+                    })
+                    .catch(() => {
+                        showToast('Impossible de copier le lien', 'error');
+                    });
+            }
+        }
+        
+        // Mettre à jour le compteur du panier - AMÉLIORÉE
         function updateCartCount() {
             // Calculer le nombre total d'articles dans le panier
             cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
@@ -4933,10 +5773,328 @@ measurementId: "G-5M237WCPFR"
             }
         }
         
+        // Initialisation de l'effet parallaxe
+        function initParallaxEffect() {
+            const heroSection = document.querySelector('.hero');
+            
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                const heroPosition = heroSection.offsetTop;
+                const heroHeight = heroSection.offsetHeight;
+                
+                if (scrollPosition > heroPosition && scrollPosition < heroPosition + heroHeight) {
+                    const parallaxSpeed = 0.5;
+                    const yPos = -(scrollPosition - heroPosition) * parallaxSpeed;
+                    heroSection.style.backgroundPosition = `center ${yPos}px`;
+                }
+            });
+        }
+        
+        // Initialisation du chargement différé des images
+        function initLazyLoading() {
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback pour les navigateurs qui ne supportent pas IntersectionObserver
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src;
+                });
+            }
+        }
+        
+        // Initialisation du panneau d'administration
+        function initAdminPanel() {
+            const adminTrigger = document.getElementById('adminTrigger');
+            const adminPanel = document.getElementById('adminPanel');
+            let clickCount = 0;
+            let clickTimer = null;
+            
+            // Méthode secrète pour afficher le panneau : cliquer 5 fois sur le coin inférieur gauche
+            adminTrigger.addEventListener('click', function() {
+                clickCount++;
+                
+                if (clickCount === 1) {
+                    // Démarrer le timer
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 3000); // 3 secondes pour faire les 5 clics
+                }
+                
+                if (clickCount === 5) {
+                    // Afficher le panneau d'administration
+                    showAdminPanel();
+                    clickCount = 0;
+                    clearTimeout(clickTimer);
+                }
+            });
+            
+            // Alternative : taper "admin" puis Entrée
+            let typedKeys = '';
+            document.addEventListener('keydown', function(e) {
+                typedKeys += e.key.toLowerCase();
+                
+                // Garder seulement les 10 derniers caractères
+                if (typedKeys.length > 10) {
+                    typedKeys = typedKeys.slice(-10);
+                }
+                
+                // Vérifier si "admin" a été tapé
+                if (typedKeys.includes('admin') && e.key === 'Enter') {
+                    showAdminPanel();
+                    typedKeys = '';
+                }
+            });
+        }
+        
+        // Afficher le panneau d'administration
+        function showAdminPanel() {
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.style.display = 'flex';
+            
+            // Mettre à jour les statistiques
+            updateAdminStats();
+            
+            // Afficher la liste des visiteurs
+            displayVisitorList();
+            
+            // Afficher les statistiques
+            displayVisitorStats();
+        }
+        
+        // Fermer le panneau d'administration
+        function closeAdminPanel() {
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.style.display = 'none';
+        }
+        
+        // Mettre à jour les statistiques du panneau d'administration
+        function updateAdminStats() {
+            const visitors = window.getVisitorData() || [];
+            const totalVisitors = visitors.length;
+            
+            // Calculer les visiteurs par période
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+            
+            const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
+            const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
+            const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
+            
+            document.getElementById('totalVisitors').textContent = totalVisitors.toLocaleString();
+            document.getElementById('todayVisitors').textContent = todayVisitors.toLocaleString();
+            document.getElementById('weekVisitors').textContent = weekVisitors.toLocaleString();
+            document.getElementById('monthVisitors').textContent = monthVisitors.toLocaleString();
+        }
+        
+        // Afficher la liste des visiteurs
+        function displayVisitorList() {
+            const visitors = window.getVisitorData() || [];
+            const visitorList = document.getElementById('visitorList');
+            
+            if (visitors.length === 0) {
+                visitorList.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Aucun visiteur enregistré</div>';
+                return;
+            }
+            
+            // Afficher les 20 derniers visiteurs
+            const recentVisitors = visitors.slice(0, 20);
+            
+            visitorList.innerHTML = recentVisitors.map(visitor => `
+                <div class="visitor-item">
+                    <div class="visitor-info">
+                        <div class="visitor-ip">Session: ${visitor.sessionId.substring(0, 12)}...</div>
+                        <div class="visitor-details">
+                            ${visitor.device} • ${visitor.browser} • ${visitor.os}
+                            ${visitor.city ? `• ${visitor.city}, ${visitor.country}` : '• Localisation inconnue'}
+                        </div>
+                    </div>
+                    <div class="visitor-time">
+                        ${formatDateTime(visitor.timestamp)}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Afficher les statistiques des visiteurs
+        function displayVisitorStats() {
+            const visitors = window.getVisitorData() || [];
+            
+            // Statistiques par ville
+            const cityStats = {};
+            visitors.forEach(visitor => {
+                if (visitor.city) {
+                    cityStats[visitor.city] = (cityStats[visitor.city] || 0) + 1;
+                }
+            });
+            
+            // Trier par nombre de visiteurs et prendre le top 5
+            const topCities = Object.entries(cityStats)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5);
+            
+            // Statistiques par appareil
+            const deviceStats = {};
+            visitors.forEach(visitor => {
+                deviceStats[visitor.device] = (deviceStats[visitor.device] || 0) + 1;
+            });
+            
+            // Mettre à jour les sections de statistiques
+            const cityStatsElement = document.getElementById('cityStats');
+            if (cityStatsElement) {
+                cityStatsElement.innerHTML = topCities.map(([city, count]) => `
+                    <div class="stat-item">
+                        <span class="stat-label">${city}</span>
+                        <span class="stat-value">${count}</span>
+                    </div>
+                `).join('') || '<p>Aucune donnée disponible</p>';
+            }
+            
+            const deviceStatsElement = document.getElementById('deviceStats');
+            if (deviceStatsElement) {
+                deviceStatsElement.innerHTML = Object.entries(deviceStats).map(([device, count]) => `
+                    <div class="stat-item">
+                        <span class="stat-label">${device}</span>
+                        <span class="stat-value">${count}</span>
+                    </div>
+                `).join('') || '<p>Aucune donnée disponible</p>';
+            }
+        }
+        
+        // Formater la date et l'heure
+        function formatDateTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleString('fr-FR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+        
+        // Exporter les données des visiteurs
+        function exportVisitorData() {
+            const visitors = window.getVisitorData() || [];
+            
+            if (visitors.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            // Créer le contenu CSV
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "ID Session,Timestamp,Appareil,Navigateur,Système d'exploitation,Résolution d'écran,Langue,Référent,Page,Fuseau horaire,Ville,Pays\n"
+                + visitors.map(v => 
+                    `"${v.sessionId}","${v.timestamp}","${v.device}","${v.browser}","${v.os}","${v.screenResolution}","${v.language}","${v.referrer}","${v.page}","${v.timezone}","${v.city || ''}","${v.country || ''}"`
+                ).join("\n");
+            
+            // Créer un lien de téléchargement
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `visiteurs_decobizcreations_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('Données exportées avec succès !');
+        }
+        
+        // Fonction pour exporter les données par ville et appareil
+        function exportVisitorDataByLocation() {
+            const visitors = window.getVisitorData() || [];
+            
+            if (visitors.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            // Préparer les données par ville
+            const cityData = {};
+            visitors.forEach(visitor => {
+                if (visitor.city) {
+                    if (!cityData[visitor.city]) {
+                        cityData[visitor.city] = {
+                            Mobile: 0,
+                            Ordinateur: 0,
+                            Tablette: 0,
+                            Autre: 0
+                        };
+                    }
+                    
+                    if (visitor.device === 'Mobile') {
+                        cityData[visitor.city].Mobile++;
+                    } else if (visitor.device === 'Ordinateur') {
+                        cityData[visitor.city].Ordinateur++;
+                    } else if (visitor.device === 'Tablette') {
+                        cityData[visitor.city].Tablette++;
+                    } else {
+                        cityData[visitor.city].Autre++;
+                    }
+                }
+            });
+            
+            // Créer le contenu CSV
+            let csvContent = "data:text/csv;charset=utf-8," 
+                + "Ville,Mobile,Ordinateur,Tablette,Autre,Total\n";
+            
+            Object.entries(cityData).forEach(([city, devices]) => {
+                const total = devices.Mobile + devices.Ordinateur + devices.Tablette + devices.Autre;
+                csvContent += `"${city}",${devices.Mobile},${devices.Ordinateur},${devices.Tablette},${devices.Autre},${total}\n`;
+            });
+            
+            // Créer un lien de téléchargement
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `visiteurs_par_ville_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('Données exportées avec succès !');
+        }
+        
+        // Actualiser les données
+        function refreshVisitorData() {
+            updateAdminStats();
+            displayVisitorList();
+            displayVisitorStats();
+            alert('Données actualisées !');
+        }
+        
+        // Effacer les données des visiteurs
+        function clearVisitorData() {
+            if (confirm('Êtes-vous sûr de vouloir effacer toutes les données de visiteurs ? Cette action est irréversible.')) {
+                localStorage.removeItem('decobizcreations_visitor_data');
+                window.getVisitorData = function() { return []; };
+                updateAdminStats();
+                displayVisitorList();
+                displayVisitorStats();
+                alert('Données effacées avec succès !');
+            }
+        }
+        
         console.log('🎨 Decobizcreations - Site chargé avec succès !');
         console.log('✨ Toutes les fonctionnalités sont opérationnelles');
         console.log('🔍 Système de suivi des visiteurs activé (invisible)');
     </script>
 </body>
 </html>
-
