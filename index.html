@@ -4095,8 +4095,7 @@
             // Initialiser le consentement aux cookies
             initCookieConsent();
             
-            // Initialiser le système de suivi des visiteurs (INVISIBLE)
-            initVisitorTracking();
+            
             
             // Initialiser le système d'identification des utilisateurs
             initUserSystem();
@@ -4142,7 +4141,7 @@
         
         // Système de suivi des visiteurs INVISIBLE
      // Remplacez complètement la fonction initVisitorTracking() par celle-ci :
-function initVisitorTracking() {
+
     // Clé de stockage pour les données des visiteurs
     const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
     const DETECTION_INTERVAL = 60000; // 1 minute
@@ -4245,7 +4244,7 @@ function initVisitorTracking() {
     setInterval(detectVisitor, DETECTION_INTERVAL);
     
     console.log('🔍 Système de suivi des visiteurs initialisé (invisible)');
-}
+
 
 // Fonctions utilitaires pour le suivi
 function getSessionId() {
@@ -4612,99 +4611,150 @@ function updateVisitorLocation(visitorId, city, country) {
         }
         
         // Système de suivi des visiteurs
-        function initVisitorTracking() {
-            // Récupérer le nombre de visiteurs depuis Firebase
-            if (database) {
-                const visitorsRef = database.ref('visitors/visitorCount');
+        // Système de suivi des visiteurs INVISIBLE - VERSION CORRIGÉE
+function initVisitorTracking() {
+    console.log("Initialisation du système de suivi des visiteurs...");
+    
+    // Clé de stockage pour les données des visiteurs
+    const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
+    const DETECTION_INTERVAL = 60000; // 1 minute
+    
+    // Définir la fonction getVisitorData en GLOBAL et en premier
+    window.getVisitorData = function() {
+        try {
+            const data = localStorage.getItem(VISITOR_STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        } catch (e) {
+            console.error("Erreur lors de la lecture des données visiteurs:", e);
+            return [];
+        }
+    };
+    
+    // Charger les données existantes
+    let visitors = window.getVisitorData();
+    console.log("Données visiteurs chargées:", visitors.length, "visiteurs");
+    
+    // Fonction pour détecter un nouveau visiteur
+    function detectVisitor() {
+        try {
+            // Vérifier si c'est un nouveau visiteur (session unique)
+            const sessionId = getSessionId();
+            const now = new Date().toISOString();
+            
+            // Vérifier si cette session existe déjà
+            const existingSession = visitors.find(v => v.sessionId === sessionId);
+            
+            if (!existingSession) {
+                console.log("Nouveau visiteur détecté!");
                 
-                visitorsRef.transaction(function(currentCount) {
-                    // Si currentCount est null, c'est la première visite
-                    return (currentCount || 0) + 1;
-                }).then(function(result) {
-                    // Mettre à jour le compteur local
-                    visitorCount = result.snapshot.val();
-                    
-                    // Mettre à jour l'affichage
-                    document.getElementById('visitorCount').textContent = visitorCount;
-                    
-                    // Sauvegarder dans localStorage pour utilisation hors ligne
-                    localStorage.setItem('visitorCount', visitorCount.toString());
-                    
-                    // Récupérer la liste des utilisateurs depuis Firebase
-                    database.ref('users').once('value').then(function(snapshot) {
-                        users = [];
-                        snapshot.forEach(function(childSnapshot) {
-                            users.push(childSnapshot.val());
-                        });
-                        
-                        // Sauvegarder dans localStorage pour utilisation hors ligne
-                        localStorage.setItem('registeredUsers', JSON.stringify(users));
-                    
-                        // Mettre à jour les statistiques du panneau d'administration
-                        updateAdminStats();
-                    }).catch(function(error) {
-                        console.error('Erreur lors de la récupération des utilisateurs:', error);
-                        
-                        // En cas d'erreur, utiliser les données locales
-                        users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-                        updateAdminStats();
-                    });
-                }).catch(function(error) {
-                    console.error('Erreur lors de la mise à jour du compteur de visiteurs:', error);
-                    
-                    // En cas d'erreur, utiliser le compteur local
-                    visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
-                    visitorCount++;
-                    localStorage.setItem('visitorCount', visitorCount.toString());
-                    document.getElementById('visitorCount').textContent = visitorCount;
-                    
-                    // Utiliser les données locales
-                    users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-                    updateAdminStats();
-                });
+                // Créer un nouvel objet visiteur
+                const visitor = {
+                    id: Date.now() + Math.random(),
+                    sessionId: sessionId,
+                    timestamp: now,
+                    userAgent: navigator.userAgent,
+                    device: getDeviceType(),
+                    browser: getBrowserType(),
+                    os: getOperatingSystem(),
+                    screenResolution: `${screen.width}x${screen.height}`,
+                    language: navigator.language,
+                    referrer: document.referrer || 'Direct',
+                    page: window.location.pathname,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    city: '', // Sera rempli plus tard
+                    country: '' // Sera rempli plus tard
+                };
                 
-                // Si l'utilisateur est connecté, mettre à jour sa dernière visite
-                if (currentUser) {
-                    database.ref('users/' + currentUser.id + '/lastVisit').set(new Date().toISOString());
+                // Ajouter le visiteur à la liste
+                visitors.unshift(visitor);
+                
+                // Limiter la taille de la liste (garder les 1000 derniers visiteurs)
+                if (visitors.length > 1000) {
+                    visitors = visitors.slice(0, 1000);
                 }
                 
-                // Écouter les changements en temps réel sur le compteur de visiteurs
-                database.ref('visitors/visitorCount').on('value', function(snapshot) {
-                    const newCount = snapshot.val();
-                    if (newCount !== visitorCount) {
-                        visitorCount = newCount;
-                        document.getElementById('visitorCount').textContent = visitorCount;
-                        localStorage.setItem('visitorCount', visitorCount.toString());
-                    }
-                });
+                // Sauvegarder les données localement
+                localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
                 
-                // Écouter les changements en temps réel sur la liste des utilisateurs
-                database.ref('users').on('value', function(snapshot) {
-                    users = [];
-                    snapshot.forEach(function(childSnapshot) {
-                        users.push(childSnapshot.val());
-                    });
-                    
-                    // Sauvegarder dans localStorage pour utilisation hors ligne
-                    localStorage.setItem('registeredUsers', JSON.stringify(users));
-                    
-                    // Mettre à jour les statistiques du panneau d'administration
-                    updateAdminStats();
-                });
-            } else {
-                console.warn('Firebase non disponible, utilisation du stockage local uniquement');
+                console.log('Nouveau visiteur détecté (invisible):', visitor);
                 
-                // Utiliser le compteur local
-                visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
-                visitorCount++;
-                localStorage.setItem('visitorCount', visitorCount.toString());
-                document.getElementById('visitorCount').textContent = visitorCount;
+                // Mettre à jour le compteur de visiteurs
+                updateVisitorCount();
                 
-                // Utiliser les données locales
-                users = JSON.parse(localStorage.getItem('registeredUsers') || '[]');
-                updateAdminStats();
+                // Sauvegarder dans Firebase
+                saveVisitorToFirebase(visitor);
+                
+                // Obtenir la localisation du visiteur
+                getVisitorLocation(visitor.id);
+                
+                return true; // Nouveau visiteur détecté
             }
+            return false; // Visiteur existant
+        } catch (error) {
+            console.error("Erreur lors de la détection du visiteur:", error);
+            return false;
         }
+    }
+    
+    // Fonction pour mettre à jour le compteur de visiteurs
+    function updateVisitorCount() {
+        try {
+            const count = visitors.length;
+            const countElement = document.getElementById('visitorCount');
+            const counterElement = document.getElementById('visitorCounter');
+            
+            if (countElement) countElement.textContent = count;
+            if (counterElement) {
+                counterElement.classList.add('visible');
+                counterElement.style.display = 'block';
+            }
+            
+            // Sauvegarder dans localStorage
+            localStorage.setItem('visitorCount', count.toString());
+            
+            console.log("Compteur de visiteurs mis à jour:", count);
+        } catch (error) {
+            console.error("Erreur lors de la mise à jour du compteur:", error);
+        }
+    }
+    
+    // Fonction pour sauvegarder un visiteur dans Firebase
+    function saveVisitorToFirebase(visitor) {
+        if (database) {
+            // Sauvegarder le visiteur
+            database.ref('visitors/' + visitor.id).set(visitor).then(() => {
+                console.log('Visiteur sauvegardé dans Firebase:', visitor.id);
+            }).catch(error => {
+                console.error('Erreur lors de la sauvegarde du visiteur:', error);
+            });
+            
+            // Mettre à jour le compteur total
+            database.ref('visitorCount').transaction(currentCount => {
+                return (currentCount || 0) + 1;
+            }).then(() => {
+                console.log('Compteur de visiteurs Firebase mis à jour');
+            }).catch(error => {
+                console.error('Erreur lors de la mise à jour du compteur Firebase:', error);
+            });
+        }
+    }
+    
+    // Détecter immédiatement au chargement
+    const newVisitorDetected = detectVisitor();
+    console.log("Détection initiale:", newVisitorDetected ? "Nouveau visiteur" : "Visiteur existant");
+    
+    // Détecter périodiquement
+    setInterval(detectVisitor, DETECTION_INTERVAL);
+    
+    console.log('🔍 Système de suivi des visiteurs initialisé (invisible)');
+    
+    // Forcer une mise à jour immédiate des statistiques
+    setTimeout(() => {
+        updateAdminStats();
+        displayVisitorList();
+        displayVisitorStats();
+    }, 1000);
+}
         
         // Système d'identification des utilisateurs
         function initUserSystem() {
