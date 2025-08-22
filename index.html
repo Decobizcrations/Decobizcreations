@@ -3932,15 +3932,15 @@
         let cartItems = []; // Tableau pour stocker les articles du panier
         
         // Configuration Firebase (remplacez par vos propres informations)
-     const firebaseConfig = {
-    apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
-    authDomain: "decobizcreations-d906a.firebaseapp.com",
-    databaseURL: "https://decobizcreations-default-rtdb.europe-west1.firebasedatabase.app", // URL corrigée avec la région
-    projectId: "decobizcreations",
-    storageBucket: "decobizcreations-d906a.appspot.com",
-    messagingSenderId: "634879666090",
-    appId: "1:634879666090:web:769602d96fccb81855add3"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyCGAZNMZei-GGBLpLFszo45IkoOTKmH5u8",
+            authDomain: "decobizcreations-d906a.firebaseapp.com",
+            databaseURL: "https://decobizcreations-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "decobizcreations",
+            storageBucket: "decobizcreations-d906a.appspot.com",
+            messagingSenderId: "634879666090",
+            appId: "1:634879666090:web:769602d96fccb81855add3"
+        };
         
         // Initialiser Firebase
         let firebaseApp, auth, database;
@@ -4070,6 +4070,8 @@
                 }, 500);
             }, 1000);
             
+            initVisitorTracking();
+
             // Initialiser les animations
             initScrollAnimations();
             initCarousel();
@@ -4139,14 +4141,19 @@
         }
         
         // Système de suivi des visiteurs INVISIBLE
-        // Système de suivi des visiteurs INVISIBLE
+     // Remplacez complètement la fonction initVisitorTracking() par celle-ci :
 function initVisitorTracking() {
     // Clé de stockage pour les données des visiteurs
     const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
     const DETECTION_INTERVAL = 60000; // 1 minute
     
+    // Définir la fonction getVisitorData en premier AVANT de l'utiliser
+    window.getVisitorData = function() {
+        return JSON.parse(localStorage.getItem(VISITOR_STORAGE_KEY) || '[]');
+    };
+    
     // Charger les données existantes
-    let visitors = JSON.parse(localStorage.getItem(VISITOR_STORAGE_KEY) || '[]');
+    let visitors = window.getVisitorData();
     
     // Fonction pour détecter un nouveau visiteur
     function detectVisitor() {
@@ -4237,13 +4244,100 @@ function initVisitorTracking() {
     // Détecter périodiquement
     setInterval(detectVisitor, DETECTION_INTERVAL);
     
-    // Rendre les données accessibles globalement pour l'admin
-    window.getVisitorData = function() {
-        return visitors;
-    };
-    
     console.log('🔍 Système de suivi des visiteurs initialisé (invisible)');
-    // Fonction pour obtenir la localisation du visiteur
+}
+
+// Fonctions utilitaires pour le suivi
+function getSessionId() {
+    let sessionId = sessionStorage.getItem('visitor_session');
+    if (!sessionId) {
+        sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        sessionStorage.setItem('visitor_session', sessionId);
+    }
+    return sessionId;
+}
+
+// Fonction pour obtenir le type d'appareil
+function getDeviceType() {
+    const userAgent = navigator.userAgent;
+    
+    // Vérifier si c'est un mobile
+    if (/mobile|iphone|ipod|android|blackberry|opera|mini|windows\sce|palm|smartphone|iemobile/i.test(userAgent)) {
+        // Vérifier si c'est une tablette
+        if (/tablet|ipad|playbook|silk/i.test(userAgent)) {
+            return 'Tablette';
+        }
+        return 'Mobile';
+    }
+    
+    // Vérifier si c'est un ordinateur
+    if (/Windows|Macintosh|Linux|X11/i.test(userAgent)) {
+        return 'Ordinateur';
+    }
+    
+    // Vérifier si c'est une console de jeu
+    if (/PlayStation|Xbox|Nintendo/i.test(userAgent)) {
+        return 'Console de jeu';
+    }
+    
+    // Vérifier si c'est un téléviseur
+    if (/TV|SmartTV|Internet TV/i.test(userAgent)) {
+        return 'Téléviseur';
+    }
+    
+    return 'Inconnu';
+}
+
+// Fonction pour obtenir le type de navigateur
+function getBrowserType() {
+    const userAgent = navigator.userAgent;
+    
+    if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) {
+        return 'Chrome';
+    } else if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) {
+        return 'Safari';
+    } else if (userAgent.indexOf('Firefox') > -1) {
+        return 'Firefox';
+    } else if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident') > -1) {
+        return 'Internet Explorer';
+    } else if (userAgent.indexOf('Edg') > -1) {
+        return 'Microsoft Edge';
+    } else if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) {
+        return 'Opera';
+    } else if (userAgent.indexOf('Brave') > -1) {
+        return 'Brave';
+    } else {
+        return 'Inconnu';
+    }
+}
+
+// Fonction pour obtenir le système d'exploitation
+function getOperatingSystem() {
+    const userAgent = navigator.userAgent;
+    
+    if (userAgent.indexOf('Windows') > -1) {
+        if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10';
+        if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
+        if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
+        if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
+        if (userAgent.indexOf('Windows NT 5.1') > -1) return 'Windows XP';
+        return 'Windows';
+    } else if (userAgent.indexOf('Mac') > -1) {
+        return 'macOS';
+    } else if (userAgent.indexOf('X11') > -1) {
+        return 'UNIX';
+    } else if (userAgent.indexOf('Linux') > -1) {
+        return 'Linux';
+    } else if (/Android/.test(userAgent)) {
+        return 'Android';
+    } else if (/like Mac OS X/.test(userAgent)) {
+        return 'iOS';
+    } else {
+        return 'Inconnu';
+    }
+}
+
+// Fonction pour obtenir la localisation du visiteur
 function getVisitorLocation(visitorId) {
     // Utiliser l'API ipapi.co pour obtenir la localisation
     fetch('https://ipapi.co/json/')
@@ -4293,8 +4387,6 @@ function updateVisitorLocation(visitorId, city, country) {
         
         console.log(`Localisation mise à jour pour le visiteur ${visitorId}: ${city}, ${country}`);
     }
-}
-    
 }
         
         // Fonctions utilitaires pour le suivi
@@ -4370,7 +4462,6 @@ function updateVisitorLocation(visitorId, city, country) {
                 if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
                 if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
                 if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
-                if (userAgent.indexOf('Windows NT 6.0') > -1) return 'Windows Vista';
                 if (userAgent.indexOf('Windows NT 5.1') > -1) return 'Windows XP';
                 return 'Windows';
             } else if (userAgent.indexOf('Mac') > -1) {
@@ -4429,6 +4520,13 @@ function updateVisitorLocation(visitorId, city, country) {
                 visitors[visitorIndex].city = city;
                 visitors[visitorIndex].country = country;
                 localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
+                
+                // Mettre à jour dans Firebase
+                if (database) {
+                    database.ref('visitors/' + visitorId + '/city').set(city);
+                    database.ref('visitors/' + visitorId + '/country').set(country);
+                }
+                
                 console.log(`Localisation mise à jour pour le visiteur ${visitorId}: ${city}, ${country}`);
             }
         }
@@ -4541,7 +4639,6 @@ function updateVisitorLocation(visitorId, city, country) {
                         
                         // Sauvegarder dans localStorage pour utilisation hors ligne
                         localStorage.setItem('registeredUsers', JSON.stringify(users));
-
                     
                         // Mettre à jour les statistiques du panneau d'administration
                         updateAdminStats();
@@ -5298,7 +5395,7 @@ function updateVisitorLocation(visitorId, city, country) {
             });
         }
         
-        // Fonction de recherche en temps réel
+        // Fonction de recherche en temps réel - CORRIGÉE
         function initSearch() {
             const searchInput = document.getElementById('searchInput');
             const searchBtn = document.getElementById('searchBtn');
@@ -5338,9 +5435,12 @@ function updateVisitorLocation(visitorId, city, country) {
                 let hasResults = false;
                 
                 productCards.forEach(card => {
-                    // Récupérer toutes les informations pertinentes de la carte
-                    const title = card.querySelector('h4') ? card.querySelector('h4').textContent.toLowerCase() : '';
-                    const description = card.querySelector('span') ? card.querySelector('span').textContent.toLowerCase() : '';
+                    // Récupérer toutes les informations pertinentes de la carte avec vérifications
+                    const titleElement = card.querySelector('h4');
+                    const descriptionElement = card.querySelector('span');
+                    
+                    const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                    const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
                     const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
                     const keywords = card.getAttribute('data-keywords') ? card.getAttribute('data-keywords').toLowerCase() : '';
                     
@@ -5780,14 +5880,19 @@ function updateVisitorLocation(visitorId, city, country) {
         
         // Service Worker pour PWA (Progressive Web App)
         function initServiceWorker() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('Service Worker enregistré avec succès:', registration);
-                    })
-                    .catch(error => {
-                        console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
-                    });
+            // Vérifier si le contexte est sécurisé (HTTPS) ou localhost
+            if (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/service-worker.js')
+                        .then(registration => {
+                            console.log('Service Worker enregistré avec succès:', registration);
+                        })
+                        .catch(error => {
+                            console.error('Erreur lors de l\'enregistrement du Service Worker:', error);
+                        });
+                }
+            } else {
+                console.warn('Service Worker non supporté dans ce contexte (HTTPS requis)');
             }
         }
         
@@ -5973,105 +6078,137 @@ function updateVisitorLocation(visitorId, city, country) {
             adminPanel.style.display = 'none';
         }
         
-        // Mettre à jour les statistiques du panneau d'administration
-        
-        // Mettre à jour les statistiques du panneau d'administration
-function updateAdminStats() {
-    const visitors = window.getVisitorData() || [];
-    const totalVisitors = visitors.length;
-    
-    // Calculer les visiteurs par période
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-    
-    const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
-    const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
-    const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
-    
-    document.getElementById('totalVisitors').textContent = totalVisitors.toLocaleString();
-    document.getElementById('todayVisitors').textContent = todayVisitors.toLocaleString();
-    document.getElementById('weekVisitors').textContent = weekVisitors.toLocaleString();
-    document.getElementById('monthVisitors').textContent = monthVisitors.toLocaleString();
-    
-    // Mettre à jour le compteur visible
-    document.getElementById('visitorCount').textContent = totalVisitors;
-    if (totalVisitors > 0) {
-        document.getElementById('visitorCounter').classList.add('visible');
-    }
-}
-        // Afficher la liste des visiteurs
-        function displayVisitorList() {
-            const visitors = window.getVisitorData() || [];
-            const visitorList = document.getElementById('visitorList');
-            
-            if (visitors.length === 0) {
-                visitorList.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Aucun visiteur enregistré</div>';
-                return;
+        // Mettre à jour les statistiques du panneau d'administration - CORRIGÉE
+        function updateAdminStats() {
+            try {
+                // Vérifier explicitement que la fonction existe
+                if (typeof window.getVisitorData !== 'function') {
+                    console.error('getVisitorData n\'est pas une fonction');
+                    return;
+                }
+                
+                const visitors = window.getVisitorData() || [];
+                const totalVisitors = visitors.length;
+                
+                // Calculer les visiteurs par période
+                const now = new Date();
+                const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+                const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+                
+                const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
+                const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
+                const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
+                
+                document.getElementById('totalVisitors').textContent = totalVisitors.toLocaleString();
+                document.getElementById('todayVisitors').textContent = todayVisitors.toLocaleString();
+                document.getElementById('weekVisitors').textContent = weekVisitors.toLocaleString();
+                document.getElementById('monthVisitors').textContent = monthVisitors.toLocaleString();
+                
+                // Mettre à jour le compteur visible
+                document.getElementById('visitorCount').textContent = totalVisitors;
+                if (totalVisitors > 0) {
+                    document.getElementById('visitorCounter').classList.add('visible');
+                }
+            } catch (error) {
+                console.error('Erreur dans updateAdminStats:', error);
             }
-            
-            // Afficher les 20 derniers visiteurs
-            const recentVisitors = visitors.slice(0, 20);
-            
-            visitorList.innerHTML = recentVisitors.map(visitor => `
-                <div class="visitor-item">
-                    <div class="visitor-info">
-                        <div class="visitor-ip">Session: ${visitor.sessionId.substring(0, 12)}...</div>
-                        <div class="visitor-details">
-                            ${visitor.device} • ${visitor.browser} • ${visitor.os}
-                            ${visitor.city ? `• ${visitor.city}, ${visitor.country}` : '• Localisation inconnue'}
-                        </div>
-                    </div>
-                    <div class="visitor-time">
-                        ${formatDateTime(visitor.timestamp)}
-                    </div>
-                </div>
-            `).join('');
         }
         
-        // Afficher les statistiques des visiteurs
-        function displayVisitorStats() {
-            const visitors = window.getVisitorData() || [];
-            
-            // Statistiques par ville
-            const cityStats = {};
-            visitors.forEach(visitor => {
-                if (visitor.city) {
-                    cityStats[visitor.city] = (cityStats[visitor.city] || 0) + 1;
+        // Afficher la liste des visiteurs - CORRIGÉE
+        function displayVisitorList() {
+            try {
+                // Vérifier si la fonction existe
+                if (typeof window.getVisitorData !== 'function') {
+                    console.error('getVisitorData n\'est pas une fonction');
+                    document.getElementById('visitorList').innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Données non disponibles</div>';
+                    return;
                 }
-            });
-            
-            // Trier par nombre de visiteurs et prendre le top 5
-            const topCities = Object.entries(cityStats)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 5);
-            
-            // Statistiques par appareil
-            const deviceStats = {};
-            visitors.forEach(visitor => {
-                deviceStats[visitor.device] = (deviceStats[visitor.device] || 0) + 1;
-            });
-            
-            // Mettre à jour les sections de statistiques
-            const cityStatsElement = document.getElementById('cityStats');
-            if (cityStatsElement) {
-                cityStatsElement.innerHTML = topCities.map(([city, count]) => `
-                    <div class="stat-item">
-                        <span class="stat-label">${city}</span>
-                        <span class="stat-value">${count}</span>
+                
+                const visitors = window.getVisitorData() || [];
+                const visitorList = document.getElementById('visitorList');
+                
+                if (visitors.length === 0) {
+                    visitorList.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Aucun visiteur enregistré</div>';
+                    return;
+                }
+                
+                // Afficher les 20 derniers visiteurs
+                const recentVisitors = visitors.slice(0, 20);
+                
+                visitorList.innerHTML = recentVisitors.map(visitor => `
+                    <div class="visitor-item">
+                        <div class="visitor-info">
+                            <div class="visitor-ip">Session: ${visitor.sessionId.substring(0, 12)}...</div>
+                            <div class="visitor-details">
+                                ${visitor.device} • ${visitor.browser} • ${visitor.os}
+                                ${visitor.city ? `• ${visitor.city}, ${visitor.country}` : '• Localisation inconnue'}
+                            </div>
+                        </div>
+                        <div class="visitor-time">
+                            ${formatDateTime(visitor.timestamp)}
+                        </div>
                     </div>
-                `).join('') || '<p>Aucune donnée disponible</p>';
+                `).join('');
+            } catch (error) {
+                console.error('Erreur dans displayVisitorList:', error);
             }
-            
-            const deviceStatsElement = document.getElementById('deviceStats');
-            if (deviceStatsElement) {
-                deviceStatsElement.innerHTML = Object.entries(deviceStats).map(([device, count]) => `
-                    <div class="stat-item">
-                        <span class="stat-label">${device}</span>
-                        <span class="stat-value">${count}</span>
-                    </div>
-                `).join('') || '<p>Aucune donnée disponible</p>';
+        }
+        
+        // Afficher les statistiques des visiteurs - CORRIGÉE
+        function displayVisitorStats() {
+            try {
+                // Vérifier si la fonction existe
+                if (typeof window.getVisitorData !== 'function') {
+                    console.error('getVisitorData n\'est pas une fonction');
+                    document.getElementById('cityStats').innerHTML = '<p>Aucune donnée disponible</p>';
+                    document.getElementById('deviceStats').innerHTML = '<p>Aucune donnée disponible</p>';
+                    return;
+                }
+                
+                const visitors = window.getVisitorData() || [];
+                
+                // Statistiques par ville
+                const cityStats = {};
+                visitors.forEach(visitor => {
+                    if (visitor.city) {
+                        cityStats[visitor.city] = (cityStats[visitor.city] || 0) + 1;
+                    }
+                });
+                
+                // Trier par nombre de visiteurs et prendre le top 5
+                const topCities = Object.entries(cityStats)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5);
+                
+                // Statistiques par appareil
+                const deviceStats = {};
+                visitors.forEach(visitor => {
+                    deviceStats[visitor.device] = (deviceStats[visitor.device] || 0) + 1;
+                });
+                
+                // Mettre à jour les sections de statistiques
+                const cityStatsElement = document.getElementById('cityStats');
+                if (cityStatsElement) {
+                    cityStatsElement.innerHTML = topCities.map(([city, count]) => `
+                        <div class="stat-item">
+                            <span class="stat-label">${city}</span>
+                            <span class="stat-value">${count}</span>
+                        </div>
+                    `).join('') || '<p>Aucune donnée disponible</p>';
+                }
+                
+                const deviceStatsElement = document.getElementById('deviceStats');
+                if (deviceStatsElement) {
+                    deviceStatsElement.innerHTML = Object.entries(deviceStats).map(([device, count]) => `
+                        <div class="stat-item">
+                            <span class="stat-label">${device}</span>
+                            <span class="stat-value">${count}</span>
+                        </div>
+                    `).join('') || '<p>Aucune donnée disponible</p>';
+                }
+            } catch (error) {
+                console.error('Erreur dans displayVisitorStats:', error);
             }
         }
         
@@ -6089,85 +6226,105 @@ function updateAdminStats() {
         
         // Exporter les données des visiteurs
         function exportVisitorData() {
-            const visitors = window.getVisitorData() || [];
-            
-            if (visitors.length === 0) {
-                alert('Aucune donnée à exporter');
-                return;
+            try {
+                if (typeof window.getVisitorData !== 'function') {
+                    alert('Aucune donnée à exporter');
+                    return;
+                }
+                
+                const visitors = window.getVisitorData() || [];
+                
+                if (visitors.length === 0) {
+                    alert('Aucune donnée à exporter');
+                    return;
+                }
+                
+                // Créer le contenu CSV
+                const csvContent = "data:text/csv;charset=utf-8," 
+                    + "ID Session,Timestamp,Appareil,Navigateur,Système d'exploitation,Résolution d'écran,Langue,Référent,Page,Fuseau horaire,Ville,Pays\n"
+                    + visitors.map(v => 
+                        `"${v.sessionId}","${v.timestamp}","${v.device}","${v.browser}","${v.os}","${v.screenResolution}","${v.language}","${v.referrer}","${v.page}","${v.timezone}","${v.city || ''}","${v.country || ''}"`
+                    ).join("\n");
+                
+                // Créer un lien de téléchargement
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `visiteurs_decobizcreations_${new Date().toISOString().split('T')[0]}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                alert('Données exportées avec succès !');
+            } catch (error) {
+                console.error('Erreur lors de l\'exportation:', error);
+                alert('Erreur lors de l\'exportation des données');
             }
-            
-            // Créer le contenu CSV
-            const csvContent = "data:text/csv;charset=utf-8," 
-                + "ID Session,Timestamp,Appareil,Navigateur,Système d'exploitation,Résolution d'écran,Langue,Référent,Page,Fuseau horaire,Ville,Pays\n"
-                + visitors.map(v => 
-                    `"${v.sessionId}","${v.timestamp}","${v.device}","${v.browser}","${v.os}","${v.screenResolution}","${v.language}","${v.referrer}","${v.page}","${v.timezone}","${v.city || ''}","${v.country || ''}"`
-                ).join("\n");
-            
-            // Créer un lien de téléchargement
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `visiteurs_decobizcreations_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('Données exportées avec succès !');
         }
         
         // Fonction pour exporter les données par ville et appareil
         function exportVisitorDataByLocation() {
-            const visitors = window.getVisitorData() || [];
-            
-            if (visitors.length === 0) {
-                alert('Aucune donnée à exporter');
-                return;
-            }
-            
-            // Préparer les données par ville
-            const cityData = {};
-            visitors.forEach(visitor => {
-                if (visitor.city) {
-                    if (!cityData[visitor.city]) {
-                        cityData[visitor.city] = {
-                            Mobile: 0,
-                            Ordinateur: 0,
-                            Tablette: 0,
-                            Autre: 0
-                        };
-                    }
-                    
-                    if (visitor.device === 'Mobile') {
-                        cityData[visitor.city].Mobile++;
-                    } else if (visitor.device === 'Ordinateur') {
-                        cityData[visitor.city].Ordinateur++;
-                    } else if (visitor.device === 'Tablette') {
-                        cityData[visitor.city].Tablette++;
-                    } else {
-                        cityData[visitor.city].Autre++;
-                    }
+            try {
+                if (typeof window.getVisitorData !== 'function') {
+                    alert('Aucune donnée à exporter');
+                    return;
                 }
-            });
-            
-            // Créer le contenu CSV
-            let csvContent = "data:text/csv;charset=utf-8," 
-                + "Ville,Mobile,Ordinateur,Tablette,Autre,Total\n";
-            
-            Object.entries(cityData).forEach(([city, devices]) => {
-                const total = devices.Mobile + devices.Ordinateur + devices.Tablette + devices.Autre;
-                csvContent += `"${city}",${devices.Mobile},${devices.Ordinateur},${devices.Tablette},${devices.Autre},${total}\n`;
-            });
-            
-            // Créer un lien de téléchargement
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `visiteurs_par_ville_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('Données exportées avec succès !');
+                
+                const visitors = window.getVisitorData() || [];
+                
+                if (visitors.length === 0) {
+                    alert('Aucune donnée à exporter');
+                    return;
+                }
+                
+                // Préparer les données par ville
+                const cityData = {};
+                visitors.forEach(visitor => {
+                    if (visitor.city) {
+                        if (!cityData[visitor.city]) {
+                            cityData[visitor.city] = {
+                                Mobile: 0,
+                                Ordinateur: 0,
+                                Tablette: 0,
+                                Autre: 0
+                            };
+                        }
+                        
+                        if (visitor.device === 'Mobile') {
+                            cityData[visitor.city].Mobile++;
+                        } else if (visitor.device === 'Ordinateur') {
+                            cityData[visitor.city].Ordinateur++;
+                        } else if (visitor.device === 'Tablette') {
+                            cityData[visitor.city].Tablette++;
+                        } else {
+                            cityData[visitor.city].Autre++;
+                        }
+                    }
+                });
+                
+                // Créer le contenu CSV
+                let csvContent = "data:text/csv;charset=utf-8," 
+                    + "Ville,Mobile,Ordinateur,Tablette,Autre,Total\n";
+                
+                Object.entries(cityData).forEach(([city, devices]) => {
+                    const total = devices.Mobile + devices.Ordinateur + devices.Tablette + devices.Autre;
+                    csvContent += `"${city}",${devices.Mobile},${devices.Ordinateur},${devices.Tablette},${devices.Autre},${total}\n`;
+                });
+                
+                // Créer un lien de téléchargement
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `visiteurs_par_ville_${new Date().toISOString().split('T')[0]}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                alert('Données exportées avec succès !');
+            } catch (error) {
+                console.error('Erreur lors de l\'exportation:', error);
+                alert('Erreur lors de l\'exportation des données');
+            }
         }
         
         // Actualiser les données
@@ -6196,7 +6353,3 @@ function updateAdminStats() {
     </script>
 </body>
 </html>
-
-
-
-
