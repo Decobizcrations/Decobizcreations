@@ -1,44 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- Métadonnées existantes avec améliorations SEO -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="theme-color" content="#b27952" />
-    
-    <!-- Données structurées JSON-LD pour le référencement -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Decobizcreations",
-        "description": "Créations artisanales uniques en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc.",
-        "image": "https://www.decobizcreations.com/images/og-image.jpg",
-        "url": "https://www.decobizcreations.com/",
-        "telephone": "+212123456789",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "123 Rue Artisanale",
-            "addressLocality": "Casablanca",
-            "postalCode": "20000",
-            "addressCountry": "MA"
-        },
-        "openingHours": "Mo-Fr 09:00-18:00",
-        "priceRange": "100 DH - 399 DH",
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 33.5731,
-            "longitude": -7.5898
-        },
-        "founder": {
-            "@type": "Person",
-            "name": "Hajar Agrar"
-        }
-    }
-    </script>
     
     <title>Decobizcreations - Artisanat Béton & Gypse | Décoration Marocaine</title>
     <meta name="description" content="Découvrez nos créations artisanales uniques en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc. Livraison rapide." />
@@ -52,8 +20,6 @@
     <meta property="og:title" content="Decobizcreations - Artisanat Béton & Gypse" />
     <meta property="og:description" content="Décorations artisanales uniques en béton et gypse. Plateaux, vases, boîtes faites main au Maroc." />
     <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
-    <meta property="og:site_name" content="Decobizcreations" />
-    <meta property="og:locale" content="fr_FR" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -88,7 +54,7 @@
     </script>
     
     <style>
-        /* Vos styles existants avec améliorations */
+        /* Variables CSS */
         :root {
             --primary-color: #b27952;
             --secondary-color: #f8b500;
@@ -99,6 +65,7 @@
             --transition-speed: 0.3s;
         }
         
+        /* Reset et styles de base */
         * {
             margin: 0;
             padding: 0;
@@ -122,7 +89,7 @@
             padding-bottom: env(safe-area-inset-bottom);
         }
         
-        /* Mode sombre amélioré */
+        /* Mode sombre */
         body.dark-mode {
             background: var(--dark-bg);
             color: #e0e0e0;
@@ -154,7 +121,7 @@
             background: linear-gradient(135deg, #8c5a34, #b27952);
         }
         
-        /* Loader amélioré */
+        /* Loader */
         #loader {
             position: fixed;
             width: 100vw;
@@ -185,7 +152,7 @@
             100% {transform: rotate(360deg);}
         }
         
-        /* Scroll Progress Bar améliorée */
+        /* Scroll Progress Bar */
         #progressbar {
             position: fixed;
             top: 0;
@@ -199,7 +166,7 @@
             box-shadow: 0 2px 5px rgba(178, 121, 82, 0.3);
         }
         
-        /* Header amélioré */
+        /* Header */
         header {
             position: sticky;
             top: 0;
@@ -242,7 +209,7 @@
             gap: 0.8rem;
         }
         
-        /* Bouton mode sombre amélioré */
+        /* Bouton mode sombre */
         .dark-mode-toggle {
             background: none;
             border: 2px solid var(--primary-color);
@@ -263,7 +230,7 @@
             transform: scale(1.1);
         }
         
-        /* Recherche améliorée */
+        /* Recherche */
         .search-container {
             position: relative;
             display: flex;
@@ -295,7 +262,7 @@
             font-size: 1rem;
         }
         
-        /* Panier compteur amélioré */
+        /* Panier compteur */
         .cart-counter {
             position: relative;
             display: inline-block;
@@ -319,7 +286,7 @@
             transition: transform 0.2s ease;
         }
         
-        /* Navigation améliorée */
+        /* Navigation */
         nav {
             display: flex;
             align-items: center;
@@ -363,7 +330,7 @@
             width: 100%;
         }
         
-        /* Sous-menu amélioré */
+        /* Sous-menu */
         .nav-item {
             position: relative;
         }
@@ -403,7 +370,7 @@
             color: var(--primary-color);
         }
         
-        /* Menu mobile amélioré */
+        /* Menu mobile */
         .menu-toggle {
             display: none;
             background: none;
@@ -414,7 +381,7 @@
             padding: 5px;
         }
         
-        /* Hero section améliorée */
+        /* Hero section */
         .hero {
             position: relative;
             height: 80vh;
@@ -528,7 +495,7 @@
             }
         }
         
-        /* Section de confiance améliorée */
+        /* Section de confiance */
         .trust-section {
             background: white;
             padding: 1.5rem;
@@ -561,7 +528,7 @@
             font-size: 0.9rem;
         }
         
-        /* Main Content amélioré */
+        /* Main Content */
         main {
             max-width: 100%;
             margin: 2rem auto 3rem auto;
@@ -586,7 +553,7 @@
             font-weight: 500;
         }
         
-        /* Filtres de produits améliorés */
+        /* Filtres de produits */
         .filter-section {
             max-width: 100%;
             margin: 2rem auto;
@@ -629,7 +596,7 @@
             box-shadow: 0 4px 8px rgba(178, 121, 82, 0.3);
         }
         
-        /* Section Produits Vedettes améliorée */
+        /* Section Produits Vedettes */
         .featured-products {
             margin: 3rem 0;
         }
@@ -662,7 +629,7 @@
             text-decoration: underline;
         }
         
-        /* Products Carousel amélioré */
+        /* Products Carousel */
         .carousel {
             position: relative;
             overflow: hidden;
@@ -747,7 +714,7 @@
             transform: scale(1.1) rotate(1deg);
         }
         
-        /* Badge nouveau produit amélioré */
+        /* Badge nouveau produit */
         .new-badge {
             position: absolute;
             top: 8px;
@@ -776,7 +743,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
-        /* Boutons d'action sur les produits améliorés */
+        /* Boutons d'action sur les produits */
         .product-actions {
             position: absolute;
             top: 50%;
@@ -847,7 +814,7 @@
             margin-right: 0.4rem;
         }
         
-        /* Message aucun résultat amélioré */
+        /* Message aucun résultat */
         .no-results {
             text-align: center;
             padding: 2rem;
@@ -866,7 +833,7 @@
             margin-bottom: 0.8rem;
         }
         
-        /* Bouton principal amélioré */
+        /* Bouton principal */
         .btn-discover {
             display: block;
             margin: 0 auto 3rem auto;
@@ -895,7 +862,7 @@
             transform: translateY(-3px) scale(1.03);
         }
         
-        /* Section Processus de Fabrication améliorée */
+        /* Section Processus de Fabrication */
         .process-section {
             background: white;
             border-radius: 12px;
@@ -974,7 +941,7 @@
             font-size: 0.85rem;
         }
         
-        /* Section Galerie améliorée */
+        /* Section Galerie */
         .gallery-section {
             max-width: 100%;
             margin: 3rem auto;
@@ -1042,7 +1009,7 @@
             font-size: 1.5rem;
         }
         
-        /* Modal pour galerie amélioré */
+        /* Modal pour galerie */
         .modal {
             display: none;
             position: fixed;
@@ -1087,98 +1054,7 @@
             color: #bbb;
         }
         
-        /* Modal pour l'aperçu rapide amélioré */
-        .quick-view-content {
-            max-width: 90%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .quick-view-container {
-            display: flex;
-            gap: 1.5rem;
-            flex-direction: column;
-        }
-        
-        .quick-view-image {
-            flex: 1;
-        }
-        
-        .quick-view-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-        
-        .quick-view-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .quick-view-details h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-            color: #5a4a24;
-            margin-bottom: 0.8rem;
-        }
-        
-        .quick-view-details p {
-            color: #6b5e34;
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-        
-        .quick-view-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 1.2rem;
-        }
-        
-        .quick-view-actions {
-            display: flex;
-            gap: 0.8rem;
-            flex-direction: column;
-        }
-        
-        .btn-add-to-cart, .btn-add-to-wishlist {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            font-size: 0.9rem;
-        }
-        
-        .btn-add-to-cart {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-add-to-wishlist {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-        
-        .btn-add-to-cart:hover {
-            background: #8c5a34;
-        }
-        
-        .btn-add-to-wishlist:hover {
-            background: #f9f3e8;
-        }
-        
-        /* Section Packs améliorée */
-        .packs-section {
-            margin: 3rem 0;
-        }
-        
-        /* Section À Propos améliorée */
+        /* Section À Propos */
         .about-section {
             max-width: 100%;
             margin: 0 auto 4rem auto;
@@ -1226,7 +1102,7 @@
             color: #5b4824;
         }
         
-        /* Section Avantages améliorée */
+        /* Section Avantages */
         .advantages-section {
             background: white;
             border-radius: 12px;
@@ -1292,7 +1168,7 @@
             font-size: 0.9rem;
         }
         
-        /* Newsletter améliorée */
+        /* Newsletter */
         .newsletter-section {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             padding: 2rem 1.5rem;
@@ -1344,7 +1220,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         
-        /* Témoignages améliorés */
+        /* Témoignages */
         .testimonials {
             max-width: 100%;
             margin: 0 auto 4rem auto;
@@ -1434,72 +1310,7 @@
             background: var(--primary-color);
         }
         
-        /* FAQ Section améliorée */
-        .faq-section {
-            max-width: 100%;
-            margin: 3rem auto;
-            padding: 0 1rem;
-        }
-        
-        .faq-section h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: #5a4a24;
-        }
-        
-        .faq-item {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-            overflow: hidden;
-            transition: all var(--transition-speed) ease;
-        }
-        
-        .faq-item:hover {
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        }
-        
-        .faq-question {
-            background: #f9f3e8;
-            padding: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: background var(--transition-speed) ease;
-            font-size: 0.95rem;
-        }
-        
-        .faq-question:hover {
-            background: #f0e6d6;
-        }
-        
-        .faq-answer {
-            padding: 0 1.2rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: all var(--transition-speed) ease;
-            background: white;
-            font-size: 0.9rem;
-        }
-        
-        .faq-answer.active {
-            padding: 1.2rem;
-            max-height: 300px;
-        }
-        
-        .faq-icon {
-            transition: transform var(--transition-speed) ease;
-        }
-        
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-        
-        /* Valeurs améliorées */
+        /* Valeurs */
         .values-section {
             max-width: 100%;
             margin: 0 auto 4rem auto;
@@ -1556,7 +1367,7 @@
             color: #7e6a3e;
         }
         
-        /* Footer amélioré */
+        /* Footer */
         footer {
             background: #f3f0eb;
             color: #777;
@@ -1687,7 +1498,7 @@
             text-decoration: underline;
         }
         
-        /* WhatsApp flottant amélioré */
+        /* WhatsApp flottant */
         .whatsapp-float {
             position: fixed;
             width: 50px;
@@ -1720,7 +1531,7 @@
             50% { transform: scale(1.1); }
         }
         
-        /* Bouton retour en haut amélioré */
+        /* Bouton retour en haut */
         .back-to-top {
             position: fixed;
             bottom: 80px;
@@ -1751,7 +1562,7 @@
             display: flex;
         }
         
-        /* Animations améliorées */
+        /* Animations */
         .fade-slide {
             opacity: 0;
             transform: translateY(20px);
@@ -1763,7 +1574,7 @@
             transform: translateY(0);
         }
         
-        /* Notifications toast améliorées */
+        /* Notifications toast */
         .toast {
             position: fixed;
             top: 80px;
@@ -1794,7 +1605,7 @@
             background: #2196F3;
         }
         
-        /* Styles pour le système de suivi invisible amélioré */
+        /* Styles pour le système de suivi invisible */
         .admin-trigger {
             position: fixed;
             bottom: 10px;
@@ -2023,215 +1834,7 @@
             font-size: 0.9rem;
         }
         
-        /* Styles pour le formulaire d'utilisateur */
-        .user-form-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all var(--transition-speed) ease;
-            padding: 20px;
-        }
-        
-        .user-form-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .user-form {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            max-width: 500px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .user-form h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border var(--transition-speed) ease;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(178, 121, 82, 0.2);
-        }
-        
-        .form-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .form-buttons button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            font-size: 1rem;
-        }
-        
-        .btn-submit {
-            background: var(--primary-color);
-            color: white;
-        }
-        
-        .btn-submit:hover {
-            background: #8c5a34;
-        }
-        
-        .btn-cancel {
-            background: #f0f0f0;
-            color: #555;
-        }
-        
-        .btn-cancel:hover {
-            background: #e0e0e0;
-        }
-        
-        .auth-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .auth-button {
-            flex: 1;
-            padding: 10px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-speed) ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .auth-button.google {
-            background: #db4437;
-            color: white;
-        }
-        
-        .auth-button.google:hover {
-            background: #c23321;
-        }
-        
-        .auth-button.github {
-            background: #333;
-            color: white;
-        }
-        
-        .auth-button.github:hover {
-            background: #222;
-        }
-        
-        /* Message de bienvenue utilisateur */
-        .user-welcome {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: white;
-            border-radius: 10px;
-            padding: 10px 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            display: none;
-            align-items: center;
-            gap: 10px;
-            z-index: 100;
-            max-width: 300px;
-            top: calc(10px + env(safe-area-inset-top));
-            right: calc(10px + env(safe-area-inset-right));
-        }
-        
-        .user-welcome.active {
-            display: flex;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .user-info {
-            flex: 1;
-        }
-        
-        .user-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 2px;
-        }
-        
-        .user-email {
-            font-size: 0.85rem;
-            color: #666;
-        }
-        
-        .user-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .user-action-btn {
-            background: none;
-            border: none;
-            color: #666;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: color var(--transition-speed) ease;
-        }
-        
-        .user-action-btn:hover {
-            color: var(--primary-color);
-        }
-        
-        /* Compteur de visiteurs amélioré */
+        /* Compteur de visiteurs */
         .visitor-counter {
             position: fixed;
             bottom: 10px;
@@ -2252,7 +1855,7 @@
             display: block;
         }
         
-        /* Responsive amélioré */
+        /* Responsive */
         @media (max-width: 768px) {
             .header-controls {
                 order: 1;
@@ -2453,19 +2056,6 @@
                 font-size: 0.8rem;
             }
             
-            .faq-question {
-                padding: 1rem;
-                font-size: 0.9rem;
-            }
-            
-            .faq-answer {
-                font-size: 0.85rem;
-            }
-            
-            .faq-answer.active {
-                padding: 1rem;
-            }
-            
             .modal-content {
                 width: 95%;
                 max-width: 500px;
@@ -2477,67 +2067,11 @@
                 right: 15px;
             }
             
-            .quick-view-details h3 {
-                font-size: 1.4rem;
-            }
-            
-            .quick-view-details p {
-                font-size: 0.9rem;
-            }
-            
-            .quick-view-price {
-                font-size: 1.1rem;
-            }
-            
-            .btn-add-to-cart, .btn-add-to-wishlist {
-                padding: 8px 16px;
-                font-size: 0.85rem;
-            }
-            
-            .user-form {
+            .admin-content {
                 padding: 1.5rem;
             }
             
-            .user-form h3 {
-                font-size: 1.5rem;
-            }
-            
-            .form-buttons {
-                flex-direction: column;
-            }
-            
-            .auth-buttons {
-                flex-direction: column;
-            }
-            
-            .user-welcome {
-                top: 10px;
-                right: 10px;
-                padding: 8px 12px;
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .user-info {
-                margin-bottom: 0.5rem;
-            }
-            
-            .visitor-counter {
-                bottom: 10px;
-                left: 10px;
-                font-size: 0.8rem;
-            }
-            
-            .admin-panel {
-                bottom: 60px;
-                left: 10px;
-            }
-            
-            .admin-panel-content {
-                padding: 1.5rem;
-            }
-            
-            .admin-panel-title {
+            .admin-title {
                 font-size: 1.5rem;
             }
             
@@ -2667,23 +2201,6 @@
                 font-size: 0.85rem;
             }
             
-            .faq-section h3 {
-                font-size: 1.6rem;
-            }
-            
-            .faq-question {
-                font-size: 0.85rem;
-                padding: 0.8rem;
-            }
-            
-            .faq-answer {
-                font-size: 0.8rem;
-            }
-            
-            .faq-answer.active {
-                padding: 0.8rem;
-            }
-            
             .value-title {
                 font-size: 1rem;
             }
@@ -2749,59 +2266,6 @@
                 font-size: 0.65rem;
             }
             
-            /* Améliorations spécifiques pour iPhone */
-            .product-card {
-                flex: 0 0 140px;
-            }
-            
-            .product-image {
-                height: 120px;
-            }
-            
-            .action-btn {
-                width: 28px;
-                height: 28px;
-            }
-            
-            .hero {
-                min-height: 400px;
-            }
-            
-            .carousel-track {
-                gap: 1rem;
-                padding-bottom: 10px;
-            }
-            
-            .carousel-btn {
-                width: 30px;
-                height: 30px;
-            }
-            
-            .modal {
-                padding-top: calc(env(safe-area-inset-top) + 20px);
-            }
-            
-            .close-modal {
-                top: calc(env(safe-area-inset-top) + 15px);
-                right: 15px;
-            }
-            
-            .user-form {
-                padding: 1rem;
-            }
-            
-            .user-form h3 {
-                font-size: 1.3rem;
-            }
-            
-            .form-group input {
-                padding: 8px 12px;
-            }
-            
-            .auth-buttons {
-                gap: 0.5rem;
-            }
-            
             .admin-panel-content {
                 padding: 1rem;
             }
@@ -2851,23 +2315,13 @@
                 padding-bottom: max(0px, env(safe-area-inset-bottom));
             }
             
-            .user-welcome {
-                top: max(10px, env(safe-area-inset-top));
-                right: max(10px, env(safe-area-inset-right));
-            }
-            
             .visitor-counter {
                 bottom: max(10px, env(safe-area-inset-bottom));
                 left: max(10px, env(safe-area-inset-left));
             }
-            
-            .admin-panel {
-                bottom: max(60px, env(safe-area-inset-bottom));
-                left: max(10px, env(safe-area-inset-left));
-            }
         }
         
-        /* Animations d'apparition améliorées */
+        /* Animations d'apparition */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -2980,7 +2434,7 @@
         @media print {
             .menu-toggle, .dark-mode-toggle, .cart-counter, .search-container, 
             .whatsapp-float, .back-to-top, .admin-trigger, .admin-panel, 
-            .user-form-overlay, .user-welcome, .visitor-counter, .toast {
+            .visitor-counter, .toast {
                 display: none !important;
             }
             
@@ -3293,155 +2747,6 @@
             </section>
         </div>
         
-        <!-- Section Packs -->
-        <section class="packs-section fade-slide">
-            <div class="featured-header">
-                <h3 class="featured-title">Nos Packs Exclusifs</h3>
-                <a href="packs.html" class="featured-link">Voir tous les packs <i class="fas fa-arrow-right"></i></a>
-            </div>
-            
-            <div class="carousel">
-                <div class="carousel-controls">
-                    <button class="carousel-btn" id="prevPackBtn" aria-label="Pack précédent">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-btn" id="nextPackBtn" aria-label="Pack suivant">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="carousel-track" id="packsCarouselTrack">
-                    <!-- Pack 0 -->
-                    <article class="product-card fade-slide" tabindex="0">
-                        <div class="product-image">
-                            <img src="pack0.jpg" alt="Pack 0" loading="lazy" />
-                            <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('pack0')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="quickView('pack0')" title="Aperçu rapide" aria-label="Aperçu rapide">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h4>Pack 0</h4>
-                            <span>3 articles en béton</span>
-                            <div class="product-price">199 DH</div>
-                        </div>
-                    </article>
-                    
-                    <!-- Pack 4 -->
-                    <article class="product-card fade-slide" tabindex="0">
-                        <div class="product-image">
-                            <img src="pack4.png" alt="Pack 4" loading="lazy" />
-                            <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('pack4')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="quickView('pack4')" title="Aperçu rapide" aria-label="Aperçu rapide">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h4>Pack 4</h4>
-                            <span>2 articles design</span>
-                            <div class="product-price">149 DH</div>
-                        </div>
-                    </article>
-                    
-                    <!-- Pack 7 -->
-                    <article class="product-card fade-slide" tabindex="0">
-                        <div class="product-image">
-                            <img src="pack7.jpg" alt="Pack 7" loading="lazy" />
-                            <div class="new-badge">Complet</div>
-                            <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('pack7')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="quickView('pack7')" title="Aperçu rapide" aria-label="Aperçu rapide">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h4>Pack 7</h4>
-                            <span>6 articles variés</span>
-                            <div class="product-price">399 DH</div>
-                        </div>
-                    </article>
-                    
-                    <!-- Pack 2 -->
-                    <article class="product-card fade-slide" tabindex="0">
-                        <div class="product-image">
-                            <img src="pack2.jpg" alt="Pack 2" loading="lazy" />
-                            <div class="sale-badge">-30%</div>
-                            <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('pack2')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="quickView('pack2')" title="Aperçu rapide" aria-label="Aperçu rapide">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h4>Pack 2</h4>
-                            <span>9 articles premium</span>
-                            <div class="product-price">
-                                <span class="old-price">429 DH</span>
-                                299 DH
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Pack spécial -->
-                    <article class="product-card fade-slide" tabindex="0">
-                        <div class="product-image">
-                            <img src="pack8.jpg" alt="Pack Spécial" loading="lazy" />
-                            <div class="new-badge">Offre</div>
-                            <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('pack-special')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="quickView('pack-special')" title="Aperçu rapide" aria-label="Aperçu rapide">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h4>Pack Spécial</h4>
-                            <span>Duo parfait</span>
-                            <div class="product-price">
-                                <span class="old-price">99 DH</span>
-                                69 DH
-                            </div>
-                        </div>
-                    </article>
-                    
-                    <!-- Pack 3 -->
-                    <article class="product-card fade-slide" tabindex="0">
-                        <div class="product-image">
-                            <img src="pack3.jpg" alt="Pack 3" loading="lazy" />
-                            <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('pack3')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="quickView('pack3')" title="Aperçu rapide" aria-label="Aperçu rapide">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h4>Pack 3</h4>
-                            <span>4 articles assortis</span>
-                            <div class="product-price">149 DH</div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-        
         <button class="btn-discover fade-slide" aria-label="Découvrir tous les produits">Découvrir plus</button>
         <div id="contenuDecouvrir" style="display:none; max-width: 90%; margin: 1.5rem auto 3rem auto; color: #5a4a24; font-weight: 500; line-height: 1.5; text-align: center;">
             <p>
@@ -3529,28 +2834,6 @@
             </div>
         </div>
         
-        <!-- Modal pour l'aperçu rapide -->
-        <div id="quickViewModal" class="modal">
-            <div class="modal-content quick-view-content">
-                <span class="close-modal" onclick="closeQuickView()" aria-label="Fermer">&times;</span>
-                <div class="quick-view-container">
-                    <div class="quick-view-image">
-                        <img id="quickViewImage" src="" alt="">
-                    </div>
-                    <div class="quick-view-details">
-                        <h3 id="quickViewTitle"></h3>
-                        <p id="quickViewDescription"></p>
-                        <div class="quick-view-price" id="quickViewPrice"></div>
-                        <div class="quick-view-actions">
-                            <button class="btn-add-to-cart" onclick="addToCartFromQuickView()">Ajouter au panier</button>
-                            <button class="btn-add-to-wishlist" onclick="addToWishlistFromQuickView()">Ajouter aux favoris</button>
-                            <button class="btn-add-to-wishlist" onclick="shareProduct(currentQuickViewProduct)">Partager</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <!-- Section À Propos -->
         <section class="about-section fade-slide" aria-labelledby="about-title">
             <div class="about-img" tabindex="0">
@@ -3634,47 +2917,6 @@
             <div class="testimonial-controls" role="group" aria-label="Navigation des témoignages">
                 <button type="button" aria-label="Précédent témoignage" id="prevTestimonial">←</button>
                 <button type="button" aria-label="Suivant témoignage" id="nextTestimonial">→</button>
-            </div>
-        </section>
-        
-        <!-- Section FAQ -->
-        <section class="faq-section fade-slide">
-            <h3>Questions fréquentes</h3>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Quels sont les délais de livraison ?</span>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Nos délais de livraison sont de 3 à 7 jours ouvrables pour le Maroc. Pour les commandes personnalisées, comptez 10 à 15 jours supplémentaires.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Proposez-vous des créations sur mesure ?</span>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Oui, nous réalisons des pièces personnalisées selon vos goûts et dimensions. Contactez-nous pour discuter de votre projet.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Comment entretenir les produits en béton ?</span>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Nos produits en béton sont traités pour résister à l'humidité. Un simple nettoyage à l'eau tiède et au savon doux suffit.</p>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFAQ(this)">
-                    <span>Acceptez-vous les retours ?</span>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Nous acceptons les retours dans les 14 jours suivant la réception, à condition que les produits soient en parfait état.</p>
-                </div>
             </div>
         </section>
         
@@ -3813,55 +3055,10 @@
                 <button class="admin-btn admin-btn-danger" onclick="clearVisitorData()">
                     🗑️ Effacer les données
                 </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Formulaire d'utilisateur -->
-    <div class="user-form-overlay" id="userFormOverlay">
-        <div class="user-form">
-            <h3>Bienvenue chez Decobizcreations</h3>
-            <p style="text-align: center; margin-bottom: 1.5rem; color: #666;">
-                Veuillez vous identifier pour une expérience personnalisée
-            </p>
-            
-            <form onsubmit="saveUserInfo(event)">
-                <div class="form-group">
-                    <label for="userName">Nom</label>
-                    <input type="text" id="userName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="userEmail">Email</label>
-                    <input type="email" id="userEmail" required>
-                </div>
-                
-                <div class="form-buttons">
-                    <button type="submit" class="btn-submit">S'inscrire</button>
-                    <button type="button" class="btn-cancel" onclick="closeUserForm()">Annuler</button>
-                </div>
-            </form>
-            
-            <div class="auth-buttons">
-                <button type="button" class="auth-button google" onclick="signInWithGoogle()">
-                    <i class="fab fa-google"></i> Continuer avec Google
-                </button>
-                <button type="button" class="auth-button github" onclick="signInWithGitHub()">
-                    <i class="fab fa-github"></i> Continuer avec GitHub
+                <button class="admin-btn admin-btn-danger" id="adminLogoutBtn" onclick="logoutAdmin()">
+                    🚪 Déconnexion
                 </button>
             </div>
-        </div>
-    </div>
-    
-    <!-- Message de bienvenue utilisateur -->
-    <div class="user-welcome" id="userWelcome">
-        <div class="user-avatar" id="userAvatar"></div>
-        <div class="user-info">
-            <div class="user-name" id="userNameDisplay"></div>
-            <div class="user-email" id="userEmailDisplay"></div>
-        </div>
-        <div class="user-actions">
-            <button class="user-action-btn" onclick="logoutUser()">Déconnexion</button>
         </div>
     </div>
     
@@ -3930,6 +3127,10 @@
     let visitorCount = 0;
     let users = [];
     let cartItems = [];
+    
+    // Variables pour l'administration
+    let isAdminAuthenticated = false;
+    const ADMIN_PASSWORD = "admin123"; // Changez ce mot de passe
     
     // Configuration Firebase
     const firebaseConfig = {
@@ -4023,7 +3224,7 @@
     let currentQuickViewProduct = null;
     
     // ===============================================================
-    // FONCTIONS UTILITAIRES (définies en premier)
+    // FONCTIONS UTILITAIRES
     // ===============================================================
     
     function formatDateTime(timestamp) {
@@ -4113,9 +3314,13 @@
             const counterElement = document.getElementById('visitorCounter');
             
             if (countElement) countElement.textContent = count;
-            if (counterElement) {
-                counterElement.classList.add('visible');
+            
+            // N'afficher le compteur que si l'admin est authentifié
+            if (counterElement && isAdminAuthenticated) {
                 counterElement.style.display = 'block';
+                counterElement.classList.add('visible');
+            } else if (counterElement) {
+                counterElement.style.display = 'none';
             }
             
             localStorage.setItem('visitorCount', count.toString());
@@ -4441,7 +3646,7 @@
             const counterElement = document.getElementById('visitorCounter');
             
             if (countElement) countElement.textContent = totalVisitors;
-            if (counterElement && totalVisitors > 0) {
+            if (counterElement && totalVisitors > 0 && isAdminAuthenticated) {
                 counterElement.classList.add('visible');
             }
         } catch (error) {
@@ -4583,7 +3788,7 @@
                 if (!existingSession) {
                     console.log("Nouveau visiteur détecté!");
                     
-                    // Détecter le type d'appareil de manière plus précise
+                    // Détecter le type d'appareil
                     const userAgent = navigator.userAgent;
                     let deviceType = 'Ordinateur';
                     
@@ -4666,6 +3871,192 @@
         
         // Initialiser la détection mobile spécifique
         initMobileVisitorDetection();
+        
+        // Vérifier l'authentification admin au chargement
+        checkAdminAuthentication();
+    }
+    
+    // ===============================================================
+    // FONCTIONS D'ADMINISTRATION
+    // ===============================================================
+    
+    // Fonction pour vérifier l'authentification admin
+    function checkAdminAuthentication() {
+        const adminAuth = sessionStorage.getItem('adminAuth');
+        if (adminAuth === 'true') {
+            isAdminAuthenticated = true;
+            
+            // Afficher le compteur uniquement si l'admin est connecté
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'block';
+            }
+        }
+    }
+    
+    // Modifier la fonction initAdminPanel
+    function initAdminPanel() {
+        const adminTrigger = document.getElementById('adminTrigger');
+        const adminPanel = document.getElementById('adminPanel');
+        let clickCount = 0;
+        let clickTimer = null;
+        
+        // Méthode 1: Clics multiples (adapté pour iPhone)
+        if (adminTrigger) {
+            adminTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                clickCount++;
+                console.log(`Clic admin: ${clickCount}/5`);
+                
+                if (clickCount === 1) {
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                        console.log('Compteur de clics réinitialisé');
+                    }, 3000);
+                }
+                
+                if (clickCount === 5) {
+                    console.log('Demande d\'authentification admin');
+                    authenticateAdmin();
+                    clickCount = 0;
+                    clearTimeout(clickTimer);
+                    
+                    if (navigator.vibrate) {
+                        navigator.vibrate(200);
+                    }
+                }
+            });
+        }
+        
+        // Méthode 2: Séquence de touches
+        let keySequence = '';
+        const adminSequence = 'admin';
+        
+        document.addEventListener('keydown', function(e) {
+            keySequence += e.key.toLowerCase();
+            
+            if (keySequence.length > 10) {
+                keySequence = keySequence.slice(-10);
+            }
+            
+            if (keySequence.includes(adminSequence)) {
+                console.log('Séquence admin détectée !');
+                authenticateAdmin();
+                keySequence = '';
+                
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+            }
+        });
+        
+        // Méthode 3: Double tap spécial pour mobile
+        let lastTap = 0;
+        document.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            
+            if (tapLength < 300 && tapLength > 0) {
+                console.log('Double tap détecté');
+                
+                const touch = e.changedTouches[0];
+                const secretZone = {
+                    x: window.innerWidth * 0.2,
+                    y: window.innerHeight * 0.2,
+                    size: 50
+                };
+                
+                if (touch.clientX < secretZone.x && touch.clientY < secretZone.y) {
+                    console.log('Double tap dans la zone secrète !');
+                    authenticateAdmin();
+                    
+                    if (navigator.vibrate) {
+                        navigator.vibrate([100, 50, 100]);
+                    }
+                }
+            }
+            
+            lastTap = currentTime;
+        });
+    }
+    
+    // Ajouter cette fonction d'authentification
+    function authenticateAdmin() {
+        const password = prompt("Veuillez entrer le mot de passe administrateur :");
+        
+        if (password === ADMIN_PASSWORD) {
+            isAdminAuthenticated = true;
+            sessionStorage.setItem('adminAuth', 'true');
+            showAdminPanel();
+            showToast('Authentification réussie !', 'success');
+        } else if (password !== null) {
+            showToast('Mot de passe incorrect !', 'error');
+        }
+    }
+    
+    // Modifier la fonction showAdminPanel
+    function showAdminPanel() {
+        const adminPanel = document.getElementById('adminPanel');
+        if (adminPanel) {
+            adminPanel.style.display = 'flex';
+            updateAdminStats();
+            displayVisitorList();
+            displayVisitorStats();
+            
+            // Afficher le compteur de visiteurs uniquement pour l'admin
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'block';
+            }
+            
+            // Ajouter le bouton de déconnexion s'il n'existe pas déjà
+            addAdminLogoutButton();
+        }
+    }
+    
+    // Modifier la fonction closeAdminPanel
+    function closeAdminPanel() {
+        const adminPanel = document.getElementById('adminPanel');
+        if (adminPanel) {
+            adminPanel.style.display = 'none';
+            
+            // Cacher le compteur de visiteurs en quittant le panel admin
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'none';
+            }
+        }
+    }
+    
+    // Ajouter cette fonction pour se déconnecter de l'admin
+    function logoutAdmin() {
+        isAdminAuthenticated = false;
+        sessionStorage.removeItem('adminAuth');
+        
+        // Cacher le compteur de visiteurs
+        const visitorCounter = document.getElementById('visitorCounter');
+        if (visitorCounter) {
+            visitorCounter.style.display = 'none';
+        }
+        
+        showToast('Déconnexion admin réussie', 'info');
+        closeAdminPanel();
+    }
+    
+    // Ajouter un bouton de déconnexion dans le panneau admin
+    function addAdminLogoutButton() {
+        const adminActions = document.querySelector('.admin-actions');
+        
+        if (!document.getElementById('adminLogoutBtn')) {
+            const logoutBtn = document.createElement('button');
+            logoutBtn.id = 'adminLogoutBtn';
+            logoutBtn.className = 'admin-btn admin-btn-danger';
+            logoutBtn.textContent = '🚪 Déconnexion';
+            logoutBtn.onclick = logoutAdmin;
+            adminActions.appendChild(logoutBtn);
+        }
     }
     
     // ===============================================================
@@ -4788,135 +4179,6 @@
     }
     
     // ===============================================================
-    // FONCTIONS D'ADMINISTRATION
-    // ===============================================================
-    
-    function initAdminPanel() {
-        const adminTrigger = document.getElementById('adminTrigger');
-        const adminPanel = document.getElementById('adminPanel');
-        let clickCount = 0;
-        let clickTimer = null;
-        
-        // Méthode 1: Clics multiples (adapté pour iPhone)
-        if (adminTrigger) {
-            adminTrigger.addEventListener('click', function(e) {
-                e.preventDefault(); // Empêcher le comportement par défaut sur mobile
-                e.stopPropagation(); // Empêcher la propagation
-                
-                clickCount++;
-                console.log(`Clic admin: ${clickCount}/5`);
-                
-                if (clickCount === 1) {
-                    // Réinitialiser après 3 secondes
-                    clickTimer = setTimeout(() => {
-                        clickCount = 0;
-                        console.log('Compteur de clics réinitialisé');
-                    }, 3000);
-                }
-                
-                if (clickCount === 5) {
-                    console.log('Activation du panneau admin');
-                    showAdminPanel();
-                    clickCount = 0;
-                    clearTimeout(clickTimer);
-                    
-                    // Feedback haptique sur iPhone si disponible
-                    if (navigator.vibrate) {
-                        navigator.vibrate(200);
-                    }
-                }
-            });
-            
-            // Rendre le bouton plus visible pour le débogage (optionnel)
-            adminTrigger.style.cssText = `
-                position: fixed;
-                bottom: 10px;
-                left: 10px;
-                width: 30px;
-                height: 30px;
-                background: rgba(255, 0, 0, 0.3);
-                border-radius: 50%;
-                z-index: 1;
-            `;
-        }
-        
-        // Méthode 2: Séquence de touches (plus fiable sur mobile)
-        let keySequence = '';
-        const adminSequence = 'admin';
-        
-        document.addEventListener('keydown', function(e) {
-            keySequence += e.key.toLowerCase();
-            
-            // Garder seulement les 10 derniers caractères
-            if (keySequence.length > 10) {
-                keySequence = keySequence.slice(-10);
-            }
-            
-            console.log(`Séquence de touches: ${keySequence}`);
-            
-            if (keySequence.includes(adminSequence)) {
-                console.log('Séquence admin détectée !');
-                showAdminPanel();
-                keySequence = '';
-                
-                // Feedback haptique
-                if (navigator.vibrate) {
-                    navigator.vibrate(200);
-                }
-            }
-        });
-        
-        // Méthode 3: Double tap spécial pour mobile
-        let lastTap = 0;
-        document.addEventListener('touchend', function(e) {
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
-            
-            if (tapLength < 300 && tapLength > 0) {
-                // Double tap
-                console.log('Double tap détecté');
-                
-                // Vérifier si c'est dans la zone secrète (coin supérieur gauche)
-                const touch = e.changedTouches[0];
-                const secretZone = {
-                    x: window.innerWidth * 0.2, // 20% de la largeur depuis la gauche
-                    y: window.innerHeight * 0.2, // 20% de la hauteur depuis le haut
-                    size: 50
-                };
-                
-                if (touch.clientX < secretZone.x && touch.clientY < secretZone.y) {
-                    console.log('Double tap dans la zone secrète !');
-                    showAdminPanel();
-                    
-                    // Feedback haptique
-                    if (navigator.vibrate) {
-                        navigator.vibrate([100, 50, 100]);
-                    }
-                }
-            }
-            
-            lastTap = currentTime;
-        });
-    }
-    
-    function showAdminPanel() {
-        const adminPanel = document.getElementById('adminPanel');
-        if (adminPanel) {
-            adminPanel.style.display = 'flex';
-            updateAdminStats();
-            displayVisitorList();
-            displayVisitorStats();
-        }
-    }
-    
-    function closeAdminPanel() {
-        const adminPanel = document.getElementById('adminPanel');
-        if (adminPanel) {
-            adminPanel.style.display = 'none';
-        }
-    }
-    
-    // ===============================================================
     // FONCTIONS DE TEST ET ANALYSE
     // ===============================================================
     
@@ -4995,9 +4257,6 @@
         
         // Initialiser le carousel principal
         initCarousel();
-        
-        // Initialiser le carousel des packs
-        initPacksCarousel();
         
         // Initialiser les témoignages
         initTestimonials();
@@ -5302,22 +4561,6 @@
         const track = document.getElementById('carouselTrack');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
-        
-        if (track && prevBtn && nextBtn) {
-            prevBtn.addEventListener('click', () => {
-                track.scrollBy({ left: -240, behavior: 'smooth' });
-            });
-            
-            nextBtn.addEventListener('click', () => {
-                track.scrollBy({ left: 240, behavior: 'smooth' });
-            });
-        }
-    }
-    
-    function initPacksCarousel() {
-        const track = document.getElementById('packsCarouselTrack');
-        const prevBtn = document.getElementById('prevPackBtn');
-        const nextBtn = document.getElementById('nextPackBtn');
         
         if (track && prevBtn && nextBtn) {
             prevBtn.addEventListener('click', () => {
@@ -5764,20 +5007,10 @@
     // Fonctions pour les événements du DOM
     document.addEventListener('click', function(event) {
         const modal = document.getElementById('imageModal');
-        const quickViewModal = document.getElementById('quickViewModal');
-        const userFormOverlay = document.getElementById('userFormOverlay');
         const adminPanel = document.getElementById('adminPanel');
         
         if (event.target === modal) {
             closeModal();
-        }
-        
-        if (event.target === quickViewModal) {
-            closeQuickView();
-        }
-        
-        if (event.target === userFormOverlay) {
-            closeUserForm();
         }
         
         if (event.target === adminPanel) {
@@ -5788,8 +5021,6 @@
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             closeModal();
-            closeQuickView();
-            closeUserForm();
             closeAdminPanel();
         }
         
@@ -5865,13 +5096,6 @@
         if (currentQuickViewProduct) {
             addToCart(currentQuickViewProduct);
             closeQuickView();
-        }
-    }
-    
-    function closeUserForm() {
-        const userFormOverlay = document.getElementById('userFormOverlay');
-        if (userFormOverlay) {
-            userFormOverlay.classList.remove('active');
         }
     }
     
@@ -6156,29 +5380,6 @@
         }
     }
     
-    // Ajouter des boutons d'exportation
-    function addExportButtons() {
-        const adminActions = document.querySelector('.admin-actions');
-        
-        if (!document.getElementById('exportDetailedBtn')) {
-            const exportBtn = document.createElement('button');
-            exportBtn.id = 'exportDetailedBtn';
-            exportBtn.className = 'admin-btn admin-btn-primary';
-            exportBtn.textContent = '📊 Exporter données détaillées';
-            exportBtn.onclick = exportDetailedVisitorData;
-            adminActions.appendChild(exportBtn);
-        }
-        
-        if (!document.getElementById('exportLocationBtn')) {
-            const exportLocationBtn = document.createElement('button');
-            exportLocationBtn.id = 'exportLocationBtn';
-            exportLocationBtn.className = 'admin-btn admin-btn-primary';
-            exportLocationBtn.textContent = '🌍 Exporter par localisation';
-            exportLocationBtn.onclick = exportVisitorDataByLocation;
-            adminActions.appendChild(exportLocationBtn);
-        }
-    }
-    
     // Fonctions utilitaires supplémentaires
     function cleanupOldSessions() {
         try {
@@ -6249,7 +5450,7 @@
     
     function signInWithGitHub() {
         if (auth) {
-            const provider = new firebase.auth.GithubAuthProvider();
+            const provider = new firebase.auth.GitHubAuthProvider();
             auth.signInWithPopup(provider)
                 .then((result) => {
                     const user = result.user;
