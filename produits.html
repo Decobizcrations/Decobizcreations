@@ -2,7 +2,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
     <title>Produits - Decobizcreations | Artisanat Concrete</title>
     <meta name="description" content="Découvrez notre collection complète de créations artisanales en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc." />
     <meta name="keywords" content="décoration béton, gypse, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
@@ -26,6 +29,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -40,9 +44,11 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         html {
             scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
         }
         body {
             background: #fffaf5;
@@ -50,6 +56,8 @@
             line-height: 1.6;
             overflow-x: hidden;
             transition: background-color 0.5s ease, color 0.5s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         /* Mode sombre */
@@ -155,19 +163,23 @@
             background: none;
             border: 2px solid #b27952;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
             color: #b27952;
+            -webkit-appearance: none;
         }
         .dark-mode-toggle:hover {
             background: #b27952;
             color: white;
             transform: scale(1.1);
+        }
+        .dark-mode-toggle:active {
+            transform: scale(0.95);
         }
         
         /* Recherche */
@@ -177,12 +189,14 @@
             align-items: center;
         }
         .search-input {
-            padding: 8px 40px 8px 15px;
+            padding: 10px 40px 10px 15px;
             border: 2px solid #b27952;
             border-radius: 25px;
             outline: none;
             width: 200px;
             transition: width 0.3s ease;
+            -webkit-appearance: none;
+            border-radius: 25px;
         }
         .search-input:focus {
             width: 250px;
@@ -195,6 +209,8 @@
             color: #b27952;
             cursor: pointer;
             font-size: 1.1rem;
+            padding: 5px;
+            -webkit-appearance: none;
         }
         
         /* Panier compteur */
@@ -209,8 +225,8 @@
             background: #e74c3c;
             color: white;
             border-radius: 50%;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -365,7 +381,7 @@
             margin-bottom: 1.5rem;
         }
         .filter-btn {
-            padding: 8px 16px;
+            padding: 10px 18px;
             border: 2px solid #b27952;
             background: transparent;
             color: #b27952;
@@ -373,12 +389,17 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
+            -webkit-appearance: none;
+            min-height: 44px; /* Taille minimale pour une bonne interaction tactile */
         }
         .filter-btn:hover,
         .filter-btn.active {
             background: #b27952;
             color: white;
             transform: translateY(-2px);
+        }
+        .filter-btn:active {
+            transform: translateY(0);
         }
         
         /* Trier par */
@@ -395,7 +416,7 @@
             font-weight: 500;
         }
         .sort-dropdown {
-            padding: 8px 15px;
+            padding: 10px 15px;
             border: 2px solid #b27952;
             border-radius: 25px;
             background: white;
@@ -404,6 +425,8 @@
             cursor: pointer;
             outline: none;
             transition: all 0.3s ease;
+            min-height: 44px; /* Taille minimale pour une bonne interaction tactile */
+            -webkit-appearance: none;
         }
         .sort-dropdown:hover {
             background: #f9f3e8;
@@ -426,6 +449,7 @@
             position: relative;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             user-select: none;
+            -webkit-touch-callout: none;
         }
         .product-card:hover {
             transform: translateY(-15px) scale(1.03);
@@ -490,18 +514,22 @@
             background: rgba(178, 121, 82, 0.9);
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
         }
         .action-btn:hover {
             background: #b27952;
             transform: scale(1.1);
+        }
+        .action-btn:active {
+            transform: scale(0.95);
         }
         .product-info {
             padding: 1.6rem 2rem;
@@ -599,18 +627,22 @@
             background: #b27952;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
         }
         .packs-carousel-btn:hover {
             background: #8c5a34;
             transform: scale(1.1);
+        }
+        .packs-carousel-btn:active {
+            transform: scale(0.95);
         }
         .packs-carousel-track {
             display: flex;
@@ -627,8 +659,8 @@
             gap: 0.5rem;
         }
         .page-btn {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             border: 2px solid #b27952;
             background: transparent;
@@ -639,6 +671,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            -webkit-appearance: none;
         }
         .page-btn:hover,
         .page-btn.active {
@@ -654,6 +687,9 @@
             background: transparent;
             color: #b27952;
             transform: none;
+        }
+        .page-btn:active {
+            transform: translateY(0);
         }
         
         /* Newsletter */
@@ -683,6 +719,7 @@
             border: none;
             border-radius: 30px;
             outline: none;
+            -webkit-appearance: none;
         }
         .newsletter-btn {
             padding: 15px 30px;
@@ -694,10 +731,14 @@
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
+            -webkit-appearance: none;
         }
         .newsletter-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .newsletter-btn:active {
+            transform: translateY(0);
         }
         
         /* Footer */
@@ -751,8 +792,8 @@
             margin-top: 1rem;
         }
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: #f9f3e8;
             color: #b27952;
@@ -767,6 +808,9 @@
             color: white;
             transform: translateY(-3px);
         }
+        .social-link:active {
+            transform: translateY(0);
+        }
         .newsletter-form-footer {
             margin-top: 1rem;
             display: flex;
@@ -774,19 +818,21 @@
         }
         .newsletter-input-footer {
             flex: 1;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
+            -webkit-appearance: none;
         }
         .newsletter-btn-footer {
-            padding: 10px 15px;
+            padding: 12px 15px;
             background: #b27952;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s ease;
+            -webkit-appearance: none;
         }
         .newsletter-btn-footer:hover {
             background: #8c5a34;
@@ -832,6 +878,9 @@
         .whatsapp-float:hover {
             box-shadow: 0 10px 25px rgba(37,211,102,0.7);
         }
+        .whatsapp-float:active {
+            transform: scale(0.95);
+        }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -855,10 +904,14 @@
             font-size: 1.2rem;
             transition: all 0.3s ease;
             z-index: 1000;
+            -webkit-appearance: none;
         }
         .back-to-top:hover {
             background: #8c5a34;
             transform: translateY(-3px);
+        }
+        .back-to-top:active {
+            transform: translateY(0);
         }
         .back-to-top.show {
             display: flex;
@@ -885,6 +938,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.9);
+            -webkit-overflow-scrolling: touch;
         }
         .modal-content {
             position: relative;
@@ -950,6 +1004,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            -webkit-appearance: none;
         }
         .btn-add-to-cart {
             background: #b27952;
@@ -1003,7 +1058,7 @@
             background: #2196F3;
         }
         
-        /* Responsive */
+        /* Responsive - Adaptations pour iPhone */
         @media (max-width: 768px) {
             .header-controls {
                 flex-direction: column;
@@ -1062,6 +1117,129 @@
             
             .quick-view-container {
                 flex-direction: column;
+            }
+        }
+        
+        /* Adaptations spécifiques pour iPhone X et modèles ultérieurs (avec encoche) */
+        @media (max-width: 414px) {
+            header {
+                padding: 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+            
+            .product-card {
+                margin-bottom: 1rem;
+            }
+            
+            .product-image {
+                height: 180px;
+            }
+            
+            .product-info {
+                padding: 1rem;
+            }
+            
+            .product-info h4 {
+                font-size: 1.1rem;
+            }
+            
+            .product-price {
+                font-size: 1rem;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+            
+            .sort-dropdown {
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .newsletter-section {
+                padding: 2rem 1rem;
+            }
+            
+            .newsletter-section h3 {
+                font-size: 1.8rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .whatsapp-float {
+                width: 56px;
+                height: 56px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+            
+            .back-to-top {
+                width: 46px;
+                height: 46px;
+                bottom: 80px;
+                right: 20px;
+            }
+        }
+        
+        /* Adaptations spécifiques pour iPhone SE et petits écrans */
+        @media (max-width: 375px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            
+            .product-image {
+                height: 160px;
+            }
+            
+            .product-info h4 {
+                font-size: 1rem;
+            }
+            
+            .product-info span {
+                font-size: 0.9rem;
+            }
+            
+            .product-price {
+                font-size: 0.95rem;
+            }
+            
+            .action-btn {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h2 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 0.95rem;
+            }
+            
+            .filter-btn {
+                padding: 7px 12px;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -1353,10 +1531,58 @@
                         </button>
                     </div>
                 </div>
+                <div class="product-info">
+                    <h4>Plateau Boules</h4>
+                    <span>Design moderne</span>
+                    <div class="product-price">49 DH</div>
+                </div>
             </article>
             
+            <!-- Produit 9 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase cylindrique béton design">
+                <div class="product-image">
+                    <img src="vase cylindrique.jpeg" alt="Vase cylindrique 18 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('vase-cylindrique-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('vase-cylindrique-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('vase-cylindrique-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Vase Cylindrique</h4>
+                    <span>18 cm</span>
+                    <div class="product-price">55 DH</div>
+                </div>
+            </article>
             
-            
+            <!-- Produit 10 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite rectangulaire béton rangement">
+                <div class="product-image">
+                    <img src="boite rectangulaire.jpeg" alt="Boîte rectangulaire 15 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('boite-rectangulaire-15')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('boite-rectangulaire-15')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('boite-rectangulaire-15')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Boîte Rectangulaire</h4>
+                    <span>15 cm</span>
+                    <div class="product-price">39 DH</div>
+                </div>
+            </article>
             
             <!-- Produit 11 -->
             <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="croissant lune décoratif gypse mural">
@@ -1397,6 +1623,14 @@
                         <button class="action-btn" onclick="quickView('plateau-triangulaire-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
                             <i class="fas fa-eye"></i>
                         </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Plateau Nuage</h4>
+                    <span>Design original</span>
+                    <div class="product-price">
+                        <span class="old-price">55 DH</span>
+                        49 DH
                     </div>
                 </div>
             </article>
@@ -1726,8 +1960,8 @@
                 image: 'arc en ciel.jpeg'
             },
             'plateau-carre-20': {
-                title: 'Plateau boules',
-                description: '20 cm',
+                title: 'Plateau Boules',
+                description: 'Design moderne',
                 price: 160,
                 image: 'boules.jpeg'
             },
@@ -1750,10 +1984,10 @@
                 image: 'croissant lune.jpeg'
             },
             'plateau-triangulaire-18': {
-                title: 'Plateau Triangulaire',
-                description: '18 cm',
+                title: 'Plateau Nuage',
+                description: 'Design original',
                 price: 150,
-                image: 'plateau triangulaire.jpeg'
+                image: 'nuages.jpeg'
             },
             // Packs
             'pack0': {
@@ -1839,10 +2073,10 @@
                 image: 'arc en ciel.jpeg'
             },
             'plateau-carre-20': {
-                title: 'Plateau Carré',
-                description: 'Plateau carré en béton avec des bords arrondis, idéal pour un style moderne et épuré.',
+                title: 'Plateau Boules',
+                description: 'Plateau design original avec motif de boules, idéal pour une décoration moderne et originale.',
                 price: '160 DH',
-                image: 'plateau carré.jpeg'
+                image: 'boules.jpeg'
             },
             'vase-cylindrique-18': {
                 title: 'Vase Cylindrique',
@@ -1863,10 +2097,10 @@
                 image: 'croissant lune.jpeg'
             },
             'plateau-triangulaire-18': {
-                title: 'Plateau Triangulaire',
-                description: 'Plateau triangulaire en béton, design original pour une décoration moderne.',
+                title: 'Plateau Nuage',
+                description: 'Plateau design original en forme de nuage, parfait pour une décoration moderne et aérienne.',
                 price: '150 DH',
-                image: 'plateau triangulaire.jpeg'
+                image: 'nuages.jpeg'
             },
             // Données des packs pour l'aperçu rapide
             'pack0': {
@@ -1934,6 +2168,12 @@
             
             // Initialiser le consentement aux cookies
             initCookieConsent();
+            
+            // Optimiser les images pour le mobile
+            optimizeImagesForMobile();
+            
+            // Détecter si c'est un iPhone pour des optimisations spécifiques
+            detectIPhone();
         });
         
         // Initialisation du carousel des packs
@@ -1960,6 +2200,41 @@
                     updatePacksCarousel();
                 }
             });
+            
+            // Support pour le glisser tactile sur iPhone
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            track.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe gauche (suivant)
+                        const maxPosition = Math.max(0, cards.length - 3);
+                        if (packsCarouselPosition < maxPosition) {
+                            packsCarouselPosition++;
+                            updatePacksCarousel();
+                        }
+                    } else {
+                        // Swipe droit (précédent)
+                        if (packsCarouselPosition > 0) {
+                            packsCarouselPosition--;
+                            updatePacksCarousel();
+                        }
+                    }
+                }
+            }
             
             function updatePacksCarousel() {
                 track.style.transform = `translateX(-${packsCarouselPosition * cardWidth}px)`;
@@ -2000,7 +2275,7 @@
                 const docHeight = document.body.scrollHeight - window.innerHeight;
                 const scrollPercent = (scrollTop / docHeight) * 100;
                 document.getElementById('progressbar').style.width = scrollPercent + '%';
-            });
+            }, { passive: true });
         }
         
         // Animations au scroll
@@ -2028,7 +2303,7 @@
                 } else {
                     backToTopBtn.classList.remove('show');
                 }
-            });
+            }, { passive: true });
         }
         
         function scrollToTop() {
@@ -2069,6 +2344,11 @@
             const noResultsMsg = document.getElementById('noResults');
             const resultsCount = document.getElementById('resultsCount');
             
+            // Désactiver la correction automatique et la majusculation automatique sur iPhone
+            searchInput.setAttribute('autocorrect', 'off');
+            searchInput.setAttribute('autocapitalize', 'off');
+            searchInput.setAttribute('spellcheck', 'false');
+            
             function performSearch(event) {
                 // Empêcher le rechargement de la page
                 if (event) {
@@ -2107,9 +2387,11 @@
                         card.style.visibility = 'visible';
                         visibleCount++;
                     } else {
-                        card.style.display = 'none';
                         card.style.opacity = '0';
-                        card.style.visibility = 'hidden';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
                     }
                 });
                 
@@ -2136,8 +2418,12 @@
             });
             
             // Lancer la recherche en temps réel pendant la saisie
+            let searchTimeout;
             searchInput.addEventListener('input', () => {
-                performSearch();
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    performSearch();
+                }, 300); // Délai pour ne pas surcharger le processeur sur mobile
             });
         }
         
@@ -2307,7 +2593,6 @@
         function addToCart(productId) {
             const product = productsData[productId];
             if (!product) return;
-
             // Récupérer le panier actuel depuis localStorage
             let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
             
@@ -2345,6 +2630,11 @@
                 badge.style.transform = 'scale(1)';
             }, 200);
             
+            // Vibration sur iPhone si disponible
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50);
+            }
+            
             // Suivi Analytics
             trackEvent('add_to_cart', { product_id: productId });
         }
@@ -2357,6 +2647,11 @@
             if (!wishlist.includes(productId)) {
                 wishlist.push(productId);
                 localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            }
+            
+            // Vibration sur iPhone si disponible
+            if ('vibrate' in navigator) {
+                navigator.vibrate(50);
             }
             
             // Suivi Analytics
@@ -2375,12 +2670,20 @@
                 
                 document.getElementById('quickViewModal').style.display = 'block';
                 document.body.style.overflow = 'hidden';
+                
+                // Empêcher le défilement du fond sur iPhone
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
             }
         }
         
         function closeQuickView() {
             document.getElementById('quickViewModal').style.display = 'none';
             document.body.style.overflow = 'auto';
+            
+            // Rétablir le défilement sur iPhone
+            document.body.style.position = '';
+            document.body.style.width = '';
         }
         
         function addToCartFromQuickView() {
@@ -2570,8 +2873,59 @@
             }
         }
         
+        // Optimiser les images pour le mobile
+        function optimizeImagesForMobile() {
+            // Vérifier si nous sommes sur un appareil mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Récupérer toutes les images
+                const images = document.querySelectorAll('img');
+                
+                images.forEach(img => {
+                    // Ajouter un attribut loading="lazy" pour le chargement différé
+                    if (!img.hasAttribute('loading')) {
+                        img.setAttribute('loading', 'lazy');
+                    }
+                    
+                    // Empêcher le zoom sur les images sur iPhone
+                    img.addEventListener('click', function(e) {
+                        e.preventDefault();
+                    });
+                });
+            }
+        }
+        
+        // Détecter si c'est un iPhone pour des optimisations spécifiques
+        function detectIPhone() {
+            const isIPhone = /iPhone/.test(navigator.userAgent) || /iPad/.test(navigator.userAgent);
+            
+            if (isIPhone) {
+                // Ajouter une classe spécifique au body pour le style iPhone
+                document.body.classList.add('ios-device');
+                
+                // Désactiver le double-tap pour zoomer sur iPhone
+                let lastTouchEnd = 0;
+                document.addEventListener('touchend', function(event) {
+                    const now = (new Date()).getTime();
+                    if (now - lastTouchEnd <= 300) {
+                        event.preventDefault();
+                    }
+                    lastTouchEnd = now;
+                }, false);
+                
+                // Optimiser le défilement pour iPhone
+                document.addEventListener('touchmove', function(event) {
+                    // Permettre le défilement normal
+                }, { passive: true });
+                
+                console.log('Optimisations iPhone activées');
+            }
+        }
+        
         console.log('🎨 Decobizcreations - Page produits chargée avec succès !');
         console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+        console.log('📱 Optimisations pour iPhone activées');
     </script>
 </body>
 </html>
