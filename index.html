@@ -4263,29 +4263,66 @@
     function getVisitorLocation(visitorId) {
     console.log("Tentative de récupération de la localisation internationale...");
     
-    // D'abord essayer avec ip-api.com
-    fetch('https://ip-api.com/json/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log("Données de localisation reçues:", data);
-            if (data && data.status === 'success' && data.city && data.country) {
-                updateVisitorLocation(visitorId, data.city, data.country);
-            } else {
-                console.warn("Données de localisation incomplètes, essai avec une autre API...");
-                tryAlternativeLocationAPI(visitorId);
-            }
-        })
-        .catch(error => {
-            console.error("Erreur avec ip-api.com:", error.message);
-            tryAlternativeLocationAPI(visitorId);
-        });
+    // Liste d'APIs à essayer dans l'ordre
+    const apis = [
+        {
+            url: 'https://ipapi.co/json/',
+            handler: (data) => ({ city: data.city, country: data.country_name })
+        },
+        {
+            url: 'https://ip-api.com/json/',
+            handler: (data) => data.status === 'success' ? { city: data.city, country: data.country } : null
+        },
+        {
+            url: 'https://geoip-db.com/json/',
+            handler: (data) => ({ city: data.city, country: data.country_name })
+        },
+        {
+            url: 'https://ipinfo.io/json/',
+            handler: (data) => ({ city: data.city, country: data.country })
+        }
+    ];
+    
+    let currentApiIndex = 0;
+    
+    function tryNextAPI() {
+        if (currentApiIndex >= apis.length) {
+            console.warn("Toutes les APIs de géolocalisation ont échoué");
+            return;
+        }
+        
+        const currentApi = apis[currentApiIndex];
+        
+        // Ajouter un cache-buster pour éviter les problèmes de cache
+        const urlWithCache = currentApi.url + (currentApi.url.includes('?') ? '&' : '?') + '_t=' + Date.now();
+        
+        fetch(urlWithCache)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(`API ${currentApiIndex + 1} réponse:`, data);
+                
+                const location = currentApi.handler(data);
+                if (location && location.city && location.country) {
+                    updateVisitorLocation(visitorId, location.city, location.country);
+                } else {
+                    currentApiIndex++;
+                    tryNextAPI();
+                }
+            })
+            .catch(error => {
+                console.warn(`API ${currentApiIndex + 1} échouée:`, error.message);
+                currentApiIndex++;
+                tryNextAPI();
+            });
+    }
+    
+    tryNextAPI();
 }
-
 function tryAlternativeLocationAPI(visitorId) {
     // Essayer avec une API plus simple et fiable
     fetch('https://ipinfo.io/json?token=YOUR_API_TOKEN') // Vous pouvez obtenir un token gratuit sur ipinfo.io
@@ -4351,129 +4388,125 @@ function tryLastResortAPI(visitorId) {
     }
     
     // Fonction principale de suivi des visiteurs
+
     function initVisitorTracking() {
-        console.log("Initialisation du système de suivi des visiteurs internationaux...");
-        
-        const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
-        let visitors = window.getVisitorData();
-        console.log("Données visiteurs chargées:", visitors.length, "visiteurs");
-        
-        function detectVisitor() {
+    console.log("Initialisation du système de suivi des visiteurs internationaux...");
+    
+    const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
+    
+    // S'assurer que getVisitorData est défini
+    if (typeof window.getVisitorData !== 'function') {
+        window.getVisitorData = function() {
             try {
-                const sessionId = getSessionId();
-                const now = new Date().toISOString();
-                
-                const existingSession = visitors.find(v => v.sessionId === sessionId);
-                
-                if (!existingSession) {
-                    console.log("Nouveau visiteur détecté!");
-                    
-                    const visitor = {
-                        id: Date.now() + '_' + Math.random().toString(36).substring(2, 9),
-                        sessionId: sessionId,
-                        timestamp: now,
-                        userAgent: navigator.userAgent,
-                        device: getDeviceType(),
-                        browser: getBrowserType(),
-                        os: getOperatingSystem(),
-                        screenResolution: `${screen.width}x${screen.height}`,
-                        language: navigator.language,
-                        referrer: document.referrer || 'Direct',
-                        page: window.location.pathname,
-                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                        isMobile: /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent),
-                        isTablet: /Tablet|iPad|PlayBook|Silk|Kindle/i.test(navigator.userAgent),
-                        touchEnabled: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
-                        pixelRatio: window.devicePixelRatio || 1,
-                        viewportWidth: window.innerWidth,
-                        viewportHeight: window.innerHeight,
-                        connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
-                        city: '',
-                        country: '',
-                        region: '',
-                        latitude: '',
-                        longitude: ''
-                    };
-                    
-                    visitors.unshift(visitor);
-                    
-                    if (visitors.length > 2000) {
-                        visitors = visitors.slice(0, 2000);
-                    }
-                    
-                    localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
-                    
-                    console.log('Nouveau visiteur détecté (international):', visitor);
-                    
-                    updateVisitorCount();
-                    saveVisitorToFirebase(visitor);
-                    getVisitorLocation(visitor.id);
-                    
-                    return true;
-                }
-                return false;
-            } catch (error) {
-                console.error("Erreur lors de la détection du visiteur:", error);
-                return false;
+                const data = localStorage.getItem(VISITOR_STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                console.error("Erreur lors de la lecture des données visiteurs:", e);
+                return [];
             }
-        }
-        
-        function updateVisitorCount() {
-            try {
-                const count = visitors.length;
-                const countElement = document.getElementById('visitorCount');
-                const counterElement = document.getElementById('visitorCounter');
-                
-                if (countElement) countElement.textContent = count;
-                if (counterElement) {
-                    counterElement.classList.add('visible');
-                    counterElement.style.display = 'block';
-                }
-                
-                localStorage.setItem('visitorCount', count.toString());
-                console.log("Compteur de visiteurs mis à jour:", count);
-            } catch (error) {
-                console.error("Erreur lors de la mise à jour du compteur:", error);
-            }
-        }
-        
-        function saveVisitorToFirebase(visitor) {
-            if (database) {
-                const cleanId = visitor.id.toString().replace(/[.#$[\]]/g, '_');
-                
-                database.ref('visitors/' + cleanId).set(visitor).then(() => {
-                    console.log('Visiteur sauvegardé dans Firebase:', cleanId);
-                }).catch(error => {
-                    console.error('Erreur lors de la sauvegarde du visiteur:', error);
-                });
-                
-                database.ref('visitorCount').transaction(currentCount => {
-                    return (currentCount || 0) + 1;
-                }).then(() => {
-                    console.log('Compteur de visiteurs Firebase mis à jour');
-                }).catch(error => {
-                    console.error('Erreur lors de la mise à jour du compteur Firebase:', error);
-                });
-            }
-        }
-        
-        // Détecter immédiatement
-        const newVisitorDetected = detectVisitor();
-        console.log("Détection initiale:", newVisitorDetected ? "Nouveau visiteur" : "Visiteur existant");
-        
-        // Détecter périodiquement
-        setInterval(detectVisitor, 60000);
-        
-        console.log('🔍 Système de suivi des visiteurs internationaux initialisé');
-        
-        // Mettre à jour les statistiques après un délai
-        setTimeout(() => {
-            updateAdminStats();
-            displayVisitorList();
-            displayVisitorStats();
-        }, 1000);
+        };
     }
     
+    let visitors = window.getVisitorData();
+    console.log("Données visiteurs chargées:", visitors.length, "visiteurs");
+    
+    function detectVisitor() {
+        try {
+            const sessionId = getSessionId();
+            const now = new Date().toISOString();
+            
+            // Vérifier si cette session existe déjà
+            const existingSession = visitors.find(v => v.sessionId === sessionId);
+            
+            if (!existingSession) {
+                console.log("Nouveau visiteur détecté!");
+                
+                // Détecter le type d'appareil de manière plus précise
+                const userAgent = navigator.userAgent;
+                let deviceType = 'Ordinateur';
+                
+                if (/Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(userAgent)) {
+                    deviceType = 'Tablette';
+                } else if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|webOS|Symbian|Mobile Safari|Fennec|Minimo|NetFront|Blazer|Dolfin|Skyfire|Bolt|Iris|Maemo|Meego|Bada/i.test(userAgent)) {
+                    deviceType = 'Mobile';
+                }
+                
+                const visitor = {
+                    id: Date.now() + '_' + Math.random().toString(36).substring(2, 9),
+                    sessionId: sessionId,
+                    timestamp: now,
+                    userAgent: userAgent,
+                    device: deviceType,
+                    browser: getBrowserType(),
+                    os: getOperatingSystem(),
+                    screenResolution: `${screen.width}x${screen.height}`,
+                    language: navigator.language,
+                    referrer: document.referrer || 'Direct',
+                    page: window.location.pathname,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    isMobile: deviceType === 'Mobile',
+                    isTablet: deviceType === 'Tablette',
+                    touchEnabled: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+                    pixelRatio: window.devicePixelRatio || 1,
+                    viewportWidth: window.innerWidth,
+                    viewportHeight: window.innerHeight,
+                    connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                    city: '',
+                    country: '',
+                    region: '',
+                    latitude: '',
+                    longitude: ''
+                };
+                
+                visitors.unshift(visitor);
+                
+                if (visitors.length > 2000) {
+                    visitors = visitors.slice(0, 2000);
+                }
+                
+                localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
+                
+                console.log('Nouveau visiteur détecté (international):', visitor);
+                
+                updateVisitorCount();
+                saveVisitorToFirebase(visitor);
+                getVisitorLocation(visitor.id);
+                
+                // Afficher une notification sur mobile
+                if (visitor.isMobile || visitor.isTablet) {
+                    showMobileNotification();
+                }
+                
+                return true;
+            }
+            return false;
+        } catch (error) {
+            console.error("Erreur lors de la détection du visiteur:", error);
+            return false;
+        }
+    }
+    
+    // ... (le reste de la fonction reste identique)
+    
+    // Détecter immédiatement
+    const newVisitorDetected = detectVisitor();
+    console.log("Détection initiale:", newVisitorDetected ? "Nouveau visiteur" : "Visiteur existant");
+    
+    // Détecter périodiquement
+    setInterval(detectVisitor, 60000);
+    
+    console.log('🔍 Système de suivi des visiteurs internationaux initialisé');
+    
+    // Mettre à jour les statistiques après un délai
+    setTimeout(() => {
+        updateAdminStats();
+        displayVisitorList();
+        displayVisitorStats();
+    }, 1000);
+    
+    // Initialiser la détection mobile spécifique
+    initMobileVisitorDetection();
+}
     // ===============================================================
     // FONCTIONS DU PANIER ET PRODUITS
     // ===============================================================
@@ -4598,44 +4631,265 @@ function tryLastResortAPI(visitorId) {
     // ===============================================================
     
     function initAdminPanel() {
-        const adminTrigger = document.getElementById('adminTrigger');
-        const adminPanel = document.getElementById('adminPanel');
-        let clickCount = 0;
-        let clickTimer = null;
-        
-        if (adminTrigger) {
-            adminTrigger.addEventListener('click', function() {
-                clickCount++;
-                
-                if (clickCount === 1) {
-                    clickTimer = setTimeout(() => {
-                        clickCount = 0;
-                    }, 3000);
-                }
-                
-                if (clickCount === 5) {
-                    showAdminPanel();
-                    clickCount = 0;
-                    clearTimeout(clickTimer);
-                }
-            });
-        }
-        
-        let typedKeys = '';
-        document.addEventListener('keydown', function(e) {
-            typedKeys += e.key.toLowerCase();
+    const adminTrigger = document.getElementById('adminTrigger');
+    const adminPanel = document.getElementById('adminPanel');
+    let clickCount = 0;
+    let clickTimer = null;
+    
+    // Méthode 1: Clics multiples (adapté pour iPhone)
+    if (adminTrigger) {
+        adminTrigger.addEventListener('click', function(e) {
+            e.preventDefault(); // Empêcher le comportement par défaut sur mobile
+            e.stopPropagation(); // Empêcher la propagation
             
-            if (typedKeys.length > 10) {
-                typedKeys = typedKeys.slice(-10);
+            clickCount++;
+            console.log(`Clic admin: ${clickCount}/5`);
+            
+            if (clickCount === 1) {
+                // Réinitialiser après 3 secondes
+                clickTimer = setTimeout(() => {
+                    clickCount = 0;
+                    console.log('Compteur de clics réinitialisé');
+                }, 3000);
             }
             
-            if (typedKeys.includes('admin') && e.key === 'Enter') {
+            if (clickCount === 5) {
+                console.log('Activation du panneau admin');
                 showAdminPanel();
-                typedKeys = '';
+                clickCount = 0;
+                clearTimeout(clickTimer);
+                
+                // Feedback haptique sur iPhone si disponible
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
             }
         });
+        
+        // Rendre le bouton plus visible pour le débogage (optionnel)
+        adminTrigger.style.cssText = `
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 0, 0, 0.3);
+            border-radius: 50%;
+            z-index: 1;
+        `;
     }
     
+    // Méthode 2: Séquence de touches (plus fiable sur mobile)
+    let keySequence = '';
+    const adminSequence = 'admin';
+    
+    document.addEventListener('keydown', function(e) {
+        keySequence += e.key.toLowerCase();
+        
+        // Garder seulement les 10 derniers caractères
+        if (keySequence.length > 10) {
+            keySequence = keySequence.slice(-10);
+        }
+        
+        console.log(`Séquence de touches: ${keySequence}`);
+        
+        if (keySequence.includes(adminSequence)) {
+            console.log('Séquence admin détectée !');
+            showAdminPanel();
+            keySequence = '';
+            
+            // Feedback haptique
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
+            }
+        }
+    });
+    
+    // Méthode 3: Double tap spécial pour mobile
+    let lastTap = 0;
+    document.addEventListener('touchend', function(e) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTap;
+        
+        if (tapLength < 300 && tapLength > 0) {
+            // Double tap
+            console.log('Double tap détecté');
+            
+            // Vérifier si c'est dans la zone secrète (coin supérieur gauche)
+            const touch = e.changedTouches[0];
+            const secretZone = {
+                x: window.innerWidth * 0.2, // 20% de la largeur depuis la gauche
+                y: window.innerHeight * 0.2, // 20% de la hauteur depuis le haut
+                size: 50
+            };
+            
+            if (touch.clientX < secretZone.x && touch.clientY < secretZone.y) {
+                console.log('Double tap dans la zone secrète !');
+                showAdminPanel();
+                
+                // Feedback haptique
+                if (navigator.vibrate) {
+                    navigator.vibrate([100, 50, 100]);
+                }
+            }
+        }
+        
+        lastTap = currentTime;
+    });
+    function initMobileVisitorDetection() {
+    console.log("Initialisation de la détection mobile...");
+    
+    // Forcer une détection immédiate sur mobile
+    setTimeout(() => {
+        console.log("Tentative de détection forcée pour mobile...");
+        
+        // Vérifier si c'est un mobile
+        const isMobile = /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent);
+        const isTablet = /Tablet|iPad|PlayBook|Silk|Kindle/i.test(navigator.userAgent);
+        
+        if (isMobile || isTablet) {
+            console.log("Appareil mobile détecté, forcer la détection...");
+            
+            // Simuler une nouvelle session pour mobile
+            const currentVisitors = window.getVisitorData() || [];
+            const currentSession = getSessionId();
+            
+            // Vérifier si cette session mobile existe déjà
+            const existingMobileSession = currentVisitors.find(v => 
+                v.sessionId === currentSession && (v.isMobile || v.isTablet)
+            );
+            
+            if (!existingMobileSession) {
+                console.log("Nouveau visiteur mobile détecté !");
+                
+                const mobileVisitor = {
+                    id: Date.now() + '_mobile_' + Math.random().toString(36).substring(2, 9),
+                    sessionId: currentSession,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    device: isMobile ? 'Mobile' : 'Tablette',
+                    browser: getBrowserType(),
+                    os: getOperatingSystem(),
+                    screenResolution: `${screen.width}x${screen.height}`,
+                    language: navigator.language,
+                    referrer: document.referrer || 'Direct',
+                    page: window.location.pathname,
+                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                    isMobile: isMobile,
+                    isTablet: isTablet,
+                    touchEnabled: true,
+                    pixelRatio: window.devicePixelRatio || 1,
+                    viewportWidth: window.innerWidth,
+                    viewportHeight: window.innerHeight,
+                    connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                    city: '',
+                    country: '',
+                    region: '',
+                    latitude: '',
+                    longitude: ''
+                };
+                
+                // Ajouter le visiteur mobile
+                currentVisitors.unshift(mobileVisitor);
+                
+                // Limiter la taille
+                if (currentVisitors.length > 2000) {
+                    currentVisitors.length = 2000;
+                }
+                
+                // Sauvegarder
+                localStorage.setItem('decobizcreations_visitor_data', JSON.stringify(currentVisitors));
+                
+                // Mettre à jour le compteur
+                updateVisitorCount();
+                
+                // Sauvegarder dans Firebase
+                saveVisitorToFirebase(mobileVisitor);
+                
+                // Obtenir la localisation
+                getVisitorLocation(mobileVisitor.id);
+                
+                // Afficher une notification pour le débogage
+                console.log('Visiteur mobile enregistré:', mobileVisitor);
+                
+                // Feedback visuel
+                showMobileNotification();
+            }
+        }
+    }, 2000); // Attendre 2 secondes pour s'assurer que tout est chargé
+}
+
+function showMobileNotification() {
+    // Créer une notification temporaire pour confirmer la détection
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        z-index: 10000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+    notification.textContent = '📱 Visiteur mobile détecté !';
+    
+    document.body.appendChild(notification);
+    
+    // Animer l'entrée
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Supprimer après 3 secondes
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+    
+    // Méthode 4: Swipe spécial (très intuitif sur mobile)
+    let touchStartX = 0;
+    let touchStartY = 0;
+    
+    document.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    
+    document.addEventListener('touchend', function(e) {
+        const touchEndX = e.changedTouches[0].screenX;
+        const touchEndY = e.changedTouches[0].screenY;
+        
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        
+        // Détection d'un swipe en forme de "S" (haut-bas-haut)
+        if (Math.abs(deltaX) < 50 && Math.abs(deltaY) > 100) {
+            console.log('Swipe vertical détecté');
+            
+            // Vérifier si c'est dans la zone secrète
+            const touch = e.changedTouches[0];
+            if (touch.clientX < 100 && touch.clientY < 100) {
+                console.log('Swipe admin dans la zone secrète !');
+                showAdminPanel();
+                
+                // Feedback haptique
+                if (navigator.vibrate) {
+                    navigator.vibrate([100, 50, 100, 50, 100]);
+                }
+            }
+        }
+    }, { passive: true });
+}
     function showAdminPanel() {
         const adminPanel = document.getElementById('adminPanel');
         if (adminPanel) {
@@ -4715,62 +4969,354 @@ function tryLastResortAPI(visitorId) {
     // INITIALISATION PRINCIPALE
     // ===============================================================
     
-    window.addEventListener('load', function() {
-        // Masquer le loader
-        setTimeout(() => {
-            const loader = document.getElementById('loader');
-            if (loader) {
-                loader.style.opacity = '0';
+   window.addEventListener('load', function() {
+    // Masquer le loader avec une transition
+    setTimeout(() => {
+        const loader = document.getElementById('loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        }
+    }, 1000);
+    
+    // Initialiser les animations au scroll
+    initScrollAnimations();
+    
+    // Initialiser le carousel principal
+    initCarousel();
+    
+    // Initialiser le carousel des packs
+    initPacksCarousel();
+    
+    // Initialiser les témoignages
+    initTestimonials();
+    
+    // Initialiser la barre de progression du scroll
+    initScrollProgress();
+    
+    // Initialiser le bouton retour en haut
+    initBackToTop();
+    
+    // Initialiser le mode sombre
+    initDarkMode();
+    
+    // Initialiser la fonction de recherche
+    initSearch();
+    
+    // Initialiser les filtres de produits
+    initFilters();
+    
+    // Initialiser le menu mobile
+    initMobileMenu();
+    
+    // Charger le compteur du panier depuis localStorage
+    loadCartCount();
+    
+    // Charger les articles du panier depuis localStorage
+    loadCartItems();
+    
+    // Initialiser le service worker pour PWA
+    initServiceWorker();
+    
+    // Initialiser le consentement aux cookies
+    initCookieConsent();
+    
+    // Initialiser le système d'identification des utilisateurs
+    initUserSystem();
+    
+    // Initialiser le suivi des visiteurs
+    initVisitorTracking();
+    
+    // Initialiser le panneau d'administration après un délai
+    setTimeout(() => {
+        initAdminPanel();
+    }, 2000);
+    
+    // Démarrer le nettoyage périodique des anciennes sessions
+    setInterval(cleanupOldSessions, 3600000); // Toutes les heures
+    
+    // Optimisation spécifique pour iPhone
+    optimizeForIPhone();
+    
+    // Initialiser l'effet parallaxe
+    initParallaxEffect();
+    
+    // Initialiser les animations de chargement différé
+    initLazyLoading();
+    
+    // Suivre la page vue
+    trackEvent('page_view', { page: 'home' });
+    
+    // Test immédiat au chargement de la page
+    setTimeout(() => {
+        console.log("=== Tests de détection ===");
+        testDeviceDetection();
+        analyzeStoredData();
+        console.log("=== Fin des tests ===");
+    }, 2000);
+    
+    // Afficher des instructions pour mobile
+    if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent)) {
+        console.log("Appareil mobile détecté, affichage des instructions...");
+        showMobileInstructions();
+    }
+    
+    // Afficher un message de bienvenue
+    console.log('🎨 Decobizcreations - Site chargé avec succès !');
+    console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+    console.log('🔍 Système de suivi des visiteurs internationaux activé');
+    
+    // Forcer une détection mobile après le chargement complet
+    setTimeout(() => {
+        if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent)) {
+            console.log("Forçage de la détection mobile...");
+            forceMobileDetection();
+        }
+    }, 3000);
+});
+
+// Fonction pour afficher des instructions mobiles
+function showMobileInstructions() {
+    // Attendre que le site soit complètement chargé
+    setTimeout(() => {
+        // Vérifier si les instructions n'ont pas déjà été affichées
+        if (!localStorage.getItem('mobileInstructionsShown')) {
+            const instructions = document.createElement('div');
+            instructions.id = 'mobile-instructions';
+            instructions.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+                color: white;
+                padding: 15px;
+                border-radius: 15px;
+                font-size: 14px;
+                z-index: 10000;
+                text-align: center;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                transform: translateY(100%);
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                border: 1px solid rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding-bottom: calc(15px + env(safe-area-inset-bottom));
+            `;
+            
+            instructions.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                    <span style="font-size: 20px; margin-right: 10px;">📱</span>
+                    <strong style="color: #b27952;">Mode Mobile Activé</strong>
+                </div>
+                <div style="font-size: 12px; line-height: 1.4; margin-bottom: 12px;">
+                    Pour accéder au panneau d'administration :
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; margin-bottom: 8px; font-size: 12px;">
+                    📝 Tapez <strong style="color: #f8b500;">admin</strong> sur votre clavier
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; font-size: 12px;">
+                    👆 Ou double-tapez dans le coin supérieur gauche
+                </div>
+                <div style="margin-top: 12px; font-size: 11px; opacity: 0.7;">
+                    Cette notification disparaîtra dans 15 secondes
+                </div>
+                <button onclick="dismissMobileInstructions()" style="
+                    position: absolute;
+                    top: 8px;
+                    right: 8px;
+                    background: none;
+                    border: none;
+                    color: white;
+                    font-size: 16px;
+                    cursor: pointer;
+                    opacity: 0.7;
+                    padding: 5px;
+                ">×</button>
+            `;
+            
+            document.body.appendChild(instructions);
+            
+            // Animer l'entrée
+            setTimeout(() => {
+                instructions.style.transform = 'translateY(0)';
+            }, 100);
+            
+            // Marquer que les instructions ont été affichées
+            localStorage.setItem('mobileInstructionsShown', 'true');
+            
+            // Supprimer après 15 secondes
+            setTimeout(() => {
+                instructions.style.transform = 'translateY(100%)';
                 setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
+                    if (instructions.parentNode) {
+                        instructions.parentNode.removeChild(instructions);
+                    }
+                }, 400);
+            }, 15000);
+        }
+    }, 4000);
+}
+
+// Fonction pour fermer les instructions mobiles
+function dismissMobileInstructions() {
+    const instructions = document.getElementById('mobile-instructions');
+    if (instructions) {
+        instructions.style.transform = 'translateY(100%)';
+        setTimeout(() => {
+            if (instructions.parentNode) {
+                instructions.parentNode.removeChild(instructions);
             }
-        }, 1000);
+        }, 400);
+    }
+}
+
+// Fonction pour forcer la détection mobile
+function forceMobileDetection() {
+    console.log("Tentative de détection mobile forcée...");
+    
+    try {
+        const currentVisitors = window.getVisitorData() || [];
+        const currentSession = getSessionId();
         
-        // Initialiser les fonctionnalités de base
-        initScrollAnimations();
-        initCarousel();
-        initPacksCarousel();
-        initTestimonials();
-        initScrollProgress();
-        initBackToTop();
-        initDarkMode();
-        initSearch();
-        initFilters();
-        initMobileMenu();
+        // Vérifier si cette session mobile existe déjà
+        const existingMobileSession = currentVisitors.find(v => 
+            v.sessionId === currentSession && (v.isMobile || v.isTablet)
+        );
         
-        loadCartCount();
-        loadCartItems();
-        initServiceWorker();
-        initCookieConsent();
-        initUserSystem();
-        
-        // Initialiser le suivi des visiteurs
-        initVisitorTracking();
-        
-        // Initialiser le panneau d'administration
+        if (!existingMobileSession) {
+            console.log("Nouveau visiteur mobile détecté par force !");
+            
+            const isMobile = /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent);
+            const isTablet = /Tablet|iPad|PlayBook|Silk|Kindle/i.test(navigator.userAgent);
+            
+            const mobileVisitor = {
+                id: Date.now() + '_forced_mobile_' + Math.random().toString(36).substring(2, 9),
+                sessionId: currentSession,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                device: isMobile ? 'Mobile' : (isTablet ? 'Tablette' : 'Ordinateur'),
+                browser: getBrowserType(),
+                os: getOperatingSystem(),
+                screenResolution: `${screen.width}x${screen.height}`,
+                language: navigator.language,
+                referrer: document.referrer || 'Direct',
+                page: window.location.pathname,
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                isMobile: isMobile,
+                isTablet: isTablet,
+                touchEnabled: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+                pixelRatio: window.devicePixelRatio || 1,
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight,
+                connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                city: '',
+                country: '',
+                region: '',
+                latitude: '',
+                longitude: ''
+            };
+            
+            // Ajouter le visiteur mobile
+            currentVisitors.unshift(mobileVisitor);
+            
+            // Limiter la taille
+            if (currentVisitors.length > 2000) {
+                currentVisitors.length = 2000;
+            }
+            
+            // Sauvegarder
+            localStorage.setItem('decobizcreations_visitor_data', JSON.stringify(currentVisitors));
+            
+            // Mettre à jour le compteur
+            updateVisitorCount();
+            
+            // Sauvegarder dans Firebase
+            saveVisitorToFirebase(mobileVisitor);
+            
+            // Obtenir la localisation
+            getVisitorLocation(mobileVisitor.id);
+            
+            // Afficher une notification
+            showMobileNotification();
+            
+            console.log('Visiteur mobile forcé enregistré:', mobileVisitor);
+        } else {
+            console.log("Session mobile déjà existante, pas de nouvelle détection");
+        }
+    } catch (error) {
+        console.error("Erreur lors de la détection mobile forcée:", error);
+    }
+}
+
+// Fonction pour afficher une notification mobile
+function showMobileNotification() {
+    // Créer une notification temporaire pour confirmer la détection
+    const notification = document.createElement('div');
+    notification.id = 'mobile-detection-notification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-size: 14px;
+        z-index: 10001;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        top: calc(20px + env(safe-area-inset-top));
+        right: calc(20px + env(safe-area-inset-right));
+    `;
+    notification.innerHTML = `
+        <span style="margin-right: 8px; font-size: 16px;">📱</span>
+        Visiteur mobile détecté avec succès !
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animer l'entrée
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Supprimer après 3 secondes
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
-            initAdminPanel();
-        }, 2000);
-        
-        // Autres initialisations
-        optimizeForIPhone();
-        initParallaxEffect();
-        initLazyLoading();
-        trackEvent('page_view', { page: 'home' });
-        
-        // Tests
-        setTimeout(() => {
-            console.log("=== Tests de détection ===");
-            testDeviceDetection();
-            analyzeStoredData();
-            console.log("=== Fin des tests ===");
-        }, 2000);
-        
-        console.log('🎨 Decobizcreations - Site chargé avec succès !');
-        console.log('✨ Toutes les fonctionnalités sont opérationnelles');
-        console.log('🔍 Système de suivi des visiteurs internationaux activé');
-    });
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 400);
+    }, 3000);
+}
+
+// Fonction pour réinitialiser les instructions mobiles (pour le débogage)
+function resetMobileInstructions() {
+    localStorage.removeItem('mobileInstructionsShown');
+    console.log("Instructions mobiles réinitialisées");
+}
+
+// Ajouter un écouteur pour le débogage mobile
+document.addEventListener('keydown', function(e) {
+    // Séquence secrète pour réinitialiser les instructions mobiles
+    if (e.key === 'r' && e.ctrlKey && e.altKey) {
+        resetMobileInstructions();
+        showMobileInstructions();
+    }
+    
+    // Séquence secrète pour forcer la détection mobile
+    if (e.key === 'd' && e.ctrlKey && e.altKey) {
+        forceMobileDetection();
+    }
+});
     
     // ===============================================================
     // FONCTIONS MANQUANTES (à implémenter selon vos besoins)
