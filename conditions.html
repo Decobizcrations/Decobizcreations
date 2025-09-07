@@ -31,21 +31,285 @@
             line-height: 1.4;
             font-size: 14px;
             padding-bottom: env(safe-area-inset-bottom);
+            overflow-x: hidden;
         }
         
-        /* Header minimaliste */
-        header {
+        /* Navigation principale */
+        .main-nav-container {
             position: sticky;
             top: 0;
+            z-index: 1000;
             background: #fff;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 10px;
+        }
+        
+        #mainNav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            padding-top: env(safe-area-inset-top);
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-brand h1 {
+            font-size: 1.2rem;
+            color: #b27952;
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-item {
+            position: relative;
+            margin: 0 10px;
+        }
+        
+        .nav-item a {
+            color: #3a3a3a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 5px 0;
+            display: block;
+            transition: color 0.3s;
+        }
+        
+        .nav-item a:hover {
+            color: #b27952;
+        }
+        
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 180px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s;
+            z-index: 100;
+        }
+        
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .submenu a {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.85rem;
+        }
+        
+        .submenu a:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-counter {
+            position: relative;
+            margin-left: 15px;
+        }
+        
+        .cart-counter a {
+            color: #3a3a3a;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-counter i {
+            margin-right: 5px;
+            color: #b27952;
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -12px;
+            background: #b27952;
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Menu mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #b27952;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            padding-top: 60px;
+        }
+        
+        .mobile-nav.active {
+            right: 0;
+        }
+        
+        .mobile-nav-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            background: #b27952;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-item {
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .mobile-nav-item > a {
+            display: block;
+            padding: 15px;
+            color: #3a3a3a;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .mobile-submenu {
+            display: none;
+            background: #f9f9f9;
+            padding-left: 20px;
+        }
+        
+        .mobile-submenu a {
+            display: block;
+            padding: 12px 15px;
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .mobile-submenu-toggle {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #f8f5f0;
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breadcrumb-list {
+            display: flex;
+            list-style: none;
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+        }
+        
+        .breadcrumb-list::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+        
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .breadcrumb-item:not(:last-child)::after {
+            content: "›";
+            margin: 0 8px;
+            color: #b27952;
+        }
+        
+        .breadcrumb-link {
+            color: #b27952;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        
+        .breadcrumb-current {
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 10px 15px;
             z-index: 100;
             border-bottom: 1px solid #b27952;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-top: env(safe-area-inset-top);
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
         }
         
         .back-btn {
@@ -54,11 +318,90 @@
             color: #b27952;
             font-size: 1.2rem;
             padding: 5px;
+            margin-right: 10px;
+            cursor: pointer;
         }
         
         .logo h1 {
             font-size: 1rem;
             color: #3a3a3a;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-btn {
+            background: none;
+            border: none;
+            color: #b27952;
+            font-size: 1.1rem;
+            padding: 8px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        
+        .header-btn:hover {
+            background: rgba(178, 121, 82, 0.1);
+        }
+        
+        /* Menu déroulant */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            right: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-width: 200px;
+            z-index: 101;
+            display: none;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+        
+        .dropdown-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .dropdown-item i {
+            margin-right: 10px;
+            color: #b27952;
+            width: 20px;
+            text-align: center;
         }
         
         /* Contenu principal */
@@ -87,6 +430,11 @@
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             padding: 15px;
             margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+        
+        .section:active {
+            transform: scale(0.98);
         }
         
         .section-title {
@@ -94,6 +442,13 @@
             color: #b27952;
             margin-bottom: 10px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 8px;
+            font-size: 1rem;
         }
         
         .section-content {
@@ -121,7 +476,7 @@
             font-weight: 500;
         }
         
-        /* Footer minimaliste */
+        /* Footer */
         footer {
             background: #f3f0eb;
             color: #777;
@@ -133,12 +488,58 @@
         
         .footer-links {
             margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
         .footer-links a {
             color: #b27952;
             text-decoration: none;
-            margin: 0 5px;
+            margin: 0 8px;
+            padding: 5px 0;
+            position: relative;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #b27952;
+            transition: width 0.3s;
+        }
+        
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Bouton d'accessibilité */
+        .accessibility-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #b27952;
+            color: white;
+            border: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        
+        .accessibility-btn:hover {
+            transform: scale(1.1);
+            background: #a06847;
         }
         
         /* Mode sombre */
@@ -147,8 +548,27 @@
             color: #e0e0e0;
         }
         
-        body.dark-mode header {
+        body.dark-mode .main-nav-container,
+        body.dark-mode header,
+        body.dark-mode .mobile-nav {
             background: #2d2d2d;
+        }
+        
+        body.dark-mode .nav-item a,
+        body.dark-mode .cart-counter a,
+        body.dark-mode .mobile-nav-item > a,
+        body.dark-mode .mobile-submenu a {
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .submenu,
+        body.dark-mode .mobile-submenu {
+            background: #333;
+        }
+        
+        body.dark-mode .breadcrumb {
+            background: #252525;
+            border-bottom-color: #444;
         }
         
         body.dark-mode .section {
@@ -166,17 +586,219 @@
         body.dark-mode footer {
             background: #222222;
         }
+        
+        body.dark-mode .dropdown-menu {
+            background: #333;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .dropdown-item {
+            color: #e0e0e0;
+            border-bottom: 1px solid #444;
+        }
+        
+        body.dark-mode .dropdown-item:hover {
+            background: #3a3a3a;
+        }
+        
+        /* Pour les très petits écrans */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .header-right {
+                margin-left: auto;
+            }
+            
+            .dropdown-menu {
+                right: 10px;
+                min-width: 180px;
+            }
+        }
+        
+        /* Pour les écrans moyens */
+        @media (min-width: 769px) {
+            .container {
+                max-width: 700px;
+                margin: 0 auto;
+            }
+            
+            .mobile-nav {
+                display: none;
+            }
+            
+            .overlay {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <button class="back-btn" onclick="history.back()">
-            <i class="fas fa-arrow-left"></i>
-        </button>
-        <div class="logo">
-            <h1>Conditions Générales</h1>
+    <!-- Navigation principale -->
+    <div class="main-nav-container">
+        <nav id="mainNav" aria-label="Navigation principale">
+            <div class="nav-brand">
+                <h1>Decobizcreations</h1>
+            </div>
+            
+            <div class="nav-menu">
+                <div class="nav-item">
+                    <a href="index.html" tabindex="0">Accueil</a>
+                </div>
+                <div class="nav-item">
+                    <a href="produits.html" tabindex="0">Produits</a>
+                    <div class="submenu">
+                        <a href="produits.html?category=plateau">Plateaux</a>
+                        <a href="produits.html?category=vase">Vases</a>
+                        <a href="produits.html?category=boite">Boîtes</a>
+                        <a href="produits.html?category=decoration">Décorations</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="packs.html" tabindex="0">Packs</a>
+                </div>
+                <div class="nav-item">
+                    <a href="a-propos.html" tabindex="0">À propos</a>
+                    <div class="submenu">
+                        <a href="a-propos.html#histoire">Notre histoire</a>
+                        <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                        <a href="a-propos.html#atelier">Notre atelier</a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="blog.html" tabindex="0">Blog</a>
+                </div>
+                <div class="nav-item">
+                    <a href="contact.html" tabindex="0">Contact</a>
+                </div>
+                <div class="cart-counter">
+                    <a href="panier.html" tabindex="0">
+                        <i class="fas fa-shopping-cart"></i>
+                        Panier
+                    </a>
+                    <span class="cart-badge" id="cartBadge">0</span>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </div>
+    
+    <!-- Navigation mobile -->
+    <div class="mobile-nav" id="mobileNav">
+        <div class="mobile-nav-header">
+            <h2>Menu</h2>
+            <button class="mobile-nav-close" id="mobileNavClose" aria-label="Fermer le menu">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-        <div></div>
+        
+        <div class="mobile-nav-item">
+            <a href="index.html">Accueil</a>
+        </div>
+        
+        <div class="mobile-nav-item">
+            <a href="produits.html">Produits</a>
+            <button class="mobile-submenu-toggle" aria-label="Ouvrir le sous-menu">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="mobile-submenu">
+                <a href="produits.html?category=plateau">Plateaux</a>
+                <a href="produits.html?category=vase">Vases</a>
+                <a href="produits.html?category=boite">Boîtes</a>
+                <a href="produits.html?category=decoration">Décorations</a>
+            </div>
+        </div>
+        
+        <div class="mobile-nav-item">
+            <a href="packs.html">Packs</a>
+        </div>
+        
+        <div class="mobile-nav-item">
+            <a href="a-propos.html">À propos</a>
+            <button class="mobile-submenu-toggle" aria-label="Ouvrir le sous-menu">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="mobile-submenu">
+                <a href="a-propos.html#histoire">Notre histoire</a>
+                <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                <a href="a-propos.html#atelier">Notre atelier</a>
+            </div>
+        </div>
+        
+        <div class="mobile-nav-item">
+            <a href="blog.html">Blog</a>
+        </div>
+        
+        <div class="mobile-nav-item">
+            <a href="contact.html">Contact</a>
+        </div>
+        
+        <div class="mobile-nav-item">
+            <a href="panier.html">
+                <i class="fas fa-shopping-cart"></i> Panier
+                <span class="cart-badge" id="cartBadgeMobile">0</span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Accueil</a></li>
+            <li class="breadcrumb-item"><span class="breadcrumb-current">Conditions Générales</span></li>
+        </ol>
+    </nav>
+    
+    <!-- Header -->
+    <header>
+        <div class="header-left">
+            <button class="back-btn" onclick="history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="logo">
+                <h1>Conditions Générales</h1>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="header-btn" id="theme-toggle" aria-label="Changer le thème">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="header-btn" id="menu-toggle" aria-label="Menu">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="index.html" class="dropdown-item">
+                    <i class="fas fa-home"></i>
+                    <span>Accueil</span>
+                </a>
+                <a href="confidentialite.html" class="dropdown-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Confidentialité</span>
+                </a>
+                <a href="mentions-legales.html" class="dropdown-item">
+                    <i class="fas fa-gavel"></i>
+                    <span>Mentions Légales</span>
+                </a>
+                <a href="contact.html" class="dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+                <a href="faq.html" class="dropdown-item">
+                    <i class="fas fa-question-circle"></i>
+                    <span>FAQ</span>
+                </a>
+            </div>
+        </div>
     </header>
     
     <div class="container">
@@ -184,14 +806,14 @@
         <p class="last-update">Dernière mise à jour : 15 janvier 2025</p>
         
         <div class="section">
-            <h3 class="section-title">1. Objet</h3>
+            <h3 class="section-title"><i class="fas fa-file-contract"></i> 1. Objet</h3>
             <div class="section-content">
                 <p>Les présentes conditions générales de vente régissent les relations contractuelles entre Decobizcreations et ses clients. Toute commande implique l'acceptation sans réserve de ces conditions.</p>
             </div>
         </div>
         
         <div class="section">
-            <h3 class="section-title">2. Produits</h3>
+            <h3 class="section-title"><i class="fas fa-cube"></i> 2. Produits</h3>
             <div class="section-content">
                 <p>Les produits proposés sont des créations artisanales en concrete. Chaque pièce est unique et peut présenter de légères variations par rapport aux photos présentées.</p>
                 <p>Les photographies des produits sont les plus fidèles possible mais ne peuvent garantir une similitude parfaite.</p>
@@ -199,7 +821,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">3. Commandes</h3>
+            <h3 class="section-title"><i class="fas fa-shopping-cart"></i> 3. Commandes</h3>
             <div class="section-content">
                 <p>Les commandes sont effectuées via le site internet www.decobizcreations.com. Le client s'engage à fournir des informations exactes et complètes.</p>
                 <p>La validation de la commande vaut acceptation des prix, descriptions et conditions générales.</p>
@@ -207,7 +829,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">4. Prix</h3>
+            <h3 class="section-title"><i class="fas fa-money-bill-wave"></i> 4. Prix</h3>
             <div class="section-content">
                 <p>Les prix sont indiqués en Dirhams Marocains (DH) et sont TTC. Les frais de livraison sont calculés avant la validation finale de la commande.</p>
                 <p>Decobizcreations se réserve le droit de modifier ses prix à tout moment. Les produits seront facturés au tarif en vigueur au moment de la commande.</p>
@@ -215,7 +837,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">5. Paiement</h3>
+            <h3 class="section-title"><i class="fas fa-credit-card"></i> 5. Paiement</h3>
             <div class="section-content">
                 <p>Le paiement s'effectue en ligne via les méthodes suivantes :</p>
                 <ul>
@@ -228,7 +850,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">6. Livraison</h3>
+            <h3 class="section-title"><i class="fas fa-truck"></i> 6. Livraison</h3>
             <div class="section-content">
                 <p>Les délais de livraison sont de <span class="highlight">3 à 7 jours ouvrables</span> pour le Maroc. Pour les commandes personnalisées, comptez <span class="highlight">10 à 15 jours supplémentaires</span>.</p>
                 <p>La livraison est effectuée à l'adresse indiquée par le client lors de la commande. En cas d'absence, le transporteur laissera un avis de passage.</p>
@@ -236,7 +858,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">7. Rétractation et Retours</h3>
+            <h3 class="section-title"><i class="fas fa-undo-alt"></i> 7. Rétractation et Retours</h3>
             <div class="section-content">
                 <p>Conformément à la loi, le client dispose d'un délai de <span class="highlight">14 jours</span> à compter de la réception pour retourner un produit qui ne lui convient pas.</p>
                 <p>Les produits doivent être retournés dans leur état d'origine, non utilisés et dans leur emballage d'origine. Les frais de retour sont à la charge du client.</p>
@@ -244,10 +866,16 @@
             </div>
         </div>
         
-        
+        <div class="section">
+            <h3 class="section-title"><i class="fas fa-shield-alt"></i> 8. Garantie</h3>
+            <div class="section-content">
+                <p>Nos produits bénéficient d'une garantie contre les défauts de fabrication d'une durée de 6 mois à compter de la date de livraison.</p>
+                <p>La garantie ne couvre pas les dommages résultant d'une mauvaise utilisation, d'un défaut d'entretien ou d'une utilisation non conforme à leur destination.</p>
+            </div>
+        </div>
         
         <div class="section">
-            <h3 class="section-title">9. Propriété Intellectuelle</h3>
+            <h3 class="section-title"><i class="fas fa-copyright"></i> 9. Propriété Intellectuelle</h3>
             <div class="section-content">
                 <p>Tous les éléments du site www.decobizcreations.com sont la propriété exclusive de Decobizcreations et sont protégés par le droit d'auteur.</p>
                 <p>Toute reproduction, représentation ou diffusion du contenu est strictement interdite sans autorisation préalable.</p>
@@ -255,7 +883,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">10. Données Personnelles</h3>
+            <h3 class="section-title"><i class="fas fa-user-shield"></i> 10. Données Personnelles</h3>
             <div class="section-content">
                 <p>Les informations collectées sont nécessaires au traitement de votre commande et sont conservées conformément à notre politique de confidentialité.</p>
                 <p>Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition.</p>
@@ -263,7 +891,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">11. Force Majeure</h3>
+            <h3 class="section-title"><i class="fas fa-exclamation-triangle"></i> 11. Force Majeure</h3>
             <div class="section-content">
                 <p>Decobizcreations ne saurait être tenue pour responsable de l'inexécution ou du retard dans l'exécution de ses obligations en cas de force majeure.</p>
                 <p>Sont considérés comme cas de force majeure : guerres, émeutes, incendies, grèves, inondations et tout événement indépendant de la volonté de Decobizcreations.</p>
@@ -271,7 +899,7 @@
         </div>
         
         <div class="section">
-            <h3 class="section-title">12. Loi Applicable et Juridiction</h3>
+            <h3 class="section-title"><i class="fas fa-balance-scale"></i> 12. Loi Applicable et Juridiction</h3>
             <div class="section-content">
                 <p>Les présentes conditions générales sont soumises au droit marocain. Tout litige relatif à l'interprétation ou à l'exécution des présentes sera de la compétence exclusive des tribunaux de Casablanca.</p>
             </div>
@@ -280,21 +908,168 @@
     
     <footer>
         <div class="footer-links">
-            <a href="index.html">Accueil</a> |
-            <a href="confidentialite.html">Confidentialité</a> |
+            <a href="index.html">Accueil</a>
+            <a href="confidentialite.html">Confidentialité</a>
             <a href="mentions-legales.html">Mentions Légales</a>
+            <a href="contact.html">Contact</a>
         </div>
         <p>&copy; 2025 Decobizcreations - Tous droits réservés</p>
     </footer>
     
+    <button class="accessibility-btn" id="accessibility-btn" aria-label="Options d'accessibilité">
+        <i class="fas fa-universal-access"></i>
+    </button>
+    
     <script>
-        // Mode sombre
+        // Gestion du menu mobile
         document.addEventListener('DOMContentLoaded', function() {
-            const body = document.body;
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const overlay = document.getElementById('overlay');
+            const submenuToggles = document.querySelectorAll('.mobile-submenu-toggle');
+            const submenus = document.querySelectorAll('.mobile-submenu');
             
+            // Ouvrir le menu mobile
+            mobileMenuToggle.addEventListener('click', function() {
+                mobileNav.classList.add('active');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Fermer le menu mobile
+            function closeMobileNav() {
+                mobileNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            mobileNavClose.addEventListener('click', closeMobileNav);
+            overlay.addEventListener('click', closeMobileNav);
+            
+            // Gestion des sous-menus mobiles
+            submenuToggles.forEach((toggle, index) => {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const submenu = submenus[index];
+                    const isOpen = submenu.style.display === 'block';
+                    
+                    // Fermer tous les sous-menus
+                    submenus.forEach(menu => {
+                        menu.style.display = 'none';
+                    });
+                    
+                    submenuToggles.forEach(btn => {
+                        btn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                    });
+                    
+                    // Ouvrir le sous-menu cliqué s'il n'était pas déjà ouvert
+                    if (!isOpen) {
+                        submenu.style.display = 'block';
+                        toggle.innerHTML = '<i class="fas fa-chevron-up"></i>';
+                    }
+                });
+            });
+            
+            // Gestion du menu déroulant
+            const menuToggle = document.getElementById('menu-toggle');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            const accessibilityBtn = document.getElementById('accessibility-btn');
+            
+            // Menu déroulant
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownMenu.classList.toggle('active');
+            });
+            
+            // Fermer le menu en cliquant ailleurs
+            document.addEventListener('click', function() {
+                dropdownMenu.classList.remove('active');
+            });
+            
+            dropdownMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            
+            // Mode sombre
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    localStorage.setItem('darkMode', 'enabled');
+                    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                } else {
+                    localStorage.setItem('darkMode', 'disabled');
+                    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                }
+            });
+            
+            // Vérifier le mode sombre au chargement
             if (localStorage.getItem('darkMode') === 'enabled') {
                 body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
+            
+            // Options d'accessibilité
+            accessibilityBtn.addEventListener('click', function() {
+                alert('Options d\'accessibilité:\n\n- Mode sombre: Activable via l\'icône en haut à droite\n- Taille du texte: Utilisez les gestes de pincement sur votre écran\n- Contraste: Amélioré pour une meilleure lisibilité');
+            });
+            
+            // Optimisation du défilement pour mobile
+            let lastScrollTop = 0;
+            const header = document.querySelector('.main-nav-container');
+            
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Cacher/montrer le header en fonction du défilement
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Ajouter une animation aux sections lors du défilement
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Mise à jour du compteur du panier
+            function updateCartCounter() {
+                // Simuler un compteur de panier
+                const cartCount = Math.floor(Math.random() * 5);
+                document.getElementById('cartBadge').textContent = cartCount;
+                document.getElementById('cartBadgeMobile').textContent = cartCount;
+            }
+            
+            // Initialiser le compteur
+            updateCartCounter();
         });
     </script>
 </body>
