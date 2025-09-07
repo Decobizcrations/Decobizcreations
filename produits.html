@@ -3000,6 +3000,7 @@
             initPagination();
             initMobileMenu();
             initCustomization();
+            initSubmenus(); // Ajout de cette ligne pour initialiser les sous-menus
             
             // Charger le panier depuis localStorage
             loadCartFromStorage();
@@ -3051,6 +3052,82 @@
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        }
+        
+        // Initialisation des sous-menus - NOUVELLE FONCTION
+        function initSubmenus() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const submenu = item.querySelector('.submenu');
+                
+                if (submenu) {
+                    // Ajouter un attribut ARIA pour l'accessibilité
+                    link.setAttribute('aria-expanded', 'false');
+                    link.setAttribute('aria-haspopup', 'true');
+                    
+                    // Gestionnaire d'événements pour le clic
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        
+                        // Basculer l'affichage du sous-menu
+                        const isVisible = submenu.style.opacity === '1';
+                        
+                        // Fermer tous les autres sous-menus
+                        document.querySelectorAll('.submenu').forEach(menu => {
+                            menu.style.opacity = '0';
+                            menu.style.visibility = 'hidden';
+                            menu.style.transform = 'translateY(10px)';
+                        });
+                        
+                        // Réinitialiser tous les liens
+                        document.querySelectorAll('.nav-item > a').forEach(navLink => {
+                            navLink.setAttribute('aria-expanded', 'false');
+                        });
+                        
+                        if (!isVisible) {
+                            // Afficher le sous-menu actuel
+                            submenu.style.opacity = '1';
+                            submenu.style.visibility = 'visible';
+                            submenu.style.transform = 'translateY(0)';
+                            link.setAttribute('aria-expanded', 'true');
+                        }
+                    });
+                    
+                    // Garder le comportement au survol pour desktop
+                    if (window.innerWidth > 768) {
+                        item.addEventListener('mouseenter', () => {
+                            submenu.style.opacity = '1';
+                            submenu.style.visibility = 'visible';
+                            submenu.style.transform = 'translateY(0)';
+                            link.setAttribute('aria-expanded', 'true');
+                        });
+                        
+                        item.addEventListener('mouseleave', () => {
+                            submenu.style.opacity = '0';
+                            submenu.style.visibility = 'hidden';
+                            submenu.style.transform = 'translateY(10px)';
+                            link.setAttribute('aria-expanded', 'false');
+                        });
+                    }
+                }
+            });
+            
+            // Fermer les sous-menus lors d'un clic en dehors
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest('.nav-item')) {
+                    document.querySelectorAll('.submenu').forEach(submenu => {
+                        submenu.style.opacity = '0';
+                        submenu.style.visibility = 'hidden';
+                        submenu.style.transform = 'translateY(10px)';
+                    });
+                    
+                    document.querySelectorAll('.nav-item > a').forEach(link => {
+                        link.setAttribute('aria-expanded', 'false');
+                    });
                 }
             });
         }
@@ -4094,6 +4171,7 @@
         console.log('📱 Optimisations pour mobile activées');
         console.log('🎁 Packs maintenant affichés comme les produits');
         console.log('🛠️ Options de personnalisation ajoutées');
+        console.log('🔧 Sous-menus corrigés pour fonctionner au clic');
     </script>
 </body>
 </html>
