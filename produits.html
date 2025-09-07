@@ -605,21 +605,21 @@
         }
         
         /* Bouton personnaliser */
-.customize-btn {
-    background: linear-gradient(135deg, #4f1919, #4f1919); /* dégradé dark */
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 0.5rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-}
+        .customize-btn {
+            background: linear-gradient(135deg, #4f1919, #4f1919); /* dégradé dark */
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
         .customize-btn:hover {
             background: linear-gradient(135deg, #4e1123, #4e1018);
             transform: translateY(-2px);
@@ -2135,9 +2135,57 @@
                 </div>
             </article>
             
-        
+            <!-- Produit 9 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase cylindrique moderne béton">
+                <div class="product-image">
+                    <img src="vase cylindrique.jpeg" alt="Vase cylindrique 18 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('vase-cylindrique-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('vase-cylindrique-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('vase-cylindrique-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Vase Cylindrique</h4>
+                    <span>18 cm</span>
+                    <div class="product-price">190 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('vase-cylindrique-18')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
+                </div>
+            </article>
             
             <!-- Produit 10 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite rectangulaire concreterangement">
+                <div class="product-image">
+                    <img src="boite rectangulaire.jpeg" alt="Boîte rectangulaire 15 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('boite-rectangulaire-15')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('boite-rectangulaire-15')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('boite-rectangulaire-15')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Boîte Rectangulaire</h4>
+                    <span>15 cm</span>
+                    <div class="product-price">120 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('boite-rectangulaire-15')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
+                </div>
+            </article>
             
             <!-- Produit 11 -->
             <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="croissant lune décoratif  mural">
@@ -2166,6 +2214,31 @@
                 </div>
             </article>
             
+            <!-- Produit 12 -->
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau triangulaire concrete design">
+                <div class="product-image">
+                    <img src="nuages.jpeg" alt="Plateau triangulaire 18 cm" loading="lazy" />
+                    <div class="product-actions">
+                        <button class="action-btn" onclick="addToCart('plateau-triangulaire-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                            <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <button class="action-btn" onclick="addToWishlist('plateau-triangulaire-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                        <button class="action-btn" onclick="quickView('plateau-triangulaire-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h4>Plateau Nuage</h4>
+                    <span>Design original</span>
+                    <div class="product-price">150 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('plateau-triangulaire-18')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
+                </div>
+            </article>
          </div>
         <!-- Message aucun résultat -->
         <div class="no-results" id="noResults">
@@ -2467,7 +2540,14 @@
                             </div>
                             
                             <!-- Option de taille -->
-                            
+                            <div class="customization-group">
+                                <label class="customization-label">Choisissez une taille :</label>
+                                <div class="size-options">
+                                    <div class="size-option" data-size="petit">Petit</div>
+                                    <div class="size-option selected" data-size="moyen">Moyen</div>
+                                    <div class="size-option" data-size="grand">Grand</div>
+                                </div>
+                            </div>
                             
                             <!-- Option de message personnalisé -->
                             <div class="customization-group">
@@ -2605,13 +2685,13 @@
                 title: 'Mini Vase',
                 description: '14 cm',
                 price: 150,
-                image: 'mini vase'
+                image: 'mini vase.jpeg'
             },
             'boite-12': {
                 title: 'Boîte Décorative',
                 description: '12 cm',
                 price: 100,
-                image: 'boite'
+                image: 'boite.jpeg'
             },
             'arc-en-ciel-26': {
                 title: 'Arc-en-ciel Décoratif',
@@ -2623,7 +2703,7 @@
                 title: 'Plateau Boules',
                 description: 'Design moderne',
                 price: 160,
-                image: 'boules.jpeg'
+                image: 'boules2.jpeg'
             },
             'vase-cylindrique-18': {
                 title: 'Vase Cylindrique',
@@ -2641,7 +2721,7 @@
                 title: 'Croissant de Lune',
                 description: '22 cm',
                 price: 220,
-                image: 'croissant lune.jpeg'
+                image: 'lune.png'
             },
             'plateau-triangulaire-18': {
                 title: 'Plateau Nuage',
@@ -2755,13 +2835,13 @@
                 title: 'Mini Vase',
                 description: 'Petit vase moderne, idéal pour les petites fleurs ou comme élément décoratif.',
                 price: '150 DH',
-                image: 'mini vase'
+                image: 'mini vase.jpeg'
             },
             'boite-12': {
                 title: 'Boîte Décorative',
                 description: 'Boîte multifonction en béton, parfaite pour le rangement ou comme élément décoratif.',
                 price: '100 DH',
-                image: 'boite'
+                image: 'boite.jpeg'
             },
             'arc-en-ciel-26': {
                 title: 'Arc-en-ciel Décoratif',
@@ -2773,7 +2853,7 @@
                 title: 'Plateau Boules',
                 description: 'Plateau design original avec motif de boules, idéal pour une décoration moderne et originale.',
                 price: '160 DH',
-                image: 'boules.jpeg'
+                image: 'boules2.jpeg'
             },
             'vase-cylindrique-18': {
                 title: 'Vase Cylindrique',
@@ -2791,7 +2871,7 @@
                 title: 'Croissant de Lune',
                 description: 'Décoration murale en forme de croissant de lune, ajoute une touche poétique à votre intérieur.',
                 price: '220 DH',
-                image: 'croissant lune.jpeg'
+                image: 'lune.png'
             },
             'plateau-triangulaire-18': {
                 title: 'Plateau Nuage',
@@ -3013,6 +3093,8 @@
                 // Empêcher le défilement du fond sur mobile
                 document.body.style.position = 'fixed';
                 document.body.style.width = '100%';
+            } else {
+                showToast("Produit non trouvé", "error");
             }
         }
         
@@ -3880,10 +3962,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
