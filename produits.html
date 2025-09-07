@@ -6,23 +6,23 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Produits - Decobizcreations | Artisanat Concrete</title>
-    <meta name="description" content="Découvrez notre collection complète de créations artisanales en béton et gypse. Plateaux, vases, boîtes décoratives faites main au Maroc." />
-    <meta name="keywords" content="décoration béton, gypse, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
+    <meta name="description" content="Découvrez notre collection complète de créations artisanales en concrete. Plateaux, vases, boîtes décoratives faites main au Maroc." />
+    <meta name="keywords" content="décoration béton, , artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
     <meta name="author" content="Hajar Agrar" />
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.decobizcreations.com/produits.html" />
-    <meta property="og:title" content="Produits - Decobizcreations | Artisanat Béton & Gypse" />
-    <meta property="og:description" content="Découvrez notre collection complète de créations artisanales en béton et gypse." />
+    <meta property="og:title" content="Produits - Decobizcreations | Artisanat concrete " />
+    <meta property="og:description" content="Découvrez notre collection complète de créations artisanales en concrete." />
     <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.decobizcreations.com/produits.html" />
-    <meta property="twitter:title" content="Produits - Decobizcreations | Artisanat Béton & Gypse" />
-    <meta property="twitter:description" content="Découvrez notre collection complète de créations artisanales en béton et gypse." />
+    <meta property="twitter:title" content="Produits - Decobizcreations | Artisanat concrete" />
+    <meta property="twitter:description" content="Découvrez notre collection complète de créations artisanales en concrete." />
     <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
     <!-- Favicon -->
@@ -73,7 +73,7 @@
             color: #e0e0e0;
         }
         body.dark-mode .pack-card {
-            background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+            background: #2d2d2d;
             color: #e0e0e0;
         }
         body.dark-mode .pack-card::before {
@@ -88,6 +88,10 @@
         }
         body.dark-mode footer {
             background: #222222;
+        }
+        body.dark-mode .customization-options {
+            background: #2d2d2d;
+            color: #e0e0e0;
         }
         
         /* Loader */
@@ -382,7 +386,7 @@
             padding: 0 1rem;
         }
         
-        /* Filtres de produits */
+        /* Section de filtres */
         .filter-section {
             margin-bottom: 1.5rem;
         }
@@ -421,7 +425,7 @@
             transform: translateY(0);
         }
         
-        /* Trier par */
+        /* Section de tri */
         .sort-section {
             display: flex;
             justify-content: space-between;
@@ -517,6 +521,18 @@
             font-weight: bold;
             z-index: 5;
         }
+        .customizable-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: #2196F3;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 5;
+        }
         /* Boutons d'action sur les produits */
         .product-actions {
             position: absolute;
@@ -572,16 +588,41 @@
             letter-spacing: 0.05em;
         }
         .product-price {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #b27952;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
+            background: rgba(178, 121, 82, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
         }
         .old-price {
             text-decoration: line-through;
             color: #999;
             font-size: 0.9rem;
             margin-right: 0.5rem;
+        }
+        
+        /* Bouton personnaliser */
+        .customize-btn {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .customize-btn:hover {
+            background: linear-gradient(135deg, #1976D2, #0D47A1);
+            transform: translateY(-2px);
         }
         
         /* Message aucun résultat */
@@ -602,7 +643,7 @@
             margin-bottom: 0.8rem;
         }
         
-        /* Section Packs - Style amélioré */
+        /* Section Packs - Style comme les produits */
         .packs-section {
             margin: 3rem 0;
             background: linear-gradient(135deg, #f9f3e8, #fffaf5);
@@ -678,68 +719,34 @@
             transform: translateX(5px);
         }
         
-        /* Carousel des packs */
-        .packs-carousel {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            border-radius: 12px;
-        }
-        
-        .packs-carousel-controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .packs-carousel-btn {
-            background: linear-gradient(135deg, #b27952, #8c5a34);
-            border: none;
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            -webkit-appearance: none;
-            box-shadow: 0 4px 8px rgba(178, 121, 82, 0.3);
-        }
-        
-        .packs-carousel-btn:hover {
-            background: linear-gradient(135deg, #8c5a34, #6b4428);
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(178, 121, 82, 0.4);
-        }
-        
-        .packs-carousel-btn:active {
-            transform: scale(0.95);
-        }
-        
-        .packs-carousel-track {
-            display: flex;
+        /* Grille des packs - comme les produits */
+        .packs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
-            transition: transform 0.5s ease;
-            will-change: transform;
-            padding: 0.5rem 0;
+            margin-bottom: 1rem;
         }
         
-        /* Cartes de packs - Style amélioré */
+        /* Cartes de packs - Style comme les produits */
         .pack-card {
-            background: linear-gradient(135deg, #fff, #f9f3e8);
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             overflow: hidden;
             cursor: pointer;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            min-height: 320px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+            -webkit-touch-callout: none;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            border: 1px solid rgba(178, 121, 82, 0.2);
+        }
+        
+        .pack-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 10;
         }
         
         .pack-card::before {
@@ -752,19 +759,13 @@
             background: linear-gradient(90deg, #b27952, #f8b500);
         }
         
-        .pack-card:hover {
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 15px 35px rgba(178, 121, 82, 0.25);
-            z-index: 10;
-        }
-        
         .pack-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            top: 8px;
+            right: 8px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
             font-weight: bold;
             z-index: 5;
             text-transform: uppercase;
@@ -789,17 +790,10 @@
             box-shadow: 0 4px 8px rgba(248, 181, 0, 0.3);
         }
         
-        .pack-card-header {
-            padding: 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-        
         .pack-card-image {
-            height: 160px;
+            height: 180px;
             overflow: hidden;
-            border-radius: 12px;
-            margin-bottom: 1rem;
+            border-bottom: 1px solid #eee;
             position: relative;
         }
         
@@ -807,49 +801,54 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.4s ease;
         }
         
         .pack-card:hover .pack-card-image img {
-            transform: scale(1.15) rotate(2deg);
+            transform: scale(1.1);
+        }
+        
+        .pack-card-info {
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .pack-card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #5a4a24;
-            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            color: #5b4824;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
             font-weight: 700;
         }
         
         .pack-card-description {
+            font-size: 0.9rem;
             color: #7e6a3e;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
-        
-        .pack-card-footer {
-            padding: 0 1.5rem 1.5rem;
-            text-align: center;
-            margin-top: auto;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.8rem;
         }
         
         .pack-price {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: bold;
             color: #b27952;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            margin-top: auto;
+            background: rgba(178, 121, 82, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
         }
         
         .pack-price .old-price {
             text-decoration: line-through;
             color: #999;
-            font-size: 1rem;
+            font-size: 0.9rem;
             margin-right: 0.5rem;
         }
         
@@ -860,16 +859,18 @@
             border-radius: 12px;
             font-size: 0.75rem;
             font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .pack-actions {
             display: flex;
             gap: 0.8rem;
             justify-content: center;
+            margin-top: 1rem;
         }
         
         .pack-btn {
-            padding: 10px 16px;
+            padding: 8px 14px;
             border: none;
             border-radius: 25px;
             font-weight: 600;
@@ -965,7 +966,7 @@
             transform: translateY(0);
         }
         
-        /* Newsletter */
+        /* Section Newsletter */
         .newsletter-section {
             background: linear-gradient(135deg, #f8b500, #b27952);
             padding: 2rem 1rem;
@@ -1346,6 +1347,134 @@
             color: #bbb;
         }
         
+        /* Options de personnalisation */
+        .customization-options {
+            background: #f9f3e8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0d5c1;
+        }
+        
+        .customization-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .customization-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        .customization-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .customization-label {
+            display: block;
+            font-weight: 600;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .color-options {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .color-option.selected {
+            border-color: #b27952;
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #b27952;
+        }
+        
+        .color-option.selected::after {
+            content: "✓";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+        
+        .size-options {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .size-option {
+            padding: 8px 16px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            background: white;
+            color: #5a4a24;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .size-option:hover {
+            background: #f9f3e8;
+        }
+        
+        .size-option.selected {
+            background: #b27952;
+            color: white;
+        }
+        
+        .customization-text {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #b27952;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            resize: vertical;
+            min-height: 80px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .customization-text:focus {
+            border-color: #8c5a34;
+        }
+        
+        .customization-note {
+            font-size: 0.85rem;
+            color: #7e6a3e;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        
+        .customization-price {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #b27952;
+        }
+        
         /* Notifications toast */
         .toast {
             position: fixed;
@@ -1473,7 +1602,7 @@
             }
             
             .product-price {
-                font-size: 0.95rem;
+                font-size: 1.1rem;
             }
             
             .action-btn {
@@ -1528,28 +1657,37 @@
                 left: 30%;
             }
             
+            .packs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 1rem;
+            }
+            
             .pack-card {
-                min-height: 280px;
+                margin-bottom: 1rem;
             }
             
             .pack-card-image {
-                height: 140px;
+                height: 150px;
+            }
+            
+            .pack-card-info {
+                padding: 1rem;
             }
             
             .pack-card-title {
-                font-size: 1.3rem;
+                font-size: 1rem;
             }
             
             .pack-card-description {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             
             .pack-price {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
             }
             
             .pack-btn {
-                padding: 8px 14px;
+                padding: 6px 12px;
                 font-size: 0.85rem;
             }
             
@@ -1558,35 +1696,23 @@
                 gap: 0.5rem;
             }
             
-            /* Pagination */
-            .page-btn {
-                width: 36px;
-                height: 36px;
+            /* Options de personnalisation mobile */
+            .customization-options {
+                padding: 1rem;
+            }
+            
+            .customization-title {
+                font-size: 1.1rem;
+            }
+            
+            .color-option {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .size-option {
+                padding: 6px 12px;
                 font-size: 0.85rem;
-            }
-            
-            /* Newsletter */
-            .newsletter-section {
-                padding: 1.5rem 1rem;
-            }
-            
-            .newsletter-section h3 {
-                font-size: 1.5rem;
-            }
-            
-            /* Footer */
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .footer-column h4::after {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-            
-            .social-links {
-                justify-content: center;
             }
             
             /* Modal */
@@ -1640,7 +1766,7 @@
             }
             
             .product-price {
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
             
             .filter-btn {
@@ -1660,20 +1786,25 @@
                 font-size: 1.6rem;
             }
             
-            .pack-card {
-                min-height: 260px;
+            .packs-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 0.8rem;
             }
             
             .pack-card-image {
-                height: 120px;
+                height: 130px;
             }
             
             .pack-card-title {
-                font-size: 1.2rem;
+                font-size: 0.9rem;
+            }
+            
+            .pack-card-description {
+                font-size: 0.8rem;
             }
             
             .pack-price {
-                font-size: 1.1rem;
+                font-size: 1rem;
             }
             
             .toast {
@@ -1745,9 +1876,6 @@
                 <a href="panier.html" tabindex="0">Panier</a>
                 <span class="cart-badge" id="cartBadge">0</span>
             </div>
-            <div class="nav-item">
-                <a href="compte.html" tabindex="0">Mon compte</a>
-            </div>
         </nav>
     </header>
     
@@ -1794,10 +1922,11 @@
         <!-- Grille de produits -->
         <div class="products-grid" id="productsGrid">
             <!-- Produit 1 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond béton décoratif">
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond concretedécoratif">
                 <div class="product-image">
                     <img src="mini plateau rond.jpeg" alt="Plateau rond 16 cm" loading="lazy" />
                     <div class="new-badge">Nouveau</div>
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('plateau-rond-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1813,14 +1942,18 @@
                 <div class="product-info">
                     <h4>Plateau Rond</h4>
                     <span>Diamètre 16 cm</span>
-                    <div class="product-price">29 DH</div>
+                    <div class="product-price">120 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('plateau-rond-16')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 2 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau ovale béton décoratif">
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau ovale concretedécoratif">
                 <div class="product-image">
                     <img src="mini plateau ovale.jpeg" alt="Plateau ovale 18 cm" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1836,15 +1969,19 @@
                 <div class="product-info">
                     <h4>Plateau Ovale</h4>
                     <span>18 cm</span>
-                    <div class="product-price">35 DH</div>
+                    <div class="product-price">140 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('plateau-ovale-18')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 3 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond grand béton décoratif">
+            <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond grand concretedécoratif">
                 <div class="product-image">
                     <img src="plateau rond 26 (2).jpeg" alt="Grand plateau rond 27 cm" loading="lazy" />
                     <div class="sale-badge">-15%</div>
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1858,12 +1995,15 @@
                     </div>
                 </div>
                 <div class="product-info">
-                    <h4>Plateau Rond</h4>
+                    <h4>Grand Plateau Rond</h4>
                     <span>27 cm</span>
                     <div class="product-price">
-                        <span class="old-price">99 DH</span>
-                        69 DH
+                        <span class="old-price">200 DH</span>
+                        170 DH
                     </div>
+                    <button class="customize-btn" onclick="openCustomization('plateau-rond-27')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
@@ -1871,6 +2011,7 @@
             <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase nordique design béton">
                 <div class="product-image">
                     <img src="vase nordique.jpeg" alt="Vase nordique 16 cm" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1886,7 +2027,10 @@
                 <div class="product-info">
                     <h4>Vase Nordique</h4>
                     <span>16 cm</span>
-                    <div class="product-price">59 DH</div>
+                    <div class="product-price">180 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('vase-nordique-16')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
@@ -1894,6 +2038,7 @@
             <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="mini vase moderne béton">
                 <div class="product-image">
                     <img src="mini vase.jpeg" alt="Mini vase 14 cm" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1909,14 +2054,18 @@
                 <div class="product-info">
                     <h4>Mini Vase</h4>
                     <span>14 cm</span>
-                    <div class="product-price">45 DH</div>
+                    <div class="product-price">150 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('mini-vase-14')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 6 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite décorative béton rangement">
+            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite décorative concreterangement">
                 <div class="product-image">
                     <img src="boite.jpeg" alt="Boîte décorative 12 cm" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1932,15 +2081,19 @@
                 <div class="product-info">
                     <h4>Boîte Décorative</h4>
                     <span>12 cm</span>
-                    <div class="product-price">29 DH</div>
+                    <div class="product-price">100 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('boite-12')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 7 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="arc-en-ciel décoratif gypse mural">
+            <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="arc-en-ciel décoratif  mural">
                 <div class="product-image">
                     <img src="arc en ciel.jpeg" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
                     <div class="new-badge">Nouveau</div>
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1956,14 +2109,18 @@
                 <div class="product-info">
                     <h4>Arc-en-ciel Décoratif</h4>
                     <span>26 cm</span>
-                    <div class="product-price">69 DH</div>
+                    <div class="product-price">250 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('arc-en-ciel-26')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 8 -->
             <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau boules concrete design">
                 <div class="product-image">
-                    <img src="boules.jpg" alt="Plateau boules" loading="lazy" />
+                    <img src="boules.jpeg" alt="Plateau boules" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('plateau-carre-20')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -1979,14 +2136,18 @@
                 <div class="product-info">
                     <h4>Plateau Boules</h4>
                     <span>Design moderne</span>
-                    <div class="product-price">49 DH</div>
+                    <div class="product-price">160 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('plateau-carre-20')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 9 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase cylindrique béton design">
+            <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="vase cylindrique concretedesign">
                 <div class="product-image">
                     <img src="vase cylindrique.jpeg" alt="Vase cylindrique 18 cm" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('vase-cylindrique-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -2002,14 +2163,18 @@
                 <div class="product-info">
                     <h4>Vase Cylindrique</h4>
                     <span>18 cm</span>
-                    <div class="product-price">55 DH</div>
+                    <div class="product-price">190 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('vase-cylindrique-18')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 10 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite rectangulaire béton rangement">
+            <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite rectangulaire concreterangement">
                 <div class="product-image">
                     <img src="boite rectangulaire.jpeg" alt="Boîte rectangulaire 15 cm" loading="lazy" />
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('boite-rectangulaire-15')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -2025,15 +2190,19 @@
                 <div class="product-info">
                     <h4>Boîte Rectangulaire</h4>
                     <span>15 cm</span>
-                    <div class="product-price">39 DH</div>
+                    <div class="product-price">120 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('boite-rectangulaire-15')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
             <!-- Produit 11 -->
-            <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="croissant lune décoratif gypse mural">
+            <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="croissant lune décoratif  mural">
                 <div class="product-image">
-                    <img src="lune.png" alt="Croissant de lune décoratif 22 cm" loading="lazy" />
+                    <img src="croissant lune.jpeg" alt="Croissant de lune décoratif 22 cm" loading="lazy" />
                     <div class="new-badge">Nouveau</div>
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('croissant-lune-22')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -2049,7 +2218,10 @@
                 <div class="product-info">
                     <h4>Croissant de Lune</h4>
                     <span>22 cm</span>
-                    <div class="product-price">29 DH</div>
+                    <div class="product-price">220 DH</div>
+                    <button class="customize-btn" onclick="openCustomization('croissant-lune-22')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
             
@@ -2058,6 +2230,7 @@
                 <div class="product-image">
                     <img src="nuages.jpeg" alt="Plateau triangulaire 18 cm" loading="lazy" />
                     <div class="sale-badge">-10%</div>
+                    <div class="customizable-badge">Personnalisable</div>
                     <div class="product-actions">
                         <button class="action-btn" onclick="addToCart('plateau-triangulaire-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
                             <i class="fas fa-shopping-cart"></i>
@@ -2074,9 +2247,12 @@
                     <h4>Plateau Nuage</h4>
                     <span>Design original</span>
                     <div class="product-price">
-                        <span class="old-price">55 DH</span>
-                        49 DH
+                        <span class="old-price">150 DH</span>
+                        135 DH
                     </div>
+                    <button class="customize-btn" onclick="openCustomization('plateau-triangulaire-18')">
+                        <i class="fas fa-palette"></i> Personnaliser
+                    </button>
                 </div>
             </article>
         </div>
@@ -2088,221 +2264,212 @@
             <p>Essayez d'autres mots-clés ou parcourez nos catégories.</p>
         </div>
         
-        <!-- Section Packs - Style amélioré -->
+        <!-- Section Packs - Style comme les produits -->
         <section class="packs-section fade-slide">
             <div class="packs-header">
                 <h3 class="packs-title">Nos Packs Exclusifs</h3>
                 <a href="packs.html" class="packs-link">Voir tous les packs <i class="fas fa-arrow-right"></i></a>
             </div>
             
-            <div class="packs-carousel">
-                <div class="packs-carousel-controls">
-                    <button class="packs-carousel-btn" id="prevPackBtn" aria-label="Pack précédent">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="packs-carousel-btn" id="nextPackBtn" aria-label="Pack suivant">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="packs-carousel-track" id="packsCarouselTrack">
-                    <!-- Pack 0 -->
-                    <article class="pack-card fade-slide" tabindex="0">
-                        <div class="pack-badge new">Nouveau</div>
-                        <div class="pack-card-header">
-                            <div class="pack-card-image">
-                                <img src="pack0.jpg" alt="Pack 0" loading="lazy" />
-                            </div>
-                            <h4 class="pack-card-title">Pack Découverte</h4>
-                            <p class="pack-card-description">3 articles en béton pour débuter votre collection</p>
+            <!-- Grille des packs -->
+            <div class="packs-grid">
+                <!-- Pack 0 -->
+                <article class="pack-card fade-slide" tabindex="0">
+                    <div class="pack-badge new">Nouveau</div>
+                    <div class="pack-card-image">
+                        <img src="pack0.jpg" alt="Pack Découverte" loading="lazy" />
+                    </div>
+                    <div class="pack-card-info">
+                        <h4 class="pack-card-title">Pack Découverte</h4>
+                        <p class="pack-card-description">3 articles en concretepour débuter votre collection</p>
+                        <div class="pack-popularity">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
                         </div>
-                        <div class="pack-card-footer">
-                            <div class="pack-popularity">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="pack-price">
-                                110 DH
-                            </div>
-                            <div class="pack-actions">
-                                <button class="pack-btn pack-btn-primary" onclick="addToCart('pack0')">
-                                    <i class="fas fa-shopping-cart"></i> Ajouter
-                                </button>
-                                <button class="pack-btn pack-btn-secondary" onclick="quickView('pack0')">
-                                    <i class="fas fa-eye"></i> Détails
-                                </button>
-                            </div>
+                        <div class="pack-price">199 DH</div>
+                        <div class="pack-actions">
+                            <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack0')">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="pack-btn pack-btn-secondary" onclick="quickView('pack0')">
+                                <i class="fas fa-eye"></i> Détails
+                            </button>
+                            <button class="customize-btn" onclick="customizePack('pack0')">
+                                <i class="fas fa-palette"></i> Personnaliser
+                            </button>
                         </div>
-                    </article>
-                    
-                    <!-- Pack 4 -->
-                    <article class="pack-card fade-slide" tabindex="0">
-                        <div class="pack-badge offer">Offre</div>
-                        <div class="pack-card-header">
-                            <div class="pack-card-image">
-                                <img src="pack4.png" alt="Pack 4" loading="lazy" />
-                            </div>
-                            <h4 class="pack-card-title">Pack Duo</h4>
-                            <p class="pack-card-description">2 articles design pour une décoration harmonieuse</p>
+                    </div>
+                </article>
+                
+                <!-- Pack 4 -->
+                <article class="pack-card fade-slide" tabindex="0">
+                    <div class="pack-badge offer">Offre</div>
+                    <div class="pack-card-image">
+                        <img src="pack4.png" alt="Pack Duo" loading="lazy" />
+                    </div>
+                    <div class="pack-card-info">
+                        <h4 class="pack-card-title">Pack Duo</h4>
+                        <p class="pack-card-description">2 articles design pour une décoration harmonieuse</p>
+                        <div class="pack-popularity">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="pack-card-footer">
-                            <div class="pack-popularity">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="pack-price">
-                                <span class="old-price">99 DH</span>
-                                79 DH
-                                <span class="pack-discount">-20%</span>
-                            </div>
-                            <div class="pack-actions">
-                                <button class="pack-btn pack-btn-primary" onclick="addToCart('pack4')">
-                                    <i class="fas fa-shopping-cart"></i> Ajouter
-                                </button>
-                                <button class="pack-btn pack-btn-secondary" onclick="quickView('pack4')">
-                                    <i class="fas fa-eye"></i> Détails
-                                </button>
-                            </div>
+                        <div class="pack-price">
+                            <span class="old-price">149 DH</span>
+                            119 DH
+                            <span class="pack-discount">-20%</span>
                         </div>
-                    </article>
-                    
-                    <!-- Pack 7 -->
-                    <article class="pack-card fade-slide" tabindex="0">
-                        <div class="pack-badge new">Complet</div>
-                        <div class="pack-card-header">
-                            <div class="pack-card-image">
-                                <img src="pack7.jpg" alt="Pack 7" loading="lazy" />
-                            </div>
-                            <h4 class="pack-card-title">Pack Collection</h4>
-                            <p class="pack-card-description">6 articles variés pour décorer toute votre maison</p>
+                        <div class="pack-actions">
+                            <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack4')">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="pack-btn pack-btn-secondary" onclick="quickView('pack4')">
+                                <i class="fas fa-eye"></i> Détails
+                            </button>
+                            <button class="customize-btn" onclick="customizePack('pack4')">
+                                <i class="fas fa-palette"></i> Personnaliser
+                            </button>
                         </div>
-                        <div class="pack-card-footer">
-                            <div class="pack-popularity">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="pack-price">
-                                199 DH
-                            </div>
-                            <div class="pack-actions">
-                                <button class="pack-btn pack-btn-primary" onclick="addToCart('pack7')">
-                                    <i class="fas fa-shopping-cart"></i> Ajouter
-                                </button>
-                                <button class="pack-btn pack-btn-secondary" onclick="quickView('pack7')">
-                                    <i class="fas fa-eye"></i> Détails
-                                </button>
-                            </div>
+                    </div>
+                </article>
+                
+                <!-- Pack 7 -->
+                <article class="pack-card fade-slide" tabindex="0">
+                    <div class="pack-badge new">Complet</div>
+                    <div class="pack-card-image">
+                        <img src="pack7.jpg" alt="Pack Collection" loading="lazy" />
+                    </div>
+                    <div class="pack-card-info">
+                        <h4 class="pack-card-title">Pack Collection</h4>
+                        <p class="pack-card-description">6 articles variés pour décorer toute votre maison</p>
+                        <div class="pack-popularity">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                    </article>
-                    
-                    <!-- Pack 2 -->
-                    <article class="pack-card fade-slide" tabindex="0">
-                        <div class="pack-badge sale">-30%</div>
-                        <div class="pack-card-header">
-                            <div class="pack-card-image">
-                                <img src="pack2.jpg" alt="Pack 2" loading="lazy" />
-                            </div>
-                            <h4 class="pack-card-title">Pack Premium</h4>
-                            <p class="pack-card-description">9 articles haut de gamme pour un ensemble luxueux</p>
+                        <div class="pack-price">399 DH</div>
+                        <div class="pack-actions">
+                            <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack7')">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="pack-btn pack-btn-secondary" onclick="quickView('pack7')">
+                                <i class="fas fa-eye"></i> Détails
+                            </button>
+                            <button class="customize-btn" onclick="customizePack('pack7')">
+                                <i class="fas fa-palette"></i> Personnaliser
+                            </button>
                         </div>
-                        <div class="pack-card-footer">
-                            <div class="pack-popularity">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="far fa-star"></i>
-                            </div>
-                            <div class="pack-price">
-                                <span class="old-price">429 DH</span>
-                                299 DH
-                                <span class="pack-discount">-30%</span>
-                            </div>
-                            <div class="pack-actions">
-                                <button class="pack-btn pack-btn-primary" onclick="addToCart('pack2')">
-                                    <i class="fas fa-shopping-cart"></i> Ajouter
-                                </button>
-                                <button class="pack-btn pack-btn-secondary" onclick="quickView('pack2')">
-                                    <i class="fas fa-eye"></i> Détails
-                                </button>
-                            </div>
+                    </div>
+                </article>
+                
+                <!-- Pack 2 -->
+                <article class="pack-card fade-slide" tabindex="0">
+                    <div class="pack-badge sale">-30%</div>
+                    <div class="pack-card-image">
+                        <img src="pack2.jpg" alt="Pack Premium" loading="lazy" />
+                    </div>
+                    <div class="pack-card-info">
+                        <h4 class="pack-card-title">Pack Premium</h4>
+                        <p class="pack-card-description">9 articles haut de gamme pour un ensemble luxueux</p>
+                        <div class="pack-popularity">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
                         </div>
-                    </article>
-                    
-                    <!-- Pack spécial -->
-                    <article class="pack-card fade-slide" tabindex="0">
-                        <div class="pack-badge offer">Offre</div>
-                        <div class="pack-card-header">
-                            <div class="pack-card-image">
-                                <img src="pack8.jpg" alt="Pack Spécial" loading="lazy" />
-                            </div>
-                            <h4 class="pack-card-title">Pack Spécial</h4>
-                            <p class="pack-card-description">Duo parfait pour un cadeau élégant et original</p>
+                        <div class="pack-price">
+                            <span class="old-price">429 DH</span>
+                            299 DH
+                            <span class="pack-discount">-30%</span>
                         </div>
-                        <div class="pack-card-footer">
-                            <div class="pack-popularity">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="pack-price">
-                                <span class="old-price">99 DH</span>
-                                69 DH
-                                <span class="pack-discount">-30%</span>
-                            </div>
-                            <div class="pack-actions">
-                                <button class="pack-btn pack-btn-primary" onclick="addToCart('pack-special')">
-                                    <i class="fas fa-shopping-cart"></i> Ajouter
-                                </button>
-                                <button class="pack-btn pack-btn-secondary" onclick="quickView('pack-special')">
-                                    <i class="fas fa-eye"></i> Détails
-                                </button>
-                            </div>
+                        <div class="pack-actions">
+                            <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack2')">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="pack-btn pack-btn-secondary" onclick="quickView('pack2')">
+                                <i class="fas fa-eye"></i> Détails
+                            </button>
+                            <button class="customize-btn" onclick="customizePack('pack2')">
+                                <i class="fas fa-palette"></i> Personnaliser
+                            </button>
                         </div>
-                    </article>
-                    
-                    <!-- Pack 3 -->
-                    <article class="pack-card fade-slide" tabindex="0">
-                        <div class="pack-badge new">Populaire</div>
-                        <div class="pack-card-header">
-                            <div class="pack-card-image">
-                                <img src="pack3.jpg" alt="Pack 3" loading="lazy" />
-                            </div>
-                            <h4 class="pack-card-title">Pack Essentiel</h4>
-                            <p class="pack-card-description">4 articles assortis pour une décoration complète</p>
+                    </div>
+                </article>
+                
+                <!-- Pack spécial -->
+                <article class="pack-card fade-slide" tabindex="0">
+                    <div class="pack-badge offer">Offre</div>
+                    <div class="pack-card-image">
+                        <img src="pack8.jpg" alt="Pack Spécial" loading="lazy" />
+                    </div>
+                    <div class="pack-card-info">
+                        <h4 class="pack-card-title">Pack Spécial</h4>
+                        <p class="pack-card-description">Duo parfait pour un cadeau élégant et original</p>
+                        <div class="pack-popularity">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
-                        <div class="pack-card-footer">
-                            <div class="pack-popularity">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <div class="pack-price">
-                                149 DH
-                            </div>
-                            <div class="pack-actions">
-                                <button class="pack-btn pack-btn-primary" onclick="addToCart('pack3')">
-                                    <i class="fas fa-shopping-cart"></i> Ajouter
-                                </button>
-                                <button class="pack-btn pack-btn-secondary" onclick="quickView('pack3')">
-                                    <i class="fas fa-eye"></i> Détails
-                                </button>
-                            </div>
+                        <div class="pack-price">
+                            <span class="old-price">99 DH</span>
+                            69 DH
+                            <span class="pack-discount">-30%</span>
                         </div>
-                    </article>
-                </div>
+                        <div class="pack-actions">
+                            <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack-special')">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="pack-btn pack-btn-secondary" onclick="quickView('pack-special')">
+                                <i class="fas fa-eye"></i> Détails
+                            </button>
+                            <button class="customize-btn" onclick="customizePack('pack-special')">
+                                <i class="fas fa-palette"></i> Personnaliser
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <!-- Pack 3 -->
+                <article class="pack-card fade-slide" tabindex="0">
+                    <div class="pack-badge new">Populaire</div>
+                    <div class="pack-card-image">
+                        <img src="pack3.jpg" alt="Pack Essentiel" loading="lazy" />
+                    </div>
+                    <div class="pack-card-info">
+                        <h4 class="pack-card-title">Pack Essentiel</h4>
+                        <p class="pack-card-description">4 articles assortis pour une décoration complète</p>
+                        <div class="pack-popularity">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="pack-price">149 DH</div>
+                        <div class="pack-actions">
+                            <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack3')">
+                                <i class="fas fa-shopping-cart"></i> Ajouter
+                            </button>
+                            <button class="pack-btn pack-btn-secondary" onclick="quickView('pack3')">
+                                <i class="fas fa-eye"></i> Détails
+                            </button>
+                            <button class="customize-btn" onclick="customizePack('pack3')">
+                                <i class="fas fa-palette"></i> Personnaliser
+                            </button>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
         
@@ -2345,6 +2512,70 @@
                     <div class="quick-view-actions">
                         <button class="btn-add-to-cart" onclick="addToCartFromQuickView()">Ajouter au panier</button>
                         <button class="btn-add-to-wishlist" onclick="addToWishlistFromQuickView()">Ajouter aux favoris</button>
+                        <button class="customize-btn" onclick="openCustomizationFromQuickView()">
+                            <i class="fas fa-palette"></i> Personnaliser
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal pour la personnalisation -->
+    <div id="customizationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCustomization()" aria-label="Fermer">&times;</span>
+            <div class="quick-view-content">
+                <div class="quick-view-container">
+                    <div class="quick-view-image">
+                        <img id="customizationImage" src="" alt="">
+                    </div>
+                    <div class="quick-view-details">
+                        <h3 id="customizationTitle"></h3>
+                        <p id="customizationDescription"></p>
+                        
+                        <!-- Options de personnalisation -->
+                        <div class="customization-options">
+                            <h4 class="customization-title">Personnalisez votre produit</h4>
+                            
+                            <!-- Option de couleur -->
+                            <div class="customization-group">
+                                <label class="customization-label">Choisissez une couleur :</label>
+                                <div class="color-options">
+                                    <div class="color-option" style="background-color: #f5f5f5;" data-color="gris-clair" title="Gris clair"></div>
+                                    <div class="color-option" style="background-color: #d0d0d0;" data-color="gris" title="Gris"></div>
+                                    <div class="color-option" style="background-color: #a9a9a9;" data-color="gris-foncé" title="Gris foncé"></div>
+                                    <div class="color-option" style="background-color: #e8dcc6;" data-color="beige" title="Beige"></div>
+                                    <div class="color-option" style="background-color: #d4af37;" data-color="doré" title="Doré"></div>
+                                    <div class="color-option" style="background-color: #b87333;" data-color="bronze" title="Bronze"></div>
+                                    <div class="color-option" style="background-color: #8b4513;" data-color="marron" title="Marron"></div>
+                                    <div class="color-option" style="background-color: #5d4037;" data-color="chocolat" title="Chocolat"></div>
+                                    <div class="color-option" style="background-color: #37474f;" data-color="ardoise" title="Ardoise"></div>
+                                    <div class="color-option" style="background-color: #263238;" data-color="noir" title="Noir"></div>
+                                    <div class="color-option" style="background-color: #ffffff; border: 1px solid #ddd;" data-color="blanc" title="Blanc"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Option de taille -->
+                            
+                            
+                            <!-- Option de message personnalisé -->
+                            <div class="customization-group">
+                                <label class="customization-label">Message personnalisé (optionnel) :</label>
+                                <textarea class="customization-text" id="customMessage" placeholder="Entrez votre message ici..."></textarea>
+                                <p class="customization-note">Maximum 50 caractères. Supplément de 10 DH.</p>
+                            </div>
+                            
+                            <!-- Prix avec personnalisation -->
+                            <div class="customization-price" id="customizationPrice">
+                                Prix total : <span id="totalPrice">0</span> DH
+                            </div>
+                        </div>
+                        
+                        <div class="quick-view-actions">
+                            <button class="btn-add-to-cart" onclick="addCustomizedToCart()">Ajouter au panier</button>
+                            <button class="btn-add-to-wishlist" onclick="addCustomizedToWishlist()">Ajouter aux favoris</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -2425,9 +2656,14 @@
     
     <script>
         // Variables globales
+        let cartItems = [];
         let cartCount = 0;
         let currentQuickViewProduct = null;
-        let packsCarouselPosition = 0;
+        let currentCustomizationProduct = null;
+        let selectedColor = '';
+        let selectedSize = 'moyen';
+        let customMessage = '';
+        let customizationPrice = 0;
         
         // Données des produits pour le panier
         const productsData = {
@@ -2506,39 +2742,76 @@
             // Packs
             'pack0': {
                 title: 'Pack Découverte',
-                description: '3 articles en béton pour débuter votre collection',
+                description: '3 articles en concretepour débuter votre collection',
                 price: 199,
-                image: 'pack0.jpg'
+                image: 'pack0.jpg',
+                items: [
+                    'Mini vase en concrete',
+                    'Boîte en concrete',
+                    'Plateau ovale en concrete'
+                ]
             },
             'pack4': {
                 title: 'Pack Duo',
                 description: '2 articles design pour une décoration harmonieuse',
                 price: 149,
-                image: 'pack4.png'
+                image: 'pack4.png',
+                items: [
+                    'Plateau nuage en concrete',
+                    'Mini vase en concrete'
+                ]
             },
             'pack7': {
                 title: 'Pack Collection',
                 description: '6 articles variés pour décorer toute votre maison',
                 price: 399,
-                image: 'pack7.jpg'
+                image: 'pack7.jpg',
+                items: [
+                    'Grand plateau rond',
+                    'Plateau ovale',
+                    'Mini vase',
+                    'Moyenne vase',
+                    'Arc en ciel',
+                    'Croissant mibkhara'
+                ]
             },
             'pack2': {
                 title: 'Pack Premium',
                 description: '9 articles haut de gamme pour un ensemble luxueux',
                 price: 299,
-                image: 'pack2.jpg'
+                image: 'pack2.jpg',
+                items: [
+                    'Mibkhara',
+                    'Plateau rond 16 cm',
+                    'Plateau boules',
+                    'Mini vase',
+                    'Moyenne vase',
+                    'Boîte',
+                    'Plateau ovale',
+                    'Arc en ciel'
+                ]
             },
             'pack-special': {
                 title: 'Pack Spécial',
                 description: 'Duo parfait pour un cadeau élégant et original',
                 price: 69,
-                image: 'pack8.jpg'
+                image: 'pack8.jpg',
+                items: [
+                    'Plateau ovale en concrete',
+                    'Mini vase en concrete'
+                ]
             },
             'pack3': {
                 title: 'Pack Essentiel',
                 description: '4 articles assortis pour une décoration complète',
                 price: 149,
-                image: 'pack3.jpg'
+                image: 'pack3.jpg',
+                items: [
+                    'Plateau ovale',
+                    'Mini vase',
+                    'Plateau nuage',
+                    'Plateau boules'
+                ]
             }
         };
         
@@ -2619,7 +2892,7 @@
             // Données des packs pour l'aperçu rapide
             'pack0': {
                 title: 'Pack Découverte',
-                description: 'Ensemble essentiel en béton avec des pièces décoratives parfaites pour votre intérieur. Contient un mini vase, une boîte et un plateau ovale en béton.',
+                description: 'Ensemble essentiel en concreteavec des pièces décoratives parfaites pour votre intérieur. Contient un mini vase, une boîte et un plateau ovale en béton.',
                 price: '199 DH',
                 image: 'pack0.jpg'
             },
@@ -2669,11 +2942,11 @@
             initFilters();
             initSortDropdown();
             initPagination();
-            initPacksCarousel();
             initMobileMenu();
+            initCustomization();
             
-            // Charger le compteur du panier depuis localStorage
-            loadCartCount();
+            // Charger le panier depuis localStorage
+            loadCartFromStorage();
             
             // Vérifier s'il y a un paramètre de catégorie dans l'URL
             checkUrlParams();
@@ -2726,76 +2999,233 @@
             });
         }
         
-        // Initialisation du carousel des packs
-        function initPacksCarousel() {
-            const track = document.getElementById('packsCarouselTrack');
-            const prevBtn = document.getElementById('prevPackBtn');
-            const nextBtn = document.getElementById('nextPackBtn');
-            const cards = document.querySelectorAll('.packs-section .pack-card');
-            const cardWidth = window.innerWidth > 768 ? 300 : 280; // largeur + gap
-            
-            if (!track || !prevBtn || !nextBtn || cards.length === 0) return;
-            
-            prevBtn.addEventListener('click', () => {
-                if (packsCarouselPosition > 0) {
-                    packsCarouselPosition--;
-                    updatePacksCarousel();
-                }
+        // Initialisation des options de personnalisation
+        function initCustomization() {
+            // Gestion des options de couleur
+            const colorOptions = document.querySelectorAll('.color-option');
+            colorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Désélectionner toutes les options
+                    colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Sélectionner l'option cliquée
+                    option.classList.add('selected');
+                    selectedColor = option.getAttribute('data-color');
+                    updateCustomizationPrice();
+                });
             });
             
-            nextBtn.addEventListener('click', () => {
-                const maxPosition = Math.max(0, cards.length - (window.innerWidth > 768 ? 3 : 1));
-                if (packsCarouselPosition < maxPosition) {
-                    packsCarouselPosition++;
-                    updatePacksCarousel();
-                }
+            // Gestion des options de taille
+            const sizeOptions = document.querySelectorAll('.size-option');
+            sizeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Désélectionner toutes les options
+                    sizeOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Sélectionner l'option cliquée
+                    option.classList.add('selected');
+                    selectedSize = option.getAttribute('data-size');
+                    updateCustomizationPrice();
+                });
             });
             
-            // Support pour le glisser tactile sur mobile
-            let touchStartX = 0;
-            let touchEndX = 0;
-            
-            track.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            
-            track.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-            
-            function handleSwipe() {
-                const swipeThreshold = 50;
-                const diff = touchStartX - touchEndX;
-                
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        // Swipe gauche (suivant)
-                        const maxPosition = Math.max(0, cards.length - (window.innerWidth > 768 ? 3 : 1));
-                        if (packsCarouselPosition < maxPosition) {
-                            packsCarouselPosition++;
-                            updatePacksCarousel();
-                        }
-                    } else {
-                        // Swipe droit (précédent)
-                        if (packsCarouselPosition > 0) {
-                            packsCarouselPosition--;
-                            updatePacksCarousel();
-                        }
+            // Gestion du message personnalisé
+            const customMessageInput = document.getElementById('customMessage');
+            if (customMessageInput) {
+                customMessageInput.addEventListener('input', (e) => {
+                    // Limiter à 50 caractères
+                    if (e.target.value.length > 50) {
+                        e.target.value = e.target.value.substring(0, 50);
                     }
+                    customMessage = e.target.value;
+                    updateCustomizationPrice();
+                });
+            }
+        }
+        
+        // Mettre à jour le prix de personnalisation
+        function updateCustomizationPrice() {
+            if (!currentCustomizationProduct) return;
+            
+            const basePrice = productsData[currentCustomizationProduct].price;
+            let additionalPrice = 0;
+            
+            // Ajouter le prix pour le message personnalisé
+            if (customMessage.trim() !== '') {
+                additionalPrice += 10;
+            }
+            
+            // Ajouter le prix pour la couleur personnalisée (si différente de la couleur par défaut)
+            if (selectedColor && selectedColor !== 'gris') {
+                additionalPrice += 15;
+            }
+            
+            // Ajouter le prix pour la taille personnalisée
+            if (selectedSize === 'petit') {
+                additionalPrice -= 10;
+            } else if (selectedSize === 'grand') {
+                additionalPrice += 20;
+            }
+            
+            const totalPrice = basePrice + additionalPrice;
+            document.getElementById('totalPrice').textContent = totalPrice;
+            customizationPrice = additionalPrice;
+        }
+        
+        // Ouvrir le modal de personnalisation
+        function openCustomization(productId) {
+            currentCustomizationProduct = productId;
+            const product = productsData[productId];
+            
+            if (product) {
+                // Réinitialiser les options
+                selectedColor = '';
+                selectedSize = 'moyen';
+                customMessage = '';
+                customizationPrice = 0;
+                
+                // Mettre à jour les informations du produit
+                document.getElementById('customizationImage').src = product.image;
+                document.getElementById('customizationTitle').textContent = product.title;
+                document.getElementById('customizationDescription').textContent = product.description;
+                
+                // Réinitialiser les sélections
+                document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+                document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+                document.querySelector('.size-option[data-size="moyen"]').classList.add('selected');
+                document.getElementById('customMessage').value = '';
+                
+                // Mettre à jour le prix
+                updateCustomizationPrice();
+                
+                // Afficher le modal
+                document.getElementById('customizationModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Empêcher le défilement du fond sur mobile
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+            }
+        }
+        
+        // Ouvrir la personnalisation depuis l'aperçu rapide
+        function openCustomizationFromQuickView() {
+            if (currentQuickViewProduct) {
+                closeQuickView();
+                setTimeout(() => {
+                    openCustomization(currentQuickViewProduct);
+                }, 300);
+            }
+        }
+        
+        // Fermer le modal de personnalisation
+        function closeCustomization() {
+            document.getElementById('customizationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Rétablir le défilement sur mobile
+            document.body.style.position = '';
+            document.body.style.width = '';
+            
+            currentCustomizationProduct = null;
+        }
+        
+        // Ajouter un produit personnalisé au panier
+        function addCustomizedToCart() {
+            if (!currentCustomizationProduct) return;
+            
+            const product = productsData[currentCustomizationProduct];
+            if (!product) return;
+            
+            // Vérifier si le produit est déjà dans le panier avec les mêmes options de personnalisation
+            const existingItemIndex = cartItems.findIndex(item => 
+                item.id === currentCustomizationProduct && 
+                item.customizationData && 
+                item.customizationData.color === selectedColor && 
+                item.customizationData.size === selectedSize && 
+                item.customizationData.message === customMessage
+            );
+            
+            if (existingItemIndex !== -1) {
+                // Augmenter la quantité si le produit est déjà dans le panier
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // Créer un objet de personnalisation
+                const customizationData = {
+                    color: selectedColor,
+                    size: selectedSize,
+                    message: customMessage
+                };
+                
+                // Créer une description formatée pour la personnalisation
+                let customizationDescription = '';
+                if (selectedColor) {
+                    customizationDescription += `Couleur: ${selectedColor}\n`;
                 }
+                if (selectedSize && selectedSize !== 'moyen') {
+                    customizationDescription += `Taille: ${selectedSize}\n`;
+                }
+                if (customMessage) {
+                    customizationDescription += `Message: "${customMessage}"\n`;
+                }
+                
+                // Ajouter le produit personnalisé au panier
+                cartItems.push({
+                    id: currentCustomizationProduct,
+                    title: product.title,
+                    description: product.description,
+                    price: product.price + customizationPrice,
+                    basePrice: product.price,
+                    image: product.image,
+                    quantity: 1,
+                    type: 'product',
+                    custom: true,
+                    customization: customizationDescription,
+                    customizationData: customizationData
+                });
             }
             
-            function updatePacksCarousel() {
-                track.style.transform = `translateX(-${packsCarouselPosition * cardWidth}px)`;
-            }
+            cartCount++;
+            updateCartBadge();
+            saveCartToStorage();
             
-            // Auto-scroll du carousel des packs
-            setInterval(() => {
-                const maxPosition = Math.max(0, cards.length - (window.innerWidth > 768 ? 3 : 1));
-                packsCarouselPosition = (packsCarouselPosition + 1) % (maxPosition + 1);
-                updatePacksCarousel();
-            }, 5000);
+            // Fermer le modal
+            closeCustomization();
+            
+            // Afficher un message de confirmation
+            showToast('Produit personnalisé ajouté au panier !', 'success');
+            
+            // Animation du badge
+            const badge = document.getElementById('cartBadge');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Ajouter un produit personnalisé aux favoris
+        function addCustomizedToWishlist() {
+            if (!currentCustomizationProduct) return;
+            
+            // Sauvegarder dans le localStorage avec les options de personnalisation
+            let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+            
+            const customWishlistItem = {
+                id: `${currentCustomizationProduct}-custom-${Date.now()}`,
+                baseId: currentCustomizationProduct,
+                customization: {
+                    color: selectedColor,
+                    size: selectedSize,
+                    message: customMessage
+                }
+            };
+            
+            wishlist.push(customWishlistItem);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            
+            // Fermer le modal
+            closeCustomization();
+            
+            // Afficher un message de confirmation
+            showToast('Produit personnalisé ajouté aux favoris !', 'success');
         }
         
         // Vérifier les paramètres d'URL pour les filtres
@@ -3143,8 +3573,6 @@
         function addToCart(productId) {
             const product = productsData[productId];
             if (!product) return;
-            // Récupérer le panier actuel depuis localStorage
-            let cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
             
             // Vérifier si le produit est déjà dans le panier
             const existingItemIndex = cartItems.findIndex(item => item.id === productId);
@@ -3160,17 +3588,14 @@
                     description: product.description,
                     price: product.price,
                     image: product.image,
-                    quantity: 1
+                    quantity: 1,
+                    type: 'product'
                 });
             }
             
-            // Sauvegarder le panier dans localStorage
-            localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            
-            // Mettre à jour le compteur
-            cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+            cartCount++;
             updateCartBadge();
-            saveCartCount();
+            saveCartToStorage();
             showToast('Produit ajouté au panier !', 'success');
             
             // Animation du badge
@@ -3179,14 +3604,84 @@
             setTimeout(() => {
                 badge.style.transform = 'scale(1)';
             }, 200);
-            
-            // Vibration sur mobile si disponible
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50);
+        }
+        
+        // Ajouter un pack au panier
+        function addToCartPack(packId) {
+            const pack = productsData[packId];
+            if (!pack) {
+                showToast('Pack non trouvé', 'error');
+                return;
             }
             
-            // Suivi Analytics
-            trackEvent('add_to_cart', { product_id: productId });
+            // Vérifier si le pack est déjà dans le panier
+            const existingItemIndex = cartItems.findIndex(item => item.id === packId);
+            
+            if (existingItemIndex !== -1) {
+                // Augmenter la quantité si le pack est déjà dans le panier
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // Ajouter le pack au panier
+                cartItems.push({
+                    id: packId,
+                    title: pack.title,
+                    description: pack.description,
+                    price: pack.price,
+                    image: pack.image,
+                    quantity: 1,
+                    type: 'pack',
+                    items: pack.items
+                });
+            }
+            
+            cartCount++;
+            updateCartBadge();
+            saveCartToStorage();
+            showToast('Pack ajouté au panier !', 'success');
+            
+            // Animation du badge
+            const badge = document.getElementById('cartBadge');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Personnaliser un pack
+        function customizePack(packId) {
+            const pack = productsData[packId];
+            if (!pack) return;
+            
+            // Afficher le modal de personnalisation
+            currentCustomizationProduct = packId;
+            
+            // Réinitialiser les options
+            selectedColor = '';
+            selectedSize = 'moyen';
+            customMessage = '';
+            customizationPrice = 0;
+            
+            // Mettre à jour les informations du pack
+            document.getElementById('customizationImage').src = pack.image;
+            document.getElementById('customizationTitle').textContent = pack.title;
+            document.getElementById('customizationDescription').textContent = pack.description;
+            
+            // Réinitialiser les sélections
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.size-option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelector('.size-option[data-size="moyen"]').classList.add('selected');
+            document.getElementById('customMessage').value = '';
+            
+            // Mettre à jour le prix
+            updateCustomizationPrice();
+            
+            // Afficher le modal
+            document.getElementById('customizationModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Empêcher le défilement du fond sur mobile
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
         }
         
         function addToWishlist(productId) {
@@ -3198,14 +3693,6 @@
                 wishlist.push(productId);
                 localStorage.setItem('wishlist', JSON.stringify(wishlist));
             }
-            
-            // Vibration sur mobile si disponible
-            if ('vibrate' in navigator) {
-                navigator.vibrate(50);
-            }
-            
-            // Suivi Analytics
-            trackEvent('add_to_wishlist', { product_id: productId });
         }
         
         function quickView(productId) {
@@ -3217,6 +3704,18 @@
                 document.getElementById('quickViewTitle').textContent = product.title;
                 document.getElementById('quickViewDescription').textContent = product.description;
                 document.getElementById('quickViewPrice').textContent = product.price;
+                
+                // Vérifier si c'est un pack pour ajouter le bouton de personnalisation
+                const isPack = productId.startsWith('pack');
+                const customizeBtn = document.querySelector('.quick-view-actions .customize-btn');
+                
+                if (isPack) {
+                    customizeBtn.style.display = 'flex';
+                    customizeBtn.setAttribute('onclick', 'customizePack(\'' + productId + '\')');
+                } else {
+                    customizeBtn.style.display = 'flex';
+                    customizeBtn.setAttribute('onclick', 'openCustomizationFromQuickView()');
+                }
                 
                 document.getElementById('quickViewModal').style.display = 'block';
                 document.body.style.overflow = 'hidden';
@@ -3254,24 +3753,43 @@
             document.getElementById('cartBadge').textContent = cartCount;
         }
         
-        function saveCartCount() {
+        function saveCartToStorage() {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
             localStorage.setItem('cartCount', cartCount.toString());
         }
         
-        function loadCartCount() {
-            const savedCart = localStorage.getItem('cartItems');
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('cart');
             if (savedCart) {
-                const cartItems = JSON.parse(savedCart);
-                cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-                updateCartBadge();
+                try {
+                    cartItems = JSON.parse(savedCart);
+                    // Valider les données du panier
+                    cartItems = cartItems.filter(item => {
+                        return item.id && item.title && item.price && !isNaN(item.price);
+                    });
+                    cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+                    updateCartBadge();
+                } catch (e) {
+                    console.error("Erreur lors du chargement du panier:", e);
+                    localStorage.removeItem('cart');
+                    cartItems = [];
+                    cartCount = 0;
+                    updateCartBadge();
+                }
             }
         }
         
         // Fermer le modal en cliquant à l'extérieur
         window.addEventListener('click', (event) => {
             const quickViewModal = document.getElementById('quickViewModal');
+            const customizationModal = document.getElementById('customizationModal');
+            
             if (event.target === quickViewModal) {
                 closeQuickView();
+            }
+            
+            if (event.target === customizationModal) {
+                closeCustomization();
             }
         });
         
@@ -3279,6 +3797,7 @@
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') {
                 closeQuickView();
+                closeCustomization();
             }
         });
         
@@ -3299,9 +3818,6 @@
                     subscribers.push(email);
                     localStorage.setItem('subscribers', JSON.stringify(subscribers));
                 }
-                
-                // Suivi Analytics
-                trackEvent('newsletter_subscription', { email: email });
             } else {
                 showToast('Veuillez entrer une adresse email valide', 'error');
             }
@@ -3449,7 +3965,8 @@
         console.log('🎨 Decobizcreations - Page produits chargée avec succès !');
         console.log('✨ Toutes les fonctionnalités sont opérationnelles');
         console.log('📱 Optimisations pour mobile activées');
-        console.log('🎁 Style des packs amélioré');
+        console.log('🎁 Packs maintenant affichés comme les produits');
+        console.log('🛠️ Options de personnalisation ajoutées');
     </script>
 </body>
 </html>
