@@ -7,14 +7,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Produits - Decobizcreations | Artisanat Concrete</title>
     <meta name="description" content="Découvrez notre collection complète de créations artisanales en concrete. Plateaux, vases, boîtes décoratives faites main au Maroc." />
-    <meta name="keywords" content="décoration béton, , artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
+    <meta name="keywords" content="décoration béton, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
     <meta name="author" content="Hajar Agrar" />
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.decobizcreations.com/produits.html" />
-    <meta property="og:title" content="Produits - Decobizcreations | Artisanat concrete " />
+    <meta property="og:title" content="Produits - Decobizcreations | Artisanat concrete" />
     <meta property="og:description" content="Découvrez notre collection complète de créations artisanales en concrete." />
     <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
@@ -1249,6 +1249,7 @@
             height: 100%;
             background-color: rgba(0,0,0,0.9);
             -webkit-overflow-scrolling: touch;
+            overflow-y: auto;
         }
         .modal-content {
             position: relative;
@@ -1342,12 +1343,13 @@
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 10001;
         }
         .close-modal:hover {
             color: #bbb;
         }
         
-        /* Options de personnalisation */
+        /* Options de personnalisation - Version optimisée pour mobile */
         .customization-options {
             background: #f9f3e8;
             border-radius: 10px;
@@ -1384,6 +1386,7 @@
             display: flex;
             gap: 0.8rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .color-option {
@@ -1420,6 +1423,7 @@
             display: flex;
             gap: 0.8rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .size-option {
@@ -1696,26 +1700,15 @@
                 gap: 0.5rem;
             }
             
-            /* Options de personnalisation mobile */
-            .customization-options {
-                padding: 1rem;
+            /* Modal - Version mobile */
+            .modal-content {
+                width: 98%;
+                top: 0;
+                transform: none;
+                margin-top: 20px;
+                margin-bottom: 20px;
             }
             
-            .customization-title {
-                font-size: 1.1rem;
-            }
-            
-            .color-option {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .size-option {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-            
-            /* Modal */
             .quick-view-container {
                 flex-direction: column;
             }
@@ -1730,6 +1723,37 @@
             
             .quick-view-price {
                 font-size: 1.2rem;
+            }
+            
+            /* Options de personnalisation - Version mobile optimisée */
+            .customization-options {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .customization-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .color-option {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .size-option {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            
+            .customization-text {
+                min-height: 70px;
+                font-size: 0.9rem;
+            }
+            
+            .customization-price {
+                font-size: 1rem;
+                margin-top: 0.8rem;
             }
             
             /* Boutons flottants */
@@ -1805,6 +1829,48 @@
             
             .pack-price {
                 font-size: 1rem;
+            }
+            
+            /* Personnalisation - Très petits écrans */
+            .customization-options {
+                padding: 0.8rem;
+            }
+            
+            .customization-title {
+                font-size: 1rem;
+                margin-bottom: 0.6rem;
+            }
+            
+            .customization-label {
+                font-size: 0.85rem;
+                margin-bottom: 0.4rem;
+            }
+            
+            .color-option {
+                width: 30px;
+                height: 30px;
+                margin: 0.2rem;
+            }
+            
+            .size-option {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+                margin: 0.2rem;
+            }
+            
+            .customization-text {
+                min-height: 60px;
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
+            
+            .customization-note {
+                font-size: 0.75rem;
+            }
+            
+            .customization-price {
+                font-size: 0.95rem;
+                margin-top: 0.6rem;
             }
             
             .toast {
@@ -3087,12 +3153,29 @@
                 updateCustomizationPrice();
                 
                 // Afficher le modal
-                document.getElementById('customizationModal').style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                const modal = document.getElementById('customizationModal');
+                modal.style.display = 'block';
                 
-                // Empêcher le défilement du fond sur mobile
-                document.body.style.position = 'fixed';
-                document.body.style.width = '100%';
+                // Adapter pour mobile
+                if (window.innerWidth <= 768) {
+                    // Ajuster la position et le comportement pour mobile
+                    modal.style.position = 'fixed';
+                    modal.style.top = '0';
+                    modal.style.left = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.overflowY = 'auto';
+                    
+                    // Faire défiler jusqu'en haut du modal
+                    setTimeout(() => {
+                        modal.scrollTop = 0;
+                    }, 100);
+                } else {
+                    // Comportement normal pour desktop
+                    document.body.style.overflow = 'hidden';
+                    document.body.style.position = 'fixed';
+                    document.body.style.width = '100%';
+                }
             } else {
                 showToast("Produit non trouvé", "error");
             }
@@ -3110,12 +3193,21 @@
         
         // Fermer le modal de personnalisation
         function closeCustomization() {
-            document.getElementById('customizationModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            const modal = document.getElementById('customizationModal');
+            modal.style.display = 'none';
             
-            // Rétablir le défilement sur mobile
-            document.body.style.position = '';
-            document.body.style.width = '';
+            // Rétablir le défilement
+            if (window.innerWidth <= 768) {
+                // Mobile - rétablir le défilement normal
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            } else {
+                // Desktop - rétablir le défilement normal
+                document.body.style.overflow = 'auto';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
             
             currentCustomizationProduct = null;
         }
@@ -3668,12 +3760,29 @@
             updateCustomizationPrice();
             
             // Afficher le modal
-            document.getElementById('customizationModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            const modal = document.getElementById('customizationModal');
+            modal.style.display = 'block';
             
-            // Empêcher le défilement du fond sur mobile
-            document.body.style.position = 'fixed';
-            document.body.style.width = '100%';
+            // Adapter pour mobile
+            if (window.innerWidth <= 768) {
+                // Ajuster la position et le comportement pour mobile
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.overflowY = 'auto';
+                
+                // Faire défiler jusqu'en haut du modal
+                setTimeout(() => {
+                    modal.scrollTop = 0;
+                }, 100);
+            } else {
+                // Comportement normal pour desktop
+                document.body.style.overflow = 'hidden';
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
+            }
         }
         
         function addToWishlist(productId) {
@@ -3709,22 +3818,48 @@
                     customizeBtn.setAttribute('onclick', 'openCustomizationFromQuickView()');
                 }
                 
-                document.getElementById('quickViewModal').style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                const modal = document.getElementById('quickViewModal');
+                modal.style.display = 'block';
                 
-                // Empêcher le défilement du fond sur mobile
-                document.body.style.position = 'fixed';
-                document.body.style.width = '100%';
+                // Adapter pour mobile
+                if (window.innerWidth <= 768) {
+                    // Ajuster la position et le comportement pour mobile
+                    modal.style.position = 'fixed';
+                    modal.style.top = '0';
+                    modal.style.left = '0';
+                    modal.style.width = '100%';
+                    modal.style.height = '100%';
+                    modal.style.overflowY = 'auto';
+                    
+                    // Faire défiler jusqu'en haut du modal
+                    setTimeout(() => {
+                        modal.scrollTop = 0;
+                    }, 100);
+                } else {
+                    // Comportement normal pour desktop
+                    document.body.style.overflow = 'hidden';
+                    document.body.style.position = 'fixed';
+                    document.body.style.width = '100%';
+                }
             }
         }
         
         function closeQuickView() {
-            document.getElementById('quickViewModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            const modal = document.getElementById('quickViewModal');
+            modal.style.display = 'none';
             
-            // Rétablir le défilement sur mobile
-            document.body.style.position = '';
-            document.body.style.width = '';
+            // Rétablir le défilement
+            if (window.innerWidth <= 768) {
+                // Mobile - rétablir le défilement normal
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            } else {
+                // Desktop - rétablir le défilement normal
+                document.body.style.overflow = 'auto';
+                document.body.style.position = '';
+                document.body.style.width = '';
+            }
         }
         
         function addToCartFromQuickView() {
