@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>À Propos - Decobizcreations | Artisanat Béton & Gypse</title>
+    <meta name="description" content="Découvrez l'histoire de Decobizcreations, fondée en 2024, et notre atelier à Agadir dédié à l'artisanat du béton et du gypse." />
+    <meta name="keywords" content="à propos, artisanat, béton, gypse, atelier Agadir, histoire, savoir-faire" />
+    <meta name="author" content="Hajar Agrar" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.decobizcreations.com/apropos.html" />
+    <meta property="og:title" content="À Propos - Decobizcreations" />
+    <meta property="og:description" content="Découvrez l'histoire de Decobizcreations et notre passion pour l'artisanat du béton et du gypse." />
+    <meta property="og:image" content="" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .about-container {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .about-section {
+            background: #252525;
+            color: #e0e0e0;
+        }
+        body.dark-mode .timeline-content {
+            background: #252525;
+            color: #e0e0e0;
+        }
+        body.dark-mode .skill-item, 
+        body.dark-mode .value-item,
+        body.dark-mode .team-member {
+            background: #252525;
+            color: #e0e0e0;
+        }
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fffaf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #loader div {
+            border: 6px solid #b27952;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+        /* Scroll Progress Bar */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #b27952;
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.2s ease;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 2px solid #b27952;
+            transition: background 0.3s ease;
+        }
+        header:hover {
+            background: #fdf6ef;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+            cursor: default;
+            user-select: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Bouton mode sombre */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid #b27952;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #b27952;
+        }
+        .dark-mode-toggle:hover {
+            background: #b27952;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Recherche */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        .search-input:focus {
+            width: 250px;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* Panier compteur */
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #b27952;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        nav a.active {
+            color: #b27952;
+        }
+        nav a.active::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #5a4a24;
+            transition: background 0.2s ease;
+        }
+        .submenu a:hover {
+            background: #f9f3e8;
+            color: #b27952;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .breadcrumb-list {
+            display: flex;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .breadcrumb-item {
+            font-size: 0.9rem;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: "›";
+            margin: 0 0.5rem;
+            color: #b27952;
+        }
+        .breadcrumb-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb-link:hover {
+            color: #b27952;
+        }
+        .breadcrumb-current {
+            color: #b27952;
+            font-weight: 600;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #b27952, #8c5a34);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .page-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Contenu principal */
+        .about-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #5a4a24;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .about-intro {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            background: #f9f9f9;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+        }
+        
+        .about-intro-text {
+            flex: 3;
+        }
+        
+        .about-intro-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-intro-text p {
+            color: #6b5e34;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .about-intro-image {
+            flex: 2;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .about-intro-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .about-intro-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .about-section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+        }
+        
+        .about-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #5a4a24;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #b27952;
+            border-radius: 2px;
+        }
+        
+        /* Timeline */
+        .about-timeline {
+            position: relative;
+            padding: 2rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #f0e6d6;
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-year {
+            flex: 0 0 100px;
+            height: 40px;
+            background: #b27952;
+            color: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 2rem;
+            z-index: 2;
+            box-shadow: 0 4px 8px rgba(178, 121, 82, 0.3);
+        }
+        
+        .timeline-content {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .timeline-content p {
+            color: #6b5e34;
+            line-height: 1.7;
+        }
+        
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .skill-item:hover .skill-icon {
+            background: #b27952;
+            color: white;
+        }
+        
+        .skill-item h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5a4a24;
+            margin-bottom: 1rem;
+        }
+        
+        /* Workshop Gallery */
+        .workshop-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            background: rgba(178, 121, 82, 0.8);
+        }
+        
+        .workshop-description {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+        
+        .workshop-description p {
+            color: #6b5e34;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 4px solid #f9f3e8;
+            transition: border-color 0.3s ease;
+        }
+        
+        .team-member:hover .member-photo {
+            border-color: #b27952;
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .team-member:hover .member-photo img {
+            transform: scale(1.05);
+        }
+        
+        .team-member h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5a4a24;
+            margin-bottom: 0.3rem;
+        }
+        
+        .team-member p:first-of-type {
+            color: #b27952;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .team-member p:last-of-type {
+            color: #6b5e34;
+        }
+        
+        /* Values Container */
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-item {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .value-item:hover {
+            transform: translateY(-10px);
+        }
+        
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        
+        .value-item:hover .value-icon {
+            background: #b27952;
+            color: white;
+        }
+        
+        .value-item h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5a4a24;
+            margin-bottom: 1rem;
+        }
+        
+        /* Animations */
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Footer */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            margin-top: 4rem;
+            padding: 3rem 0 1rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        .footer-links {
+            list-style: none;
+        }
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: #b27952;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        .newsletter-form-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .newsletter-input-footer {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        .newsletter-btn-footer {
+            padding: 10px 15px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .newsletter-btn-footer:hover {
+            background: #8c5a34;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        .footer-bottom a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2.5s infinite ease-in-out;
+            transition: box-shadow 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            box-shadow: 0 10px 25px rgba(37,211,102,0.7);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            background: #8c5a34;
+            transform: translateY(-3px);
+        }
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* Notifications toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+        .toast.error {
+            background: #f44336;
+        }
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        /* Styles pour le menu mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #b27952;
+            cursor: pointer;
+        }
+        
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            color: #333;
+            z-index: 1000;
+            padding: 1rem;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        #mobileMenu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        
+        .mobile-menu-header h3 {
+            font-size: 1.5rem;
+        }
+        
+        .mobile-menu-header button {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-menu-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mobile-menu-list a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-list a:hover {
+            color: #b27952;
+            padding-left: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-intro {
+                flex-direction: column;
+            }
+            
+            .about-intro-text {
+                order: 2;
+            }
+            
+            .about-intro-image {
+                order: 1;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                padding: 0.8rem 1rem;
+                justify-content: space-between;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0;
+            }
+            
+            .header-controls {
+                flex-direction: row;
+                gap: 0.8rem;
+                width: auto;
+                justify-content: flex-end;
+            }
+            
+            .search-container {
+                order: 2;
+                flex: 0;
+                width: 180px;
+            }
+            
+            .search-input {
+                width: 100%;
+                padding: 6px 35px 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .search-input:focus {
+                width: 100%;
+            }
+            
+            .dark-mode-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                order: 1;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .about-intro-text h2 {
+                font-size: 1.5rem;
+            }
+            
+            .about-intro-text p {
+                font-size: 1rem;
+            }
+            
+            .about-timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: row !important;
+                padding-left: 60px;
+            }
+            
+            .timeline-year {
+                position: absolute;
+                left: 20px;
+                transform: translateX(-50%);
+            }
+            
+            .timeline-content {
+                padding: 1.5rem;
+            }
+            
+            .timeline-content h3 {
+                font-size: 1.2rem;
+            }
+            
+            .skills-grid,
+            .team-grid,
+            .values-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .skill-item,
+            .team-member,
+            .value-item {
+                padding: 1.5rem;
+            }
+            
+            .skill-icon,
+            .value-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .member-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .workshop-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item img {
+                height: 200px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        /* Pour les très petits écrans comme l'iPhone 4 (320px) */
+        @media (max-width: 480px) {
+            header {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .header-controls {
+                gap: 0.5rem;
+            }
+            
+            .search-container {
+                width: 140px;
+            }
+            
+            .search-input {
+                padding: 5px 30px 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .dark-mode-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1rem;
+            }
+            
+            .search-btn {
+                right: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .breadcrumb {
+                padding: 0.8rem 1rem;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .about-container {
+                padding: 1rem;
+                margin: 1rem auto;
+            }
+            
+            .page-title {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+            
+            .about-intro {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .about-intro-text h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .about-intro-text p {
+                font-size: 0.95rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .about-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .about-section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .timeline-item {
+                margin-bottom: 2rem;
+                padding-left: 50px;
+            }
+            
+            .timeline-year {
+                width: 80px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .timeline-content {
+                padding: 1rem;
+            }
+            
+            .timeline-content h3 {
+                font-size: 1.1rem;
+            }
+            
+            .skills-grid,
+            .team-grid,
+            .values-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .skill-item,
+            .team-member,
+            .value-item {
+                padding: 1.2rem;
+            }
+            
+            .skill-icon,
+            .value-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+            
+            .member-photo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .team-member h3 {
+                font-size: 1.1rem;
+            }
+            
+            .gallery-item img {
+                height: 180px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 80px;
+                right: 20px;
+                font-size: 1rem;
+            }
+            
+            .footer-content {
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+            
+            .footer-column h4 {
+                font-size: 1.2rem;
+            }
+            
+            .newsletter-form-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .newsletter-input-footer,
+            .newsletter-btn-footer {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loader" role="alert" aria-live="assertive">
+        <div aria-label="Chargement en cours"></div>
+    </div>
+    
+    <div id="progressbar" aria-hidden="true"></div>
+    
+    <header>
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        <div class="header-controls">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu mobile">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
+                <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <nav aria-label="Navigation principale">
+            <div class="nav-item">
+                <a href="index.html" tabindex="0">Accueil</a>
+            </div>
+            <div class="nav-item">
+                <a href="produits.html" tabindex="0">Produits</a>
+                <div class="submenu">
+                    <a href="produits.html?category=plateau">Plateaux</a>
+                    <a href="produits.html?category=vase">Vases</a>
+                    <a href="produits.html?category=boite">Boîtes</a>
+                    <a href="produits.html?category=decoration">Décorations</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="apropos.html" tabindex="0" class="active">À propos</a>
+                <div class="submenu">
+                    <a href="apropos.html#histoire">Notre histoire</a>
+                    <a href="apropos.html#savoir-faire">Notre savoir-faire</a>
+                    <a href="apropos.html#atelier">Notre atelier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" tabindex="0">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" tabindex="0">Contact</a>
+            </div>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0">Panier</a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Menu mobile (caché par défaut) -->
+    <div id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button id="closeMobileMenu" aria-label="Fermer le menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+            <li><a href="apropos.html#histoire">Notre histoire</a></li>
+            <li><a href="apropos.html#savoir-faire">Notre savoir-faire</a></li>
+            <li><a href="apropos.html#atelier">Notre atelier</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="panier.html">Panier</a></li>
+        </ul>
+    </div>
+    
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Accueil</a></li>
+            <li class="breadcrumb-item"><span class="breadcrumb-current">À propos</span></li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>À Propos de Decobizcreations</h2>
+        <p>Découvrez notre histoire, notre savoir-faire et notre passion pour l'artisanat marocain</p>
+    </div>
+    
+    <div class="about-container">
+        <section class="about-intro fade-slide">
+            <div class="about-intro-text">
+                <h2>Notre Passion pour l'Artisanat</h2>
+                <p>
+                    Chez Decobizcreations, nous transformons le béton et le gypse en œuvres d'art fonctionnelles. 
+                    Fondée en 2024 par Hajar Agrar, notre entreprise allie savoir-faire traditionnel marocain et design contemporain 
+                    pour créer des pièces uniques qui embellissent votre intérieur.
+                </p>
+                <p>
+                    Chaque création est le fruit d'un travail méticuleux, réalisé à la main dans notre atelier d'Agadir. 
+                    Nous nous engageons à utiliser des matériaux de qualité et des techniques respectueuses de l'environnement 
+                    pour vous offrir des décorations durables et élégantes.
+                </p>
+            </div>
+            <div class="about-intro-image">
+                <img src="artisanat.png" alt="Artisan travaillant le béton">
+            </div>
+        </section>
+        
+        <section id="histoire" class="about-section fade-slide">
+            <h2>Notre Histoire</h2>
+            <div class="about-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-content">
+                        <h3>Fondation de Decobizcreations</h3>
+                        <p>Lancement de l'aventure avec une collection initiale de plateaux en béton et vases en gypse, créés dans notre atelier d'Agadir. Développement de notre identité visuelle et de notre philosophie artisanale.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>Première Boutique en Ligne</h3>
+                        <p>Lancement de notre site web pour partager nos créations avec un public plus large. Participation à notre premier salon d'artisanat local et reconnaissance de notre savoir-faire par la communauté.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="savoir-faire" class="about-section fade-slide">
+            <h2>Notre Savoir-faire</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                    <h3>Techniques Artisanales</h3>
+                    <p>Nous maîtrisons des techniques traditionnelles de moulage et de finition, transmises de génération en génération.</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Design Innovant</h3>
+                    <p>Nos créations allient esthétique moderne et inspiration marocaine pour un résultat unique.</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Qualité Supérieure</h3>
+                    <p>Chaque pièce est contrôlée avec soin pour garantir une finition parfaite et une durabilité exceptionnelle.</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Éco-responsabilité</h3>
+                    <p>Nous utilisons des matériaux naturels et des processus respectueux de l'environnement.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="atelier" class="about-section fade-slide">
+            <h2>Notre Atelier à Agadir</h2>
+            <div class="workshop-gallery">
+                <div class="gallery-item">
+                    <img src="espace.png" alt="Vue de l'atelier d'Agadir">
+                    <div class="gallery-caption">Espace de création</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Matériaux utilisés">
+                    <div class="gallery-caption">Nos matériaux</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581093582573-2c8a0a8a949a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Processus de fabrication">
+                    <div class="gallery-caption">Processus artisanal</div>
+                </div>
+            </div>
+            <div class="workshop-description">
+                <p>
+                    Notre atelier de 200m² situé à Agadir est le cœur de notre activité. C'est là que naissent toutes nos créations, 
+                    depuis la conception jusqu'à la finition. Nous avons aménagé des espaces dédiés à chaque étape du processus : 
+                    préparation des matériaux, moulage, séchage, polissage et emballage.
+                </p>
+                <p>
+                    L'atelier est conçu pour favoriser la créativité et garantir des conditions de travail optimales à nos artisans. 
+                    Nous y recevons également des visites sur rendez-vous pour partager notre passion et montrer notre savoir-faire.
+                </p>
+                <p>
+                    Bénéficiant d'un emplacement stratégique à Agadir, nous nous inspirons de la beauté de la région et de son 
+                    artisanat traditionnel pour créer des pièces uniques qui reflètent l'âme du Maroc.
+                </p>
+            </div>
+        </section>
+        
+        <section class="about-section fade-slide">
+            <h2>Notre Équipe</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Hajar Agrar">
+                    </div>
+                    <h3>Hajar Agrar</h3>
+                    <p>Fondatrice & Designer</p>
+                    <p>Passionnée de design et d'artisanat, Hajar a transformé sa passion en métier.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Artisan">
+                    </div>
+                    <h3>Youssef Rahman</h3>
+                    <p>Maître Artisan</p>
+                    <p>Spécialiste des techniques de moulage avec plus de 15 ans d'expérience.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Artisan">
+                    </div>
+                    <h3>Fatima Zahra</h3>
+                    <p>Responsable Finition</p>
+                    <p>Expert en polissage et traitement de surface pour une finition parfaite.</p>
+                </div>
+                <div class="team-member">
+                    <div class="member-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80" alt="Artisan">
+                    </div>
+                    <h3>Omar Tazi</h3>
+                    <p>Assistant Créatif</p>
+                    <p>Jeune talent qui apporte des idées fraîches et innovantes.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section fade-slide">
+            <h2>Nos Valeurs</h2>
+            <div class="values-container">
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>Nous mettons notre cœur dans chaque création pour vous offrir des pièces qui racontent une histoire.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Qualité</h3>
+                    <p>Nous ne faisons aucun compromis sur la qualité des matériaux et des finitions.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Authenticité</h3>
+                    <p>Chaque pièce est unique, façonnée à la main avec une attention particulière aux détails.</p>
+                </div>
+                <div class="value-item">
+                    <div class="value-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <h3>Origine</h3>
+                    <p>Nous sommes fiers de promouvoir l'artisanat marocain à travers nos créations.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- WhatsApp flottant -->
+    <a href="https://wa.me/212610236889" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>À propos</h4>
+                <ul class="footer-links">
+                    <li><a href="apropos.html">Notre histoire</a></li>
+                    <li><a href="apropos.html#savoir-faire">Notre savoir-faire</a></li>
+                    <li><a href="apropos.html#atelier">Notre atelier</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Produits</h4>
+                <ul class="footer-links">
+                    <li><a href="produits.html?category=plateau">Plateaux</a></li>
+                    <li><a href="produits.html?category=vase">Vases</a></li>
+                    <li><a href="produits.html?category=boite">Boîtes</a></li>
+                    <li><a href="produits.html?category=decoration">Décorations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Service client</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="livraison.html">Livraison</a></li>
+                    <li><a href="retours.html">Retours</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                <form class="newsletter-form-footer" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input-footer" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn-footer">OK</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/decobizcreations" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/decobizcreations" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://pinterest.com/decobizcreations" target="_blank" class="social-link" aria-label="Pinterest">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Decobizcreations — Artisanat marocain fait main. Tous droits réservés.</p>
+            <p><a href="conditions.html">Conditions générales</a> | <a href="confidentialite.html">Politique de confidentialité</a> | <a href="mentions-legales.html">Mentions légales</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales
+        let cartCount = 0;
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Masquer le loader
+            document.getElementById('loader').style.display = 'none';
+            
+            // Initialiser les animations
+            initScrollAnimations();
+            initScrollProgress();
+            initBackToTop();
+            initDarkMode();
+            initSearch();
+            initMobileMenu();
+            
+            // Charger le compteur du panier depuis localStorage
+            loadCartCount();
+            
+            // Initialiser le service worker pour PWA
+            initServiceWorker();
+            
+            // Initialiser le consentement aux cookies
+            initCookieConsent();
+        });
+        
+        // Initialiser le menu mobile
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Empêcher le défilement du corps
+            });
+            
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Réactiver le défilement
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', (event) => {
+                if (mobileMenu.classList.contains('active') && 
+                    !mobileMenu.contains(event.target) && 
+                    !mobileMenuBtn.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+        
+        // Mettre à jour le compteur du panier
+        function updateCartBadge() {
+            document.getElementById('cartBadge').textContent = cartCount;
+        }
+        
+        function saveCartCount() {
+            localStorage.setItem('cartCount', cartCount.toString());
+        }
+        
+        function loadCartCount() {
+            const savedCart = localStorage.getItem('cartItems');
+            if (savedCart) {
+                const cartItems = JSON.parse(savedCart);
+                cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+                updateCartBadge();
+            }
+        }
+        
+        // Initialiser le mode sombre
+        function initDarkMode() {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Charger la préférence sauvegardée
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+        
+        // Barre de progression du scroll
+        function initScrollProgress() {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressbar').style.width = scrollPercent + '%';
+            });
+        }
+        
+        // Initialiser les animations au défilement
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-slide');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Exécuter une fois au chargement
+            fadeInOnScroll();
+            
+            // Exécuter au défilement
+            window.addEventListener('scroll', fadeInOnScroll);
+        }
+        
+        // Bouton retour en haut
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Initialiser la recherche
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            const performSearch = function() {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    // Rediriger vers la page de produits avec le terme de recherche
+                    window.location.href = `produits.html?search=${encodeURIComponent(searchTerm)}`;
+                }
+            };
+            
+            searchBtn.addEventListener('click', performSearch);
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+        
+        // Newsletter
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Validation email simple
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                showToast('Merci pour votre inscription !', 'success');
+                event.target.reset();
+                
+                // Sauvegarder l'email dans le localStorage
+                let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+            } else {
+                showToast('Veuillez entrer une adresse email valide', 'error');
+            }
+        }
+        
+        // Système de notifications toast
+        function showToast(message, type = 'info') {
+            // Supprimer les anciens toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'polite');
+            
+            document.body.appendChild(toast);
+            
+            // Afficher le toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Masquer et supprimer le toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Service Worker pour PWA (Progressive Web App)
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
+                    });
+            }
+        }
+        
+        // Gestion des cookies (RGPD)
+        function initCookieConsent() {
+            // Vérifier si le consentement a déjà été donné
+            if (!localStorage.getItem('cookieConsent')) {
+                // Créer la bannière de consentement
+                const cookieBanner = document.createElement('div');
+                cookieBanner.id = 'cookieBanner';
+                cookieBanner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2c2c2c;
+                    color: white;
+                    padding: 1rem;
+                    z-index: 10000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                `;
+                
+                cookieBanner.innerHTML = `
+                    <div style="margin-right: 1rem;">
+                        <p style="margin: 0;">Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer sur ce site, vous acceptez notre politique de cookies.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="acceptCookies" style="background: #b27952; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Accepter</button>
+                        <button id="declineCookies" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Refuser</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(cookieBanner);
+                
+                // Gérer les clics sur les boutons
+                document.getElementById('acceptCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    document.getElementById('cookieBanner').remove();
+                    
+                    // Activer le suivi si accepté
+                    enableTracking();
+                });
+                
+                document.getElementById('declineCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    document.getElementById('cookieBanner').remove();
+                });
+            } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+                // Activer le suivi si déjà accepté
+                enableTracking();
+            }
+        }
+        
+        // Activer le suivi (Analytics)
+        function enableTracking() {
+            // Ici, vous pourriez intégrer Google Analytics, Facebook Pixel, etc.
+            console.log('Le suivi est activé');
+            
+            // Exemple de suivi de page vue
+            trackEvent('page_view', { page: 'about' });
+        }
+        
+        // Fonction de suivi des événements
+        function trackEvent(eventName, eventData = {}) {
+            // Ici, vous pourriez envoyer les données à Google Analytics, Facebook Pixel, etc.
+            console.log('Événement suivi:', eventName, eventData);
+            
+            // Exemple d'envoi à Google Analytics (si gtag.js est chargé)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+        }
+        
+        console.log('📄 Page À Propos chargée avec succès !');
+        console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+    </script>
+</body>
+</html>
