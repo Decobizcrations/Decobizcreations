@@ -2,25 +2,25 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Paiement - Decobizcreations | Artisanat Béton & Gypse</title>
-    <meta name="description" content="Finalisez votre commande de créations artisanales en béton et gypse. Paiement sécurisé par carte bancaire, virement ou WhatsApp." />
-    <meta name="keywords" content="paiement, commande, artisanat marocain, béton, gypse, décoration, livraison" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Paiement WhatsApp 50% - Decobizcreations | Artisanat Béton & Gypse</title>
+    <meta name="description" content="Finalisez votre commande avec un paiement de 50% d'avance via WhatsApp. Artisanat marocain en béton et gypse." />
+    <meta name="keywords" content="paiement whatsapp, commande, artisanat marocain, béton, gypse, décoration, livraison" />
     <meta name="author" content="Hajar Agrar" />
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.decobizcreations.com/paiement.html" />
-    <meta property="og:title" content="Paiement - Decobizcreations | Artisanat Béton & Gypse" />
-    <meta property="og:description" content="Finalisez votre commande de créations artisanales en béton et gypse." />
+    <meta property="og:title" content="Paiement WhatsApp 50% - Decobizcreations | Artisanat Béton & Gypse" />
+    <meta property="og:description" content="Finalisez votre commande avec un paiement de 50% d'avance via WhatsApp." />
     <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.decobizcreations.com/paiement.html" />
-    <meta property="twitter:title" content="Paiement - Decobizcreations | Artisanat Béton & Gypse" />
-    <meta property="twitter:description" content="Finalisez votre commande de créations artisanales en béton et gypse." />
+    <meta property="twitter:title" content="Paiement WhatsApp 50% - Decobizcreations | Artisanat Béton & Gypse" />
+    <meta property="twitter:description" content="Finalisez votre commande avec un paiement de 50% d'avance via WhatsApp." />
     <meta property="twitter:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
     <!-- Favicon -->
@@ -327,7 +327,7 @@
         
         /* Page Header */
         .page-header {
-            background: linear-gradient(135deg, #f8b500, #b27952);
+            background: linear-gradient(135deg, #25d366, #128C7E);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
@@ -421,13 +421,13 @@
         }
         
         .payment-method:hover {
-            border-color: #b27952;
+            border-color: #25d366;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
         
         .payment-method.selected {
-            border-color: #b27952;
-            background: #fdf6ef;
+            border-color: #25d366;
+            background: #eaf6ff;
         }
         
         .payment-method-header {
@@ -443,7 +443,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #b27952;
+            background: #25d366;
             color: white;
             border-radius: 50%;
             font-size: 1.2rem;
@@ -500,22 +500,27 @@
         .whatsapp-message p {
             margin: 0.3rem 0;
             white-space: pre-line;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
         
         .copy-btn {
-            background: #b27952;
+            background: #25d366;
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 5px 10px;
+            padding: 8px 12px;
             cursor: pointer;
             font-size: 0.9rem;
             margin-top: 0.5rem;
             transition: background 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
         }
         
         .copy-btn:hover {
-            background: #8c5a34;
+            background: #128C7E;
         }
         
         /* Order Summary */
@@ -582,6 +587,16 @@
             color: #777;
         }
         
+        .order-item-customization {
+            font-size: 0.85rem;
+            color: #6b5e34;
+            margin-top: 0.3rem;
+            padding: 0.5rem;
+            background: #f9f3e8;
+            border-radius: 5px;
+            border-left: 3px solid #b27952;
+        }
+        
         .summary-row {
             display: flex;
             justify-content: space-between;
@@ -613,7 +628,7 @@
         
         .checkout-btn {
             width: 100%;
-            background: #b27952;
+            background: #25d366;
             color: white;
             border: none;
             border-radius: 30px;
@@ -625,7 +640,7 @@
         }
         
         .checkout-btn:hover {
-            background: #8c5a34;
+            background: #128C7E;
             transform: translateY(-2px);
         }
         
@@ -849,6 +864,81 @@
             background: #2196F3;
         }
         
+        /* Styles pour le menu mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #b27952;
+            cursor: pointer;
+        }
+        
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            color: #333;
+            z-index: 1000;
+            padding: 1rem;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        #mobileMenu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        
+        .mobile-menu-header h3 {
+            font-size: 1.5rem;
+        }
+        
+        .mobile-menu-header button {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-menu-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mobile-menu-list a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-list a:hover {
+            color: #b27952;
+            padding-left: 1rem;
+        }
+        
         /* Responsive */
         @media (max-width: 992px) {
             .payment-page-container {
@@ -857,17 +947,53 @@
         }
         
         @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                padding: 0.8rem 1rem;
+                justify-content: space-between;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0;
+            }
+            
             .header-controls {
-                flex-direction: column;
-                gap: 0.5rem;
+                flex-direction: row;
+                gap: 0.8rem;
+                width: auto;
+                justify-content: flex-end;
+            }
+            
+            .search-container {
+                order: 2;
+                flex: 0;
+                width: 180px;
             }
             
             .search-input {
-                width: 150px;
+                width: 100%;
+                padding: 6px 35px 6px 12px;
+                font-size: 0.9rem;
             }
             
             .search-input:focus {
-                width: 180px;
+                width: 100%;
+            }
+            
+            .dark-mode-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                order: 1;
+            }
+            
+            nav {
+                display: none;
             }
             
             .form-row {
@@ -875,7 +1001,7 @@
             }
             
             .page-header h2 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
             .page-header p {
@@ -896,6 +1022,163 @@
                 justify-content: center;
             }
         }
+        
+        /* Pour les très petits écrans comme l'iPhone 4 (320px) */
+        @media (max-width: 480px) {
+            header {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .header-controls {
+                gap: 0.5rem;
+            }
+            
+            .search-container {
+                width: 140px;
+            }
+            
+            .search-input {
+                padding: 5px 30px 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .dark-mode-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1rem;
+            }
+            
+            .search-btn {
+                right: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .breadcrumb {
+                padding: 0.8rem 1rem;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .payment-page-container {
+                padding: 0 1rem;
+                margin: 1.5rem auto;
+                gap: 1.5rem;
+            }
+            
+            .payment-container,
+            .order-summary {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                padding-bottom: 0.8rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 10px;
+                font-size: 0.95rem;
+            }
+            
+            .payment-method {
+                padding: 1rem;
+            }
+            
+            .payment-method-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1rem;
+            }
+            
+            .payment-method-title {
+                font-size: 1rem;
+            }
+            
+            .copy-btn {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .order-item-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .order-item-title {
+                font-size: 0.95rem;
+            }
+            
+            .order-item-description {
+                font-size: 0.85rem;
+            }
+            
+            .order-item-customization {
+                font-size: 0.8rem;
+                padding: 0.4rem;
+            }
+            
+            .summary-total {
+                font-size: 1.1rem;
+            }
+            
+            .checkout-btn {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 80px;
+                right: 20px;
+                font-size: 1rem;
+            }
+            
+            .footer-content {
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+            
+            .footer-column h4 {
+                font-size: 1.2rem;
+            }
+            
+            .newsletter-form-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .newsletter-input-footer,
+            .newsletter-btn-footer {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -910,6 +1193,9 @@
             <h1>Decobizcreations</h1>
         </a>
         <div class="header-controls">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu mobile">
+                <i class="fas fa-bars"></i>
+            </button>
             <div class="search-container">
                 <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
                 <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
@@ -954,11 +1240,27 @@
                 <a href="panier.html" tabindex="0">Panier</a>
                 <span class="cart-badge" id="cartBadge">0</span>
             </div>
-            <div class="nav-item">
-                <a href="compte.html" tabindex="0">Mon compte</a>
-            </div>
         </nav>
     </header>
+    
+    <!-- Menu mobile (caché par défaut) -->
+    <div id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button id="closeMobileMenu" aria-label="Fermer le menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="packs.html">Packs</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="panier.html">Panier</a></li>
+        </ul>
+    </div>
     
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
@@ -971,8 +1273,8 @@
     
     <!-- Page Header -->
     <div class="page-header">
-        <h2>Finaliser votre commande</h2>
-        <p>Complétez vos informations de livraison et choisissez votre méthode de paiement</p>
+        <h2>Paiement par WhatsApp (50% d'avance)</h2>
+        <p>Finalisez votre commande en payant 50% d'avance via WhatsApp</p>
     </div>
     
     <main class="payment-page-container">
@@ -1027,86 +1329,10 @@
                     <textarea id="notes" name="notes" rows="3" placeholder="Instructions de livraison spéciales..."></textarea>
                 </div>
                 
-                <h3 class="section-title">Méthode de paiement</h3>
+                <h3 class="section-title">Paiement par WhatsApp (50% d'avance)</h3>
                 
                 <div class="payment-methods">
-                    <div class="payment-method" data-method="card">
-                        <div class="payment-method-header">
-                            <div class="payment-method-icon">
-                                <i class="fas fa-credit-card"></i>
-                            </div>
-                            <div class="payment-method-title">Carte bancaire</div>
-                        </div>
-                        <div class="payment-method-content">
-                            <p>Paiement sécurisé par carte bancaire. Vos informations sont cryptées et ne seront pas stockées.</p>
-                            <div class="form-group">
-                                <label for="cardNumber">Numéro de carte</label>
-                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="cardExpiry">Date d'expiration</label>
-                                    <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5">
-                                </div>
-                                <div class="form-group">
-                                    <label for="cardCVC">CVC</label>
-                                    <input type="text" id="cardCVC" placeholder="123" maxlength="3">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="cardName">Nom sur la carte</label>
-                                <input type="text" id="cardName" placeholder="Nom complet">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-method" data-method="transfer">
-                        <div class="payment-method-header">
-                            <div class="payment-method-icon">
-                                <i class="fas fa-university"></i>
-                            </div>
-                            <div class="payment-method-title">Virement bancaire</div>
-                        </div>
-                        <div class="payment-method-content">
-                            <p>Veuillez effectuer un virement bancaire sur notre compte avec votre numéro de commande comme référence.</p>
-                            <div class="rib-info">
-                                <h4>Coordonnées bancaires (RIB)</h4>
-                                <p><strong>Titulaire:</strong> Decobizcreations</p>
-                                <p><strong>IBAN:</strong> MA64 0123 4567 8901 2345 6789 012</p>
-                                <p><strong>BIC:</strong> BCPMAAMC</p>
-                                <p><strong>Banque:</strong> Banque Populaire</p>
-                                <button type="button" class="copy-btn" onclick="copyRIB()">Copier le RIB</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="payment-method" data-method="whatsapp">
-                        <div class="payment-method-header">
-                            <div class="payment-method-icon">
-                                <i class="fab fa-whatsapp"></i>
-                            </div>
-                            <div class="payment-method-title">Paiement via WhatsApp</div>
-                        </div>
-                        <div class="payment-method-content">
-                            <p>Envoyez-nous un message sur WhatsApp pour finaliser votre commande. Nous vous enverrons les instructions de paiement.</p>
-                            <div class="whatsapp-message">
-                                <h4>Message pré-rempli</h4>
-                                <p id="whatsappMessage">Bonjour, je souhaite finaliser ma commande. Voici mes informations de livraison :
-Prénom: [Votre prénom]
-Nom: [Votre nom]
-Adresse: [Votre adresse]
-Ville: [Votre ville]
-Code postal: [Votre code postal]
-Téléphone: [Votre téléphone]
-Merci de me confirmer la disponibilité et les modalités de paiement.</p>
-                                <button type="button" class="copy-btn" onclick="copyWhatsAppMessage()">Copier le message</button>
-                                <a href="https://wa.me/212610236889?text=Bonjour,%20je%20souhaite%20finaliser%20ma%20commande.%20Voici%20mes%20informations%20de%20livraison%20%3A%0APr%C3%A9nom%3A%20%5BVotre%20pr%C3%A9nom%5D%0ANom%3A%20%5BVotre%20nom%5D%0AAdresse%3A%20%5BVotre%20adresse%5D%0AVille%3A%20%5BVotre%20ville%5D%0ACode%20postal%3A%20%5BVotre%20code%20postal%5D%0AT%C3%A9l%C3%A9phone%3A%20%5BVotre%20t%C3%A9l%C3%A9phone%5D%0AMerci%20de%20me%20confirmer%20la%20disponibilit%C3%A9%20et%20les%20modalit%C3%A9s%20de%20paiement." target="_blank" class="copy-btn" style="display: inline-block; text-decoration: none; margin-top: 10px;">Envoyer sur WhatsApp</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Nouvelle méthode de paiement : WhatsApp avec virement de 50% d'avance -->
-                    <div class="payment-method" data-method="whatsapp_advance">
+                    <div class="payment-method selected" data-method="whatsapp_advance">
                         <div class="payment-method-header">
                             <div class="payment-method-icon">
                                 <i class="fab fa-whatsapp"></i>
@@ -1132,18 +1358,9 @@ Merci de me confirmer la disponibilité et les modalités de paiement.</p>
                             
                             <div class="whatsapp-message">
                                 <h4>Message pré-rempli</h4>
-                                <p id="whatsappAdvanceMessage">Bonjour, je souhaite finaliser ma commande avec paiement de 50% d'avance. Voici mes informations :
-Prénom: [Votre prénom]
-Nom: [Votre nom]
-Adresse: [Votre adresse]
-Ville: [Votre ville]
-Code postal: [Votre code postal]
-Téléphone: [Votre téléphone]
-Montant total: [Montant total DH]
-Montant d'avance (50%): [Montant d'avance DH]
-J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception et la préparation de ma commande.</p>
+                                <p id="whatsappAdvanceMessage">Bonjour, je souhaite finaliser ma commande avec paiement de 50% d'avance.</p>
                                 <button type="button" class="copy-btn" onclick="copyWhatsAppAdvanceMessage()">Copier le message</button>
-                                <a href="https://wa.me/212610236889?text=Bonjour,%20je%20souhaite%20finaliser%20ma%20commande%20avec%20paiement%20de%2050%25%20d'avance.%20Voici%20mes%20informations%20%3A%0APr%C3%A9nom%3A%20%5BVotre%20pr%C3%A9nom%5D%0ANom%3A%20%5BVotre%20nom%5D%0AAdresse%3A%20%5BVotre%20adresse%5D%0AVille%3A%20%5BVotre%20ville%5D%0ACode%20postal%3A%20%5BVotre%20code%20postal%5D%0AT%C3%A9l%C3%A9phone%3A%20%5BVotre%20t%C3%A9l%C3%A9phone%5D%0AMontant%20total%3A%20%5BMontant%20total%20DH%5D%0AMontant%20d'avance%20(50%25)%3A%20%5BMontant%20d'avance%20DH%5D%0AJ'ai%20effectu%C3%A9%20le%20virement%20de%2050%25%20d'avance.%20Merci%20de%20me%20confirmer%20la%20r%C3%A9ception%20et%20la%20pr%C3%A9paration%20de%20ma%20commande." target="_blank" class="copy-btn" style="display: inline-block; text-decoration: none; margin-top: 10px;">Envoyer sur WhatsApp</a>
+                                <a id="whatsappLink" target="_blank" class="copy-btn" style="display: inline-block; text-decoration: none; margin-top: 10px;">Envoyer sur WhatsApp</a>
                             </div>
                         </div>
                     </div>
@@ -1184,8 +1401,8 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
             </div>
             
             <!-- Affichage du montant de l'avance si la méthode WhatsApp avec avance est sélectionnée -->
-            <div id="advancePaymentInfo" style="display: none; margin-top: 20px; padding: 15px; background-color: #f9f3e8; border-radius: 8px;">
-                <h4 style="margin-bottom: 10px; color: #b27952;">Paiement de 50% d'avance</h4>
+            <div id="advancePaymentInfo" style="display: block; margin-top: 20px; padding: 15px; background-color: #eaf6ff; border-radius: 8px; border-left: 4px solid #25d366;">
+                <h4 style="margin-bottom: 10px; color: #25d366;">Paiement de 50% d'avance</h4>
                 <div class="summary-row">
                     <span class="summary-label">Montant total</span>
                     <span class="summary-value" id="advanceTotal">0 DH</span>
@@ -1277,7 +1494,7 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
     <script>
         // Variables globales
         let orderData = null;
-        let selectedPaymentMethod = null;
+        let selectedPaymentMethod = 'whatsapp_advance'; // Pré-sélectionné
         
         // Initialisation au chargement de la page
         window.addEventListener('load', function() {
@@ -1290,8 +1507,8 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
             initBackToTop();
             initDarkMode();
             initSearch();
-            initPaymentMethods();
             initFormValidation();
+            initMobileMenu();
             
             // Charger les données de la commande
             loadOrderData();
@@ -1301,15 +1518,61 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
             
             // Initialiser le consentement aux cookies
             initCookieConsent();
+            
+            // Pré-sélectionner la méthode de paiement WhatsApp avec avance
+            document.querySelector('.payment-method').classList.add('selected');
+            updateAdvancePaymentInfo();
         });
+        
+        // Initialiser le menu mobile
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Empêcher le défilement du corps
+            });
+            
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Réactiver le défilement
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', (event) => {
+                if (mobileMenu.classList.contains('active') && 
+                    !mobileMenu.contains(event.target) && 
+                    !mobileMenuBtn.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
         
         // Charger les données de la commande depuis localStorage
         function loadOrderData() {
             const savedOrder = localStorage.getItem('currentOrder');
             if (savedOrder) {
-                orderData = JSON.parse(savedOrder);
-                renderOrderItems();
-                updateOrderSummary();
+                try {
+                    orderData = JSON.parse(savedOrder);
+                    renderOrderItems();
+                    updateOrderSummary();
+                } catch (e) {
+                    console.error("Erreur lors du chargement de la commande:", e);
+                    // Rediriger vers le panier si les données sont invalides
+                    window.location.href = 'panier.html';
+                }
             } else {
                 // Rediriger vers le panier si aucune commande n'est trouvée
                 window.location.href = 'panier.html';
@@ -1321,16 +1584,72 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
             const orderItemsContainer = document.getElementById('orderItems');
             orderItemsContainer.innerHTML = '';
             
+            if (!orderData || !orderData.items || orderData.items.length === 0) {
+                orderItemsContainer.innerHTML = '<p>Aucun article dans votre commande.</p>';
+                return;
+            }
+            
             orderData.items.forEach(item => {
                 const orderItemElement = document.createElement('div');
                 orderItemElement.className = 'order-item';
+                
+                // S'assurer que l'image est définie
+                const imageUrl = item.image || 'placeholder.jpg';
+                
+                // Générer le HTML pour les personnalisations
+                let customizationHtml = '';
+                if (item.customization || (item.customizationData && Object.keys(item.customizationData).length > 0)) {
+                    let customDetails = [];
+                    
+                    // Si nous avons une description de personnalisation (déjà formatée)
+                    if (item.customization) {
+                        customDetails.push(item.customization);
+                    } else if (item.customizationData) {
+                        // Sinon, formater les données de personnalisation
+                        const data = item.customizationData;
+                        
+                        if (data.color) {
+                            if (data.color === 'autre' && data.otherColor) {
+                                customDetails.push(`Couleur: ${data.otherColor}`);
+                            } else if (data.color !== 'autre') {
+                                customDetails.push(`Couleur: ${data.color}`);
+                            }
+                        }
+                        
+                        if (data.size && data.size !== 'Taille standard') {
+                            customDetails.push(`Taille: ${data.size}`);
+                            if (data.dimensions) {
+                                customDetails.push(`Dimensions: ${data.dimensions}`);
+                            }
+                        }
+                        
+                        if (data.finish) {
+                            customDetails.push(`Finition: ${data.finish}`);
+                        }
+                        
+                        if (data.notes) {
+                            customDetails.push(`Notes: ${data.notes}`);
+                        }
+                    }
+                    
+                    if (customDetails.length > 0) {
+                        customizationHtml = `
+                            <div class="order-item-customization">
+                                <strong>Personnalisation:</strong> ${customDetails.join(', ')}
+                            </div>
+                        `;
+                    }
+                }
+                
                 orderItemElement.innerHTML = `
                     <div class="order-item-image">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${imageUrl}" alt="${item.title}" onerror="this.src='placeholder.jpg'">
                     </div>
                     <div class="order-item-details">
                         <div class="order-item-title">${item.title}</div>
-                        <div class="order-item-description">${item.description}</div>
+                        <div class="order-item-description">${item.description || ''}</div>
+                        ${item.type === 'pack' ? `<div class="order-item-description"><i class="fas fa-gift"></i> Pack de ${item.items ? item.items.length : 0} articles</div>` : ''}
+                        ${customizationHtml}
                         <div class="order-item-price">${item.price} DH</div>
                         <div class="order-item-quantity">Quantité: ${item.quantity}</div>
                     </div>
@@ -1341,6 +1660,17 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
         
         // Mettre à jour le résumé de la commande
         function updateOrderSummary() {
+            if (!orderData) {
+                document.getElementById('subtotal').textContent = '0 DH';
+                document.getElementById('shipping').textContent = '30 DH';
+                document.getElementById('discount').textContent = '0 DH';
+                document.getElementById('total').textContent = '30 DH';
+                document.getElementById('advanceTotal').textContent = '0 DH';
+                document.getElementById('advanceAmount').textContent = '0 DH';
+                document.getElementById('remainingAmount').textContent = '0 DH';
+                return;
+            }
+            
             document.getElementById('subtotal').textContent = `${orderData.subtotal} DH`;
             document.getElementById('shipping').textContent = `${orderData.shipping} DH`;
             document.getElementById('discount').textContent = `${orderData.discount} DH`;
@@ -1354,14 +1684,14 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
                 discountRow.style.display = 'none';
             }
             
-            // Mettre à jour les informations de paiement d'avance si nécessaire
-            if (selectedPaymentMethod === 'whatsapp_advance') {
-                updateAdvancePaymentInfo();
-            }
+            // Mettre à jour les informations de paiement d'avance
+            updateAdvancePaymentInfo();
         }
         
         // Mettre à jour les informations de paiement d'avance
         function updateAdvancePaymentInfo() {
+            if (!orderData) return;
+            
             const totalAmount = orderData.total;
             const advanceAmount = Math.round(totalAmount * 0.5);
             const remainingAmount = totalAmount - advanceAmount;
@@ -1373,94 +1703,12 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
             document.getElementById('advancePaymentInfo').style.display = 'block';
         }
         
-        // Initialiser les méthodes de paiement
-        function initPaymentMethods() {
-            const paymentMethods = document.querySelectorAll('.payment-method');
-            
-            paymentMethods.forEach(method => {
-                method.addEventListener('click', () => {
-                    // Désélectionner toutes les méthodes
-                    paymentMethods.forEach(m => m.classList.remove('selected'));
-                    
-                    // Sélectionner la méthode cliquée
-                    method.classList.add('selected');
-                    selectedPaymentMethod = method.getAttribute('data-method');
-                    
-                    // Afficher ou masquer les informations de paiement d'avance
-                    const advancePaymentInfo = document.getElementById('advancePaymentInfo');
-                    if (selectedPaymentMethod === 'whatsapp_advance') {
-                        updateAdvancePaymentInfo();
-                    } else {
-                        advancePaymentInfo.style.display = 'none';
-                    }
-                    
-                    // Mettre à jour le message WhatsApp avec les informations du formulaire
-                    if (selectedPaymentMethod === 'whatsapp' || selectedPaymentMethod === 'whatsapp_advance') {
-                        updateWhatsAppMessage();
-                    }
-                });
-            });
-        }
-        
-        // Mettre à jour le message WhatsApp avec les informations du formulaire
-        function updateWhatsAppMessage() {
-            const firstName = document.getElementById('firstName').value || '[Votre prénom]';
-            const lastName = document.getElementById('lastName').value || '[Votre nom]';
-            const address = document.getElementById('address').value || '[Votre adresse]';
-            const city = document.getElementById('city').value || '[Votre ville]';
-            const postalCode = document.getElementById('postalCode').value || '[Votre code postal]';
-            const phone = document.getElementById('phone').value || '[Votre téléphone]';
-            
-            if (selectedPaymentMethod === 'whatsapp') {
-                const message = `Bonjour, je souhaite finaliser ma commande. Voici mes informations de livraison :
-Prénom: ${firstName}
-Nom: ${lastName}
-Adresse: ${address}
-Ville: ${city}
-Code postal: ${postalCode}
-Téléphone: ${phone}
-Merci de me confirmer la disponibilité et les modalités de paiement.`;
-                
-                document.getElementById('whatsappMessage').textContent = message;
-                
-                // Mettre à jour le lien WhatsApp
-                const whatsappLink = document.querySelector('.payment-method[data-method="whatsapp"] .whatsapp-message a');
-                whatsappLink.href = `https://wa.me/212610236889?text=${encodeURIComponent(message)}`;
-            } else if (selectedPaymentMethod === 'whatsapp_advance') {
-                const totalAmount = orderData.total;
-                const advanceAmount = Math.round(totalAmount * 0.5);
-                
-                const message = `Bonjour, je souhaite finaliser ma commande avec paiement de 50% d'avance. Voici mes informations :
-Prénom: ${firstName}
-Nom: ${lastName}
-Adresse: ${address}
-Ville: ${city}
-Code postal: ${postalCode}
-Téléphone: ${phone}
-Montant total: ${totalAmount} DH
-Montant d'avance (50%): ${advanceAmount} DH
-J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception et la préparation de ma commande.`;
-                
-                document.getElementById('whatsappAdvanceMessage').textContent = message;
-                
-                // Mettre à jour le lien WhatsApp
-                const whatsappLink = document.querySelector('.payment-method[data-method="whatsapp_advance"] .whatsapp-message a');
-                whatsappLink.href = `https://wa.me/212610236889?text=${encodeURIComponent(message)}`;
-            }
-        }
-        
         // Initialiser la validation du formulaire
         function initFormValidation() {
             const form = document.getElementById('paymentForm');
             
             form.addEventListener('submit', (event) => {
                 event.preventDefault();
-                
-                // Vérifier si une méthode de paiement est sélectionnée
-                if (!selectedPaymentMethod) {
-                    showToast('Veuillez sélectionner une méthode de paiement', 'error');
-                    return;
-                }
                 
                 // Valider le formulaire
                 if (!form.checkValidity()) {
@@ -1472,39 +1720,136 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
                 processOrder();
             });
             
-            // Formater le numéro de carte
-            const cardNumberInput = document.getElementById('cardNumber');
-            cardNumberInput.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\s/g, '');
-                let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-                e.target.value = formattedValue;
-            });
-            
-            // Formater la date d'expiration
-            const cardExpiryInput = document.getElementById('cardExpiry');
-            cardExpiryInput.addEventListener('input', (e) => {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length >= 2) {
-                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
-                }
-                e.target.value = value;
-            });
-            
-            // N'autoriser que les chiffres pour le CVC
-            const cardCVCInput = document.getElementById('cardCVC');
-            cardCVCInput.addEventListener('input', (e) => {
-                e.target.value = e.target.value.replace(/\D/g, '');
-            });
-            
             // Mettre à jour le message WhatsApp lorsque les champs changent
             const formInputs = form.querySelectorAll('input, textarea');
             formInputs.forEach(input => {
                 input.addEventListener('input', () => {
-                    if (selectedPaymentMethod === 'whatsapp' || selectedPaymentMethod === 'whatsapp_advance') {
-                        updateWhatsAppMessage();
-                    }
+                    updateWhatsAppMessage();
                 });
             });
+            
+            // Mettre à jour le message WhatsApp initial
+            updateWhatsAppMessage();
+        }
+        
+        // Mettre à jour le message WhatsApp avec les informations du formulaire
+        function updateWhatsAppMessage() {
+            const firstName = document.getElementById('firstName').value || '[Votre prénom]';
+            const lastName = document.getElementById('lastName').value || '[Votre nom]';
+            const address = document.getElementById('address').value || '[Votre adresse]';
+            const city = document.getElementById('city').value || '[Votre ville]';
+            const postalCode = document.getElementById('postalCode').value || '[Votre code postal]';
+            const phone = document.getElementById('phone').value || '[Votre téléphone]';
+            const notes = document.getElementById('notes').value || '';
+            
+            const totalAmount = orderData ? orderData.total : 0;
+            const advanceAmount = Math.round(totalAmount * 0.5);
+            const remainingAmount = totalAmount - advanceAmount;
+            
+            // Créer un message structuré et esthétique
+            let message = `🌟 *NOUVELLE COMMANDE - 50% D'AVANCE* 🌟\n\n`;
+            message += `👤 *INFORMATIONS CLIENT*\n`;
+            message += `• Prénom: ${firstName}\n`;
+            message += `• Nom: ${lastName}\n`;
+            message += `• Téléphone: ${phone}\n`;
+            message += `• Email: ${document.getElementById('email').value || '[Votre email]'}\n\n`;
+            
+            message += `📍 *ADRESSE DE LIVRAISON*\n`;
+            message += `• Adresse: ${address}\n`;
+            message += `• Ville: ${city}\n`;
+            message += `• Code postal: ${postalCode}\n`;
+            if (notes) {
+                message += `• Notes: ${notes}\n`;
+            }
+            message += `\n`;
+            
+            message += `🛒 *DÉTAILS DE LA COMMANDE*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+            
+            if (orderData && orderData.items && orderData.items.length > 0) {
+                orderData.items.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    message += `${index + 1}. *${item.title}*\n`;
+                    if (item.description) {
+                        message += `   └ ${item.description}\n`;
+                    }
+                    if (item.type === 'pack' && item.items) {
+                        message += `   └ 🎁 Pack de ${item.items.length} articles\n`;
+                    }
+                    
+                    // Ajouter les détails de personnalisation
+                    if (item.customization || (item.customizationData && Object.keys(item.customizationData).length > 0)) {
+                        let customDetails = [];
+                        
+                        if (item.customization) {
+                            customDetails.push(item.customization);
+                        } else if (item.customizationData) {
+                            const data = item.customizationData;
+                            
+                            if (data.color) {
+                                if (data.color === 'autre' && data.otherColor) {
+                                    customDetails.push(`Couleur: ${data.otherColor}`);
+                                } else if (data.color !== 'autre') {
+                                    customDetails.push(`Couleur: ${data.color}`);
+                                }
+                            }
+                            
+                            if (data.size && data.size !== 'Taille standard') {
+                                customDetails.push(`Taille: ${data.size}`);
+                                if (data.dimensions) {
+                                    customDetails.push(`Dimensions: ${data.dimensions}`);
+                                }
+                            }
+                            
+                            if (data.finish) {
+                                customDetails.push(`Finition: ${data.finish}`);
+                            }
+                            
+                            if (data.notes) {
+                                customDetails.push(`Notes: ${data.notes}`);
+                            }
+                        }
+                        
+                        if (customDetails.length > 0) {
+                            message += `   └ 🎨 Personnalisation: ${customDetails.join(', ')}\n`;
+                        }
+                    }
+                    
+                    message += `   └ Prix unitaire: ${item.price} DH\n`;
+                    message += `   └ Quantité: ${item.quantity}\n`;
+                    message += `   └ Sous-total: ${itemTotal} DH\n\n`;
+                });
+            } else {
+                message += `Aucun article dans la commande.\n\n`;
+            }
+            
+            message += `💰 *RÉSUMÉ DES PAIEMENTS*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `• Sous-total: ${orderData ? orderData.subtotal : 0} DH\n`;
+            message += `• Frais de livraison: ${orderData ? orderData.shipping : 30} DH\n`;
+            if (orderData && orderData.discount > 0) {
+                message += `• Réduction: -${orderData.discount} DH\n`;
+            }
+            message += `• MONTANT TOTAL: *${totalAmount} DH*\n\n`;
+            
+            message += `💸 *PAIEMENT PAR VERSEMENTS*\n`;
+            message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `• Montant de l'avance (50%): *${advanceAmount} DH*\n`;
+            message += `• Reste à payer à la livraison: *${remainingAmount} DH*\n\n`;
+            
+            message += `✅ *CONFIRMATION*\n`;
+            message += `J'ai effectué le virement de 50% d'avance.\n`;
+            message += `Merci de me confirmer la réception et la préparation de ma commande.\n\n`;
+            
+            message += `🙏 *Merci pour votre confiance !*\n`;
+            message += `Decobizcreations - Artisanat marocain fait main ✨`;
+            
+            document.getElementById('whatsappAdvanceMessage').textContent = message;
+            
+            // Mettre à jour le lien WhatsApp avec l'ID correct
+            const whatsappLink = document.getElementById('whatsappLink');
+            const encodedMessage = encodeURIComponent(message);
+            whatsappLink.href = `https://wa.me/212610236889?text=${encodedMessage}`;
         }
         
         // Traiter la commande
@@ -1537,18 +1882,16 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
                 orderNumber: generateOrderNumber()
             };
             
-            // Ajouter les informations de paiement d'avance si nécessaire
-            if (selectedPaymentMethod === 'whatsapp_advance') {
-                orderDetails.advancePayment = {
-                    amount: Math.round(orderData.total * 0.5),
-                    status: 'pending'
-                };
-                orderDetails.remainingPayment = {
-                    amount: orderData.total - Math.round(orderData.total * 0.5),
-                    status: 'pending',
-                    dueDate: 'delivery'
-                };
-            }
+            // Ajouter les informations de paiement d'avance
+            orderDetails.advancePayment = {
+                amount: Math.round(orderData.total * 0.5),
+                status: 'pending'
+            };
+            orderDetails.remainingPayment = {
+                amount: orderData.total - Math.round(orderData.total * 0.5),
+                status: 'pending',
+                dueDate: 'delivery'
+            };
             
             // Simuler un traitement asynchrone
             setTimeout(() => {
@@ -1559,7 +1902,7 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
                 document.getElementById('successMessage').classList.add('show');
                 
                 // Réinitialiser le panier
-                localStorage.removeItem('cartItems');
+                localStorage.removeItem('cart');
                 localStorage.removeItem('cartCount');
                 localStorage.removeItem('currentOrder');
                 
@@ -1580,16 +1923,12 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
                     payment_method: selectedPaymentMethod
                 });
                 
-                // Si paiement par WhatsApp, ouvrir la conversation
-                if (selectedPaymentMethod === 'whatsapp') {
-                    setTimeout(() => {
-                        window.open(document.querySelector('.payment-method[data-method="whatsapp"] .whatsapp-message a').href, '_blank');
-                    }, 1000);
-                } else if (selectedPaymentMethod === 'whatsapp_advance') {
-                    setTimeout(() => {
-                        window.open(document.querySelector('.payment-method[data-method="whatsapp_advance"] .whatsapp-message a').href, '_blank');
-                    }, 1000);
-                }
+                // Ouvrir la conversation WhatsApp avec le lien correct
+                setTimeout(() => {
+                    const whatsappLink = document.getElementById('whatsappLink');
+                    window.open(whatsappLink.href, '_blank');
+                    showToast('Redirection vers WhatsApp...', 'info');
+                }, 1000);
             }, 2000);
         }
         
@@ -1624,17 +1963,6 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
                 showToast('RIB copié dans le presse-papiers', 'success');
             }).catch(() => {
                 showToast('Erreur lors de la copie du RIB', 'error');
-            });
-        }
-        
-        // Copier le message WhatsApp
-        function copyWhatsAppMessage() {
-            const messageText = document.getElementById('whatsappMessage').textContent;
-            
-            navigator.clipboard.writeText(messageText).then(() => {
-                showToast('Message copié dans le presse-papiers', 'success');
-            }).catch(() => {
-                showToast('Erreur lors de la copie du message', 'error');
             });
         }
         
@@ -1888,7 +2216,7 @@ J'ai effectué le virement de 50% d'avance. Merci de me confirmer la réception 
             }
         }
         
-        console.log('💳 Decobizcreations - Page paiement chargée avec succès !');
+        console.log('💳 Decobizcreations - Page paiement WhatsApp 50% chargée avec succès !');
         console.log('✨ Toutes les fonctionnalités sont opérationnelles');
     </script>
 </body>
