@@ -286,6 +286,16 @@
             transition: transform 0.2s ease;
         }
         
+        .cart-badge.animate {
+            animation: pulse 0.5s ease;
+        }
+        
+        @keyframes pulse {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.3);}
+            100% {transform: scale(1);}
+        }
+        
         /* Navigation */
         nav {
             display: flex;
@@ -1855,6 +1865,240 @@
             display: block;
         }
         
+        /* Modal pour aperçu rapide du produit */
+        .quick-view-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 10000;
+            overflow-y: auto;
+            padding-top: env(safe-area-inset-top);
+        }
+        
+        .quick-view-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .quick-view-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10001;
+        }
+        
+        .quick-view-close:hover {
+            color: var(--primary-color);
+        }
+        
+        .quick-view-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .quick-view-image {
+            flex: 1 1 40%;
+            min-width: 250px;
+        }
+        
+        .quick-view-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .quick-view-details {
+            flex: 1 1 50%;
+            min-width: 250px;
+        }
+        
+        .quick-view-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #5a4a24;
+            margin-bottom: 10px;
+        }
+        
+        .quick-view-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .quick-view-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .quick-view-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .quick-view-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .quick-view-add-cart {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .quick-view-add-cart:hover {
+            background: #8c5a34;
+        }
+        
+        .quick-view-wishlist {
+            background: #f9f3e8;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .quick-view-wishlist:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Styles pour le modal de personnalisation */
+        .customization-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .customization-body {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .customization-image {
+            flex: 1 1 40%;
+            min-width: 250px;
+        }
+        
+        .customization-image img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        
+        .customization-details {
+            flex: 1 1 50%;
+            min-width: 250px;
+        }
+        
+        .customization-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #5a4a24;
+            margin-bottom: 10px;
+        }
+        
+        .customization-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #5a4a24;
+        }
+        
+        .form-group select,
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        .customization-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .customization-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .customization-btn:hover {
+            background: #8c5a34;
+        }
+        
+        .customization-btn-secondary {
+            background: #f9f3e8;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .customization-btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .header-controls {
@@ -2077,6 +2321,24 @@
             
             .admin-stats {
                 grid-template-columns: 1fr 1fr;
+            }
+            
+            .quick-view-body {
+                flex-direction: column;
+            }
+            
+            .quick-view-image,
+            .quick-view-details {
+                flex: 1 1 100%;
+            }
+            
+            .customization-body {
+                flex-direction: column;
+            }
+            
+            .customization-image,
+            .customization-details {
+                flex: 1 1 100%;
             }
         }
         
@@ -2597,6 +2859,9 @@
                                 <button class="action-btn" onclick="quickView('plateau-rond-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                                <button class="action-btn" onclick="openCustomization('plateau-rond-16')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="product-info">
@@ -2617,6 +2882,9 @@
                                 </button>
                                 <button class="action-btn" onclick="quickView('plateau-ovale-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn" onclick="openCustomization('plateau-ovale-18')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
                                 </button>
                             </div>
                         </div>
@@ -2639,6 +2907,9 @@
                                 </button>
                                 <button class="action-btn" onclick="quickView('plateau-rond-27')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn" onclick="openCustomization('plateau-rond-27')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
                                 </button>
                             </div>
                         </div>
@@ -2664,6 +2935,9 @@
                                 <button class="action-btn" onclick="quickView('vase-nordique-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                                <button class="action-btn" onclick="openCustomization('vase-nordique-16')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="product-info">
@@ -2684,6 +2958,9 @@
                                 </button>
                                 <button class="action-btn" onclick="quickView('mini-vase-14')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn" onclick="openCustomization('mini-vase-14')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
                                 </button>
                             </div>
                         </div>
@@ -2706,6 +2983,9 @@
                                 <button class="action-btn" onclick="quickView('boite-12')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
+                                <button class="action-btn" onclick="openCustomization('boite-12')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="product-info">
@@ -2727,6 +3007,9 @@
                                 </button>
                                 <button class="action-btn" onclick="quickView('arc-en-ciel-26')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn" onclick="openCustomization('arc-en-ciel-26')" title="Personnaliser" aria-label="Personnaliser ce produit">
+                                    <i class="fas fa-palette"></i>
                                 </button>
                             </div>
                         </div>
@@ -2831,6 +3114,110 @@
             <div class="modal-content">
                 <span class="close-modal" onclick="closeModal()" aria-label="Fermer">&times;</span>
                 <img id="modalImage" src="" alt="">
+            </div>
+        </div>
+        
+        <!-- Modal pour aperçu rapide du produit -->
+        <div id="quickViewModal" class="quick-view-modal">
+            <div class="quick-view-content">
+                <span class="quick-view-close" onclick="closeQuickView()" aria-label="Fermer">&times;</span>
+                <div class="quick-view-body">
+                    <div class="quick-view-image">
+                        <img id="quickViewImage" src="" alt="">
+                    </div>
+                    <div class="quick-view-details">
+                        <h3 id="quickViewTitle" class="quick-view-title"></h3>
+                        <div id="quickViewPrice" class="quick-view-price"></div>
+                        <p id="quickViewDescription" class="quick-view-description"></p>
+                        <div class="quick-view-actions">
+                            <button class="quick-view-btn quick-view-add-cart" onclick="addToCartFromQuickView()">
+                                <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                            </button>
+                            <button class="quick-view-btn quick-view-wishlist" onclick="addToWishlistFromQuickView()">
+                                <i class="fas fa-heart"></i> Favoris
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modal pour personnalisation -->
+        <div id="customizationModal" class="modal">
+            <div class="customization-content">
+                <span class="close-modal" onclick="closeCustomization()" aria-label="Fermer">&times;</span>
+                <div class="customization-body">
+                    <div class="customization-image">
+                        <img id="customizationImage" src="" alt="">
+                    </div>
+                    <div class="customization-details">
+                        <h3 id="customizationTitle" class="customization-title"></h3>
+                        <div id="customizationPrice" class="customization-price"></div>
+                        
+                        <form id="customizationForm" onsubmit="submitCustomization(event)">
+                            <div class="form-group">
+                                <label for="customColor">Couleur souhaitée :</label>
+                                <select id="customColor" name="color" required>
+                                    <option value="">Sélectionnez une couleur</option>
+                                    <option value="naturel">Naturel (béton brut)</option>
+                                    <option value="blanc">Blanc</option>
+                                    <option value="noir">Noir</option>
+                                    <option value="gris">Gris</option>
+                                    <option value="taupe">Taupe</option>
+                                    <option value="rose">Rose poudré</option>
+                                    <option value="bleu">Bleu pastel</option>
+                                    <option value="vert">Vert menthe</option>
+                                    <option value="autre">Autre (précisez)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="otherColorGroup" style="display: none;">
+                                <label for="otherColor">Précisez la couleur :</label>
+                                <input type="text" id="otherColor" name="otherColor" placeholder="Décrivez la couleur souhaitée">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customSize">Taille (si applicable) :</label>
+                                <select id="customSize" name="size">
+                                    <option value="">Taille standard</option>
+                                    <option value="petit">Petit</option>
+                                    <option value="moyen">Moyen</option>
+                                    <option value="grand">Grand</option>
+                                    <option value="sur-mesure">Sur mesure</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group" id="customDimensionsGroup" style="display: none;">
+                                <label for="customDimensions">Dimensions souhaitées (cm) :</label>
+                                <input type="text" id="customDimensions" name="dimensions" placeholder="Ex: 20x30 cm">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customFinish">Finition :</label>
+                                <select id="customFinish" name="finish">
+                                    <option value="brillant">Brillant</option>
+                                    <option value="mat">Mat</option>
+                                    <option value="texturé">Texturé</option>
+                                    <option value="naturel">Naturel</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customNotes">Autres demandes spéciales :</label>
+                                <textarea id="customNotes" name="notes" rows="4" placeholder="Décrivez ici toute autre personnalisation que vous souhaitez..."></textarea>
+                            </div>
+                            
+                            <div class="customization-actions">
+                                <button type="submit" class="customization-btn">
+                                    <i class="fas fa-shopping-cart"></i> Ajouter au panier
+                                </button>
+                                <button type="button" class="customization-btn-secondary" onclick="requestCustomQuote()">
+                                    <i class="fas fa-file-invoice"></i> Demander un devis
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -3127,6 +3514,9 @@
     let visitorCount = 0;
     let users = [];
     let cartItems = [];
+    let currentQuickViewProduct = null;
+    let currentCustomizationProduct = null;
+    let discount = 0;
     
     // Variables pour l'administration
     let isAdminAuthenticated = false;
@@ -3180,113 +3570,621 @@
         'plateau-rond-16': {
             title: 'Plateau Rond',
             description: 'Un plateau élégant en béton, parfait pour présenter vos collations ou comme élément décoratif.',
-            price: '120 DH',
+            price: 120,
             image: 'mini plateau rond.jpeg'
         },
         'plateau-ovale-18': {
             title: 'Plateau Ovale',
             description: 'Un plateau ovale en béton, idéal pour les présentations formelles.',
-            price: '140 DH',
+            price: 140,
             image: 'mini plateau ovale.jpeg'
         },
         'plateau-rond-27': {
             title: 'Grand Plateau Rond',
             description: 'Un grand plateau rond en béton, parfait pour les grandes occasions.',
-            price: '200 DH',
+            price: 200,
             image: 'plateau rond 26 (2).jpeg'
         },
         'vase-nordique-16': {
             title: 'Vase Nordique',
             description: 'Un vase au design scandinave, parfait pour vos fleurs.',
-            price: '180 DH',
+            price: 180,
             image: 'vase nordique.jpeg'
         },
         'mini-vase-14': {
             title: 'Mini Vase',
             description: 'Un petit vase en béton, idéal pour les petites fleurs.',
-            price: '150 DH',
+            price: 150,
             image: 'mini vase.jpeg'
         },
         'boite-12': {
             title: 'Boîte Décorative',
             description: 'Une boîte en béton pour ranger vos petits objets.',
-            price: '100 DH',
+            price: 100,
             image: 'boite.jpeg'
         },
         'arc-en-ciel-26': {
             title: 'Arc-en-ciel Décoratif',
             description: 'Une décoration murale en forme d\'arc-en-ciel.',
-            price: '250 DH',
+            price: 250,
             image: 'arc en ciel.jpeg'
         }
     };
     
-    let currentQuickViewProduct = null;
-    
     // ===============================================================
-    // FONCTIONS UTILITAIRES
+    // FONCTIONS DU PANIER ET PRODUITS
     // ===============================================================
     
-    function formatDateTime(timestamp) {
-        const date = new Date(timestamp);
-        return date.toLocaleString('fr-FR', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
+    function loadCartItems() {
+        const savedCart = localStorage.getItem('cart'); // Utiliser la même clé que panier.html
+        if (savedCart) {
+            try {
+                cartItems = JSON.parse(savedCart);
+                console.log('Articles du panier chargés:', cartItems);
+                
+                // Valider les données du panier
+                cartItems = cartItems.filter(item => {
+                    return item.id && item.title && item.price && !isNaN(item.price);
+                });
+                
+                // Mettre à jour le compteur du panier
+                updateCartCount();
+            } catch (e) {
+                console.error('Erreur lors du chargement des articles du panier:', e);
+                cartItems = [];
+            }
+        }
+    }
+    
+    function saveCartItems() {
+        localStorage.setItem('cart', JSON.stringify(cartItems)); // Utiliser la même clé que panier.html
+        console.log('Articles du panier sauvegardés:', cartItems);
+    }
+    
+    function updateCartCount() {
+        cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+        const badge = document.getElementById('cartBadge');
+        if (badge) badge.textContent = cartCount;
+        
+        // Sauvegarder le compteur dans localStorage
+        localStorage.setItem('cartCount', cartCount.toString());
+    }
+    
+    function loadCartCount() {
+        const saved = localStorage.getItem('cartCount');
+        if (saved) {
+            cartCount = parseInt(saved);
+            updateCartBadge();
+        }
+    }
+    
+    function updateCartBadge() {
+        const badge = document.getElementById('cartBadge');
+        if (badge) badge.textContent = cartCount;
+    }
+    
+    // Remplacer la fonction addToCart par une version compatible avec panier.html
+    function addToCart(productId) {
+        const product = productsData[productId];
+        
+        if (product) {
+            // Vérifier si le produit est déjà dans le panier
+            const existingItemIndex = cartItems.findIndex(item => item.id === productId);
+            
+            if (existingItemIndex !== -1) {
+                // Augmenter la quantité si le produit est déjà dans le panier
+                cartItems[existingItemIndex].quantity += 1;
+                showToast(`Quantité de ${product.title} mise à jour !`, 'info');
+            } else {
+                // Ajouter le produit au panier avec la structure attendue par panier.html
+                cartItems.push({
+                    id: productId,
+                    title: product.title,
+                    description: product.description,
+                    price: product.price,
+                    image: product.image,
+                    quantity: 1,
+                    type: 'product' // Ajouter le type pour la compatibilité
+                });
+                showToast(`${product.title} ajouté au panier !`, 'success');
+            }
+            
+            // Mettre à jour le compteur du panier
+            updateCartCount();
+            
+            // Sauvegarder les articles du panier
+            saveCartItems();
+            
+            // Animer le badge du panier
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                badge.classList.add('animate');
+                setTimeout(() => {
+                    badge.classList.remove('animate');
+                }, 500);
+            }
+            
+            // Suivre l'événement
+            trackEvent('add_to_cart', { product_id: productId, product_name: product.title });
+        } else {
+            showToast('Erreur: produit non trouvé', 'error');
+            console.error('Produit non trouvé:', productId);
+        }
+    }
+    
+    // Ajouter les fonctions pour gérer les packs (manquantes dans index.html)
+    function addToCartPack(packId) {
+        const pack = packsData[packId];
+        if (!pack) {
+            showToast('Pack non trouvé', 'error');
+            return;
+        }
+        
+        // Ajouter le pack au panier
+        cartItems.push({
+            id: packId,
+            title: pack.title,
+            description: pack.description,
+            price: pack.price,
+            image: pack.image,
+            quantity: 1,
+            type: 'pack',
+            items: pack.items
+        });
+        
+        cartCount++;
+        updateCartBadge();
+        saveCartItems();
+        showToast('Pack ajouté au panier !', 'success');
+    }
+    
+    function addCustomizedPackToCart(packId, notes) {
+        const pack = packsData[packId];
+        if (!pack) {
+            showToast('Pack non trouvé', 'error');
+            return;
+        }
+        
+        // Ajouter le pack personnalisé au panier
+        cartItems.push({
+            id: packId,
+            title: pack.title,
+            description: pack.description,
+            price: pack.price,
+            image: pack.image,
+            quantity: 1,
+            type: 'pack',
+            custom: true,
+            notes: notes,
+            items: pack.items
+        });
+        
+        cartCount++;
+        updateCartBadge();
+        saveCartItems();
+        showToast('Pack personnalisé ajouté au panier !', 'success');
+    }
+    
+    // Ajouter la fonction applyPromoCode (manquante dans index.html)
+    function applyPromoCode() {
+        const promoCode = document.getElementById('promoCode').value.trim().toUpperCase();
+        
+        if (!promoCode) {
+            showToast('Veuillez entrer un code promo', 'error');
+            return;
+        }
+        
+        // Vérifier les codes promo valides
+        const validPromoCodes = {
+            'DECOR10': 10,
+            'BIENVENUE': 15,
+            'SPECIAL20': 20
+        };
+        
+        if (validPromoCodes[promoCode]) {
+            const subtotal = cartItems.reduce((total, item) => {
+                const price = parseFloat(item.price) || 0;
+                const quantity = parseInt(item.quantity) || 0;
+                return total + (price * quantity);
+            }, 0);
+            
+            discount = Math.round(subtotal * (validPromoCodes[promoCode] / 100));
+            updateCartSummary();
+            showToast(`Code promo appliqué : -${validPromoCodes[promoCode]}%`, 'success');
+        } else {
+            showToast('Code promo invalide', 'error');
+        }
+    }
+    
+    // Ajouter la fonction updateCartSummary (manquante dans index.html)
+    function updateCartSummary() {
+        const subtotal = cartItems.reduce((total, item) => {
+            const price = parseFloat(item.price) || 0;
+            const quantity = parseInt(item.quantity) || 0;
+            return total + (price * quantity);
+        }, 0);
+        
+        const shipping = cartItems.length > 0 ? 30 : 0;
+        const total = subtotal + shipping - discount;
+        
+        // Mettre à jour les éléments s'ils existent (pour la compatibilité avec les deux pages)
+        const subtotalElement = document.getElementById('subtotal');
+        const shippingElement = document.getElementById('shipping');
+        const discountElement = document.getElementById('discount');
+        const totalElement = document.getElementById('total');
+        const discountRow = document.getElementById('discountRow');
+        
+        if (subtotalElement) subtotalElement.textContent = `${subtotal.toFixed(2)} DH`;
+        if (shippingElement) shippingElement.textContent = `${shipping.toFixed(2)} DH`;
+        if (discountElement) discountElement.textContent = `${discount.toFixed(2)} DH`;
+        if (totalElement) totalElement.textContent = `${total.toFixed(2)} DH`;
+        
+        // Afficher ou masquer la ligne de réduction
+        if (discountRow && discount > 0) {
+            discountRow.style.display = 'flex';
+        } else if (discountRow) {
+            discountRow.style.display = 'none';
+        }
+    }
+    
+    // Ajouter la fonction proceedToCheckout (manquante dans index.html)
+    function proceedToCheckout() {
+        if (cartItems.length === 0) {
+            showToast('Votre panier est vide', 'error');
+            return;
+        }
+        
+        // Sauvegarder les informations de commande dans localStorage
+        const subtotal = cartItems.reduce((total, item) => {
+            const price = parseFloat(item.price) || 0;
+            const quantity = parseInt(item.quantity) || 0;
+            return total + (price * quantity);
+        }, 0);
+        
+        const orderData = {
+            items: cartItems,
+            subtotal: subtotal,
+            shipping: 30,
+            discount: discount,
+            total: subtotal + 30 - discount
+        };
+        
+        localStorage.setItem('currentOrder', JSON.stringify(orderData));
+        
+        // Rediriger vers la page de paiement
+        window.location.href = 'paiement.html';
+    }
+    
+    // ===============================================================
+    // FONCTIONS D'INTERFACE UTILISATEUR
+    // ===============================================================
+    
+    function showToast(message, type = 'info') {
+        const existingToasts = document.querySelectorAll('.toast');
+        existingToasts.forEach(toast => toast.remove());
+        
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        toast.setAttribute('role', 'alert');
+        toast.setAttribute('aria-live', 'polite');
+        
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => {
+                if (toast.parentNode) {
+                    toast.parentNode.removeChild(toast);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    function trackEvent(eventName, eventData = {}) {
+        console.log('Événement suivi:', eventName, eventData);
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', eventName, eventData);
+        }
+    }
+    
+    // ===============================================================
+    // FONCTIONS POUR L'APERÇU RAPIDE
+    // ===============================================================
+    
+    function quickView(productId) {
+        currentQuickViewProduct = productId;
+        const product = productsData[productId];
+        
+        if (product) {
+            const quickViewImage = document.getElementById('quickViewImage');
+            const quickViewTitle = document.getElementById('quickViewTitle');
+            const quickViewDescription = document.getElementById('quickViewDescription');
+            const quickViewPrice = document.getElementById('quickViewPrice');
+            const quickViewModal = document.getElementById('quickViewModal');
+            
+            if (quickViewImage && quickViewTitle && quickViewDescription && quickViewPrice && quickViewModal) {
+                quickViewImage.src = product.image;
+                quickViewTitle.textContent = product.title;
+                quickViewDescription.textContent = product.description;
+                quickViewPrice.textContent = `${product.price} DH`;
+                
+                quickViewModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                trackEvent('quick_view', { product_id: productId });
+            }
+        }
+    }
+    
+    function closeQuickView() {
+        const quickViewModal = document.getElementById('quickViewModal');
+        if (quickViewModal) {
+            quickViewModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    function addToCartFromQuickView() {
+        if (currentQuickViewProduct) {
+            addToCart(currentQuickViewProduct);
+            closeQuickView();
+        }
+    }
+    
+    function addToWishlistFromQuickView() {
+        if (currentQuickViewProduct) {
+            addToWishlist(currentQuickViewProduct);
+        }
+    }
+    
+    function addToWishlist(productId) {
+        showToast('Produit ajouté aux favoris !', 'success');
+        trackEvent('add_to_wishlist', { product_id: productId });
+    }
+    
+    // ===============================================================
+    // FONCTIONS DE PERSONNALISATION
+    // ===============================================================
+    
+    // Fonction pour ouvrir le modal de personnalisation
+    function openCustomization(productId) {
+        currentCustomizationProduct = productId;
+        const product = productsData[productId];
+        
+        if (product) {
+            const customizationImage = document.getElementById('customizationImage');
+            const customizationTitle = document.getElementById('customizationTitle');
+            const customizationPrice = document.getElementById('customizationPrice');
+            const customizationModal = document.getElementById('customizationModal');
+            
+            if (customizationImage && customizationTitle && customizationPrice && customizationModal) {
+                customizationImage.src = product.image;
+                customizationTitle.textContent = product.title;
+                customizationPrice.textContent = `${product.price} DH`;
+                
+                customizationModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Réinitialiser le formulaire
+                document.getElementById('customizationForm').reset();
+                document.getElementById('otherColorGroup').style.display = 'none';
+                document.getElementById('customDimensionsGroup').style.display = 'none';
+                
+                trackEvent('customization_open', { product_id: productId });
+            }
+        }
+    }
+    
+    // Fonction pour fermer le modal de personnalisation
+    function closeCustomization() {
+        const customizationModal = document.getElementById('customizationModal');
+        if (customizationModal) {
+            customizationModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // Gérer le changement de couleur
+    document.addEventListener('DOMContentLoaded', function() {
+        const colorSelect = document.getElementById('customColor');
+        const otherColorGroup = document.getElementById('otherColorGroup');
+        
+        if (colorSelect && otherColorGroup) {
+            colorSelect.addEventListener('change', function() {
+                if (this.value === 'autre') {
+                    otherColorGroup.style.display = 'block';
+                    document.getElementById('otherColor').setAttribute('required', 'required');
+                } else {
+                    otherColorGroup.style.display = 'none';
+                    document.getElementById('otherColor').removeAttribute('required');
+                }
+            });
+        }
+        
+        // Gérer le changement de taille
+        const sizeSelect = document.getElementById('customSize');
+        const customDimensionsGroup = document.getElementById('customDimensionsGroup');
+        
+        if (sizeSelect && customDimensionsGroup) {
+            sizeSelect.addEventListener('change', function() {
+                if (this.value === 'sur-mesure') {
+                    customDimensionsGroup.style.display = 'block';
+                    document.getElementById('customDimensions').setAttribute('required', 'required');
+                } else {
+                    customDimensionsGroup.style.display = 'none';
+                    document.getElementById('customDimensions').removeAttribute('required');
+                }
+            });
+        }
+    });
+    
+    // Fonction pour soumettre la personnalisation
+    function submitCustomization(event) {
+        event.preventDefault();
+        
+        if (!currentCustomizationProduct) {
+            showToast('Erreur: produit non sélectionné', 'error');
+            return;
+        }
+        
+        const product = productsData[currentCustomizationProduct];
+        const formData = new FormData(event.target);
+        
+        // Récupérer les données de personnalisation
+        const customizationData = {
+            color: formData.get('color'),
+            otherColor: formData.get('otherColor'),
+            size: formData.get('size'),
+            dimensions: formData.get('dimensions'),
+            finish: formData.get('finish'),
+            notes: formData.get('notes')
+        };
+        
+        // Créer une description de la personnalisation
+        let customDescription = `Personnalisé: `;
+        if (customizationData.color === 'autre' && customizationData.otherColor) {
+            customDescription += `Couleur: ${customizationData.otherColor}`;
+        } else if (customizationData.color) {
+            customDescription += `Couleur: ${customizationData.color}`;
+        }
+        
+        if (customizationData.size && customizationData.size !== 'Taille standard') {
+            customDescription += `, Taille: ${customizationData.size}`;
+            if (customizationData.dimensions) {
+                customDescription += ` (${customizationData.dimensions})`;
+            }
+        }
+        
+        if (customizationData.finish) {
+            customDescription += `, Finition: ${customizationData.finish}`;
+        }
+        
+        if (customizationData.notes) {
+            customDescription += `, Notes: ${customizationData.notes}`;
+        }
+        
+        // Vérifier si le produit est déjà dans le panier
+        const existingItemIndex = cartItems.findIndex(item => 
+            item.id === currentCustomizationProduct && item.customization === customDescription
+        );
+        
+        if (existingItemIndex !== -1) {
+            // Augmenter la quantité si le produit personnalisé est déjà dans le panier
+            cartItems[existingItemIndex].quantity += 1;
+            showToast(`${product.title} personnalisé mis à jour !`, 'info');
+        } else {
+            // Ajouter le produit personnalisé au panier
+            cartItems.push({
+                id: currentCustomizationProduct,
+                title: product.title,
+                description: product.description,
+                price: product.price,
+                image: product.image,
+                quantity: 1,
+                type: 'product',
+                customization: customDescription,
+                customizationData: customizationData
+            });
+            showToast(`${product.title} personnalisé ajouté au panier !`, 'success');
+        }
+        
+        // Mettre à jour le compteur du panier
+        updateCartCount();
+        
+        // Sauvegarder les articles du panier
+        saveCartItems();
+        
+        // Fermer le modal
+        closeCustomization();
+        
+        // Suivre l'événement
+        trackEvent('customization_add_to_cart', { 
+            product_id: currentCustomizationProduct, 
+            customization: customDescription 
         });
     }
     
-    function getSessionId() {
-        let sessionId = sessionStorage.getItem('visitor_session');
-        if (!sessionId) {
-            sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            sessionStorage.setItem('visitor_session', sessionId);
+    // Fonction pour demander un devis pour une personnalisation complexe
+    function requestCustomQuote() {
+        if (!currentCustomizationProduct) {
+            showToast('Erreur: produit non sélectionné', 'error');
+            return;
         }
-        return sessionId;
-    }
-    
-    function getDeviceType() {
-        const userAgent = navigator.userAgent;
-        if (/Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(userAgent)) {
-            return 'Tablette';
-        }
-        if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|webOS|Symbian|Mobile Safari|Fennec|Minimo|NetFront|Blazer|Dolfin|Skyfire|Bolt|Iris|Maemo|Meego|Bada/i.test(userAgent)) {
-            return 'Mobile';
-        }
-        if (/Windows|Macintosh|Linux|X11|Ubuntu|CrOS/i.test(userAgent)) {
-            return 'Ordinateur';
-        }
-        return 'Inconnu';
-    }
-    
-    function getBrowserType() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) return 'Chrome';
-        if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
-        if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
-        if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident') > -1) return 'Internet Explorer';
-        if (userAgent.indexOf('Edg') > -1) return 'Microsoft Edge';
-        if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) return 'Opera';
-        if (userAgent.indexOf('Brave') > -1) return 'Brave';
-        return 'Inconnu';
-    }
-    
-    function getOperatingSystem() {
-        const userAgent = navigator.userAgent;
-        if (userAgent.indexOf('Windows') > -1) {
-            if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10';
-            if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
-            if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
-            if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
-            return 'Windows';
-        } else if (userAgent.indexOf('Mac') > -1) return 'macOS';
-        else if (userAgent.indexOf('X11') > -1) return 'UNIX';
-        else if (userAgent.indexOf('Linux') > -1) return 'Linux';
-        else if (/Android/.test(userAgent)) return 'Android';
-        else if (/like Mac OS X/.test(userAgent)) return 'iOS';
-        return 'Inconnu';
+        
+        const product = productsData[currentCustomizationProduct];
+        const formData = new FormData(document.getElementById('customizationForm'));
+        
+        // Récupérer les données de personnalisation
+        const customizationData = {
+            color: formData.get('color'),
+            otherColor: formData.get('otherColor'),
+            size: formData.get('size'),
+            dimensions: formData.get('dimensions'),
+            finish: formData.get('finish'),
+            notes: formData.get('notes')
+        };
+        
+        // Sauvegarder la demande de devis dans localStorage
+        let quoteRequests = JSON.parse(localStorage.getItem('quoteRequests') || '[]');
+        
+        quoteRequests.push({
+            id: Date.now(),
+            productId: currentCustomizationProduct,
+            productTitle: product.title,
+            productPrice: product.price,
+            customizationData: customizationData,
+            timestamp: new Date().toISOString(),
+            status: 'pending'
+        });
+        
+        localStorage.setItem('quoteRequests', JSON.stringify(quoteRequests));
+        
+        // Fermer le modal
+        closeCustomization();
+        
+        // Afficher un message de confirmation
+        showToast('Votre demande de devis a été envoyée ! Nous vous contacterons sous 24h.', 'success');
+        
+        // Rediriger vers WhatsApp pour une discussion directe
+        setTimeout(() => {
+            let message = `Bonjour, je souhaiterais un devis pour personnaliser le produit "${product.title}".\n\n`;
+            
+            if (customizationData.color === 'autre' && customizationData.otherColor) {
+                message += `Couleur souhaitée: ${customizationData.otherColor}\n`;
+            } else if (customizationData.color) {
+                message += `Couleur souhaitée: ${customizationData.color}\n`;
+            }
+            
+            if (customizationData.size && customizationData.size !== 'Taille standard') {
+                message += `Taille: ${customizationData.size}\n`;
+                if (customizationData.dimensions) {
+                    message += `Dimensions: ${customizationData.dimensions}\n`;
+                }
+            }
+            
+            if (customizationData.finish) {
+                message += `Finition: ${customizationData.finish}\n`;
+            }
+            
+            if (customizationData.notes) {
+                message += `Autres demandes: ${customizationData.notes}\n`;
+            }
+            
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/212123456789?text=${encodedMessage}`, '_blank');
+        }, 1000);
+        
+        // Suivre l'événement
+        trackEvent('customization_quote_request', { 
+            product_id: currentCustomizationProduct,
+            customization_data: customizationData
+        });
     }
     
     // ===============================================================
@@ -3340,7 +4238,7 @@
             
             // Vérifier si c'est un mobile
             const isMobile = /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent);
-            const isTablet = /Tablet|iPad|PlayBook|Silk|Kindle/i.test(navigator.userAgent);
+            const isTablet = /Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(navigator.userAgent);
             
             if (isMobile || isTablet) {
                 console.log("Appareil mobile détecté, forcer la détection...");
@@ -4060,122 +4958,69 @@
     }
     
     // ===============================================================
-    // FONCTIONS DU PANIER ET PRODUITS
+    // FONCTIONS UTILITAIRES
     // ===============================================================
     
-    function loadCartItems() {
-        const savedCartItems = localStorage.getItem('cartItems');
-        if (savedCartItems) {
-            try {
-                cartItems = JSON.parse(savedCartItems);
-                console.log('Articles du panier chargés:', cartItems);
-            } catch (e) {
-                console.error('Erreur lors du chargement des articles du panier:', e);
-                cartItems = [];
-            }
+    function formatDateTime(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+    
+    function getSessionId() {
+        let sessionId = sessionStorage.getItem('visitor_session');
+        if (!sessionId) {
+            sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('visitor_session', sessionId);
         }
+        return sessionId;
     }
     
-    function saveCartItems() {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
-        console.log('Articles du panier sauvegardés:', cartItems);
-    }
-    
-    function addToCart(productId) {
-        const product = productsData[productId];
-        
-        if (product) {
-            const existingItemIndex = cartItems.findIndex(item => item.id === productId);
-            
-            if (existingItemIndex !== -1) {
-                cartItems[existingItemIndex].quantity += 1;
-                showToast(`Quantité de ${product.title} mise à jour !`, 'info');
-            } else {
-                cartItems.push({
-                    id: productId,
-                    title: product.title,
-                    price: product.price,
-                    image: product.image,
-                    quantity: 1
-                });
-                showToast(`${product.title} ajouté au panier !`, 'success');
-            }
-            
-            updateCartCount();
-            saveCartItems();
-            
-            const badge = document.getElementById('cartBadge');
-            if (badge) {
-                badge.style.transform = 'scale(1.3)';
-                setTimeout(() => {
-                    badge.style.transform = 'scale(1)';
-                }, 200);
-            }
-            
-            trackEvent('add_to_cart', { product_id: productId, product_name: product.title });
-        } else {
-            showToast('Erreur: produit non trouvé', 'error');
-            console.error('Produit non trouvé:', productId);
+    function getDeviceType() {
+        const userAgent = navigator.userAgent;
+        if (/Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(userAgent)) {
+            return 'Tablette';
         }
-    }
-    
-    function updateCartCount() {
-        cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-        const badge = document.getElementById('cartBadge');
-        if (badge) badge.textContent = cartCount;
-        
-        localStorage.setItem('cartCount', cartCount.toString());
-    }
-    
-    function loadCartCount() {
-        const saved = localStorage.getItem('cartCount');
-        if (saved) {
-            cartCount = parseInt(saved);
-            updateCartBadge();
+        if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|webOS|Symbian|Mobile Safari|Fennec|Minimo|NetFront|Blazer|Dolfin|Skyfire|Bolt|Iris|Maemo|Meego|Bada/i.test(userAgent)) {
+            return 'Mobile';
         }
-    }
-    
-    function updateCartBadge() {
-        const badge = document.getElementById('cartBadge');
-        if (badge) badge.textContent = cartCount;
-    }
-    
-    // ===============================================================
-    // FONCTIONS D'INTERFACE UTILISATEUR
-    // ===============================================================
-    
-    function showToast(message, type = 'info') {
-        const existingToasts = document.querySelectorAll('.toast');
-        existingToasts.forEach(toast => toast.remove());
-        
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.textContent = message;
-        toast.setAttribute('role', 'alert');
-        toast.setAttribute('aria-live', 'polite');
-        
-        document.body.appendChild(toast);
-        
-        setTimeout(() => {
-            toast.classList.add('show');
-        }, 100);
-        
-        setTimeout(() => {
-            toast.classList.remove('show');
-            setTimeout(() => {
-                if (toast.parentNode) {
-                    toast.parentNode.removeChild(toast);
-                }
-            }, 300);
-        }, 3000);
-    }
-    
-    function trackEvent(eventName, eventData = {}) {
-        console.log('Événement suivi:', eventName, eventData);
-        
-        if (typeof gtag !== 'undefined') {
-            gtag('event', eventName, eventData);
+        if (/Windows|Macintosh|Linux|X11|Ubuntu|CrOS/i.test(userAgent)) {
+            return 'Ordinateur';
         }
+        return 'Inconnu';
+    }
+    
+    function getBrowserType() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) return 'Chrome';
+        if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
+        if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
+        if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident') > -1) return 'Internet Explorer';
+        if (userAgent.indexOf('Edg') > -1) return 'Microsoft Edge';
+        if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) return 'Opera';
+        if (userAgent.indexOf('Brave') > -1) return 'Brave';
+        return 'Inconnu';
+    }
+    
+    function getOperatingSystem() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf('Windows') > -1) {
+            if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10';
+            if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
+            if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
+            if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
+            return 'Windows';
+        } else if (userAgent.indexOf('Mac') > -1) return 'macOS';
+        else if (userAgent.indexOf('X11') > -1) return 'UNIX';
+        else if (userAgent.indexOf('Linux') > -1) return 'Linux';
+        else if (/Android/.test(userAgent)) return 'Android';
+        else if (/like Mac OS X/.test(userAgent)) return 'iOS';
+        return 'Inconnu';
     }
     
     // ===============================================================
@@ -4378,9 +5223,6 @@
                     <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
                         <span style="font-size: 20px; margin-right: 10px;">📱</span>
                         <strong style="color: #b27952;">Mode Mobile Activé</strong>
-                    </div>
-                    <div style="font-size: 12px; line-height: 1.4; margin-bottom: 12px;">
-                        Pour accéder au panneau d'administration :
                     </div>
                     <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; margin-bottom: 8px; font-size: 12px;">
                         📝 Tapez <strong style="color: #f8b500;">admin</strong> sur votre clavier
@@ -4723,9 +5565,11 @@
                     hasResults = true;
                     console.log("Correspondance trouvée pour:", title);
                 } else {
-                    card.style.display = 'none';
                     card.style.opacity = '0';
-                    card.style.visibility = 'hidden';
+                    card.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
                     console.log("Aucune correspondance pour:", title);
                 }
             });
@@ -4898,11 +5742,6 @@
         }
     }
     
-    function enableTracking() {
-        console.log('Le suivi est activé');
-        trackEvent('page_view', { page: 'home' });
-    }
-    
     function initUserSystem() {
         const savedUser = localStorage.getItem('currentUser');
         
@@ -5007,10 +5846,20 @@
     // Fonctions pour les événements du DOM
     document.addEventListener('click', function(event) {
         const modal = document.getElementById('imageModal');
+        const quickViewModal = document.getElementById('quickViewModal');
+        const customizationModal = document.getElementById('customizationModal');
         const adminPanel = document.getElementById('adminPanel');
         
         if (event.target === modal) {
             closeModal();
+        }
+        
+        if (event.target === quickViewModal) {
+            closeQuickView();
+        }
+        
+        if (event.target === customizationModal) {
+            closeCustomization();
         }
         
         if (event.target === adminPanel) {
@@ -5021,6 +5870,8 @@
     document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape') {
             closeModal();
+            closeQuickView();
+            closeCustomization();
             closeAdminPanel();
         }
         
@@ -5038,117 +5889,6 @@
             if (nextTestimonial) nextTestimonial.click();
         }
     });
-    
-    // Fonctions pour les modals
-    function openModal(imageSrc) {
-        const modal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImage');
-        
-        if (modal && modalImg) {
-            modal.style.display = 'block';
-            modalImg.src = imageSrc;
-            document.body.style.overflow = 'hidden';
-        }
-    }
-    
-    function closeModal() {
-        const modal = document.getElementById('imageModal');
-        if (modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    }
-    
-    function quickView(productId) {
-        currentQuickViewProduct = productId;
-        const product = productsData[productId];
-        
-        if (product) {
-            const quickViewImage = document.getElementById('quickViewImage');
-            const quickViewTitle = document.getElementById('quickViewTitle');
-            const quickViewDescription = document.getElementById('quickViewDescription');
-            const quickViewPrice = document.getElementById('quickViewPrice');
-            const quickViewModal = document.getElementById('quickViewModal');
-            
-            if (quickViewImage && quickViewTitle && quickViewDescription && quickViewPrice && quickViewModal) {
-                quickViewImage.src = product.image;
-                quickViewTitle.textContent = product.title;
-                quickViewDescription.textContent = product.description;
-                quickViewPrice.textContent = product.price;
-                
-                quickViewModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                
-                trackEvent('quick_view', { product_id: productId });
-            }
-        }
-    }
-    
-    function closeQuickView() {
-        const quickViewModal = document.getElementById('quickViewModal');
-        if (quickViewModal) {
-            quickViewModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    }
-    
-    function addToCartFromQuickView() {
-        if (currentQuickViewProduct) {
-            addToCart(currentQuickViewProduct);
-            closeQuickView();
-        }
-    }
-    
-    function toggleFAQ(element) {
-        const faqItem = element.parentElement;
-        const answer = faqItem.querySelector('.faq-answer');
-        const icon = element.querySelector('.faq-icon');
-        
-        document.querySelectorAll('.faq-item').forEach(item => {
-            if (item !== faqItem) {
-                item.classList.remove('active');
-                item.querySelector('.faq-answer').classList.remove('active');
-            }
-        });
-        
-        faqItem.classList.toggle('active');
-        if (answer) answer.classList.toggle('active');
-    }
-    
-    function subscribeNewsletter(event) {
-        event.preventDefault();
-        const email = event.target.querySelector('input[type="email"]').value;
-        
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(email)) {
-            showToast('Merci pour votre inscription !', 'success');
-            event.target.reset();
-            
-            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-            if (!subscribers.includes(email)) {
-                subscribers.push(email);
-                localStorage.setItem('subscribers', JSON.stringify(subscribers));
-            }
-            
-            trackEvent('newsletter_subscription', { email: email });
-        } else {
-            showToast('Veuillez entrer une adresse email valide', 'error');
-        }
-    }
-    
-    function goToTestimonial(index) {
-        currentTestimonial = index;
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dots = document.querySelectorAll('.dot');
-        
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === index);
-        });
-        
-        dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-    }
     
     // Événements pour le bouton "Découvrir plus"
     document.addEventListener('DOMContentLoaded', function() {
@@ -5190,6 +5930,20 @@
             });
         }
     });
+    
+    function goToTestimonial(index) {
+        currentTestimonial = index;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
     
     // Fonctions supplémentaires pour l'administration
     function exportDetailedVisitorData() {
@@ -5360,6 +6114,13 @@
             });
             console.log("Visiteurs par navigateur:", browserCount);
             
+            // Analyser par système d'exploitation
+            const osCount = {};
+            visitors.forEach(v => {
+                osCount[v.os] = (osCount[v.os] || 0) + 1;
+            });
+            console.log("Visiteurs par OS:", osCount);
+            
             console.log("=== Fin de l'analyse ===");
         } catch (error) {
             console.error('Erreur lors de l\'analyse:', error);
@@ -5490,52 +6251,48 @@
         trackEvent('user_logout');
     }
     
-    function addToWishlist(productId) {
-        showToast('Produit ajouté aux favoris !', 'success');
-        trackEvent('add_to_wishlist', { product_id: productId });
-    }
-    
-    function addToWishlistFromQuickView() {
-        if (currentQuickViewProduct) {
-            addToWishlist(currentQuickViewProduct);
-        }
-    }
-    
-    function shareProduct(productId) {
-        if (navigator.share) {
-            const product = productsData[productId];
-            if (product) {
-                navigator.share({
-                    title: product.title,
-                    text: product.description,
-                    url: window.location.href
-                })
-                .then(() => {
-                    showToast('Produit partagé avec succès !', 'success');
-                })
-                .catch((error) => {
-                    console.error('Erreur lors du partage:', error);
-                });
-            }
-        } else {
-            // Fallback pour les navigateurs qui ne supportent pas l'API Web Share
-            const url = window.location.href;
-            navigator.clipboard.writeText(url)
-                .then(() => {
-                    showToast('Lien copié dans le presse-papiers !', 'success');
-                })
-                .catch((error) => {
-                    console.error('Erreur lors de la copie du lien:', error);
-                    showToast('Erreur lors de la copie du lien', 'error');
-                });
-        }
+    function subscribeNewsletter(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input[type="email"]').value;
         
-        trackEvent('share_product', { product_id: productId });
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            showToast('Merci pour votre inscription !', 'success');
+            event.target.reset();
+            
+            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                localStorage.setItem('subscribers', JSON.stringify(subscribers));
+            }
+            
+            trackEvent('newsletter_subscription', { email: email });
+        } else {
+            showToast('Veuillez entrer une adresse email valide', 'error');
+        }
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        
+        if (modal && modalImg) {
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
     }
     
     console.log('🎨 Decobizcreations - Site chargé avec succès !');
     console.log('✨ Toutes les fonctionnalités sont opérationnelles');
     console.log('🔍 Système de suivi des visiteurs internationaux activé');
+    console.log('🎨 Option de personnalisation des produits activée');
     </script>
 </body>
 </html>
