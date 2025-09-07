@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Packs - Decobizcreations</title>
+    <meta name="description" content="Découvrez nos packs exclusifs de créations en béton et gypse. Des combinaisons parfaites pour embellir votre intérieur." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.decobizcreations.com/packs.html" />
+    <meta property="og:title" content="Packs - Decobizcreations" />
+    <meta property="og:description" content="Découvrez nos packs exclusifs de créations en béton et gypse. Des combinaisons parfaites pour embellir votre intérieur." />
+    <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* Styles identiques à la page d'accueil */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .product-card {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .about-section,
+        body.dark-mode .values-section,
+        body.dark-mode .process-section,
+        body.dark-mode .testimonials,
+        body.dark-mode .advantages-section {
+            background: #252525;
+        }
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fffaf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #loader div {
+            border: 6px solid #b27952;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+        /* Scroll Progress Bar */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #b27952;
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.2s ease;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 2px solid #b27952;
+            transition: background 0.3s ease;
+        }
+        header:hover {
+            background: #fdf6ef;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+            cursor: default;
+            user-select: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Bouton mode sombre */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid #b27952;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #b27952;
+        }
+        .dark-mode-toggle:hover {
+            background: #b27952;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Recherche */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        .search-input:focus {
+            width: 250px;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* Panier compteur */
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #b27952;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #5a4a24;
+            transition: background 0.2s ease;
+        }
+        .submenu a:hover {
+            background: #f9f3e8;
+            color: #b27952;
+        }
+        
+        /* Menu mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #b27952;
+            cursor: pointer;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 1rem 2rem;
+            background: #f9f3e8;
+            font-size: 0.9rem;
+        }
+        .breadcrumb a {
+            color: #b27952;
+            text-decoration: none;
+        }
+        .breadcrumb span {
+            color: #666;
+        }
+        
+        /* Contenu principal */
+        .packs-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #5a4a24;
+        }
+        
+        .page-description {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: #6b5e34;
+            font-weight: 500;
+        }
+        
+        /* Filtres */
+        .filter-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #5a4a24;
+        }
+        
+        .filter-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-option {
+            padding: 8px 16px;
+            background: #f9f3e8;
+            color: #6b5e34;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-option:hover,
+        .filter-option.active {
+            background: #b27952;
+            color: white;
+        }
+        
+        /* Grille des packs */
+        .packs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .pack-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+        
+        .pack-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .pack-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            z-index: 5;
+        }
+        
+        /* Icône de personnalisation */
+        .customize-icon {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #b27952;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .customize-icon:hover {
+            background: #8c5a34;
+            transform: scale(1.1);
+        }
+        
+        .pack-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .pack-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .pack-card:hover .pack-image img {
+            transform: scale(1.05);
+        }
+        
+        .pack-content {
+            padding: 2rem;
+        }
+        
+        .pack-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #5a4a24;
+        }
+        
+        .pack-description {
+            color: #6b5e34;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .pack-items {
+            background: #f9f3e8;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pack-items-title {
+            font-weight: 600;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .pack-items-title i {
+            color: #b27952;
+        }
+        
+        .pack-items-list {
+            list-style: none;
+            color: #6b5e34;
+        }
+        
+        .pack-items-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .pack-items-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #b27952;
+        }
+        
+        .pack-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pack-current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #b27952;
+        }
+        
+        .pack-old-price {
+            font-size: 1.2rem;
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .pack-discount {
+            background: #4CAF50;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        
+        .pack-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .pack-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pack-btn-primary {
+            background: #b27952;
+            color: white;
+        }
+        
+        .pack-btn-primary:hover {
+            background: #8c5a34;
+        }
+        
+        .pack-btn-secondary {
+            background: #f9f3e8;
+            color: #b27952;
+            border: 1px solid #b27952;
+        }
+        
+        .pack-btn-secondary:hover {
+            background: #f0e6d6;
+        }
+        
+        /* Section avantages */
+        .advantages-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 3rem 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .advantages-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #5a4a24;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .advantage-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+        
+        .advantage-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+        
+        .advantage-title {
+            font-weight: 600;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+        }
+        
+        .advantage-desc {
+            color: #6b5e34;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            margin-top: 2rem;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b27952;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .newsletter-form-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-input-footer {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .newsletter-btn-footer {
+            padding: 10px 15px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-btn-footer:hover {
+            background: #8c5a34;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2.5s infinite ease-in-out;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            box-shadow: 0 10px 25px rgba(37,211,102,0.7);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top:hover {
+            background: #8c5a34;
+            transform: translateY(-3px);
+        }
+        
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* Notifications toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.error {
+            background: #f44336;
+        }
+        
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        /* Modal pour l'aperçu rapide */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 16px;
+            position: relative;
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            cursor: pointer;
+        }
+        
+        .close-modal:hover,
+        .close-modal:focus {
+            color: black;
+        }
+        
+        .quick-view-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 20px;
+        }
+        
+        .quick-view-image {
+            flex: 1;
+            max-width: 50%;
+        }
+        
+        .quick-view-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        .quick-view-details {
+            flex: 1;
+        }
+        
+        .quick-view-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #5a4a24;
+        }
+        
+        .quick-view-details p {
+            color: #6b5e34;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .quick-view-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #b27952;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn-add-to-cart {
+            background: #b27952;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .btn-add-to-cart:hover {
+            background: #8c5a34;
+        }
+        
+        /* Modal de personnalisation simplifié */
+        .customize-content {
+            max-width: 800px;
+            margin: 5% auto;
+        }
+        
+        .customize-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: #5a4a24;
+            margin-bottom: 1rem;
+        }
+        
+        .customize-content p {
+            color: #6b5e34;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .customize-container {
+            display: flex;
+            gap: 2rem;
+            margin-top: 20px;
+        }
+        
+        .customize-options {
+            flex: 2;
+        }
+        
+        .customize-summary {
+            flex: 1;
+            background: #f9f3e8;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        
+        .customize-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .customize-item h4 {
+            margin-bottom: 1rem;
+            color: #5a4a24;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .customize-item h4 i {
+            color: #b27952;
+        }
+        
+        .customize-textarea {
+            width: 100%;
+            padding: 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            min-height: 200px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .customize-textarea:focus {
+            outline: none;
+            border-color: #b27952;
+        }
+        
+        .customize-summary h3 {
+            margin-bottom: 1rem;
+            color: #5a4a24;
+        }
+        
+        .customize-summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e0d6c6;
+        }
+        
+        .customize-summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .customize-price {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0d6c6;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #b27952;
+        }
+        
+        .customize-notes-preview {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #e0d6c6;
+        }
+        
+        .customize-notes-preview h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #5a4a24;
+        }
+        
+        .customize-notes-preview p {
+            font-size: 0.9rem;
+            color: #6b5e34;
+            font-style: italic;
+            white-space: pre-wrap;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            header {
+                padding: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                order: 1;
+            }
+            
+            .mobile-menu-toggle {
+                order: 2;
+                margin-left: auto;
+            }
+            
+            .header-controls {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            nav {
+                display: none;
+                width: 100%;
+                order: 4;
+                margin-top: 1rem;
+                flex-direction: column;
+                background: white;
+                border-radius: 8px;
+                padding: 1rem;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            
+            nav.active {
+                display: flex;
+            }
+            
+            .nav-item {
+                width: 100%;
+            }
+            
+            .nav-item > a {
+                display: block;
+                padding: 0.8rem 0;
+                border-bottom: 1px solid #f0f0f0;
+            }
+            
+            .submenu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: #f9f9f9;
+                margin-top: 0.5rem;
+                margin-bottom: 0.5rem;
+                display: none;
+                padding-left: 1rem;
+            }
+            
+            .nav-item:hover .submenu {
+                display: block;
+            }
+            
+            .cart-counter {
+                margin-top: 1rem;
+                text-align: center;
+            }
+            
+            .nav-item > a::after {
+                display: none;
+            }
+            
+            .nav-item > a:hover {
+                color: #b27952;
+                background: transparent;
+            }
+            
+            .submenu a {
+                padding: 0.5rem 0;
+                font-size: 0.9rem;
+            }
+            
+            .submenu a:hover {
+                background: transparent;
+                color: #b27952;
+            }
+            
+            body.dark-mode nav {
+                background: #2d2d2d;
+            }
+            
+            body.dark-mode .nav-item > a {
+                border-bottom-color: #444;
+                color: #e0e0e0;
+            }
+            
+            body.dark-mode .nav-item > a:hover {
+                color: #b27952;
+            }
+            
+            body.dark-mode .submenu {
+                background: #333;
+            }
+            
+            body.dark-mode .submenu a {
+                color: #ccc;
+            }
+            
+            body.dark-mode .submenu a:hover {
+                color: #b27952;
+            }
+            
+            .packs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pack-actions {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .quick-view-container {
+                flex-direction: column;
+            }
+            
+            .quick-view-image {
+                max-width: 100%;
+            }
+            
+            .customize-container {
+                flex-direction: column;
+            }
+            
+            .customize-options {
+                flex: none;
+            }
+            
+            .customize-summary {
+                flex: none;
+            }
+        }
+        
+        /* Améliorations pour très petits écrans */
+        @media (max-width: 480px) {
+            .packs-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .pack-content {
+                padding: 1.5rem;
+            }
+            
+            .pack-title {
+                font-size: 1.3rem;
+            }
+            
+            .pack-image {
+                height: 180px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-input {
+                width: 150px;
+            }
+            
+            .search-input:focus {
+                width: 180px;
+            }
+            
+            .pack-actions {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .pack-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .customize-container {
+                flex-direction: column;
+            }
+            
+            .customize-textarea {
+                min-height: 150px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 5% auto;
+                padding: 15px;
+            }
+            
+            .quick-view-container {
+                flex-direction: column;
+            }
+            
+            .quick-view-details h3 {
+                font-size: 1.5rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 80px;
+                right: 20px;
+            }
+            
+            .filter-options {
+                justify-content: center;
+            }
+            
+            .filter-option {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loader" role="alert" aria-live="assertive">
+        <div aria-label="Chargement en cours"></div>
+    </div>
+    
+    <div id="progressbar" aria-hidden="true"></div>
+    
+    <header>
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <div class="header-controls">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un produit">
+                <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <nav aria-label="Navigation principale" id="mainNav">
+            <div class="nav-item">
+                <a href="index.html" tabindex="0">Accueil</a>
+            </div>
+            <div class="nav-item">
+                <a href="produits.html" tabindex="0">Produits</a>
+                <div class="submenu">
+                    <a href="produits.html?category=plateau">Plateaux</a>
+                    <a href="produits.html?category=vase">Vases</a>
+                    <a href="produits.html?category=boite">Boîtes</a>
+                    <a href="produits.html?category=decoration">Décorations</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="packs.html" tabindex="0">Packs</a>
+            </div>
+            <div class="nav-item">
+                <a href="a-propos.html" tabindex="0">À propos</a>
+                <div class="submenu">
+                    <a href="a-propos.html#histoire">Notre histoire</a>
+                    <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                    <a href="a-propos.html#atelier">Notre atelier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" tabindex="0">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" tabindex="0">Contact</a>
+            </div>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0">Panier</a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+            <div class="nav-item">
+                <a href="compte.html" tabindex="0">Mon compte</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="breadcrumb">
+        <a href="index.html">Accueil</a> <i class="fas fa-chevron-right"></i> <span>Packs</span>
+    </div>
+    
+    <div class="packs-container">
+        <h1 class="page-title">Nos Packs Exclusifs</h1>
+        <p class="page-description">
+            Découvrez nos packs spécialement conçus pour vous offrir des combinaisons harmonieuses de nos créations. Des économies exclusives pour embellir votre intérieur.
+        </p>
+        
+        <!-- Filtres -->
+        <section class="filter-section">
+            <h3 class="filter-title">Filtrer par thème</h3>
+            <div class="filter-options">
+                <div class="filter-option active" onclick="filterPacks('all')">Tous les packs</div>
+                <div class="filter-option" onclick="filterPacks('salon')">Salon</div>
+                <div class="filter-option" onclick="filterPacks('chambre')">Chambre</div>
+                <div class="filter-option" onclick="filterPacks('bureau')">Bureau</div>
+                <div class="filter-option" onclick="filterPacks('cuisine')">Cuisine</div>
+            </div>
+        </section>
+        
+        <!-- Grille des packs -->
+        <div class="packs-grid">
+            <!-- Pack 0 -->
+            <div class="pack-card" data-theme="salon">
+                <div class="customize-icon" onclick="customizePack('pack0')" title="Personnaliser ce pack">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="pack-image">
+                    <img src="pack0.jpg" alt="Pack 0" loading="lazy" />
+                </div>
+                <div class="pack-content">
+                    <h3 class="pack-title">Pack Essentiel</h3>
+                    <p class="pack-description">
+                        Ensemble essentiel en béton avec des pièces décoratives parfaites pour votre intérieur.
+                    </p>
+                    <div class="pack-items">
+                        <div class="pack-items-title">
+                            <i class="fas fa-gift"></i> Contenu du pack
+                        </div>
+                        <ul class="pack-items-list">
+                            <li>Mini vase en concrete</li>
+                            <li>Boîte en concrete</li>
+                            <li>Plateau ovale en concrete</li>
+                        </ul>
+                    </div>
+                    <div class="pack-price">
+                        <div class="pack-current-price">199 DH</div>
+                    </div>
+                    <div class="pack-actions">
+                        <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack0')">Ajouter au panier</button>
+                        <button class="pack-btn pack-btn-secondary" onclick="quickView('pack0')">Voir les détails</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pack 4 -->
+            <div class="pack-card" data-theme="chambre">
+                <div class="customize-icon" onclick="customizePack('pack4')" title="Personnaliser ce pack">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="pack-image">
+                    <img src="pack4.png" alt="Pack 4" loading="lazy" />
+                </div>
+                <div class="pack-content">
+                    <h3 class="pack-title">Pack Duo</h3>
+                    <p class="pack-description">
+                        Combinaison élégante de plateau nuage et mini vase pour une touche moderne.
+                    </p>
+                    <div class="pack-items">
+                        <div class="pack-items-title">
+                            <i class="fas fa-gift"></i> Contenu du pack
+                        </div>
+                        <ul class="pack-items-list">
+                            <li>Plateau nuage en concrete</li>
+                            <li>Mini vase en concrete</li>
+                        </ul>
+                    </div>
+                    <div class="pack-price">
+                        <div class="pack-current-price">149 DH</div>
+                    </div>
+                    <div class="pack-actions">
+                        <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack4')">Ajouter au panier</button>
+                        <button class="pack-btn pack-btn-secondary" onclick="quickView('pack4')">Voir les détails</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pack 7 -->
+            <div class="pack-card" data-theme="salon">
+                <div class="pack-badge">Complet</div>
+                <div class="customize-icon" onclick="customizePack('pack7')" title="Personnaliser ce pack">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="pack-image">
+                    <img src="pack7.jpg" alt="Pack 7" loading="lazy" />
+                </div>
+                <div class="pack-content">
+                    <h3 class="pack-title">Pack Complet</h3>
+                    <p class="pack-description">
+                        Notre pack le plus complet avec 6 pièces variées pour décorer toute votre maison.
+                    </p>
+                    <div class="pack-items">
+                        <div class="pack-items-title">
+                            <i class="fas fa-gift"></i> Contenu du pack
+                        </div>
+                        <ul class="pack-items-list">
+                            <li>Grand plateau rond</li>
+                            <li>Plateau ovale</li>
+                            <li>Mini vase</li>
+                            <li>Moyenne vase</li>
+                            <li>Arc en ciel</li>
+                            <li>Croissant mibkhara</li>
+                        </ul>
+                    </div>
+                    <div class="pack-price">
+                        <div class="pack-current-price">399 DH</div>
+                    </div>
+                    <div class="pack-actions">
+                        <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack7')">Ajouter au panier</button>
+                        <button class="pack-btn pack-btn-secondary" onclick="quickView('pack7')">Voir les détails</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pack 2 -->
+            <div class="pack-card" data-theme="cuisine">
+                <div class="pack-badge">-30%</div>
+                <div class="customize-icon" onclick="customizePack('pack2')" title="Personnaliser ce pack">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="pack-image">
+                    <img src="pack2.jpg" alt="Pack 2" loading="lazy" />
+                </div>
+                <div class="pack-content">
+                    <h3 class="pack-title">Pack Premium</h3>
+                    <p class="pack-description">
+                        Notre pack premium avec 9 articles pour un ensemble complet et harmonieux.
+                    </p>
+                    <div class="pack-items">
+                        <div class="pack-items-title">
+                            <i class="fas fa-gift"></i> Contenu du pack
+                        </div>
+                        <ul class="pack-items-list">
+                            <li>Mibkhara</li>
+                            <li>Plateau rond 16 cm</li>
+                            <li>Plateau boules</li>
+                            <li>Mini vase</li>
+                            <li>Moyenne vase</li>
+                            <li>Boîte</li>
+                            <li>Plateau ovale</li>
+                            <li>Arc en ciel</li>
+                        </ul>
+                    </div>
+                    <div class="pack-price">
+                        <div class="pack-current-price">299 DH</div>
+                        <div class="pack-old-price">429 DH</div>
+                        <div class="pack-discount">-30%</div>
+                    </div>
+                    <div class="pack-actions">
+                        <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack2')">Ajouter au panier</button>
+                        <button class="pack-btn pack-btn-secondary" onclick="quickView('pack2')">Voir les détails</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pack spécial -->
+            <div class="pack-card" data-theme="bureau">
+                <div class="pack-badge">Offre</div>
+                <div class="customize-icon" onclick="customizePack('pack-special')" title="Personnaliser ce pack">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="pack-image">
+                    <img src="pack8.jpg" alt="Pack Spécial" loading="lazy" />
+                </div>
+                <div class="pack-content">
+                    <h3 class="pack-title">Pack Spécial</h3>
+                    <p class="pack-description">
+                        Offre exclusive sur ce duo parfait : plateau ovale et mini vase.
+                    </p>
+                    <div class="pack-items">
+                        <div class="pack-items-title">
+                            <i class="fas fa-gift"></i> Contenu du pack
+                        </div>
+                        <ul class="pack-items-list">
+                            <li>Plateau ovale en concrete</li>
+                            <li>Mini vase en concrete</li>
+                        </ul>
+                    </div>
+                    <div class="pack-price">
+                        <div class="pack-current-price">69 DH</div>
+                        <div class="pack-old-price">99 DH</div>
+                        <div class="pack-discount">-30%</div>
+                    </div>
+                    <div class="pack-actions">
+                        <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack-special')">Ajouter au panier</button>
+                        <button class="pack-btn pack-btn-secondary" onclick="quickView('pack-special')">Voir les détails</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pack 3 -->
+            <div class="pack-card" data-theme="chambre">
+                <div class="customize-icon" onclick="customizePack('pack3')" title="Personnaliser ce pack">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div class="pack-image">
+                    <img src="pack3.jpg" alt="Pack 3" loading="lazy" />
+                </div>
+                <div class="pack-content">
+                    <h3 class="pack-title">Pack Variété</h3>
+                    <p class="pack-description">
+                        Ensemble varié de 4 pièces pour une décoration harmonieuse.
+                    </p>
+                    <div class="pack-items">
+                        <div class="pack-items-title">
+                            <i class="fas fa-gift"></i> Contenu du pack
+                        </div>
+                        <ul class="pack-items-list">
+                            <li>Plateau ovale</li>
+                            <li>Mini vase</li>
+                            <li>Plateau nuage</li>
+                            <li>Plateau boules</li>
+                        </ul>
+                    </div>
+                    <div class="pack-price">
+                        <div class="pack-current-price">149 DH</div>
+                    </div>
+                    <div class="pack-actions">
+                        <button class="pack-btn pack-btn-primary" onclick="addToCartPack('pack3')">Ajouter au panier</button>
+                        <button class="pack-btn pack-btn-secondary" onclick="quickView('pack3')">Voir les détails</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section avantages -->
+        <section class="advantages-section">
+            <h2 class="advantages-title">Pourquoi choisir nos packs ?</h2>
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="advantage-title">Économies exclusives</div>
+                    <div class="advantage-desc">
+                        Jusqu'à 25% de réduction par rapport à l'achat des pièces individuellement.
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div class="advantage-title">Personnalisation</div>
+                    <div class="advantage-desc">
+                        Décrivez exactement ce que vous souhaitez pour chaque pièce du pack.
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div class="advantage-title">Livraison offerte</div>
+                    <div class="advantage-desc">
+                        Livraison gratuite sur tous les packs à partir de 400 DH.
+                    </div>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="advantage-title">Cadeau surprise</div>
+                    <div class="advantage-desc">
+                        Un petit cadeau artisanal inclus dans chaque pack.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Modal pour l'aperçu rapide -->
+    <div id="quickViewModal" class="modal">
+        <div class="modal-content quick-view-content">
+            <span class="close-modal" onclick="closeQuickView()" aria-label="Fermer">&times;</span>
+            <div class="quick-view-container">
+                <div class="quick-view-image">
+                    <img id="quickViewImage" src="" alt="">
+                </div>
+                <div class="quick-view-details">
+                    <h3 id="quickViewTitle"></h3>
+                    <p id="quickViewDescription"></p>
+                    <div id="quickViewItems"></div>
+                    <div class="quick-view-price" id="quickViewPrice"></div>
+                    <div class="quick-view-actions">
+                        <button class="btn-add-to-cart" onclick="addToCartPackFromQuickView()">Ajouter au panier</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal pour la personnalisation des packs -->
+    <div id="customizeModal" class="modal">
+        <div class="modal-content customize-content">
+            <span class="close-modal" onclick="closeCustomizeModal()" aria-label="Fermer">&times;</span>
+            <h2>Personnaliser votre pack</h2>
+            <p>Décrivez ci-dessous vos préférences de personnalisation pour ce pack. Nous prendrons en compte toutes vos instructions pour créer des pièces uniques qui correspondent parfaitement à vos attentes.</p>
+            
+            <div class="customize-container">
+                <div class="customize-options">
+                    <div class="customize-item">
+                        <h4><i class="fas fa-edit"></i> Vos instructions de personnalisation</h4>
+                        <textarea id="customizationNotes" class="customize-textarea" placeholder="Exemple :&#10;- Je souhaite le vase en noir mat&#10;- Le plateau en noir marbre avec des veines dorées&#10;- La boîte en gris clair&#10;- N'hésitez pas à ajouter autant de détails que vous souhaitez..."></textarea>
+                    </div>
+                </div>
+                <div class="customize-summary">
+                    <h3>Récapitulatif de votre pack</h3>
+                    <div id="customizeSummary"></div>
+                    <div class="customize-price">
+                        <span>Prix total: </span>
+                        <span id="customizeTotalPrice">0 DH</span>
+                    </div>
+                    
+                    <div class="customize-notes-preview">
+                        <h4>Vos instructions</h4>
+                        <p id="notesPreview">Aucune instruction pour le moment...</p>
+                    </div>
+                    
+                    <button class="btn-add-to-cart" onclick="addCustomizedPackToCart()">Ajouter au panier</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/212123456789" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>À propos</h4>
+                <ul class="footer-links">
+                    <li><a href="a-propos.html">Notre histoire</a></li>
+                    <li><a href="a-propos.html#savoir-faire">Notre savoir-faire</a></li>
+                    <li><a href="a-propos.html#atelier">Notre atelier</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Produits</h4>
+                <ul class="footer-links">
+                    <li><a href="produits.html?category=plateau">Plateaux</a></li>
+                    <li><a href="produits.html?category=vase">Vases</a></li>
+                    <li><a href="produits.html?category=boite">Boîtes</a></li>
+                    <li><a href="produits.html?category=decoration">Décorations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Packs</h4>
+                <ul class="footer-links">
+                    <li><a href="packs.html">Tous nos packs</a></li>
+                    <li><a href="packs.html#essentiels">Packs essentiels</a></li>
+                    <li><a href="packs.html#premium">Packs premium</a></li>
+                    <li><a href="packs.html#offres">Offres spéciales</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Service client</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                <form class="newsletter-form-footer" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input-footer" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn-footer">OK</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/decobizcreations" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/decobizcreations" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://pinterest.com/decobizcreations" target="_blank" class="social-link" aria-label="Pinterest">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Decobizcreations — Artisanat marocain fait main. Tous droits réservés.</p>
+            <p><a href="conditions.html">Conditions générales</a> | <a href="confidentialite.html">Politique de confidentialité</a> | <a href="mentions-legales.html">Mentions légales</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales
+        let cartItems = [];
+        let cartCount = 0;
+        let currentQuickViewPack = null;
+        let currentPackForCustomization = null;
+        
+        // Données des packs pour l'aperçu rapide
+        const packsData = {
+            'pack0': {
+                title: 'Pack Essentiel',
+                description: 'Ensemble essentiel en béton avec des pièces décoratives parfaites pour votre intérieur.',
+                price: 199,
+                image: 'pack0.jpg',
+                items: [
+                    'Mini vase en concrete',
+                    'Boîte en concrete',
+                    'Plateau ovale en concrete'
+                ]
+            },
+            'pack4': {
+                title: 'Pack Duo',
+                description: 'Combinaison élégante de plateau nuage et mini vase pour une touche moderne.',
+                price: 149,
+                image: 'pack4.png',
+                items: [
+                    'Plateau nuage en concrete',
+                    'Mini vase en concrete'
+                ]
+            },
+            'pack7': {
+                title: 'Pack Complet',
+                description: 'Notre pack le plus complet avec 6 pièces variées pour décorer toute votre maison.',
+                price: 399,
+                image: 'pack7.jpg',
+                items: [
+                    'Grand plateau rond',
+                    'Plateau ovale',
+                    'Mini vase',
+                    'Moyenne vase',
+                    'Arc en ciel',
+                    'Croissant mibkhara'
+                ]
+            },
+            'pack2': {
+                title: 'Pack Premium',
+                description: 'Notre pack premium avec 9 articles pour un ensemble complet et harmonieux.',
+                price: 299,
+                image: 'pack2.jpg',
+                items: [
+                    'Mibkhara',
+                    'Plateau rond 16 cm',
+                    'Plateau boules',
+                    'Mini vase',
+                    'Moyenne vase',
+                    'Boîte',
+                    'Plateau ovale',
+                    'Arc en ciel'
+                ]
+            },
+            'pack-special': {
+                title: 'Pack Spécial',
+                description: 'Offre exclusive sur ce duo parfait : plateau ovale et mini vase.',
+                price: 69,
+                image: 'pack8.jpg',
+                items: [
+                    'Plateau ovale en concrete',
+                    'Mini vase en concrete'
+                ]
+            },
+            'pack3': {
+                title: 'Pack Variété',
+                description: 'Ensemble varié de 4 pièces pour une décoration harmonieuse.',
+                price: 149,
+                image: 'pack3.jpg',
+                items: [
+                    'Plateau ovale',
+                    'Mini vase',
+                    'Plateau nuage',
+                    'Plateau boules'
+                ]
+            }
+        };
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Masquer le loader
+            document.getElementById('loader').style.display = 'none';
+            
+            // Initialiser les fonctionnalités
+            initScrollProgress();
+            initBackToTop();
+            initDarkMode();
+            initSearch();
+            initMobileMenu();
+            initTouchOptimizations();
+            
+            // Charger le panier depuis localStorage
+            loadCartFromStorage();
+            
+            // Initialiser la prévisualisation des notes
+            initNotesPreview();
+            
+            console.log('🎁 Page Packs chargée avec succès !');
+        });
+        
+        // Charger le panier depuis localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                try {
+                    cartItems = JSON.parse(savedCart);
+                    // Valider les données du panier
+                    cartItems = cartItems.filter(item => {
+                        return item.id && item.title && item.price && !isNaN(item.price);
+                    });
+                    cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+                    updateCartBadge();
+                } catch (e) {
+                    console.error("Erreur lors du chargement du panier:", e);
+                    localStorage.removeItem('cart');
+                    cartItems = [];
+                    cartCount = 0;
+                    updateCartBadge();
+                }
+            }
+        }
+        
+        // Sauvegarder le panier dans localStorage
+        function saveCartToStorage() {
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            localStorage.setItem('cartCount', cartCount.toString());
+        }
+        
+        // Barre de progression du scroll
+        function initScrollProgress() {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressbar').style.width = scrollPercent + '%';
+            });
+        }
+        
+        // Bouton retour en haut
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Mode sombre
+        function initDarkMode() {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Charger la préférence sauvegardée
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+        
+        // Fonction de recherche
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            function performSearch(event) {
+                if (event) {
+                    event.preventDefault();
+                }
+                
+                const query = searchInput.value.toLowerCase().trim();
+                if (query) {
+                    // Rediriger vers la page produits avec le terme de recherche
+                    window.location.href = `produits.html?search=${encodeURIComponent(query)}`;
+                }
+            }
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch(e);
+                }
+            });
+        }
+        
+        // Menu mobile
+        function initMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainNav = document.getElementById('mainNav');
+            
+            mobileMenuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                
+                // Change l'icône du bouton
+                const icon = mobileMenuToggle.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Ne fermer le menu que si ce n'est pas un lien avec sous-menu
+                    if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('submenu')) {
+                        mainNav.classList.remove('active');
+                        const icon = mobileMenuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            });
+            
+            // Gérer les sous-menus sur mobile
+            const navItems = mainNav.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const submenu = item.querySelector('.submenu');
+                
+                if (submenu) {
+                    link.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                        }
+                    });
+                }
+            });
+        }
+        
+        // Amélioration de l'expérience tactile
+        function initTouchOptimizations() {
+            // Augmenter la zone cliquable des éléments interactifs
+            const clickableElements = document.querySelectorAll('button, a, .filter-option');
+            clickableElements.forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+            
+            // Optimiser le défilement sur mobile
+            if ('ontouchstart' in window) {
+                document.body.style.webkitOverflowScrolling = 'touch';
+            }
+        }
+        
+        // Filtrer les packs
+        function filterPacks(theme) {
+            const packCards = document.querySelectorAll('.pack-card');
+            const filterOptions = document.querySelectorAll('.filter-option');
+            
+            // Mettre à jour les filtres actifs
+            filterOptions.forEach(option => {
+                option.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Afficher/masquer les packs
+            packCards.forEach(card => {
+                if (theme === 'all' || card.getAttribute('data-theme') === theme) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        }
+        
+        // Ajouter un pack au panier
+        function addToCartPack(packId) {
+            const pack = packsData[packId];
+            if (!pack) {
+                showToast('Pack non trouvé', 'error');
+                return;
+            }
+            
+            // Vérifier si le pack est déjà dans le panier
+            const existingItemIndex = cartItems.findIndex(item => item.id === packId);
+            
+            if (existingItemIndex !== -1) {
+                // Augmenter la quantité si le pack est déjà dans le panier
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // Ajouter le pack au panier
+                cartItems.push({
+                    id: packId,
+                    title: pack.title,
+                    description: pack.description,
+                    price: pack.price,
+                    image: pack.image,
+                    quantity: 1,
+                    type: 'pack',
+                    items: pack.items
+                });
+            }
+            
+            cartCount++;
+            updateCartBadge();
+            saveCartToStorage();
+            showToast('Pack ajouté au panier !', 'success');
+            
+            // Animation du badge
+            const badge = document.getElementById('cartBadge');
+            badge.style.transform = 'scale(1.3)';
+            setTimeout(() => {
+                badge.style.transform = 'scale(1)';
+            }, 200);
+        }
+        
+        // Aperçu rapide
+        function quickView(packId) {
+            currentQuickViewPack = packId;
+            const pack = packsData[packId];
+            
+            if (pack) {
+                document.getElementById('quickViewImage').src = pack.image;
+                document.getElementById('quickViewTitle').textContent = pack.title;
+                document.getElementById('quickViewDescription').textContent = pack.description;
+                
+                // Générer la liste des items
+                let itemsHTML = '<div class="pack-items"><div class="pack-items-title"><i class="fas fa-gift"></i> Contenu du pack</div><ul class="pack-items-list">';
+                pack.items.forEach(item => {
+                    itemsHTML += `<li>${item}</li>`;
+                });
+                itemsHTML += '</ul></div>';
+                document.getElementById('quickViewItems').innerHTML = itemsHTML;
+                
+                document.getElementById('quickViewPrice').textContent = `${pack.price} DH`;
+                
+                document.getElementById('quickViewModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeQuickView() {
+            document.getElementById('quickViewModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function addToCartPackFromQuickView() {
+            if (currentQuickViewPack) {
+                addToCartPack(currentQuickViewPack);
+                closeQuickView();
+            }
+        }
+        
+        function updateCartBadge() {
+            document.getElementById('cartBadge').textContent = cartCount;
+        }
+        
+        // Fermer le modal en cliquant à l'extérieur
+        window.addEventListener('click', (event) => {
+            const quickViewModal = document.getElementById('quickViewModal');
+            const customizeModal = document.getElementById('customizeModal');
+            
+            if (event.target === quickViewModal) {
+                closeQuickView();
+            }
+            
+            if (event.target === customizeModal) {
+                closeCustomizeModal();
+            }
+        });
+        
+        // Fermer le modal avec la touche Échap
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeQuickView();
+                closeCustomizeModal();
+            }
+        });
+        
+        // Newsletter
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Validation email simple
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                showToast('Merci pour votre inscription !', 'success');
+                event.target.reset();
+                
+                // Sauvegarder l'email dans le localStorage
+                let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+            } else {
+                showToast('Veuillez entrer une adresse email valide', 'error');
+            }
+        }
+        
+        // Système de notifications toast
+        function showToast(message, type = 'info') {
+            // Supprimer les anciens toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'polite');
+            
+            document.body.appendChild(toast);
+            
+            // Afficher le toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Masquer et supprimer le toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Initialiser la prévisualisation des notes
+        function initNotesPreview() {
+            const notesTextarea = document.getElementById('customizationNotes');
+            const notesPreview = document.getElementById('notesPreview');
+            
+            if (notesTextarea && notesPreview) {
+                notesTextarea.addEventListener('input', function() {
+                    const text = this.value.trim();
+                    if (text) {
+                        notesPreview.textContent = text;
+                    } else {
+                        notesPreview.textContent = 'Aucune instruction pour le moment...';
+                    }
+                });
+            }
+        }
+        
+        // Fonctions de personnalisation des packs
+        function customizePack(packId) {
+            currentPackForCustomization = packId;
+            
+            const pack = packsData[packId];
+            if (!pack) return;
+            
+            // Afficher le contenu du pack dans le récapitulatif
+            let summaryHTML = '';
+            pack.items.forEach(item => {
+                summaryHTML += `
+                    <div class="customize-summary-item">
+                        <span>${item}</span>
+                        <span>Inclus</span>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('customizeSummary').innerHTML = summaryHTML;
+            document.getElementById('customizeTotalPrice').textContent = `${pack.price} DH`;
+            
+            // Réinitialiser le champ de texte et la prévisualisation
+            document.getElementById('customizationNotes').value = '';
+            document.getElementById('notesPreview').textContent = 'Aucune instruction pour le moment...';
+            
+            document.getElementById('customizeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeCustomizeModal() {
+            document.getElementById('customizeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+            currentPackForCustomization = null;
+            document.getElementById('customizationNotes').value = '';
+            document.getElementById('notesPreview').textContent = 'Aucune instruction pour le moment...';
+        }
+        
+        // Fonction pour ajouter un pack personnalisé au panier
+        function addCustomizedPackToCart() {
+            if (!currentPackForCustomization) return;
+            
+            // Récupérer les notes de personnalisation
+            const notes = document.getElementById('customizationNotes').value;
+            
+            // Ajouter le pack personnalisé au panier
+            const pack = packsData[currentPackForCustomization];
+            
+            // Créer une description formatée pour la personnalisation
+            let customizationDescription = '';
+            if (notes) {
+                customizationDescription = notes;
+            }
+            
+            cartItems.push({
+                id: currentPackForCustomization,
+                title: pack.title,
+                description: pack.description,
+                price: pack.price,
+                image: pack.image,
+                quantity: 1,
+                type: 'pack',
+                custom: true,
+                customization: customizationDescription,
+                customizationData: {
+                    notes: notes
+                },
+                items: pack.items
+            });
+            
+            cartCount++;
+            updateCartBadge();
+            saveCartToStorage();
+            showToast('Pack personnalisé ajouté au panier !', 'success');
+            closeCustomizeModal();
+        }
+    </script>
+</body>
+</html>
