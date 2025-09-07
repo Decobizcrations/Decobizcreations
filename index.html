@@ -3700,30 +3700,29 @@
     // ===============================================================
     
     // Fonction d'initialisation du panier
-    function initCart() {
-        console.log("Initialisation du panier...");
-        
-        // S'assurer que cartItems est un tableau
-        if (!Array.isArray(cartItems)) {
-            console.warn("cartItems n'était pas un tableau, réinitialisation");
-            cartItems = [];
-        }
-        
-        // Charger les articles depuis localStorage
-        loadCartItems();
-        
-        // Vérifier que les fonctions du panier sont accessibles
-        if (typeof addToCart !== 'function') {
-            console.error('La fonction addToCart n\'est pas définie');
-        }
-        
-        if (typeof updateCartCount !== 'function') {
-            console.error('La fonction updateCartCount n\'est pas définie');
-        }
-        
-        console.log('Panier initialisé avec', cartItems.length, 'articles');
+ function initCart() {
+    console.log("Initialisation du panier...");
+    
+    // S'assurer que cartItems est un tableau
+    if (!Array.isArray(cartItems)) {
+        console.warn("cartItems n'était pas un tableau, réinitialisation");
+        cartItems = [];
     }
     
+    // Charger les articles depuis localStorage
+    loadCartItems();
+    
+    // Vérifier que les fonctions du panier sont accessibles
+    if (typeof addToCart !== 'function') {
+        console.error('La fonction addToCart n\'est pas définie');
+    }
+    
+    if (typeof updateCartCount !== 'function') {
+        console.error('La fonction updateCartCount n\'est pas définie');
+    }
+    
+    console.log('Panier initialisé avec', cartItems.length, 'articles');
+}
     // Fonction pour charger les articles du panier depuis localStorage
     function loadCartItems() {
         try {
@@ -3768,32 +3767,32 @@
     }
     
     // Fonction pour sauvegarder les articles du panier dans localStorage
-    function saveCartItems() {
-        try {
-            // Vérifier que cartItems est un tableau valide
-            if (!Array.isArray(cartItems)) {
-                console.error('Impossible de sauvegarder: cartItems n\'est pas un tableau');
-                return;
-            }
-            
-            // Filtrer les éléments invalides
-            const validItems = cartItems.filter(item => {
-                return item && 
-                       item.id && 
-                       item.title && 
-                       typeof item.price === 'number' && 
-                       !isNaN(item.price) &&
-                       typeof item.quantity === 'number' && 
-                       item.quantity > 0;
-            });
-            
-            localStorage.setItem('cart', JSON.stringify(validItems));
-            console.log('Articles du panier sauvegardés:', validItems);
-        } catch (e) {
-            console.error('Erreur lors de la sauvegarde des articles du panier:', e);
-            showToast('Erreur lors de la sauvegarde du panier', 'error');
+function saveCartItems() {
+    try {
+        // Vérifier que cartItems est un tableau valide
+        if (!Array.isArray(cartItems)) {
+            console.error('Impossible de sauvegarder: cartItems n\'est pas un tableau');
+            return;
         }
+        
+        // Filtrer les éléments invalides
+        const validItems = cartItems.filter(item => {
+            return item && 
+                   item.id && 
+                   item.title && 
+                   typeof item.price === 'number' && 
+                   !isNaN(item.price) &&
+                   typeof item.quantity === 'number' && 
+                   item.quantity > 0;
+        });
+        
+        localStorage.setItem('cart', JSON.stringify(validItems));
+        console.log('Articles du panier sauvegardés:', validItems);
+    } catch (e) {
+        console.error('Erreur lors de la sauvegarde des articles du panier:', e);
+        showToast('Erreur lors de la sauvegarde du panier', 'error');
     }
+}
     
     // Fonction pour mettre à jour le compteur du panier
     function updateCartCount() {
@@ -4248,15 +4247,22 @@
     });
     
     // Fonction pour soumettre la personnalisation
+ 
     function submitCustomization(event) {
-        event.preventDefault();
-        
-        if (!currentCustomizationProduct) {
-            showToast('Erreur: produit non sélectionné', 'error');
-            return;
-        }
-        
-        const product = productsData[currentCustomizationProduct];
+    event.preventDefault();
+    
+    if (!currentCustomizationProduct) {
+        showToast('Erreur: produit non sélectionné', 'error');
+        return;
+    }
+    
+    const product = productsData[currentCustomizationProduct];
+    if (!product) {
+        showToast('Erreur: produit non trouvé', 'error');
+        return;
+    }
+    
+    try {
         const formData = new FormData(event.target);
         
         // Récupérer les données de personnalisation
@@ -4292,30 +4298,27 @@
             customDescription += `, Notes: ${customizationData.notes}`;
         }
         
-        // Vérifier si le produit est déjà dans le panier
-        const existingItemIndex = cartItems.findIndex(item => 
-            item.id === currentCustomizationProduct && item.customization === customDescription
-        );
-        
-        if (existingItemIndex !== -1) {
-            // Augmenter la quantité si le produit personnalisé est déjà dans le panier
-            cartItems[existingItemIndex].quantity += 1;
-            showToast(`${product.title} personnalisé mis à jour !`, 'info');
-        } else {
-            // Ajouter le produit personnalisé au panier
-            cartItems.push({
-                id: currentCustomizationProduct,
-                title: product.title,
-                description: product.description,
-                price: product.price,
-                image: product.image,
-                quantity: 1,
-                type: 'product',
-                customization: customDescription,
-                customizationData: customizationData
-            });
-            showToast(`${product.title} personnalisé ajouté au panier !`, 'success');
+        // S'assurer que cartItems est un tableau
+        if (!Array.isArray(cartItems)) {
+            cartItems = [];
         }
+        
+        // Créer l'objet produit personnalisé
+        const customizedProduct = {
+            id: currentCustomizationProduct + '_custom_' + Date.now(),
+            title: product.title,
+            description: product.description,
+            price: product.price,
+            image: product.image,
+            quantity: 1,
+            type: 'product',
+            customization: customDescription,
+            customizationData: customizationData,
+            baseProductId: currentCustomizationProduct
+        };
+        
+        // Ajouter le produit personnalisé au panier
+        cartItems.push(customizedProduct);
         
         // Mettre à jour le compteur du panier
         updateCartCount();
@@ -4326,13 +4329,23 @@
         // Fermer le modal
         closeCustomization();
         
+        // Afficher un message de confirmation
+        showToast(`${product.title} personnalisé ajouté au panier !`, 'success');
+        
         // Suivre l'événement
         trackEvent('customization_add_to_cart', { 
             product_id: currentCustomizationProduct, 
             customization: customDescription 
         });
+        
+        console.log("Produit personnalisé ajouté au panier:", customizedProduct);
+        console.log("État du panier après ajout:", cartItems);
+        
+    } catch (error) {
+        console.error('Erreur lors de la personnalisation:', error);
+        showToast('Erreur lors de la personnalisation du produit', 'error');
     }
-    
+}
     // Fonction pour demander un devis pour une personnalisation complexe
     function requestCustomQuote() {
         if (!currentCustomizationProduct) {
@@ -6333,3 +6346,4 @@
     </script>
 </body>
 </html>
+
