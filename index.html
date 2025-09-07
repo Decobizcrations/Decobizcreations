@@ -2831,7 +2831,7 @@
                 <a href="panier.html" tabindex="0" aria-label="Panier">
                     <i class="fas fa-shopping-cart"></i>
                 </a>
-                <span class="cart-badge" id="cartBadge">0</span>
+                <span class="cart-badge" id="cartBadge" data-count="0">0</span>
             </div>
         </div>
         
@@ -3579,7 +3579,7 @@
     let currentUser = null;
     let visitorCount = 0;
     let users = [];
-    let cartItems = [];
+    let cartItems = []; // Initialisation explicite du tableau du panier
     let currentQuickViewProduct = null;
     let currentCustomizationProduct = null;
     let discount = 0;
@@ -3696,70 +3696,194 @@
     };
     
     // ===============================================================
-    // FONCTIONS DU PANIER ET PRODUITS
+    // FONCTIONS DU PANIER ET PRODUITS - VERSION CORRIGÉE
     // ===============================================================
     
+    // Fonction d'initialisation du panier
+    function initCart() {
+        console.log("Initialisation du panier...");
+        
+        // S'assurer que cartItems est un tableau
+        if (!Array.isArray(cartItems)) {
+            console.warn("cartItems n'était pas un tableau, réinitialisation");
+            cartItems = [];
+        }
+        
+        // Charger les articles depuis localStorage
+        loadCartItems();
+        
+        // Vérifier que les fonctions du panier sont accessibles
+        if (typeof addToCart !== 'function') {
+            console.error('La fonction addToCart n\'est pas définie');
+        }
+        
+        if (typeof updateCartCount !== 'function') {
+            console.error('La fonction updateCartCount n\'est pas définie');
+        }
+        
+        console.log('Panier initialisé avec', cartItems.length, 'articles');
+    }
+    
+    // Fonction pour charger les articles du panier depuis localStorage
     function loadCartItems() {
-        const savedCart = localStorage.getItem('cart');
-        if (savedCart) {
-            try {
+        try {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
                 cartItems = JSON.parse(savedCart);
                 console.log('Articles du panier chargés:', cartItems);
                 
                 // Valider les données du panier
-                cartItems = cartItems.filter(item => {
-                    return item.id && item.title && item.price && !isNaN(item.price);
-                });
-                
-                // Mettre à jour le compteur du panier
-                updateCartCount();
-            } catch (e) {
-                console.error('Erreur lors du chargement des articles du panier:', e);
+                if (!Array.isArray(cartItems)) {
+                    console.error('Les données du panier ne sont pas un tableau valide');
+                    cartItems = [];
+                    localStorage.removeItem('cart'); // Nettoyer les données corrompues
+                } else {
+                    // Valider chaque élément du panier
+                    cartItems = cartItems.filter(item => {
+                        return item && 
+                               item.id && 
+                               item.title && 
+                               typeof item.price === 'number' && 
+                               !isNaN(item.price) &&
+                               typeof item.quantity === 'number' && 
+                               item.quantity > 0;
+                    });
+                    
+                    // Sauvegarder les données nettoyées
+                    saveCartItems();
+                }
+            } else {
                 cartItems = [];
+                console.log("Aucun panier sauvegardé, initialisation à vide");
             }
+            
+            // Mettre à jour le compteur du panier
+            updateCartCount();
+        } catch (e) {
+            console.error('Erreur lors du chargement des articles du panier:', e);
+            cartItems = []; // Réinitialiser le panier en cas d'erreur
+            localStorage.removeItem('cart'); // Nettoyer les données corrompues
+            updateCartCount();
         }
     }
     
+    // Fonction pour sauvegarder les articles du panier dans localStorage
     function saveCartItems() {
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        console.log('Articles du panier sauvegardés:', cartItems);
-    }
-    
-    function updateCartCount() {
-        cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-        const badge = document.getElementById('cartBadge');
-        if (badge) badge.textContent = cartCount;
-        
-        // Sauvegarder le compteur dans localStorage
-        localStorage.setItem('cartCount', cartCount.toString());
-    }
-    
-    function loadCartCount() {
-        const saved = localStorage.getItem('cartCount');
-        if (saved) {
-            cartCount = parseInt(saved);
-            updateCartBadge();
+        try {
+            // Vérifier que cartItems est un tableau valide
+            if (!Array.isArray(cartItems)) {
+                console.error('Impossible de sauvegarder: cartItems n\'est pas un tableau');
+                return;
+            }
+            
+            // Filtrer les éléments invalides
+            const validItems = cartItems.filter(item => {
+                return item && 
+                       item.id && 
+                       item.title && 
+                       typeof item.price === 'number' && 
+                       !isNaN(item.price) &&
+                       typeof item.quantity === 'number' && 
+                       item.quantity > 0;
+            });
+            
+            localStorage.setItem('cart', JSON.stringify(validItems));
+            console.log('Articles du panier sauvegardés:', validItems);
+        } catch (e) {
+            console.error('Erreur lors de la sauvegarde des articles du panier:', e);
+            showToast('Erreur lors de la sauvegarde du panier', 'error');
         }
     }
     
+    // Fonction pour mettre à jour le compteur du panier
+    function updateCartCount() {
+        try {
+            // Calculer le nombre total d'articles
+            cartCount = cartItems.reduce((total, item) => {
+                const quantity = parseInt(item.quantity) || 0;
+                return total + quantity;
+            }, 0);
+            
+            // Mettre à jour l'affichage
+            const badge = document.getElementById('cartBadge');
+            if (badge) {
+                badge.textContent = cartCount;
+                
+                // Animer le badge si le compteur a changé
+                if (badge.getAttribute('data-count') !== cartCount.toString()) {
+                    badge.classList.add('animate');
+                    setTimeout(() => {
+                        badge.classList.remove('animate');
+                    }, 500);
+                    badge.setAttribute('data-count', cartCount.toString());
+                }
+            }
+            
+            // Sauvegarder le compteur dans localStorage
+            localStorage.setItem('cartCount', cartCount.toString());
+            
+            console.log("Compteur du panier mis à jour:", cartCount);
+        } catch (error) {
+            console.error('Erreur lors de la mise à jour du compteur:', error);
+        }
+    }
+    
+    // Fonction pour charger le compteur du panier depuis localStorage
+    function loadCartCount() {
+        try {
+            const saved = localStorage.getItem('cartCount');
+            if (saved) {
+                cartCount = parseInt(saved) || 0;
+                updateCartBadge();
+            }
+        } catch (error) {
+            console.error('Erreur lors du chargement du compteur:', error);
+        }
+    }
+    
+    // Fonction pour mettre à jour l'affichage du badge du panier
     function updateCartBadge() {
         const badge = document.getElementById('cartBadge');
-        if (badge) badge.textContent = cartCount;
+        if (badge) {
+            badge.textContent = cartCount;
+            badge.setAttribute('data-count', cartCount.toString());
+        }
     }
     
-    // Fonction principale pour ajouter au panier
+    // Fonction principale pour ajouter au panier - VERSION CORRIGÉE
     function addToCart(productId) {
-        console.log("Ajout au panier du produit:", productId);
+        console.log("Tentative d'ajout au panier du produit:", productId);
+        console.log("État du panier avant ajout:", cartItems);
+        console.log("Produits disponibles:", Object.keys(productsData));
         
+        // Vérifier que productId est valide
+        if (!productId || typeof productId !== 'string') {
+            console.error('ID de produit invalide:', productId);
+            showToast('Erreur: produit non identifié', 'error');
+            return;
+        }
+        
+        // Vérifier que le produit existe dans les données
         const product = productsData[productId];
+        if (!product) {
+            console.error('Produit non trouvé dans les données:', productId);
+            showToast('Erreur: produit non disponible', 'error');
+            return;
+        }
         
-        if (product) {
+        // S'assurer que cartItems est un tableau
+        if (!Array.isArray(cartItems)) {
+            console.error('cartItems n\'est pas un tableau, réinitialisation');
+            cartItems = [];
+        }
+        
+        try {
             // Vérifier si le produit est déjà dans le panier
             const existingItemIndex = cartItems.findIndex(item => item.id === productId);
             
             if (existingItemIndex !== -1) {
                 // Augmenter la quantité si le produit est déjà dans le panier
-                cartItems[existingItemIndex].quantity += 1;
+                cartItems[existingItemIndex].quantity = (cartItems[existingItemIndex].quantity || 1) + 1;
                 showToast(`Quantité de ${product.title} mise à jour !`, 'info');
                 console.log("Quantité mise à jour pour le produit:", productId);
             } else {
@@ -3768,7 +3892,7 @@
                     id: productId,
                     title: product.title,
                     description: product.description || "",
-                    price: product.price,
+                    price: Number(product.price) || 0,
                     image: product.image,
                     quantity: 1,
                     type: 'product'
@@ -3798,10 +3922,11 @@
             // Suivre l'événement
             trackEvent('add_to_cart', { product_id: productId, product_name: product.title });
             
-            console.log("Panier actuel:", cartItems);
-        } else {
-            showToast('Erreur: produit non trouvé', 'error');
-            console.error('Produit non trouvé:', productId);
+            console.log("État du panier après ajout:", cartItems);
+            console.log("Contenu du localStorage après sauvegarde:", localStorage.getItem('cart'));
+        } catch (error) {
+            console.error('Erreur lors de l\'ajout au panier:', error);
+            showToast('Erreur lors de l\'ajout au panier', 'error');
         }
     }
     
@@ -5184,6 +5309,8 @@
     // ===============================================================
     
     window.addEventListener('load', function() {
+        console.log("=== DÉMARRAGE DE L'APPLICATION ===");
+        
         // Masquer le loader avec une transition
         setTimeout(() => {
             const loader = document.getElementById('loader');
@@ -5222,11 +5349,10 @@
         // Initialiser le menu mobile
         initMobileMenu();
         
-        // Charger le compteur du panier depuis localStorage
-        loadCartCount();
-        
-        // Charger les articles du panier depuis localStorage
-        loadCartItems();
+        // === INITIALISATION DU PANIER (NOUVEAU) ===
+        console.log("Initialisation du système de panier...");
+        initCart(); // Initialiser le panier en premier
+        loadCartCount(); // Charger le compteur sauvegardé
         
         // Initialiser le service worker pour PWA
         initServiceWorker();
@@ -5278,6 +5404,7 @@
         console.log('🎨 Decobizcreations - Site chargé avec succès !');
         console.log('✨ Toutes les fonctionnalités sont opérationnelles');
         console.log('🔍 Système de suivi des visiteurs internationaux activé');
+        console.log('🛒 Système de panier initialisé');
         
         // Forcer une détection mobile après le chargement complet
         setTimeout(() => {
@@ -5286,197 +5413,8 @@
                 forceMobileDetection();
             }
         }, 3000);
-    });
-    
-    // Fonction pour afficher des instructions mobiles
-    function showMobileInstructions() {
-        // Attendre que le site soit complètement chargé
-        setTimeout(() => {
-            // Vérifier si les instructions n'ont pas déjà été affichées
-            if (!localStorage.getItem('mobileInstructionsShown')) {
-                const instructions = document.createElement('div');
-                instructions.id = 'mobile-instructions';
-                instructions.style.cssText = `
-                    position: fixed;
-                    bottom: 20px;
-                    left: 20px;
-                    right: 20px;
-                    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-                    color: white;
-                    padding: 15px;
-                    border-radius: 15px;
-                    font-size: 14px;
-                    z-index: 10000;
-                    text-align: center;
-                    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                    transform: translateY(100%);
-                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    border: 1px solid rgba(255,255,255,0.1);
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                    padding-bottom: calc(15px + env(safe-area-inset-bottom));
-                `;
-                
-                instructions.innerHTML = `
-                    <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-                        <span style="font-size: 20px; margin-right: 10px;">📱</span>
-                        <strong style="color: #b27952;">Mode Mobile Activé</strong>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; margin-bottom: 8px; font-size: 12px;">
-                        📝 Tapez <strong style="color: #f8b500;">admin</strong> sur votre clavier
-                    </div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 8px; border-radius: 8px; font-size: 12px;">
-                        👆 Ou double-tapez dans le coin supérieur gauche
-                    </div>
-                    <div style="margin-top: 12px; font-size: 11px; opacity: 0.7;">
-                        Cette notification disparaîtra dans 15 secondes
-                    </div>
-                    <button onclick="dismissMobileInstructions()" style="
-                        position: absolute;
-                        top: 8px;
-                        right: 8px;
-                        background: none;
-                        border: none;
-                        color: white;
-                        font-size: 16px;
-                        cursor: pointer;
-                        opacity: 0.7;
-                        padding: 5px;
-                    ">×</button>
-                `;
-                
-                document.body.appendChild(instructions);
-                
-                // Animer l'entrée
-                setTimeout(() => {
-                    instructions.style.transform = 'translateY(0)';
-                }, 100);
-                
-                // Marquer que les instructions ont été affichées
-                localStorage.setItem('mobileInstructionsShown', 'true');
-                
-                // Supprimer après 15 secondes
-                setTimeout(() => {
-                    instructions.style.transform = 'translateY(100%)';
-                    setTimeout(() => {
-                        if (instructions.parentNode) {
-                            instructions.parentNode.removeChild(instructions);
-                        }
-                    }, 400);
-                }, 15000);
-            }
-        }, 4000);
-    }
-    
-    // Fonction pour fermer les instructions mobiles
-    function dismissMobileInstructions() {
-        const instructions = document.getElementById('mobile-instructions');
-        if (instructions) {
-            instructions.style.transform = 'translateY(100%)';
-            setTimeout(() => {
-                if (instructions.parentNode) {
-                    instructions.parentNode.removeChild(instructions);
-                }
-            }, 400);
-        }
-    }
-    
-    // Fonction pour forcer la détection mobile
-    function forceMobileDetection() {
-        console.log("Tentative de détection mobile forcée...");
         
-        try {
-            const currentVisitors = window.getVisitorData() || [];
-            const currentSession = getSessionId();
-            
-            // Vérifier si cette session mobile existe déjà
-            const existingMobileSession = currentVisitors.find(v => 
-                v.sessionId === currentSession && (v.isMobile || v.isTablet)
-            );
-            
-            if (!existingMobileSession) {
-                console.log("Nouveau visiteur mobile détecté par force !");
-                
-                const isMobile = /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent);
-                const isTablet = /Tablet|iPad|PlayBook|Silk|Kindle/i.test(navigator.userAgent);
-                
-                const mobileVisitor = {
-                    id: Date.now() + '_forced_mobile_' + Math.random().toString(36).substring(2, 9),
-                    sessionId: currentSession,
-                    timestamp: new Date().toISOString(),
-                    userAgent: navigator.userAgent,
-                    device: isMobile ? 'Mobile' : (isTablet ? 'Tablette' : 'Ordinateur'),
-                    browser: getBrowserType(),
-                    os: getOperatingSystem(),
-                    screenResolution: `${screen.width}x${screen.height}`,
-                    language: navigator.language,
-                    referrer: document.referrer || 'Direct',
-                    page: window.location.pathname,
-                    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-                    isMobile: isMobile,
-                    isTablet: isTablet,
-                    touchEnabled: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
-                    pixelRatio: window.devicePixelRatio || 1,
-                    viewportWidth: window.innerWidth,
-                    viewportHeight: window.innerHeight,
-                    connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
-                    city: '',
-                    country: '',
-                    region: '',
-                    latitude: '',
-                    longitude: ''
-                };
-                
-                // Ajouter le visiteur mobile
-                currentVisitors.unshift(mobileVisitor);
-                
-                // Limiter la taille
-                if (currentVisitors.length > 2000) {
-                    currentVisitors.length = 2000;
-                }
-                
-                // Sauvegarder
-                localStorage.setItem('decobizcreations_visitor_data', JSON.stringify(currentVisitors));
-                
-                // Mettre à jour le compteur
-                updateVisitorCount();
-                
-                // Sauvegarder dans Firebase
-                saveVisitorToFirebase(mobileVisitor);
-                
-                // Obtenir la localisation
-                getVisitorLocation(mobileVisitor.id);
-                
-                // Afficher une notification
-                showMobileNotification();
-                
-                console.log('Visiteur mobile forcé enregistré:', mobileVisitor);
-            } else {
-                console.log("Session mobile déjà existante, pas de nouvelle détection");
-            }
-        } catch (error) {
-            console.error("Erreur lors de la détection mobile forcée:", error);
-        }
-    }
-    
-    // Fonction pour réinitialiser les instructions mobiles (pour le débogage)
-    function resetMobileInstructions() {
-        localStorage.removeItem('mobileInstructionsShown');
-        console.log("Instructions mobiles réinitialisées");
-    }
-    
-    // Ajouter un écouteur pour le débogage mobile
-    document.addEventListener('keydown', function(e) {
-        // Séquence secrète pour réinitialiser les instructions mobiles
-        if (e.key === 'r' && e.ctrlKey && e.altKey) {
-            resetMobileInstructions();
-            showMobileInstructions();
-        }
-        
-        // Séquence secrète pour forcer la détection mobile
-        if (e.key === 'd' && e.ctrlKey && e.altKey) {
-            forceMobileDetection();
-        }
+        console.log("=== FIN DE L'INITIALISATION ===");
     });
     
     // ===============================================================
@@ -6390,6 +6328,7 @@
     console.log('🎨 Decobizcreations - Site chargé avec succès !');
     console.log('✨ Toutes les fonctionnalités sont opérationnelles');
     console.log('🔍 Système de suivi des visiteurs internationaux activé');
+    console.log('🛒 Système de panier amélioré activé');
     console.log('🎨 Option de personnalisation des produits activée');
     </script>
 </body>
