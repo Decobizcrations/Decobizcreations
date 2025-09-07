@@ -3677,12 +3677,30 @@
         }
     };
     
+    // Données des packs
+    const packsData = {
+        'pack-debutant': {
+            title: 'Pack Débutant',
+            description: 'Idéal pour commencer votre collection',
+            price: 300,
+            image: 'pack-debutant.jpg',
+            items: ['plateau-rond-16', 'mini-vase-14']
+        },
+        'pack-complet': {
+            title: 'Pack Complet',
+            description: 'Notre sélection complète pour votre intérieur',
+            price: 500,
+            image: 'pack-complet.jpg',
+            items: ['plateau-rond-27', 'vase-nordique-16', 'boite-12']
+        }
+    };
+    
     // ===============================================================
     // FONCTIONS DU PANIER ET PRODUITS
     // ===============================================================
     
     function loadCartItems() {
-        const savedCart = localStorage.getItem('cart'); // Utiliser la même clé que panier.html
+        const savedCart = localStorage.getItem('cart');
         if (savedCart) {
             try {
                 cartItems = JSON.parse(savedCart);
@@ -3703,7 +3721,7 @@
     }
     
     function saveCartItems() {
-        localStorage.setItem('cart', JSON.stringify(cartItems)); // Utiliser la même clé que panier.html
+        localStorage.setItem('cart', JSON.stringify(cartItems));
         console.log('Articles du panier sauvegardés:', cartItems);
     }
     
@@ -3729,8 +3747,10 @@
         if (badge) badge.textContent = cartCount;
     }
     
-    // Remplacer la fonction addToCart par une version compatible avec panier.html
+    // Fonction principale pour ajouter au panier
     function addToCart(productId) {
+        console.log("Ajout au panier du produit:", productId);
+        
         const product = productsData[productId];
         
         if (product) {
@@ -3741,18 +3761,23 @@
                 // Augmenter la quantité si le produit est déjà dans le panier
                 cartItems[existingItemIndex].quantity += 1;
                 showToast(`Quantité de ${product.title} mise à jour !`, 'info');
+                console.log("Quantité mise à jour pour le produit:", productId);
             } else {
-                // Ajouter le produit au panier avec la structure attendue par panier.html
-                cartItems.push({
+                // Créer un nouvel objet produit avec une structure cohérente
+                const newItem = {
                     id: productId,
                     title: product.title,
-                    description: product.description,
+                    description: product.description || "",
                     price: product.price,
                     image: product.image,
                     quantity: 1,
-                    type: 'product' // Ajouter le type pour la compatibilité
-                });
+                    type: 'product'
+                };
+                
+                // Ajouter le produit au panier
+                cartItems.push(newItem);
                 showToast(`${product.title} ajouté au panier !`, 'success');
+                console.log("Nouveau produit ajouté au panier:", newItem);
             }
             
             // Mettre à jour le compteur du panier
@@ -3772,13 +3797,14 @@
             
             // Suivre l'événement
             trackEvent('add_to_cart', { product_id: productId, product_name: product.title });
+            
+            console.log("Panier actuel:", cartItems);
         } else {
             showToast('Erreur: produit non trouvé', 'error');
             console.error('Produit non trouvé:', productId);
         }
     }
     
-    // Ajouter les fonctions pour gérer les packs (manquantes dans index.html)
     function addToCartPack(packId) {
         const pack = packsData[packId];
         if (!pack) {
@@ -3831,7 +3857,6 @@
         showToast('Pack personnalisé ajouté au panier !', 'success');
     }
     
-    // Ajouter la fonction applyPromoCode (manquante dans index.html)
     function applyPromoCode() {
         const promoCode = document.getElementById('promoCode').value.trim().toUpperCase();
         
@@ -3862,7 +3887,6 @@
         }
     }
     
-    // Ajouter la fonction updateCartSummary (manquante dans index.html)
     function updateCartSummary() {
         const subtotal = cartItems.reduce((total, item) => {
             const price = parseFloat(item.price) || 0;
@@ -3873,7 +3897,7 @@
         const shipping = cartItems.length > 0 ? 30 : 0;
         const total = subtotal + shipping - discount;
         
-        // Mettre à jour les éléments s'ils existent (pour la compatibilité avec les deux pages)
+        // Mettre à jour les éléments s'ils existent
         const subtotalElement = document.getElementById('subtotal');
         const shippingElement = document.getElementById('shipping');
         const discountElement = document.getElementById('discount');
@@ -3893,7 +3917,6 @@
         }
     }
     
-    // Ajouter la fonction proceedToCheckout (manquante dans index.html)
     function proceedToCheckout() {
         if (cartItems.length === 0) {
             showToast('Votre panier est vide', 'error');
@@ -6371,4 +6394,3 @@
     </script>
 </body>
 </html>
-
