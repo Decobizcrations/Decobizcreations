@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#b27952" />
+    
+    <title>Mentions Légales - Decobizcreations</title>
+    <meta name="description" content="Mentions légales de Decobizcreations" />
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.4;
+            font-size: 14px;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        /* Header minimaliste */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 10px;
+            z-index: 100;
+            border-bottom: 1px solid #b27952;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: env(safe-area-inset-top);
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: #b27952;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+        
+        .logo h1 {
+            font-size: 1rem;
+            color: #3a3a3a;
+        }
+        
+        /* Contenu principal */
+        .container {
+            padding: 15px;
+            max-width: 100%;
+        }
+        
+        .page-title {
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            color: #b27952;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .section-content p {
+            margin-bottom: 10px;
+        }
+        
+        .section-content ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .section-content li {
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background: #f9f3e8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-icon {
+            color: #b27952;
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        /* Footer minimaliste */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+        
+        .footer-links {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b27952;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode header {
+            background: #2d2d2d;
+        }
+        
+        body.dark-mode .section {
+            background: #252525;
+        }
+        
+        body.dark-mode .section-content {
+            color: #ccc;
+        }
+        
+        body.dark-mode .highlight {
+            background: #333;
+        }
+        
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Pour les très petits écrans */
+        @media (max-width: 360px) {
+            body {
+                font-size: 13px;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+            <h1>Mentions Légales</h1>
+        </div>
+        <div></div>
+    </header>
+    
+    <div class="container">
+        <h2 class="page-title">Mentions Légales</h2>
+        
+        <div class="section">
+            <h3 class="section-title">1. Éditeur du Site</h3>
+            <div class="section-content">
+                <p><strong>Decobizcreations</strong></p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-user"></i></div>
+                        <span>Dirigeant : Hajar Agrar</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-building"></i></div>
+                        <span>Forme : Entreprise Individuelle</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-id-card"></i></div>
+                        <span>ICE : 0012345678901</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-file-invoice"></i></div>
+                        <span>RC : 123456</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <span>Adresse : 123 Rue Artisan, Agadir</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>Tél : +212 610236889</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">2. Hébergeur</h3>
+            <div class="section-content">
+                <p><strong>OVH SAS</strong></p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-globe"></i></div>
+                        <span>2 rue Kellermann - 59100 Roubaix</span>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <span>Tél : +33 9 72 10 10 07</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">3. Propriété Intellectuelle</h3>
+            <div class="section-content">
+                <p>L'ensemble du contenu de ce site (textes, images, vidéos, logos, etc.) est la propriété exclusive de Decobizcreations et est protégé par les lois marocaines et internationales sur la propriété intellectuelle.</p>
+                <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le support ou le procédé utilisé, est interdite sans autorisation écrite préalable.</p>
+                <p>Les marques et logos figurant sur le site sont déposés par Decobizcreations ou ses partenaires. Toute reproduction sans autorisation est constitutive de contrefaçon.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">4. Responsabilité Éditoriale</h3>
+            <div class="section-content">
+                <p>Decobizcreations s'efforce de fournir des informations exactes et à jour sur ce site. Cependant, des erreurs ou omissions peuvent survenir.</p>
+                <p>L'éditeur décline toute responsabilité :</p>
+                <ul>
+                    <li>Pour toute interruption du site ou impossibilité d'accéder au site</li>
+                    <li>Pour tout dommage direct ou indirect résultant de l'utilisation du site</li>
+                    <li>Pour le contenu des sites tiers vers lesquels des liens hypertextes renvoient</li>
+                    <li>Pour toute utilisation frauduleuse ou illégale du site par un tiers</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">5. Données Personnelles</h3>
+            <div class="section-content">
+                <p>Conformément à la loi 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel, vous disposez d'un droit d'accès, de rectification et d'opposition aux données vous concernant.</p>
+                <p>Pour exercer ces droits, vous pouvez nous contacter à l'adresse : <span class="highlight">contact@decobizcreations.com</span></p>
+                <p>Les données collectées sur ce site sont traitées conformément à notre politique de confidentialité.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">6. Cookies</h3>
+            <div class="section-content">
+                <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur et réaliser des statistiques de visite. En naviguant sur ce site, vous acceptez l'utilisation de cookies conformément à notre politique de confidentialité.</p>
+                <p>Vous pouvez à tout moment désactiver les cookies depuis les paramètres de votre navigateur.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">7. Droit Applicable</h3>
+            <div class="section-content">
+                <p>Le présent site est régi par le droit marocain. En cas de litige, les tribunaux de Casablanca seront seuls compétents.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">8. CNIL (CDPDC)</h3>
+            <div class="section-content">
+                <p>Conformément à la loi 09-08, ce site a fait l'objet d'une déclaration auprès de la Commission Nationale de Contrôle de la Protection des Données à Caractère Personnel (CDPDC).</p>
+                <p>Déclaration sous le numéro : <span class="highlight">D-2025-0123</span></p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">9. Crédits</h3>
+            <div class="section-content">
+                <p><strong>Création et développement</strong> : Decobizcreations</p>
+                <p><strong>Design graphique</strong> : Hajar Agrar</p>
+                <p><strong>Photographies</strong> : Droits réservés Decobizcreations</p>
+                <p><strong>Icônes</strong> : Font Awesome</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">10. Accessibilité</h3>
+            <div class="section-content">
+                <p>Decobizcreations s'engage à rendre son site accessible à toutes les personnes, quel que soit leur handicap. Nous travaillons continuellement à améliorer l'accessibilité de notre site conformément aux recommandations du RGAA (Référentiel Général d'Accessibilité pour les Administrations).</p>
+                <p>Si vous rencontrez des difficultés d'accès ou de navigation, n'hésitez pas à nous contacter.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Accueil</a> |
+            <a href="conditions.html">Conditions</a> |
+            <a href="confidentialite.html">Confidentialité</a>
+        </div>
+        <p>&copy; 2025 Decobizcreations - Tous droits réservés</p>
+    </footer>
+    
+    <script>
+        // Mode sombre
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>

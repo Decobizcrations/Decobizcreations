@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="theme-color" content="#b27952" />
+    
+    <title>Politique de Confidentialité - Decobizcreations</title>
+    <meta name="description" content="Politique de confidentialité de Decobizcreations" />
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.4;
+            font-size: 14px;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        /* Header minimaliste */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 10px;
+            z-index: 100;
+            border-bottom: 1px solid #b27952;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: env(safe-area-inset-top);
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            color: #b27952;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+        
+        .logo h1 {
+            font-size: 1rem;
+            color: #3a3a3a;
+        }
+        
+        /* Contenu principal */
+        .container {
+            padding: 15px;
+            max-width: 100%;
+        }
+        
+        .page-title {
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .last-update {
+            text-align: center;
+            color: #777;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            color: #b27952;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        
+        .section-content p {
+            margin-bottom: 10px;
+        }
+        
+        .section-content ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .section-content li {
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            background: #f9f3e8;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+        
+        .cookie-banner {
+            background: #2c2c2c;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: none;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+        
+        .cookie-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .cookie-text {
+            font-size: 0.85rem;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .cookie-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        
+        .cookie-accept {
+            background: #b27952;
+            color: white;
+        }
+        
+        .cookie-decline {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+        
+        /* Footer minimaliste */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.8rem;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+        }
+        
+        .footer-links {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #b27952;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode header {
+            background: #2d2d2d;
+        }
+        
+        body.dark-mode .section {
+            background: #252525;
+        }
+        
+        body.dark-mode .section-content {
+            color: #ccc;
+        }
+        
+        body.dark-mode .highlight {
+            background: #333;
+        }
+        
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        body.dark-mode .cookie-banner {
+            background: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="back-btn" onclick="history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <div class="logo">
+            <h1>Politique de Confidentialité</h1>
+        </div>
+        <div></div>
+    </header>
+    
+    <div class="container">
+        <h2 class="page-title">Politique de Confidentialité</h2>
+        <p class="last-update">Dernière mise à jour : 15 janvier 2025</p>
+        
+        <div class="section">
+            <h3 class="section-title">Introduction</h3>
+            <div class="section-content">
+                <p>Decobizcreations s'engage à protéger la vie privée de ses utilisateurs. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos données personnelles conformément à la loi marocaine 09-08.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">1. Données Collectées</h3>
+            <div class="section-content">
+                <p>Nous collectons les données suivantes :</p>
+                <ul>
+                    <li><span class="highlight">Données d'identification</span> : nom, prénom, adresse email, numéro de téléphone</li>
+                    <li><span class="highlight">Données de commande</span> : adresse de livraison, informations de paiement</li>
+                    <li><span class="highlight">Données techniques</span> : adresse IP, type de navigateur, système d'exploitation</li>
+                    <li><span class="highlight">Données de navigation</span> : pages visitées, temps passé sur le site</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">2. Finalités de la Collecte</h3>
+            <div class="section-content">
+                <p>Vos données sont collectées pour les finalités suivantes :</p>
+                <ul>
+                    <li>Traitement et expédition de vos commandes</li>
+                    <li>Gestion de votre compte client</li>
+                    <li>Amélioration de notre service et de notre site</li>
+                    <li>Communication commerciale (avec votre consentement)</li>
+                    <li>Respect des obligations légales et fiscales</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">3. Base Légale du Traitement</h3>
+            <div class="section-content">
+                <p>Le traitement de vos données repose sur les bases légales suivantes :</p>
+                <ul>
+                    <li><span class="highlight">Exécution d'un contrat</span> : traitement nécessaire à la gestion de vos commandes</li>
+                    <li><span class="highlight">Consentement</span> : pour les communications marketing et les cookies</li>
+                    <li><span class="highlight">Obligation légale</span> : pour la conservation des factures et les déclarations fiscales</li>
+                    <li><span class="highlight">Intérêt légitime</span> : pour l'amélioration de nos services</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">4. Conservation des Données</h3>
+            <div class="section-content">
+                <p>Nous conservons vos données pendant les durées suivantes :</p>
+                <ul>
+                    <li><span class="highlight">Données clients</span> : 3 ans après la dernière commande</li>
+                    <li><span class="highlight">Données de commande</span> : 10 ans pour des raisons fiscales</li>
+                    <li><span class="highlight">Données de paiement</span> : durée nécessaire au traitement du paiement</li>
+                    <li><span class="highlight">Cookies</span> : 13 mois maximum</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">5. Partage des Données</h3>
+            <div class="section-content">
+                <p>Nous ne partageons vos données qu'avec :</p>
+                <ul>
+                    <li><span class="highlight">Prestataires de services</span> : transporteurs, paiement en ligne, hébergement</li>
+                    <li><span class="highlight">Autorités compétentes</span> : uniquement en cas d'obligation légale</li>
+                </ul>
+                <p>Nous ne vendons, ne louons ni ne partageons vos données à des fins commerciales avec des tiers.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">6. Cookies</h3>
+            <div class="section-content">
+                <p>Nous utilisons différents types de cookies sur notre site :</p>
+                <ul>
+                    <li><span class="highlight">Cookies essentiels</span> : nécessaires au fonctionnement du site</li>
+                    <li><span class="highlight">Cookies de performance</span> : pour analyser l'utilisation du site</li>
+                    <li><span class="highlight">Cookies de fonctionnalité</span> : pour mémoriser vos préférences</li>
+                    <li><span class="highlight">Cookies de ciblage</span> : pour vous proposer des publicités pertinentes</li>
+                </ul>
+                <p>Vous pouvez gérer vos préférences de cookies via notre bannière de cookies ou les paramètres de votre navigateur.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">7. Vos Droits</h3>
+            <div class="section-content">
+                <p>Conformément à la loi 09-08, vous disposez des droits suivants :</p>
+                <ul>
+                    <li><span class="highlight">Droit d'accès</span> : connaître les données que nous détenons sur vous</li>
+                    <li><span class="highlight">Droit de rectification</span> : corriger les données inexactes</li>
+                    <li><span class="highlight">Droit de suppression</span> : demander la suppression de vos données</li>
+                    <li><span class="highlight">Droit d'opposition</span> : vous opposer au traitement de vos données</li>
+                    <li><span class="highlight">Droit à la portabilité</span> : récupérer vos données dans un format lisible</li>
+                </ul>
+                <p>Pour exercer ces droits, contactez-nous à : contact@decobizcreations.com</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">8. Sécurité des Données</h3>
+            <div class="section-content">
+                <p>Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données contre :</p>
+                <ul>
+                    <li>L'accès non autorisé</li>
+                    <li>La modification, la destruction ou la perte accidentelle</li>
+                    <li>La divulgation non autorisée</li>
+                </ul>
+                <p>Nous utilisons notamment le chiffrement SSL, des pare-feu et des contrôles d'accès stricts.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">9. Modifications de la Politique</h3>
+            <div class="section-content">
+                <p>Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. Les modifications entreront en vigueur dès leur publication sur le site.</p>
+                <p>Nous vous invitons à consulter régulièrement cette page pour vous tenir informé des éventuelles modifications.</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3 class="section-title">10. Contact</h3>
+            <div class="section-content">
+                <p>Pour toute question concernant cette politique de confidentialité ou l'utilisation de vos données personnelles, vous pouvez nous contacter :</p>
+                <p><strong>Email</strong> : contact@decobizcreations.com<br>
+                <strong>Téléphone</strong> : +212 610236889<br>
+                <strong>Adresse</strong> : 123 Rue Artisan, Agadir, Maroc</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bannière de cookies -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer, vous acceptez notre politique de cookies.
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-accept" onclick="acceptCookies()">Accepter</button>
+                <button class="cookie-btn cookie-decline" onclick="declineCookies()">Refuser</button>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Accueil</a> |
+            <a href="conditions.html">Conditions</a> |
+            <a href="mentions-legales.html">Mentions Légales</a>
+        </div>
+        <p>&copy; 2025 Decobizcreations - Tous droits réservés</p>
+    </footer>
+    
+    <script>
+        // Mode sombre
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+            }
+            
+            // Gestion des cookies
+            initCookieConsent();
+        });
+        
+        // Gestion du consentement aux cookies
+        function initCookieConsent() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookieBanner').style.display = 'block';
+            }
+        }
+        
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+        
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieBanner').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
