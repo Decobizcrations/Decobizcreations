@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog - Decobizcreations</title>
+    <meta name="description" content="Découvrez nos articles sur l'artisanat, le design d'intérieur et les tendances déco sur le blog de Decobizcreations." />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.decobizcreations.com/blog.html" />
+    <meta property="og:title" content="Blog - Decobizcreations" />
+    <meta property="og:description" content="Découvrez nos articles sur l'artisanat, le design d'intérieur et les tendances déco sur le blog de Decobizcreations." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="pack.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: #fffaf5;
+            color: #2c2c2c;
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Mode sombre */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        body.dark-mode header {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode .blog-post,
+        body.dark-mode .blog-filters,
+        body.dark-mode .sidebar-section {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        body.dark-mode footer {
+            background: #222222;
+        }
+        
+        /* Loader */
+        #loader {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: #fffaf5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        #loader div {
+            border: 6px solid #b27952;
+            border-top: 6px solid transparent;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1.2s linear infinite;
+        }
+        @keyframes spin {
+            0% {transform: rotate(0deg);}
+            100% {transform: rotate(360deg);}
+        }
+        
+        /* Scroll Progress Bar */
+        #progressbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: #b27952;
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.2s ease;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            border-bottom: 2px solid #b27952;
+            transition: background 0.3s ease;
+        }
+        header:hover {
+            background: #fdf6ef;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.4rem;
+            color: #3a3a3a;
+            letter-spacing: 1px;
+            cursor: default;
+            user-select: none;
+        }
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        /* Bouton mode sombre */
+        .dark-mode-toggle {
+            background: none;
+            border: 2px solid #b27952;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #b27952;
+        }
+        .dark-mode-toggle:hover {
+            background: #b27952;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Recherche */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 8px 40px 8px 15px;
+            border: 2px solid #b27952;
+            border-radius: 25px;
+            outline: none;
+            width: 200px;
+            transition: width 0.3s ease;
+        }
+        .search-input:focus {
+            width: 250px;
+        }
+        .search-btn {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #b27952;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        /* Panier compteur */
+        .cart-counter {
+            position: relative;
+            display: inline-block;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        nav a:hover,
+        nav a:focus {
+            color: #b27952;
+        }
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+        nav a.active {
+            color: #b27952;
+        }
+        nav a.active::after {
+            width: 100%;
+        }
+        
+        /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
+        .submenu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        .nav-item:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .submenu a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: #5a4a24;
+            transition: background 0.2s ease;
+        }
+        .submenu a:hover {
+            background: #f9f3e8;
+            color: #b27952;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .breadcrumb-list {
+            display: flex;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .breadcrumb-item {
+            font-size: 0.9rem;
+        }
+        .breadcrumb-item:not(:last-child)::after {
+            content: "›";
+            margin: 0 0.5rem;
+            color: #b27952;
+        }
+        .breadcrumb-link {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .breadcrumb-link:hover {
+            color: #b27952;
+        }
+        .breadcrumb-current {
+            color: #b27952;
+            font-weight: 600;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #b27952, #8c5a34);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .page-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Contenu principal */
+        .blog-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Layout du blog */
+        .blog-layout {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .blog-posts {
+            flex: 3;
+        }
+        
+        .blog-sidebar {
+            flex: 1;
+            min-width: 280px;
+        }
+        
+        /* Filtres et catégories */
+        .blog-filters {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #5a4a24;
+            position: relative;
+        }
+        
+        .filter-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-item {
+            margin-bottom: 1rem;
+        }
+        
+        .category-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #6b5e34;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .category-link:hover {
+            color: #b27952;
+        }
+        
+        .category-count {
+            background: #f9f3e8;
+            color: #b27952;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        
+        /* Articles du blog */
+        .blog-post {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+        
+        .post-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-post:hover .post-image img {
+            transform: scale(1.05);
+        }
+        
+        .post-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #b27952;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .post-content {
+            padding: 2rem;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            color: #6b5e34;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+        }
+        
+        .post-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .post-meta i {
+            color: #b27952;
+        }
+        
+        .post-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #5a4a24;
+            line-height: 1.3;
+        }
+        
+        .post-excerpt {
+            color: #6b5e34;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+        
+        .read-more:hover {
+            gap: 0.8rem;
+        }
+        
+        /* Sidebar */
+        .sidebar-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #5a4a24;
+            position: relative;
+        }
+        
+        .sidebar-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        
+        /* Articles populaires */
+        .popular-posts {
+            list-style: none;
+        }
+        
+        .popular-post-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .popular-post-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .popular-post-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .popular-post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .popular-post-content {
+            flex: 1;
+        }
+        
+        .popular-post-title {
+            font-weight: 600;
+            color: #5a4a24;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+            font-size: 0.95rem;
+        }
+        
+        .popular-post-date {
+            color: #6b5e34;
+            font-size: 0.85rem;
+        }
+        
+        /* Tags */
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        
+        .tag {
+            background: #f9f3e8;
+            color: #6b5e34;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: #b27952;
+            color: white;
+        }
+        
+        /* Newsletter */
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .newsletter-input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .newsletter-input:focus {
+            border-color: #b27952;
+        }
+        
+        .newsletter-btn {
+            background: #b27952;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: #8c5a34;
+        }
+        
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+        
+        .pagination button {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination button:hover {
+            background: #f9f3e8;
+            border-color: #b27952;
+        }
+        
+        .pagination button.active {
+            background: #b27952;
+            color: white;
+            border-color: #b27952;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f3f0eb;
+            color: #777;
+            margin-top: 2rem;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #5a4a24;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-column h4::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #b27952;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #b27952;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f9f3e8;
+            color: #b27952;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #b27952;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .newsletter-form-footer {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .newsletter-input-footer {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .newsletter-btn-footer {
+            padding: 10px 15px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .newsletter-btn-footer:hover {
+            background: #8c5a34;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 2rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: #b27952;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 5px;
+        }
+        
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        /* WhatsApp flottant */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            animation: pulse 2.5s infinite ease-in-out;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            box-shadow: 0 10px 25px rgba(37,211,102,0.7);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Bouton retour en haut */
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: #b27952;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top:hover {
+            background: #8c5a34;
+            transform: translateY(-3px);
+        }
+        
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* Animations */
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-slide.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Notifications toast */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        .toast.error {
+            background: #f44336;
+        }
+        
+        .toast.info {
+            background: #2196F3;
+        }
+        
+        /* Styles pour le menu mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #b27952;
+            cursor: pointer;
+        }
+        
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            color: #333;
+            z-index: 1000;
+            padding: 1rem;
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        
+        #mobileMenu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        
+        .mobile-menu-header h3 {
+            font-size: 1.5rem;
+        }
+        
+        .mobile-menu-header button {
+            background: none;
+            border: none;
+            color: #333;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .mobile-menu-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mobile-menu-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .mobile-menu-list a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-list a:hover {
+            color: #b27952;
+            padding-left: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .blog-layout {
+                flex-direction: column;
+            }
+            
+            .blog-sidebar {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: row;
+                padding: 0.8rem 1rem;
+                justify-content: space-between;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0;
+            }
+            
+            .header-controls {
+                flex-direction: row;
+                gap: 0.8rem;
+                width: auto;
+                justify-content: flex-end;
+            }
+            
+            .search-container {
+                order: 2;
+                flex: 0;
+                width: 180px;
+            }
+            
+            .search-input {
+                width: 100%;
+                padding: 6px 35px 6px 12px;
+                font-size: 0.9rem;
+            }
+            
+            .search-input:focus {
+                width: 100%;
+            }
+            
+            .dark-mode-toggle {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                order: 1;
+            }
+            
+            nav {
+                display: none;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h2 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .blog-container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+            
+            .post-title {
+                font-size: 1.5rem;
+            }
+            
+            .post-meta {
+                font-size: 0.8rem;
+                gap: 1rem;
+            }
+            
+            .post-image {
+                height: 200px;
+            }
+            
+            .post-content {
+                padding: 1.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+        
+        /* Pour les très petits écrans comme l'iPhone 4 (320px) */
+        @media (max-width: 480px) {
+            header {
+                padding: 0.6rem 0.8rem;
+            }
+            
+            header h1 {
+                font-size: 1.2rem;
+            }
+            
+            .header-controls {
+                gap: 0.5rem;
+            }
+            
+            .search-container {
+                width: 140px;
+            }
+            
+            .search-input {
+                padding: 5px 30px 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .dark-mode-toggle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1rem;
+            }
+            
+            .search-btn {
+                right: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .breadcrumb {
+                padding: 0.8rem 1rem;
+            }
+            
+            .page-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .page-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .blog-container {
+                padding: 0 0.5rem;
+                margin: 0.5rem auto;
+            }
+            
+            .blog-post {
+                margin-bottom: 1.5rem;
+            }
+            
+            .post-image {
+                height: 180px;
+            }
+            
+            .post-content {
+                padding: 1.2rem;
+            }
+            
+            .post-title {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+            
+            .post-excerpt {
+                font-size: 0.95rem;
+                margin-bottom: 1rem;
+            }
+            
+            .post-meta {
+                font-size: 0.75rem;
+                gap: 0.8rem;
+            }
+            
+            .blog-filters,
+            .sidebar-section {
+                padding: 1.5rem;
+            }
+            
+            .filter-title,
+            .sidebar-title {
+                font-size: 1.3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .popular-post-item {
+                gap: 0.8rem;
+            }
+            
+            .popular-post-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .popular-post-title {
+                font-size: 0.9rem;
+            }
+            
+            .tags-cloud {
+                gap: 0.5rem;
+            }
+            
+            .tag {
+                font-size: 0.8rem;
+                padding: 4px 10px;
+            }
+            
+            .newsletter-input,
+            .newsletter-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .pagination button {
+                padding: 6px 10px;
+                font-size: 0.85rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 24px;
+            }
+            
+            .back-to-top {
+                width: 40px;
+                height: 40px;
+                bottom: 80px;
+                right: 20px;
+                font-size: 1rem;
+            }
+            
+            .footer-content {
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+            
+            .footer-column h4 {
+                font-size: 1.2rem;
+            }
+            
+            .newsletter-form-footer {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .newsletter-input-footer,
+            .newsletter-btn-footer {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loader" role="alert" aria-live="assertive">
+        <div aria-label="Chargement en cours"></div>
+    </div>
+    
+    <div id="progressbar" aria-hidden="true"></div>
+    
+    <header>
+        <a href="index.html" class="logo">
+            <h1>Decobizcreations</h1>
+        </a>
+        <div class="header-controls">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu mobile">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="searchInput" aria-label="Rechercher un article">
+                <button type="button" class="search-btn" id="searchBtn" aria-label="Lancer la recherche">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+        <nav aria-label="Navigation principale">
+            <div class="nav-item">
+                <a href="index.html" tabindex="0">Accueil</a>
+            </div>
+            <div class="nav-item">
+                <a href="produits.html" tabindex="0">Produits</a>
+                <div class="submenu">
+                    <a href="produits.html?category=plateau">Plateaux</a>
+                    <a href="produits.html?category=vase">Vases</a>
+                    <a href="produits.html?category=boite">Boîtes</a>
+                    <a href="produits.html?category=decoration">Décorations</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="a-propos.html" tabindex="0">À propos</a>
+                <div class="submenu">
+                    <a href="a-propos.html#histoire">Notre histoire</a>
+                    <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
+                    <a href="a-propos.html#atelier">Notre atelier</a>
+                </div>
+            </div>
+            <div class="nav-item">
+                <a href="blog.html" tabindex="0" class="active">Blog</a>
+            </div>
+            <div class="nav-item">
+                <a href="contact.html" tabindex="0">Contact</a>
+            </div>
+            <div class="cart-counter">
+                <a href="panier.html" tabindex="0">Panier</a>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Menu mobile (caché par défaut) -->
+    <div id="mobileMenu">
+        <div class="mobile-menu-header">
+            <h3>Menu</h3>
+            <button id="closeMobileMenu" aria-label="Fermer le menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="panier.html">Panier</a></li>
+        </ul>
+    </div>
+    
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <ol class="breadcrumb-list">
+            <li class="breadcrumb-item"><a href="index.html" class="breadcrumb-link">Accueil</a></li>
+            <li class="breadcrumb-item"><span class="breadcrumb-current">Blog</span></li>
+        </ol>
+    </nav>
+    
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2>Notre Blog</h2>
+        <p>Découvrez nos articles sur l'artisanat, le design d'intérieur et les tendances déco. Laissez-vous inspirer par notre passion pour la création.</p>
+    </div>
+    
+    <div class="blog-container">
+        <div class="blog-layout">
+            <main class="blog-posts">
+                <!-- Article 1 -->
+                <article class="blog-post fade-slide">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Design moderne en béton avec texture brute et élégante" loading="lazy" />
+                        <span class="post-category">Design</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <div class="post-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>15 Mars 2025</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>Hajar Agrar</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-comments"></i>
+                                <span>12 commentaires</span>
+                            </div>
+                        </div>
+                        <h2 class="post-title">L'art du béton dans la décoration moderne</h2>
+                        <p class="post-excerpt">
+                            Le béton, autrefois réservé aux constructions industrielles, s'est imposé comme un matériau de prédilection dans la décoration intérieure. Découvrez comment ce matériau brut et authentique peut transformer votre espace de vie...
+                        </p>
+                        <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Article 2 -->
+                <article class="blog-post fade-slide">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Intérieur moderne avec tendances déco 2025" loading="lazy" />
+                        <span class="post-category">Tendances</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <div class="post-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>8 Mars 2025</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>Fatima Zahra</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-comments"></i>
+                                <span>8 commentaires</span>
+                            </div>
+                        </div>
+                        <h2 class="post-title">Tendances déco 2025 : ce qu'il faut savoir</h2>
+                        <p class="post-excerpt">
+                            L'année 2025 s'annonce riche en innovations et en inspirations pour les amateurs de décoration. Entre matières naturelles, formes organiques et couleurs apaisantes, faites le tour des tendances qui marqueront l'année...
+                        </p>
+                        <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Article 3 -->
+                <article class="blog-post fade-slide">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Artisanat marocain traditionnel et moderne" loading="lazy" />
+                        <span class="post-category">Artisanat</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <div class="post-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>1 Mars 2025</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>Youssef Benali</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-comments"></i>
+                                <span>15 commentaires</span>
+                            </div>
+                        </div>
+                        <h2 class="post-title">L'artisanat marocain : entre tradition et modernité</h2>
+                        <p class="post-excerpt">
+                            L'artisanat marocain, riche de son héritage millénaire, se réinvente aujourd'hui pour s'adapter aux goûts contemporains. Découvrez comment les artisans marocains perpétuent les savoir-faire traditionnels tout en innovant...
+                        </p>
+                        <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Article 4 -->
+                <article class="blog-post fade-slide">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Salon moderne avec plateau décoratif en béton" loading="lazy" />
+                        <span class="post-category">Conseils</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <div class="post-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>22 Février 2025</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>Hajar Agrar</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-comments"></i>
+                                <span>6 commentaires</span>
+                            </div>
+                        </div>
+                        <h2 class="post-title">5 façons d'utiliser les plateaux décoratifs dans votre salon</h2>
+                        <p class="post-excerpt">
+                            Les plateaux décoratifs sont bien plus que de simples objets utilitaires. Ils peuvent devenir de véritables pièces maîtresses de votre décoration. Voici 5 idées créatives pour intégrer nos plateaux en béton dans votre salon...
+                        </p>
+                        <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Article 5 -->
+                <article class="blog-post fade-slide">
+                    <div class="post-image">
+                        <img src="https://images.unsplash.com/photo-1513519245088-0e12931e4a39?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Matériaux nobles pour la décoration intérieure" loading="lazy" />
+                        <span class="post-category">Matériaux</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="post-meta">
+                            <div class="post-meta-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>15 Février 2025</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-user"></i>
+                                <span>Omar Kabbaj</span>
+                            </div>
+                            <div class="post-meta-item">
+                                <i class="fas fa-comments"></i>
+                                <span>9 commentaires</span>
+                            </div>
+                        </div>
+                        <h2 class="post-title">Le béton : une matière noble pour la décoration</h2>
+                        <p class="post-excerpt">
+                            Moins connu que le béton mais tout aussi fascinant, le béton est une minérale aux propriétés remarquables. Léger, résistant et esthétique, il s'impose comme un matériau de choix pour la création d'objets décoratifs contemporains...
+                        </p>
+                        <a href="#" class="read-more">Lire la suite <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>Suivant <i class="fas fa-chevron-right"></i></button>
+                </div>
+            </main>
+            
+            <aside class="blog-sidebar">
+                <!-- Catégories -->
+                <div class="blog-filters">
+                    <h3 class="filter-title">Catégories</h3>
+                    <ul class="category-list">
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Design</span>
+                                <span class="category-count">8</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Tendances</span>
+                                <span class="category-count">5</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Artisanat</span>
+                                <span class="category-count">12</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Conseils</span>
+                                <span class="category-count">7</span>
+                            </a>
+                        </li>
+                        <li class="category-item">
+                            <a href="#" class="category-link">
+                                <span>Matériaux</span>
+                                <span class="category-count">4</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Articles populaires -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Articles Populaires</h3>
+                    <ul class="popular-posts">
+                        <li class="popular-post-item">
+                            <div class="popular-post-image">
+                                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Design moderne en béton" loading="lazy" />
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">L'art du béton dans la décoration moderne</h4>
+                                <div class="popular-post-date">15 Mars 2025</div>
+                            </div>
+                        </li>
+                        <li class="popular-post-item">
+                            <div class="popular-post-image">
+                                <img src="https://images.unsplash.com/photo-1589883661923-6476cb0ae9f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Artisanat marocain traditionnel" loading="lazy" />
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">L'artisanat marocain : entre tradition et modernité</h4>
+                                <div class="popular-post-date">1 Mars 2025</div>
+                            </div>
+                        </li>
+                        <li class="popular-post-item">
+                            <div class="popular-post-image">
+                                <img src="https://images.unsplash.com/photo-1513519245088-0e12931e4a39?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80" alt="Entretien des créations en béton" loading="lazy" />
+                            </div>
+                            <div class="popular-post-content">
+                                <h4 class="popular-post-title">Comment entretenir vos créations en béton</h4>
+                                <div class="popular-post-date">20 Janvier 2025</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Tags -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Tags</h3>
+                    <div class="tags-cloud">
+                        <a href="#" class="tag">béton</a>
+                        <a href="#" class="tag">décoration</a>
+                        <a href="#" class="tag">design</a>
+                        <a href="#" class="tag">artisanat</a>
+                        <a href="#" class="tag">maroc</a>
+                        <a href="#" class="tag">gypse</a>
+                        <a href="#" class="tag">tendances</a>
+                        <a href="#" class="tag">intérieur</a>
+                        <a href="#" class="tag">création</a>
+                        <a href="#" class="tag">inspiration</a>
+                    </div>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Newsletter</h3>
+                    <p>Abonnez-vous pour recevoir nos derniers articles et conseils déco.</p>
+                    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                        <input type="email" class="newsletter-input" placeholder="Votre email" required>
+                        <button type="submit" class="newsletter-btn">S'abonner</button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <!-- Bouton retour en haut -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- Bouton WhatsApp flottant -->
+    <a href="https://wa.me/212123456789" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Contacter via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>À propos</h4>
+                <ul class="footer-links">
+                    <li><a href="a-propos.html">Notre histoire</a></li>
+                    <li><a href="a-propos.html#savoir-faire">Notre savoir-faire</a></li>
+                    <li><a href="a-propos.html#atelier">Notre atelier</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Produits</h4>
+                <ul class="footer-links">
+                    <li><a href="produits.html?category=plateau">Plateaux</a></li>
+                    <li><a href="produits.html?category=vase">Vases</a></li>
+                    <li><a href="produits.html?category=boite">Boîtes</a></li>
+                    <li><a href="produits.html?category=decoration">Décorations</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Service client</h4>
+                <ul class="footer-links">
+                    <li><a href="contact.html">Contactez-nous</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Newsletter</h4>
+                <p>Inscrivez-vous pour recevoir nos actualités et offres exclusives.</p>
+                <form class="newsletter-form-footer" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input-footer" placeholder="Votre email" required>
+                    <button type="submit" class="newsletter-btn-footer">OK</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/decobizcreations" target="_blank" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/decobizcreations" target="_blank" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://pinterest.com/decobizcreations" target="_blank" class="social-link" aria-label="Pinterest">
+                        <i class="fab fa-pinterest-p"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Decobizcreations — Artisanat marocain fait main. Tous droits réservés.</p>
+            <p><a href="conditions.html">Conditions générales</a> | <a href="confidentialite.html">Politique de confidentialité</a> | <a href="mentions-legales.html">Mentions légales</a></p>
+        </div>
+    </footer>
+    
+    <script>
+        // Variables globales
+        let cartCount = 0;
+        
+        // Initialisation au chargement de la page
+        window.addEventListener('load', function() {
+            // Masquer le loader
+            document.getElementById('loader').style.display = 'none';
+            
+            // Initialiser les animations
+            initScrollAnimations();
+            initScrollProgress();
+            initBackToTop();
+            initDarkMode();
+            initSearch();
+            initMobileMenu();
+            
+            // Charger le compteur du panier depuis localStorage
+            loadCartCount();
+            
+            // Initialiser le service worker pour PWA
+            initServiceWorker();
+            
+            // Initialiser le consentement aux cookies
+            initCookieConsent();
+            
+            console.log('🎨 Page Blog chargée avec succès !');
+        });
+        
+        // Initialiser le menu mobile
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Empêcher le défilement du corps
+            });
+            
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Réactiver le défilement
+            });
+            
+            // Fermer le menu en cliquant sur un lien
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Fermer le menu en cliquant à l'extérieur
+            document.addEventListener('click', (event) => {
+                if (mobileMenu.classList.contains('active') && 
+                    !mobileMenu.contains(event.target) && 
+                    !mobileMenuBtn.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+        
+        // Barre de progression du scroll
+        function initScrollProgress() {
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = (scrollTop / docHeight) * 100;
+                document.getElementById('progressbar').style.width = scrollPercent + '%';
+            });
+        }
+        
+        // Initialiser les animations au défilement
+        function initScrollAnimations() {
+            const fadeElements = document.querySelectorAll('.fade-slide');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementTop < windowHeight - 100) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // Exécuter une fois au chargement
+            fadeInOnScroll();
+            
+            // Exécuter au défilement
+            window.addEventListener('scroll', fadeInOnScroll);
+        }
+        
+        // Bouton retour en haut
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Mode sombre
+        function initDarkMode() {
+            const toggle = document.getElementById('darkModeToggle');
+            const body = document.body;
+            
+            // Charger la préférence sauvegardée
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+        
+        // Fonction de recherche
+        function initSearch() {
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            
+            const performSearch = function() {
+                const searchTerm = searchInput.value.trim();
+                if (searchTerm) {
+                    // Rediriger vers la page blog avec le terme de recherche
+                    window.location.href = `blog.html?search=${encodeURIComponent(searchTerm)}`;
+                }
+            };
+            
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        }
+        
+        function updateCartBadge() {
+            document.getElementById('cartBadge').textContent = cartCount;
+        }
+        
+        function saveCartCount() {
+            localStorage.setItem('cartCount', cartCount.toString());
+        }
+        
+        function loadCartCount() {
+            const saved = localStorage.getItem('cartCount');
+            if (saved) {
+                cartCount = parseInt(saved);
+                updateCartBadge();
+            }
+        }
+        
+        // Newsletter
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            
+            // Validation email simple
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(email)) {
+                showToast('Merci pour votre inscription !', 'success');
+                event.target.reset();
+                
+                // Sauvegarder l'email dans le localStorage
+                let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                if (!subscribers.includes(email)) {
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                }
+            } else {
+                showToast('Veuillez entrer une adresse email valide', 'error');
+            }
+        }
+        
+        // Système de notifications toast
+        function showToast(message, type = 'info') {
+            // Supprimer les anciens toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'polite');
+            
+            document.body.appendChild(toast);
+            
+            // Afficher le toast
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            // Masquer et supprimer le toast
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 300);
+            }, 3000);
+        }
+        
+        // Service Worker pour PWA (Progressive Web App)
+        function initServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Erreur lors de l\'enregistrement du Service Worker:', error);
+                    });
+            }
+        }
+        
+        // Gestion des cookies (RGPD)
+        function initCookieConsent() {
+            // Vérifier si le consentement a déjà été donné
+            if (!localStorage.getItem('cookieConsent')) {
+                // Créer la bannière de consentement
+                const cookieBanner = document.createElement('div');
+                cookieBanner.id = 'cookieBanner';
+                cookieBanner.style.cssText = `
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #2c2c2c;
+                    color: white;
+                    padding: 1rem;
+                    z-index: 10000;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    flex-wrap: wrap;
+                `;
+                
+                cookieBanner.innerHTML = `
+                    <div style="margin-right: 1rem;">
+                        <p style="margin: 0;">Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer sur ce site, vous acceptez notre politique de cookies.</p>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="acceptCookies" style="background: #b27952; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Accepter</button>
+                        <button id="declineCookies" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Refuser</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(cookieBanner);
+                
+                // Gérer les clics sur les boutons
+                document.getElementById('acceptCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'accepted');
+                    document.getElementById('cookieBanner').remove();
+                    
+                    // Activer le suivi si accepté
+                    enableTracking();
+                });
+                
+                document.getElementById('declineCookies').addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'declined');
+                    document.getElementById('cookieBanner').remove();
+                });
+            } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+                // Activer le suivi si déjà accepté
+                enableTracking();
+            }
+        }
+        
+        // Activer le suivi (Analytics)
+        function enableTracking() {
+            // Ici, vous pourriez intégrer Google Analytics, Facebook Pixel, etc.
+            console.log('Le suivi est activé');
+            
+            // Exemple de suivi de page vue
+            trackEvent('page_view', { page: 'blog' });
+        }
+        
+        // Fonction de suivi des événements
+        function trackEvent(eventName, eventData = {}) {
+            // Ici, vous pourriez envoyer les données à Google Analytics, Facebook Pixel, etc.
+            console.log('Événement suivi:', eventName, eventData);
+            
+            // Exemple d'envoi à Google Analytics (si gtag.js est chargé)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+        }
+    </script>
+</body>
+</html>
