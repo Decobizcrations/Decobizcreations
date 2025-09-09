@@ -863,6 +863,9 @@
         .toast.info {
             background: #2196F3;
         }
+        .toast.warning {
+            background: #ff9800;
+        }
         
         /* Styles pour le menu mobile */
         .mobile-menu-btn {
@@ -1522,6 +1525,25 @@
             // Pré-sélectionner la méthode de paiement WhatsApp avec avance
             document.querySelector('.payment-method').classList.add('selected');
             updateAdvancePaymentInfo();
+            
+            // Initialiser le lien WhatsApp
+            updateWhatsAppMessage();
+            
+            // Ajouter un écouteur d'événement sur le bouton "Envoyer sur WhatsApp"
+            const whatsappLink = document.getElementById('whatsappLink');
+            if (whatsappLink) {
+                whatsappLink.addEventListener('click', function(e) {
+                    // Mettre à jour le message juste avant l'envoi
+                    updateWhatsAppMessage();
+                    
+                    // Vérifier si le lien est valide
+                    if (!this.href || this.href === '#') {
+                        e.preventDefault();
+                        showToast('Erreur: lien WhatsApp non disponible', 'error');
+                        return false;
+                    }
+                });
+            }
         });
         
         // Initialiser le menu mobile
@@ -1727,9 +1749,6 @@
                     updateWhatsAppMessage();
                 });
             });
-            
-            // Mettre à jour le message WhatsApp initial
-            updateWhatsAppMessage();
         }
         
         // Mettre à jour le message WhatsApp avec les informations du formulaire
@@ -1747,34 +1766,33 @@
             const remainingAmount = totalAmount - advanceAmount;
             
             // Créer un message structuré et esthétique
-            let message = `🌟 *NOUVELLE COMMANDE - 50% D'AVANCE* 🌟\n\n`;
-            message += `👤 *INFORMATIONS CLIENT*\n`;
-            message += `• Prénom: ${firstName}\n`;
-            message += `• Nom: ${lastName}\n`;
-            message += `• Téléphone: ${phone}\n`;
-            message += `• Email: ${document.getElementById('email').value || '[Votre email]'}\n\n`;
+            let message = `NOUVELLE COMMANDE - 50% D'AVANCE\n\n`;
+            message += `INFORMATIONS CLIENT\n`;
+            message += `Prénom: ${firstName}\n`;
+            message += `Nom: ${lastName}\n`;
+            message += `Téléphone: ${phone}\n`;
+            message += `Email: ${document.getElementById('email').value || '[Votre email]'}\n\n`;
             
-            message += `📍 *ADRESSE DE LIVRAISON*\n`;
-            message += `• Adresse: ${address}\n`;
-            message += `• Ville: ${city}\n`;
-            message += `• Code postal: ${postalCode}\n`;
+            message += `ADRESSE DE LIVRAISON\n`;
+            message += `Adresse: ${address}\n`;
+            message += `Ville: ${city}\n`;
+            message += `Code postal: ${postalCode}\n`;
             if (notes) {
-                message += `• Notes: ${notes}\n`;
+                message += `Notes: ${notes}\n`;
             }
             message += `\n`;
             
-            message += `🛒 *DÉTAILS DE LA COMMANDE*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+            message += `DÉTAILS DE LA COMMANDE\n`;
             
             if (orderData && orderData.items && orderData.items.length > 0) {
                 orderData.items.forEach((item, index) => {
                     const itemTotal = item.price * item.quantity;
-                    message += `${index + 1}. *${item.title}*\n`;
+                    message += `${index + 1}. ${item.title}\n`;
                     if (item.description) {
-                        message += `   └ ${item.description}\n`;
+                        message += `   ${item.description}\n`;
                     }
                     if (item.type === 'pack' && item.items) {
-                        message += `   └ 🎁 Pack de ${item.items.length} articles\n`;
+                        message += `   Pack de ${item.items.length} articles\n`;
                     }
                     
                     // Ajouter les détails de personnalisation
@@ -1811,45 +1829,56 @@
                         }
                         
                         if (customDetails.length > 0) {
-                            message += `   └ 🎨 Personnalisation: ${customDetails.join(', ')}\n`;
+                            message += `   Personnalisation: ${customDetails.join(', ')}\n`;
                         }
                     }
                     
-                    message += `   └ Prix unitaire: ${item.price} DH\n`;
-                    message += `   └ Quantité: ${item.quantity}\n`;
-                    message += `   └ Sous-total: ${itemTotal} DH\n\n`;
+                    message += `   Prix unitaire: ${item.price} DH\n`;
+                    message += `   Quantité: ${item.quantity}\n`;
+                    message += `   Sous-total: ${itemTotal} DH\n\n`;
                 });
             } else {
                 message += `Aucun article dans la commande.\n\n`;
             }
             
-            message += `💰 *RÉSUMÉ DES PAIEMENTS*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `• Sous-total: ${orderData ? orderData.subtotal : 0} DH\n`;
-            message += `• Frais de livraison: ${orderData ? orderData.shipping : 30} DH\n`;
+            message += `RÉSUMÉ DES PAIEMENTS\n`;
+            message += `Sous-total: ${orderData ? orderData.subtotal : 0} DH\n`;
+            message += `Frais de livraison: ${orderData ? orderData.shipping : 30} DH\n`;
             if (orderData && orderData.discount > 0) {
-                message += `• Réduction: -${orderData.discount} DH\n`;
+                message += `Réduction: -${orderData.discount} DH\n`;
             }
-            message += `• MONTANT TOTAL: *${totalAmount} DH*\n\n`;
+            message += `MONTANT TOTAL: ${totalAmount} DH\n\n`;
             
-            message += `💸 *PAIEMENT PAR VERSEMENTS*\n`;
-            message += `━━━━━━━━━━━━━━━━━━━━━━\n`;
-            message += `• Montant de l'avance (50%): *${advanceAmount} DH*\n`;
-            message += `• Reste à payer à la livraison: *${remainingAmount} DH*\n\n`;
+            message += `PAIEMENT PAR VERSEMENTS\n`;
+            message += `Montant de l'avance (50%): ${advanceAmount} DH\n`;
+            message += `Reste à payer à la livraison: ${remainingAmount} DH\n\n`;
             
-            message += `✅ *CONFIRMATION*\n`;
+            message += `CONFIRMATION\n`;
             message += `J'ai effectué le virement de 50% d'avance.\n`;
             message += `Merci de me confirmer la réception et la préparation de ma commande.\n\n`;
             
-            message += `🙏 *Merci pour votre confiance !*\n`;
-            message += `Decobizcreations - Artisanat marocain fait main ✨`;
+            message += `Merci pour votre confiance !\n`;
+            message += `Decobizcreations - Artisanat marocain fait main`;
             
             document.getElementById('whatsappAdvanceMessage').textContent = message;
             
             // Mettre à jour le lien WhatsApp avec l'ID correct
             const whatsappLink = document.getElementById('whatsappLink');
-            const encodedMessage = encodeURIComponent(message);
-            whatsappLink.href = `https://wa.me/212610236889?text=${encodedMessage}`;
+            // Utiliser une méthode plus robuste pour l'encodage
+            try {
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/212610236889?text=${encodedMessage}`;
+                whatsappLink.href = whatsappUrl;
+                
+                // Vérifier si l'URL est valide
+                if (whatsappUrl.length > 2000) { // Les URL très longues peuvent causer des problèmes
+                    console.warn("L'URL WhatsApp est très longue, cela pourrait causer des problèmes");
+                    showToast("Le message est trop long, certaines informations ont été tronquées", "warning");
+                }
+            } catch (error) {
+                console.error("Erreur lors de l'encodage du message WhatsApp:", error);
+                showToast("Erreur lors de la préparation du message WhatsApp", "error");
+            }
         }
         
         // Traiter la commande
@@ -1858,6 +1887,9 @@
             const submitBtn = document.getElementById('submitBtn');
             submitBtn.disabled = true;
             submitBtn.textContent = 'Traitement en cours...';
+            
+            // Mettre à jour le message WhatsApp avec les dernières informations du formulaire
+            updateWhatsAppMessage();
             
             // Récupérer les données du formulaire
             const formData = new FormData(document.getElementById('paymentForm'));
@@ -1926,8 +1958,14 @@
                 // Ouvrir la conversation WhatsApp avec le lien correct
                 setTimeout(() => {
                     const whatsappLink = document.getElementById('whatsappLink');
-                    window.open(whatsappLink.href, '_blank');
-                    showToast('Redirection vers WhatsApp...', 'info');
+                    // Vérifier si le lien est valide avant de l'ouvrir
+                    if (whatsappLink.href && whatsappLink.href.length > 0) {
+                        window.open(whatsappLink.href, '_blank');
+                        showToast('Redirection vers WhatsApp...', 'info');
+                    } else {
+                        showToast('Erreur: lien WhatsApp non valide', 'error');
+                        console.error('Lien WhatsApp non valide:', whatsappLink.href);
+                    }
                 }, 1000);
             }, 2000);
         }
