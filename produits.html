@@ -7,14 +7,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Produits - Decobizcreations | Artisanat Concrete</title>
     <meta name="description" content="Découvrez notre collection complète de créations artisanales en concrete. Plateaux, vases, boîtes décoratives faites main au Maroc." />
-    <meta name="keywords" content="décoration béton, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
+    <meta name="keywords" content="décoration béton, , artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
     <meta name="author" content="Hajar Agrar" />
     <meta name="robots" content="index, follow" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.decobizcreations.com/produits.html" />
-    <meta property="og:title" content="Produits - Decobizcreations | Artisanat concrete" />
+    <meta property="og:title" content="Produits - Decobizcreations | Artisanat concrete " />
     <meta property="og:description" content="Découvrez notre collection complète de créations artisanales en concrete." />
     <meta property="og:image" content="https://www.decobizcreations.com/images/og-image.jpg" />
     
@@ -260,39 +260,42 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            position: relative;
         }
-        
         nav a {
             text-decoration: none;
             color: #666;
             font-weight: 600;
             font-size: 0.9rem;
-            padding: 0.5rem 0.8rem;
-            transition: color 0.25s ease;
+            padding-bottom: 4px;
+            transition: color 0.25s ease, box-shadow 0.3s ease;
             position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
+            overflow: hidden;
         }
-        
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #b27952;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
         nav a:hover,
         nav a:focus {
             color: #b27952;
         }
-        
-        /* Indicateur de sous-menu */
-        .nav-arrow {
-            font-size: 0.7rem;
-            transition: transform 0.3s ease;
-            margin-left: 0.2rem;
-        }
-        
-        .nav-item.active > a .nav-arrow {
-            transform: rotate(180deg);
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
         }
         
         /* Sous-menu */
+        .nav-item {
+            position: relative;
+        }
         .submenu {
             position: absolute;
             top: 100%;
@@ -307,23 +310,18 @@
             transform: translateY(10px);
             transition: all 0.3s ease;
             z-index: 100;
-            margin-top: 0.5rem;
         }
-        
-        .nav-item.active > .submenu {
+        .nav-item:hover .submenu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-        
         .submenu a {
             display: block;
             padding: 0.7rem 1.5rem;
             color: #5a4a24;
             transition: background 0.2s ease;
-            border-radius: 0;
         }
-        
         .submenu a:hover {
             background: #f9f3e8;
             color: #b27952;
@@ -1251,7 +1249,6 @@
             height: 100%;
             background-color: rgba(0,0,0,0.9);
             -webkit-overflow-scrolling: touch;
-            overflow-y: auto;
         }
         .modal-content {
             position: relative;
@@ -1345,13 +1342,12 @@
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
-            z-index: 10001;
         }
         .close-modal:hover {
             color: #bbb;
         }
         
-        /* Options de personnalisation - Version optimisée pour mobile */
+        /* Options de personnalisation */
         .customization-options {
             background: #f9f3e8;
             border-radius: 10px;
@@ -1388,7 +1384,6 @@
             display: flex;
             gap: 0.8rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
         
         .color-option {
@@ -1425,7 +1420,6 @@
             display: flex;
             gap: 0.8rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
         
         .size-option {
@@ -1554,8 +1548,6 @@
                 padding: 1rem;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                 z-index: 100;
-                max-height: calc(100vh - 100px);
-                overflow-y: auto;
             }
             
             nav.active {
@@ -1564,13 +1556,10 @@
             
             .nav-item {
                 width: 100%;
-                position: relative;
             }
             
             nav a {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+                display: block;
                 padding: 0.8rem 0;
                 border-bottom: 1px solid #eee;
                 width: 100%;
@@ -1583,18 +1572,11 @@
                 transform: none;
                 box-shadow: none;
                 padding-left: 1rem;
-                margin-top: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
+                margin-top: 0.5rem;
             }
             
-            .nav-item.active > .submenu {
-                max-height: 500px;
-            }
-            
-            .nav-arrow {
-                display: inline-block;
+            .cart-counter {
+                margin-left: auto;
             }
             
             /* Grille de produits */
@@ -1714,15 +1696,26 @@
                 gap: 0.5rem;
             }
             
-            /* Modal - Version mobile */
-            .modal-content {
-                width: 98%;
-                top: 0;
-                transform: none;
-                margin-top: 20px;
-                margin-bottom: 20px;
+            /* Options de personnalisation mobile */
+            .customization-options {
+                padding: 1rem;
             }
             
+            .customization-title {
+                font-size: 1.1rem;
+            }
+            
+            .color-option {
+                width: 35px;
+                height: 35px;
+            }
+            
+            .size-option {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+            
+            /* Modal */
             .quick-view-container {
                 flex-direction: column;
             }
@@ -1737,37 +1730,6 @@
             
             .quick-view-price {
                 font-size: 1.2rem;
-            }
-            
-            /* Options de personnalisation - Version mobile optimisée */
-            .customization-options {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-            
-            .customization-title {
-                font-size: 1.1rem;
-                margin-bottom: 0.8rem;
-            }
-            
-            .color-option {
-                width: 35px;
-                height: 35px;
-            }
-            
-            .size-option {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-            
-            .customization-text {
-                min-height: 70px;
-                font-size: 0.9rem;
-            }
-            
-            .customization-price {
-                font-size: 1rem;
-                margin-top: 0.8rem;
             }
             
             /* Boutons flottants */
@@ -1845,48 +1807,6 @@
                 font-size: 1rem;
             }
             
-            /* Personnalisation - Très petits écrans */
-            .customization-options {
-                padding: 0.8rem;
-            }
-            
-            .customization-title {
-                font-size: 1rem;
-                margin-bottom: 0.6rem;
-            }
-            
-            .customization-label {
-                font-size: 0.85rem;
-                margin-bottom: 0.4rem;
-            }
-            
-            .color-option {
-                width: 30px;
-                height: 30px;
-                margin: 0.2rem;
-            }
-            
-            .size-option {
-                padding: 5px 10px;
-                font-size: 0.8rem;
-                margin: 0.2rem;
-            }
-            
-            .customization-text {
-                min-height: 60px;
-                font-size: 0.85rem;
-                padding: 8px 12px;
-            }
-            
-            .customization-note {
-                font-size: 0.75rem;
-            }
-            
-            .customization-price {
-                font-size: 0.95rem;
-                margin-top: 0.6rem;
-            }
-            
             .toast {
                 font-size: 0.85rem;
                 padding: 10px 14px;
@@ -1927,10 +1847,7 @@
                 <a href="index.html" tabindex="0">Accueil</a>
             </div>
             <div class="nav-item">
-                <a href="#" tabindex="0" class="nav-link-with-submenu">
-                    Produits
-                    <span class="nav-arrow"><i class="fas fa-chevron-down"></i></span>
-                </a>
+                <a href="produits.html" tabindex="0">Produits</a>
                 <div class="submenu">
                     <a href="produits.html?category=plateau">Plateaux</a>
                     <a href="produits.html?category=vase">Vases</a>
@@ -1942,10 +1859,7 @@
                 <a href="packs.html" tabindex="0">Packs</a>
             </div>
             <div class="nav-item">
-                <a href="#" tabindex="0" class="nav-link-with-submenu">
-                    À propos
-                    <span class="nav-arrow"><i class="fas fa-chevron-down"></i></span>
-                </a>
+                <a href="a-propos.html" tabindex="0">À propos</a>
                 <div class="submenu">
                     <a href="a-propos.html#histoire">Notre histoire</a>
                     <a href="a-propos.html#savoir-faire">Notre savoir-faire</a>
@@ -1958,7 +1872,7 @@
             <div class="nav-item">
                 <a href="contact.html" tabindex="0">Contact</a>
             </div>
-            <div class="nav-item">
+            <div class="cart-counter">
                 <a href="panier.html" tabindex="0">Panier</a>
                 <span class="cart-badge" id="cartBadge">0</span>
             </div>
@@ -2626,6 +2540,14 @@
                             </div>
                             
                             <!-- Option de taille -->
+                            <div class="customization-group">
+                                <label class="customization-label">Choisissez une taille :</label>
+                                <div class="size-options">
+                                    <div class="size-option" data-size="petit">Petit</div>
+                                    <div class="size-option selected" data-size="moyen">Moyen</div>
+                                    <div class="size-option" data-size="grand">Grand</div>
+                                </div>
+                            </div>
                             
                             <!-- Option de message personnalisé -->
                             <div class="customization-group">
@@ -3012,7 +2934,6 @@
             initPagination();
             initMobileMenu();
             initCustomization();
-            initSubmenus(); // Initialisation des sous-menus
             
             // Charger le panier depuis localStorage
             loadCartFromStorage();
@@ -3049,7 +2970,7 @@
             });
             
             // Fermer le menu lorsqu'un lien est cliqué
-            const navLinks = mainNav.querySelectorAll('a:not(.nav-link-with-submenu)');
+            const navLinks = mainNav.querySelectorAll('a');
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mainNav.classList.remove('active');
@@ -3066,94 +2987,6 @@
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
             });
-        }
-        
-        // Initialisation des sous-menus - RÉÉCRIT COMPLÈTEMENT
-        function initSubmenus() {
-            const navItems = document.querySelectorAll('.nav-item');
-            
-            navItems.forEach(item => {
-                const submenu = item.querySelector('.submenu');
-                const navLink = item.querySelector('.nav-link-with-submenu');
-                
-                if (submenu && navLink) {
-                    // Ajouter un attribut ARIA pour l'accessibilité
-                    navLink.setAttribute('aria-expanded', 'false');
-                    navLink.setAttribute('aria-haspopup', 'true');
-                    
-                    // Gestionnaire d'événements pour le clic sur desktop
-                    if (window.innerWidth > 768) {
-                        navLink.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            
-                            // Basculer l'état actif de l'élément
-                            const isActive = item.classList.contains('active');
-                            
-                            // Fermer tous les autres sous-menus
-                            navItems.forEach(otherItem => {
-                                if (otherItem !== item) {
-                                    otherItem.classList.remove('active');
-                                    const otherLink = otherItem.querySelector('.nav-link-with-submenu');
-                                    if (otherLink) {
-                                        otherLink.setAttribute('aria-expanded', 'false');
-                                    }
-                                }
-                            });
-                            
-                            // Basculer l'état actuel
-                            if (!isActive) {
-                                item.classList.add('active');
-                                navLink.setAttribute('aria-expanded', 'true');
-                            } else {
-                                item.classList.remove('active');
-                                navLink.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                        
-                        // Garder le comportement au survol pour desktop
-                        item.addEventListener('mouseenter', () => {
-                            item.classList.add('active');
-                            navLink.setAttribute('aria-expanded', 'true');
-                        });
-                        
-                        item.addEventListener('mouseleave', () => {
-                            item.classList.remove('active');
-                            navLink.setAttribute('aria-expanded', 'false');
-                        });
-                    } else {
-                        // Comportement pour mobile - au clic seulement
-                        navLink.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            
-                            // Basculer l'état actif de l'élément
-                            const isActive = item.classList.contains('active');
-                            
-                            if (!isActive) {
-                                item.classList.add('active');
-                                navLink.setAttribute('aria-expanded', 'true');
-                            } else {
-                                item.classList.remove('active');
-                                navLink.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                    }
-                }
-            });
-            
-            // Fermer les sous-menus lors d'un clic en dehors (desktop uniquement)
-            if (window.innerWidth > 768) {
-                document.addEventListener('click', (event) => {
-                    if (!event.target.closest('.nav-item')) {
-                        navItems.forEach(item => {
-                            item.classList.remove('active');
-                            const navLink = item.querySelector('.nav-link-with-submenu');
-                            if (navLink) {
-                                navLink.setAttribute('aria-expanded', 'false');
-                            }
-                        });
-                    }
-                });
-            }
         }
         
         // Initialisation des options de personnalisation
@@ -3254,29 +3087,12 @@
                 updateCustomizationPrice();
                 
                 // Afficher le modal
-                const modal = document.getElementById('customizationModal');
-                modal.style.display = 'block';
+                document.getElementById('customizationModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
                 
-                // Adapter pour mobile
-                if (window.innerWidth <= 768) {
-                    // Ajuster la position et le comportement pour mobile
-                    modal.style.position = 'fixed';
-                    modal.style.top = '0';
-                    modal.style.left = '0';
-                    modal.style.width = '100%';
-                    modal.style.height = '100%';
-                    modal.style.overflowY = 'auto';
-                    
-                    // Faire défiler jusqu'en haut du modal
-                    setTimeout(() => {
-                        modal.scrollTop = 0;
-                    }, 100);
-                } else {
-                    // Comportement normal pour desktop
-                    document.body.style.overflow = 'hidden';
-                    document.body.style.position = 'fixed';
-                    document.body.style.width = '100%';
-                }
+                // Empêcher le défilement du fond sur mobile
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
             } else {
                 showToast("Produit non trouvé", "error");
             }
@@ -3294,21 +3110,12 @@
         
         // Fermer le modal de personnalisation
         function closeCustomization() {
-            const modal = document.getElementById('customizationModal');
-            modal.style.display = 'none';
+            document.getElementById('customizationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
             
-            // Rétablir le défilement
-            if (window.innerWidth <= 768) {
-                // Mobile - rétablir le défilement normal
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
-            } else {
-                // Desktop - rétablir le défilement normal
-                document.body.style.overflow = 'auto';
-                document.body.style.position = '';
-                document.body.style.width = '';
-            }
+            // Rétablir le défilement sur mobile
+            document.body.style.position = '';
+            document.body.style.width = '';
             
             currentCustomizationProduct = null;
         }
@@ -3861,29 +3668,12 @@
             updateCustomizationPrice();
             
             // Afficher le modal
-            const modal = document.getElementById('customizationModal');
-            modal.style.display = 'block';
+            document.getElementById('customizationModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
             
-            // Adapter pour mobile
-            if (window.innerWidth <= 768) {
-                // Ajuster la position et le comportement pour mobile
-                modal.style.position = 'fixed';
-                modal.style.top = '0';
-                modal.style.left = '0';
-                modal.style.width = '100%';
-                modal.style.height = '100%';
-                modal.style.overflowY = 'auto';
-                
-                // Faire défiler jusqu'en haut du modal
-                setTimeout(() => {
-                    modal.scrollTop = 0;
-                }, 100);
-            } else {
-                // Comportement normal pour desktop
-                document.body.style.overflow = 'hidden';
-                document.body.style.position = 'fixed';
-                document.body.style.width = '100%';
-            }
+            // Empêcher le défilement du fond sur mobile
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
         }
         
         function addToWishlist(productId) {
@@ -3919,48 +3709,22 @@
                     customizeBtn.setAttribute('onclick', 'openCustomizationFromQuickView()');
                 }
                 
-                const modal = document.getElementById('quickViewModal');
-                modal.style.display = 'block';
+                document.getElementById('quickViewModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
                 
-                // Adapter pour mobile
-                if (window.innerWidth <= 768) {
-                    // Ajuster la position et le comportement pour mobile
-                    modal.style.position = 'fixed';
-                    modal.style.top = '0';
-                    modal.style.left = '0';
-                    modal.style.width = '100%';
-                    modal.style.height = '100%';
-                    modal.style.overflowY = 'auto';
-                    
-                    // Faire défiler jusqu'en haut du modal
-                    setTimeout(() => {
-                        modal.scrollTop = 0;
-                    }, 100);
-                } else {
-                    // Comportement normal pour desktop
-                    document.body.style.overflow = 'hidden';
-                    document.body.style.position = 'fixed';
-                    document.body.style.width = '100%';
-                }
+                // Empêcher le défilement du fond sur mobile
+                document.body.style.position = 'fixed';
+                document.body.style.width = '100%';
             }
         }
         
         function closeQuickView() {
-            const modal = document.getElementById('quickViewModal');
-            modal.style.display = 'none';
+            document.getElementById('quickViewModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
             
-            // Rétablir le défilement
-            if (window.innerWidth <= 768) {
-                // Mobile - rétablir le défilement normal
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
-            } else {
-                // Desktop - rétablir le défilement normal
-                document.body.style.overflow = 'auto';
-                document.body.style.position = '';
-                document.body.style.width = '';
-            }
+            // Rétablir le défilement sur mobile
+            document.body.style.position = '';
+            document.body.style.width = '';
         }
         
         function addToCartFromQuickView() {
@@ -4195,8 +3959,6 @@
         console.log('📱 Optimisations pour mobile activées');
         console.log('🎁 Packs maintenant affichés comme les produits');
         console.log('🛠️ Options de personnalisation ajoutées');
-        console.log('🔧 Sous-menus corrigés et améliorés');
     </script>
 </body>
 </html>
-
