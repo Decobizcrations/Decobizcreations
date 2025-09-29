@@ -286,6 +286,73 @@ body.mobile-device {
         right: 5%;
         left: 5%;
     }
+    
+    /* AMÉLIORATIONS POUR LA PERSONNALISATION SUR MOBILE */
+    .customization-content {
+        width: 95% !important;
+        margin: 2% auto !important;
+        padding: 15px !important;
+        max-height: 90vh !important;
+        overflow-y: auto !important;
+    }
+    
+    .form-group {
+        margin-bottom: 20px !important;
+    }
+    
+    .form-group label {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+        display: block !important;
+    }
+    
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        padding: 12px !important;
+        font-size: 16px !important; /* Évite le zoom sur iOS */
+        border-radius: 8px !important;
+        border: 2px solid #ddd !important;
+    }
+    
+    .customization-actions {
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin-top: 20px !important;
+    }
+    
+    .customization-btn {
+        padding: 15px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+    }
+    
+    .close-modal {
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 24px !important;
+        width: 36px !important;
+        height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(0,0,0,0.1) !important;
+        border-radius: 50% !important;
+    }
+    
+    .action-btn {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 14px !important;
+    }
+    
+    .product-actions {
+        gap: 10px !important;
+    }
+    
+    .product-card:hover .product-actions {
+        opacity: 1 !important;
+    }
 }
 
 /* Loader */
@@ -5717,7 +5784,6 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
         
         const name = document.getElementById('clientName').value;
         const email = document.getElementById('clientEmail').value;
-        const address = document.getElementById('clientAddress').value;
         const newsletter = document.getElementById('clientNewsletter').checked;
         
         const errorDiv = document.getElementById('clientSignupError');
@@ -5728,7 +5794,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
         successDiv.style.display = 'none';
         
         // Valider les données
-        if (!name || !email || !address) {
+        if (!name || !email) {
             errorDiv.textContent = 'Veuillez remplir tous les champs obligatoires.';
             errorDiv.style.display = 'block';
             return;
@@ -5747,7 +5813,6 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
             id: Date.now(),
             name: name,
             email: email,
-            address: address,
             newsletter: newsletter,
             registrationDate: new Date().toISOString()
         };
@@ -7513,7 +7578,6 @@ window.addEventListener('resize', detectMobile);
         }
     });
     
-    // Fonction pour se connecter avec Google
     // Fonction pour se connecter avec Google - CORRIGÉE
     function signInWithGoogle() {
         // Vérifier l'environnement avant de continuer
