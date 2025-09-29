@@ -2,12 +2,12 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Produits - Decobizcreations | Artisanat Concrete</title>
     <meta name="description" content="Découvrez notre collection complète de créations artisanales en concrete. Plateaux, vases, boîtes décoratives faites main au Maroc." />
-    <meta name="keywords" content="décoration béton, , artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
+    <meta name="keywords" content="décoration béton, artisanat marocain, plateau décoratif, vase design, déco intérieure, made in morocco" />
     <meta name="author" content="Hajar Agrar" />
     <meta name="robots" content="index, follow" />
     
@@ -48,6 +48,7 @@
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
+            touch-action: manipulation;
         }
         body {
             background: #fffaf5;
@@ -57,6 +58,7 @@
             transition: background-color 0.5s ease, color 0.5s ease;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            position: relative;
         }
         
         /* Mode sombre */
@@ -177,6 +179,7 @@
             color: #b27952;
             cursor: pointer;
             padding: 5px;
+            z-index: 1001;
         }
         
         /* Bouton mode sombre */
@@ -1342,18 +1345,21 @@
             font-size: 35px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 10001;
         }
         .close-modal:hover {
             color: #bbb;
         }
         
-        /* Options de personnalisation */
+        /* Options de personnalisation - AMÉLIORÉES POUR MOBILE */
         .customization-options {
             background: #f9f3e8;
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             border: 1px solid #e0d5c1;
+            overflow-y: auto;
+            max-height: 70vh;
         }
         
         .customization-title {
@@ -1384,6 +1390,7 @@
             display: flex;
             gap: 0.8rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .color-option {
@@ -1394,6 +1401,7 @@
             border: 3px solid transparent;
             transition: all 0.3s ease;
             position: relative;
+            flex-shrink: 0;
         }
         
         .color-option:hover {
@@ -1420,6 +1428,7 @@
             display: flex;
             gap: 0.8rem;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .size-option {
@@ -1432,6 +1441,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            flex-shrink: 0;
         }
         
         .size-option:hover {
@@ -1548,6 +1558,8 @@
                 padding: 1rem;
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                 z-index: 100;
+                max-height: 80vh;
+                overflow-y: auto;
             }
             
             nav.active {
@@ -1573,6 +1585,8 @@
                 box-shadow: none;
                 padding-left: 1rem;
                 margin-top: 0.5rem;
+                background: #f9f9f9;
+                border-radius: 8px;
             }
             
             .cart-counter {
@@ -1696,9 +1710,10 @@
                 gap: 0.5rem;
             }
             
-            /* Options de personnalisation mobile */
+            /* Options de personnalisation mobile - AMÉLIORÉES */
             .customization-options {
                 padding: 1rem;
+                max-height: 60vh;
             }
             
             .customization-title {
@@ -1715,7 +1730,12 @@
                 font-size: 0.85rem;
             }
             
-            /* Modal */
+            /* Modal - AMÉLIORÉ POUR MOBILE */
+            .modal-content {
+                width: 98%;
+                top: 45%;
+            }
+            
             .quick-view-container {
                 flex-direction: column;
             }
@@ -1730,6 +1750,10 @@
             
             .quick-view-price {
                 font-size: 1.2rem;
+            }
+            
+            .quick-view-actions {
+                flex-direction: column;
             }
             
             /* Boutons flottants */
@@ -1807,9 +1831,52 @@
                 font-size: 1rem;
             }
             
+            /* Options de personnalisation pour très petits écrans */
+            .customization-options {
+                padding: 0.8rem;
+                max-height: 55vh;
+            }
+            
+            .customization-title {
+                font-size: 1rem;
+            }
+            
+            .color-option {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .size-option {
+                padding: 5px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .customization-text {
+                min-height: 60px;
+                font-size: 0.9rem;
+            }
+            
             .toast {
                 font-size: 0.85rem;
                 padding: 10px 14px;
+            }
+            
+            /* Modal pour très petits écrans */
+            .modal-content {
+                width: 95%;
+                top: 40%;
+            }
+            
+            .quick-view-details {
+                padding: 0.8rem;
+            }
+            
+            .quick-view-details h3 {
+                font-size: 1.1rem;
+            }
+            
+            .quick-view-price {
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -2162,8 +2229,6 @@
                 </div>
             </article>
             
-          
-           
             <!-- Produit 12 -->
             <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="croissant lune décoratif  mural">
                 <div class="product-image">
@@ -2743,18 +2808,6 @@
                 price: 69,
                 image: 'arc en ciel.jpeg'
             },
-            'vase-cylindrique-18': {
-                title: 'Vase Cylindrique',
-                description: '18 cm',
-                price: 49,
-                image: 'vase cylindrique.jpeg'
-            },
-            'boite-rectangulaire-15': {
-                title: 'Boîte Rectangulaire',
-                description: '15 cm',
-                price: 35,
-                image: 'boite rectangulaire.jpeg'
-            },
             'croissant-lune-22': {
                 title: 'Croissant de Lune',
                 description: '22 cm',
@@ -2765,19 +2818,19 @@
                 title: 'Porte Bougie',
                 description: 'Design moderne',
                 price: 45,
-                image: 'porte-bougie.jpg'
+                image: 'porte boujie.jpeg'
             },
             'bruleur-encens': {
                 title: 'Brûleur Encens',
                 description: 'Parfum d\'ambiance',
                 price: 55,
-                image: 'bruleur-encens.jpg'
+                image: 'bruleur ecense.jpeg'
             },
             'porte-bougie-boite': {
                 title: 'Porte Bougie Boîte',
                 description: 'Design multifonction',
                 price: 65,
-                image: 'porte-bougie-boite.jpg'
+                image: 'porte boujie boite.jpeg'
             },
             // Packs
             'pack0': {
@@ -2911,18 +2964,6 @@
                 price: '69 DH',
                 image: 'arc en ciel.jpeg'
             },
-            'vase-cylindrique-18': {
-                title: 'Vase Cylindrique',
-                description: 'Vase cylindrique en béton, parfait pour les compositions florales modernes.',
-                price: '49 DH',
-                image: 'vase cylindrique.jpeg'
-            },
-            'boite-rectangulaire-15': {
-                title: 'Boîte Rectangulaire',
-                description: 'Boîte rectangulaire en béton, idéale pour le rangement de petits objets.',
-                price: '35 DH',
-                image: 'boite rectangulaire.jpeg'
-            },
             'croissant-lune-22': {
                 title: 'Croissant de Lune',
                 description: 'Décoration murale en forme de croissant de lune, ajoute une touche poétique à votre intérieur.',
@@ -2933,19 +2974,19 @@
                 title: 'Porte Bougie',
                 description: 'Élégant porte bougie en béton, parfait pour créer une ambiance chaleureuse dans votre intérieur.',
                 price: '45 DH',
-                image: 'porte-bougie.jpg'
+                image: 'porte boujie.jpeg'
             },
             'bruleur-encens': {
                 title: 'Brûleur Encens',
                 description: 'Brûleur d\'encens en béton, idéal pour diffuser vos parfums préférés et purifier votre espace.',
                 price: '55 DH',
-                image: 'bruleur-encens.jpg'
+                image: 'bruleur ecense.jpeg'
             },
             'porte-bougie-boite': {
                 title: 'Porte Bougie Boîte',
                 description: 'Design innovant combinant un porte bougie et un espace de rangement, parfait pour les petites bougies et allumettes.',
                 price: '65 DH',
-                image: 'porte-bougie-boite.jpg'
+                image: 'porte boujie boite.jpeg'
             },
             // Données des packs pour l'aperçu rapide
             'pack0': {
@@ -3019,7 +3060,7 @@
             optimizeImagesForMobile();
         });
         
-        // Menu mobile
+        // Menu mobile - AMÉLIORÉ
         function initMobileMenu() {
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
@@ -3035,6 +3076,17 @@
                 } else {
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
+                
+                // Empêcher le défilement du corps lorsque le menu est ouvert
+                if (isExpanded) {
+                    document.body.style.overflow = 'hidden';
+                    document.body.style.position = 'fixed';
+                    document.body.style.width = '100%';
+                } else {
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                }
             });
             
             // Fermer le menu lorsqu'un lien est cliqué
@@ -3044,20 +3096,46 @@
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Rétablir le défilement
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
                 });
             });
             
             // Fermer le menu lorsqu'on clique en dehors
             document.addEventListener('click', (event) => {
-                if (!menuToggle.contains(event.target) && !mainNav.contains(event.target)) {
+                if (!menuToggle.contains(event.target) && !mainNav.contains(event.target) && mainNav.classList.contains('active')) {
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    
+                    // Rétablir le défilement
+                    document.body.style.overflow = '';
+                    document.body.style.position = '';
+                    document.body.style.width = '';
+                }
+            });
+            
+            // Gérer les sous-menus sur mobile
+            const navItems = mainNav.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                const submenu = item.querySelector('.submenu');
+                
+                if (submenu) {
+                    link.addEventListener('click', (e) => {
+                        if (window.innerWidth <= 768) {
+                            e.preventDefault();
+                            submenu.classList.toggle('active');
+                        }
+                    });
                 }
             });
         }
         
-        // Initialisation des options de personnalisation
+        // Initialisation des options de personnalisation - AMÉLIORÉE
         function initCustomization() {
             // Gestion des options de couleur
             const colorOptions = document.querySelectorAll('.color-option');
@@ -3128,7 +3206,7 @@
             customizationPrice = additionalPrice;
         }
         
-        // Ouvrir le modal de personnalisation
+        // Ouvrir le modal de personnalisation - AMÉLIORÉ
         function openCustomization(productId) {
             currentCustomizationProduct = productId;
             const product = productsData[productId];
@@ -3155,12 +3233,21 @@
                 updateCustomizationPrice();
                 
                 // Afficher le modal
-                document.getElementById('customizationModal').style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                const modal = document.getElementById('customizationModal');
+                modal.style.display = 'block';
                 
                 // Empêcher le défilement du fond sur mobile
+                document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.body.style.width = '100%';
+                
+                // S'assurer que le modal est bien visible sur mobile
+                if (window.innerWidth <= 768) {
+                    // Faire défiler jusqu'en haut du modal
+                    setTimeout(() => {
+                        modal.scrollTop = 0;
+                    }, 100);
+                }
             } else {
                 showToast("Produit non trouvé", "error");
             }
@@ -3176,12 +3263,13 @@
             }
         }
         
-        // Fermer le modal de personnalisation
+        // Fermer le modal de personnalisation - AMÉLIORÉ
         function closeCustomization() {
-            document.getElementById('customizationModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            const modal = document.getElementById('customizationModal');
+            modal.style.display = 'none';
             
             // Rétablir le défilement sur mobile
+            document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
             
@@ -3736,12 +3824,21 @@
             updateCustomizationPrice();
             
             // Afficher le modal
-            document.getElementById('customizationModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            const modal = document.getElementById('customizationModal');
+            modal.style.display = 'block';
             
             // Empêcher le défilement du fond sur mobile
+            document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
+            
+            // S'assurer que le modal est bien visible sur mobile
+            if (window.innerWidth <= 768) {
+                // Faire défiler jusqu'en haut du modal
+                setTimeout(() => {
+                    modal.scrollTop = 0;
+                }, 100);
+            }
         }
         
         function addToWishlist(productId) {
@@ -3777,20 +3874,22 @@
                     customizeBtn.setAttribute('onclick', 'openCustomizationFromQuickView()');
                 }
                 
-                document.getElementById('quickViewModal').style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                const modal = document.getElementById('quickViewModal');
+                modal.style.display = 'block';
                 
                 // Empêcher le défilement du fond sur mobile
+                document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.body.style.width = '100%';
             }
         }
         
         function closeQuickView() {
-            document.getElementById('quickViewModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+            const modal = document.getElementById('quickViewModal');
+            modal.style.display = 'none';
             
             // Rétablir le défilement sur mobile
+            document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
         }
