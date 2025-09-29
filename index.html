@@ -89,6 +89,67 @@ body {
     position: relative;
     padding-bottom: env(safe-area-inset-bottom);
 }
+/* Styles pour le bouton de déconnexion client */
+.client-logout-btn {
+    background: none;
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    padding: 4px 8px;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.client-logout-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.client-logout-btn i {
+    font-size: 0.7rem;
+}
+
+#clientContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+/* Styles pour mobile */
+@media (max-width: 768px) {
+    .client-logout-btn {
+        padding: 6px 10px;
+        font-size: 0.7rem;
+    }
+    
+    #clientContainer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        margin-left: 5px;
+    }
+    
+    #clientNameInHeader {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-logout-btn {
+        padding: 4px 8px;
+        font-size: 0.65rem;
+    }
+    
+    #clientNameInHeader {
+        font-size: 0.75rem;
+    }
+}
 
 body.dark-mode {
     background: var(--dark-bg);
@@ -4003,7 +4064,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                         <div class="product-info">
                             <h4>Plateau Rond</h4>
                             <span>Diamètre 16 cm</span>
-                            <div class="product-price">120 DH</div>
+                            <div class="product-price"> 29 DH</div>
                         </div>
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau ovale concrete décoratif">
@@ -4027,7 +4088,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                         <div class="product-info">
                             <h4>Plateau Ovale</h4>
                             <span>18 cm</span>
-                            <div class="product-price">140 DH</div>
+                            <div class="product-price">35 DH</div>
                         </div>
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="plateau" data-keywords="plateau rond grand concrete décoratif">
@@ -4053,8 +4114,8 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                             <h4>Plateau Rond</h4>
                             <span>27 cm</span>
                             <div class="product-price">
-                                <span class="old-price">235 DH</span>
-                                200 DH
+                                <span class="old-price">69 DH</span>
+                                59 DH
                             </div>
                         </div>
                     </article>
@@ -4079,7 +4140,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                         <div class="product-info">
                             <h4>Vase Nordique</h4>
                             <span>16 cm</span>
-                            <div class="product-price">180 DH</div>
+                            <div class="product-price">59 DH</div>
                         </div>
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="vase" data-keywords="mini vase moderne concrete">
@@ -4103,7 +4164,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                         <div class="product-info">
                             <h4>Mini Vase</h4>
                             <span>14 cm</span>
-                            <div class="product-price">150 DH</div>
+                            <div class="product-price">45 DH</div>
                         </div>
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="boite" data-keywords="boite décorative concrete rangement">
@@ -4127,7 +4188,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                         <div class="product-info">
                             <h4>Boîte Décorative</h4>
                             <span>12 cm</span>
-                            <div class="product-price">100 DH</div>
+                            <div class="product-price">29 DH</div>
                         </div>
                     </article>
                     <article class="product-card fade-slide" tabindex="0" data-category="decoration" data-keywords="arc-en-ciel décoratif  mural">
@@ -4152,7 +4213,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
                         <div class="product-info">
                             <h4>Arc-en-ciel Décoratif</h4>
                             <span>26 cm</span>
-                            <div class="product-price">250 DH</div>
+                            <div class="product-price">69 DH</div>
                         </div>
                     </article>
                 </div>
@@ -5804,34 +5865,24 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     }
     
     // Fonction pour mettre à jour le bouton client dans le header
-    function updateHeaderClientButton() {
-        const headerControls = document.querySelector('.header-controls');
-        if (!headerControls) return;
-        
-        // Supprimer l'ancien bouton s'il existe
-        const oldBtn = document.getElementById('headerClientBtn');
-        if (oldBtn) {
-            oldBtn.remove();
-        }
-        
-        // Créer le nouveau bouton
+   function updateHeaderClientButton() {
+    const headerControls = document.querySelector('.header-controls');
+    if (!headerControls) return;
+    
+    // Supprimer l'ancien bouton s'il existe
+    const oldBtn = document.getElementById('headerClientBtn');
+    if (oldBtn) {
+        oldBtn.remove();
+    }
+    
+    // Créer le nouveau bouton seulement si aucun client n'est connecté
+    if (!currentClient) {
         const clientBtn = document.createElement('button');
         clientBtn.id = 'headerClientBtn';
         
-        if (currentClient) {
-            // Si le client est connecté, afficher son nom
-            clientBtn.className = 'client-login-btn';
-            clientBtn.innerHTML = `<i class="fas fa-user"></i> ${currentClient.name}`;
-            clientBtn.onclick = () => {
-                // Afficher les informations du client ou un menu déroulant
-                showToast('Vous êtes connecté en tant que ' + currentClient.name, 'info');
-            };
-        } else {
-            // Si le client n'est pas connecté, afficher "Se connecter"
-            clientBtn.className = 'client-login-btn';
-            clientBtn.innerHTML = `<i class="fas fa-user"></i> Se connecter`;
-            clientBtn.onclick = showClientLoginModal;
-        }
+        clientBtn.className = 'client-login-btn';
+        clientBtn.innerHTML = `<i class="fas fa-user"></i> Se connecter`;
+        clientBtn.onclick = showClientLoginModal;
         
         // Ajouter le bouton après le champ de recherche
         const searchContainer = headerControls.querySelector('.search-container');
@@ -5841,49 +5892,51 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
             headerControls.appendChild(clientBtn);
         }
     }
+}
     
     // Fonction pour initialiser le système client - MODIFIÉE pour afficher automatiquement le formulaire
-    function initClientSystem() {
-        // Charger les clients depuis localStorage
-        const savedClients = localStorage.getItem('clients');
-        if (savedClients) {
-            try {
-                clients = JSON.parse(savedClients);
-            } catch (e) {
-                console.error('Erreur lors du chargement des clients:', e);
-                clients = [];
-            }
+  function initClientSystem() {
+    // Charger les clients depuis localStorage
+    const savedClients = localStorage.getItem('clients');
+    if (savedClients) {
+        try {
+            clients = JSON.parse(savedClients);
+        } catch (e) {
+            console.error('Erreur lors du chargement des clients:', e);
+            clients = [];
         }
-        
-        // Charger le client courant
-        const savedClient = localStorage.getItem('currentClient');
-        if (savedClient) {
-            try {
-                currentClient = JSON.parse(savedClient);
-                showClientNameInHeader(); // Afficher le nom dans le header
-            } catch (e) {
-                console.error('Erreur lors du chargement du client courant:', e);
-                localStorage.removeItem('currentClient');
-            }
-        }
-        
-        // Vérifier si le client doit être rappelé (remember me)
-        const rememberClient = localStorage.getItem('rememberClient');
-        if (rememberClient === 'true' && !currentClient) {
-            // Si "remember me" est activé mais aucun client n'est connecté, afficher le formulaire de connexion
-            setTimeout(() => {
-                showClientLoginModal();
-            }, 1000);
-        } else if (!currentClient) {
-            // Si aucun client n'est pas connecté, afficher le formulaire d'inscription après un délai
-            setTimeout(() => {
-                showClientSignupModal();
-            }, 1500);
-        }
-        
-        // Mettre à jour le bouton dans le header
-        updateHeaderClientButton();
     }
+    
+    // Charger le client courant
+    const savedClient = localStorage.getItem('currentClient');
+    if (savedClient) {
+        try {
+            currentClient = JSON.parse(savedClient);
+            showClientNameInHeader(); // Afficher le nom dans le header
+            addClientLogoutButton(); // AJOUTER CETTE LIGNE
+        } catch (e) {
+            console.error('Erreur lors du chargement du client courant:', e);
+            localStorage.removeItem('currentClient');
+        }
+    }
+    
+    // Vérifier si le client doit être rappelé (remember me)
+    const rememberClient = localStorage.getItem('rememberClient');
+    if (rememberClient === 'true' && !currentClient) {
+        // Si "remember me" est activé mais aucun client n'est connecté, afficher le formulaire de connexion
+        setTimeout(() => {
+            showClientLoginModal();
+        }, 1000);
+    } else if (!currentClient) {
+        // Si aucun client n'est pas connecté, afficher le formulaire d'inscription après un délai
+        setTimeout(() => {
+            showClientSignupModal();
+        }, 1500);
+    }
+    
+    // Mettre à jour le bouton dans le header
+    updateHeaderClientButton();
+}
     
     // ===============================================================
     // FONCTIONS D'INITIALISATION
@@ -6104,37 +6157,37 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
         });
     }
     
-    function initDarkMode() {
-        const toggle = document.getElementById('darkModeToggle');
-        const body = document.body;
+  function initDarkMode() {
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    
+    if (toggle && body) {
+        // Modification clé : on active le mode sombre uniquement si explicitement demandé
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            toggle.innerHTML = '<i class="fas fa-sun"></i>';
+            toggle.setAttribute('aria-label', 'Passer en mode clair');
+        } else {
+            // Mode clair par défaut (premier chargement ou choix utilisateur)
+            toggle.innerHTML = '<i class="fas fa-moon"></i>';
+            toggle.setAttribute('aria-label', 'Passer en mode sombre');
+        }
         
-        if (toggle && body) {
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        toggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
             
-            if (localStorage.getItem('darkMode') === 'enabled' || 
-                (localStorage.getItem('darkMode') === null && prefersDarkScheme)) {
-                body.classList.add('dark-mode');
+            if (body.classList.contains('dark-mode')) {
                 toggle.innerHTML = '<i class="fas fa-sun"></i>';
                 toggle.setAttribute('aria-label', 'Passer en mode clair');
+                localStorage.setItem('darkMode', 'enabled');
             } else {
+                toggle.innerHTML = '<i class="fas fa-moon"></i>';
                 toggle.setAttribute('aria-label', 'Passer en mode sombre');
+                localStorage.setItem('darkMode', 'disabled');
             }
-            
-            toggle.addEventListener('click', () => {
-                body.classList.toggle('dark-mode');
-                
-                if (body.classList.contains('dark-mode')) {
-                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
-                    toggle.setAttribute('aria-label', 'Passer en mode clair');
-                    localStorage.setItem('darkMode', 'enabled');
-                } else {
-                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
-                    toggle.setAttribute('aria-label', 'Passer en mode sombre');
-                    localStorage.setItem('darkMode', 'disabled');
-                }
-            });
-        }
+        });
     }
+}
     
     function initSearch() {
         const searchInput = document.getElementById('searchInput');
@@ -7461,7 +7514,7 @@ window.addEventListener('resize', detectMobile);
     });
     
     // Fonction pour se connecter avec Google
-    // Fonction pour se connecter avec Google
+    // Fonction pour se connecter avec Google - CORRIGÉE
     function signInWithGoogle() {
         // Vérifier l'environnement avant de continuer
         if (!checkEnvironment()) {
@@ -7479,6 +7532,12 @@ window.addEventListener('resize', detectMobile);
         // Ajouter des scopes
         provider.addScope('profile');
         provider.addScope('email');
+        
+        // Configuration supplémentaire pour éviter les problèmes de redirect_uri
+        provider.setCustomParameters({
+            'login_hint': 'email',
+            'prompt': 'select_account'
+        });
         
         auth.signInWithPopup(provider)
             .then((result) => {
@@ -7745,6 +7804,8 @@ window.addEventListener('resize', detectMobile);
     }
     
     // ===============================================================
+    // FONCTIONS
+        // ===============================================================
     // FONCTIONS DE TEST ET ANALYSE
     // ===============================================================
     
@@ -8292,6 +8353,115 @@ window.addEventListener('resize', detectMobile);
             });
         }
     });
+    // Fonction pour ajouter le bouton de déconnexion
+function addClientLogoutButton() {
+    // Vérifier si un bouton de déconnexion existe déjà
+    if (document.getElementById('clientLogoutBtn')) {
+        return; // Le bouton existe déjà
+    }
+    
+    // Créer le bouton de déconnexion
+    const logoutBtn = document.createElement('button');
+    logoutBtn.id = 'clientLogoutBtn';
+    logoutBtn.className = 'client-logout-btn';
+    logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Déconnexion';
+    logoutBtn.title = 'Se déconnecter';
+    logoutBtn.onclick = clientLogout;
+    
+    // Ajouter le bouton dans le header
+    const headerControls = document.querySelector('.header-controls');
+    if (headerControls) {
+        headerControls.appendChild(logoutBtn);
+    }
+}
+
+// Modifier la fonction showClientNameInHeader pour inclure le bouton de déconnexion
+function showClientNameInHeader() {
+    if (currentClient) {
+        // Trouver l'élément du logo dans le header
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            // Créer un conteneur pour le nom et le bouton de déconnexion
+            let clientContainer = document.getElementById('clientContainer');
+            
+            if (!clientContainer) {
+                clientContainer = document.createElement('div');
+                clientContainer.id = 'clientContainer';
+                clientContainer.style.cssText = `
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-left: 10px;
+                `;
+                
+                // Insérer après le logo
+                logo.parentNode.insertBefore(clientContainer, logo.nextSibling);
+            }
+            
+            // Mettre à jour le contenu du conteneur
+            clientContainer.innerHTML = `
+                <span id="clientNameInHeader" style="
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 0.9rem;
+                    color: var(--primary-color);
+                    font-weight: 600;
+                ">Bonjour, ${currentClient.name}</span>
+                <button id="clientLogoutBtn" class="client-logout-btn" style="
+                    background: none;
+                    border: 1px solid var(--primary-color);
+                    border-radius: 15px;
+                    padding: 4px 8px;
+                    color: var(--primary-color);
+                    font-size: 0.8rem;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                " title="Se déconnecter">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            `;
+            
+            // Ajouter l'événement de clic au bouton
+            const logoutBtn = document.getElementById('clientLogoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', clientLogout);
+            }
+        }
+    } else {
+        // Si aucun client n'est connecté, supprimer le conteneur s'il existe
+        const clientContainer = document.getElementById('clientContainer');
+        if (clientContainer) {
+            clientContainer.remove();
+        }
+    }
+}
+
+// Modifier la fonction clientLogout pour afficher une confirmation
+function clientLogout() {
+    if (confirm('Êtes-vous sûr de vouloir vous déconnecter ?')) {
+        currentClient = null;
+        localStorage.removeItem('currentClient');
+        localStorage.removeItem('rememberClient');
+        
+        // Supprimer le nom du client du header
+        showClientNameInHeader();
+        
+        // Supprimer le message de bienvenue s'il existe
+        const welcomeDiv = document.getElementById('clientWelcome');
+        if (welcomeDiv) {
+            welcomeDiv.remove();
+        }
+        
+        // Mettre à jour le bouton dans le header
+        updateHeaderClientButton();
+        
+        showToast('Déconnexion réussie', 'info');
+        
+        // Afficher le formulaire d'inscription après déconnexion
+        setTimeout(() => {
+            showClientSignupModal();
+        }, 1000);
+    }
+}
     
     console.log('🎨 Decobizcreations - Site chargé avec succès !');
     console.log('✨ Toutes les fonctionnalités sont opérationnelles');
