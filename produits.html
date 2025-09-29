@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <title>Produits - Decobizcreations | Artisanat Concrete</title>
@@ -48,7 +48,6 @@
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
-            touch-action: manipulation;
         }
         body {
             background: #fffaf5;
@@ -58,7 +57,6 @@
             transition: background-color 0.5s ease, color 0.5s ease;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            position: relative;
         }
         
         /* Mode sombre */
@@ -179,7 +177,7 @@
             color: #b27952;
             cursor: pointer;
             padding: 5px;
-            z-index: 1001;
+            z-index: 101;
         }
         
         /* Bouton mode sombre */
@@ -416,7 +414,10 @@
             font-weight: 600;
             font-size: 0.9rem;
             -webkit-appearance: none;
-            min-height: 40px; /* Taille minimale pour une bonne interaction tactile */
+            min-height: 44px; /* Taille minimale pour une bonne interaction tactile */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .filter-btn:hover,
         .filter-btn.active {
@@ -452,7 +453,7 @@
             cursor: pointer;
             outline: none;
             transition: all 0.3s ease;
-            min-height: 40px; /* Taille minimale pour une bonne interaction tactile */
+            min-height: 44px; /* Taille minimale pour une bonne interaction tactile */
             -webkit-appearance: none;
             font-size: 0.9rem;
         }
@@ -613,15 +614,18 @@
             color: white;
             border: none;
             border-radius: 20px;
-            padding: 6px 12px;
+            padding: 8px 16px; /* Augmenté pour une meilleure interaction tactile */
             font-size: 0.8rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem; /* Augmenté pour plus d'espace */
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            min-height: 36px; /* Hauteur minimale pour une bonne interaction tactile */
+            width: 100%; /* Pleine largeur sur mobile */
+            justify-content: center;
         }
         .customize-btn:hover {
             background: linear-gradient(135deg, #4e1123, #4e1018);
@@ -870,10 +874,11 @@
             gap: 0.8rem;
             justify-content: center;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
         
         .pack-btn {
-            padding: 8px 14px;
+            padding: 10px 16px; /* Augmenté pour une meilleure interaction tactile */
             border: none;
             border-radius: 25px;
             font-weight: 600;
@@ -884,6 +889,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            min-height: 44px; /* Hauteur minimale pour une bonne interaction tactile */
         }
         
         .pack-btn-primary {
@@ -935,8 +941,8 @@
             flex-wrap: wrap;
         }
         .page-btn {
-            width: 40px;
-            height: 40px;
+            width: 44px; /* Augmenté pour une meilleure interaction tactile */
+            height: 44px; /* Augmenté pour une meilleure interaction tactile */
             border-radius: 50%;
             border: 2px solid #b27952;
             background: transparent;
@@ -1028,6 +1034,7 @@
             border-radius: 30px;
             outline: none;
             -webkit-appearance: none;
+            min-height: 44px; /* Hauteur minimale pour une bonne interaction tactile */
         }
         
         .newsletter-btn {
@@ -1041,6 +1048,7 @@
             transition: all 0.3s ease;
             -webkit-appearance: none;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-height: 44px; /* Hauteur minimale pour une bonne interaction tactile */
         }
         
         .newsletter-btn:hover {
@@ -1105,8 +1113,8 @@
             justify-content: center;
         }
         .social-link {
-            width: 40px;
-            height: 40px;
+            width: 44px; /* Augmenté pour une meilleure interaction tactile */
+            height: 44px; /* Augmenté pour une meilleure interaction tactile */
             border-radius: 50%;
             background: #f9f3e8;
             color: #b27952;
@@ -1131,14 +1139,15 @@
             flex-direction: column;
         }
         .newsletter-input-footer {
-            padding: 10px;
+            padding: 12px; /* Augmenté pour une meilleure interaction tactile */
             border: 1px solid #ddd;
             border-radius: 5px;
             outline: none;
             -webkit-appearance: none;
+            min-height: 44px; /* Hauteur minimale pour une bonne interaction tactile */
         }
         .newsletter-btn-footer {
-            padding: 10px;
+            padding: 12px; /* Augmenté pour une meilleure interaction tactile */
             background: #b27952;
             color: white;
             border: none;
@@ -1146,6 +1155,7 @@
             cursor: pointer;
             transition: background 0.3s ease;
             -webkit-appearance: none;
+            min-height: 44px; /* Hauteur minimale pour une bonne interaction tactile */
         }
         .newsletter-btn-footer:hover {
             background: #8c5a34;
@@ -1170,8 +1180,8 @@
         /* WhatsApp flottant */
         .whatsapp-float {
             position: fixed;
-            width: 56px;
-            height: 56px;
+            width: 60px; /* Augmenté pour une meilleure interaction tactile */
+            height: 60px; /* Augmenté pour une meilleure interaction tactile */
             bottom: 20px;
             right: 20px;
             background-color: #25d366;
@@ -1202,14 +1212,14 @@
         /* Bouton retour en haut */
         .back-to-top {
             position: fixed;
-            bottom: 80px;
+            bottom: 90px;
             right: 20px;
             background: #b27952;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 46px;
-            height: 46px;
+            width: 50px; /* Augmenté pour une meilleure interaction tactile */
+            height: 50px; /* Augmenté pour une meilleure interaction tactile */
             cursor: pointer;
             display: none;
             align-items: center;
@@ -1313,7 +1323,7 @@
             flex-direction: column;
         }
         .btn-add-to-cart, .btn-add-to-wishlist {
-            padding: 12px 20px;
+            padding: 14px 20px; /* Augmenté pour une meilleure interaction tactile */
             border: none;
             border-radius: 30px;
             font-weight: 600;
@@ -1321,6 +1331,10 @@
             transition: all 0.3s ease;
             -webkit-appearance: none;
             font-size: 0.95rem;
+            min-height: 48px; /* Hauteur minimale pour une bonne interaction tactile */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .btn-add-to-cart {
             background: #b27952;
@@ -1346,20 +1360,25 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 10001;
+            width: 44px; /* Augmenté pour une meilleure interaction tactile */
+            height: 44px; /* Augmenté pour une meilleure interaction tactile */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .close-modal:hover {
             color: #bbb;
         }
         
-        /* Options de personnalisation - AMÉLIORÉES POUR MOBILE */
+        /* Options de personnalisation */
         .customization-options {
             background: #f9f3e8;
             border-radius: 10px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
             border: 1px solid #e0d5c1;
-            overflow-y: auto;
-            max-height: 70vh;
+            width: 100%;
+            overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
         }
         
         .customization-title {
@@ -1394,14 +1413,14 @@
         }
         
         .color-option {
-            width: 40px;
-            height: 40px;
+            width: 44px; /* Augmenté pour une meilleure interaction tactile */
+            height: 44px; /* Augmenté pour une meilleure interaction tactile */
             border-radius: 50%;
             cursor: pointer;
             border: 3px solid transparent;
             transition: all 0.3s ease;
             position: relative;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Empêche la réduction de taille */
         }
         
         .color-option:hover {
@@ -1432,7 +1451,7 @@
         }
         
         .size-option {
-            padding: 8px 16px;
+            padding: 10px 16px; /* Augmenté pour une meilleure interaction tactile */
             border: 2px solid #b27952;
             border-radius: 25px;
             background: white;
@@ -1441,7 +1460,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.9rem;
-            flex-shrink: 0;
+            min-height: 44px; /* Hauteur minimale pour une bonne interaction tactile */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .size-option:hover {
@@ -1455,7 +1477,7 @@
         
         .customization-text {
             width: 100%;
-            padding: 10px 15px;
+            padding: 12px 15px; /* Augmenté pour une meilleure interaction tactile */
             border: 2px solid #b27952;
             border-radius: 8px;
             font-size: 0.95rem;
@@ -1464,6 +1486,7 @@
             min-height: 80px;
             outline: none;
             transition: border-color 0.3s ease;
+            -webkit-appearance: none;
         }
         
         .customization-text:focus {
@@ -1492,7 +1515,7 @@
             right: 10px;
             background: #4CAF50;
             color: white;
-            padding: 12px 16px;
+            padding: 14px 18px; /* Augmenté pour une meilleure interaction tactile */
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             z-index: 10000;
@@ -1549,17 +1572,17 @@
             /* Navigation mobile */
             nav {
                 display: none;
-                position: absolute;
-                top: 100%;
+                position: fixed; /* Changé de absolute à fixed pour un meilleur comportement sur mobile */
+                top: 0;
                 left: 0;
                 right: 0;
+                bottom: 0;
                 background: white;
                 flex-direction: column;
-                padding: 1rem;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                padding: 5rem 1rem 1rem; /* Augmenté le padding en haut */
+                box-shadow: none;
                 z-index: 100;
-                max-height: 80vh;
-                overflow-y: auto;
+                overflow-y: auto; /* Permet le défilement si le menu est trop long */
             }
             
             nav.active {
@@ -1572,9 +1595,10 @@
             
             nav a {
                 display: block;
-                padding: 0.8rem 0;
+                padding: 1rem 0; /* Augmenté le padding */
                 border-bottom: 1px solid #eee;
                 width: 100%;
+                font-size: 1.1rem; /* Augmenté la taille de la police */
             }
             
             .submenu {
@@ -1585,7 +1609,7 @@
                 box-shadow: none;
                 padding-left: 1rem;
                 margin-top: 0.5rem;
-                background: #f9f9f9;
+                background: #f9f3e8;
                 border-radius: 8px;
             }
             
@@ -1620,8 +1644,8 @@
             }
             
             .action-btn {
-                width: 36px;
-                height: 36px;
+                width: 44px; /* Augmenté pour une meilleure interaction tactile */
+                height: 44px; /* Augmenté pour une meilleure interaction tactile */
             }
             
             /* Filtres */
@@ -1634,7 +1658,7 @@
             }
             
             .filter-btn {
-                padding: 6px 12px;
+                padding: 10px 14px; /* Augmenté pour une meilleure interaction tactile */
                 font-size: 0.85rem;
             }
             
@@ -1701,19 +1725,19 @@
             }
             
             .pack-btn {
-                padding: 6px 12px;
+                padding: 10px 14px; /* Augmenté pour une meilleure interaction tactile */
                 font-size: 0.85rem;
             }
             
             .pack-actions {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.8rem; /* Augmenté pour plus d'espace entre les boutons */
             }
             
-            /* Options de personnalisation mobile - AMÉLIORÉES */
+            /* Options de personnalisation mobile */
             .customization-options {
                 padding: 1rem;
-                max-height: 60vh;
+                max-width: 100%; /* S'assure que le contenu ne dépasse pas */
             }
             
             .customization-title {
@@ -1721,21 +1745,16 @@
             }
             
             .color-option {
-                width: 35px;
-                height: 35px;
+                width: 40px;
+                height: 40px;
             }
             
             .size-option {
-                padding: 6px 12px;
+                padding: 10px 14px; /* Augmenté pour une meilleure interaction tactile */
                 font-size: 0.85rem;
             }
             
-            /* Modal - AMÉLIORÉ POUR MOBILE */
-            .modal-content {
-                width: 98%;
-                top: 45%;
-            }
-            
+            /* Modal */
             .quick-view-container {
                 flex-direction: column;
             }
@@ -1752,20 +1771,16 @@
                 font-size: 1.2rem;
             }
             
-            .quick-view-actions {
-                flex-direction: column;
-            }
-            
             /* Boutons flottants */
             .whatsapp-float {
-                width: 50px;
-                height: 50px;
+                width: 56px;
+                height: 56px;
                 font-size: 24px;
             }
             
             .back-to-top {
-                width: 42px;
-                height: 42px;
+                width: 48px;
+                height: 48px;
                 font-size: 1rem;
             }
         }
@@ -1794,7 +1809,7 @@
             }
             
             .filter-btn {
-                padding: 5px 10px;
+                padding: 10px 12px; /* Augmenté pour une meilleure interaction tactile */
                 font-size: 0.8rem;
             }
             
@@ -1831,52 +1846,29 @@
                 font-size: 1rem;
             }
             
-            /* Options de personnalisation pour très petits écrans */
-            .customization-options {
-                padding: 0.8rem;
-                max-height: 55vh;
+            .toast {
+                font-size: 0.85rem;
+                padding: 12px 16px; /* Augmenté pour une meilleure interaction tactile */
             }
             
-            .customization-title {
-                font-size: 1rem;
+            /* Améliorations pour le modal de personnalisation sur petits écrans */
+            .modal-content {
+                width: 98%;
+                top: 45%; /* Ajusté pour centrer correctement */
+            }
+            
+            .customization-options {
+                padding: 0.8rem;
             }
             
             .color-option {
-                width: 30px;
-                height: 30px;
+                width: 36px;
+                height: 36px;
             }
             
             .size-option {
-                padding: 5px 10px;
+                padding: 8px 12px;
                 font-size: 0.8rem;
-            }
-            
-            .customization-text {
-                min-height: 60px;
-                font-size: 0.9rem;
-            }
-            
-            .toast {
-                font-size: 0.85rem;
-                padding: 10px 14px;
-            }
-            
-            /* Modal pour très petits écrans */
-            .modal-content {
-                width: 95%;
-                top: 40%;
-            }
-            
-            .quick-view-details {
-                padding: 0.8rem;
-            }
-            
-            .quick-view-details h3 {
-                font-size: 1.1rem;
-            }
-            
-            .quick-view-price {
-                font-size: 1.1rem;
             }
         }
     </style>
@@ -2808,6 +2800,18 @@
                 price: 69,
                 image: 'arc en ciel.jpeg'
             },
+            'vase-cylindrique-18': {
+                title: 'Vase Cylindrique',
+                description: '18 cm',
+                price: 49,
+                image: 'vase cylindrique.jpeg'
+            },
+            'boite-rectangulaire-15': {
+                title: 'Boîte Rectangulaire',
+                description: '15 cm',
+                price: 35,
+                image: 'boite rectangulaire.jpeg'
+            },
             'croissant-lune-22': {
                 title: 'Croissant de Lune',
                 description: '22 cm',
@@ -2818,19 +2822,19 @@
                 title: 'Porte Bougie',
                 description: 'Design moderne',
                 price: 45,
-                image: 'porte boujie.jpeg'
+                image: 'porte-bougie.jpg'
             },
             'bruleur-encens': {
                 title: 'Brûleur Encens',
                 description: 'Parfum d\'ambiance',
                 price: 55,
-                image: 'bruleur ecense.jpeg'
+                image: 'bruleur-encens.jpg'
             },
             'porte-bougie-boite': {
                 title: 'Porte Bougie Boîte',
                 description: 'Design multifonction',
                 price: 65,
-                image: 'porte boujie boite.jpeg'
+                image: 'porte-bougie-boite.jpg'
             },
             // Packs
             'pack0': {
@@ -2964,6 +2968,18 @@
                 price: '69 DH',
                 image: 'arc en ciel.jpeg'
             },
+            'vase-cylindrique-18': {
+                title: 'Vase Cylindrique',
+                description: 'Vase cylindrique en béton, parfait pour les compositions florales modernes.',
+                price: '49 DH',
+                image: 'vase cylindrique.jpeg'
+            },
+            'boite-rectangulaire-15': {
+                title: 'Boîte Rectangulaire',
+                description: 'Boîte rectangulaire en béton, idéale pour le rangement de petits objets.',
+                price: '35 DH',
+                image: 'boite rectangulaire.jpeg'
+            },
             'croissant-lune-22': {
                 title: 'Croissant de Lune',
                 description: 'Décoration murale en forme de croissant de lune, ajoute une touche poétique à votre intérieur.',
@@ -2974,19 +2990,19 @@
                 title: 'Porte Bougie',
                 description: 'Élégant porte bougie en béton, parfait pour créer une ambiance chaleureuse dans votre intérieur.',
                 price: '45 DH',
-                image: 'porte boujie.jpeg'
+                image: 'porte-bougie.jpg'
             },
             'bruleur-encens': {
                 title: 'Brûleur Encens',
                 description: 'Brûleur d\'encens en béton, idéal pour diffuser vos parfums préférés et purifier votre espace.',
                 price: '55 DH',
-                image: 'bruleur ecense.jpeg'
+                image: 'bruleur-encens.jpg'
             },
             'porte-bougie-boite': {
                 title: 'Porte Bougie Boîte',
                 description: 'Design innovant combinant un porte bougie et un espace de rangement, parfait pour les petites bougies et allumettes.',
                 price: '65 DH',
-                image: 'porte boujie boite.jpeg'
+                image: 'porte-bougie-boite.jpg'
             },
             // Données des packs pour l'aperçu rapide
             'pack0': {
@@ -3060,7 +3076,7 @@
             optimizeImagesForMobile();
         });
         
-        // Menu mobile - AMÉLIORÉ
+        // Menu mobile
         function initMobileMenu() {
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
@@ -3080,12 +3096,8 @@
                 // Empêcher le défilement du corps lorsque le menu est ouvert
                 if (isExpanded) {
                     document.body.style.overflow = 'hidden';
-                    document.body.style.position = 'fixed';
-                    document.body.style.width = '100%';
                 } else {
                     document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.width = '';
                 }
             });
             
@@ -3096,11 +3108,7 @@
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    // Rétablir le défilement
                     document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.width = '';
                 });
             });
             
@@ -3110,11 +3118,7 @@
                     mainNav.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    
-                    // Rétablir le défilement
                     document.body.style.overflow = '';
-                    document.body.style.position = '';
-                    document.body.style.width = '';
                 }
             });
             
@@ -3126,16 +3130,19 @@
                 
                 if (submenu) {
                     link.addEventListener('click', (e) => {
+                        // Ne pas suivre le lien principal sur mobile
                         if (window.innerWidth <= 768) {
                             e.preventDefault();
-                            submenu.classList.toggle('active');
+                            
+                            // Basculer l'affichage du sous-menu
+                            submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
                         }
                     });
                 }
             });
         }
         
-        // Initialisation des options de personnalisation - AMÉLIORÉE
+        // Initialisation des options de personnalisation
         function initCustomization() {
             // Gestion des options de couleur
             const colorOptions = document.querySelectorAll('.color-option');
@@ -3206,7 +3213,7 @@
             customizationPrice = additionalPrice;
         }
         
-        // Ouvrir le modal de personnalisation - AMÉLIORÉ
+        // Ouvrir le modal de personnalisation
         function openCustomization(productId) {
             currentCustomizationProduct = productId;
             const product = productsData[productId];
@@ -3240,14 +3247,7 @@
                 document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.body.style.width = '100%';
-                
-                // S'assurer que le modal est bien visible sur mobile
-                if (window.innerWidth <= 768) {
-                    // Faire défiler jusqu'en haut du modal
-                    setTimeout(() => {
-                        modal.scrollTop = 0;
-                    }, 100);
-                }
+                document.body.style.top = `-${window.scrollY}px`;
             } else {
                 showToast("Produit non trouvé", "error");
             }
@@ -3263,15 +3263,18 @@
             }
         }
         
-        // Fermer le modal de personnalisation - AMÉLIORÉ
+        // Fermer le modal de personnalisation
         function closeCustomization() {
             const modal = document.getElementById('customizationModal');
             modal.style.display = 'none';
             
             // Rétablir le défilement sur mobile
+            const scrollY = document.body.style.top;
             document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
+            document.body.style.top = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
             
             currentCustomizationProduct = null;
         }
@@ -3831,14 +3834,7 @@
             document.body.style.overflow = 'hidden';
             document.body.style.position = 'fixed';
             document.body.style.width = '100%';
-            
-            // S'assurer que le modal est bien visible sur mobile
-            if (window.innerWidth <= 768) {
-                // Faire défiler jusqu'en haut du modal
-                setTimeout(() => {
-                    modal.scrollTop = 0;
-                }, 100);
-            }
+            document.body.style.top = `-${window.scrollY}px`;
         }
         
         function addToWishlist(productId) {
@@ -3881,6 +3877,7 @@
                 document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
                 document.body.style.width = '100%';
+                document.body.style.top = `-${window.scrollY}px`;
             }
         }
         
@@ -3889,9 +3886,12 @@
             modal.style.display = 'none';
             
             // Rétablir le défilement sur mobile
+            const scrollY = document.body.style.top;
             document.body.style.overflow = '';
             document.body.style.position = '';
             document.body.style.width = '';
+            document.body.style.top = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
         }
         
         function addToCartFromQuickView() {
