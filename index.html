@@ -2913,22 +2913,28 @@ footer {
         right: 0px !important;    /* Collé au bord */
         background: rgba(255, 255, 255, 0.8);
         border-radius: 2px !important; /* Taille minimale pour mobile */
-        padding: 1px !important;  
+        padding: 0px !important;  
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         gap: 0px !important;      
         flex-wrap: nowrap !important;
         width: fit-content !important;
-        height: fit-content !important; 
+        height: fit-content !important;
+        max-width: 60px !important; /* Limite de largeur pour forcer les 4 icônes à s'aligner */
+        overflow: hidden !important; /* Évite le débordement */
+    }
     }
     
     .action-btn {
-        width: 3px !important;    /* Taille minimale absolue pour mobile */
-        height: 3px !important;   /* Taille minimale absolue pour mobile */
-        min-width: 3px !important; /* Taille minimale absolue pour mobile */
-        min-height: 3px !important; /* Taille minimale absolue pour mobile */
-        font-size: 0.08rem !important;
+       width: 2px !important;    /* Taille minimale absolue - 2px */
+        height: 2px !important;   /* Taille minimale absolue - 2px */
+        min-width: 2px !important; /* Taille minimale absolue - 2px */
+        min-height: 2px !important; /* Taille minimale absolue - 2px */
+        font-size: 0.05rem !important; /* Taille de police minimale - 0.05rem */
+        line-height: 0;          /* Supprime l'espacement interne du texte */
+        margin: 0 !important;     /* Supprime toute marge */
+        padding: 0 !important;   
     }
     
     .new-badge, .sale-badge {
@@ -8727,6 +8733,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
