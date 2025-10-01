@@ -796,18 +796,18 @@ main p {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Boutons d'action sur les produits */
+/* Boutons d'action sur les produits - MODIFIÉS POUR RÉDUIRE LA TAILLE */
 .product-actions {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 8px;
+    right: 8px;
     display: flex;
-    gap: 5px;
+    gap: 3px;
     opacity: 0;
     transition: opacity var(--transition-speed) ease;
     background: rgba(255, 255, 255, 0.8);
-    padding: 5px;
-    border-radius: 20px;
+    padding: 3px;
+    border-radius: 12px;
     z-index: 5;
 }
 
@@ -819,16 +819,17 @@ main p {
     background: rgba(178, 121, 82, 0.9);
     border: none;
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 24px;
+    height: 24px;
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-speed) ease;
-    min-width: 35px;
-    min-height: 35px;
+    min-width: 24px;
+    min-height: 24px;
+    font-size: 0.7rem;
 }
 
 .action-btn:hover {
@@ -2905,20 +2906,20 @@ footer {
         font-size: 0.8rem;
     }
     
-    /* Boutons d'action mobile */
+    /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
     .product-actions {
         opacity: 1 !important;
         bottom: 5px;
         right: 5px;
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        padding: 5px;
+        border-radius: 8px;
+        padding: 3px;
     }
     
     .action-btn {
-        width: 32px !important;
-        height: 32px !important;
-        font-size: 14px !important;
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 0.6rem !important;
     }
     
     .new-badge, .sale-badge {
@@ -3388,7 +3389,7 @@ footer {
     }
     
     .action-btn i {
-        font-size: 0.8rem !important;
+        font-size: 0.6rem !important; /* Réduit davantage pour mobile */
     }
     
     .gallery-icon {
@@ -3698,9 +3699,9 @@ footer {
     }
     
     .action-btn {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 12px !important;
+        width: 18px !important;
+        height: 18px !important;
+        font-size: 0.5rem !important;
     }
 }
 
@@ -3978,9 +3979,9 @@ footer {
     }
     
     .action-btn {
-        width: 24px !important;
-        height: 24px !important;
-        font-size: 10px !important;
+        width: 16px !important;
+        height: 16px !important;
+        font-size: 0.45rem !important;
     }
 }
 
@@ -8049,8 +8050,6 @@ input, select, textarea {
     }
     
     // ===============================================================
-    // FONCTIONS
-        // ===============================================================
     // FONCTIONS DE TEST ET ANALYSE
     // ===============================================================
     
@@ -8713,7 +8712,7 @@ input, select, textarea {
     }
     
     console.log('🎨 Decobizcreations - Site chargé avec succès !');
-    console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+    console.log('✨Toutes les fonctionnalités sont opérationnelles');
     console.log('🔍 Système de suivi des visiteurs internationaux activé');
     console.log('🛒 Système de panier amélioré activé');
     </script>
