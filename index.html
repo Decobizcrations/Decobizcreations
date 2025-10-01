@@ -569,7 +569,7 @@ nav a:focus::after {
 
 .trust-icon {
     color: var(--primary-color);
-    font-size: 1.6rem;
+    font-size: 0.9rem;
 }
 
 .trust-text {
@@ -819,17 +819,17 @@ main p {
     background: rgba(178, 121, 82, 0.9);
     border: none;
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 10px;      /* Réduit de 16px à 10px */
+    height: 10px;     /* Réduit de 16px à 10px */
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-speed) ease;
-    min-width: 24px;
-    min-height: 24px;
-    font-size: 0.7rem;
+    min-width: 10px;   /* Réduit de 16px à 10px */
+    min-height: 10px;  /* Réduit de 16px à 10px */
+    font-size: 0.3rem; /* Réduit de 0.5rem à 0.3rem */
 }
 
 .action-btn:hover {
@@ -1206,15 +1206,15 @@ main p {
 }
 
 .advantage-icon {
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background: #f9f3e8;
     color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1rem;
     margin: 0 auto 0.8rem;
     transition: all var(--transition-speed) ease;
 }
@@ -1411,7 +1411,7 @@ main p {
 }
 
 .value-icon {
-    font-size: 2.5rem;
+    font-size: 1.4rem;
     color: var(--primary-color);
     margin-bottom: 0.8rem;
     user-select: none;
@@ -1499,15 +1499,15 @@ footer {
 }
 
 .social-link {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
     background: #f9f3e8;
     color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
+    font-size: 0.7rem;
     transition: all var(--transition-speed) ease;
 }
 
@@ -2908,18 +2908,21 @@ footer {
     
     /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
     .product-actions {
-        opacity: 1 !important;
-        bottom: 5px;
-        right: 5px;
+       opacity: 1 !important;
+        bottom: 2px !important;   /* Réduit de 3px à 2px */
+        right: 2px !important;    /* Réduit de 3px à 2px */
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 8px;
-        padding: 3px;
+        border-radius: 4px !important; /* Réduit de 6px à 4px */
+        padding: 1px !important;  /* Gardé à 1px */
+        gap: 1px !important;    
     }
     
     .action-btn {
-        width: 20px !important;
-        height: 20px !important;
-        font-size: 0.6rem !important;
+       width: 8px !important;    /* Réduit de 12px à 8px */
+        height: 8px !important;   /* Réduit de 12px à 8px */
+        min-width: 8px !important; /* Réduit de 12px à 8px */
+        min-height: 8px !important; /* Réduit de 12px à 8px */
+        font-size: 0.25rem !important;
     }
     
     .new-badge, .sale-badge {
@@ -8718,3 +8721,4 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
