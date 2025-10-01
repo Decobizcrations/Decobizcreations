@@ -799,15 +799,15 @@ main p {
 /* Boutons d'action sur les produits - MODIFIÉS POUR RÉDUIRE LA TAILLE */
 .product-actions {
     position: absolute;
-    bottom: 2px;
-    right: 2px;
+    bottom: 1px;
+    right: 1px;
     display: flex;
-    gap: 1px;
+    gap: 0px;
     opacity: 0;
     transition: opacity var(--transition-speed) ease;
     background: rgba(255, 255, 255, 0.8);
-    padding: 3px;
-    border-radius: 12px;
+    padding: 1px;
+    border-radius: 3px;
     z-index: 5;
 }
 
@@ -816,20 +816,20 @@ main p {
 }
 
 .action-btn {
-  background: rgba(178, 121, 82, 0.9);
+   background: rgba(178, 121, 82, 0.9);
     border: none;
     border-radius: 50%;
-    width: 6px;        /* Réduit pour plus de compacité */
-    height: 6px;       /* Réduit pour plus de compacité */
+    width: 4px;        /* Réduit au minimum absolu */
+    height: 4px;       /* Réduit au minimum absolu */
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-speed) ease;
-    min-width: 6px;    /* Réduit pour plus de compacité */
-    min-height: 6px;   /* Réduit pour plus de compacité */
-    font-size: 0.15rem; /* Taille minimale pour la lisibilité */
+    min-width: 4px;    /* Réduit au minimum absolu */
+    min-height: 4px;   /* Réduit au minimum absolu */
+    font-size: 0.1rem; 
 }
 
 .action-btn:hover {
@@ -2908,25 +2908,27 @@ footer {
     
     /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
     .product-actions {
-       opacity: 1 !important;
-        bottom: 1px !important;
-        right: 1px !important;
+        opacity: 1 !important;
+        bottom: 0px !important;   /* Collé au bord */
+        right: 0px !important;    /* Collé au bord */
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 3px !important;
-        padding: 1px !important;
+        border-radius: 2px !important; /* Taille minimale pour mobile */
+        padding: 1px !important;  
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0.5px !important; /* Espacement encore plus réduit pour mobile */
+        gap: 0px !important;      
         flex-wrap: nowrap !important;
+        width: fit-content !important;
+        height: fit-content !important; 
     }
     
     .action-btn {
-      width: 5px !important;
-        height: 5px !important;
-        min-width: 5px !important;
-        min-height: 5px !important;
-        font-size: 0.12rem !important;
+        width: 3px !important;    /* Taille minimale absolue pour mobile */
+        height: 3px !important;   /* Taille minimale absolue pour mobile */
+        min-width: 3px !important; /* Taille minimale absolue pour mobile */
+        min-height: 3px !important; /* Taille minimale absolue pour mobile */
+        font-size: 0.08rem !important;
     }
     
     .new-badge, .sale-badge {
@@ -8725,6 +8727,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
