@@ -2909,51 +2909,46 @@ footer {
         font-size: 0.8rem;
     }
     
-    /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
      .product-actions {
-        opacity: 1 !important;
+        position: absolute;
         bottom: 8px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        background: rgba(255, 255, 255, 0.7); 
-        border-radius: 50px !important;
-        padding: 4px 8px !important;
         display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 8px !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        gap: 10px !important;
+        z-index: 5;
     }
 
     .action-btn {
-        width: 28px !important;
-        height: 28px !important;
-        min-width: 28px !important;
-        min-height: 28px !important;
-        font-size: 0.9rem !important;
-        color: #fff;
+        width: 30px !important;
+        height: 30px !important;
         border-radius: 50%;
-        border: none;
+        border: 1px solid rgba(185, 122, 86, 0.4); /* بني خفيف */
+        background: rgba(255, 255, 255, 0.35); /* شبه شفاف */
+        backdrop-filter: blur(6px); /* تأثير زجاج */
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(185, 122, 86, 0.85); 
-        transition: all 0.3s ease;
+        color: #B97A56; /* بني */
+        font-size: 1rem !important;
+        transition: all 0.25s ease;
     }
 
-    .action-btn:active, 
     .action-btn:hover {
+        background: rgba(185, 122, 86, 0.85);
+        color: #fff;
         transform: scale(1.15);
-        background: rgba(185, 122, 86, 1);
+        border-color: transparent;
     }
 
     .action-btn:last-child {
-        background: linear-gradient(135deg, rgba(142,68,173,0.9), rgba(52,152,219,0.9));
-        font-size: 1rem !important;
+        background: linear-gradient(135deg, #B97A56, #8E5B3C);
+        color: #fff;
+        border: none;
     }
 
     .action-btn i { font-size: 1rem !important; }
-}
+
 .new-badge, .sale-badge {
     font-size: 0.7rem;
     padding: 3px 7px;
@@ -8750,6 +8745,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
