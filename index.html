@@ -2919,35 +2919,54 @@ footer {
         z-index: 5;
     }
 
+    .product-actions {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 5;
+    }
+
     .action-btn {
-        width: 30px !important;
-        height: 30px !important;
+        width: 32px;  /* حجم مضبوط */
+        height: 32px;
         border-radius: 50%;
         border: 1px solid rgba(185, 122, 86, 0.4); /* بني خفيف */
-        background: rgba(255, 255, 255, 0.35); /* شبه شفاف */
-        backdrop-filter: blur(6px); /* تأثير زجاج */
+        background: rgba(255, 255, 255, 0.25); /* زجاجي شفاف */
+        backdrop-filter: blur(6px);
         display: flex;
         align-items: center;
         justify-content: center;
         color: #B97A56; /* بني */
-        font-size: 1rem !important;
+        font-size: 1rem;
+        padding: 0; /* ❌ يمنع التضخيم */
+        margin: 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         transition: all 0.25s ease;
     }
 
+    /* ✅ تأثير hover */
     .action-btn:hover {
-        background: rgba(185, 122, 86, 0.85);
+        background: rgba(185, 122, 86, 0.9);
         color: #fff;
-        transform: scale(1.15);
         border-color: transparent;
+        transform: scale(1.1);
     }
 
+    /* ✅ زر التخصيص 🎨 */
     .action-btn:last-child {
         background: linear-gradient(135deg, #B97A56, #8E5B3C);
         color: #fff;
         border: none;
     }
 
-    .action-btn i { font-size: 1rem !important; }
+    /* ✅ الأيقونات تبقى مضبوطة */
+    .action-btn i {
+        font-size: 1rem !important;
+        line-height: 1 !important;
+    }
 
 .new-badge, .sale-badge {
     font-size: 0.7rem;
@@ -8745,6 +8764,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
