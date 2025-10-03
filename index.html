@@ -2939,46 +2939,42 @@ footer {
         z-index: 99;
     }
 
-    .action-btn {
-        width: 15px !important;   /* صغير */
-        height: 15px !important;
-        min-width: 20px !important;
-        min-height: 20px !important;
-        border-radius: 50%;
-        border: 1px solid rgba(185, 122, 86, 0.5); /* بني خفيف */
-        background: rgba(255, 255, 255, 0.2); /* شبه شفاف */
-        backdrop-filter: blur(4px); /* زجاجي */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #B97A56; /* بني */
-        font-size: 0.5rem !important; /* أيقونة أصغر */
-        padding: 0 !important;  /* ❌ يمنع التضخيم */
-        margin: 0 !important;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        transition: all 0.25s ease;
+   .action-btn {
+        all: unset; /* 🔥 كيمسح أي ستايل موروث */
+        width: 10px !important;
+        height: 10px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        border: 1px solid rgba(185, 122, 86, 0.5) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+        backdrop-filter: blur(2px) !important;
+        color: #B97A56 !important;
+        font-size: 0.65rem !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
     }
 
-    /* ✅ Hover */
     .action-btn:hover {
-        background: rgba(185, 122, 86, 0.85);
-        color: #fff;
-        border-color: transparent;
-        transform: scale(1.1);
+        background: rgba(185, 122, 86, 0.85) !important;
+        color: #fff !important;
+        border-color: transparent !important;
+        transform: scale(1.1) !important;
     }
 
     /* ✅ زر التخصيص 🎨 */
     .action-btn:last-child {
-        background: linear-gradient(135deg, #B97A56, #8E5B3C);
-        color: #fff;
-        border: none;
-        font-size: 0.9rem !important;
+        background: linear-gradient(135deg, #B97A56, #8E5B3C) !important;
+        color: #fff !important;
+        border: none !important;
     }
 
-    /* ✅ أيقونات مضبوطة */
+    /* ✅ الأيقونة وسط الزر */
     .action-btn i {
-        font-size: 0.9rem !important;
+        font-size: 0.7rem !important;
         line-height: 1 !important;
+        pointer-events: none;
     }
 .new-badge, .sale-badge {
     font-size: 0.7rem;
@@ -8776,6 +8772,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
