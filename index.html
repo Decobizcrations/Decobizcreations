@@ -2910,51 +2910,49 @@ footer {
     }
     
     /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
-    .product-actions {
+     .product-actions {
         opacity: 1 !important;
-        bottom: 6px !important;
-        right: 6px !important;
-        background: rgba(255, 255, 255, 0.85);
-        border-radius: 10px !important;
-        padding: 3px 6px !important;
+        bottom: 8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        background: rgba(255, 255, 255, 0.7); 
+        border-radius: 50px !important;
+        padding: 4px 8px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 6px !important;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        gap: 8px !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     .action-btn {
-        width: 30px !important;
-        height: 30px !important;
-        min-width: 30px !important;
-        min-height: 30px !important;
-        font-size: 1rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        font-size: 0.9rem !important;
         color: #fff;
         border-radius: 50%;
         border: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(135deg, #b97a56, #8c5a34);
+        background: rgba(185, 122, 86, 0.85); 
         transition: all 0.3s ease;
     }
 
     .action-btn:active, 
     .action-btn:hover {
-        transform: scale(1.1);
+        transform: scale(1.15);
+        background: rgba(185, 122, 86, 1);
     }
 
     .action-btn:last-child {
-        background: linear-gradient(135deg, #8e44ad, #3498db);
-        font-size: 1.1rem !important;
+        background: linear-gradient(135deg, rgba(142,68,173,0.9), rgba(52,152,219,0.9));
+        font-size: 1rem !important;
     }
 
-  
-    .action-btn i.fa-shopping-cart { font-size: 1.1rem !important; }
-    .action-btn i.fa-heart         { font-size: 1rem !important; }
-    .action-btn i.fa-eye           { font-size: 1rem !important; }
-    .action-btn i.fa-palette       { font-size: 1.2rem !important; }
+    .action-btn i { font-size: 1rem !important; }
 }
 .new-badge, .sale-badge {
     font-size: 0.7rem;
@@ -8752,6 +8750,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
