@@ -2879,7 +2879,7 @@ footer {
         font-size: 0.9rem;
     }
     
-    /* Produits mobile */
+    /* Produits mobile - Icônes optimisées */
     .product-card {
         flex: 0 0 150px;
         margin: 0 auto;
@@ -2909,78 +2909,67 @@ footer {
         font-size: 0.8rem;
     }
     
-     .product-actions {
-        position: absolute;
-        bottom: 8px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        display: flex !important;
-        gap: 10px !important;
-        z-index: 5;
-    }
-
     .product-actions {
         position: absolute;
-        bottom: 10px;
+        bottom: 8px;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 8px;
+        gap: 6px;
         z-index: 5;
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 20px;
+        padding: 4px 8px;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        min-width: auto;
+        width: auto;
     }
 
-   .product-actions {
-        opacity: 1 !important;
-        bottom: 1px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        background: rgba(255, 255, 255, 0.6); /* شفافة وخفيفة */
-        border-radius: 50px !important;
-        padding: 3px 6px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 6px !important;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-    }
-
-    /* ✅ ستايل الأزرار */
+    /* Boutons d'action miniatures */
     .action-btn {
-        width: 10px !important;   /* أصغر */
-        height: 10px !important;  /* أصغر */
-        min-width: 10px !important;
-        min-height: 10px !important;
-        font-size: 0.1rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        font-size: 0.7rem !important;
         color: #fff;
         border-radius: 50%;
         border: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #8B5E3C; /* بني */
+        background: #8B5E3C;
         transition: all 0.3s ease;
+        cursor: pointer;
     }
 
-    /* ✅ تأثير عند اللمس */
-    .action-btn:active, 
-    .action-btn:hover {
-        transform: scale(1.1);
-        background: #6E452C; /* بني أغمق */
-    }
-
-    /* ✅ زر التخصيص 🎨 */
-    .action-btn:last-child {
-        background: #A97452; /* بني فاتح مميز */
+    /* Icônes à l'intérieur des boutons */
+    .action-btn i {
         font-size: 0.8rem !important;
+        line-height: 1;
     }
 
-    /* أيقونات صغيرة ومتوازنة */
-    .action-btn i { font-size: 0.85rem !important; }
-.new-badge, .sale-badge {
-    font-size: 0.7rem;
-    padding: 3px 7px;
-    border-radius: 8px;
-}
+    /* Effets au survol */
+    .action-btn:hover,
+    .action-btn:active {
+        transform: scale(1.1);
+        background: #6E452C;
+    }
+
+    /* Bouton de personnalisation */
+    .action-btn.customize {
+        background: #A97452;
+    }
+
+    .new-badge, .sale-badge {
+        font-size: 0.7rem;
+        padding: 3px 7px;
+        border-radius: 8px;
+    }
+    
     /* Galerie mobile */
     .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -2995,6 +2984,8 @@ footer {
     .process-steps {
         flex-direction: column;
     }
+    /* Galerie mobile */
+
     
     .process-step:not(:last-child)::after {
         display: none;
@@ -8772,6 +8763,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
