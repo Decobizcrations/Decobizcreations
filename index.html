@@ -799,8 +799,8 @@ main p {
 /* Boutons d'action sur les produits - MODIFIÉS POUR RÉDUIRE LA TAILLE */
 .product-actions {
     position: absolute;
-    bottom: 1px;
-    right: 1px;
+    bottom: 3px;
+    right: 3px;
     display: flex;
     gap: 0px;
     opacity: 0;
@@ -809,14 +809,17 @@ main p {
     padding: 1px;
     border-radius: 3px;
     z-index: 5;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(5px);
 }
 
 .product-card:hover .product-actions {
     opacity: 1;
+    transform: translateY(-2px);
 }
 
 .action-btn {
-   background: rgba(178, 121, 82, 0.9);
+    background: linear-gradient(135deg, var(--primary-color), #8c5a34);
     border: none;
     border-radius: 50%;
     width: 4px;        /* Réduit au minimum absolu */
@@ -8733,6 +8736,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
