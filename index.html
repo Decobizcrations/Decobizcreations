@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
@@ -65,6 +66,7 @@
     --transition-speed: 0.3s;
     --mobile-header-height: 60px;
     --mobile-footer-height: 70px;
+    --icon-color: #b27952; /* Couleur uniforme pour les icônes */
 }
 
 /* Reset et styles de base */
@@ -795,18 +797,18 @@ main p {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Boutons d'action sur les produits - MODIFIÉS POUR RÉDUIRE LA TAILLE */
+/* Boutons d'action sur les produits - MODIFIÉS POUR AGRANDIR LES ICÔNES */
 .product-actions {
     position: absolute;
-    bottom: 1px;
-    right: 1px;
+    bottom: 10px;
+    right: 10px;
     display: flex;
-    gap: 0px;
+    gap: 8px;
     opacity: 0;
     transition: opacity var(--transition-speed) ease;
     background: rgba(255, 255, 255, 0.8);
-    padding: 1px;
-    border-radius: 3px;
+    padding: 5px;
+    border-radius: 8px;
     z-index: 5;
 }
 
@@ -815,20 +817,18 @@ main p {
 }
 
 .action-btn {
-   background: rgba(178, 121, 82, 0.9);
+    background: var(--icon-color);
     border: none;
     border-radius: 50%;
-    width: 4px;        /* Réduit au minimum absolu */
-    height: 4px;       /* Réduit au minimum absolu */
+    width: 36px;
+    height: 36px;
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-speed) ease;
-    min-width: 4px;    /* Réduit au minimum absolu */
-    min-height: 4px;   /* Réduit au minimum absolu */
-    font-size: 0.1rem; 
+    font-size: 1rem;
 }
 
 .action-btn:hover {
@@ -2905,35 +2905,34 @@ footer {
         font-size: 0.8rem;
     }
     
-    /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
+    /* Boutons d'action mobile - MODIFIÉS POUR AGRANDIR LES ICÔNES */
     .product-actions {
         opacity: 1 !important;
-        bottom: 0px !important;   /* Collé au bord */
-        right: 0px !important;    /* Collé au bord */
+        bottom: 5px !important;
+        right: 5px !important;
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 2px !important; /* Taille minimale pour mobile */
-        padding: 0px !important;  
+        border-radius: 8px !important;
+        padding: 5px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 0px !important;      
+        gap: 5px !important;
         flex-wrap: nowrap !important;
         width: fit-content !important;
         height: fit-content !important;
-        max-width: 60px !important; /* Limite de largeur pour forcer les 4 icônes à s'aligner */
-        overflow: hidden !important; /* Évite le débordement */
-    }
+        max-width: 160px !important;
+        overflow: hidden !important;
     }
     
     .action-btn {
-       width: 2px !important;    /* Taille minimale absolue - 2px */
-        height: 2px !important;   /* Taille minimale absolue - 2px */
-        min-width: 2px !important; /* Taille minimale absolue - 2px */
-        min-height: 2px !important; /* Taille minimale absolue - 2px */
-        font-size: 0.05rem !important; /* Taille de police minimale - 0.05rem */
-        line-height: 0;          /* Supprime l'espacement interne du texte */
-        margin: 0 !important;     /* Supprime toute marge */
-        padding: 0 !important;   
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        min-height: 32px !important;
+        font-size: 0.9rem !important;
+        line-height: 1;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     .new-badge, .sale-badge {
@@ -3375,7 +3374,7 @@ footer {
         font-size: 0.85rem;
     }
     
-    /* CORRECTION: Réduction de la taille des icônes sur mobile */
+    /* CORRECTION: Agrandissement des icônes sur mobile */
     .trust-icon {
         font-size: 1.2rem !important;
     }
@@ -3403,7 +3402,7 @@ footer {
     }
     
     .action-btn i {
-        font-size: 0.6rem !important; /* Réduit davantage pour mobile */
+        font-size: 1rem !important; /* Agrandi pour mobile */
     }
     
     .gallery-icon {
@@ -3713,9 +3712,9 @@ footer {
     }
     
     .action-btn {
-        width: 18px !important;
-        height: 18px !important;
-        font-size: 0.5rem !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8rem !important;
     }
 }
 
@@ -3993,9 +3992,9 @@ footer {
     }
     
     .action-btn {
-        width: 16px !important;
-        height: 16px !important;
-        font-size: 0.45rem !important;
+        width: 24px !important;
+        height: 24px !important;
+        font-size: 0.7rem !important;
     }
 }
 
@@ -8657,6 +8656,2748 @@ input, select, textarea {
                     logo.parentNode.insertBefore(clientContainer, logo.nextSibling);
                 }
                 
+                // Mettre à jour le texte avec le nom du client
+                clientNameElement.textContent = `Bonjour, ${currentClient.name}`;
+            }
+        } else {
+            // Si aucun client n'est connecté, supprimer l'élément s'il existe
+            const clientNameElement = document.getElementById('clientNameInHeader');
+            if (clientNameElement) {
+                clientNameElement.remove();
+            }
+        }
+    }
+    
+    // Fonction pour afficher le modal d'inscription client - AMÉLIORÉE pour mobile
+    function showClientSignupModal() {
+        const modal = document.getElementById('clientSignupModal');
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Mettre le focus sur le premier champ
+            setTimeout(() => {
+                const nameInput = document.getElementById('clientName');
+                if (nameInput) {
+                    nameInput.focus();
+                }
+            }, 100);
+            
+            // Ajouter une classe pour le style mobile
+            if (window.innerWidth <= 768) {
+                modal.classList.add('mobile-modal');
+            }
+        }
+    }
+    
+    // Fonction pour fermer le modal d'inscription client
+    function closeClientSignupModal() {
+        const modal = document.getElementById('clientSignupModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Réinitialiser le formulaire
+            const form = document.getElementById('clientSignupForm');
+            if (form) {
+                form.reset();
+            }
+            
+            // Cacher les messages d'erreur
+            const errorDiv = document.getElementById('clientSignupError');
+            const successDiv = document.getElementById('clientSignupSuccess');
+            if (errorDiv) errorDiv.style.display = 'none';
+            if (successDiv) successDiv.style.display = 'none';
+        }
+    }
+    
+    // Fonction pour afficher le modal de connexion client - AMÉLIORÉE pour mobile
+    function showClientLoginModal() {
+        const modal = document.getElementById('clientLoginModal');
+        if (modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Mettre le focus sur le premier champ
+            setTimeout(() => {
+                const emailInput = document.getElementById('clientLoginEmail');
+                if (emailInput) {
+                    emailInput.focus();
+                }
+            }, 100);
+            
+            // Ajouter une classe pour le style mobile
+            if (window.innerWidth <= 768) {
+                modal.classList.add('mobile-modal');
+            }
+        }
+    }
+    
+    // Fonction pour fermer le modal de connexion client
+    function closeClientLoginModal() {
+        const modal = document.getElementById('clientLoginModal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Réinitialiser le formulaire
+            const form = document.getElementById('clientLoginForm');
+            if (form) {
+                form.reset();
+            }
+            
+            // Cacher les messages d'erreur
+            const errorDiv = document.getElementById('clientLoginError');
+            const successDiv = document.getElementById('clientLoginSuccess');
+            if (errorDiv) errorDiv.style.display = 'none';
+            if (successDiv) successDiv.style.display = 'none';
+        }
+    }
+    
+    // Fonction pour traiter l'inscription client - MODIFIÉE
+    function handleClientSignup(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('clientName').value;
+        const email = document.getElementById('clientEmail').value;
+        const address = document.getElementById('clientAddress').value;
+        const newsletter = document.getElementById('clientNewsletter').checked;
+        
+        const errorDiv = document.getElementById('clientSignupError');
+        const successDiv = document.getElementById('clientSignupSuccess');
+        
+        // Cacher les messages précédents
+        errorDiv.style.display = 'none';
+        successDiv.style.display = 'none';
+        
+        // Valider les données
+        if (!name || !email || !address) {
+            errorDiv.textContent = 'Veuillez remplir tous les champs obligatoires.';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        // Vérifier si l'email existe déjà
+        const existingClient = clients.find(client => client.email === email);
+        if (existingClient) {
+            errorDiv.textContent = 'Un compte avec cet email existe déjà.';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        // Créer l'objet client
+        const client = {
+            id: Date.now(),
+            name: name,
+            email: email,
+            address: address,
+            newsletter: newsletter,
+            registrationDate: new Date().toISOString()
+        };
+        
+        // Sauvegarder le client
+        clients.push(client);
+        localStorage.setItem('clients', JSON.stringify(clients));
+        
+        // Définir comme client courant
+        currentClient = client;
+        localStorage.setItem('currentClient', JSON.stringify(client));
+        
+        // Sauvegarder dans Firebase si disponible
+        if (database) {
+            const cleanEmail = email.replace(/[.#$[\]]/g, '_');
+            database.ref('clients/' + cleanEmail).set(client).then(() => {
+                console.log('Client sauvegardé dans Firebase:', cleanEmail);
+            }).catch(error => {
+                console.error('Erreur lors de la sauvegarde du client:', error);
+            });
+            
+            // Si newsletter, sauvegarder aussi dans la collection subscribers
+            if (newsletter) {
+                database.ref('subscribers/' + cleanEmail).set({
+                    email: email,
+                    subscriptionDate: new Date().toISOString()
+                }).then(() => {
+                    console.log('Abonné newsletter sauvegardé dans Firebase:', cleanEmail);
+                }).catch(error => {
+                    console.error('Erreur lors de la sauvegarde de l\'abonné:', error);
+                });
+            }
+        }
+        
+        // Afficher le message de succès
+        successDiv.textContent = 'Inscription réussie ! Bienvenue chez Decobizcreations.';
+        successDiv.style.display = 'block';
+        
+        // Fermer le modal après un délai
+        setTimeout(() => {
+            closeClientSignupModal();
+            showClientNameInHeader(); // Afficher le nom dans le header au lieu du message de bienvenue
+            showToast(`Bienvenue ${name} !`, 'success');
+        }, 2000);
+        
+        // Suivre l'événement
+        trackEvent('client_signup', { email: email, name: name });
+    }
+    
+    // Fonction pour traiter la connexion client - MODIFIÉE pour n'utiliser que l'email et le nom
+    function handleClientLogin(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('clientLoginEmail').value;
+        const name = document.getElementById('clientLoginName').value; // Changé de password à name
+        const rememberMe = document.getElementById('clientRememberMe').checked;
+        
+        const errorDiv = document.getElementById('clientLoginError');
+        const successDiv = document.getElementById('clientLoginSuccess');
+        
+        // Cacher les messages précédents
+        errorDiv.style.display = 'none';
+        successDiv.style.display = 'none';
+        
+        // Chercher le client par email et nom
+        const client = clients.find(c => c.email === email && c.name === name);
+        
+        if (client) {
+            // Définir comme client courant
+            currentClient = client;
+            localStorage.setItem('currentClient', JSON.stringify(client));
+            
+            if (rememberMe) {
+                localStorage.setItem('rememberClient', 'true');
+            }
+            
+            // Afficher le message de succès
+            successDiv.textContent = 'Connexion réussie !';
+            successDiv.style.display = 'block';
+            
+            // Fermer le modal après un délai
+            setTimeout(() => {
+                closeClientLoginModal();
+                showClientNameInHeader(); // Afficher le nom dans le header au lieu du message de bienvenue
+                showToast(`Bienvenue ${client.name} !`, 'success');
+            }, 1500);
+            
+            // Suivre l'événement
+            trackEvent('client_login', { email: email });
+        } else {
+            errorDiv.textContent = 'Email ou nom incorrect.';
+            errorDiv.style.display = 'block';
+        }
+    }
+    
+    // Fonction pour déconnecter le client - MODIFIÉE
+    function clientLogout() {
+        currentClient = null;
+        localStorage.removeItem('currentClient');
+        localStorage.removeItem('rememberClient');
+        
+        // Supprimer le nom du client du header
+        showClientNameInHeader();
+        
+        // Supprimer le message de bienvenue s'il existe
+        const welcomeDiv = document.getElementById('clientWelcome');
+        if (welcomeDiv) {
+            welcomeDiv.remove();
+        }
+        
+        // Mettre à jour le bouton dans le header
+        updateHeaderClientButton();
+        
+        showToast('Déconnexion réussie', 'info');
+    }
+    
+    // Fonction pour mettre à jour le bouton client dans le header
+    function updateHeaderClientButton() {
+        const headerControls = document.querySelector('.header-controls');
+        if (!headerControls) return;
+        
+        // Supprimer l'ancien bouton s'il existe
+        const oldBtn = document.getElementById('headerClientBtn');
+        if (oldBtn) {
+            oldBtn.remove();
+        }
+        
+        // Créer le nouveau bouton seulement si aucun client n'est connecté
+        if (!currentClient) {
+            const clientBtn = document.createElement('button');
+            clientBtn.id = 'headerClientBtn';
+            
+            clientBtn.className = 'client-login-btn';
+            clientBtn.innerHTML = `<i class="fas fa-user"></i> Se connecter`;
+            clientBtn.onclick = showClientLoginModal;
+            
+            // Ajouter le bouton après le champ de recherche
+            const searchContainer = headerControls.querySelector('.search-container');
+            if (searchContainer) {
+                headerControls.insertBefore(clientBtn, searchContainer.nextSibling);
+            } else {
+                headerControls.appendChild(clientBtn);
+            }
+        }
+    }
+    
+    // ===============================================================
+    // FONCTIONS D'INITIALISATION
+    // ===============================================================
+    
+    // Initialisation des événements de personnalisation
+    function initCustomizationEvents() {
+        // Gérer le changement de couleur
+        const colorSelect = document.getElementById('customColor');
+        const otherColorGroup = document.getElementById('otherColorGroup');
+        
+        if (colorSelect && otherColorGroup) {
+            colorSelect.addEventListener('change', function() {
+                if (this.value === 'autre') {
+                    otherColorGroup.style.display = 'block';
+                    document.getElementById('otherColor').setAttribute('required', 'required');
+                } else {
+                    otherColorGroup.style.display = 'none';
+                    document.getElementById('otherColor').removeAttribute('required');
+                }
+            });
+        }
+        
+        // Gérer le changement de taille
+        const sizeSelect = document.getElementById('customSize');
+        const customDimensionsGroup = document.getElementById('customDimensionsGroup');
+        
+        if (sizeSelect && customDimensionsGroup) {
+            sizeSelect.addEventListener('change', function() {
+                if (this.value === 'sur-mesure') {
+                    customDimensionsGroup.style.display = 'block';
+                    document.getElementById('customDimensions').setAttribute('required', 'required');
+                } else {
+                    customDimensionsGroup.style.display = 'none';
+                    document.getElementById('customDimensions').removeAttribute('required');
+                }
+            });
+        }
+        
+        // Gérer la soumission du formulaire
+        const form = document.getElementById('customizationForm');
+        if (form) {
+            form.addEventListener('submit', submitCustomization);
+        }
+    }
+    
+    // Initialisation principale
+    window.addEventListener('load', function() {
+        console.log("=== DÉMARRAGE DE L'APPLICATION ===");
+        
+        // Détecter si c'est un mobile
+        if (isMobile()) {
+            document.body.classList.add('mobile-device');
+            console.log("Appareil mobile détecté");
+        }
+        
+        // Masquer le loader avec une transition
+        setTimeout(() => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        }, 1000);
+        
+        // === INITIALISATION DU PANIER (NOUVEAU) ===
+        console.log("Initialisation du système de panier...");
+        initCart(); // Initialiser le panier en premier
+        
+        // Initialiser les événements de personnalisation
+        initCustomizationEvents();
+        
+        // Initialiser les autres fonctionnalités
+        initScrollAnimations();
+        initCarousel();
+        initTestimonials();
+        initScrollProgress();
+        initBackToTop();
+        initDarkMode();
+        initSearch();
+        initFilters();
+        initMobileMenu();
+        initServiceWorker();
+        initCookieConsent();
+        initUserSystem();
+        initVisitorTracking();
+        
+        // Initialiser le panneau d'administration après un délai
+        setTimeout(() => {
+            initAdminPanel();
+        }, 2000);
+        
+        // Démarrer le nettoyage périodique des anciennes sessions
+        setInterval(cleanupOldSessions, 3600000); // Toutes les heures
+        
+        // Optimisation spécifique pour iPhone
+        optimizeForIPhone();
+        
+        // Initialiser l'effet parallaxe
+        initParallaxEffect();
+        
+        // Initialiser les animations de chargement différé
+        initLazyLoading();
+        
+        // Suivre la page vue
+        trackEvent('page_view', { page: 'home' });
+        
+        // Afficher des instructions pour mobile
+        if (isMobile()) {
+            console.log("Appareil mobile détecté, affichage des instructions...");
+            showMobileInstructions();
+        }
+        
+        // Afficher un message de bienvenue
+        console.log('🎨 Decobizcreations - Site chargé avec succès !');
+        console.log('✨ Toutes les fonctionnalités sont opérationnelles');
+        console.log('🔍 Système de suivi des visiteurs internationaux activé');
+        console.log('🛒 Système de panier initialisé');
+        
+        console.log("=== FIN DE L'INITIALISATION ===");
+    });
+    
+    // ===============================================================
+    // FONCTIONS UTILITAIRES (LES AUTRES FONCTIONS RESTENT IDENTIQUES)
+    // ===============================================================
+    
+    function initScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.fade-slide').forEach(el => {
+            observer.observe(el);
+        });
+    }
+    
+    function initCarousel() {
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        if (track && prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({ left: -240, behavior: 'smooth' });
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({ left: 240, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    function initTestimonials() {
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevTestimonial');
+        const nextBtn = document.getElementById('nextTestimonial');
+        
+        function updateTestimonial() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentTestimonial);
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentTestimonial);
+            });
+        }
+        
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+                updateTestimonial();
+            });
+            
+            nextBtn.addEventListener('click', () => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                updateTestimonial();
+            });
+        }
+    }
+    
+    function initScrollProgress() {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            const progressbar = document.getElementById('progressbar');
+            if (progressbar) {
+                progressbar.style.width = scrollPercent + '%';
+            }
+        });
+    }
+    
+    function initBackToTop() {
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('show');
+                } else {
+                    backToTopBtn.classList.remove('show');
+                }
+            });
+        }
+    }
+    
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    function initDarkMode() {
+        const toggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        if (toggle && body) {
+            // Modification clé : on active le mode sombre uniquement si explicitement demandé
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode');
+                toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                toggle.setAttribute('aria-label', 'Passer en mode clair');
+            } else {
+                // Mode clair par défaut (premier chargement ou choix utilisateur)
+                toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                toggle.setAttribute('aria-label', 'Passer en mode sombre');
+            }
+            
+            toggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                
+                if (body.classList.contains('dark-mode')) {
+                    toggle.innerHTML = '<i class="fas fa-sun"></i>';
+                    toggle.setAttribute('aria-label', 'Passer en mode clair');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    toggle.innerHTML = '<i class="fas fa-moon"></i>';
+                    toggle.setAttribute('aria-label', 'Passer en mode sombre');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        }
+    }
+    
+    function initSearch() {
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const noResultsMsg = document.getElementById('noResults');
+        
+        if (!searchInput || !searchBtn || !noResultsMsg) {
+            console.error("Un ou plusieurs éléments de recherche sont manquants");
+            return;
+        }
+        
+        function performSearch(event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+            const query = searchInput.value.toLowerCase().trim();
+            console.log("Recherche en cours pour:", query);
+            
+            const productCards = document.querySelectorAll('.product-card');
+            console.log("Nombre de cartes trouvées:", productCards.length);
+            
+            if (!query) {
+                productCards.forEach(card => {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                    card.style.visibility = 'visible';
+                });
+                noResultsMsg.style.display = 'none';
+                console.log("Affichage de tous les produits");
+                return;
+            }
+            
+            let hasResults = false;
+            
+            productCards.forEach(card => {
+                const titleElement = card.querySelector('h4');
+                const descriptionElement = card.querySelector('span');
+                
+                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+                const category = card.getAttribute('data-category') ? card.getAttribute('data-category').toLowerCase() : '';
+                const keywords = card.getAttribute('data-keywords') ? card.getAttribute('data-keywords').toLowerCase() : '';
+                
+                console.log("Titre:", title);
+                console.log("Description:", description);
+                console.log("Catégorie:", category);
+                console.log("Mots-clés:", keywords);
+                
+                if (title.includes(query) || description.includes(query) || 
+                    category.includes(query) || keywords.includes(query)) {
+                    card.style.display = 'block';
+                    card.style.opacity = '1';
+                    card.style.visibility = 'visible';
+                    hasResults = true;
+                    console.log("Correspondance trouvée pour:", title);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(-20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                    console.log("Aucune correspondance pour:", title);
+                }
+            });
+            
+            if (hasResults) {
+                noResultsMsg.style.display = 'none';
+                console.log("Résultats trouvés");
+            } else {
+                noResultsMsg.style.display = 'block';
+                console.log("Aucun résultat trouvé");
+            }
+            
+            if (query) {
+                trackEvent('search', { query: query, results: hasResults });
+            }
+        }
+        
+        searchBtn.addEventListener('click', (event) => {
+            console.log("Clic sur le bouton de recherche");
+            performSearch(event);
+        });
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                console.log("Appui sur Entrée dans le champ de recherche");
+                performSearch(e);
+            }
+        });
+        
+        searchInput.addEventListener('input', () => {
+            console.log("Saisie dans le champ de recherche");
+            performSearch();
+        });
+        
+        console.log("Fonction de recherche initialisée avec succès");
+    }
+    
+    function initFilters() {
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+                
+                trackEvent('filter', { category: filter });
+            });
+        });
+    }
+    
+    function initMobileMenu() {
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                
+                const icon = menuToggle.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    menuToggle.setAttribute('aria-expanded', 'true');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+        
+        navItems.forEach(item => {
+            const link = item.querySelector('a');
+            const submenu = item.querySelector('.submenu');
+            
+            if (submenu && link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        item.classList.toggle('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    function initServiceWorker() {
+        if (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker enregistré avec succès:', registration);
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de l\'enregistrement du Service Worker:', error);
+                    });
+            }
+        } else {
+            console.warn('Service Worker non supporté dans ce contexte (HTTPS requis)');
+        }
+    }
+    
+    function initCookieConsent() {
+        if (!localStorage.getItem('cookieConsent')) {
+            const cookieBanner = document.createElement('div');
+            cookieBanner.id = 'cookieBanner';
+            cookieBanner.style.cssText = `
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: #2c2c2c;
+                color: white;
+                padding: 1rem;
+                z-index: 10000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+            `;
+            
+            cookieBanner.innerHTML = `
+                <div style="margin-right: 1rem;">
+                    <p style="margin: 0; font-size: 0.9rem;">Nous utilisons des cookies pour améliorer votre expérience. En continuant à naviguer sur ce site, vous acceptez notre politique de cookies.</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button id="acceptCookies" style="background: #b27952; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Accepter</button>
+                    <button id="declineCookies" style="background: transparent; color: white; border: 1px solid white; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">Refuser</button>
+                </div>
+            `;
+            
+            document.body.appendChild(cookieBanner);
+            
+            document.getElementById('acceptCookies').addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'accepted');
+                document.getElementById('cookieBanner').remove();
+                
+                // Activer le suivi si accepté
+                enableTracking();
+            });
+            
+            document.getElementById('declineCookies').addEventListener('click', () => {
+                localStorage.setItem('cookieConsent', 'declined');
+                document.getElementById('cookieBanner').remove();
+            });
+        } else if (localStorage.getItem('cookieConsent') === 'accepted') {
+            // Activer le suivi si déjà accepté
+            enableTracking();
+        }
+    }
+    
+    // Fonction pour vérifier si l'utilisateur est déjà inscrit
+    function checkUserRegistration() {
+        const userRegistered = localStorage.getItem('userRegistered');
+        
+        if (!userRegistered) {
+            // L'utilisateur n'est pas encore inscrit, afficher le formulaire
+            setTimeout(() => {
+                showSignupModal();
+            }, 2000); // Afficher après 2 secondes
+        }
+    }
+    
+    // Fonction pour afficher le modal d'inscription
+    function showSignupModal() {
+        const signupModal = document.getElementById('signupModal');
+        if (signupModal) {
+            signupModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Ajouter une classe pour l'animation
+            setTimeout(() => {
+                const signupContainer = signupModal.querySelector('.signup-container');
+                if (signupContainer) {
+                    signupContainer.style.animation = 'slideInUp 0.5s ease-out forwards';
+                }
+            }, 10);
+        }
+    }
+    
+    // Fonction pour fermer le modal d'inscription
+    function closeSignupModal() {
+        const signupModal = document.getElementById('signupModal');
+        if (signupModal) {
+            const signupContainer = signupModal.querySelector('.signup-container');
+            if (signupContainer) {
+                signupContainer.style.animation = 'slideOutDown 0.3s ease-in forwards';
+                
+                setTimeout(() => {
+                    signupModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    signupContainer.style.animation = '';
+                }, 300);
+            } else {
+                signupModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }
+    
+    // Ajouter cette animation CSS dans la section <style>
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Fonction pour gérer la soumission du formulaire d'inscription
+    function handleSignup(event) {
+        event.preventDefault();
+        
+        const firstName = document.getElementById('userFirstName').value;
+        const lastName = document.getElementById('userLastName').value;
+        const email = document.getElementById('userEmail').value;
+        const newsletter = document.getElementById('newsletterSignup').checked;
+        
+        const signupError = document.getElementById('signupError');
+        const signupSuccess = document.getElementById('signupSuccess');
+        
+        // Cacher les messages précédents
+        signupError.style.display = 'none';
+        signupSuccess.style.display = 'none';
+        
+        // Valider les données
+        if (!firstName || !lastName || !email) {
+            signupError.textContent = 'Veuillez remplir tous les champs obligatoires.';
+            signupError.style.display = 'block';
+            return;
+        }
+        
+        // Créer l'objet utilisateur
+        const user = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            newsletter: newsletter,
+            registrationDate: new Date().toISOString()
+        };
+        
+        // Sauvegarder l'utilisateur
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('userRegistered', 'true');
+        
+        // Sauvegarder dans la liste des utilisateurs
+        let users = JSON.parse(localStorage.getItem('users') || '[]');
+        users.push(user);
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // Si l'utilisateur a accepté la newsletter
+        if (newsletter) {
+            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                localStorage.setItem('subscribers', JSON.stringify(subscribers));
+            }
+        }
+        
+        // Sauvegarder dans Firebase
+        if (database) {
+            // Sauvegarder l'utilisateur dans Firebase
+            const cleanEmail = email.replace(/[.#$[\]]/g, '_');
+            database.ref('users/' + cleanEmail).set(user).then(() => {
+                console.log('Utilisateur sauvegardé dans Firebase:', cleanEmail);
+            }).catch(error => {
+                console.error('Erreur lors de la sauvegarde de l\'utilisateur:', error);
+            });
+            
+            // Si newsletter, sauvegarder aussi dans la collection subscribers
+            if (newsletter) {
+                database.ref('subscribers/' + cleanEmail).set({
+                    email: email,
+                    subscriptionDate: new Date().toISOString()
+                }).then(() => {
+                    console.log('Abonné newsletter sauvegardé dans Firebase:', cleanEmail);
+                }).catch(error => {
+                    console.error('Erreur lors de la sauvegarde de l\'abonné:', error);
+                });
+            }
+        }
+        
+        // Afficher le message de succès
+        signupSuccess.textContent = 'Inscription réussie ! Bienvenue chez Decobizcreations.';
+        signupSuccess.style.display = 'block';
+        
+        // Fermer le modal après un délai
+        setTimeout(() => {
+            closeSignupModal();
+            showToast(`Bienvenue ${firstName} !`, 'success');
+            
+            // Mettre à jour l'affichage avec les informations de l'utilisateur
+            showUserWelcome();
+        }, 2000);
+        
+        // Suivre l'événement
+        trackEvent('user_signup', { email: email, name: `${firstName} ${lastName}` });
+    }
+    
+    // Fonction pour afficher un message de bienvenue personnalisé
+    function showUserWelcome() {
+        if (currentUser) {
+            // Créer un élément pour afficher le message de bienvenue
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.id = 'userWelcomeMessage';
+            welcomeMessage.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 15px;
+                background: var(--primary-color);
+                color: white;
+                padding: 10px 15px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                z-index: 1000;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                top: calc(80px + env(safe-area-inset-top));
+                right: calc(15px + env(safe-area-inset-right));
+            `;
+            welcomeMessage.innerHTML = `
+                <i class="fas fa-user"></i> Bienvenue ${currentUser.firstName} !
+            `;
+            
+            // Supprimer l'ancien message s'il existe
+            const oldMessage = document.getElementById('userWelcomeMessage');
+            if (oldMessage) {
+                oldMessage.remove();
+            }
+            
+            // Ajouter le nouveau message
+            document.body.appendChild(welcomeMessage);
+            
+            // Faire disparaître le message après 5 secondes
+            setTimeout(() => {
+                welcomeMessage.style.opacity = '0';
+                setTimeout(() => {
+                    if (welcomeMessage.parentNode) {
+                        welcomeMessage.parentNode.removeChild(welcomeMessage);
+                    }
+                }, 300);
+            }, 5000);
+        }
+    }
+    
+    function initUserSystem() {
+        const savedUser = localStorage.getItem('currentUser');
+        
+        if (savedUser) {
+            try {
+                currentUser = JSON.parse(savedUser);
+                showUserWelcome();
+            } catch (e) {
+                console.error('Erreur lors de la lecture des données utilisateur:', e);
+                localStorage.removeItem('currentUser');
+            }
+        }
+        
+        // Vérifier si l'utilisateur est déjà inscrit
+        checkUserRegistration();
+    }
+    
+    function optimizeForIPhone() {
+        const isIPhone = /iPhone/.test(navigator.userAgent);
+        
+        if (isIPhone) {
+            document.documentElement.style.setProperty('--viewport-height', window.innerHeight + 'px');
+            
+            window.addEventListener('orientationchange', function() {
+                setTimeout(function() {
+                    document.documentElement.style.setProperty('--viewport-height', window.innerHeight + 'px');
+                }, 500);
+            });
+            
+            document.body.style.webkitOverflowScrolling = 'touch';
+        }
+    }
+    
+    function initParallaxEffect() {
+        const heroSection = document.querySelector('.hero');
+        
+        if (heroSection) {
+            window.addEventListener('scroll', () => {
+                const scrollPosition = window.pageYOffset;
+                const heroPosition = heroSection.offsetTop;
+                const heroHeight = heroSection.offsetHeight;
+                
+                if (scrollPosition > heroPosition && scrollPosition < heroPosition + heroHeight) {
+                    const parallaxSpeed = 0.5;
+                    const yPos = -(scrollPosition - heroPosition) * parallaxSpeed;
+                    heroSection.style.backgroundPosition = `center ${yPos}px`;
+                }
+            });
+        }
+    }
+    
+    function initLazyLoading() {
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // S'assurer que l'image a une source valide
+                        if (!img.src || img.src === window.location.href) {
+                            img.src = img.dataset.src || img.getAttribute('src');
+                        }
+                        
+                        // Ajouter un gestionnaire d'erreur
+                        img.onerror = function() {
+                            console.error('Erreur de chargement d\'image:', this.src);
+                            this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE4MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIG5vbiBkaXNwb25pYmxlPC90ZXh0Pjwvc3ZnPg==';
+                        };
+                        
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            lazyImages.forEach(img => {
+                // S'assurer que l'image a un attribut data-src
+                if (!img.dataset.src && img.src) {
+                    img.dataset.src = img.src;
+                }
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback pour les navigateurs qui ne supportent pas IntersectionObserver
+            lazyImages.forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
+            });
+        }
+    }
+    
+    // ===============================================================
+    // FONCTIONS DE SUIVI DES VISITEURS
+    // ===============================================================
+    
+    // Fonction pour obtenir les données des visiteurs
+    window.getVisitorData = function() {
+        try {
+            const data = localStorage.getItem('decobizcreations_visitor_data');
+            return data ? JSON.parse(data) : [];
+        } catch (e) {
+            console.error("Erreur lors de la lecture des données visiteurs:", e);
+            return [];
+        }
+    };
+    
+    // Fonction pour mettre à jour le compteur de visiteurs
+    function updateVisitorCount() {
+        try {
+            const visitors = window.getVisitorData() || [];
+            const count = visitors.length;
+            
+            const countElement = document.getElementById('visitorCount');
+            const counterElement = document.getElementById('visitorCounter');
+            
+            if (countElement) countElement.textContent = count;
+            
+            // N'afficher le compteur que si l'admin est authentifié
+            if (counterElement && isAdminAuthenticated) {
+                counterElement.style.display = 'block';
+                counterElement.classList.add('visible');
+            } else if (counterElement) {
+                counterElement.style.display = 'none';
+            }
+            
+            localStorage.setItem('visitorCount', count.toString());
+            console.log("Compteur de visiteurs mis à jour:", count);
+        } catch (error) {
+            console.error("Erreur lors de la mise à jour du compteur:", error);
+        }
+    }
+    
+    // Fonction pour initialiser la détection mobile
+    function initMobileVisitorDetection() {
+        console.log("Initialisation de la détection mobile...");
+        
+        // Forcer une détection immédiate sur mobile
+        setTimeout(() => {
+            console.log("Tentative de détection forcée pour mobile...");
+            
+            // Vérifier si c'est un mobile
+            const isMobile = /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent);
+            const isTablet = /Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(navigator.userAgent);
+            
+            if (isMobile || isTablet) {
+                console.log("Appareil mobile détecté, forcer la détection...");
+                
+                // Simuler une nouvelle session pour mobile
+                const currentVisitors = window.getVisitorData() || [];
+                const currentSession = getSessionId();
+                
+                // Vérifier si cette session mobile existe déjà
+                const existingMobileSession = currentVisitors.find(v => 
+                    v.sessionId === currentSession && (v.isMobile || v.isTablet)
+                );
+                
+                if (!existingMobileSession) {
+                    console.log("Nouveau visiteur mobile détecté !");
+                    
+                    const mobileVisitor = {
+                        id: Date.now() + '_mobile_' + Math.random().toString(36).substring(2, 9),
+                        sessionId: currentSession,
+                        timestamp: new Date().toISOString(),
+                        userAgent: navigator.userAgent,
+                        device: isMobile ? 'Mobile' : 'Tablette',
+                        browser: getBrowserType(),
+                        os: getOperatingSystem(),
+                        screenResolution: `${screen.width}x${screen.height}`,
+                        language: navigator.language,
+                        referrer: document.referrer || 'Direct',
+                        page: window.location.pathname,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        isMobile: isMobile,
+                        isTablet: isTablet,
+                        touchEnabled: true,
+                        pixelRatio: window.devicePixelRatio || 1,
+                        viewportWidth: window.innerWidth,
+                        viewportHeight: window.innerHeight,
+                        connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                        city: '',
+                        country: '',
+                        region: '',
+                        latitude: '',
+                        longitude: ''
+                    };
+                    
+                    // Ajouter le visiteur mobile
+                    currentVisitors.unshift(mobileVisitor);
+                    
+                    // Limiter la taille
+                    if (currentVisitors.length > 2000) {
+                        currentVisitors.length = 2000;
+                    }
+                    
+                    // Sauvegarder
+                    localStorage.setItem('decobizcreations_visitor_data', JSON.stringify(currentVisitors));
+                    
+                    // Mettre à jour le compteur
+                    updateVisitorCount();
+                    
+                    // Sauvegarder dans Firebase
+                    saveVisitorToFirebase(mobileVisitor);
+                    
+                    // Obtenir la localisation
+                    getVisitorLocation(mobileVisitor.id);
+                    
+                    // Afficher une notification pour le débogage
+                    console.log('Visiteur mobile enregistré:', mobileVisitor);
+                    
+                    // Feedback visuel
+                    showMobileNotification();
+                }
+            }
+        }, 2000); // Attendre 2 secondes pour s'assurer que tout est chargé
+    }
+    
+    // Fonction pour afficher une notification mobile
+    function showMobileNotification() {
+        // Créer une notification temporaire pour confirmer la détection
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 10000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        notification.textContent = '📱 Visiteur mobile détecté !';
+        
+        document.body.appendChild(notification);
+        
+        // Animer l'entrée
+        setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+        }, 100);
+        
+        // Supprimer après 3 secondes
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 300);
+        }, 3000);
+    }
+    
+    // Fonction pour afficher la liste des visiteurs
+    function displayVisitorList() {
+        try {
+            const visitors = window.getVisitorData() || [];
+            const visitorList = document.getElementById('visitorList');
+            
+            if (!visitorList) {
+                console.error("Element 'visitorList' non trouvé");
+                return;
+            }
+            
+            if (visitors.length === 0) {
+                visitorList.innerHTML = '<div style="padding: 20px; text-align: center; color: #666;">Aucun visiteur enregistré</div>';
+                return;
+            }
+            
+            const recentVisitors = visitors.slice(0, 50);
+            
+            visitorList.innerHTML = recentVisitors.map(visitor => `
+                <div class="visitor-item">
+                    <div class="visitor-info">
+                        <div class="visitor-ip">
+                            <strong>${visitor.device}</strong> • ${visitor.browser}
+                            ${visitor.city ? `• ${visitor.city}, ${visitor.country}` : '• Localisation inconnue'}
+                        </div>
+                        <div class="visitor-details">
+                            ${visitor.os} • ${visitor.screenResolution} • ${visitor.language}
+                            ${visitor.isMobile ? '• Mobile' : ''}
+                            ${visitor.isTablet ? '• Tablette' : ''}
+                            ${visitor.touchEnabled ? '• Tactile' : ''}
+                        </div>
+                    </div>
+                    <div class="visitor-time">
+                        ${formatDateTime(visitor.timestamp)}
+                    </div>
+                </div>
+            `).join('');
+        } catch (error) {
+            console.error('Erreur dans displayVisitorList:', error);
+        }
+    }
+    
+    // Fonction pour afficher les statistiques
+    function displayVisitorStats() {
+        try {
+            const visitors = window.getVisitorData() || [];
+            
+            if (!Array.isArray(visitors)) {
+                console.error('Les données visiteurs ne sont pas un tableau:', visitors);
+                return;
+            }
+            
+            // Statistiques par ville
+            const cityStats = {};
+            visitors.forEach(visitor => {
+                if (visitor.city) {
+                    cityStats[visitor.city] = (cityStats[visitor.city] || 0) + 1;
+                }
+            });
+            
+            const topCities = Object.entries(cityStats)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            // Statistiques par pays
+            const countryStats = {};
+            visitors.forEach(visitor => {
+                if (visitor.country) {
+                    countryStats[visitor.country] = (countryStats[visitor.country] || 0) + 1;
+                }
+            });
+            
+            const topCountries = Object.entries(countryStats)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+            
+            // Statistiques par appareil
+            const deviceStats = {};
+            visitors.forEach(visitor => {
+                deviceStats[visitor.device] = (deviceStats[visitor.device] || 0) + 1;
+            });
+            
+            // Statistiques par navigateur
+            const browserStats = {};
+            visitors.forEach(visitor => {
+                browserStats[visitor.browser] = (browserStats[visitor.browser] || 0) + 1;
+            });
+            
+            // Statistiques par système d'exploitation
+            const osStats = {};
+            visitors.forEach(visitor => {
+                osStats[visitor.os] = (osStats[visitor.os] || 0) + 1;
+            });
+            
+            // Mettre à jour les sections existantes avec des tableaux
+            updateStatsSection('cityStats', topCities, '🌍 Top Villes');
+            updateStatsSection('deviceStats', Object.entries(deviceStats), '📱 Appareils');
+            
+            // Ajouter de nouvelles sections avec des tableaux
+            addStatsSection('countryStats', topCountries, '🌍 Top Pays');
+            addStatsSection('browserStats', Object.entries(browserStats), '🌐 Navigateurs');
+            addStatsSection('osStats', Object.entries(osStats), '💻 Systèmes d\'exploitation');
+            
+        } catch (error) {
+            console.error('Erreur dans displayVisitorStats:', error);
+        }
+    }
+    
+    function updateStatsSection(elementId, data, title) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            if (Array.isArray(data) && data.length > 0) {
+                element.innerHTML = data.map(([name, count]) => `
+                    <div class="stat-item">
+                        <span class="stat-label">${name}</span>
+                        <span class="stat-value">${count}</span>
+                    </div>
+                `).join('');
+            } else {
+                element.innerHTML = '<p>Aucune donnée disponible</p>';
+            }
+        }
+    }
+    
+    function addStatsSection(elementId, data, title) {
+        let section = document.getElementById(elementId);
+        if (!section) {
+            section = document.createElement('div');
+            section.id = elementId;
+            section.className = 'admin-section stats-section';
+            section.innerHTML = `<h3>${title}</h3><div class="stats-list"></div>`;
+            
+            const adminContent = document.querySelector('.admin-content');
+            const adminActions = document.querySelector('.admin-actions');
+            
+            if (adminContent && adminActions) {
+                adminContent.insertBefore(section, adminActions);
+            }
+        }
+        
+        const list = section.querySelector('.stats-list');
+        if (list) {
+            // Vérifier si data est un objet et le convertir en tableau
+            let dataArray = data;
+            if (!Array.isArray(data)) {
+                if (typeof data === 'object' && data !== null) {
+                    dataArray = Object.entries(data);
+                } else {
+                    dataArray = [];
+                }
+            }
+            
+            if (dataArray.length > 0) {
+                list.innerHTML = dataArray.map(([name, count]) => `
+                    <div class="stat-item">
+                        <span class="stat-label">${name}</span>
+                        <span class="stat-value">${count}</span>
+                    </div>
+                `).join('');
+            } else {
+                list.innerHTML = '<p>Aucune donnée disponible</p>';
+            }
+        }
+    }
+    
+    // Fonction pour mettre à jour les statistiques admin
+    function updateAdminStats() {
+        try {
+            const visitors = window.getVisitorData() || [];
+            const totalVisitors = visitors.length;
+            
+            const now = new Date();
+            const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+            const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+            const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+            
+            const todayVisitors = visitors.filter(v => new Date(v.timestamp) >= today).length;
+            const weekVisitors = visitors.filter(v => new Date(v.timestamp) >= weekAgo).length;
+            const monthVisitors = visitors.filter(v => new Date(v.timestamp) >= monthAgo).length;
+            
+            const totalElement = document.getElementById('totalVisitors');
+            const todayElement = document.getElementById('todayVisitors');
+            const weekElement = document.getElementById('weekVisitors');
+            const monthElement = document.getElementById('monthVisitors');
+            
+            if (totalElement) totalElement.textContent = totalVisitors.toLocaleString();
+            if (todayElement) todayElement.textContent = todayVisitors.toLocaleString();
+            if (weekElement) weekElement.textContent = weekVisitors.toLocaleString();
+            if (monthElement) monthElement.textContent = monthVisitors.toLocaleString();
+            
+            const countElement = document.getElementById('visitorCount');
+            const counterElement = document.getElementById('visitorCounter');
+            
+            if (countElement) countElement.textContent = totalVisitors;
+            if (counterElement && totalVisitors > 0 && isAdminAuthenticated) {
+                counterElement.classList.add('visible');
+            }
+        } catch (error) {
+            console.error('Erreur dans updateAdminStats:', error);
+        }
+    }
+    
+    // Fonction principale de suivi des visiteurs
+    function initVisitorTracking() {
+        console.log("Initialisation du système de suivi des visiteurs internationaux...");
+        
+        const VISITOR_STORAGE_KEY = 'decobizcreations_visitor_data';
+        
+        // S'assurer que getVisitorData est défini
+        if (typeof window.getVisitorData !== 'function') {
+            window.getVisitorData = function() {
+                try {
+                    const data = localStorage.getItem(VISITOR_STORAGE_KEY);
+                    return data ? JSON.parse(data) : [];
+                } catch (e) {
+                    console.error("Erreur lors de la lecture des données visiteurs:", e);
+                    return [];
+                }
+            };
+        }
+        
+        let visitors = window.getVisitorData();
+        console.log("Données visiteurs chargées:", visitors.length, "visiteurs");
+        
+        function detectVisitor() {
+            try {
+                const sessionId = getSessionId();
+                const now = new Date().toISOString();
+                
+                // Vérifier si cette session existe déjà
+                const existingSession = visitors.find(v => v.sessionId === sessionId);
+                
+                if (!existingSession) {
+                    console.log("Nouveau visiteur détecté!");
+                    
+                    // Détecter le type d'appareil
+                    const userAgent = navigator.userAgent;
+                    let deviceType = 'Ordinateur';
+                    
+                    if (/Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(userAgent)) {
+                        deviceType = 'Tablette';
+                    } else if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|webOS|Symbian|Mobile Safari|Fennec|Minimo|NetFront|Blazer|Dolfin|Skyfire|Bolt|Iris|Maemo|Meego|Bada/i.test(userAgent)) {
+                        deviceType = 'Mobile';
+                    }
+                    
+                    const visitor = {
+                        id: Date.now() + '_' + Math.random().toString(36).substring(2, 9),
+                        sessionId: sessionId,
+                        timestamp: now,
+                        userAgent: userAgent,
+                        device: deviceType,
+                        browser: getBrowserType(),
+                        os: getOperatingSystem(),
+                        screenResolution: `${screen.width}x${screen.height}`,
+                        language: navigator.language,
+                        referrer: document.referrer || 'Direct',
+                        page: window.location.pathname,
+                        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                        isMobile: deviceType === 'Mobile',
+                        isTablet: deviceType === 'Tablette',
+                        touchEnabled: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+                        pixelRatio: window.devicePixelRatio || 1,
+                        viewportWidth: window.innerWidth,
+                        viewportHeight: window.innerHeight,
+                        connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                        city: '',
+                        country: '',
+                        region: '',
+                        latitude: '',
+                        longitude: ''
+                    };
+                    
+                    visitors.unshift(visitor);
+                    
+                    if (visitors.length > 2000) {
+                        visitors = visitors.slice(0, 2000);
+                    }
+                    
+                    localStorage.setItem(VISITOR_STORAGE_KEY, JSON.stringify(visitors));
+                    
+                    console.log('Nouveau visiteur détecté (international):', visitor);
+                    
+                    updateVisitorCount();
+                    saveVisitorToFirebase(visitor);
+                    getVisitorLocation(visitor.id);
+                    
+                    // Afficher une notification sur mobile
+                    if (visitor.isMobile || visitor.isTablet) {
+                        showMobileNotification();
+                    }
+                    
+                    return true;
+                }
+                return false;
+            } catch (error) {
+                console.error("Erreur lors de la détection du visiteur:", error);
+                return false;
+            }
+        }
+        
+        // Détecter immédiatement
+        const newVisitorDetected = detectVisitor();
+        console.log("Détection initiale:", newVisitorDetected ? "Nouveau visiteur" : "Visiteur existant");
+        
+        // Détecter périodiquement
+        setInterval(detectVisitor, 60000);
+        
+        console.log('🔍 Système de suivi des visiteurs internationaux initialisé');
+        
+        // Mettre à jour les statistiques après un délai
+        setTimeout(() => {
+            updateAdminStats();
+            displayVisitorList();
+            displayVisitorStats();
+        }, 1000);
+        
+        // Initialiser la détection mobile spécifique
+        initMobileVisitorDetection();
+        
+        // Vérifier l'authentification admin au chargement
+        checkAdminAuthentication();
+    }
+    
+    // ===============================================================
+    // FONCTIONS D'ADMINISTRATION
+    // ===============================================================
+    
+    // Détecter les appareils mobiles et ajouter la classe appropriée
+    function detectMobile() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // Vérifier si c'est un appareil mobile
+        if (/android|iphone|ipad|ipod|blackberry|windows phone/i.test(userAgent) || 
+            window.innerWidth < 768) {
+            document.body.classList.add('mobile-device');
+        } else {
+            document.body.classList.remove('mobile-device');
+        }
+    }
+
+    // Exécuter au chargement de la page
+    document.addEventListener('DOMContentLoaded', detectMobile);
+
+    // Exécuter lors du redimensionnement de la fenêtre
+    window.addEventListener('resize', detectMobile);
+    
+    // Fonction pour vérifier l'authentification admin
+    function checkAdminAuthentication() {
+        const adminAuth = sessionStorage.getItem('adminAuth');
+        if (adminAuth === 'true') {
+            isAdminAuthenticated = true;
+            
+            // Afficher le compteur uniquement si l'admin est connecté
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'block';
+            }
+        }
+    }
+    
+    // Modifier la fonction initAdminPanel
+    function initAdminPanel() {
+        const adminTrigger = document.getElementById('adminTrigger');
+        const adminPanel = document.getElementById('adminPanel');
+        let clickCount = 0;
+        let clickTimer = null;
+        
+        // Méthode 1: Clics multiples (adapté pour iPhone)
+        if (adminTrigger) {
+            adminTrigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                clickCount++;
+                console.log(`Clic admin: ${clickCount}/5`);
+                
+                if (clickCount === 1) {
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                        console.log('Compteur de clics réinitialisé');
+                    }, 3000);
+                }
+                
+                if (clickCount === 5) {
+                    console.log('Demande d\'authentification admin');
+                    authenticateAdmin();
+                    clickCount = 0;
+                    clearTimeout(clickTimer);
+                    
+                    if (navigator.vibrate) {
+                        navigator.vibrate(200);
+                    }
+                }
+            });
+        }
+        
+        // Méthode 2: Séquence de touches
+        let keySequence = '';
+        const adminSequence = 'admin';
+        
+        document.addEventListener('keydown', function(e) {
+            keySequence += e.key.toLowerCase();
+            
+            if (keySequence.length > 10) {
+                keySequence = keySequence.slice(-10);
+            }
+            
+            if (keySequence.includes(adminSequence)) {
+                console.log('Séquence admin détectée !');
+                authenticateAdmin();
+                keySequence = '';
+                
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+            }
+        });
+        
+        // Méthode 3: Double tap spécial pour mobile
+        let lastTap = 0;
+        document.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            
+            if (tapLength < 300 && tapLength > 0) {
+                console.log('Double tap détecté');
+                
+                const touch = e.changedTouches[0];
+                const secretZone = {
+                    x: window.innerWidth * 0.2,
+                    y: window.innerHeight * 0.2,
+                    size: 50
+                };
+                
+                if (touch.clientX < secretZone.x && touch.clientY < secretZone.y) {
+                    console.log('Double tap dans la zone secrète !');
+                    authenticateAdmin();
+                    
+                    if (navigator.vibrate) {
+                        navigator.vibrate([100, 50, 100]);
+                    }
+                }
+            }
+            
+            lastTap = currentTime;
+        });
+    }
+    
+    // Ajouter cette fonction d'authentification
+    function authenticateAdmin() {
+        const authModal = document.getElementById('authModal');
+        if (authModal) {
+            authModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    
+    function closeAuthModal() {
+        const authModal = document.getElementById('authModal');
+        if (authModal) {
+            authModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    // Modifier la fonction showAdminPanel
+    function showAdminPanel() {
+        const adminPanel = document.getElementById('adminPanel');
+        if (adminPanel) {
+            adminPanel.style.display = 'flex';
+            updateAdminStats();
+            displayVisitorList();
+            displayVisitorStats();
+            
+            // Afficher le compteur de visiteurs uniquement pour l'admin
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'block';
+            }
+            
+            // Ajouter le bouton de déconnexion s'il n'existe pas déjà
+            addAdminLogoutButton();
+        }
+    }
+    
+    // Modifier la fonction closeAdminPanel
+    function closeAdminPanel() {
+        const adminPanel = document.getElementById('adminPanel');
+        if (adminPanel) {
+            adminPanel.style.display = 'none';
+            
+            // Cacher le compteur de visiteurs en quittant le panel admin
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'none';
+            }
+        }
+    }
+    
+    // Ajouter cette fonction pour se déconnecter de l'admin
+    function logoutAdmin() {
+        isAdminAuthenticated = false;
+        sessionStorage.removeItem('adminAuth');
+        
+        // Cacher le compteur de visiteurs
+        const visitorCounter = document.getElementById('visitorCounter');
+        if (visitorCounter) {
+            visitorCounter.style.display = 'none';
+        }
+        
+        showToast('Déconnexion admin réussie', 'info');
+        closeAdminPanel();
+    }
+    
+    // Ajouter un bouton de déconnexion dans le panneau admin
+    function addAdminLogoutButton() {
+        const adminActions = document.querySelector('.admin-actions');
+        
+        if (!document.getElementById('adminLogoutBtn')) {
+            const logoutBtn = document.createElement('button');
+            logoutBtn.id = 'adminLogoutBtn';
+            logoutBtn.className = 'admin-btn admin-btn-danger';
+            logoutBtn.textContent = '🚪 Déconnexion';
+            logoutBtn.onclick = logoutAdmin;
+            adminActions.appendChild(logoutBtn);
+        }
+    }
+    
+    // ===============================================================
+    // FONCTIONS D'AUTHENTIFICATION
+    // ===============================================================
+    
+    // Initialisation des fonctions d'authentification
+    document.addEventListener('DOMContentLoaded', function() {
+        // Vérifier si l'utilisateur est déjà connecté
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                const adminAuth = sessionStorage.getItem('adminAuth') || localStorage.getItem('adminAuth');
+                if (adminAuth === 'true') {
+                    isAdminAuthenticated = true;
+                    
+                    // Afficher le compteur uniquement si l'admin est connecté
+                    const visitorCounter = document.getElementById('visitorCounter');
+                    if (visitorCounter) {
+                        visitorCounter.style.display = 'block';
+                    }
+                }
+            }
+        });
+        
+        // Initialiser le formulaire de connexion
+        const loginForm = document.getElementById('loginForm');
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('loginEmail').value;
+                const password = document.getElementById('loginPassword').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                const authError = document.getElementById('authError');
+                const authSuccess = document.getElementById('authSuccess');
+                
+                // Cacher les messages précédents
+                authError.style.display = 'none';
+                authSuccess.style.display = 'none';
+                
+                // Authentification avec Firebase
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        // Vérifier si l'utilisateur est un administrateur
+                        const user = userCredential.user;
+                        
+                        database.ref('admins/' + user.uid).once('value')
+                            .then((snapshot) => {
+                                if (snapshot.exists()) {
+                                    // L'utilisateur est un administrateur
+                                    isAdminAuthenticated = true;
+                                    sessionStorage.setItem('adminAuth', 'true');
+                                    
+                                    if (rememberMe) {
+                                        localStorage.setItem('adminAuth', 'true');
+                                    }
+                                    
+                                    authSuccess.textContent = 'Authentification réussie ! Redirection...';
+                                    authSuccess.style.display = 'block';
+                                    
+                                    // Fermer le modal et afficher le panneau d'administration
+                                    setTimeout(() => {
+                                        closeAuthModal();
+                                        showAdminPanel();
+                                    }, 1500);
+                                } else {
+                                    // L'utilisateur n'est pas un administrateur
+                                    authError.textContent = 'Vous n\'êtes pas autorisé à accéder à cette section.';
+                                    authError.style.display = 'block';
+                                    
+                                    // Déconnecter l'utilisateur
+                                    auth.signOut();
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('Erreur lors de la vérification des droits admin:', error);
+                                authError.textContent = 'Erreur lors de la vérification des droits d\'accès.';
+                                authError.style.display = 'block';
+                            });
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        let errorMessage = 'Erreur lors de l\'authentification.';
+                        
+                        switch (errorCode) {
+                            case 'auth/user-not-found':
+                                errorMessage = 'Aucun compte trouvé avec cet email.';
+                                break;
+                            case 'auth/wrong-password':
+                                errorMessage = 'Mot de passe incorrect.';
+                                break;
+                            case 'auth/invalid-email':
+                                errorMessage = 'Email invalide.';
+                                break;
+                            case 'auth/user-disabled':
+                                errorMessage = 'Ce compte a été désactivé.';
+                                break;
+                            default:
+                                errorMessage = 'Erreur: ' + error.message;
+                        }
+                        
+                        authError.textContent = errorMessage;
+                        authError.style.display = 'block';
+                    });
+            });
+        }
+    });
+    
+    // Fonction pour se connecter avec Google
+    // Fonction pour se connecter avec Google - CORRIGÉE
+    function signInWithGoogle() {
+        // Vérifier l'environnement avant de continuer
+        if (!checkEnvironment()) {
+            return;
+        }
+        
+        if (!auth) {
+            console.error("Firebase Auth n'est pas initialisé");
+            showToast("Erreur d'initialisation de l'authentification", "error");
+            return;
+        }
+        
+        const provider = new firebase.auth.GoogleAuthProvider();
+        
+        // Ajouter des scopes
+        provider.addScope('profile');
+        provider.addScope('email');
+        
+        // Configuration supplémentaire pour éviter les problèmes de redirect_uri
+        provider.setCustomParameters({
+            'login_hint': 'email',
+            'prompt': 'select_account'
+        });
+        
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                // L'utilisateur est connecté
+                const user = result.user;
+                console.log("Utilisateur connecté avec Google:", user);
+                
+                // Vérifier si l'utilisateur est un administrateur
+                return database.ref('admins/' + user.uid).once('value');
+            })
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    // L'utilisateur est un administrateur
+                    isAdminAuthenticated = true;
+                    sessionStorage.setItem('adminAuth', 'true');
+                    
+                    closeAuthModal();
+                    showAdminPanel();
+                    showToast('Authentification réussie avec Google !', 'success');
+                } else {
+                    // L'utilisateur n'est pas un administrateur
+                    showToast('Vous n\'êtes pas autorisé à accéder à cette section.', 'error');
+                    auth.signOut();
+                }
+            })
+            .catch((error) => {
+                console.error('Erreur lors de la connexion avec Google:', error);
+                
+                // Gérer les erreurs spécifiques
+                let errorMessage = 'Erreur lors de la connexion avec Google.';
+                
+                switch (error.code) {
+                    case 'auth/operation-not-supported-in-this-environment':
+                        errorMessage = 'Cette opération n\'est pas supportée dans cet environnement. Veuillez exécuter l\'application via un serveur web (HTTP/HTTPS).';
+                        break;
+                    case 'auth/account-exists-with-different-credential':
+                        errorMessage = 'Un compte existe déjà avec la même adresse email mais avec des identifiants différents.';
+                        break;
+                    case 'auth/auth-domain-config-required':
+                        errorMessage = 'La configuration du domaine d\'authentification est requise.';
+                        break;
+                    case 'auth/cancelled-popup-request':
+                        errorMessage = 'La fenêtre de connexion a été fermée.';
+                        break;
+                    case 'auth/operation-not-allowed':
+                        errorMessage = 'La connexion avec Google n\'est pas activée.';
+                        break;
+                    case 'auth/popup-blocked':
+                        errorMessage = 'La fenêtre de connexion a été bloquée par le navigateur.';
+                        break;
+                    case 'auth/popup-closed-by-user':
+                        errorMessage = 'La fenêtre de connexion a été fermée par l\'utilisateur.';
+                        break;
+                    case 'auth/unauthorized-domain':
+                        errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification.';
+                        break;
+                    default:
+                        errorMessage = error.message || 'Erreur inconnue lors de la connexion.';
+                }
+                
+                showToast(errorMessage, 'error');
+            });
+    }
+    
+    // Fonction pour se connecter avec Facebook
+    function signInWithFacebook() {
+        // Vérifier l'environnement avant de continuer
+        if (!checkEnvironment()) {
+            return;
+        }
+        
+        if (!auth) {
+            console.error("Firebase Auth n'est pas initialisé");
+            showToast("Erreur d'initialisation de l'authentification", "error");
+            return;
+        }
+        
+        const provider = new firebase.auth.FacebookAuthProvider();
+        
+        // Ajouter des scopes
+        provider.addScope('public_profile');
+        provider.addScope('email');
+        
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                // L'utilisateur est connecté
+                const user = result.user;
+                console.log("Utilisateur connecté avec Facebook:", user);
+                
+                // Vérifier si l'utilisateur est un administrateur
+                return database.ref('admins/' + user.uid).once('value');
+            })
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    // L'utilisateur est un administrateur
+                    isAdminAuthenticated = true;
+                    sessionStorage.setItem('adminAuth', 'true');
+                    
+                    closeAuthModal();
+                    showAdminPanel();
+                    showToast('Authentification réussie avec Facebook !', 'success');
+                } else {
+                    // L'utilisateur n'est pas un administrateur
+                    showToast('Vous n\'êtes pas autorisé à accéder à cette section.', 'error');
+                    auth.signOut();
+                }
+            })
+            .catch((error) => {
+                console.error('Erreur lors de la connexion avec Facebook:', error);
+                
+                // Gérer les erreurs spécifiques
+                let errorMessage = 'Erreur lors de la connexion avec Facebook.';
+                
+                switch (error.code) {
+                    case 'auth/operation-not-supported-in-this-environment':
+                        errorMessage = 'Cette opération n\'est pas supportée dans cet environnement. Veuillez exécuter l\'application via un serveur web (HTTP/HTTPS).';
+                        break;
+                    case 'auth/account-exists-with-different-credential':
+                        errorMessage = 'Un compte existe déjà avec la même adresse email mais avec des identifiants différents.';
+                        break;
+                    case 'auth/auth-domain-config-required':
+                        errorMessage = 'La configuration du domaine d\'authentification est requise.';
+                        break;
+                    case 'auth/cancelled-popup-request':
+                        errorMessage = 'La fenêtre de connexion a été fermée.';
+                        break;
+                    case 'auth/operation-not-allowed':
+                        errorMessage = 'La connexion avec Facebook n\'est pas activée.';
+                        break;
+                    case 'auth/popup-blocked':
+                        errorMessage = 'La fenêtre de connexion a été bloquée par le navigateur.';
+                        break;
+                    case 'auth/popup-closed-by-user':
+                        errorMessage = 'La fenêtre de connexion a été fermée par l\'utilisateur.';
+                        break;
+                    case 'auth/unauthorized-domain':
+                        errorMessage = 'Ce domaine n\'est pas autorisé pour l\'authentification.';
+                        break;
+                    default:
+                        errorMessage = error.message || 'Erreur inconnue lors de la connexion.';
+                }
+                
+                showToast(errorMessage, 'error');
+            });
+    }
+    
+    // Amélioration du panneau d'administration
+    function showAdminPanel() {
+        const adminPanel = document.getElementById('adminPanel');
+        if (adminPanel) {
+            adminPanel.style.display = 'flex';
+            
+            // Mettre à jour les informations de l'administrateur
+            updateAdminInfo();
+            
+            // Mettre à jour les statistiques
+            updateAdminStats();
+            displayVisitorList();
+            displayVisitorStats();
+            
+            // Afficher le compteur de visiteurs uniquement pour l'admin
+            const visitorCounter = document.getElementById('visitorCounter');
+            if (visitorCounter) {
+                visitorCounter.style.display = 'block';
+            }
+            
+            // Ajouter le bouton de déconnexion s'il n'existe pas déjà
+            addAdminLogoutButton();
+        }
+    }
+    
+    // Mettre à jour les informations de l'administrateur
+    function updateAdminInfo() {
+        const user = auth.currentUser;
+        if (user) {
+            const adminHeader = document.querySelector('.admin-header');
+            if (adminHeader) {
+                // Ajouter les informations de l'admin dans l'en-tête
+                const adminInfo = document.createElement('div');
+                adminInfo.className = 'admin-info';
+                adminInfo.innerHTML = `
+                    <div class="admin-avatar">
+                        ${user.photoURL ? `<img src="${user.photoURL}" alt="Avatar">` : `<i class="fas fa-user-circle"></i>`}
+                    </div>
+                    <div class="admin-details">
+                        <div class="admin-name">${user.displayName || 'Administrateur'}</div>
+                        <div class="admin-email">${user.email}</div>
+                    </div>
+                `;
+                
+                // Insérer avant le titre
+                const adminTitle = adminHeader.querySelector('.admin-title');
+                if (adminTitle) {
+                    adminHeader.insertBefore(adminInfo, adminTitle);
+                }
+            }
+        }
+    }
+    
+    // ===============================================================
+    // FONCTIONS UTILITAIRES
+    // ===============================================================
+    
+    function formatDateTime(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    }
+    
+    function getSessionId() {
+        let sessionId = sessionStorage.getItem('visitor_session');
+        if (!sessionId) {
+            sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            sessionStorage.setItem('visitor_session', sessionId);
+        }
+        return sessionId;
+    }
+    
+    function getDeviceType() {
+        const userAgent = navigator.userAgent;
+        if (/Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(userAgent)) {
+            return 'Tablette';
+        }
+        if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|webOS|Symbian|Mobile Safari|Fennec|Minimo|NetFront|Blazer|Dolfin|Skyfire|Bolt|Iris|Maemo|Meego|Bada/i.test(userAgent)) {
+            return 'Mobile';
+        }
+        if (/Windows|Macintosh|Linux|X11|Ubuntu|CrOS/i.test(userAgent)) {
+            return 'Ordinateur';
+        }
+        return 'Inconnu';
+    }
+    
+    function getBrowserType() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) return 'Chrome';
+        if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
+        if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
+        if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident') > -1) return 'Internet Explorer';
+        if (userAgent.indexOf('Edg') > -1) return 'Microsoft Edge';
+        if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) return 'Opera';
+        if (userAgent.indexOf('Brave') > -1) return 'Brave';
+        return 'Inconnu';
+    }
+    
+    function getOperatingSystem() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf('Windows') > -1) {
+            if (userAgent.indexOf('Windows NT 10.0') > -1) return 'Windows 10';
+            if (userAgent.indexOf('Windows NT 6.3') > -1) return 'Windows 8.1';
+            if (userAgent.indexOf('Windows NT 6.2') > -1) return 'Windows 8';
+            if (userAgent.indexOf('Windows NT 6.1') > -1) return 'Windows 7';
+            return 'Windows';
+        } else if (userAgent.indexOf('Mac') > -1) return 'macOS';
+        else if (userAgent.indexOf('X11') > -1) return 'UNIX';
+        else if (userAgent.indexOf('Linux') > -1) return 'Linux';
+        else if (/Android/.test(userAgent)) return 'Android';
+        else if (/like Mac OS X/.test(userAgent)) return 'iOS';
+        return 'Inconnu';
+    }
+    
+    // ===============================================================
+    // FONCTIONS DE TEST ET ANALYSE
+    // ===============================================================
+    
+    function testDeviceDetection() {
+        console.log("=== Test de détection d'appareil ===");
+        console.log("User Agent:", navigator.userAgent);
+        console.log("Type d'appareil détecté:", getDeviceType());
+        console.log("Est mobile:", /Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(navigator.userAgent));
+        console.log("Est tablette:", /Tablet|iPad|PlayBook|Silk|Kindle/i.test(navigator.userAgent));
+        console.log("Support tactile:", 'ontouchstart' in window);
+        console.log("Points tactiles max:", navigator.maxTouchPoints);
+        console.log("Largeur écran:", screen.width);
+        console.log("Hauteur écran:", screen.height);
+        console.log("Largeur viewport:", window.innerWidth);
+        console.log("Hauteur viewport:", window.innerHeight);
+        console.log("=== Fin du test ===");
+    }
+    
+    function analyzeStoredData() {
+        try {
+            const visitors = window.getVisitorData() || [];
+            
+            console.log("=== Analyse des données stockées ===");
+            console.log("Total des visiteurs:", visitors.length);
+            
+            const deviceStats = {};
+            visitors.forEach(v => {
+                deviceStats[v.device] = (deviceStats[v.device] || 0) + 1;
+            });
+            console.log("Répartition par appareil:", deviceStats);
+            
+            const cityStats = {};
+            visitors.forEach(v => {
+                if (v.city) {
+                    cityStats[v.city] = (cityStats[v.city] || 0) + 1;
+                }
+            });
+            console.log("Répartition par ville:", cityStats);
+            
+            const browserStats = {};
+            visitors.forEach(v => {
+                browserStats[v.browser] = (browserStats[v.browser] || 0) + 1;
+            });
+            console.log("Répartition par navigateur:", browserStats);
+            
+            const osStats = {};
+            visitors.forEach(v => {
+                osStats[v.os] = (osStats[v.os] || 0) + 1;
+            });
+            console.log("Répartition par OS:", osStats);
+            
+            console.log("=== Fin de l'analyse ===");
+        } catch (error) {
+            console.error('Erreur lors de l\'analyse:', error);
+        }
+    }
+    
+    // Fonction pour activer le suivi
+    function enableTracking() {
+        console.log('Suivi activé');
+        // Activer Google Analytics ou autres services de suivi ici
+    }
+    
+    // Fonction pour afficher des instructions mobile
+    function showMobileInstructions() {
+        console.log("Instructions pour mobile affichées");
+        // Afficher des instructions spécifiques pour les utilisateurs mobiles
+    }
+    
+    // Fonction pour forcer la détection mobile
+    function forceMobileDetection() {
+        console.log("Forçage de la détection mobile");
+        initMobileVisitorDetection();
+    }
+    
+    // ===============================================================
+    // FONCTIONS SUPPLÉMENTAIRES
+    // ===============================================================
+    
+    function goToTestimonial(index) {
+        currentTestimonial = index;
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === index);
+        });
+        
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+    
+    function openModal(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        
+        if (modal && modalImg) {
+            modal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+    }
+    
+    function quickView(productId) {
+        currentQuickViewProduct = productId;
+        const product = productsData[productId];
+        
+        if (product) {
+            const quickViewImage = document.getElementById('quickViewImage');
+            const quickViewTitle = document.getElementById('quickViewTitle');
+            const quickViewDescription = document.getElementById('quickViewDescription');
+            const quickViewPrice = document.getElementById('quickViewPrice');
+            const quickViewModal = document.getElementById('quickViewModal');
+            
+            if (quickViewImage && quickViewTitle && quickViewDescription && quickViewPrice && quickViewModal) {
+                quickViewImage.src = product.image;
+                quickViewTitle.textContent = product.title;
+                quickViewDescription.textContent = product.description;
+                quickViewPrice.textContent = `${product.price} DH`;
+                
+                quickViewModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                trackEvent('quick_view', { product_id: productId });
+            }
+        }
+    }
+    
+    function closeQuickView() {
+        const quickViewModal = document.getElementById('quickViewModal');
+        if (quickViewModal) {
+            quickViewModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    function addToCartFromQuickView() {
+        if (currentQuickViewProduct) {
+            addToCart(currentQuickViewProduct);
+            closeQuickView();
+        }
+    }
+    
+    function addToWishlistFromQuickView() {
+        if (currentQuickViewProduct) {
+            addToWishlist(currentQuickViewProduct);
+        }
+    }
+    
+    function addToWishlist(productId) {
+        showToast('Produit ajouté aux favoris !', 'success');
+        trackEvent('add_to_wishlist', { product_id: productId });
+    }
+    
+    function subscribeNewsletter(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input[type="email"]').value;
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(email)) {
+            showToast('Merci pour votre inscription !', 'success');
+            event.target.reset();
+            
+            let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                localStorage.setItem('subscribers', JSON.stringify(subscribers));
+            }
+            
+            trackEvent('newsletter_subscription', { email: email });
+        } else {
+            showToast('Veuillez entrer une adresse email valide', 'error');
+        }
+    }
+    
+    function exportDetailedVisitorData() {
+        try {
+            if (typeof window.getVisitorData !== 'function') {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            const visitors = window.getVisitorData() || [];
+            
+            if (visitors.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            // Créer le contenu CSV avec toutes les informations
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + "ID Session,Timestamp,Appareil,Navigateur,Système d'exploitation,Résolution d'écran,Langue,Référent,Page,Fuseau horaire,Ville,Pays,Région,Latitude,Longitude,Mobile,Tablette,Tactile,Ratio pixel,Viewport,Type de connexion\n"
+                + visitors.map(v => 
+                    `"${v.sessionId}","${v.timestamp}","${v.device}","${v.browser}","${v.os}","${v.screenResolution}","${v.language}","${v.referrer}","${v.page}","${v.timezone}","${v.city || ''}","${v.country || ''}","${v.region || ''}","${v.latitude || ''}","${v.longitude || ''}","${v.isMobile}","${v.isTablet}","${v.touchEnabled}","${v.pixelRatio}","${v.viewportWidth}x${v.viewportHeight}","${v.connectionType}"`
+                ).join("\n");
+            
+            // Créer un lien de téléchargement
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `visiteurs_internationaux_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('Données internationales exportées avec succès !');
+        } catch (error) {
+            console.error('Erreur lors de l\'exportation:', error);
+            alert('Erreur lors de l\'exportation des données');
+        }
+    }
+    
+    function exportVisitorDataByLocation() {
+        try {
+            if (typeof window.getVisitorData !== 'function') {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            const visitors = window.getVisitorData() || [];
+            
+            if (visitors.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+            
+            // Préparer les données par ville et pays
+            const locationData = {};
+            visitors.forEach(visitor => {
+                if (visitor.city && visitor.country) {
+                    const locationKey = `${visitor.city}, ${visitor.country}`;
+                    if (!locationData[locationKey]) {
+                        locationData[locationKey] = {
+                            Mobile: 0,
+                            Ordinateur: 0,
+                            Tablette: 0,
+                            Autre: 0
+                        };
+                    }
+                    
+                    if (visitor.device === 'Mobile') {
+                        locationData[locationKey].Mobile++;
+                    } else if (visitor.device === 'Ordinateur') {
+                        locationData[locationKey].Ordinateur++;
+                    } else if (visitor.device === 'Tablette') {
+                        locationData[locationKey].Tablette++;
+                    } else {
+                        locationData[locationKey].Autre++;
+                    }
+                }
+            });
+            
+            // Créer le contenu CSV
+            let csvContent = "data:text/csv;charset=utf-8," 
+                + "Ville,Pays,Mobile,Ordinateur,Tablette,Autre,Total\n";
+                
+            Object.entries(locationData).forEach(([location, devices]) => {
+                const [city, country] = location.split(', ');
+                const total = devices.Mobile + devices.Ordinateur + devices.Tablette + devices.Autre;
+                csvContent += `"${city}","${country}",${devices.Mobile},${devices.Ordinateur},${devices.Tablette},${devices.Autre},${total}\n`;
+            });
+            
+            // Créer un lien de téléchargement
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `visiteurs_par_localisation_${new Date().toISOString().split('T')[0]}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            alert('Données par localisation exportées avec succès !');
+        } catch (error) {
+            console.error('Erreur lors de l\'exportation:', error);
+            alert('Erreur lors de l\'exportation des données');
+        }
+    }
+    
+    // Actualiser les données
+    function refreshVisitorData() {
+        updateAdminStats();
+        displayVisitorList();
+        displayVisitorStats();
+        alert('Données actualisées !');
+    }
+    
+    // Effacer les données des visiteurs
+    function clearVisitorData() {
+        if (confirm('Êtes-vous sûr de vouloir effacer toutes les données de visiteurs ? Cette action est irréversible.')) {
+            localStorage.removeItem('decobizcreations_visitor_data');
+            window.getVisitorData = function() { return []; };
+            updateAdminStats();
+            displayVisitorList();
+            displayVisitorStats();
+            alert('Données effacées avec succès !');
+        }
+    }
+    
+    // Fonction pour analyser les données en temps réel
+    function analyzeVisitorData() {
+        try {
+            if (typeof window.getVisitorData !== 'function') {
+                console.error('getVisitorData n\'est pas une fonction');
+                return;
+            }
+            
+            const visitors = window.getVisitorData() || [];
+            
+            console.log("=== Analyse des visiteurs internationaux ===");
+            console.log("Total des visiteurs:", visitors.length);
+            
+            // Analyser par pays
+            const countryCount = {};
+            visitors.forEach(v => {
+                if (v.country) {
+                    countryCount[v.country] = (countryCount[v.country] || 0) + 1;
+                }
+            });
+            console.log("Visiteurs par pays:", countryCount);
+            
+            // Analyser par ville
+            const cityCount = {};
+            visitors.forEach(v => {
+                if (v.city) {
+                    cityCount[v.city] = (cityCount[v.city] || 0) + 1;
+                }
+            });
+            console.log("Visiteurs par ville:", cityCount);
+            
+            // Analyser par appareil
+            const deviceCount = {};
+            visitors.forEach(v => {
+                deviceCount[v.device] = (deviceCount[v.device] || 0) + 1;
+            });
+            console.log("Visiteurs par appareil:", deviceCount);
+            
+            // Analyser par navigateur
+            const browserCount = {};
+            visitors.forEach(v => {
+                browserCount[v.browser] = (browserCount[v.browser] || 0) + 1;
+            });
+            console.log("Visiteurs par navigateur:", browserCount);
+            
+            // Analyser par système d'exploitation
+            const osCount = {};
+            visitors.forEach(v => {
+                osCount[v.os] = (osCount[v.os] || 0) + 1;
+            });
+            console.log("Visiteurs par OS:", osCount);
+            
+            console.log("=== Fin de l'analyse ===");
+        } catch (error) {
+            console.error('Erreur lors de l\'analyse:', error);
+        }
+    }
+    
+    // Fonctions utilitaires supplémentaires
+    function cleanupOldSessions() {
+        try {
+            const visitors = window.getVisitorData() || [];
+            const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+            
+            const filteredVisitors = visitors.filter(v => {
+                const visitDate = new Date(v.timestamp);
+                return visitDate > oneWeekAgo;
+            });
+            
+            if (filteredVisitors.length !== visitors.length) {
+                localStorage.setItem('decobizcreations_visitor_data', JSON.stringify(filteredVisitors));
+                console.log(`Nettoyage des anciennes sessions: ${visitors.length - filteredVisitors.length} sessions supprimées`);
+            }
+        } catch (error) {
+            console.error('Erreur lors du nettoyage des sessions:', error);
+        }
+    }
+    
+    // Événements pour le bouton "Découvrir plus"
+    document.addEventListener('DOMContentLoaded', function() {
+        const btnDecouvrir = document.querySelector('.btn-discover');
+        const contenuDecouvrir = document.getElementById('contenuDecouvrir');
+        
+        if (btnDecouvrir && contenuDecouvrir) {
+            btnDecouvrir.addEventListener('click', function() {
+                if (contenuDecouvrir.style.display === 'none' || contenuDecouvrir.style.display === '') {
+                    contenuDecouvrir.style.display = 'block';
+                    contenuDecouvrir.style.opacity = '0';
+                    contenuDecouvrir.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        contenuDecouvrir.style.opacity = '1';
+                        contenuDecouvrir.style.transform = 'translateY(0)';
+                    }, 50);
+                    
+                    btnDecouvrir.textContent = 'Masquer';
+                    
+                    setTimeout(() => {
+                        contenuDecouvrir.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }, 100);
+                    
+                    trackEvent('discover_more_click');
+                } else {
+                    contenuDecouvrir.style.opacity = '0';
+                    contenuDecouvrir.style.transform = 'translateY(-20px)';
+                    
+                    setTimeout(() => {
+                        contenuDecouvrir.style.display = 'none';
+                    }, 300);
+                    
+                    btnDecouvrir.textContent = 'Découvrir plus';
+                }
+            });
+        }
+    });
+    
+    // Événements du DOM
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('imageModal');
+        const quickViewModal = document.getElementById('quickViewModal');
+        const customizationModal = document.getElementById('customizationModal');
+        const adminPanel = document.getElementById('adminPanel');
+        const authModal = document.getElementById('authModal');
+        const signupModal = document.getElementById('signupModal');
+        const clientSignupModal = document.getElementById('clientSignupModal');
+        const clientLoginModal = document.getElementById('clientLoginModal');
+        
+        if (event.target === modal) {
+            closeModal();
+        }
+        
+        if (event.target === quickViewModal) {
+            closeQuickView();
+        }
+        
+        if (event.target === customizationModal) {
+            closeCustomization();
+        }
+        
+        if (event.target === adminPanel) {
+            closeAdminPanel();
+        }
+        
+        if (event.target === authModal) {
+            closeAuthModal();
+        }
+        
+        if (event.target === signupModal) {
+            closeSignupModal();
+        }
+        
+        if (event.target === clientSignupModal) {
+            closeClientSignupModal();
+        }
+        
+        if (event.target === clientLoginModal) {
+            closeClientLoginModal();
+        }
+    });
+    
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+            closeQuickView();
+            closeCustomization();
+            closeAdminPanel();
+            closeAuthModal();
+            closeSignupModal();
+            closeClientSignupModal();
+            closeClientLoginModal();
+        }
+        
+        if (event.key === 'ArrowLeft') {
+            const prevBtn = document.getElementById('prevBtn');
+            const prevTestimonial = document.getElementById('prevTestimonial');
+            if (prevBtn) prevBtn.click();
+            if (prevTestimonial) prevTestimonial.click();
+        }
+        
+        if (event.key === 'ArrowRight') {
+            const nextBtn = document.getElementById('nextBtn');
+            const nextTestimonial = document.getElementById('nextTestimonial');
+            if (nextBtn) nextBtn.click();
+            if (nextTestimonial) nextTestimonial.click();
+        }
+    });
+    
+    // Ajoutez ce code dans la section d'initialisation des événements
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser le système client
+        initClientSystem();
+        
+        // Gérer les liens entre les modals client
+        const showClientLogin = document.getElementById('showClientLogin');
+        if (showClientLogin) {
+            showClientLogin.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeClientSignupModal();
+                showClientLoginModal();
+            });
+        }
+        
+        const showClientSignup = document.getElementById('showClientSignup');
+        if (showClientSignup) {
+            showClientSignup.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeClientLoginModal();
+                showClientSignupModal();
+            });
+        }
+        
+        // Initialiser le formulaire d'inscription client
+        const clientSignupForm = document.getElementById('clientSignupForm');
+        if (clientSignupForm) {
+            clientSignupForm.addEventListener('submit', handleClientSignup);
+        }
+        
+        // Initialiser le formulaire de connexion client
+        const clientLoginForm = document.getElementById('clientLoginForm');
+        if (clientLoginForm) {
+            clientLoginForm.addEventListener('submit', handleClientLogin);
+        }
+        
+        // Initialiser le formulaire d'inscription
+        const signupForm = document.getElementById('signupForm');
+        if (signupForm) {
+            signupForm.addEventListener('submit', handleSignup);
+        }
+        
+        // Gérer le lien vers la connexion
+        const showLoginLink = document.getElementById('showLogin');
+        if (showLoginLink) {
+            showLoginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeSignupModal();
+                authenticateAdmin();
+            });
+        }
+    });
+    
+    // Fonction pour ajouter le bouton de déconnexion
+    function addClientLogoutButton() {
+        // Vérifier si un bouton de déconnexion existe déjà
+        if (document.getElementById('clientLogoutBtn')) {
+            return; // Le bouton existe déjà
+        }
+        
+        // Créer le bouton de déconnexion
+        const logoutBtn = document.createElement('button');
+        logoutBtn.id = 'clientLogoutBtn';
+        logoutBtn.className = 'client-logout-btn';
+        logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Déconnexion';
+        logoutBtn.title = 'Se déconnecter';
+        logoutBtn.onclick = clientLogout;
+        
+        // Ajouter le bouton dans le header
+        const headerControls = document.querySelector('.header-controls');
+        if (headerControls) {
+            headerControls.appendChild(logoutBtn);
+        }
+    }
+    
+    // Modifier la fonction showClientNameInHeader pour inclure le bouton de déconnexion
+    function showClientNameInHeader() {
+        if (currentClient) {
+            // Trouver l'élément du logo dans le header
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                // Créer un conteneur pour le nom et le bouton de déconnexion
+                let clientContainer = document.getElementById('clientContainer');
+                
+                if (!clientContainer) {
+                    clientContainer = document.createElement('div');
+                    clientContainer.id = 'clientContainer';
+                    clientContainer.style.cssText = `
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin-left: 10px;
+                    `;
+                    
+                    // Insérer après le logo
+                    logo.parentNode.insertBefore(clientContainer, logo.nextSibling);
+                }
+                
                 // Mettre à jour le contenu du conteneur
                 clientContainer.innerHTML = `
                     <span id="clientNameInHeader" style="
@@ -8732,6 +11473,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
