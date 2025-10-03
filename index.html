@@ -2910,62 +2910,52 @@ footer {
     }
     
     /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
- 
     .product-actions {
-    opacity: 1 !important;
-    bottom: 6px !important;
-    right: 6px !important;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 12px !important;
-    padding: 4px 6px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;   /* مسافة صغيرة بين الأيقونات */
-    flex-wrap: nowrap !important;
-    width: fit-content !important;
-    height: fit-content !important;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        opacity: 1 !important;
+        bottom: 6px !important;
+        right: 6px !important;
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 10px !important;
+        padding: 3px 6px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 6px !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .action-btn {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+        font-size: 1rem !important;
+        color: #fff;
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #b97a56, #8c5a34);
+        transition: all 0.3s ease;
+    }
+
+    .action-btn:active, 
+    .action-btn:hover {
+        transform: scale(1.1);
+    }
+
+    .action-btn:last-child {
+        background: linear-gradient(135deg, #8e44ad, #3498db);
+        font-size: 1.1rem !important;
+    }
+
+  
+    .action-btn i.fa-shopping-cart { font-size: 1.1rem !important; }
+    .action-btn i.fa-heart         { font-size: 1rem !important; }
+    .action-btn i.fa-eye           { font-size: 1rem !important; }
+    .action-btn i.fa-palette       { font-size: 1.2rem !important; }
 }
-.action-btn {
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-    font-size: 1.2rem !important;
-    color: #fff;
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #b97a56, #8c5a34);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-}
-
-.action-btn:active, 
-.action-btn:hover {
-    transform: scale(1.15);
-    background: linear-gradient(135deg, #8c5a34, #b97a56);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.action-btn:last-child {
-    background: linear-gradient(135deg, #8e44ad, #3498db);
-    font-size: 1.3rem !important;
-}
-.action-btn:last-child:hover {
-    background: linear-gradient(135deg, #3498db, #8e44ad);
-}
-
-
-.action-btn i.fa-shopping-cart { font-size: 1.3rem !important; }
-.action-btn i.fa-heart         { font-size: 1.2rem !important; }
-.action-btn i.fa-eye           { font-size: 1.2rem !important; }
-.action-btn i.fa-palette       { font-size: 1.4rem !important; }
-
-
 .new-badge, .sale-badge {
     font-size: 0.7rem;
     padding: 3px 7px;
@@ -8762,6 +8752,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
