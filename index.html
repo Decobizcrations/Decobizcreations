@@ -66,7 +66,7 @@
     --transition-speed: 0.3s;
     --mobile-header-height: 60px;
     --mobile-footer-height: 70px;
-    --icon-color: #b27952; /* Couleur uniforme pour les icônes */
+    --icon-color: #b27952; /* Couleur统一 pour les icônes */
 }
 
 /* Reset et styles de base */
@@ -817,18 +817,20 @@ main p {
 }
 
 .action-btn {
-    background: var(--icon-color);
+    background: var(--icon-color); /* Utilisation de la couleur définie dans les variables */
     border: none;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
+    width: 36px;        /* Augmentation de la taille */
+    height: 36px;       /* Augmentation de la taille */
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-speed) ease;
-    font-size: 1rem;
+    min-width: 36px;    /* Augmentation de la taille minimale */
+    min-height: 36px;   /* Augmentation de la taille minimale */
+    font-size: 1rem;    /* Augmentation de la taille de la police */
 }
 
 .action-btn:hover {
@@ -2426,7 +2428,7 @@ footer {
     cursor: pointer;
 }
 
-/* Styles pour le formulaire d'inscription */
+/* Styles pour le formulaire d'inscription - AMÉLIORÉ POUR IPHONE 12 */
 .signup-container { 
     display: flex;
     width: 100%;
@@ -2519,11 +2521,12 @@ footer {
 
 .auth-form input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px; /* Augmenté pour une meilleure accessibilité sur mobile */
     border-radius: 8px;
     border: 1px solid #ccc;
     outline: none;
     transition: border 0.3s;
+    font-size: 16px; /* Taille de police plus grande pour éviter le zoom sur iOS */
 }
 .auth-form input:focus {
     border-color: #fda085;
@@ -2531,12 +2534,12 @@ footer {
 
 .auth-btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px; /* Augmenté pour une meilleure accessibilité sur mobile */
     border: none;
     border-radius: 8px;
     background: linear-gradient(135deg, #f6d365, #fda085);
     color: white;
-    font-size: 16px;
+    font-size: 16px; /* Taille de police plus grande pour éviter le zoom sur iOS */
     font-weight: 600;
     cursor: pointer;
     transition: transform 0.2s;
@@ -2577,7 +2580,7 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 10px;
+    padding: 14px; /* Augmenté pour une meilleure accessibilité sur mobile */
     border-radius: 8px;
     font-size: 15px;
     cursor: pointer;
@@ -2905,34 +2908,34 @@ footer {
         font-size: 0.8rem;
     }
     
-    /* Boutons d'action mobile - MODIFIÉS POUR AGRANDIR LES ICÔNES */
+    /* Boutons d'action mobile - MODIFIÉS POUR RÉDUIRE LA TAILLE */
     .product-actions {
         opacity: 1 !important;
-        bottom: 5px !important;
-        right: 5px !important;
+        bottom: 0px !important;   /* Collé au bord */
+        right: 0px !important;    /* Collé au bord */
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 8px !important;
-        padding: 5px !important;
+        border-radius: 2px !important; /* Taille minimale pour mobile */
+        padding: 0px !important;  
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        gap: 5px !important;
+        gap: 0px !important;      
         flex-wrap: nowrap !important;
         width: fit-content !important;
         height: fit-content !important;
-        max-width: 160px !important;
-        overflow: hidden !important;
+        max-width: 60px !important; /* Limite de largeur pour forcer les 4 icônes à s'aligner */
+        overflow: hidden !important; /* Évite le débordement */
     }
     
     .action-btn {
-        width: 32px !important;
-        height: 32px !important;
-        min-width: 32px !important;
-        min-height: 32px !important;
-        font-size: 0.9rem !important;
-        line-height: 1;
-        margin: 0 !important;
-        padding: 0 !important;
+        width: 28px !important;    /* Taille plus grande pour mobile */
+        height: 28px !important;   /* Taille plus grande pour mobile */
+        min-width: 28px !important; /* Taille plus grande pour mobile */
+        min-height: 28px !important; /* Taille plus grande pour mobile */
+        font-size: 1rem !important; /* Taille de police plus grande pour mobile */
+        line-height: 0;          /* Supprime l'espacement interne du texte */
+        margin: 0 !important;     /* Supprime toute marge */
+        padding: 0 !important;   
     }
     
     .new-badge, .sale-badge {
@@ -3060,7 +3063,7 @@ footer {
     .form-group input, 
     .form-group select, 
     .form-group textarea {
-        padding: 12px !important;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
         font-size: 16px !important; /* Évite le zoom sur iOS */
         border-radius: 8px !important;
         border: 2px solid #ddd !important;
@@ -3073,8 +3076,8 @@ footer {
     }
     
     .customization-btn {
-        padding: 15px !important;
-        font-size: 16px !important;
+        padding: 16px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
         border-radius: 8px !important;
     }
     
@@ -3184,13 +3187,13 @@ footer {
     }
     
     .client-signup-form-container input {
-        padding: 0.8rem;
-        font-size: 1rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .client-signup-form-container .auth-btn {
-        padding: 0.8rem;
-        font-size: 1rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
         margin-top: 0.5rem;
     }
     
@@ -3199,7 +3202,7 @@ footer {
     }
     
     .client-signup-form-container .social-btn {
-        padding: 0.8rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
         font-size: 0.9rem;
     }
     
@@ -3265,13 +3268,13 @@ footer {
     }
     
     .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.7rem;
-        font-size: 0.9rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.7rem;
-        font-size: 0.9rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     /* Boutons flottants mobile */
@@ -3351,13 +3354,13 @@ footer {
     }
     
     .client-signup-form-container input {
-        padding: 0.7rem;
-        font-size: 0.9rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .client-signup-form-container .auth-btn {
-        padding: 0.7rem;
-        font-size: 0.9rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container h2 {
@@ -3365,16 +3368,16 @@ footer {
     }
     
     .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.6rem;
-        font-size: 0.85rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.6rem;
-        font-size: 0.85rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
-    /* CORRECTION: Agrandissement des icônes sur mobile */
+    /* CORRECTION: Réduction de la taille des icônes sur mobile */
     .trust-icon {
         font-size: 1.2rem !important;
     }
@@ -3402,7 +3405,7 @@ footer {
     }
     
     .action-btn i {
-        font-size: 1rem !important; /* Agrandi pour mobile */
+        font-size: 1rem !important; /* Taille plus grande pour mobile */
     }
     
     .gallery-icon {
@@ -3679,13 +3682,13 @@ footer {
     }
     
     .client-signup-form-container input {
-        padding: 0.6rem !important;
-        font-size: 0.85rem !important;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .client-signup-form-container .auth-btn {
-        padding: 0.6rem !important;
-        font-size: 0.85rem !important;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container h2 {
@@ -3693,13 +3696,13 @@ footer {
     }
     
     .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.5rem !important;
-        font-size: 0.8rem !important;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.5rem !important;
-        font-size: 0.8rem !important;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     /* Produits très petits écrans */
@@ -3712,9 +3715,9 @@ footer {
     }
     
     .action-btn {
-        width: 28px !important;
-        height: 28px !important;
-        font-size: 0.8rem !important;
+        width: 24px !important;    /* Taille plus grande pour mobile */
+        height: 24px !important;   /* Taille plus grande pour mobile */
+        font-size: 0.9rem !important; /* Taille de police plus grande pour mobile */
     }
 }
 
@@ -3947,13 +3950,13 @@ footer {
     }
     
     .client-signup-form-container input {
-        padding: 0.6rem;
-        font-size: 0.85rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .client-signup-form-container .auth-btn {
-        padding: 0.6rem;
-        font-size: 0.85rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container h2 {
@@ -3961,13 +3964,13 @@ footer {
     }
     
     .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.5rem;
-        font-size: 0.8rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.5rem;
-        font-size: 0.8rem;
+        padding: 14px !important; /* Augmenté pour une meilleure accessibilité sur mobile */
+        font-size: 16px !important; /* Évite le zoom sur iOS */
     }
     
     /* Produits très petits écrans */
@@ -3992,9 +3995,9 @@ footer {
     }
     
     .action-btn {
-        width: 24px !important;
-        height: 24px !important;
-        font-size: 0.7rem !important;
+        width: 20px !important;    /* Taille plus grande pour mobile */
+        height: 20px !important;   /* Taille plus grande pour mobile */
+        font-size: 0.8rem !important; /* Taille de police plus grande pour mobile */
     }
 }
 
@@ -11473,6 +11476,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
