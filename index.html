@@ -2929,27 +2929,39 @@ footer {
         z-index: 5;
     }
 
+    .product-actions {
+        position: absolute;
+        bottom: 6px; /* قريب شوية للصورة */
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 5;
+    }
+
     .action-btn {
-        width: 32px;  /* حجم مضبوط */
-        height: 32px;
+        width: 20px !important;   /* صغير */
+        height: 20px !important;
+        min-width: 20px !important;
+        min-height: 20px !important;
         border-radius: 50%;
-        border: 1px solid rgba(185, 122, 86, 0.4); /* بني خفيف */
-        background: rgba(255, 255, 255, 0.25); /* زجاجي شفاف */
-        backdrop-filter: blur(6px);
+        border: 1px solid rgba(185, 122, 86, 0.5); /* بني خفيف */
+        background: rgba(255, 255, 255, 0.2); /* شبه شفاف */
+        backdrop-filter: blur(4px); /* زجاجي */
         display: flex;
         align-items: center;
         justify-content: center;
         color: #B97A56; /* بني */
-        font-size: 1rem;
-        padding: 0; /* ❌ يمنع التضخيم */
-        margin: 0;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        font-size: 0.8rem !important; /* أيقونة أصغر */
+        padding: 0 !important;  /* ❌ يمنع التضخيم */
+        margin: 0 !important;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         transition: all 0.25s ease;
     }
 
-    /* ✅ تأثير hover */
+    /* ✅ Hover */
     .action-btn:hover {
-        background: rgba(185, 122, 86, 0.9);
+        background: rgba(185, 122, 86, 0.85);
         color: #fff;
         border-color: transparent;
         transform: scale(1.1);
@@ -2960,14 +2972,14 @@ footer {
         background: linear-gradient(135deg, #B97A56, #8E5B3C);
         color: #fff;
         border: none;
+        font-size: 0.9rem !important;
     }
 
-    /* ✅ الأيقونات تبقى مضبوطة */
+    /* ✅ أيقونات مضبوطة */
     .action-btn i {
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
         line-height: 1 !important;
     }
-
 .new-badge, .sale-badge {
     font-size: 0.7rem;
     padding: 3px 7px;
@@ -8764,6 +8776,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
