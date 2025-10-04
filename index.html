@@ -796,7 +796,7 @@ main p {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Boutons d'action sur les produits - MODIFIÉS */
+/* Boutons d'action sur les produits - SIMPLIFIÉS */
 .product-actions {
     position: absolute;
     bottom: 10px;
@@ -832,18 +832,6 @@ main p {
 .action-btn:hover {
     background: var(--primary-color);
     transform: scale(1.1);
-}
-
-/* Bouton de panier/personnalisation combiné */
-.action-btn:first-child {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    position: relative;
-    overflow: hidden;
-}
-
-.action-btn:first-child:hover {
-    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
-    transform: scale(1.2);
 }
 
 /* Bouton d'aperçu rapide */
@@ -1802,15 +1790,14 @@ footer {
     background: #8c5a34;
 }
 
-.quick-view-wishlist {
-    background: #f9f3e8;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+.quick-view-customize {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
 }
 
-.quick-view-wishlist:hover {
-    background: var(--primary-color);
-    color: white;
+.quick-view-customize:hover {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
 }
 
 /* Styles pour le modal de personnalisation */
@@ -2592,8 +2579,9 @@ footer {
     padding: 10px;
     border-radius: 8px;
     font-size: 15px;
+    font-weight: 500;
     cursor: pointer;
-    border: 1px solid #ddd;
+    border: none;
     transition: background 0.3s;
 }
 
@@ -2608,7 +2596,6 @@ footer {
 .facebook-btn {
     background: #1877f2;
     color: white;
-    border: none;
 }
 .facebook-btn:hover {
     background: #145dbf;
@@ -4022,7 +4009,7 @@ input, select, textarea {
                             <img src="mini plateau rond.jpeg" alt="Plateau rond 16 cm" loading="lazy" />
                             <div class="new-badge">Nouveau</div>
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('plateau-rond-16')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('plateau-rond-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('plateau-rond-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4040,7 +4027,7 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="mini plateau ovale.jpeg" alt="Plateau ovale 18 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('plateau-ovale-18')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('plateau-ovale-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4059,7 +4046,7 @@ input, select, textarea {
                             <img src="plateau rond 26 (2).jpeg" alt="Grand plateau rond 27 cm" loading="lazy" />
                             <div class="sale-badge">-15%</div>
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('plateau-rond-27')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('plateau-rond-27')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4080,7 +4067,7 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="vase nordique.jpeg" alt="Vase nordique 16 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('vase-nordique-16')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('vase-nordique-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4098,7 +4085,7 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="mini vase.jpeg" alt="Mini vase 14 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('mini-vase-14')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('mini-vase-14')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4116,7 +4103,7 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="boite.jpeg" alt="Boîte décorative 12 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('boite-12')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('boite-12')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4135,7 +4122,7 @@ input, select, textarea {
                             <img src="arc en ciel.jpeg" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
                             <div class="new-badge">Nouveau</div>
                             <div class="product-actions">
-                                <button class="action-btn" onclick="handleCombinedAction('arc-en-ciel-26')" title="Ajouter au panier ou personnaliser" aria-label="Ajouter au panier ou personnaliser">
+                                <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
                                 <button class="action-btn" onclick="quickView('arc-en-ciel-26')" title="Aperçu rapide" aria-label="Aperçu rapide">
@@ -4263,7 +4250,7 @@ input, select, textarea {
                             <button class="quick-view-btn quick-view-add-cart" onclick="addToCartFromQuickView()">
                                 <i class="fas fa-shopping-cart"></i> Ajouter au panier
                             </button>
-                            <button class="quick-view-btn quick-view-wishlist" onclick="openCustomizationFromQuickView()">
+                            <button class="quick-view-btn quick-view-customize" onclick="openCustomizationFromQuickView()">
                                 <i class="fas fa-palette"></i> Personnaliser
                             </button>
                         </div>
@@ -8356,81 +8343,6 @@ input, select, textarea {
         }
     }
     
-    // NOUVELLE FONCTION pour gérer l'action combinée (panier/personnalisation)
-    function handleCombinedAction(productId) {
-        // Afficher un menu contextuel ou un modal pour choisir entre ajouter au panier et personnaliser
-        const product = productsData[productId];
-        
-        if (product) {
-            // Créer un menu contextuel simple
-            const menu = document.createElement('div');
-            menu.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: white;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-                z-index: 10001;
-                padding: 15px;
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                min-width: 200px;
-            `;
-            
-            menu.innerHTML = `
-                <div style="font-weight: 600; margin-bottom: 5px; text-align: center;">Que souhaitez-vous faire ?</div>
-                <button onclick="addToCart('${productId}'); closeCombinedMenu();" style="
-                    background: var(--primary-color);
-                    color: white;
-                    border: none;
-                    padding: 8px 12px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    font-weight: 500;
-                ">Ajouter au panier</button>
-                <button onclick="openCustomization('${productId}'); closeCombinedMenu();" style="
-                    background: linear-gradient(45deg, #8e44ad, #3498db);
-                    color: white;
-                    border: none;
-                    padding: 8px 12px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    font-weight: 500;
-                ">Personnaliser</button>
-                <button onclick="closeCombinedMenu();" style="
-                    background: #f0f0f0;
-                    color: #333;
-                    border: none;
-                    padding: 8px 12px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                    font-weight: 500;
-                ">Annuler</button>
-            `;
-            
-            // Ajouter le menu au corps du document
-            document.body.appendChild(menu);
-            
-            // Fermer le menu après 5 secondes s'il n'y a pas d'interaction
-            setTimeout(() => {
-                if (menu.parentNode) {
-                    menu.parentNode.removeChild(menu);
-                }
-            }, 5000);
-        }
-    }
-    
-    // Fonction pour fermer le menu combiné
-    function closeCombinedMenu() {
-        const menu = document.querySelector('div[style*="position: fixed"][style*="transform: translate(-50%, -50%)"]');
-        if (menu && menu.parentNode) {
-            menu.parentNode.removeChild(menu);
-        }
-    }
-    
     console.log('🎨 Decobizcreations - Site chargé avec succès !');
     console.log('✨ Toutes les fonctionnalités sont opérationnelles');
     console.log('🔍 Système de suivi des visiteurs internationaux activé');
@@ -8438,5 +8350,3 @@ input, select, textarea {
     </script>
 </body>
 </html>
-
-
