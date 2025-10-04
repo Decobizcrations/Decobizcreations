@@ -2919,18 +2919,31 @@ footer {
     
     /* Boutons d'action mobile */
     .product-actions {
-        opacity: 1 !important;
-        bottom: 5px;
-        right: 5px;
-        background: rgba(255, 255, 255, 0.8);
-        border-radius: 50%;
-        padding: 5px;
+    opacity: 1 !important;
+        bottom: 6px;
+        right: 6px;
+        background: #ffffff;
+        border-radius: 10px; /* Forme rectangulaire douce */
+        padding: 4px 6px;
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        border: 1px solid #ddd; /* Légère bordure grise */
     }
     
     .action-btn {
-        width: 28px !important;
+     width: 28px !important;
         height: 28px !important;
-        font-size: 10px !important;
+        font-size: 14px !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: all 0.25s ease-in-out;
+        border: none;
     }
     
     .new-badge, .sale-badge {
@@ -3647,9 +3660,9 @@ footer {
     }
     
     .action-btn {
-        width: 15px !important;
-        height: 15px !important;
-        font-size: 9px !important;
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 13px !important;
     }
 }
 
@@ -8415,3 +8428,4 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
