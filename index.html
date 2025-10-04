@@ -56,6 +56,7 @@
     
     <style>
       /* Variables CSS */
+/* Variables CSS - inchangées */
 :root {
     --primary-color: #b27952;
     --secondary-color: #f8b500;
@@ -68,7 +69,7 @@
     --mobile-footer-height: 70px;
 }
 
-/* Reset et styles de base */
+/* Reset et styles de base - inchangés */
 * {
     margin: 0;
     padding: 0;
@@ -96,7 +97,7 @@ body {
     padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* Détecter les appareils mobiles */
+/* Détecter les appareils mobiles - inchangé */
 body.mobile-device {
     font-size: 16px;
     padding: 0 8px;
@@ -121,6 +122,7 @@ body.mobile-device textarea {
     min-height: 44px;
 }
 
+/* Dark mode - inchangé */
 body.dark-mode {
     background: var(--dark-bg);
     color: #e0e0e0;
@@ -152,7 +154,7 @@ body.dark-mode .newsletter-section {
     background: linear-gradient(135deg, #8c5a34, #b27952);
 }
 
-/* Loader */
+/* Loader - inchangé */
 #loader {
     position: fixed;
     width: 100vw;
@@ -183,7 +185,7 @@ body.dark-mode #loader {
     100% {transform: rotate(360deg);}
 }
 
-/* Scroll Progress Bar */
+/* Scroll Progress Bar - inchangé */
 #progressbar {
     position: fixed;
     top: 0;
@@ -197,7 +199,7 @@ body.dark-mode #loader {
     box-shadow: 0 2px 5px rgba(178, 121, 82, 0.3);
 }
 
-/* Header */
+/* Header - MODIFIÉ POUR PETITS ÉCRANS */
 header {
     position: sticky;
     top: 0;
@@ -240,7 +242,7 @@ header h1 {
     gap: 0.8rem;
 }
 
-/* Nom du client dans le header */
+/* Nom du client dans le header - inchangé */
 #clientNameInHeader {
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
@@ -249,7 +251,7 @@ header h1 {
     font-weight: 600;
 }
 
-/* Bouton mode sombre */
+/* Bouton mode sombre - inchangé */
 .dark-mode-toggle {
     background: none;
     border: 2px solid var(--primary-color);
@@ -270,7 +272,7 @@ header h1 {
     transform: scale(1.1);
 }
 
-/* Recherche */
+/* Recherche - MODIFIÉ POUR PETITS ÉCRANS */
 .search-container {
     position: relative;
     display: flex;
@@ -302,7 +304,7 @@ header h1 {
     font-size: 1rem;
 }
 
-/* Panier compteur */
+/* Panier compteur - inchangé */
 .cart-counter {
     position: relative;
     display: inline-block;
@@ -336,7 +338,7 @@ header h1 {
     100% {transform: scale(1);}
 }
 
-/* Navigation */
+/* Navigation - MODIFIÉ POUR PETITS ÉCRANS */
 nav {
     display: flex;
     align-items: center;
@@ -380,7 +382,7 @@ nav a:focus::after {
     width: 100%;
 }
 
-/* Sous-menu */
+/* Sous-menu - inchangé */
 .nav-item {
     position: relative;
 }
@@ -420,7 +422,7 @@ nav a:focus::after {
     color: var(--primary-color);
 }
 
-/* Menu mobile */
+/* Menu mobile - inchangé */
 .menu-toggle {
     display: none;
     background: none;
@@ -431,7 +433,7 @@ nav a:focus::after {
     padding: 5px;
 }
 
-/* Hero section */
+/* Hero section - MODIFIÉ POUR PETITS ÉCRANS */
 .hero {
     position: relative;
     height: 80vh;
@@ -545,7 +547,7 @@ nav a:focus::after {
     }
 }
 
-/* Section de confiance */
+/* Section de confiance - inchangée */
 .trust-section {
     background: white;
     padding: 1.5rem;
@@ -578,7 +580,7 @@ nav a:focus::after {
     font-size: 0.9rem;
 }
 
-/* Main Content */
+/* Main Content - MODIFIÉ POUR PETITS ÉCRANS */
 main {
     max-width: 100%;
     margin: 2rem auto 3rem auto;
@@ -603,7 +605,7 @@ main p {
     font-weight: 500;
 }
 
-/* Filtres de produits */
+/* Filtres de produits - MODIFIÉ POUR PETITS ÉCRANS */
 .filter-section {
     max-width: 100%;
     margin: 2rem auto;
@@ -646,7 +648,7 @@ main p {
     box-shadow: 0 4px 8px rgba(178, 121, 82, 0.3);
 }
 
-/* Section Produits Vedettes */
+/* Section Produits Vedettes - MODIFIÉ POUR PETITS ÉCRANS */
 .featured-products {
     margin: 3rem 0;
 }
@@ -679,7 +681,7 @@ main p {
     text-decoration: underline;
 }
 
-/* Products Carousel */
+/* Products Carousel - MODIFIÉ POUR PETITS ÉCRANS */
 .carousel {
     position: relative;
     overflow: hidden;
@@ -767,7 +769,7 @@ main p {
     transform: scale(1.1) rotate(1deg);
 }
 
-/* Badge nouveau produit */
+/* Badge nouveau produit - inchangé */
 .new-badge {
     position: absolute;
     top: 8px;
@@ -882,7 +884,7 @@ main p {
     margin-right: 0.4rem;
 }
 
-/* Message aucun résultat */
+/* Message aucun résultat - inchangé */
 .no-results {
     text-align: center;
     padding: 2rem;
@@ -901,7 +903,7 @@ main p {
     margin-bottom: 0.8rem;
 }
 
-/* Bouton principal */
+/* Bouton principal - inchangé */
 .btn-discover {
     display: block;
     margin: 0 auto 3rem auto;
@@ -930,7 +932,7 @@ main p {
     transform: translateY(-3px) scale(1.03);
 }
 
-/* Section Processus de Fabrication */
+/* Section Processus de Fabrication - MODIFIÉ POUR PETITS ÉCRANS */
 .process-section {
     background: white;
     border-radius: 12px;
@@ -1009,7 +1011,7 @@ main p {
     font-size: 0.85rem;
 }
 
-/* Section Galerie */
+/* Section Galerie - MODIFIÉ POUR PETITS ÉCRANS */
 .gallery-section {
     max-width: 100%;
     margin: 3rem auto;
@@ -1077,7 +1079,7 @@ main p {
     font-size: 1.5rem;
 }
 
-/* Modal pour galerie */
+/* Modal pour galerie - MODIFIÉ POUR PETITS ÉCRANS */
 .modal {
     display: none;
     position: fixed;
@@ -1122,7 +1124,7 @@ main p {
     color: #bbb;
 }
 
-/* Section À Propos */
+/* Section À Propos - MODIFIÉ POUR PETITS ÉCRANS */
 .about-section {
     max-width: 100%;
     margin: 0 auto 4rem auto;
@@ -1170,7 +1172,7 @@ main p {
     color: #5b4824;
 }
 
-/* Section Avantages */
+/* Section Avantages - MODIFIÉ POUR PETITS ÉCRANS */
 .advantages-section {
     background: white;
     border-radius: 12px;
@@ -1236,7 +1238,7 @@ main p {
     font-size: 0.9rem;
 }
 
-/* Newsletter */
+/* Newsletter - MODIFIÉ POUR PETITS ÉCRANS */
 .newsletter-section {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     padding: 2rem 1.5rem;
@@ -1288,7 +1290,7 @@ main p {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Témoignages */
+/* Témoignages - MODIFIÉ POUR PETITS ÉCRANS */
 .testimonials {
     max-width: 100%;
     margin: 0 auto 4rem auto;
@@ -1378,7 +1380,7 @@ main p {
     background: var(--primary-color);
 }
 
-/* Valeurs */
+/* Valeurs - MODIFIÉ POUR PETITS ÉCRANS */
 .values-section {
     max-width: 100%;
     margin: 0 auto 4rem auto;
@@ -1435,7 +1437,7 @@ main p {
     color: #7e6a3e;
 }
 
-/* Footer */
+/* Footer - MODIFIÉ POUR PETITS ÉCRANS */
 footer {
     background: #f3f0eb;
     color: #777;
@@ -1566,7 +1568,7 @@ footer {
     text-decoration: underline;
 }
 
-/* WhatsApp flottant */
+/* WhatsApp flottant - inchangé */
 .whatsapp-float {
     position: fixed;
     width: 50px;
@@ -1599,7 +1601,7 @@ footer {
     50% { transform: scale(1.1); }
 }
 
-/* Bouton retour en haut */
+/* Bouton retour en haut - inchangé */
 .back-to-top {
     position: fixed;
     bottom: 80px;
@@ -1630,7 +1632,7 @@ footer {
     display: flex;
 }
 
-/* Animations */
+/* Animations - inchangées */
 .fade-slide {
     opacity: 0;
     transform: translateY(20px);
@@ -1642,7 +1644,7 @@ footer {
     transform: translateY(0);
 }
 
-/* Notifications toast */
+/* Notifications toast - inchangées */
 .toast {
     position: fixed;
     top: 80px;
@@ -1673,7 +1675,7 @@ footer {
     background: #2196F3;
 }
 
-/* Modal pour aperçu rapide du produit */
+/* Modal pour aperçu rapide du produit - MODIFIÉ POUR PETITS ÉCRANS */
 .quick-view-modal {
     display: none;
     position: fixed;
@@ -1800,7 +1802,7 @@ footer {
     background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
 }
 
-/* Styles pour le modal de personnalisation */
+/* Styles pour le modal de personnalisation - MODIFIÉ POUR PETITS ÉCRANS */
 .customization-content {
     background-color: white;
     margin: 5% auto;
@@ -1906,7 +1908,7 @@ footer {
     color: white;
 }
 
-/* Page d'authentification */
+/* Page d'authentification - MODIFIÉ POUR PETITS ÉCRANS */
 .auth-container {
     display: flex;
     width: 100%;
@@ -2142,7 +2144,7 @@ footer {
     text-decoration: underline;
 }
 
-/* Panneau d'administration */
+/* Panneau d'administration - MODIFIÉ POUR PETITS ÉCRANS */
 .admin-panel {
     display: none;
     position: fixed;
@@ -2392,7 +2394,7 @@ footer {
     background: #c0392b;
 }
 
-/* Compteur de visiteurs */
+/* Compteur de visiteurs - inchangé */
 .visitor-counter {
     position: fixed;
     bottom: 10px;
@@ -2412,7 +2414,7 @@ footer {
     display: block;
 }
 
-/* Bouton d'administration invisible (déclencheur) */
+/* Bouton d'administration invisible (déclencheur) - inchangé */
 .admin-trigger {
     position: fixed;
     top: 0;
@@ -2615,7 +2617,7 @@ footer {
     text-decoration: underline;
 }
 
-/* Styles pour les modals client */
+/* Styles pour les modals client - MODIFIÉS POUR PETITS ÉCRANS */
 .client-signup-container {
     display: flex;
     width: 100%;
@@ -2688,7 +2690,7 @@ footer {
     margin-bottom: 1.5rem;
 }
 
-/* Message de bienvenue client */
+/* Message de bienvenue client - inchangé */
 .client-welcome {
     position: fixed;
     top: 80px;
@@ -2738,7 +2740,7 @@ footer {
     background: rgba(255, 255, 255, 0.3);
 }
 
-/* Bouton de connexion dans le header */
+/* Bouton de connexion dans le header - inchangé */
 .client-login-btn {
     background: none;
     border: 2px solid var(--primary-color);
@@ -3380,273 +3382,78 @@ footer {
     }
 }
 
-@media (max-width: 480px) {
+/* Styles pour très petits écrans (320px) */
+@media (max-width: 320px) {
+    /* Ajustements généraux */
+    body {
+        font-size: 14px;
+    }
+    
+    /* Header */
+    header {
+        padding: 8px;
+    }
+    
     header h1 {
-        font-size: 1.3rem;
-    }
-    
-    .hero {
-        height: 50vh;
-        min-height: 350px;
-    }
-    
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-    
-    .hero p {
-        font-size: 1rem;
-    }
-    
-    .hero-cta {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    
-    .trust-item {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .trust-icon {
-        font-size: 1.4rem;
-    }
-    
-    .trust-text {
-        font-size: 0.8rem;
-    }
-    
-    main h3 {
-        font-size: 1.6rem;
-    }
-    
-    main p {
-        font-size: 0.9rem;
-    }
-    
-    .filter-section h3 {
-        font-size: 1.5rem;
-    }
-    
-    .filter-btn {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-    }
-    
-    .featured-title {
-        font-size: 1.5rem;
-    }
-    
-    .featured-link {
-        font-size: 0.8rem;
-    }
-    
-    .process-title {
-        font-size: 1.5rem;
-    }
-    
-    .step-title {
-        font-size: 0.9rem;
-    }
-    
-    .step-desc {
-        font-size: 0.8rem;
-    }
-    
-    .gallery-section h3 {
-        font-size: 1.6rem;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 5px;
-    }
-    
-    .gallery-item {
-        height: 80px;
-    }
-    
-    .about-text h3 {
-        font-size: 1.5rem;
-    }
-    
-    .about-text {
-        font-size: 0.9rem;
-    }
-    
-    .advantages-title {
-        font-size: 1.5rem;
-    }
-    
-    .advantage-title {
-        font-size: 1rem;
-    }
-    
-    .advantage-desc {
-        font-size: 0.8rem;
-    }
-    
-    .newsletter-section h3 {
-        font-size: 1.5rem;
-    }
-    
-    .newsletter-section p {
-        font-size: 0.9rem;
-    }
-    
-    .testimonials h3 {
-        font-size: 1.6rem;
-    }
-    
-    .testimonial-slide {
-        font-size: 0.85rem;
-    }
-    
-    .testimonial-author {
-        font-size: 0.85rem;
-    }
-    
-    .value-title {
-        font-size: 1rem;
-    }
-    
-    .value-desc {
-        font-size: 0.8rem;
-    }
-    
-    .footer-column h4 {
-        font-size: 1.1rem;
-    }
-    
-    .footer-links a {
-        font-size: 0.85rem;
-    }
-    
-    .footer-bottom {
-        font-size: 0.8rem;
-    }
-    
-    .whatsapp-float {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        bottom: 10px;
-        right: 10px;
-    }
-    
-    .back-to-top {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-        bottom: 55px;
-        right: 10px;
-    }
-    
-    .toast {
-        font-size: 0.8rem;
-        padding: 8px 12px;
-        max-width: 90%;
+        font-size: 1.2rem;
     }
     
     .header-controls {
-        gap: 0.3rem;
-    }
-    
-    .search-input {
-        width: 100px;
-    }
-    
-    .search-input:focus {
-        width: 120px;
+        gap: 5px;
     }
     
     .dark-mode-toggle {
-        width: 28px;
-        height: 28px;
+        width: 30px !important;
+        height: 30px !important;
     }
     
-    .cart-badge {
-        width: 14px;
-        height: 14px;
-        font-size: 0.6rem;
+    .search-input {
+        width: 80px;
+        font-size: 0.7rem;
     }
     
-    .admin-panel-content {
-        padding: 0.8rem;
+    .search-input:focus {
+        width: 100px;
     }
     
-    .admin-panel-title {
-        font-size: 1.2rem;
+    /* Hero section */
+    .hero {
+        height: 50vh;
+        min-height: 300px;
     }
     
-    .admin-stats {
-        grid-template-columns: 1fr;
+    .hero h2 {
+        font-size: 1.5rem;
     }
     
-    .visitor-counter {
-        font-size: 0.65rem;
-        padding: 5px 8px;
-    }
-    
-    .client-signup-left {
-        padding: 0.8rem;
-    }
-    
-    .client-signup-right {
-        padding: 0.8rem;
-    }
-    
-    .client-signup-brand h1 {
-        font-size: 1.2rem;
-    }
-    
-    .client-signup-form-container h2 {
-        font-size: 1.2rem;
-    }
-    
-    .client-signup-form-container .form-group {
-        margin-bottom: 0.6rem;
-    }
-    
-    .client-signup-form-container input {
-        padding: 0.6rem;
-        font-size: 0.85rem;
-    }
-    
-    .client-signup-form-container .auth-btn {
-        padding: 0.6rem;
-        font-size: 0.85rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container h2 {
-        font-size: 1.1rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.5rem;
-        font-size: 0.8rem;
-    }
-    
-    /* Produits très petits écrans */
-    .product-card {
-        flex: 0 0 130px;
-    }
-    
-    .product-image {
-        height: 120px;
-    }
-    
-    .product-info h4 {
+    .hero p {
         font-size: 0.9rem;
     }
     
+    .hero-cta {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* Produits */
+    .product-card {
+        flex: 0 0 120px;
+    }
+    
+    .product-image {
+        height: 100px;
+    }
+    
+    .product-info {
+        padding: 0.8rem;
+    }
+    
+    .product-info h4 {
+        font-size: 0.8rem;
+    }
+    
     .product-info span {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
     
     .product-price {
@@ -3659,6 +3466,306 @@ footer {
         min-width: 30px !important;
         min-height: 30px !important;
         font-size: 14px !important;
+    }
+    
+    /* Galerie */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5px;
+    }
+    
+    .gallery-item {
+        height: 80px;
+    }
+    
+    /* Sections */
+    main h3 {
+        font-size: 1.4rem;
+    }
+    
+    main p {
+        font-size: 0.8rem;
+    }
+    
+    .process-title {
+        font-size: 1.3rem;
+    }
+    
+    .step-title {
+        font-size: 0.8rem;
+    }
+    
+    .step-desc {
+        font-size: 0.7rem;
+    }
+    
+    .advantages-title {
+        font-size: 1.3rem;
+    }
+    
+    .advantage-title {
+        font-size: 0.9rem;
+    }
+    
+    .advantage-desc {
+        font-size: 0.7rem;
+    }
+    
+    /* Newsletter */
+    .newsletter-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .newsletter-input {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+    
+    .newsletter-btn {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+    
+    /* Témoignages */
+    .testimonials h3 {
+        font-size: 1.4rem;
+    }
+    
+    .testimonial-slide {
+        font-size: 0.8rem;
+    }
+    
+    .testimonial-author {
+        font-size: 0.8rem;
+    }
+    
+    .testimonial-controls button {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+    
+    /* Valeurs */
+    .value-title {
+        font-size: 0.9rem;
+    }
+    
+    .value-desc {
+        font-size: 0.7rem;
+    }
+    
+    /* Footer */
+    .footer-column h4 {
+        font-size: 1rem;
+    }
+    
+    .footer-links a {
+        font-size: 0.8rem;
+    }
+    
+    .footer-bottom {
+        font-size: 0.7rem;
+    }
+    
+    /* Boutons flottants */
+    .whatsapp-float {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .back-to-top {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+        bottom: 55px;
+        right: 10px;
+    }
+    
+    /* Toast */
+    .toast {
+        font-size: 0.7rem;
+        padding: 8px 12px;
+        max-width: 85%;
+    }
+    
+    /* Modals */
+    .modal-content {
+        width: 95%;
+        padding: 10px;
+    }
+    
+    .close-modal {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+    
+    .quick-view-content,
+    .customization-content {
+        width: 95% !important;
+        padding: 10px !important;
+    }
+    
+    .quick-view-title,
+    .customization-title {
+        font-size: 1.2rem;
+    }
+    
+    .quick-view-price,
+    .customization-price {
+        font-size: 1.2rem;
+    }
+    
+    .form-group label {
+        font-size: 0.8rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .quick-view-btn,
+    .customization-btn {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+    
+    /* Authentification */
+    .auth-container {
+        margin: 1% auto;
+        max-width: 98%;
+    }
+    
+    .auth-left {
+        padding: 1rem;
+        min-height: 150px;
+    }
+    
+    .auth-right {
+        padding: 1rem;
+    }
+    
+    .auth-brand h1 {
+        font-size: 1.2rem;
+    }
+    
+    .auth-form-container h2 {
+        font-size: 1.2rem;
+    }
+    
+    .auth-form .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .auth-form label {
+        font-size: 0.8rem;
+    }
+    
+    .auth-form input {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .auth-btn {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+    
+    .social-btn {
+        padding: 8px;
+        font-size: 0.8rem;
+    }
+    
+    /* Client signup */
+    .client-signup-container {
+        margin: 1% auto;
+        max-width: 98%;
+    }
+    
+    .client-signup-left {
+        padding: 1rem;
+        min-height: 150px;
+    }
+    
+    .client-signup-right {
+        padding: 1rem;
+    }
+    
+    .client-signup-brand h1 {
+        font-size: 1.2rem;
+    }
+    
+    .client-signup-form-container h2 {
+        font-size: 1.2rem;
+    }
+    
+    .client-signup-form-container .form-group {
+        margin-bottom: 0.8rem;
+    }
+    
+    .client-signup-form-container label {
+        font-size: 0.8rem;
+    }
+    
+    .client-signup-form-container input {
+        padding: 8px;
+        font-size: 14px;
+    }
+    
+    .client-signup-form-container .auth-btn {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+    
+    .client-welcome {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .client-welcome .client-avatar {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .client-login-btn {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+    }
+    
+    /* Administration */
+    .admin-content {
+        padding: 0.8rem;
+    }
+    
+    .admin-title {
+        font-size: 1.1rem;
+    }
+    
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .admin-stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .admin-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .visitor-counter {
+        font-size: 0.65rem;
+        padding: 5px 8px;
     }
 }
 
@@ -3704,7 +3811,7 @@ footer {
     }
 }
 
-/* Animations d'apparition */
+/* Animations d'apparition - inchangées */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -3765,7 +3872,7 @@ footer {
     animation: fadeInRight 0.8s ease forwards;
 }
 
-/* Effet de parallaxe pour la section hero */
+/* Effet de parallaxe pour la section hero - inchangé */
 .parallax {
     background-attachment: fixed;
     background-position: center;
@@ -3773,7 +3880,7 @@ footer {
     background-size: cover;
 }
 
-/* Améliorations pour l'accessibilité */
+/* Améliorations pour l'accessibilité - inchangées */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -3813,7 +3920,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     }
 }
 
-/* Améliorations pour l'impression */
+/* Améliorations pour l'impression - inchangées */
 @media print {
     .menu-toggle, .dark-mode-toggle, .cart-counter, .search-container, 
     .whatsapp-float, .back-to-top, .admin-trigger, .admin-panel, 
@@ -4074,7 +4181,7 @@ input, select, textarea {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 320px) {
     .client-signup-left,
     .auth-left,
     .signup-left {
@@ -4116,66 +4223,6 @@ input, select, textarea {
     .client-login-btn {
         padding: 10px !important;
         font-size: 16px !important;
-    }
-}
-        /* Responsive design pour écrans <= 480px */
-@media screen and (max-width: 480px) {
-    .signup-container {
-        flex-direction: column;
-        margin: 10px;
-        min-height: auto;
-        border-radius: 10px;
-    }
-
-    .signup-left, 
-    .signup-right {
-        flex: unset;
-        width: 100%;
-        min-height: auto;
-        padding: 20px;
-    }
-
-    .signup-left h1 {
-        font-size: 22px;
-    }
-
-    .signup-left img {
-        max-width: 120px; /* image plus lisible */
-        margin: 15px 0;
-    }
-
-    .signup-right h2 {
-        font-size: 20px;
-    }
-
-    .auth-btn {
-        font-size: 14px;
-        padding: 10px;
-    }
-}
-
-/* Responsive pour très petits écrans (ex: 320px) */
-@media screen and (max-width: 360px) {
-    .signup-left h1 {
-        font-size: 18px;
-    }
-
-    .signup-left img {
-        max-width: 100px;
-    }
-
-    .signup-right {
-        padding: 15px;
-    }
-
-    .auth-form input {
-        padding: 8px 10px;
-        font-size: 13px;
-    }
-
-    .auth-btn {
-        font-size: 13px;
-        padding: 8px;
     }
 }
 
@@ -8443,4 +8490,5 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
