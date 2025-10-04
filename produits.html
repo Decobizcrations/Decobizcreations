@@ -1261,16 +1261,16 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.9);
+            overflow-y: auto; /* Permet le défilement si nécessaire */
             -webkit-overflow-scrolling: touch;
         }
         .modal-content {
             position: relative;
-            margin: auto;
+            margin: 20px auto; /* Ajouter une marge au lieu de positionnement absolu */
             padding: 0;
             width: 95%;
             max-width: 900px;
-            top: 50%;
-            transform: translateY(-50%);
+            /* Supprimer transform: translateY(-50%) qui cause des problèmes */
         }
         .quick-view-content {
             max-width: 900px;
@@ -1379,6 +1379,7 @@
             border: 1px solid #e0d5c1;
             width: 100%;
             overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+            -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
         }
         
         .customization-title {
@@ -1785,36 +1786,66 @@
             }
         }
         
-        /* Adaptations pour très petits écrans */
-        @media (max-width: 480px) {
+        /* Adaptations pour très petits écrans (320px) */
+        @media (max-width: 320px) {
             .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
                 gap: 0.8rem;
             }
             
             .product-image {
-                height: 130px;
+                height: 120px;
             }
             
             .product-info h4 {
-                font-size: 0.9rem;
-            }
-            
-            .product-info span {
-                font-size: 0.85rem;
-            }
-            
-            .product-price {
-                font-size: 1rem;
-            }
-            
-            .filter-btn {
-                padding: 10px 12px; /* Augmenté pour une meilleure interaction tactile */
                 font-size: 0.8rem;
             }
             
+            .product-info span {
+                font-size: 0.75rem;
+            }
+            
+            .product-price {
+                font-size: 0.9rem;
+            }
+            
+            .customize-btn {
+                padding: 8px 12px;
+                font-size: 0.75rem;
+            }
+            
+            .filter-btn {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+            
+            /* Corrections pour le modal sur très petits écrans */
+            .modal-content {
+                width: 98%;
+                margin: 10px auto;
+            }
+            
+            .quick-view-container {
+                flex-direction: column;
+            }
+            
+            .customization-options {
+                padding: 0.8rem;
+                overflow-x: auto; /* Permet le défilement horizontal si nécessaire */
+            }
+            
+            .color-option {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .size-option {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+            
             .page-header h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .page-header p {
@@ -1822,7 +1853,7 @@
             }
             
             .packs-title {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
             
             .packs-grid {
@@ -1851,10 +1882,98 @@
                 padding: 12px 16px; /* Augmenté pour une meilleure interaction tactile */
             }
             
-            /* Améliorations pour le modal de personnalisation sur petits écrans */
+            .newsletter-section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .newsletter-section h3 {
+                font-size: 1.5rem;
+            }
+            
+            .newsletter-section p {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Adaptations pour les écrans entre 320px et 480px */
+        @media (min-width: 320px) and (max-width: 480px) {
+            header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .page-header h2 {
+                font-size: 1.6rem;
+            }
+            
+            .page-header p {
+                font-size: 0.9rem;
+            }
+            
+            .filter-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .product-card {
+                margin-bottom: 0.8rem;
+            }
+            
+            .product-info {
+                padding: 0.8rem;
+            }
+            
+            .product-info h4 {
+                font-size: 0.9rem;
+            }
+            
+            .product-price {
+                font-size: 1rem;
+                padding: 6px 10px;
+            }
+            
+            .customize-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+                margin-top: 0.6rem;
+            }
+            
+            .packs-section {
+                padding: 1.2rem;
+                margin: 1.5rem 0;
+            }
+            
+            .packs-title {
+                font-size: 1.5rem;
+            }
+            
+            .pack-card-info {
+                padding: 0.8rem;
+            }
+            
+            .pack-card-title {
+                font-size: 0.9rem;
+            }
+            
+            .pack-card-description {
+                font-size: 0.8rem;
+            }
+            
+            .pack-price {
+                font-size: 1rem;
+            }
+            
+            .pack-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+            
             .modal-content {
                 width: 98%;
-                top: 45%; /* Ajusté pour centrer correctement */
+                margin: 10px auto;
             }
             
             .customization-options {
@@ -1862,13 +1981,17 @@
             }
             
             .color-option {
-                width: 36px;
-                height: 36px;
+                width: 32px;
+                height: 32px;
             }
             
             .size-option {
-                padding: 8px 12px;
+                padding: 8px 10px;
                 font-size: 0.8rem;
+            }
+            
+            .customization-text {
+                min-height: 60px; /* Réduit la hauteur pour les petits écrans */
             }
         }
     </style>
@@ -3213,7 +3336,7 @@
             customizationPrice = additionalPrice;
         }
         
-        // Ouvrir le modal de personnalisation
+        // Ouvrir le modal de personnalisation - version améliorée
         function openCustomization(productId) {
             currentCustomizationProduct = productId;
             const product = productsData[productId];
@@ -3243,6 +3366,19 @@
                 const modal = document.getElementById('customizationModal');
                 modal.style.display = 'block';
                 
+                // Correction pour mobile : s'assurer que le modal peut défiler
+                if (window.innerWidth <= 768) {
+                    // Positionner le modal en haut sur mobile
+                    modal.scrollTop = 0;
+                    
+                    // S'assurer que le contenu du modal peut défiler
+                    const modalContent = modal.querySelector('.modal-content');
+                    if (modalContent) {
+                        modalContent.style.maxHeight = '90vh';
+                        modalContent.style.overflowY = 'auto';
+                    }
+                }
+                
                 // Empêcher le défilement du fond sur mobile
                 document.body.style.overflow = 'hidden';
                 document.body.style.position = 'fixed';
@@ -3263,7 +3399,7 @@
             }
         }
         
-        // Fermer le modal de personnalisation
+        // Fermer le modal de personnalisation - version améliorée
         function closeCustomization() {
             const modal = document.getElementById('customizationModal');
             modal.style.display = 'none';
