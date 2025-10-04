@@ -2919,31 +2919,31 @@ footer {
     
     /* Boutons d'action mobile */
     .product-actions {
-    opacity: 1 !important;
-        bottom: 6px;
-        right: 6px;
-        background: #ffffff;
-        border-radius: 10px; /* Forme rectangulaire douce */
-        padding: 4px 6px;
-        display: flex;
-        flex-direction: row;
-        gap: 6px;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-        border: 1px solid #ddd; /* Légère bordure grise */
+     position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity var(--transition-speed) ease;
+    z-index: 5;
     }
     
     .action-btn {
-     width: 28px !important;
-        height: 28px !important;
-        font-size: 14px !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 6px;
-        transition: all 0.25s ease-in-out;
-        border: none;
+    background: rgba(178, 121, 82, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed) ease;
+    min-width: 35px;
+    min-height: 35px;
     }
     
     .new-badge, .sale-badge {
@@ -3660,9 +3660,19 @@ footer {
     }
     
     .action-btn {
-        width: 26px !important;
-        height: 26px !important;
-        font-size: 13px !important;
+   background: rgba(178, 121, 82, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed) ease;
+    min-width: 35px;
+    min-height: 35px;
     }
 }
 
@@ -8428,4 +8438,5 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
