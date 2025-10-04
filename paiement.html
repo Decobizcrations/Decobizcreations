@@ -1182,6 +1182,55 @@
                 width: 100%;
             }
         }
+        
+        /* Pour les très petits écrans (320px) */
+        @media (max-width: 320px) {
+            header {
+                padding: 0.5rem 0.6rem;
+            }
+            
+            header h1 {
+                font-size: 1rem;
+            }
+            
+            .search-container {
+                width: 100px;
+            }
+            
+            .search-input {
+                width: 100%;
+                padding: 4px 25px 4px 8px;
+                font-size: 0.75rem;
+            }
+            
+            .payment-container,
+            .order-summary {
+                padding: 1rem;
+            }
+            
+            .form-group input,
+            .form-group select,
+            .form-group textarea {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                bottom: 15px;
+                right: 15px;
+                font-size: 20px;
+            }
+            
+            .back-to-top {
+                width: 35px;
+                height: 35px;
+                bottom: 70px;
+                right: 15px;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1286,7 +1335,7 @@
             <h3 class="section-title">Informations de livraison</h3>
             
             <div class="success-message" id="successMessage">
-                <i class="fas fa-check-circle"></i> Votre commande a été validée avec succès ! Vous recevrez un email de confirmation.
+                <i class="fab fa-whatsapp"></i> Votre commande a été validée ! Veuillez confirmer votre paiement via WhatsApp.
             </div>
             
             <form id="paymentForm">
@@ -1299,11 +1348,6 @@
                         <label for="lastName">Nom *</label>
                         <input type="text" id="lastName" name="lastName" required>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
                 </div>
                 
                 <div class="form-group">
@@ -1320,10 +1364,6 @@
                     <div class="form-group">
                         <label for="city">Ville *</label>
                         <input type="text" id="city" name="city" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="postalCode">Code postal *</label>
-                        <input type="text" id="postalCode" name="postalCode" required>
                     </div>
                 </div>
                 
@@ -1351,11 +1391,11 @@
                             <p style="margin-top: 10px;">Envoyez-nous un message sur WhatsApp avec vos informations de livraison et la preuve de virement.</p>
                             
                             <div class="rib-info">
-                                <h4>Coordonnées bancaires (RIB)</h4>
+                                <h4>Coordonnées bancaires (RIB) - CIH Bank</h4>
                                 <p><strong>Titulaire:</strong> Decobizcreations</p>
                                 <p><strong>IBAN:</strong> MA64 0123 4567 8901 2345 6789 012</p>
-                                <p><strong>BIC:</strong> BCPMAAMC</p>
-                                <p><strong>Banque:</strong> Banque Populaire</p>
+                                <p><strong>BIC:</strong> CIHMMAMC</p>
+                                <p><strong>Banque:</strong> CIH Bank</p>
                                 <button type="button" class="copy-btn" onclick="copyRIB()">Copier le RIB</button>
                             </div>
                             
@@ -1757,7 +1797,6 @@
             const lastName = document.getElementById('lastName').value || '[Votre nom]';
             const address = document.getElementById('address').value || '[Votre adresse]';
             const city = document.getElementById('city').value || '[Votre ville]';
-            const postalCode = document.getElementById('postalCode').value || '[Votre code postal]';
             const phone = document.getElementById('phone').value || '[Votre téléphone]';
             const notes = document.getElementById('notes').value || '';
             
@@ -1770,13 +1809,11 @@
             message += `INFORMATIONS CLIENT\n`;
             message += `Prénom: ${firstName}\n`;
             message += `Nom: ${lastName}\n`;
-            message += `Téléphone: ${phone}\n`;
-            message += `Email: ${document.getElementById('email').value || '[Votre email]'}\n\n`;
+            message += `Téléphone: ${phone}\n\n`;
             
             message += `ADRESSE DE LIVRAISON\n`;
             message += `Adresse: ${address}\n`;
             message += `Ville: ${city}\n`;
-            message += `Code postal: ${postalCode}\n`;
             if (notes) {
                 message += `Notes: ${notes}\n`;
             }
@@ -1902,11 +1939,9 @@
                 customer: {
                     firstName: formData.get('firstName'),
                     lastName: formData.get('lastName'),
-                    email: formData.get('email'),
                     phone: formData.get('phone'),
                     address: formData.get('address'),
                     city: formData.get('city'),
-                    postalCode: formData.get('postalCode'),
                     notes: formData.get('notes')
                 },
                 paymentMethod: selectedPaymentMethod,
@@ -1931,7 +1966,9 @@
                 saveOrder(orderDetails);
                 
                 // Afficher le message de succès
-                document.getElementById('successMessage').classList.add('show');
+                const successMessage = document.getElementById('successMessage');
+                successMessage.innerHTML = '<i class="fab fa-whatsapp"></i> Votre commande a été validée ! Veuillez confirmer votre paiement via WhatsApp.';
+                successMessage.classList.add('show');
                 
                 // Réinitialiser le panier
                 localStorage.removeItem('cart');
@@ -1995,7 +2032,7 @@
         
         // Copier le RIB
         function copyRIB() {
-            const ribText = `Titulaire: Decobizcreations\nIBAN: MA64 0123 4567 8901 2345 6789 012\nBIC: BCPMAAMC\nBanque: Banque Populaire`;
+            const ribText = `Titulaire: Decobizcreations\nIBAN: MA64 0123 4567 8901 2345 6789 012\nBIC: CIHMMAMC\nBanque: CIH Bank`;
             
             navigator.clipboard.writeText(ribText).then(() => {
                 showToast('RIB copié dans le presse-papiers', 'success');
