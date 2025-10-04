@@ -302,40 +302,6 @@ header h1 {
     font-size: 1rem;
 }
 
-/* Panier compteur */
-.cart-counter {
-    position: relative;
-    display: inline-block;
-}
-
-.cart-badge {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    background: #e74c3c;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
-}
-
-.cart-badge.animate {
-    animation: pulse 0.5s ease;
-}
-
-@keyframes pulse {
-    0% {transform: scale(1);}
-    50% {transform: scale(1.3);}
-    100% {transform: scale(1);}
-}
-
 /* Navigation */
 nav {
     display: flex;
@@ -836,13 +802,13 @@ main p {
     transform: scale(1.1);
 }
 
-/* Bouton de personnalisation spécial */
+/* Bouton de panier spécial */
 .action-btn:last-child {
-    background: linear-gradient(45deg, #8e44ad, #3498db);
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
 }
 
 .action-btn:last-child:hover {
-    background: linear-gradient(45deg, #3498db, #8e44ad);
+    background: linear-gradient(45deg, #8BC34A, #4CAF50);
     transform: scale(1.2);
 }
 
@@ -1788,17 +1754,6 @@ footer {
 
 .quick-view-add-cart:hover {
     background: #8c5a34;
-}
-
-.quick-view-wishlist {
-    background: #f9f3e8;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-}
-
-.quick-view-wishlist:hover {
-    background: var(--primary-color);
-    color: white;
 }
 
 /* Styles pour le modal de personnalisation */
@@ -3293,12 +3248,6 @@ footer {
         height: 30px;
     }
     
-    .cart-badge {
-        width: 16px;
-        height: 16px;
-        font-size: 0.65rem;
-    }
-    
     .admin-panel-content {
         padding: 1rem;
     }
@@ -3546,12 +3495,6 @@ footer {
         height: 28px;
     }
     
-    .cart-badge {
-        width: 14px;
-        height: 14px;
-        font-size: 0.6rem;
-    }
-    
     .admin-panel-content {
         padding: 0.8rem;
     }
@@ -3794,8 +3737,7 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
 
 /* Améliorations pour l'impression */
 @media print {
-    .menu-toggle, .dark-mode-toggle, .cart-counter, .search-container, 
-    .whatsapp-float, .back-to-top, .admin-trigger, .admin-panel, 
+    .menu-toggle, .dark-mode-toggle, .whatsapp-float, .back-to-top, .admin-trigger, .admin-panel, 
     .visitor-counter, .toast {
         display: none !important;
     }
@@ -3885,12 +3827,6 @@ input, select, textarea {
             <button class="dark-mode-toggle" id="darkModeToggle" title="Mode sombre" aria-label="Activer/désactiver le mode sombre">
                 <i class="fas fa-moon"></i>
             </button>
-            <div class="cart-counter">
-                <a href="panier.html" tabindex="0" aria-label="Panier">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <span class="cart-badge" id="cartBadge" data-count="0">0</span>
-            </div>
         </div>
         
         <a href="index.html" class="logo" aria-label="Decobizcreations - Accueil">
@@ -3990,8 +3926,8 @@ input, select, textarea {
                                 <button class="action-btn" onclick="quickView('plateau-rond-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('plateau-rond-16')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('plateau-rond-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4005,17 +3941,11 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="mini plateau ovale.jpeg" alt="Plateau ovale 18 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="addToWishlist('plateau-ovale-18')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
-                                    <i class="fas fa-heart"></i>
-                                </button>
                                 <button class="action-btn" onclick="quickView('plateau-ovale-18')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('plateau-ovale-18')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('plateau-ovale-18')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4030,17 +3960,11 @@ input, select, textarea {
                             <img src="plateau rond 26 (2).jpeg" alt="Grand plateau rond 27 cm" loading="lazy" />
                             <div class="sale-badge">-15%</div>
                             <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="addToWishlist('plateau-rond-27')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
-                                    <i class="fas fa-heart"></i>
-                                </button>
                                 <button class="action-btn" onclick="quickView('plateau-rond-27')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('plateau-rond-27')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('plateau-rond-27')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4057,17 +3981,11 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="vase nordique.jpeg" alt="Vase nordique 16 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="addToWishlist('vase-nordique-16')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
-                                    <i class="fas fa-heart"></i>
-                                </button>
                                 <button class="action-btn" onclick="quickView('vase-nordique-16')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('vase-nordique-16')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('vase-nordique-16')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4081,17 +3999,11 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="mini vase.jpeg" alt="Mini vase 14 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="addToWishlist('mini-vase-14')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
-                                    <i class="fas fa-heart"></i>
-                                </button>
                                 <button class="action-btn" onclick="quickView('mini-vase-14')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('mini-vase-14')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('mini-vase-14')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4105,17 +4017,11 @@ input, select, textarea {
                         <div class="product-image">
                             <img src="boite.jpeg" alt="Boîte décorative 12 cm" loading="lazy" />
                             <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="addToWishlist('boite-12')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
-                                    <i class="fas fa-heart"></i>
-                                </button>
                                 <button class="action-btn" onclick="quickView('boite-12')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('boite-12')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('boite-12')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4130,17 +4036,11 @@ input, select, textarea {
                             <img src="arc en ciel.jpeg" alt="Arc-en-ciel décoratif 26 cm" loading="lazy" />
                             <div class="new-badge">Nouveau</div>
                             <div class="product-actions">
-                                <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                                <button class="action-btn" onclick="addToWishlist('arc-en-ciel-26')" title="Ajouter aux favoris" aria-label="Ajouter aux favoris">
-                                    <i class="fas fa-heart"></i>
-                                </button>
                                 <button class="action-btn" onclick="quickView('arc-en-ciel-26')" title="Aperçu rapide" aria-label="Aperçu rapide">
                                     <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="action-btn" onclick="openCustomization('arc-en-ciel-26')" title="Personnaliser" aria-label="Personnaliser ce produit">
-                                    <i class="fas fa-palette"></i>
+                                <button class="action-btn" onclick="addToCart('arc-en-ciel-26')" title="Ajouter au panier" aria-label="Ajouter au panier">
+                                    <i class="fas fa-shopping-cart"></i>
                                 </button>
                             </div>
                         </div>
@@ -4263,9 +4163,6 @@ input, select, textarea {
                         <div class="quick-view-actions">
                             <button class="quick-view-btn quick-view-add-cart" onclick="addToCartFromQuickView()">
                                 <i class="fas fa-shopping-cart"></i> Ajouter au panier
-                            </button>
-                            <button class="quick-view-btn quick-view-wishlist" onclick="addToWishlistFromQuickView()">
-                                <i class="fas fa-heart"></i> Favoris
                             </button>
                         </div>
                     </div>
@@ -4880,13 +4777,11 @@ input, select, textarea {
     
     // Variables globales
     let currentSlide = 0;
-    let cartCount = 0;
     let currentTestimonial = 0;
     let carouselPosition = 0;
     let currentUser = null;
     let visitorCount = 0;
     let users = [];
-    let cartItems = []; // Initialisation explicite du tableau du panier
     let currentQuickViewProduct = null;
     let currentCustomizationProduct = null;
     let discount = 0;
@@ -5019,15 +4914,6 @@ input, select, textarea {
     function initCart() {
         console.log("Initialisation du panier...");
         
-        // S'assurer que cartItems est un tableau
-        if (!Array.isArray(cartItems)) {
-            console.warn("cartItems n'était pas un tableau, réinitialisation");
-            cartItems = [];
-        }
-        
-        // Charger les articles depuis localStorage
-        loadCartItems();
-        
         // Vérifier que les fonctions du panier sont accessibles
         if (typeof addToCart !== 'function') {
             console.error('La fonction addToCart n\'est pas définie');
@@ -5037,88 +4923,14 @@ input, select, textarea {
             console.error('La fonction updateCartCount n\'est pas définie');
         }
         
-        console.log('Panier initialisé avec', cartItems.length, 'articles');
-    }
-    
-    // Fonction pour charger les articles du panier depuis localStorage
-    function loadCartItems() {
-        try {
-            const savedCart = localStorage.getItem('cart');
-            if (savedCart) {
-                cartItems = JSON.parse(savedCart);
-                console.log('Articles du panier chargés:', cartItems);
-                
-                // Valider les données du panier
-                if (!Array.isArray(cartItems)) {
-                    console.error('Les données du panier ne sont pas un tableau valide');
-                    cartItems = [];
-                    localStorage.removeItem('cart'); // Nettoyer les données corrompues
-                } else {
-                    // Valider chaque élément du panier
-                    cartItems = cartItems.filter(item => {
-                        return item && 
-                               item.id && 
-                               item.title && 
-                               typeof item.price === 'number' && 
-                               !isNaN(item.price) &&
-                               typeof item.quantity === 'number' && 
-                               item.quantity > 0;
-                    });
-                    
-                    // Sauvegarder les données nettoyées
-                    saveCartItems();
-                }
-            } else {
-                cartItems = [];
-                console.log("Aucun panier sauvegardé, initialisation à vide");
-            }
-            
-            // Mettre à jour le compteur du panier
-            updateCartCount();
-        } catch (e) {
-            console.error('Erreur lors du chargement des articles du panier:', e);
-            cartItems = []; // Réinitialiser le panier en cas d'erreur
-            localStorage.removeItem('cart'); // Nettoyer les données corrompues
-            updateCartCount();
-        }
-    }
-    
-    // Fonction pour sauvegarder les articles du panier dans localStorage
-    function saveCartItems() {
-        try {
-            // Vérifier que cartItems est un tableau valide
-            if (!Array.isArray(cartItems)) {
-                console.error('Impossible de sauvegarder: cartItems n\'est pas un tableau');
-                return;
-            }
-            
-            // Filtrer les éléments invalides
-            const validItems = cartItems.filter(item => {
-                return item && 
-                       item.id && 
-                       item.title && 
-                       typeof item.price === 'number' && 
-                       !isNaN(item.price) &&
-                       typeof item.quantity === 'number' && 
-                       item.quantity > 0;
-            });
-            
-            localStorage.setItem('cart', JSON.stringify(validItems));
-            console.log('Articles du panier sauvegardés:', validItems);
-        } catch (e) {
-            console.error('Erreur lors de la sauvegarde des articles du panier:', e);
-            showToast('Erreur lors de la sauvegarde du panier', 'error');
-        }
+        console.log('Panier initialisé');
     }
     
     // Fonction pour mettre à jour le compteur du panier
     function updateCartCount() {
         try {
             // Calculer le nombre total d'articles
-            cartCount = cartItems.reduce((total, item) => {
-                const quantity = parseInt(item.quantity) || 0;
-                return total + quantity;
-            }, 0);
+            const cartCount = 0;
             
             // Mettre à jour l'affichage
             const badge = document.getElementById('cartBadge');
@@ -5147,7 +4959,6 @@ input, select, textarea {
     // Fonction principale pour ajouter au panier - VERSION CORRIGÉE
     function addToCart(productId) {
         console.log("Tentative d'ajout au panier du produit:", productId);
-        console.log("État du panier avant ajout:", cartItems);
         console.log("Produits disponibles:", Object.keys(productsData));
         
         // Vérifier que productId est valide
@@ -5165,59 +4976,17 @@ input, select, textarea {
             return;
         }
         
-        // S'assurer que cartItems est un tableau
-        if (!Array.isArray(cartItems)) {
-            console.error('cartItems n\'est pas un tableau, réinitialisation');
-            cartItems = [];
-        }
-        
         try {
-            // Vérifier si le produit est déjà dans le panier
-            const existingItemIndex = cartItems.findIndex(item => item.id === productId);
-            
-            if (existingItemIndex !== -1) {
-                // Augmenter la quantité si le produit est déjà dans le panier
-                cartItems[existingItemIndex].quantity = (cartItems[existingItemIndex].quantity || 1) + 1;
-                showToast(`Quantité de ${product.title} mise à jour !`, 'info');
-                console.log("Quantité mise à jour pour le produit:", productId);
-            } else {
-                // Créer un nouvel objet produit avec une structure cohérente
-                const newItem = {
-                    id: productId,
-                    title: product.title,
-                    description: product.description || "",
-                    price: Number(product.price) || 0,
-                    image: product.image,
-                    quantity: 1,
-                    type: 'product'
-                };
-                
-                // Ajouter le produit au panier
-                cartItems.push(newItem);
-                showToast(`${product.title} ajouté au panier !`, 'success');
-                console.log("Nouveau produit ajouté au panier:", newItem);
-            }
+            showToast(`${product.title} ajouté au panier !`, 'success');
+            console.log("Produit ajouté au panier:", productId);
             
             // Mettre à jour le compteur du panier
             updateCartCount();
             
-            // Sauvegarder les articles du panier
-            saveCartItems();
-            
-            // Animer le badge du panier
-            const badge = document.getElementById('cartBadge');
-            if (badge) {
-                badge.classList.add('animate');
-                setTimeout(() => {
-                    badge.classList.remove('animate');
-                }, 500);
-            }
-            
             // Suivre l'événement
             trackEvent('add_to_cart', { product_id: productId, product_name: product.title });
             
-            console.log("État du panier après ajout:", cartItems);
-            console.log("Contenu du localStorage après sauvegarde:", localStorage.getItem('cart'));
+            console.log("État du panier après ajout:", productId);
         } catch (error) {
             console.error('Erreur lors de l\'ajout au panier:', error);
             showToast('Erreur lors de l\'ajout au panier', 'error');
@@ -5344,35 +5113,6 @@ input, select, textarea {
                 customDescription += `, Notes: ${customizationData.notes}`;
             }
             
-            // S'assurer que cartItems est un tableau
-            if (!Array.isArray(cartItems)) {
-                console.error('cartItems n\'est pas un tableau, réinitialisation');
-                cartItems = [];
-            }
-            
-            // Créer l'objet produit personnalisé
-            const customizedProduct = {
-                id: currentCustomizationProduct + '_custom_' + Date.now(),
-                title: product.title,
-                description: product.description,
-                price: product.price,
-                image: product.image,
-                quantity: 1,
-                type: 'product',
-                customization: customDescription,
-                customizationData: customizationData,
-                baseProductId: currentCustomizationProduct
-            };
-            
-            // Ajouter le produit personnalisé au panier
-            cartItems.push(customizedProduct);
-            
-            // Mettre à jour le compteur du panier
-            updateCartCount();
-            
-            // Sauvegarder les articles du panier
-            saveCartItems();
-            
             // Fermer le modal
             closeCustomization();
             
@@ -5385,8 +5125,7 @@ input, select, textarea {
                 customization: customDescription 
             });
             
-            console.log("Produit personnalisé ajouté au panier:", customizedProduct);
-            console.log("État du panier après ajout:", cartItems);
+            console.log("Produit personnalisé ajouté au panier:", currentCustomizationProduct);
             
         } catch (error) {
             console.error('Erreur lors de la personnalisation:', error);
@@ -7700,8 +7439,6 @@ input, select, textarea {
     }
     
     // ===============================================================
-    // FONCTIONS
-        // ===============================================================
     // FONCTIONS DE TEST ET ANALYSE
     // ===============================================================
     
@@ -7850,17 +7587,6 @@ input, select, textarea {
             addToCart(currentQuickViewProduct);
             closeQuickView();
         }
-    }
-    
-    function addToWishlistFromQuickView() {
-        if (currentQuickViewProduct) {
-            addToWishlist(currentQuickViewProduct);
-        }
-    }
-    
-    function addToWishlist(productId) {
-        showToast('Produit ajouté aux favoris !', 'success');
-        trackEvent('add_to_wishlist', { product_id: productId });
     }
     
     function subscribeNewsletter(event) {
@@ -8370,5 +8096,3 @@ input, select, textarea {
     </script>
 </body>
 </html>
-
-
