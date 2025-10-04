@@ -4118,6 +4118,67 @@ input, select, textarea {
         font-size: 16px !important;
     }
 }
+        /* Responsive design pour écrans <= 480px */
+@media screen and (max-width: 480px) {
+    .signup-container {
+        flex-direction: column;
+        margin: 10px;
+        min-height: auto;
+        border-radius: 10px;
+    }
+
+    .signup-left, 
+    .signup-right {
+        flex: unset;
+        width: 100%;
+        min-height: auto;
+        padding: 20px;
+    }
+
+    .signup-left h1 {
+        font-size: 22px;
+    }
+
+    .signup-left img {
+        max-width: 120px; /* image plus lisible */
+        margin: 15px 0;
+    }
+
+    .signup-right h2 {
+        font-size: 20px;
+    }
+
+    .auth-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* Responsive pour très petits écrans (ex: 320px) */
+@media screen and (max-width: 360px) {
+    .signup-left h1 {
+        font-size: 18px;
+    }
+
+    .signup-left img {
+        max-width: 100px;
+    }
+
+    .signup-right {
+        padding: 15px;
+    }
+
+    .auth-form input {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .auth-btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+}
+
    </style>
 </head>
 <body>
@@ -8382,3 +8443,4 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
