@@ -1804,117 +1804,56 @@
             const advanceAmount = Math.round(totalAmount * 0.5);
             const remainingAmount = totalAmount - advanceAmount;
             
-            // Créer un message structuré et esthétique
+            // Créer un message plus court et plus simple pour mobile
             let message = `NOUVELLE COMMANDE - 50% D'AVANCE\n\n`;
-            message += `INFORMATIONS CLIENT\n`;
             message += `Prénom: ${firstName}\n`;
             message += `Nom: ${lastName}\n`;
-            message += `Téléphone: ${phone}\n\n`;
-            
-            message += `ADRESSE DE LIVRAISON\n`;
-            message += `Adresse: ${address}\n`;
-            message += `Ville: ${city}\n`;
+            message += `Téléphone: ${phone}\n`;
+            message += `Adresse: ${address}, ${city}\n`;
             if (notes) {
                 message += `Notes: ${notes}\n`;
             }
             message += `\n`;
             
-            message += `DÉTAILS DE LA COMMANDE\n`;
+            message += `ARTICLES COMMANDÉS:\n`;
             
             if (orderData && orderData.items && orderData.items.length > 0) {
                 orderData.items.forEach((item, index) => {
-                    const itemTotal = item.price * item.quantity;
-                    message += `${index + 1}. ${item.title}\n`;
-                    if (item.description) {
-                        message += `   ${item.description}\n`;
-                    }
-                    if (item.type === 'pack' && item.items) {
-                        message += `   Pack de ${item.items.length} articles\n`;
-                    }
-                    
-                    // Ajouter les détails de personnalisation
-                    if (item.customization || (item.customizationData && Object.keys(item.customizationData).length > 0)) {
-                        let customDetails = [];
-                        
-                        if (item.customization) {
-                            customDetails.push(item.customization);
-                        } else if (item.customizationData) {
-                            const data = item.customizationData;
-                            
-                            if (data.color) {
-                                if (data.color === 'autre' && data.otherColor) {
-                                    customDetails.push(`Couleur: ${data.otherColor}`);
-                                } else if (data.color !== 'autre') {
-                                    customDetails.push(`Couleur: ${data.color}`);
-                                }
-                            }
-                            
-                            if (data.size && data.size !== 'Taille standard') {
-                                customDetails.push(`Taille: ${data.size}`);
-                                if (data.dimensions) {
-                                    customDetails.push(`Dimensions: ${data.dimensions}`);
-                                }
-                            }
-                            
-                            if (data.finish) {
-                                customDetails.push(`Finition: ${data.finish}`);
-                            }
-                            
-                            if (data.notes) {
-                                customDetails.push(`Notes: ${data.notes}`);
-                            }
-                        }
-                        
-                        if (customDetails.length > 0) {
-                            message += `   Personnalisation: ${customDetails.join(', ')}\n`;
-                        }
-                    }
-                    
-                    message += `   Prix unitaire: ${item.price} DH\n`;
-                    message += `   Quantité: ${item.quantity}\n`;
-                    message += `   Sous-total: ${itemTotal} DH\n\n`;
+                    message += `${index + 1}. ${item.title} - ${item.quantity}x ${item.price}DH\n`;
                 });
-            } else {
-                message += `Aucun article dans la commande.\n\n`;
             }
             
-            message += `RÉSUMÉ DES PAIEMENTS\n`;
-            message += `Sous-total: ${orderData ? orderData.subtotal : 0} DH\n`;
-            message += `Frais de livraison: ${orderData ? orderData.shipping : 30} DH\n`;
-            if (orderData && orderData.discount > 0) {
-                message += `Réduction: -${orderData.discount} DH\n`;
-            }
-            message += `MONTANT TOTAL: ${totalAmount} DH\n\n`;
+            message += `\nTOTAL: ${totalAmount}DH\n`;
+            message += `AVANCE (50%): ${advanceAmount}DH\n`;
+            message += `RESTE À PAYER: ${remainingAmount}DH\n\n`;
             
-            message += `PAIEMENT PAR VERSEMENTS\n`;
-            message += `Montant de l'avance (50%): ${advanceAmount} DH\n`;
-            message += `Reste à payer à la livraison: ${remainingAmount} DH\n\n`;
-            
-            message += `CONFIRMATION\n`;
-            message += `J'ai effectué le virement de 50% d'avance.\n`;
-            message += `Merci de me confirmer la réception et la préparation de ma commande.\n\n`;
-            
-            message += `Merci pour votre confiance !\n`;
-            message += `Decobizcreations - Artisanat marocain fait main`;
+            message += `J'ai effectué le virement de 50% d'avance. Merci de confirmer la réception de ma commande.`;
             
             document.getElementById('whatsappAdvanceMessage').textContent = message;
             
-            // Mettre à jour le lien WhatsApp avec l'ID correct
+            // Mettre à jour le lien WhatsApp avec une URL plus courte
             const whatsappLink = document.getElementById('whatsappLink');
-            // Utiliser une méthode plus robuste pour l'encodage
             try {
+                // Encoder le message pour l'URL
                 const encodedMessage = encodeURIComponent(message);
-                const whatsappUrl = `https://wa.me/212610236889?text=${encodedMessage}`;
+                
+                // Créer une URL WhatsApp plus courte et plus compatible
+                const phoneNumber = "212610236889";
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                
                 whatsappLink.href = whatsappUrl;
                 
                 // Vérifier si l'URL est valide
-                if (whatsappUrl.length > 2000) { // Les URL très longues peuvent causer des problèmes
-                    console.warn("L'URL WhatsApp est très longue, cela pourrait causer des problèmes");
-                    showToast("Le message est trop long, certaines informations ont été tronquées", "warning");
-                }
+                console.log("URL WhatsApp générée:", whatsappUrl.substring(0, 100) + "...");
+                
             } catch (error) {
                 console.error("Erreur lors de l'encodage du message WhatsApp:", error);
-                showToast("Erreur lors de la préparation du message WhatsApp", "error");
+                
+                // Fallback: URL simple avec un message de base
+                const fallbackMessage = encodeURIComponent("Bonjour, je souhaite finaliser ma commande avec paiement de 50% d'avance.");
+                whatsappLink.href = `https://wa.me/212610236889?text=${fallbackMessage}`;
+                
+                showToast("Erreur lors de la préparation du message. Un message de base sera utilisé.", "warning");
             }
         }
         
@@ -1995,13 +1934,27 @@
                 // Ouvrir la conversation WhatsApp avec le lien correct
                 setTimeout(() => {
                     const whatsappLink = document.getElementById('whatsappLink');
+                    
                     // Vérifier si le lien est valide avant de l'ouvrir
-                    if (whatsappLink.href && whatsappLink.href.length > 0) {
-                        window.open(whatsappLink.href, '_blank');
-                        showToast('Redirection vers WhatsApp...', 'info');
+                    if (whatsappLink && whatsappLink.href && whatsappLink.href.length > 0) {
+                        console.log("Tentative d'ouverture du lien WhatsApp:", whatsappLink.href.substring(0, 100) + "...");
+                        
+                        // Essayer d'ouvrir le lien
+                        try {
+                            // Pour mobile, utiliser window.location.href pour une meilleure compatibilité
+                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                                window.location.href = whatsappLink.href;
+                            } else {
+                                window.open(whatsappLink.href, '_blank');
+                            }
+                            showToast('Redirection vers WhatsApp...', 'info');
+                        } catch (error) {
+                            console.error("Erreur lors de l'ouverture de WhatsApp:", error);
+                            showToast('Erreur lors de la redirection vers WhatsApp. Veuillez utiliser le bouton "Envoyer sur WhatsApp".', 'error');
+                        }
                     } else {
                         showToast('Erreur: lien WhatsApp non valide', 'error');
-                        console.error('Lien WhatsApp non valide:', whatsappLink.href);
+                        console.error('Lien WhatsApp non valide:', whatsappLink ? whatsappLink.href : 'Element non trouvé');
                     }
                 }, 1000);
             }, 2000);
