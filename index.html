@@ -2764,6 +2764,10 @@ footer {
     font-size: 0.8rem;
 }
 
+/* ===================================== */
+/* AMÉLIORATIONS POUR PETITS ÉCRANS */
+/* ===================================== */
+
 /* Styles pour mobile */
 @media (max-width: 768px) {
     /* Header mobile */
@@ -2904,33 +2908,38 @@ footer {
         font-size: 0.8rem;
     }
     
-    /* Boutons d'action mobile */
-    .product-actions {
-     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    opacity: 0;
-    transition: opacity var(--transition-speed) ease;
-    z-index: 5;
+    /* Agrandissement des icônes pour mobile */
+    .action-btn {
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        font-size: 16px !important;
     }
     
-    .action-btn {
-    background: rgba(178, 121, 82, 0.9);
-    border: none;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-speed) ease;
-    min-width: 10px;
-    min-height: 10px;
+    .product-actions {
+        opacity: 1 !important;
+        bottom: 15px !important;
+        right: 15px !important;
+    }
+    
+    .cart-counter i,
+    .dark-mode-toggle i,
+    .search-btn i {
+        font-size: 18px !important;
+    }
+    
+    .dark-mode-toggle {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .cart-badge {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 12px !important;
+        top: -8px !important;
+        right: -8px !important;
     }
     
     .new-badge, .sale-badge {
@@ -3300,15 +3309,13 @@ footer {
         gap: 0.5rem;
     }
     
-    .dark-mode-toggle {
-        width: 30px;
-        height: 30px;
+    .social-btn {
+        padding: 12px !important;
+        min-height: 44px !important;
     }
     
-    .cart-badge {
-        width: 16px;
-        height: 16px;
-        font-size: 0.65rem;
+    .close-modal i {
+        font-size: 18px !important;
     }
     
     .admin-panel-content {
@@ -3647,19 +3654,11 @@ footer {
     }
     
     .action-btn {
-   background: rgba(178, 121, 82, 0.9);
-    border: none;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-speed) ease;
-    min-width: 5px;
-    min-height: 5px;
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -3883,51 +3882,136 @@ input, select, textarea {
         height: 120px;
     }
 }
-   /* Styles pour les modals d'inscription sur mobile */
+
+/* ===================================== */
+/* CORRECTIONS POUR LES PETITS ÉCRANS */
+/* ===================================== */
+
+/* Correction pour l'image dans le formulaire d'inscription */
+.client-signup-image img,
+.auth-image img,
+.signup-image img {
+    max-width: 100% !important;
+    max-height: 180px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    border-radius: 10px !important;
+}
+
+@media (max-width: 768px) {
+    .client-signup-image img,
+    .auth-image img,
+    .signup-image img {
+        max-height: 120px !important;
+    }
+}
+
+/* Styles spécifiques pour les modals en mode mobile */
+.modal.mobile-modal {
+    padding: 0 !important;
+}
+
+.modal.mobile-modal .client-signup-container,
+.modal.mobile-modal .auth-container,
+.modal.mobile-modal .signup-container {
+    margin: 1% auto !important;
+    max-width: 98% !important;
+    border-radius: 8px !important;
+}
+
+.modal.mobile-modal .client-signup-left,
+.modal.mobile-modal .auth-left,
+.modal.mobile-modal .signup-left {
+    padding: 1rem !important;
+    min-height: 150px !important;
+}
+
+.modal.mobile-modal .client-signup-right,
+.modal.mobile-modal .auth-right,
+.modal.mobile-modal .signup-right {
+    padding: 1rem !important;
+}
+
+.modal.mobile-modal .client-signup-form-container h2,
+.modal.mobile-modal .auth-form-container h2,
+.modal.mobile-modal .signup-form-container h2 {
+    font-size: 1.3rem !important;
+}
+
+.modal.mobile-modal .client-signup-form-container p,
+.modal.mobile-modal .auth-form-container p,
+.modal.mobile-modal .signup-form-container p {
+    font-size: 0.85rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.modal.mobile-modal .client-signup-form-container .form-group,
+.modal.mobile-modal .auth-form-container .form-group,
+.modal.mobile-modal .signup-form-container .form-group {
+    margin-bottom: 0.8rem !important;
+}
+
+.modal.mobile-modal .client-signup-form-container input,
+.modal.mobile-modal .auth-form-container input,
+.modal.mobile-modal .signup-form-container input {
+    padding: 0.7rem !important;
+    font-size: 0.9rem !important;
+}
+
+.modal.mobile-modal .client-signup-form-container .auth-btn,
+.modal.mobile-modal .auth-form-container .auth-btn,
+.modal.mobile-modal .signup-form-container .auth-btn {
+    padding: 0.7rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Amélioration du formulaire d'inscription pour mobile */
 @media (max-width: 768px) {
     .client-signup-container,
     .auth-container,
     .signup-container {
-        flex-direction: column;
-        margin: 2% auto;
-        max-width: 95%;
-        border-radius: 10px;
-        overflow: hidden;
+        flex-direction: column !important;
+        margin: 2% auto !important;
+        max-width: 95% !important;
+        border-radius: 10px !important;
+        overflow: hidden !important;
+        min-height: auto !important;
     }
     
     .client-signup-left,
     .auth-left,
     .signup-left {
-        padding: 1.5rem;
-        min-height: 150px;
-        max-height: 200px;
+        padding: 1.5rem !important;
+        min-height: 150px !important;
+        max-height: 200px !important;
     }
     
     .client-signup-right,
     .auth-right,
     .signup-right {
-        padding: 1.5rem;
-        min-height: auto;
+        padding: 1.5rem !important;
+        min-height: auto !important;
     }
     
     .client-signup-image,
     .auth-image,
     .signup-image {
-        display: none;
+        display: none !important;
     }
     
     .client-signup-brand h1,
     .auth-brand h1,
     .signup-brand h1 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
     .client-signup-form-container h2,
     .auth-form-container h2,
     .signup-form-container h2 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
     
     .form-group {
@@ -3994,27 +4078,27 @@ input, select, textarea {
     .client-signup-left,
     .auth-left,
     .signup-left {
-        padding: 1rem;
-        min-height: 120px;
-        max-height: 150px;
+        padding: 1rem !important;
+        min-height: 120px !important;
+        max-height: 150px !important;
     }
     
     .client-signup-right,
     .auth-right,
     .signup-right {
-        padding: 1rem;
+        padding: 1rem !important;
     }
     
     .client-signup-brand h1,
     .auth-brand h1,
     .signup-brand h1 {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
     }
     
     .client-signup-form-container h2,
     .auth-form-container h2,
     .signup-form-container h2 {
-        font-size: 1.3rem;
+        font-size: 1.3rem !important;
     }
     
     .form-group {
@@ -4034,62 +4118,7 @@ input, select, textarea {
         font-size: 16px !important;
     }
 }
-
-/* Classe spéciale pour les modals en mode mobile */
-.modal.mobile-modal .client-signup-container,
-.modal.mobile-modal .auth-container,
-.modal.mobile-modal .signup-container {
-    margin: 1% auto;
-    max-width: 98%;
-    border-radius: 8px;
-}
-
-.modal.mobile-modal .client-signup-left,
-.modal.mobile-modal .auth-left,
-.modal.mobile-modal .signup-left {
-    padding: 1rem;
-    min-height: 150px;
-}
-
-.modal.mobile-modal .client-signup-right,
-.modal.mobile-modal .auth-right,
-.modal.mobile-modal .signup-right {
-    padding: 1rem;
-}
-
-.modal.mobile-modal .client-signup-form-container h2,
-.modal.mobile-modal .auth-form-container h2,
-.modal.mobile-modal .signup-form-container h2 {
-    font-size: 1.3rem;
-}
-
-.modal.mobile-modal .client-signup-form-container p,
-.modal.mobile-modal .auth-form-container p,
-.modal.mobile-modal .signup-form-container p {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-}
-
-.modal.mobile-modal .client-signup-form-container .form-group,
-.modal.mobile-modal .auth-form-container .form-group,
-.modal.mobile-modal .signup-form-container .form-group {
-    margin-bottom: 0.8rem;
-}
-
-.modal.mobile-modal .client-signup-form-container input,
-.modal.mobile-modal .auth-form-container input,
-.modal.mobile-modal .signup-form-container input {
-    padding: 0.7rem;
-    font-size: 0.9rem;
-}
-
-.modal.mobile-modal .client-signup-form-container .auth-btn,
-.modal.mobile-modal .auth-form-container .auth-btn,
-.modal.mobile-modal .signup-form-container .auth-btn {
-    padding: 0.7rem;
-    font-size: 0.9rem;
-}     
-    </style>
+   </style>
 </head>
 <body>
     <div id="loader" role="alert" aria-live="assertive">
@@ -7212,7 +7241,7 @@ input, select, textarea {
                     }
                     
                     const visitor = {
-                        id: Date.now() + '_' + Math.random().toString(36).substring(2, 9),
+                        id: Date.now() + '_' + Math.random().toString(36).substr(2, 9),
                         sessionId: sessionId,
                         timestamp: now,
                         userAgent: userAgent,
@@ -7851,15 +7880,13 @@ input, select, textarea {
     
     function getDeviceType() {
         const userAgent = navigator.userAgent;
-        if (/Tablet|iPad|PlayBook|Silk|Kindle|Nexus 7|Nexus 9|Nexus 10|SM-T|GT-P|SGP712|SM-P|Xoom|SHIELD/i.test(userAgent)) {
-            return 'Tablette';
-        }
-        if (/Mobile|Android|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|webOS|Symbian|Mobile Safari|Fennec|Minimo|NetFront|Blazer|Dolfin|Skyfire|Bolt|Iris|Maemo|Meego|Bada/i.test(userAgent)) {
-            return 'Mobile';
-        }
-        if (/Windows|Macintosh|Linux|X11|Ubuntu|CrOS/i.test(userAgent)) {
-            return 'Ordinateur';
-        }
+        if (userAgent.indexOf('Chrome') > -1 && userAgent.indexOf('Edg') === -1) return 'Chrome';
+        if (userAgent.indexOf('Safari') > -1 && userAgent.indexOf('Chrome') === -1) return 'Safari';
+        if (userAgent.indexOf('Firefox') > -1) return 'Firefox';
+        if (userAgent.indexOf('MSIE') > -1 || userAgent.indexOf('Trident') > -1) return 'Internet Explorer';
+        if (userAgent.indexOf('Edg') > -1) return 'Microsoft Edge';
+        if (userAgent.indexOf('Opera') > -1 || userAgent.indexOf('OPR') > -1) return 'Opera';
+        if (userAgent.indexOf('Brave') > -1) return 'Brave';
         return 'Inconnu';
     }
     
@@ -8067,207 +8094,6 @@ input, select, textarea {
             trackEvent('newsletter_subscription', { email: email });
         } else {
             showToast('Veuillez entrer une adresse email valide', 'error');
-        }
-    }
-    
-    function exportDetailedVisitorData() {
-        try {
-            if (typeof window.getVisitorData !== 'function') {
-                alert('Aucune donnée à exporter');
-                return;
-            }
-            
-            const visitors = window.getVisitorData() || [];
-            
-            if (visitors.length === 0) {
-                alert('Aucune donnée à exporter');
-                return;
-            }
-            
-            // Créer le contenu CSV avec toutes les informations
-            const csvContent = "data:text/csv;charset=utf-8," 
-                + "ID Session,Timestamp,Appareil,Navigateur,Système d'exploitation,Résolution d'écran,Langue,Référent,Page,Fuseau horaire,Ville,Pays,Région,Latitude,Longitude,Mobile,Tablette,Tactile,Ratio pixel,Viewport,Type de connexion\n"
-                + visitors.map(v => 
-                    `"${v.sessionId}","${v.timestamp}","${v.device}","${v.browser}","${v.os}","${v.screenResolution}","${v.language}","${v.referrer}","${v.page}","${v.timezone}","${v.city || ''}","${v.country || ''}","${v.region || ''}","${v.latitude || ''}","${v.longitude || ''}","${v.isMobile}","${v.isTablet}","${v.touchEnabled}","${v.pixelRatio}","${v.viewportWidth}x${v.viewportHeight}","${v.connectionType}"`
-                ).join("\n");
-            
-            // Créer un lien de téléchargement
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `visiteurs_internationaux_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('Données internationales exportées avec succès !');
-        } catch (error) {
-            console.error('Erreur lors de l\'exportation:', error);
-            alert('Erreur lors de l\'exportation des données');
-        }
-    }
-    
-    function exportVisitorDataByLocation() {
-        try {
-            if (typeof window.getVisitorData !== 'function') {
-                alert('Aucune donnée à exporter');
-                return;
-            }
-            
-            const visitors = window.getVisitorData() || [];
-            
-            if (visitors.length === 0) {
-                alert('Aucune donnée à exporter');
-                return;
-            }
-            
-            // Préparer les données par ville et pays
-            const locationData = {};
-            visitors.forEach(visitor => {
-                if (visitor.city && visitor.country) {
-                    const locationKey = `${visitor.city}, ${visitor.country}`;
-                    if (!locationData[locationKey]) {
-                        locationData[locationKey] = {
-                            Mobile: 0,
-                            Ordinateur: 0,
-                            Tablette: 0,
-                            Autre: 0
-                        };
-                    }
-                    
-                    if (visitor.device === 'Mobile') {
-                        locationData[locationKey].Mobile++;
-                    } else if (visitor.device === 'Ordinateur') {
-                        locationData[locationKey].Ordinateur++;
-                    } else if (visitor.device === 'Tablette') {
-                        locationData[locationKey].Tablette++;
-                    } else {
-                        locationData[locationKey].Autre++;
-                    }
-                }
-            });
-            
-            // Créer le contenu CSV
-            let csvContent = "data:text/csv;charset=utf-8," 
-                + "Ville,Pays,Mobile,Ordinateur,Tablette,Autre,Total\n";
-                
-            Object.entries(locationData).forEach(([location, devices]) => {
-                const [city, country] = location.split(', ');
-                const total = devices.Mobile + devices.Ordinateur + devices.Tablette + devices.Autre;
-                csvContent += `"${city}","${country}",${devices.Mobile},${devices.Ordinateur},${devices.Tablette},${devices.Autre},${total}\n`;
-            });
-            
-            // Créer un lien de téléchargement
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", `visiteurs_par_localisation_${new Date().toISOString().split('T')[0]}.csv`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            alert('Données par localisation exportées avec succès !');
-        } catch (error) {
-            console.error('Erreur lors de l\'exportation:', error);
-            alert('Erreur lors de l\'exportation des données');
-        }
-    }
-    
-    // Actualiser les données
-    function refreshVisitorData() {
-        updateAdminStats();
-        displayVisitorList();
-        displayVisitorStats();
-        alert('Données actualisées !');
-    }
-    
-    // Effacer les données des visiteurs
-    function clearVisitorData() {
-        if (confirm('Êtes-vous sûr de vouloir effacer toutes les données de visiteurs ? Cette action est irréversible.')) {
-            localStorage.removeItem('decobizcreations_visitor_data');
-            window.getVisitorData = function() { return []; };
-            updateAdminStats();
-            displayVisitorList();
-            displayVisitorStats();
-            alert('Données effacées avec succès !');
-        }
-    }
-    
-    // Fonction pour analyser les données en temps réel
-    function analyzeVisitorData() {
-        try {
-            if (typeof window.getVisitorData !== 'function') {
-                console.error('getVisitorData n\'est pas une fonction');
-                return;
-            }
-            
-            const visitors = window.getVisitorData() || [];
-            
-            console.log("=== Analyse des visiteurs internationaux ===");
-            console.log("Total des visiteurs:", visitors.length);
-            
-            // Analyser par pays
-            const countryCount = {};
-            visitors.forEach(v => {
-                if (v.country) {
-                    countryCount[v.country] = (countryCount[v.country] || 0) + 1;
-                }
-            });
-            console.log("Visiteurs par pays:", countryCount);
-            
-            // Analyser par ville
-            const cityCount = {};
-            visitors.forEach(v => {
-                if (v.city) {
-                    cityCount[v.city] = (cityCount[v.city] || 0) + 1;
-                }
-            });
-            console.log("Visiteurs par ville:", cityCount);
-            
-            // Analyser par appareil
-            const deviceCount = {};
-            visitors.forEach(v => {
-                deviceCount[v.device] = (deviceCount[v.device] || 0) + 1;
-            });
-            console.log("Visiteurs par appareil:", deviceCount);
-            
-            // Analyser par navigateur
-            const browserCount = {};
-            visitors.forEach(v => {
-                browserCount[v.browser] = (browserCount[v.browser] || 0) + 1;
-            });
-            console.log("Visiteurs par navigateur:", browserCount);
-            
-            // Analyser par système d'exploitation
-            const osCount = {};
-            visitors.forEach(v => {
-                osCount[v.os] = (osCount[v.os] || 0) + 1;
-            });
-            console.log("Visiteurs par OS:", osCount);
-            
-            console.log("=== Fin de l'analyse ===");
-        } catch (error) {
-            console.error('Erreur lors de l\'analyse:', error);
-        }
-    }
-    
-    // Fonctions utilitaires supplémentaires
-    function cleanupOldSessions() {
-        try {
-            const visitors = window.getVisitorData() || [];
-            const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
-            
-            const filteredVisitors = visitors.filter(v => {
-                const visitDate = new Date(v.timestamp);
-                return visitDate > oneWeekAgo;
-            });
-            
-            if (filteredVisitors.length !== visitors.length) {
-                localStorage.setItem('decobizcreations_visitor_data', JSON.stringify(filteredVisitors));
-                console.log(`Nettoyage des anciennes sessions: ${visitors.length - filteredVisitors.length} sessions supprimées`);
-            }
-        } catch (error) {
-            console.error('Erreur lors du nettoyage des sessions:', error);
         }
     }
     
@@ -8556,6 +8382,3 @@ input, select, textarea {
     </script>
 </body>
 </html>
-
-
-
