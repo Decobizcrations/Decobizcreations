@@ -3883,6 +3883,212 @@ input, select, textarea {
         height: 120px;
     }
 }
+   /* Styles pour les modals d'inscription sur mobile */
+@media (max-width: 768px) {
+    .client-signup-container,
+    .auth-container,
+    .signup-container {
+        flex-direction: column;
+        margin: 2% auto;
+        max-width: 95%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .client-signup-left,
+    .auth-left,
+    .signup-left {
+        padding: 1.5rem;
+        min-height: 150px;
+        max-height: 200px;
+    }
+    
+    .client-signup-right,
+    .auth-right,
+    .signup-right {
+        padding: 1.5rem;
+        min-height: auto;
+    }
+    
+    .client-signup-image,
+    .auth-image,
+    .signup-image {
+        display: none;
+    }
+    
+    .client-signup-brand h1,
+    .auth-brand h1,
+    .signup-brand h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .client-signup-form-container h2,
+    .auth-form-container h2,
+    .signup-form-container h2 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1rem !important;
+    }
+    
+    .form-group label {
+        font-size: 14px !important;
+        margin-bottom: 8px !important;
+        display: block !important;
+    }
+    
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        border: 2px solid #ddd !important;
+        box-sizing: border-box !important;
+        min-height: 44px !important;
+    }
+    
+    .auth-btn,
+    .client-login-btn {
+        width: 100%;
+        padding: 12px !important;
+        font-size: 16px !important;
+        border-radius: 8px !important;
+        min-height: 44px !important;
+        margin-top: 0.5rem !important;
+    }
+    
+    .close-modal {
+        top: 10px !important;
+        right: 10px !important;
+        font-size: 24px !important;
+        width: 36px !important;
+        height: 36px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(0,0,0,0.1) !important;
+        border-radius: 50% !important;
+        z-index: 1001 !important;
+    }
+    
+    .newsletter-signup,
+    .remember-me {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .newsletter-signup input,
+    .remember-me input {
+        margin-right: 8px;
+        transform: scale(1.2);
+    }
+}
+
+@media (max-width: 480px) {
+    .client-signup-left,
+    .auth-left,
+    .signup-left {
+        padding: 1rem;
+        min-height: 120px;
+        max-height: 150px;
+    }
+    
+    .client-signup-right,
+    .auth-right,
+    .signup-right {
+        padding: 1rem;
+    }
+    
+    .client-signup-brand h1,
+    .auth-brand h1,
+    .signup-brand h1 {
+        font-size: 1.3rem;
+    }
+    
+    .client-signup-form-container h2,
+    .auth-form-container h2,
+    .signup-form-container h2 {
+        font-size: 1.3rem;
+    }
+    
+    .form-group {
+        margin-bottom: 0.8rem !important;
+    }
+    
+    .form-group input, 
+    .form-group select, 
+    .form-group textarea {
+        padding: 10px !important;
+        font-size: 16px !important;
+    }
+    
+    .auth-btn,
+    .client-login-btn {
+        padding: 10px !important;
+        font-size: 16px !important;
+    }
+}
+
+/* Classe spéciale pour les modals en mode mobile */
+.modal.mobile-modal .client-signup-container,
+.modal.mobile-modal .auth-container,
+.modal.mobile-modal .signup-container {
+    margin: 1% auto;
+    max-width: 98%;
+    border-radius: 8px;
+}
+
+.modal.mobile-modal .client-signup-left,
+.modal.mobile-modal .auth-left,
+.modal.mobile-modal .signup-left {
+    padding: 1rem;
+    min-height: 150px;
+}
+
+.modal.mobile-modal .client-signup-right,
+.modal.mobile-modal .auth-right,
+.modal.mobile-modal .signup-right {
+    padding: 1rem;
+}
+
+.modal.mobile-modal .client-signup-form-container h2,
+.modal.mobile-modal .auth-form-container h2,
+.modal.mobile-modal .signup-form-container h2 {
+    font-size: 1.3rem;
+}
+
+.modal.mobile-modal .client-signup-form-container p,
+.modal.mobile-modal .auth-form-container p,
+.modal.mobile-modal .signup-form-container p {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.modal.mobile-modal .client-signup-form-container .form-group,
+.modal.mobile-modal .auth-form-container .form-group,
+.modal.mobile-modal .signup-form-container .form-group {
+    margin-bottom: 0.8rem;
+}
+
+.modal.mobile-modal .client-signup-form-container input,
+.modal.mobile-modal .auth-form-container input,
+.modal.mobile-modal .signup-form-container input {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+}
+
+.modal.mobile-modal .client-signup-form-container .auth-btn,
+.modal.mobile-modal .auth-form-container .auth-btn,
+.modal.mobile-modal .signup-form-container .auth-btn {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+}     
     </style>
 </head>
 <body>
@@ -8350,3 +8556,4 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
