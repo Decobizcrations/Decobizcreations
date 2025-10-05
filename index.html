@@ -2769,39 +2769,23 @@ footer {
 /* ===================================== */
 /* AMÉLIORATIONS POUR PETITS ÉCRANS */
 /* ===================================== */
-
-/* Styles pour mobile */
+/* ===================================== */
+/* STYLES MOBILE OPTIMISÉS (≤768px) */
+/* ===================================== */
 @media (max-width: 768px) {
-    /* Header mobile */
+
+    /* ---------------- Header ---------------- */
     header {
         flex-direction: column;
         padding: 10px;
         height: auto;
-        min-height: var(--mobile-header-height);
     }
-    
-    .header-controls {
-        order: 1;
+    .logo, .header-controls {
         width: 100%;
-        justify-content: space-between;
+        text-align: center;
         margin-bottom: 10px;
     }
-    
-    .logo {
-        order: 0;
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-    
-    header h1 {
-        font-size: 1.5rem;
-    }
-    
-    .menu-toggle {
-        display: block;
-    }
-    
+    .menu-toggle { display: block; }
     nav {
         display: none;
         width: 100%;
@@ -2815,959 +2799,190 @@ footer {
         padding: 1rem;
         z-index: 100;
     }
-    
-    nav.active {
-        display: flex;
-    }
-    
-    nav a {
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        width: 100%;
-        text-align: center;
-    }
-    
-    .nav-item {
-        width: 100%;
-    }
-    
-    .submenu {
-        position: static;
-        opacity: 1;
-        visibility: visible;
-        transform: none;
-        box-shadow: none;
-        background: #f9f3e8;
-        border-radius: 8px;
-        margin-top: 0.5rem;
-        display: none;
-    }
-    
-    .nav-item.active .submenu {
-        display: block;
-    }
-    
-    .submenu a {
-        padding: 0.5rem;
-        border-bottom: none;
-    }
-    
-    .search-input {
-        width: 120px;
-        font-size: 0.8rem;
-    }
-    
-    .search-input:focus {
-        width: 150px;
-    }
-    
-    /* Hero mobile */
-    .hero {
-        height: 60vh;
-        min-height: 400px;
-    }
-    
-    .hero h2 {
-        font-size: 2rem;
-    }
-    
-    .hero p {
-        font-size: 1.1rem;
-    }
-    
-    .hero-cta {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    
-    /* Produits mobile */
-    .product-card {
-        flex: 0 0 150px;
-        margin: 0 auto;
-    }
-    
-    .product-image {
-        height: 140px;
-    }
-    
-    .product-info {
-        padding: 1rem;
-    }
-    
-    .product-info h4 {
-        font-size: 1rem;
-    }
-    
-    .product-info span {
-        font-size: 0.8rem;
-    }
-    
-    .product-price {
-        font-size: 1rem;
-    }
-    
-    .old-price {
-        font-size: 0.8rem;
-    }
-    
-    /* Agrandissement des icônes pour mobile */
-    .action-btn {
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        min-height: 36px !important;
-        font-size: 16px !important;
-    }
-    
-    .product-actions {
-        opacity: 1 !important;
-        bottom: 15px !important;
-        right: 15px !important;
-    }
-    
-    .cart-counter i,
-    .dark-mode-toggle i,
-    .search-btn i {
-        font-size: 18px !important;
-    }
-    
-    .dark-mode-toggle {
-        width: 40px !important;
-        height: 40px !important;
-    }
-    
-    .cart-badge {
-        width: 20px !important;
-        height: 20px !important;
-        font-size: 12px !important;
-        top: -8px !important;
-        right: -8px !important;
-    }
-    
-    .new-badge, .sale-badge {
-        font-size: 0.6rem;
-        padding: 2px 6px;
-    }
-    
-    /* Galerie mobile */
-    .gallery-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        gap: 5px;
-    }
-    
-    .gallery-item {
-        height: 100px;
-    }
-    
-    /* Processus mobile */
-    .process-steps {
-        flex-direction: column;
-    }
-    
-    .process-step:not(:last-child)::after {
-        display: none;
-    }
-    
-    /* Footer mobile */
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .footer-column h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-    
-    /* Newsletter mobile */
-    .newsletter-form {
-        flex-direction: column;
-    }
-    
-    /* Témoignages mobile */
-    .testimonial-slide {
-        font-size: 0.9rem;
-    }
-    
-    .testimonial-author {
-        font-size: 0.9rem;
-    }
-    
-    .testimonial-controls button {
-        padding: 5px 10px;
-        font-size: 0.8rem;
-    }
-    
-    /* Modal mobile */
-    .modal-content {
-        width: 95%;
-        max-width: 500px;
-    }
-    
-    .close-modal {
-        font-size: 30px;
-        top: 10px;
-        right: 15px;
-    }
-    
-    /* Administration mobile */
-    .admin-content {
-        padding: 1.5rem;
-    }
-    
-    .admin-title {
-        font-size: 1.5rem;
-    }
-    
-    .admin-stats {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    /* Quick view mobile */
-    .quick-view-body {
-        flex-direction: column;
-    }
-    
-    .quick-view-image,
-    .quick-view-details {
-        flex: 1 1 100%;
-    }
-    
-    /* Personnalisation mobile */
-    .customization-body {
-        flex-direction: column;
-    }
-    
-    .customization-image,
-    .customization-details {
-        flex: 1 1 100%;
-    }
-    
-    /* Améliorations spécifiques pour la personnalisation sur mobile */
-    .customization-content {
-        width: 95% !important;
-        margin: 2% auto !important;
-        padding: 15px !important;
-        max-height: 90vh !important;
-        overflow-y: auto !important;
-    }
-    
-    .form-group {
-        margin-bottom: 20px !important;
-    }
-    
-    .form-group label {
-        font-size: 14px !important;
-        margin-bottom: 8px !important;
-        display: block !important;
-    }
-    
-    .form-group input, 
-    .form-group select, 
-    .form-group textarea {
-        padding: 12px !important;
-        font-size: 16px !important; /* Évite le zoom sur iOS */
-        border-radius: 8px !important;
-        border: 2px solid #ddd !important;
-    }
-    
-    .customization-actions {
-        flex-direction: column !important;
-        gap: 10px !important;
-        margin-top: 20px !important;
-    }
-    
-    .customization-btn {
-        padding: 15px !important;
-        font-size: 16px !important;
-        border-radius: 8px !important;
-    }
-    
-    .close-modal {
-        top: 10px !important;
-        right: 10px !important;
-        font-size: 24px !important;
-        width: 36px !important;
-        height: 36px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: rgba(0,0,0,0.1) !important;
-        border-radius: 50% !important;
-    }
-    
-    /* Authentification mobile */
-    .auth-container {
-        flex-direction: column;
-        margin: 2% auto;
-        max-width: 95%;
-    }
-    
-    .auth-left {
-        padding: 1.5rem;
-        min-height: 200px;
-    }
-    
-    .auth-right {
-        padding: 1.5rem;
-        min-height: auto;
-    }
-    
-    .auth-brand h1 {
-        font-size: 1.5rem;
-    }
-    
-    .auth-form-container h2 {
-        font-size: 1.5rem;
-    }
-    
-    /* Administration mobile */
-    .admin-panel {
-        width: 95%;
-        margin: 1% auto;
-    }
-    
-    .admin-content {
-        padding: 1rem;
-    }
-    
-    .admin-title {
-        font-size: 1.3rem;
-    }
-    
-    .admin-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .admin-actions {
-        flex-direction: column;
-    }
-    
-    .admin-btn {
-        width: 100%;
-    }
-    
-    /* Styles pour les modals client sur mobile */
-    .client-signup-container {
-        flex-direction: column;
-        margin: 2% auto;
-        max-width: 95%;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    
-    .client-signup-left {
-        padding: 1.5rem;
-        min-height: 200px;
-    }
-    
-    .client-signup-right {
-        padding: 1.5rem;
-        min-height: auto;
-    }
-    
-    .client-signup-brand h1 {
-        font-size: 1.5rem;
-    }
-    
-    .client-signup-form-container h2 {
-        font-size: 1.5rem;
-    }
-    
-    .client-signup-form-container p {
-        font-size: 0.9rem;
-        margin-bottom: 1.2rem;
-    }
-    
-    .client-signup-form-container .form-group {
-        margin-bottom: 1rem;
-    }
-    
-    .client-signup-form-container label {
-        font-size: 0.9rem;
-        margin-bottom: 0.3rem;
-    }
-    
-    .client-signup-form-container input {
-        padding: 0.8rem;
-        font-size: 1rem;
-    }
-    
-    .client-signup-form-container .auth-btn {
-        padding: 0.8rem;
-        font-size: 1rem;
-        margin-top: 0.5rem;
-    }
-    
-    .client-signup-form-container .auth-divider {
-        margin: 1rem 0;
-    }
-    
-    .client-signup-form-container .social-btn {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-    
-    .client-signup-form-container .auth-toggle {
-        margin-top: 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .client-signup-form-container .close-modal {
-        top: 10px;
-        right: 10px;
-        font-size: 1.5rem;
-    }
-    
-    .client-signup-image {
-        display: none; /* Cacher l'image sur mobile pour gagner de l'espace */
-    }
-    
-    .client-welcome {
-        top: 70px;
-        right: 10px;
-        padding: 10px 15px;
-        font-size: 0.9rem;
-    }
-    
-    .client-welcome .client-avatar {
-        width: 28px;
-        height: 28px;
-    }
-    
-    .client-login-btn {
-        padding: 5px 12px;
-        font-size: 0.8rem;
-    }
-    
-    /* Classe spéciale pour les modals en mode mobile */
-    .modal.mobile-modal .client-signup-container {
-        margin: 1% auto;
-        max-width: 98%;
-        border-radius: 8px;
-    }
-    
-    .modal.mobile-modal .client-signup-left {
-        padding: 1rem;
-        min-height: 150px;
-    }
-    
-    .modal.mobile-modal .client-signup-right {
-        padding: 1rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container h2 {
-        font-size: 1.3rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container p {
-        font-size: 0.85rem;
-        margin-bottom: 1rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container .form-group {
-        margin-bottom: 0.8rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-    }
-    
-    /* Boutons flottants mobile */
-    .whatsapp-float {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .back-to-top {
-        width: 35px;
-        height: 35px;
-        font-size: 0.9rem;
-        bottom: 65px;
-        right: 15px;
-    }
-    
-    /* Toast mobile */
-    .toast {
-        font-size: 0.85rem;
-        padding: 10px 15px;
-        max-width: 90%;
-    }
-    
-    .header-controls {
-        gap: 0.5rem;
-    }
-    
-    .social-btn {
-        padding: 12px !important;
-        min-height: 44px !important;
-    }
-    
-    .close-modal i {
-        font-size: 18px !important;
-    }
-    
-    .admin-panel-content {
-        padding: 1rem;
-    }
-    
-    .admin-panel-title {
-        font-size: 1.3rem;
-    }
-    
-    .admin-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .visitor-counter {
-        font-size: 0.7rem;
-        padding: 6px 10px;
-    }
-    
-    .client-signup-left {
-        padding: 1rem;
-    }
-    
-    .client-signup-right {
-        padding: 1rem;
-    }
-    
-    .client-signup-brand h1 {
-        font-size: 1.3rem;
-    }
-    
-    .client-signup-form-container h2 {
-        font-size: 1.3rem;
-    }
-    
-    .client-signup-form-container .form-group {
-        margin-bottom: 0.8rem;
-    }
-    
-    .client-signup-form-container input {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-    }
-    
-    .client-signup-form-container .auth-btn {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container h2 {
-        font-size: 1.2rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container input {
-        padding: 0.6rem;
-        font-size: 0.85rem;
-    }
-    
-    .modal.mobile-modal .client-signup-form-container .auth-btn {
-        padding: 0.6rem;
-        font-size: 0.85rem;
-    }
+    nav.active { display: flex; }
+    nav a { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); text-align: center; }
+    .nav-item { width: 100%; }
+    .submenu { position: static; display: none; margin-top: 0.5rem; background: #f9f3e8; border-radius: 8px; }
+    .nav-item.active .submenu { display: block; }
+    .submenu a { padding: 0.5rem; }
+
+    /* ---------------- Hero ---------------- */
+    .hero { height: 60vh; min-height: 400px; }
+    .hero h2 { font-size: 2rem; }
+    .hero p { font-size: 1.1rem; }
+    .hero-cta { padding: 10px 20px; font-size: 0.9rem; }
+
+    /* ---------------- Produits ---------------- */
+    .product-card { flex: 0 0 150px; margin: 0 auto; }
+    .product-image { height: 140px; }
+    .product-info { padding: 1rem; }
+    .product-info h4 { font-size: 1rem; }
+    .product-info span, .old-price { font-size: 0.8rem; }
+    .product-price { font-size: 1rem; }
+    .product-actions { bottom: 15px !important; right: 15px !important; opacity: 1 !important; }
+    .action-btn { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+
+    /* ---------------- Galerie ---------------- */
+    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 5px; }
+    .gallery-item { height: 100px; }
+
+    /* ---------------- Processus ---------------- */
+    .process-steps { flex-direction: column; }
+    .process-step:not(:last-child)::after { display: none; }
+
+    /* ---------------- Footer ---------------- */
+    .footer-content { grid-template-columns: 1fr; text-align: center; }
+    .footer-column h4::after { left: 50%; transform: translateX(-50%); }
+    .social-links { justify-content: center; }
+
+    /* ---------------- Newsletter ---------------- */
+    .newsletter-form { flex-direction: column; }
+
+    /* ---------------- Témoignages ---------------- */
+    .testimonial-slide, .testimonial-author { font-size: 0.9rem; }
+    .testimonial-controls button { padding: 5px 10px; font-size: 0.8rem; }
+
+    /* ---------------- Modals ---------------- */
+    .modal-content { width: 95%; max-width: 500px; }
+    .close-modal { font-size: 24px; top: 10px; right: 15px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1); border-radius: 50%; width: 36px; height: 36px; }
+
+    /* ---------------- Formulaires / Auth ---------------- */
+    .auth-container, .client-signup-container { flex-direction: column; margin: 2% auto; max-width: 95%; }
+    .auth-left, .client-signup-left { padding: 1.5rem; min-height: 200px; text-align: center; }
+    .auth-right, .client-signup-right { padding: 1.5rem; min-height: auto; }
+    .auth-brand h1, .client-signup-brand h1 { font-size: 1.5rem; }
+    .auth-form-container h2, .client-signup-form-container h2 { font-size: 1.5rem; }
+    .auth-form-container p, .client-signup-form-container p { font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .auth-form .form-group, .client-signup-form-container .form-group { margin-bottom: 1rem; }
+    .auth-form label, .client-signup-form-container label { font-size: 0.9rem; margin-bottom: 0.3rem; display: block; }
+    .auth-form input, .client-signup-form-container input { padding: 0.8rem; font-size: 1rem; border-radius: 8px; border: 1px solid #ccc; width: 100%; }
+    .auth-btn, .client-signup-form-container .auth-btn { padding: 0.8rem; font-size: 1rem; margin-top: 0.5rem; border-radius: 8px; }
+
+    .auth-divider { margin: 1rem 0; }
+    .social-btn { padding: 0.8rem; font-size: 0.9rem; }
+    .auth-toggle { margin-top: 1rem; font-size: 0.9rem; }
+    
+    /* Images côté formulaire */
+    .signup-left img { max-width: 150px; height: auto; margin: 15px auto; display: block; }
+    .client-signup-image { display: none; }
+
+    /* ---------------- Client welcome / Login ---------------- */
+    .client-welcome { top: 70px; right: 10px; padding: 10px 15px; font-size: 0.9rem; }
+    .client-welcome .client-avatar { width: 28px; height: 28px; }
+    .client-login-btn { padding: 5px 12px; font-size: 0.8rem; }
+
+    /* ---------------- Boutons flottants ---------------- */
+    .whatsapp-float { width: 45px; height: 45px; font-size: 20px; bottom: 15px; right: 15px; }
+    .back-to-top { width: 35px; height: 35px; font-size: 0.9rem; bottom: 65px; right: 15px; }
+
+    /* ---------------- Toasts ---------------- */
+    .toast { font-size: 0.85rem; padding: 10px 15px; max-width: 90%; }
 }
 
+
 /* Styles pour très petits écrans (320px) */
+/* ===================================== */
+/* STYLES ULTRA MOBILE (≤320px) */
+/* ===================================== */
 @media (max-width: 320px) {
-    /* Ajustements généraux */
-    body {
-        font-size: 14px;
-    }
-    
-    /* Header */
-    header {
-        padding: 8px;
-    }
-    
-    header h1 {
-        font-size: 1.2rem;
-    }
-    
-    .header-controls {
-        gap: 5px;
-    }
-    
-    .dark-mode-toggle {
-        width: 30px !important;
-        height: 30px !important;
-    }
-    
-    .search-input {
-        width: 80px;
-        font-size: 0.7rem;
-    }
-    
-    .search-input:focus {
-        width: 100px;
-    }
-    
-    /* Hero section */
-    .hero {
-        height: 50vh;
-        min-height: 300px;
-    }
-    
-    .hero h2 {
-        font-size: 1.5rem;
-    }
-    
-    .hero p {
-        font-size: 0.9rem;
-    }
-    
-    .hero-cta {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-    }
-    
-    /* Produits */
-    .product-card {
-        flex: 0 0 120px;
-    }
-    
-    .product-image {
-        height: 100px;
-    }
-    
-    .product-info {
-        padding: 0.8rem;
-    }
-    
-    .product-info h4 {
-        font-size: 0.8rem;
-    }
-    
-    .product-info span {
-        font-size: 0.7rem;
-    }
-    
-    .product-price {
-        font-size: 0.9rem;
-    }
-    
-    .action-btn {
-        width: 30px !important;
-        height: 30px !important;
-        min-width: 30px !important;
-        min-height: 30px !important;
-        font-size: 14px !important;
-    }
-    
-    /* Galerie */
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 5px;
-    }
-    
-    .gallery-item {
-        height: 80px;
-    }
-    
-    /* Sections */
-    main h3 {
-        font-size: 1.4rem;
-    }
-    
-    main p {
-        font-size: 0.8rem;
-    }
-    
-    .process-title {
-        font-size: 1.3rem;
-    }
-    
-    .step-title {
-        font-size: 0.8rem;
-    }
-    
-    .step-desc {
-        font-size: 0.7rem;
-    }
-    
-    .advantages-title {
-        font-size: 1.3rem;
-    }
-    
-    .advantage-title {
-        font-size: 0.9rem;
-    }
-    
-    .advantage-desc {
-        font-size: 0.7rem;
-    }
-    
-    /* Newsletter */
-    .newsletter-section h3 {
-        font-size: 1.3rem;
-    }
-    
-    .newsletter-input {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-    
-    .newsletter-btn {
-        padding: 10px 16px;
-        font-size: 0.8rem;
-    }
-    
-    /* Témoignages */
-    .testimonials h3 {
-        font-size: 1.4rem;
-    }
-    
-    .testimonial-slide {
-        font-size: 0.8rem;
-    }
-    
-    .testimonial-author {
-        font-size: 0.8rem;
-    }
-    
-    .testimonial-controls button {
-        padding: 4px 8px;
-        font-size: 0.7rem;
-    }
-    
-    /* Valeurs */
-    .value-title {
-        font-size: 0.9rem;
-    }
-    
-    .value-desc {
-        font-size: 0.7rem;
-    }
-    
-    /* Footer */
-    .footer-column h4 {
-        font-size: 1rem;
-    }
-    
-    .footer-links a {
-        font-size: 0.8rem;
-    }
-    
-    .footer-bottom {
-        font-size: 0.7rem;
-    }
-    
-    /* Boutons flottants */
-    .whatsapp-float {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-        bottom: 10px;
-        right: 10px;
-    }
-    
-    .back-to-top {
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-        bottom: 55px;
-        right: 10px;
-    }
-    
-    /* Toast */
-    .toast {
-        font-size: 0.7rem;
-        padding: 8px 12px;
-        max-width: 85%;
-    }
-    
-    /* Modals */
-    .modal-content {
-        width: 95%;
-        padding: 10px;
-    }
-    
-    .close-modal {
-        font-size: 24px;
-        top: 5px;
-        right: 10px;
-    }
-    
-    .quick-view-content,
-    .customization-content {
-        width: 95% !important;
-        padding: 10px !important;
-    }
-    
-    .quick-view-title,
-    .customization-title {
-        font-size: 1.2rem;
-    }
-    
-    .quick-view-price,
-    .customization-price {
-        font-size: 1.2rem;
-    }
-    
-    .form-group label {
-        font-size: 0.8rem;
-    }
-    
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        padding: 10px;
-        font-size: 14px;
-    }
-    
-    .quick-view-btn,
-    .customization-btn {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-    
-    /* Authentification */
-    .auth-container {
-        margin: 1% auto;
-        max-width: 98%;
-    }
-    
-    .auth-left {
-        padding: 1rem;
-        min-height: 150px;
-    }
-    
-    .auth-right {
-        padding: 1rem;
-    }
-    
-    .auth-brand h1 {
-        font-size: 1.2rem;
-    }
-    
-    .auth-form-container h2 {
-        font-size: 1.2rem;
-    }
-    
-    .auth-form .form-group {
-        margin-bottom: 0.8rem;
-    }
-    
-    .auth-form label {
-        font-size: 0.8rem;
-    }
-    
-    .auth-form input {
-        padding: 8px;
-        font-size: 14px;
-    }
-    
-    .auth-btn {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-    
-    .social-btn {
-        padding: 8px;
-        font-size: 0.8rem;
-    }
-    
-    /* Client signup */
-    .client-signup-container {
-        margin: 1% auto;
-        max-width: 98%;
-    }
-    
-    .client-signup-left {
-        padding: 1rem;
-        min-height: 150px;
-    }
-    
-    .client-signup-right {
-        padding: 1rem;
-    }
-    
-    .client-signup-brand h1 {
-        font-size: 1.2rem;
-    }
-    
-    .client-signup-form-container h2 {
-        font-size: 1.2rem;
-    }
-    
-    .client-signup-form-container .form-group {
-        margin-bottom: 0.8rem;
-    }
-    
-    .client-signup-form-container label {
-        font-size: 0.8rem;
-    }
-    
-    .client-signup-form-container input {
-        padding: 8px;
-        font-size: 14px;
-    }
-    
-    .client-signup-form-container .auth-btn {
-        padding: 10px;
-        font-size: 0.8rem;
-    }
-    
-    .client-welcome {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
-    
-    .client-welcome .client-avatar {
-        width: 24px;
-        height: 24px;
-    }
-    
-    .client-login-btn {
-        padding: 4px 10px;
-        font-size: 0.7rem;
-    }
-    
-    /* Administration */
-    .admin-content {
-        padding: 0.8rem;
-    }
-    
-    .admin-title {
-        font-size: 1.1rem;
-    }
-    
-    .admin-stats {
-        grid-template-columns: 1fr;
-    }
-    
-    .admin-stat-value {
-        font-size: 1.5rem;
-    }
-    
-    .admin-stat-label {
-        font-size: 0.8rem;
-    }
-    
-    .admin-btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
-    
-    .visitor-counter {
-        font-size: 0.65rem;
-        padding: 5px 8px;
-    }
+
+    /* ---------------- Général ---------------- */
+    body { font-size: 14px; }
+
+    /* ---------------- Header ---------------- */
+    header { padding: 8px; }
+    header h1 { font-size: 1.2rem; }
+    .header-controls { gap: 5px; }
+    .dark-mode-toggle { width: 30px !important; height: 30px !important; }
+    .search-input { width: 80px; font-size: 0.7rem; }
+    .search-input:focus { width: 100px; }
+
+    /* ---------------- Hero ---------------- */
+    .hero { height: 50vh; min-height: 300px; }
+    .hero h2 { font-size: 1.5rem; }
+    .hero p { font-size: 0.9rem; }
+    .hero-cta { padding: 8px 16px; font-size: 0.8rem; }
+
+    /* ---------------- Produits ---------------- */
+    .product-card { flex: 0 0 120px; }
+    .product-image { height: 100px; }
+    .product-info { padding: 0.8rem; }
+    .product-info h4 { font-size: 0.8rem; }
+    .product-info span, .old-price { font-size: 0.7rem; }
+    .product-price { font-size: 0.9rem; }
+    .action-btn { width: 30px !important; height: 30px !important; font-size: 14px !important; }
+
+    /* ---------------- Galerie ---------------- */
+    .gallery-grid { grid-template-columns: repeat(2,1fr); gap: 5px; }
+    .gallery-item { height: 80px; }
+
+    /* ---------------- Sections ---------------- */
+    main h3, .testimonials h3, .newsletter-section h3 { font-size: 1.3rem; }
+    main p, .step-desc, .advantage-desc { font-size: 0.7rem; }
+    .process-title, .advantages-title { font-size: 1.3rem; }
+    .step-title, .advantage-title, .value-title { font-size: 0.8-0.9rem; }
+    .value-desc { font-size: 0.7rem; }
+
+    /* ---------------- Newsletter ---------------- */
+    .newsletter-input { padding: 10px; font-size: 0.8rem; }
+    .newsletter-btn { padding: 10px 16px; font-size: 0.8rem; }
+
+    /* ---------------- Témoignages ---------------- */
+    .testimonial-slide, .testimonial-author { font-size: 0.8rem; }
+    .testimonial-controls button { padding: 4px 8px; font-size: 0.7rem; }
+
+    /* ---------------- Footer ---------------- */
+    .footer-column h4 { font-size: 1rem; }
+    .footer-links a { font-size: 0.8rem; }
+    .footer-bottom { font-size: 0.7rem; }
+
+    /* ---------------- Boutons flottants ---------------- */
+    .whatsapp-float { width: 40px; height: 40px; font-size: 18px; bottom: 10px; right: 10px; }
+    .back-to-top { width: 30px; height: 30px; font-size: 0.8rem; bottom: 55px; right: 10px; }
+
+    /* ---------------- Toast ---------------- */
+    .toast { font-size: 0.7rem; padding: 8px 12px; max-width: 85%; }
+
+    /* ---------------- Modals ---------------- */
+    .modal-content, .quick-view-content, .customization-content { width: 95%; padding: 10px; }
+    .close-modal { font-size: 24px; top: 5px; right: 10px; }
+
+    /* ---------------- Authentification ---------------- */
+    .auth-container { margin: 1% auto; max-width: 98%; }
+    .auth-left { padding: 1rem; min-height: 150px; }
+    .auth-right { padding: 1rem; }
+    .auth-brand h1, .auth-form-container h2 { font-size: 1.2rem; }
+    .auth-form .form-group { margin-bottom: 0.8rem; }
+    .auth-form label { font-size: 0.8rem; }
+    .auth-form input { padding: 8px; font-size: 14px; }
+    .auth-btn, .social-btn { padding: 10px; font-size: 0.8rem; }
+
+    /* ---------------- Client signup ---------------- */
+    .client-signup-container { margin: 1% auto; max-width: 98%; }
+    .client-signup-left { padding: 1rem; min-height: 150px; }
+    .client-signup-right { padding: 1rem; }
+    .client-signup-brand h1, .client-signup-form-container h2 { font-size: 1.2rem; }
+    .client-signup-form-container .form-group { margin-bottom: 0.8rem; }
+    .client-signup-form-container label { font-size: 0.8rem; }
+    .client-signup-form-container input { padding: 8px; font-size: 14px; }
+    .client-signup-form-container .auth-btn { padding: 10px; font-size: 0.8rem; }
+    .client-signup-image { display: none; }
+
+    /* ---------------- Client welcome / Login ---------------- */
+    .client-welcome { padding: 8px 12px; font-size: 0.8rem; }
+    .client-welcome .client-avatar { width: 24px; height: 24px; }
+    .client-login-btn { padding: 4px 10px; font-size: 0.7rem; }
+
+    /* ---------------- Administration ---------------- */
+    .admin-content { padding: 0.8rem; }
+    .admin-title { font-size: 1.1rem; }
+    .admin-stats { grid-template-columns: 1fr; }
+    .admin-stat-value { font-size: 1.5rem; }
+    .admin-stat-label { font-size: 0.8rem; }
+    .admin-btn { padding: 8px 12px; font-size: 0.8rem; }
+    .visitor-counter { font-size: 0.65rem; padding: 5px 8px; }
 }
+
 
 /* Optimisations pour iPhone X et modèles ultérieurs (avec encoche) */
 @supports (padding: max(0px)) {
@@ -3990,241 +3205,6 @@ input, select, textarea {
     }
 }
 
-/* ===================================== */
-/* CORRECTIONS POUR LES PETITS ÉCRANS */
-/* ===================================== */
-
-/* Correction pour l'image dans le formulaire d'inscription */
-.client-signup-image img,
-.auth-image img,
-.signup-image img {
-    max-width: 100% !important;
-    max-height: 180px !important;
-    width: auto !important;
-    height: auto !important;
-    object-fit: contain !important;
-    border-radius: 10px !important;
-}
-
-@media (max-width: 768px) {
-    .client-signup-image img,
-    .auth-image img,
-    .signup-image img {
-        max-height: 120px !important;
-    }
-}
-
-/* Styles spécifiques pour les modals en mode mobile */
-.modal.mobile-modal {
-    padding: 0 !important;
-}
-
-.modal.mobile-modal .client-signup-container,
-.modal.mobile-modal .auth-container,
-.modal.mobile-modal .signup-container {
-    margin: 1% auto !important;
-    max-width: 98% !important;
-    border-radius: 8px !important;
-}
-
-.modal.mobile-modal .client-signup-left,
-.modal.mobile-modal .auth-left,
-.modal.mobile-modal .signup-left {
-    padding: 1rem !important;
-    min-height: 150px !important;
-}
-
-.modal.mobile-modal .client-signup-right,
-.modal.mobile-modal .auth-right,
-.modal.mobile-modal .signup-right {
-    padding: 1rem !important;
-}
-
-.modal.mobile-modal .client-signup-form-container h2,
-.modal.mobile-modal .auth-form-container h2,
-.modal.mobile-modal .signup-form-container h2 {
-    font-size: 1.3rem !important;
-}
-
-.modal.mobile-modal .client-signup-form-container p,
-.modal.mobile-modal .auth-form-container p,
-.modal.mobile-modal .signup-form-container p {
-    font-size: 0.85rem !important;
-    margin-bottom: 1rem !important;
-}
-
-.modal.mobile-modal .client-signup-form-container .form-group,
-.modal.mobile-modal .auth-form-container .form-group,
-.modal.mobile-modal .signup-form-container .form-group {
-    margin-bottom: 0.8rem !important;
-}
-
-.modal.mobile-modal .client-signup-form-container input,
-.modal.mobile-modal .auth-form-container input,
-.modal.mobile-modal .signup-form-container input {
-    padding: 0.7rem !important;
-    font-size: 0.9rem !important;
-}
-
-.modal.mobile-modal .client-signup-form-container .auth-btn,
-.modal.mobile-modal .auth-form-container .auth-btn,
-.modal.mobile-modal .signup-form-container .auth-btn {
-    padding: 0.7rem !important;
-    font-size: 0.9rem !important;
-}
-
-/* Amélioration du formulaire d'inscription pour mobile */
-@media (max-width: 768px) {
-    .client-signup-container,
-    .auth-container,
-    .signup-container {
-        flex-direction: column !important;
-        margin: 2% auto !important;
-        max-width: 95% !important;
-        border-radius: 10px !important;
-        overflow: hidden !important;
-        min-height: auto !important;
-    }
-    
-    .client-signup-left,
-    .auth-left,
-    .signup-left {
-        padding: 1.5rem !important;
-        min-height: 150px !important;
-        max-height: 200px !important;
-    }
-    
-    .client-signup-right,
-    .auth-right,
-    .signup-right {
-        padding: 1.5rem !important;
-        min-height: auto !important;
-    }
-    
-    .client-signup-image,
-    .auth-image,
-    .signup-image {
-        display: none !important;
-    }
-    
-    .client-signup-brand h1,
-    .auth-brand h1,
-    .signup-brand h1 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-    
-    .client-signup-form-container h2,
-    .auth-form-container h2,
-    .signup-form-container h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.5rem !important;
-    }
-    
-    .form-group {
-        margin-bottom: 1rem !important;
-    }
-    
-    .form-group label {
-        font-size: 14px !important;
-        margin-bottom: 8px !important;
-        display: block !important;
-    }
-    
-    .form-group input, 
-    .form-group select, 
-    .form-group textarea {
-        width: 100% !important;
-        padding: 12px !important;
-        font-size: 16px !important;
-        border-radius: 8px !important;
-        border: 2px solid #ddd !important;
-        box-sizing: border-box !important;
-        min-height: 44px !important;
-    }
-    
-    .auth-btn,
-    .client-login-btn {
-        width: 100%;
-        padding: 12px !important;
-        font-size: 16px !important;
-        border-radius: 8px !important;
-        min-height: 44px !important;
-        margin-top: 0.5rem !important;
-    }
-    
-    .close-modal {
-        top: 10px !important;
-        right: 10px !important;
-        font-size: 24px !important;
-        width: 36px !important;
-        height: 36px !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: rgba(0,0,0,0.1) !important;
-        border-radius: 50% !important;
-        z-index: 1001 !important;
-    }
-    
-    .newsletter-signup,
-    .remember-me {
-        display: flex;
-        align-items: center;
-        margin-bottom: 1rem;
-    }
-    
-    .newsletter-signup input,
-    .remember-me input {
-        margin-right: 8px;
-        transform: scale(1.2);
-    }
-}
-
-@media (max-width: 320px) {
-    .client-signup-left,
-    .auth-left,
-    .signup-left {
-        padding: 1rem !important;
-        min-height: 120px !important;
-        max-height: 150px !important;
-    }
-    
-    .client-signup-right,
-    .auth-right,
-    .signup-right {
-        padding: 1rem !important;
-    }
-    
-    .client-signup-brand h1,
-    .auth-brand h1,
-    .signup-brand h1 {
-        font-size: 1.3rem !important;
-    }
-    
-    .client-signup-form-container h2,
-    .auth-form-container h2,
-    .signup-form-container h2 {
-        font-size: 1.3rem !important;
-    }
-    
-    .form-group {
-        margin-bottom: 0.8rem !important;
-    }
-    
-    .form-group input, 
-    .form-group select, 
-    .form-group textarea {
-        padding: 10px !important;
-        font-size: 16px !important;
-    }
-    
-    .auth-btn,
-    .client-login-btn {
-        padding: 10px !important;
-        font-size: 16px !important;
-    }
-}
 
    </style>
 </head>
@@ -8484,6 +7464,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
