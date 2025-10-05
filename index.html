@@ -2776,144 +2776,338 @@ footer {
 /* RESPONSIVE MOBILE / TABLETTE ≤768px */
 /* Tout reste visible, images redimensionnées */
 /* ===================================== */
+/* ===================================== */
+/* RESPONSIVE MOBILE / TABLETTE 320px → 768px */
+/* Tout reste visible, images redimensionnées, scroll possible */
+/* ===================================== */
 @media (max-width: 768px) {
 
     /* ---------------- Général ---------------- */
-    body { font-size: 14px; }
+    body {
+        font-size: 14px;
+    }
 
     /* ---------------- Header ---------------- */
-    header { flex-direction: column; padding: 10px; height: auto; min-height: auto; }
-    header h1 { font-size: 1.5rem; text-align: center; }
-    .header-controls { width: 100%; justify-content: space-between; margin-bottom: 10px; gap: 0.5rem; }
-    .logo { width: 100%; justify-content: center; margin-bottom: 10px; }
-    .menu-toggle { display: block; }
-    nav { display: none; width: 100%; flex-direction: column; background: white; position: absolute; top: 100%; left: 0; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border-radius: 0 0 8px 8px; padding: 1rem; z-index: 100; }
-    nav.active { display: flex; }
-    nav a { padding: 12px 0; border-bottom: 1px solid rgba(0,0,0,0.1); text-align: center; }
-    .nav-item { width: 100%; }
-    .submenu { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; background: #f9f3e8; border-radius: 8px; margin-top: 0.5rem; display: none; }
-    .nav-item.active .submenu { display: block; }
-    .submenu a { padding: 0.5rem; border-bottom: none; }
-    .search-input { width: 120px; font-size: 0.8rem; }
-    .search-input:focus { width: 150px; }
+    header {
+        flex-direction: column;
+        padding: 10px;
+        height: auto;
+        min-height: auto;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        gap: 0.5rem;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 0 0 8px 8px;
+        padding: 1rem;
+        z-index: 100;
+    }
+
+    nav.active {
+        display: flex;
+    }
+
+    nav a {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .nav-item {
+        width: 100%;
+    }
+
+    .submenu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        background: #f9f3e8;
+        border-radius: 8px;
+        margin-top: 0.5rem;
+        display: none;
+    }
+
+    .nav-item.active .submenu {
+        display: block;
+    }
+
+    .submenu a {
+        padding: 0.5rem;
+        border-bottom: none;
+    }
+
+    .search-input {
+        width: 120px;
+        font-size: 0.8rem;
+    }
+
+    .search-input:focus {
+        width: 150px;
+    }
 
     /* ---------------- Hero ---------------- */
-    .hero { height: 60vh; min-height: 400px; }
-    .hero h2 { font-size: 2rem; }
-    .hero p { font-size: 1.1rem; }
-    .hero-cta { padding: 10px 20px; font-size: 0.9rem; }
+    .hero {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .hero-cta {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 
     /* ---------------- Produits ---------------- */
-    .product-card { flex: 0 0 150px; margin: 0 auto; }
-    .product-image { height: auto; max-height: 140px; width: 100%; object-fit: contain; }
-    .product-info { padding: 1rem; }
-    .product-info h4 { font-size: 1rem; }
-    .product-info span { font-size: 0.8rem; }
-    .product-price { font-size: 1rem; }
-    .old-price { font-size: 0.8rem; }
-    .action-btn { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+    .product-card {
+        flex: 0 0 150px;
+        margin: 0 auto;
+    }
+
+    .product-image {
+        height: auto;
+        max-height: 140px;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .product-info {
+        padding: 1rem;
+    }
+
+    .product-info h4 {
+        font-size: 1rem;
+    }
+
+    .product-info span,
+    .old-price {
+        font-size: 0.8rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+    }
+
+    .action-btn {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+    }
 
     /* ---------------- Galerie ---------------- */
-    .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 5px; }
-    .gallery-item { height: auto; max-height: 100px; }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 5px;
+    }
+
+    .gallery-item {
+        height: auto;
+        max-height: 100px;
+    }
 
     /* ---------------- Formulaires / Auth ---------------- */
-    .auth-container, .client-signup-container { flex-direction: column; margin: 2% auto; max-width: 95%; }
-    .auth-left, .client-signup-left, .auth-right, .client-signup-right { padding: 1.5rem; min-height: auto; }
-    .auth-brand h1, .client-signup-brand h1 { font-size: 1.5rem; }
-    .auth-form-container h2, .client-signup-form-container h2 { font-size: 1.5rem; }
-    .auth-form .form-group, .client-signup-form-container .form-group { margin-bottom: 1rem; }
-    .auth-form label, .client-signup-form-container label { font-size: 0.9rem; }
-    .auth-form input, .client-signup-form-container input { padding: 12px; font-size: 16px; width: 100%; border-radius: 8px; border: 2px solid #ddd; }
-    .auth-btn, .client-signup-form-container .auth-btn, .social-btn { padding: 15px; font-size: 16px; width: 100%; }
+    .auth-container,
+    .client-signup-container {
+        flex-direction: column;
+        margin: 2% auto;
+        max-width: 95%;
+        padding: 1rem;
+        height: auto;
+        min-height: auto;
+        overflow-y: auto; /* scroll si contenu dépasse */
+    }
+
+    .auth-left,
+    .client-signup-left,
+    .auth-right,
+    .client-signup-right {
+        padding: 1rem;
+        min-height: auto;
+    }
+
+    .auth-brand h1,
+    .client-signup-brand h1 {
+        font-size: 1.5rem;
+    }
+
+    .auth-form-container h2,
+    .client-signup-form-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .auth-form .form-group,
+    .client-signup-form-container .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .auth-form label,
+    .client-signup-form-container label {
+        font-size: 0.9rem;
+    }
+
+    .auth-form input,
+    .client-signup-form-container input,
+    .auth-form select,
+    .client-signup-form-container select,
+    .auth-form textarea,
+    .client-signup-form-container textarea {
+        padding: 12px;
+        font-size: 16px;
+        width: 100%;
+        border-radius: 8px;
+        border: 2px solid #ddd;
+    }
+
+    .auth-btn,
+    .client-signup-form-container .auth-btn,
+    .social-btn {
+        padding: 15px;
+        font-size: 16px;
+        width: 100%;
+    }
 
     /* ---------------- Images visibles ---------------- */
-    .signup-left img, .client-signup-image { max-width: 100%; height: auto; display: block; margin: 10px auto; object-fit: contain; }
+    .signup-left img,
+    .client-signup-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px auto;
+        object-fit: contain;
+    }
 
     /* ---------------- Client welcome / Login ---------------- */
-    .client-welcome { padding: 10px 15px; font-size: 0.9rem; }
-    .client-welcome .client-avatar { width: 28px; height: 28px; }
-    .client-login-btn { padding: 5px 12px; font-size: 0.8rem; }
+    .client-welcome {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .client-welcome .client-avatar {
+        width: 28px;
+        height: 28px;
+    }
+
+    .client-login-btn {
+        padding: 5px 12px;
+        font-size: 0.8rem;
+    }
 
     /* ---------------- Administration ---------------- */
-    .admin-panel, .admin-content { width: 95%; padding: 1rem; margin: 1% auto; }
-    .admin-title { font-size: 1.3rem; }
-    .admin-stats { grid-template-columns: 1fr; }
-    .admin-stat-value { font-size: 1.5rem; }
-    .admin-stat-label { font-size: 0.8rem; }
-    .admin-btn { width: 100%; padding: 12px; font-size: 0.9rem; }
+    .admin-panel,
+    .admin-content {
+        width: 95%;
+        padding: 1rem;
+        margin: 1% auto;
+    }
+
+    .admin-title {
+        font-size: 1.3rem;
+    }
+
+    .admin-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-stat-value {
+        font-size: 1.5rem;
+    }
+
+    .admin-stat-label {
+        font-size: 0.8rem;
+    }
+
+    .admin-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.9rem;
+    }
 
     /* ---------------- Modals ---------------- */
-    .modal-content, .quick-view-content, .customization-content { width: 95%; padding: 15px; max-height: 90vh; overflow-y: auto; }
-    .close-modal { top: 10px; right: 10px; font-size: 24px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1); border-radius: 50%; }
+    .modal-content,
+    .quick-view-content,
+    .customization-content {
+        width: 95%;
+        padding: 15px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .close-modal {
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0,0,0,0.1);
+        border-radius: 50%;
+    }
 }
 
-/* Styles pour très petits écrans (320px) */
-/* ===================================== */
-/* STYLES ULTRA MOBILE (≤320px) */
-/* ===================================== */
+/* ---------------- Très petit écran ≤320px ---------------- */
 @media (max-width: 320px) {
+    body { font-size: 13px; }
 
-    /* ---------------- Général ---------------- */
-    body { font-size: 14px; }
-
-    /* ---------------- Header ---------------- */
-    header { padding: 8px; }
-    header h1 { font-size: 1.2rem; }
-    .header-controls { gap: 5px; }
-    .dark-mode-toggle { width: 30px !important; height: 30px !important; }
-    .search-input { width: 80px; font-size: 0.7rem; }
-    .search-input:focus { width: 100px; }
-
-    /* ---------------- Hero ---------------- */
-    .hero { height: 50vh; min-height: 300px; }
     .hero h2 { font-size: 1.5rem; }
     .hero p { font-size: 0.9rem; }
     .hero-cta { padding: 8px 16px; font-size: 0.8rem; }
 
-    /* ---------------- Produits ---------------- */
-    .product-card { flex: 0 0 120px; }
-    .product-image { height: auto; max-height: 120px; width: 100%; object-fit: contain; }
-    .product-info { padding: 0.8rem; }
-    .product-info h4 { font-size: 0.8rem; }
-    .product-info span, .old-price { font-size: 0.7rem; }
-    .product-price { font-size: 0.9rem; }
-    .action-btn { width: 30px !important; height: 30px !important; font-size: 14px !important; }
+    .auth-brand h1,
+    .client-signup-brand h1 { font-size: 1.2rem; }
 
-    /* ---------------- Galerie ---------------- */
-    .gallery-grid { grid-template-columns: repeat(2,1fr); gap: 5px; }
-    .gallery-item { height: auto; max-height: 80px; }
+    .auth-form-container h2,
+    .client-signup-form-container h2 { font-size: 1.2rem; }
 
-    /* ---------------- Formulaires / Auth ---------------- */
-    .auth-container, .client-signup-container { margin: 1% auto; max-width: 98%; flex-direction: column; }
-    .auth-left, .client-signup-left, .auth-right, .client-signup-right { padding: 1rem; min-height: auto; }
-    .auth-brand h1, .client-signup-brand h1 { font-size: 1.2rem; }
-    .auth-form-container h2, .client-signup-form-container h2 { font-size: 1.2rem; }
-    .auth-form .form-group, .client-signup-form-container .form-group { margin-bottom: 0.8rem; }
-    .auth-form label, .client-signup-form-container label { font-size: 0.8rem; }
-    .auth-form input, .client-signup-form-container input { padding: 8px; font-size: 14px; width: 100%; }
-    .auth-btn, .client-signup-form-container .auth-btn, .social-btn { padding: 10px; font-size: 0.8rem; }
+    .auth-form input,
+    .client-signup-form-container input {
+        padding: 10px;
+        font-size: 14px;
+    }
 
-    /* ---------------- Images visibles ---------------- */
-    .signup-left img, .client-signup-image { max-width: 100%; height: auto; display: block; margin: 10px auto; object-fit: contain; }
+    .auth-btn,
+    .client-signup-form-container .auth-btn,
+    .social-btn { padding: 10px; font-size: 0.8rem; }
 
-    /* ---------------- Client welcome / Login ---------------- */
-    .client-welcome { padding: 8px 12px; font-size: 0.8rem; }
-    .client-welcome .client-avatar { width: 24px; height: 24px; }
-    .client-login-btn { padding: 4px 10px; font-size: 0.7rem; }
-
-    /* ---------------- Administration ---------------- */
-    .admin-content { padding: 0.8rem; }
-    .admin-title { font-size: 1.1rem; }
-    .admin-stats { grid-template-columns: 1fr; }
-    .admin-stat-value { font-size: 1.5rem; }
-    .admin-stat-label { font-size: 0.8rem; }
-    .admin-btn { padding: 8px 12px; font-size: 0.8rem; }
-    .visitor-counter { font-size: 0.65rem; padding: 5px 8px; }
-
-    /* ---------------- Modals ---------------- */
-    .modal-content, .quick-view-content, .customization-content { width: 95%; padding: 10px; }
-    .close-modal { font-size: 24px; top: 5px; right: 10px; }
+    .signup-left img,
+    .client-signup-image { max-height: 120px; }
 }
 
 /* Optimisations pour iPhone X et modèles ultérieurs (avec encoche) */
@@ -7396,6 +7590,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
