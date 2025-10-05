@@ -805,7 +805,7 @@ main p {
     right: 10px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
     opacity: 0;
     transition: opacity var(--transition-speed) ease;
     z-index: 5;
@@ -819,16 +819,17 @@ main p {
     background: rgba(178, 121, 82, 0.9);
     border: none;
     border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    width: 36px;
+    height: 36px;
     color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-speed) ease;
-    min-width: 10px;
-    min-height: 10px;
+    min-width: 36px;
+    min-height: 36px;
+    font-size: 14rem;
 }
 
 .action-btn:hover {
@@ -840,12 +841,13 @@ main p {
 .action-btn:last-child {
     background: rgba(255, 255, 255, 0.9);
     color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    border: 2px solid var(--primary-color);
 }
 
 .action-btn:last-child:hover {
     background: var(--primary-color);
     color: white;
+    transform: scale(1.1);
 }
 
 .product-info {
@@ -1088,18 +1090,20 @@ main p {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    padding-top: env(safe-area-inset-top);
+    background-color: rgba(0,0,0,0.8);
+    padding: 20px;
+    overflow-y: auto;
 }
 
 .modal-content {
     position: relative;
-    margin: auto;
+    margin: 20px auto;
     padding: 0;
     width: 90%;
-    max-width: 700px;
-    top: 50%;
-    transform: translateY(-50%);
+    max-width: 500px;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .modal-content img {
@@ -1691,13 +1695,15 @@ footer {
 
 .quick-view-content {
     background-color: white;
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 20px;
     border-radius: 15px;
     width: 90%;
-    max-width: 800px;
+    max-width: 500px;
     position: relative;
     animation: slideIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes slideIn {
@@ -1805,13 +1811,15 @@ footer {
 /* Styles pour le modal de personnalisation - MODIFIÉ POUR PETITS ÉCRANS */
 .customization-content {
     background-color: white;
-    margin: 5% auto;
+    margin: 2% auto;
     padding: 20px;
     border-radius: 15px;
     width: 90%;
-    max-width: 800px;
+    max-width: 500px;
     position: relative;
     animation: slideIn 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .customization-body {
@@ -1911,25 +1919,28 @@ footer {
 /* Page d'authentification - MODIFIÉ POUR PETITS ÉCRANS */
 .auth-container {
     display: flex;
-    width: 100%;
-    max-width: 900px;
-    margin: 5% auto;
+    width: 90%;
+    max-width: 700px;
+    margin: 2% auto;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     background: white;
-    min-height: 500px;
+    min-height: 400px;
+    max-height: 80vh;
 }
 
 .auth-left {
     flex: 1;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 2rem;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 500px;
+    justify-content: center;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden;
 }
 
 .auth-brand h1 {
@@ -1951,28 +1962,34 @@ footer {
 }
 
 .auth-image img {
-    max-width: 100%;
-    max-height: 250px;
+    max-width: 90%;
+    max-height: 180px;
     width: auto;
     height: auto;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    object-fit: contain;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
 }
 
 .auth-right {
     flex: 1;
-    padding: 2rem;
+    padding: 1.5rem;
     position: relative;
-    min-height: 500px;
+    min-height: 400px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .auth-form-container h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: var(--text-color);
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .auth-form-container p {
@@ -2012,17 +2029,19 @@ footer {
 
 .auth-form input {
     width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px 15px;
+    border: 2px solid #e8e8e8;
+    border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
+    background: #fafafa;
 }
 
 .auth-form input:focus {
     border-color: var(--primary-color);
+    background: white;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(178, 121, 82, 0.2);
+    box-shadow: 0 0 0 3px rgba(178, 121, 82, 0.1);
 }
 
 .form-options {
@@ -2053,19 +2072,21 @@ footer {
 
 .auth-btn {
     width: 100%;
-    padding: 0.9rem;
-    background: var(--primary-color);
+    padding: 14px;
+    background: linear-gradient(135deg, var(--primary-color), #d4a574);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(178, 121, 82, 0.3);
 }
 
 .auth-btn:hover {
-    background: #8c5a34;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(178, 121, 82, 0.4);
 }
 
 .auth-divider {
@@ -2766,20 +2787,21 @@ footer {
     .signup-container,
     .client-signup-container {
         flex-direction: column;
-        max-width: 95%;
-        margin: 2% auto;
+        max-width: 90%;
+        margin: 1% auto;
+        min-height: 300px;
     }
 
     .signup-left,
     .client-signup-left,
     .signup-right,
     .client-signup-right {
-        width: 100%;
+        width: 100%;  /* CORRECTION : 200% → 100% */
         padding: 1rem;
     }
 
     .client-signup-image img {
-        max-height: 70px;
+        max-height: 120px;
         margin-bottom: 1rem;
     }
 
@@ -2796,7 +2818,7 @@ footer {
     }
 
     .client-signup-image img {
-        max-height: 50px;
+        max-height: 80px;  /* CORRECTION : 50px → 80px */
     }
 
     .auth-form input,
@@ -2807,7 +2829,6 @@ footer {
         padding: 10px;
     }
 }
-
 /* ===================================== */
 /* AMÉLIORATIONS POUR PETITS ÉCRANS */
 /* ===================================== */
@@ -3355,8 +3376,8 @@ a:focus, button:focus, input:focus, textarea:focus, select:focus {
     }
     
     .action-btn {
-        min-width: 44px;
-        min-height: 44px;
+        min-width: 20px;
+        min-height: 20px;
     }
     
     button, .btn, input, select, textarea {
@@ -7644,6 +7665,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
