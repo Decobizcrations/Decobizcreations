@@ -771,13 +771,13 @@
         
         /* Boutons d'action sur les produits - AMÉLIORÉS */
         .product-actions {
-          position: absolute;
-    bottom: 8px;          /* en bas de l'image */
-    right: 8px;           /* alignés à droite */
-    display: flex;
-    gap: 4px;             /* petit espace entre les deux */
-    opacity: 1;           /* toujours visibles, sinon mets 0 pour hover */
-    transition: opacity var(--transition-speed) ease;
+            position: absolute;
+            bottom: 8px;          /* en bas de l'image */
+            right: 8px;           /* alignés à droite */
+            display: flex;
+            gap: 4px;             /* petit espace entre les deux */
+            opacity: 1;           /* toujours visibles, sinon mets 0 pour hover */
+            transition: opacity var(--transition-speed) ease;
         }
         
         .product-card:hover .product-actions {
@@ -785,20 +785,20 @@
         }
         
         .action-btn {
-             background: #cbb8a0;       /* beige doux */
-    border: none;
-    border-radius: 6px;
-    width: 30px;               /* très petit */
-    height: 30px;
-    color: white;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-speed) ease;
-    font-size: 12px;            /* icône minuscule */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    padding: 0;
+            background: #cbb8a0;       /* beige doux */
+            border: none;
+            border-radius: 6px;
+            width: 30px;               /* très petit */
+            height: 30px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-speed) ease;
+            font-size: 12px;            /* icône minuscule */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+            padding: 0;
         }
         
         .action-btn:hover {
@@ -808,7 +808,7 @@
         
         /* Bouton de personnalisation spécial */
         .action-btn:last-child {
-           background: #cbb8a0 !important;
+            background: #cbb8a0 !important;
         }
         
         .action-btn:last-child:hover {
@@ -1049,12 +1049,16 @@
         
         /* Modal pour galerie */
         .modal {
-      display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow-y: auto !important; /* ✅ active le scroll vertical */
-        max-height: 100vh; /* limite à la hauteur de l'écran */
-        padding: 10px 0;
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+            padding-top: env(safe-area-inset-top);
         }
         
         .modal-content {
@@ -1074,18 +1078,18 @@
         }
         
         .close-modal {
-               position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.3rem;
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.3rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
         }
         
         .close-modal:hover {
@@ -2464,28 +2468,28 @@
         }
         
         /* Styles pour les modals client - AMÉLIORATIONS POUR MOBILE */
-           .client-signup-container {
-        display: flex;
-        flex-direction: column; /* Empile le contenu */
-        margin: 5% auto;
-        width: 95%;
-        max-width: 420px;
-        border-radius: 10px;
-        overflow: hidden; /* garde les bords arrondis */
-        background: #fff;
-        height: auto;
+        .client-signup-container {
+            display: flex;
+            flex-direction: column; /* Empile le contenu */
+            margin: 5% auto;
+            width: 95%;
+            max-width: 420px;
+            border-radius: 10px;
+            overflow: hidden; /* garde les bords arrondis */
+            background: #fff;
+            height: auto;
         }
         
         .client-signup-left {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        background: linear-gradient(135deg, #c69c6d, #a57345);
-        color: white;
-        padding: 1.2rem;
-        min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #c69c6d, #a57345);
+            color: white;
+            padding: 1.2rem;
+            min-height: 180px;
         }
         
         .client-signup-brand h1 {
@@ -2499,11 +2503,11 @@
         }
         
         .client-signup-image {
-       display: block !important;
-        width: 100%;
-        height: auto;
-        margin-top: 10px;
-        border-radius: 8px;
+            display: block !important;
+            width: 100%;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 8px;
         }
         
         .client-signup-image img {
@@ -2514,8 +2518,8 @@
         }
         
         .client-signup-right {
-         padding: 1.2rem;
-        background: #fff;
+            padding: 1.2rem;
+            background: #fff;
         }
         
         .client-signup-form-container h2 {
@@ -2827,18 +2831,18 @@
             }
             
             .close-modal {
-              position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.3rem;
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 1.3rem;
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
             }
             
             .admin-content {
@@ -2912,18 +2916,18 @@
             }
             
             .close-modal {
-               position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 1.3rem;
-        background: rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 1.3rem;
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
             }
             
             /* Authentification mobile */
@@ -2973,15 +2977,15 @@
             
             /* Styles pour les modals client sur mobile */
             .client-signup-container {
-         display: flex;
-        flex-direction: column; /* Empile le contenu */
-        margin: 5% auto;
-        width: 95%;
-        max-width: 420px;
-        border-radius: 10px;
-        overflow: hidden; /* garde les bords arrondis */
-        background: #fff;
-        height: auto;
+                display: flex;
+                flex-direction: column; /* Empile le contenu */
+                margin: 5% auto;
+                width: 95%;
+                max-width: 420px;
+                border-radius: 10px;
+                overflow: hidden; /* garde les bords arrondis */
+                background: #fff;
+                height: auto;
             }
             
             .client-signup-left {
@@ -3022,15 +3026,15 @@
             }
             
             .client-signup-form-container .auth-btn {
-                   padding: 0.7rem;
-        font-size: 0.9rem;
-        width: 100%;
-        background: #a57345;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        margin-top: 0.5rem;
-        transition: background 0.3s;
+                padding: 0.7rem;
+                font-size: 0.9rem;
+                width: 100%;
+                background: #a57345;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                margin-top: 0.5rem;
+                transition: background 0.3s;
             }
             
             .client-signup-form-container .auth-divider {
@@ -3348,15 +3352,15 @@
             }
             
             .client-signup-form-container .auth-btn {
-                   padding: 0.7rem;
-        font-size: 0.9rem;
-        width: 100%;
-        background: #a57345;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        margin-top: 0.5rem;
-        transition: background 0.3s;
+                padding: 0.7rem;
+                font-size: 0.9rem;
+                width: 100%;
+                background: #a57345;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                margin-top: 0.5rem;
+                transition: background 0.3s;
             }
             
             .modal.mobile-modal .client-signup-form-container h2 {
@@ -4453,8 +4457,6 @@
         </div>
     </div>
     
-    <!-- Formulaire d'inscription automatique -->
- 
     <footer role="contentinfo">
         <div class="footer-content">
             <div class="footer-column">
@@ -7809,10 +7811,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
