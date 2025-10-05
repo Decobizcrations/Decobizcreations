@@ -1050,15 +1050,12 @@
         
         /* Modal pour galerie */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 10000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            padding-top: env(safe-area-inset-top);
+      display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-y: auto !important; /* ✅ active le scroll vertical */
+        max-height: 100vh; /* limite à la hauteur de l'écran */
+        padding: 10px 0;
         }
         
         .modal-content {
@@ -1078,15 +1075,18 @@
         }
         
         .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            color: #f1f1f1;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 10001;
-            transition: color var(--transition-speed) ease;
+               position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.3rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
         }
         
         .close-modal:hover {
@@ -2465,27 +2465,28 @@
         }
         
         /* Styles pour les modals client - AMÉLIORATIONS POUR MOBILE */
-        .client-signup-container {
-            display: flex;
-            width: 100%;
-            max-width: 900px;
-            margin: 5% auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            background: white;
-            transition: all 0.3s ease;
+           .client-signup-container {
+        display: flex;
+        flex-direction: column; /* Empile le contenu */
+        margin: 5% auto;
+        width: 95%;
+        max-width: 420px;
+        border-radius: 10px;
+        overflow: hidden; /* garde les bords arrondis */
+        background: #fff;
+        height: auto;
         }
         
         .client-signup-left {
-            flex: 1;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background: linear-gradient(135deg, #c69c6d, #a57345);
+        color: white;
+        padding: 1.2rem;
+        min-height: 180px;
         }
         
         .client-signup-brand h1 {
@@ -2499,11 +2500,11 @@
         }
         
         .client-signup-image {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem 0;
+       display: block !important;
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 8px;
         }
         
         .client-signup-image img {
@@ -2514,10 +2515,8 @@
         }
         
         .client-signup-right {
-            flex: 1;
-            padding: 2rem;
-            position: relative;
-            min-height: 500px;
+         padding: 1.2rem;
+        background: #fff;
         }
         
         .client-signup-form-container h2 {
@@ -2824,14 +2823,23 @@
             }
             
             .modal-content {
-                width: 95%;
-                max-width: 500px;
+                width: 50%;
+                max-width: 200px;
             }
             
             .close-modal {
-                font-size: 30px;
-                top: 10px;
-                right: 15px;
+              position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.3rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
             }
             
             .admin-content {
@@ -2905,16 +2913,18 @@
             }
             
             .close-modal {
-                top: 10px !important;
-                right: 10px !important;
-                font-size: 24px !important;
-                width: 36px !important;
-                height: 36px !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                background: rgba(0,0,0,0.1) !important;
-                border-radius: 50% !important;
+               position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 1.3rem;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
             }
             
             /* Authentification mobile */
@@ -2964,34 +2974,38 @@
             
             /* Styles pour les modals client sur mobile */
             .client-signup-container {
-                flex-direction: column;
-                margin: 2% auto;
-                max-width: 95%;
-                border-radius: 10px;
-                overflow: hidden;
+         display: flex;
+        flex-direction: column; /* Empile le contenu */
+        margin: 5% auto;
+        width: 95%;
+        max-width: 420px;
+        border-radius: 10px;
+        overflow: hidden; /* garde les bords arrondis */
+        background: #fff;
+        height: auto;
             }
             
             .client-signup-left {
-                padding: 1.5rem;
-                min-height: 200px;
+                padding: 1rem;
+                min-height: auto;
             }
             
             .client-signup-right {
-                padding: 1.5rem;
+                padding: 1rem;
                 min-height: auto;
             }
             
             .client-signup-brand h1 {
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
             
             .client-signup-form-container h2 {
-                font-size: 1.5rem;
+                font-size: 0.5rem;
             }
             
             .client-signup-form-container p {
-                font-size: 0.9rem;
-                margin-bottom: 1.2rem;
+                font-size: 0.3rem;
+                margin-bottom: 0.5rem;
             }
             
             .client-signup-form-container .form-group {
@@ -3004,14 +3018,20 @@
             }
             
             .client-signup-form-container input {
-                padding: 0.8rem;
-                font-size: 1rem;
+                padding: 0.6rem;
+                font-size: 0.9rem;
             }
             
             .client-signup-form-container .auth-btn {
-                padding: 0.8rem;
-                font-size: 1rem;
-                margin-top: 0.5rem;
+                   padding: 0.7rem;
+        font-size: 0.9rem;
+        width: 100%;
+        background: #a57345;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+        transition: background 0.3s;
             }
             
             .client-signup-form-container .auth-divider {
@@ -3329,8 +3349,15 @@
             }
             
             .client-signup-form-container .auth-btn {
-                padding: 0.7rem;
-                font-size: 0.9rem;
+                   padding: 0.7rem;
+        font-size: 0.9rem;
+        width: 100%;
+        background: #a57345;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+        transition: background 0.3s;
             }
             
             .modal.mobile-modal .client-signup-form-container h2 {
@@ -7783,4 +7810,5 @@
     </script>
 </body>
 </html>
+
 
