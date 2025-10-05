@@ -2428,8 +2428,15 @@ footer {
 }
 
 /* Styles pour le formulaire d'inscription - AMÉLIORÉS POUR PETITS ÉCRANS */
-.signup-container { 
+/* ============================
+   GENERAL MODAL STYLES
+============================ */
+
+/* Conteneur principal */
+.signup-container,
+.client-signup-container {
     display: flex;
+    flex-direction: row;
     width: 100%;
     max-width: 900px;
     margin: 5% auto;
@@ -2438,20 +2445,29 @@ footer {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     background: white;
     font-family: 'Montserrat', sans-serif;
-    min-height: 500px;
+    min-height: auto;
+    max-height: 90vh; /* limite la hauteur de l'écran */
+    transition: all 0.3s ease;
 }
 
-.signup-left {
+/* ============================
+   LEFT SIDE (IMAGE + TEXT)
+============================ */
+.signup-left,
+.client-signup-left {
     flex: 1;
-    background: linear-gradient(135deg, #f6d365, #fda085);
-    color: white;
-    padding: 30px 20px;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    min-height: 500px;
+    min-height: auto;
+    color: white;
+}
+
+.signup-left {
+    background: linear-gradient(135deg, #f6d365, #fda085);
 }
 
 .signup-left img {
@@ -2463,7 +2479,6 @@ footer {
     margin-top: 20px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .signup-left img:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -2474,39 +2489,53 @@ footer {
     margin-bottom: 10px;
 }
 
-.signup-right {
+/* Client signup left */
+.client-signup-left {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    justify-content: space-between;
+}
+
+.client-signup-brand h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.client-signup-brand p {
+    opacity: 0.9;
+}
+
+.client-signup-image {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.client-signup-image img {
+    max-width: 100%;
+    max-height: 250px;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    object-fit: contain;
+}
+
+/* ============================
+   RIGHT SIDE (FORM)
+============================ */
+.signup-right,
+.client-signup-right {
     flex: 1.2;
-    padding: 40px;
+    padding: 2rem;
     position: relative;
-    min-height: 500px;
-    overflow-y: auto;
+    min-height: auto;
+    overflow-y: auto; /* scroll vertical si nécessaire */
 }
 
-.signup-right h2 {
-    margin-bottom: 10px;
-    font-size: 24px;
-    color: #333;
-}
-
-.signup-right p {
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: #666;
-}
-
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #888;
-    transition: 0.3s;
-}
-.close-modal:hover {
-    color: #333;
-}
-
+/* Form styles */
 .auth-form .form-group {
     margin-bottom: 15px;
 }
@@ -2518,15 +2547,19 @@ footer {
     color: #333;
 }
 
-.auth-form input {
+.auth-form input,
+.auth-form select,
+.auth-form textarea {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px;
     border-radius: 8px;
     border: 1px solid #ccc;
     outline: none;
     transition: border 0.3s;
 }
-.auth-form input:focus {
+.auth-form input:focus,
+.auth-form select:focus,
+.auth-form textarea:focus {
     border-color: #fda085;
 }
 
@@ -2546,6 +2579,37 @@ footer {
     transform: scale(1.03);
 }
 
+/* Client signup form */
+.client-signup-form-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+.client-signup-form-container p {
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+
+/* ============================
+   MODAL CLOSE BUTTON
+============================ */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #888;
+    transition: 0.3s;
+}
+.close-modal:hover {
+    color: #333;
+}
+
+/* ============================
+   DIVIDERS & SOCIAL AUTH
+============================ */
 .auth-divider {
     text-align: center;
     margin: 20px 0;
@@ -2603,6 +2667,9 @@ footer {
     background: #145dbf;
 }
 
+/* ============================
+   TOGGLE & LINKS
+============================ */
 .auth-toggle {
     margin-top: 20px;
     text-align: center;
@@ -2617,84 +2684,13 @@ footer {
     text-decoration: underline;
 }
 
-/* Styles pour les modals client - MODIFIÉS POUR PETITS ÉCRANS */
-.client-signup-container {
-    display: flex;
-    width: 100%;
-    max-width: 900px;
-    margin: 5% auto;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    background: white;
-    transition: all 0.3s ease;
-    min-height: 500px;
-}
-
-.client-signup-left {
-    flex: 1;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 500px;
-}
-
-.client-signup-brand h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.client-signup-brand p {
-    opacity: 0.9;
-}
-
-.client-signup-image {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 0;
-}
-
-.client-signup-image img {
-    max-width: 100%;
-    max-height: 250px;
-    width: auto;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    object-fit: contain;
-}
-
-.client-signup-right {
-    flex: 1;
-    padding: 2rem;
-    position: relative;
-    min-height: 500px;
-    overflow-y: auto;
-}
-
-.client-signup-form-container h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-}
-
-.client-signup-form-container p {
-    color: #777;
-    margin-bottom: 1.5rem;
-}
-
-/* Message de bienvenue client - inchangé */
+/* ============================
+   CLIENT WELCOME MESSAGE
+============================ */
 .client-welcome {
     position: fixed;
-    top: 80px;
-    right: 15px;
+    top: calc(80px + env(safe-area-inset-top));
+    right: calc(15px + env(safe-area-inset-right));
     background: var(--primary-color);
     color: white;
     padding: 12px 20px;
@@ -2706,15 +2702,13 @@ footer {
     display: flex;
     align-items: center;
     gap: 10px;
-    top: calc(80px + env(safe-area-inset-top));
-    right: calc(15px + env(safe-area-inset-right));
 }
 
 .client-welcome .client-avatar {
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2726,7 +2720,7 @@ footer {
 }
 
 .client-welcome .client-logout {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255,255,255,0.2);
     border: none;
     color: white;
     padding: 4px 8px;
@@ -2735,12 +2729,13 @@ footer {
     font-size: 0.8rem;
     transition: background 0.3s;
 }
-
 .client-welcome .client-logout:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.3);
 }
 
-/* Bouton de connexion dans le header - inchangé */
+/* ============================
+   HEADER LOGIN BUTTON
+============================ */
 .client-login-btn {
     background: none;
     border: 2px solid var(--primary-color);
@@ -2755,15 +2750,62 @@ footer {
     align-items: center;
     gap: 5px;
 }
-
 .client-login-btn:hover {
     background: var(--primary-color);
     color: white;
     transform: translateY(-2px);
 }
-
 .client-login-btn i {
     font-size: 0.8rem;
+}
+
+/* ============================
+   RESPONSIVE MOBILE
+============================ */
+@media (max-width: 768px) {
+    .signup-container,
+    .client-signup-container {
+        flex-direction: column;
+        max-width: 95%;
+        margin: 2% auto;
+    }
+
+    .signup-left,
+    .client-signup-left,
+    .signup-right,
+    .client-signup-right {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .client-signup-image img {
+        max-height: 200px;
+        margin-bottom: 1rem;
+    }
+
+    .client-signup-right {
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .client-signup-right {
+        max-height: 65vh;
+        padding: 0.5rem;
+    }
+
+    .client-signup-image img {
+        max-height: 150px;
+    }
+
+    .auth-form input,
+    .auth-form select,
+    .auth-form textarea,
+    .auth-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
 /* ===================================== */
@@ -7602,6 +7644,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
