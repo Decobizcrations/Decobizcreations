@@ -2780,11 +2780,18 @@ footer {
 /* RESPONSIVE MOBILE / TABLETTE 320px → 768px */
 /* Tout reste visible, images redimensionnées, scroll possible */
 /* ===================================== */
+/* ===================================== */
+/* RESPONSIVE MOBILE / TABLETTE 320px → 768px */
+/* Tout reste visible, images redimensionnées, scroll possible */
+/* ===================================== */
 @media (max-width: 768px) {
 
     /* ---------------- Général ---------------- */
-    body {
+    html, body {
         font-size: 14px;
+        overflow-x: hidden;
+        overflow-y: auto; /* scroll vertical toujours disponible */
+        -webkit-overflow-scrolling: touch; /* iOS smooth scroll */
     }
 
     /* ---------------- Header ---------------- */
@@ -2792,7 +2799,7 @@ footer {
         flex-direction: column;
         padding: 10px;
         height: auto;
-        min-height: auto;
+        min-height: 0;
     }
 
     header h1 {
@@ -2829,6 +2836,8 @@ footer {
         border-radius: 0 0 8px 8px;
         padding: 1rem;
         z-index: 100;
+        max-height: 80vh;
+        overflow-y: auto;
     }
 
     nav.active {
@@ -2949,8 +2958,9 @@ footer {
         max-width: 95%;
         padding: 1rem;
         height: auto;
-        min-height: auto;
-        overflow-y: auto; /* scroll si contenu dépasse */
+        min-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .auth-left,
@@ -2958,7 +2968,7 @@ footer {
     .auth-right,
     .client-signup-right {
         padding: 1rem;
-        min-height: auto;
+        min-height: 0;
     }
 
     .auth-brand h1,
@@ -3066,6 +3076,7 @@ footer {
         padding: 15px;
         max-height: 90vh;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .close-modal {
@@ -3109,6 +3120,7 @@ footer {
     .signup-left img,
     .client-signup-image { max-height: 120px; }
 }
+
 
 /* Optimisations pour iPhone X et modèles ultérieurs (avec encoche) */
 @supports (padding: max(0px)) {
@@ -7590,6 +7602,7 @@ input, select, textarea {
     </script>
 </body>
 </html>
+
 
 
 
