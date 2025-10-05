@@ -176,8 +176,16 @@
             font-size: 1.5rem;
             color: #b27952;
             cursor: pointer;
-            padding: 5px;
+            padding: 8px;
             z-index: 101;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .menu-toggle:hover {
+            background-color: rgba(178, 121, 82, 0.1);
+        }
+        .menu-toggle:active {
+            transform: scale(0.95);
         }
         
         /* Bouton mode sombre */
@@ -235,10 +243,29 @@
             -webkit-appearance: none;
         }
         
-        /* Panier compteur */
+        /* Panier compteur - Positionné séparément */
         .cart-counter {
             position: relative;
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            margin-left: 1rem;
+        }
+        .cart-counter a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding-bottom: 4px;
+            transition: color 0.25s ease;
+        }
+        .cart-counter a:hover {
+            color: #b27952;
+        }
+        .cart-counter i {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
         }
         .cart-badge {
             position: absolute;
@@ -1570,24 +1597,28 @@
                 width: 100%;
             }
             
-            /* Navigation mobile */
+            /* Navigation mobile - Modifiée */
             nav {
                 display: none;
-                position: fixed; /* Changé de absolute à fixed pour un meilleur comportement sur mobile */
+                position: fixed;
                 top: 0;
                 left: 0;
-                right: 0;
-                bottom: 0;
+                width: 70%;
+                max-width: 300px;
+                height: 100%;
                 background: white;
                 flex-direction: column;
-                padding: 5rem 1rem 1rem; /* Augmenté le padding en haut */
-                box-shadow: none;
+                padding: 5rem 1rem 1rem;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
                 z-index: 100;
-                overflow-y: auto; /* Permet le défilement si le menu est trop long */
+                overflow-y: auto;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
             
             nav.active {
                 display: flex;
+                transform: translateX(0);
             }
             
             .nav-item {
@@ -1596,10 +1627,10 @@
             
             nav a {
                 display: block;
-                padding: 1rem 0; /* Augmenté le padding */
+                padding: 1rem 0;
                 border-bottom: 1px solid #eee;
                 width: 100%;
-                font-size: 1.1rem; /* Augmenté la taille de la police */
+                font-size: 1.1rem;
             }
             
             .submenu {
@@ -1616,6 +1647,28 @@
             
             .cart-counter {
                 margin-left: auto;
+                position: relative;
+                top: auto;
+                right: auto;
+            }
+            
+            /* Overlay pour le menu */
+            .menu-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 99;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .menu-overlay.active {
+                display: block;
+                opacity: 1;
             }
             
             /* Grille de produits */
@@ -2024,6 +2077,14 @@
             </button>
         </div>
         
+        <!-- Icône du panier séparée -->
+        <div class="cart-counter">
+            <a href="panier.html" tabindex="0" aria-label="Panier">
+                <i class="fas fa-shopping-cart"></i> Panier
+            </a>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </div>
+        
         <nav id="mainNav" aria-label="Navigation principale">
             <div class="nav-item">
                 <a href="index.html" tabindex="0">Accueil</a>
@@ -2054,12 +2115,11 @@
             <div class="nav-item">
                 <a href="contact.html" tabindex="0">Contact</a>
             </div>
-            <div class="cart-counter">
-                <a href="panier.html" tabindex="0">Panier</a>
-                <span class="cart-badge" id="cartBadge">0</span>
-            </div>
         </nav>
     </header>
+    
+    <!-- Overlay pour le menu mobile -->
+    <div class="menu-overlay" id="menuOverlay"></div>
     
     <!-- Breadcrumb -->
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
@@ -3129,13 +3189,15 @@
             optimizeImagesForMobile();
         });
         
-        // Menu mobile
+        // Menu mobile - Version améliorée
         function initMobileMenu() {
             const menuToggle = document.getElementById('menuToggle');
             const mainNav = document.getElementById('mainNav');
+            const menuOverlay = document.getElementById('menuOverlay');
             
             menuToggle.addEventListener('click', () => {
                 mainNav.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
                 const isExpanded = mainNav.classList.contains('active');
                 menuToggle.setAttribute('aria-expanded', isExpanded);
                 
@@ -3146,12 +3208,8 @@
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
                 }
                 
-                // Empêcher le défilement du corps lorsque le menu est ouvert
-                if (isExpanded) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = '';
-                }
+                // Ne pas empêcher le défilement du corps lorsque le menu est ouvert
+                // pour permettre de voir le contenu en arrière-plan
             });
             
             // Fermer le menu lorsqu'un lien est cliqué
@@ -3159,20 +3217,18 @@
             navLinks.forEach(link => {
                 link.addEventListener('click', () => {
                     mainNav.classList.remove('active');
+                    menuOverlay.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
                     menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    document.body.style.overflow = '';
                 });
             });
             
-            // Fermer le menu lorsqu'on clique en dehors
-            document.addEventListener('click', (event) => {
-                if (!menuToggle.contains(event.target) && !mainNav.contains(event.target) && mainNav.classList.contains('active')) {
-                    mainNav.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    document.body.style.overflow = '';
-                }
+            // Fermer le menu lorsqu'on clique sur l'overlay
+            menuOverlay.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
             });
             
             // Gérer les sous-menus sur mobile
@@ -4195,4 +4251,3 @@
     </script>
 </body>
 </html>
-
