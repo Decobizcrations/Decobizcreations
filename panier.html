@@ -2156,7 +2156,7 @@
                 return total + (price * quantity);
             }, 0);
             
-            const shipping = cartItems.length > 0 ? 30 : 0;
+            const shipping = cartItems.length > 0 ? 35 : 0;
             const total = subtotal + shipping - discount;
             
             document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} DH`;
@@ -2476,6 +2476,7 @@
     </script>
 </body>
 </html>
+
 
 
 
