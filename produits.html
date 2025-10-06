@@ -3220,11 +3220,27 @@
             // Fermer le menu lorsqu'un lien est cliqué
             const navLinks = mainNav.querySelectorAll('a');
             navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mainNav.classList.remove('active');
-                    menuOverlay.classList.remove('active');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                link.addEventListener('click', (e) => {
+                    // Vérifier si le lien a un sous-menu
+                    const hasSubmenu = link.parentElement.querySelector('.submenu');
+                    
+                    // Si le lien a un sous-menu et qu'on est sur mobile, empêcher la navigation par défaut
+                    if (hasSubmenu && window.innerWidth <= 768) {
+                        e.preventDefault();
+                        
+                        // Basculer l'affichage du sous-menu
+                        const submenu = link.parentElement.querySelector('.submenu');
+                        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+                    } else {
+                        // Fermer le menu pour les liens sans sous-menu ou sur desktop
+                        mainNav.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        
+                        // Laisser la navigation se faire normalement
+                        // Ne pas utiliser e.preventDefault() ici
+                    }
                 });
             });
             
@@ -3243,6 +3259,11 @@
                 const submenu = item.querySelector('.submenu');
                 
                 if (submenu) {
+                    // S'assurer que le sous-menu est caché par défaut sur mobile
+                    if (window.innerWidth <= 768) {
+                        submenu.style.display = 'none';
+                    }
+                    
                     link.addEventListener('click', (e) => {
                         // Ne pas suivre le lien principal sur mobile
                         if (window.innerWidth <= 768) {
