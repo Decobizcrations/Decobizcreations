@@ -3365,19 +3365,19 @@
             
             // Ajouter le prix pour le message personnalisé
             if (customMessage.trim() !== '') {
-                additionalPrice += 10;
+                additionalPrice += 0;
             }
             
             // Ajouter le prix pour la couleur personnalisée (si différente de la couleur par défaut)
             if (selectedColor && selectedColor !== 'gris') {
-                additionalPrice += 15;
+                additionalPrice += 0;
             }
             
             // Ajouter le prix pour la taille personnalisée
             if (selectedSize === 'petit') {
-                additionalPrice -= 10;
+                additionalPrice -= 0;
             } else if (selectedSize === 'grand') {
-                additionalPrice += 20;
+                additionalPrice += 0;
             }
             
             const totalPrice = basePrice + additionalPrice;
@@ -4315,3 +4315,4 @@
     </script>
 </body>
 </html>
+
