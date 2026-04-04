@@ -8,7 +8,7 @@
     <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700;900&display=swap" rel="stylesheet">
 
     <style>
         /* --- VARIABLES & DESIGN SYSTEM --- */
@@ -20,12 +20,16 @@
             --light-text: #FFFFFF;
             --accent-green: #25D366;
             --accent-green-dark: #128C7E;
+            --gold-color: #D4AF37;
+            --gold-light: #F9E79F;
             --delivery-color: #2e7d32;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
-            --radius-card: 16px;
+            --shadow-gold: 0 15px 35px rgba(212, 175, 55, 0.25);
+            --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.6);
+            --radius-card: 20px;
             --radius-btn: 50px;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -43,9 +47,13 @@
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         img { max-width: 100%; display: block; }
 
+        /* --- SCROLL PROGRESS BAR --- */
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: transparent; z-index: 2001; }
+        .progress-bar { height: 4px; background: linear-gradient(90deg, var(--primary-color), var(--gold-color)); width: 0%; transition: width 0.1s; }
+
         /* --- HEADER --- */
         header {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 1rem 5%;
@@ -61,26 +69,27 @@
         .logo {
             font-family: var(--font-heading);
             font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-color);
+            font-weight: 900; /* Plus gras */
+            background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-color); padding: 5px; }
         nav ul { display: flex; gap: 2rem; list-style: none; }
-        nav a { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color); position: relative; }
+        nav a { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color); position: relative; }
         nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--primary-color); transition: var(--transition); }
         nav a:hover { color: var(--primary-color); }
         nav a:hover::after { width: 100%; }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Avec Formes Flottantes) --- */
         .hero {
             position: relative;
-            height: 75vh;
-            min-height: 400px;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://z-cdn-media.chatglm.cn/files/8627544f-3e04-4c29-a114-20b3353c59aa.png?auth_key=1875226319-95acc3e0121d487da6587dc1bed433cf-0-e232bc1b8adf8f85b63e978ed25c15a3');
-            background-attachment: fixed;
+            height: 85vh; /* Plus haut */
+            min-height: 500px;
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://z-cdn-media.chatglm.cn/files/8627544f-3e04-4c29-a114-20b3353c59aa.png?auth_key=1875226319-95acc3e0121d487da6587dc1bed433cf-0-e232bc1b8adf8f85b63e978ed25c15a3');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -89,71 +98,159 @@
             text-align: center;
             color: var(--light-text);
             padding: 0 1rem;
+            overflow: hidden;
         }
 
-        .hero-content { max-width: 800px; animation: fadeInUp 1s ease-out; }
-        .hero h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1.5rem; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        /* Formes flottantes (Blobs) */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 0;
+            opacity: 0.5;
+            animation: float 10s infinite ease-in-out;
+        }
+        .blob-1 { width: 300px; height: 300px; background: var(--gold-color); top: 10%; left: 10%; animation-delay: 0s; }
+        .blob-2 { width: 400px; height: 400px; background: var(--primary-color); bottom: 10%; right: 10%; animation-delay: 2s; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 3.5rem 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 15px 50px 0 rgba(0, 0, 0, 0.4);
+            max-width: 700px;
+            z-index: 10;
+            animation: fadeInUp 1.2s ease-out;
+            position: relative;
+        }
+
+        /* Effet de texte en dégradé */
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, var(--gold-light) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+        
+        .hero h1 { font-family: var(--font-heading); font-size: 3.2rem; margin-bottom: 1rem; line-height: 1.1; }
         
         .btn {
-            display: inline-block; padding: 1rem 2.5rem; border-radius: var(--radius-btn);
-            font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; padding: 1rem 3rem; border-radius: var(--radius-btn);
+            font-weight: 800; font-size: 1rem; text-transform: uppercase; letter-spacing: 1.5px;
             transition: var(--transition); cursor: pointer; border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
-        .btn-primary { background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); color: white; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 94, 60, 0.4); }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 10px 20px rgba(139, 94, 60, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(139, 94, 60, 0.6);
+        }
 
-        /* --- GALLERY GRID --- */
-        .gallery { padding: 5rem 5%; background-color: #fff; }
-        .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 1rem; position: relative; display: inline-block; width: 100%; }
-        .section-subtitle { text-align: center; color: #777; margin-bottom: 3rem; font-style: italic; }
+        /* --- GALLERY GRID & ANIMATIONS --- */
+        .gallery { padding: 5rem 5%; background-color: #fff; position: relative; }
+        .section-title { 
+            text-align: center; font-family: var(--font-heading); font-size: 2.5rem; 
+            background: linear-gradient(45deg, var(--primary-color), var(--gold-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem; display: inline-block; width: 100%; font-weight: 800;
+        }
+        .section-subtitle { text-align: center; color: #777; margin-bottom: 3rem; font-style: italic; font-size: 1.1rem; }
 
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 3rem; }
 
         .gallery-item {
             background: white; border-radius: var(--radius-card); overflow: hidden;
             box-shadow: var(--shadow-soft); cursor: pointer;
             transition: var(--transition); border: 1px solid #f0f0f0; position: relative;
+            opacity: 0; transform: translateY(50px); 
         }
-        .gallery-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        
+        .gallery-item.reveal { opacity: 1; transform: translateY(0); }
+        
+        .gallery-item:hover { transform: translateY(-12px); box-shadow: var(--shadow-hover); }
+        
+        /* Badge BEST SELLER */
+        .best-seller-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--gold-color) 0%, #b8860b 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
 
-        .gallery-img-container { height: 280px; overflow: hidden; position: relative; background: #f4f4f4; }
-        .gallery-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .gallery-item.premium-pack {
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+        .gallery-item.premium-pack:hover {
+            border-color: var(--gold-color);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .gallery-img-container { height: 300px; overflow: hidden; position: relative; background: #f9f9f9; }
+        .gallery-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
         .gallery-item:hover .gallery-img-container img { transform: scale(1.08); }
         
         .gallery-info { padding: 1.5rem; text-align: center; position: relative; z-index: 2; background: white; }
-        .gallery-info h3 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary-color); margin-bottom: 0.5rem; }
-        .gallery-info p { font-size: 0.9rem; color: #777; margin-bottom: 0.8rem; }
-        .gallery-price { font-weight: 700; color: var(--text-color); font-size: 1.2rem; font-family: var(--font-heading); }
+        .gallery-info h3 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--primary-color); margin-bottom: 0.5rem; font-weight: 700; }
+        .gallery-info p { font-size: 0.9rem; color: #777; margin-bottom: 0.8rem; min-height: 45px; }
+        .gallery-price { font-weight: 800; color: var(--primary-color); font-size: 1.3rem; font-family: var(--font-heading); }
+        
         .tap-hint { font-size: 0.75rem; color: var(--primary-color); margin-top: 1rem; opacity: 0; transform: translateY(10px); transition: var(--transition); font-weight: 700; text-transform: uppercase; }
-        .gallery-item:hover .tap-hint { opacity: 0.8; transform: translateY(0); }
+        .gallery-item:hover .tap-hint { opacity: 1; transform: translateY(0); }
 
-        /* --- MODAL (POPUP) SUPERIEURE --- */
+        /* --- MODAL (POPUP) --- */
         .modal {
             display: none;
             position: fixed;
             z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.95); /* Fond très sombre */
-            backdrop-filter: blur(5px);
+            background-color: rgba(0,0,0,0.96);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
-            padding: 0; /* Padding 0 pour le plein écran */
+            padding: 0;
             opacity: 0; transition: opacity 0.3s ease;
         }
         .modal.show { opacity: 1; }
 
         .modal-content {
             background-color: white;
-            border-radius: 20px 20px 0 0; /* Coins arrondis seulement en bas */
+            border-radius: 24px 24px 0 0;
             width: 100%;
             max-width: 600px;
             height: 95vh; 
             display: flex;
             flex-direction: column;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
-            transform: translateY(100%); /* Commence en bas */
-            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1); /* Effet "Sheet" iOS */
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             overflow: hidden;
             position: relative;
         }
@@ -162,128 +259,150 @@
         .modal-close {
             position: absolute; top: 15px; right: 15px;
             font-size: 2.2rem; font-weight: bold; color: white; cursor: pointer; z-index: 30;
-            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
-            border-radius: 50%; width: 44px; height: 44px;
+            background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+            border-radius: 50%; width: 40px; height: 40px;
             display: flex; align-items: center; justify-content: center;
             transition: var(--transition);
         }
         .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
 
-        /* CONTENEUR IMAGE */
         .modal-img-container {
-            width: 100%;
-            flex: 2; 
-            background-color: #000; /* Fond NOIR PUR pour effet cinéma */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 0;
-            position: relative;
+            width: 100%; flex: 2; background-color: #000;
+            display: flex; align-items: center; justify-content: center; min-height: 0; position: relative;
         }
         
-        /* LOADER (Spinner) */
         .loader {
             border: 4px solid rgba(255, 255, 255, 0.1);
             border-left-color: var(--primary-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             animation: spin 1s linear infinite;
-            position: absolute;
-            z-index: 5;
+            position: absolute; z-index: 5;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .modal-img-container img {
             max-width: 100%; max-height: 100%; width: auto; height: auto;
             object-fit: contain; 
-            opacity: 0; /* Caché par défaut */
-            transition: opacity 0.5s ease;
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
         .modal-img-container img.loaded { opacity: 1; }
 
-        /* CONTENEUR TEXTE */
         .modal-details {
-            flex: 1; 
-            padding: 2rem; 
-            text-align: center; 
-            background: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow-y: auto; 
-            border-radius: 20px 20px 0 0;
+            flex: 1; padding: 2.5rem 2rem; text-align: center; background: white;
+            display: flex; flex-direction: column; justify-content: flex-start;
+            overflow-y: auto; border-radius: 24px 24px 0 0;
             box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
-            transform: translateY(20px); /* Pour animation staggered */
-            opacity: 0;
-            transition: all 0.5s ease 0.2s; /* Délai pour l'effet cascade */
+            transform: translateY(30px); opacity: 0;
+            transition: all 0.6s ease 0.3s;
         }
         .modal.show .modal-details { transform: translateY(0); opacity: 1; }
 
-        .modal-details h3 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary-color); margin-bottom: 0.5rem; }
-        .modal-details p { color: #666; margin-bottom: 0.8rem; font-size: 0.95rem; line-height: 1.4; }
+        .modal-details h3 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         
-        .modal-price { font-size: 1.8rem; font-weight: 700; color: var(--text-color); display: block; margin-bottom: 1rem; }
+        .modal-details ul {
+            text-align: left; margin: 1.5rem 0; padding-left: 0.5rem; list-style: none;
+        }
+        .modal-details li {
+            position: relative; padding-left: 30px; margin-bottom: 12px; color: #555; font-size: 1rem; font-weight: 500;
+        }
+        .modal-details li::before {
+            content: '✓';
+            position: absolute; left: 0; color: var(--accent-green); font-weight: bold; font-size: 1.2rem;
+        }
+        
+        .modal-price { font-size: 2rem; font-weight: 900; color: var(--text-color); display: block; margin-bottom: 1.5rem; text-align: center; letter-spacing: -1px; }
 
         .delivery-info {
-            font-size: 0.85rem; color: var(--delivery-color); font-weight: 700; margin-bottom: 1.2rem;
-            background: #e8f5e9; display: inline-block; padding: 6px 16px; border-radius: 30px;
-            border: 1px solid #c8e6c9;
+            font-size: 0.9rem; color: var(--delivery-color); font-weight: 700; margin-bottom: 2rem;
+            background: #e8f5e9; display: inline-block; padding: 8px 20px; border-radius: 30px;
+            border: 1px solid #c8e6c9; text-align: center; width: 100%;
         }
 
         .btn-modal-whatsapp {
             background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-dark) 100%);
-            color: white; width: 100%; padding: 1.1rem; border-radius: var(--radius-btn);
+            color: white; width: 100%; padding: 1.2rem; border-radius: var(--radius-btn);
             font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: var(--transition); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); margin-top: auto;
+            transition: var(--transition); box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); margin-top: auto;
+            position: relative; overflow: hidden;
         }
-        .btn-modal-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
-        .btn-modal-whatsapp:active { transform: scale(0.98); }
+        /* Effet de brillance sur le bouton WhatsApp */
+        .btn-modal-whatsapp::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+        .btn-modal-whatsapp:hover::after { left: 100%; }
+        .btn-modal-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5); }
 
         /* --- FEATURES & FOOTER --- */
-        .features { padding: 4rem 5%; background-color: var(--secondary-color); display: flex; flex-wrap: wrap; justify-content: space-around; text-align: center; gap: 2rem; }
+        .features { padding: 5rem 5%; background-color: var(--secondary-color); display: flex; flex-wrap: wrap; justify-content: space-around; text-align: center; gap: 2rem; }
         .feature-box { flex: 1 1 200px; padding: 1rem; }
-        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; display: block; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
         .feature-box h3 { font-family: var(--font-heading); color: var(--primary-color); }
 
-        .cta-section { padding: 4rem 1rem; text-align: center; background: linear-gradient(135deg, var(--primary-color) 0%, #5c3d25 100%); color: white; }
-        footer { background-color: #1a1a1a; color: #aaa; padding: 3rem 5%; text-align: center; font-size: 0.9rem; border-top: 1px solid #333; }
+        .cta-section { padding: 5rem 1rem; text-align: center; background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%); color: white; position: relative; overflow: hidden; }
+        .cta-section::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 20s linear infinite;
+        }
+
+        footer { background-color: #111; color: #888; padding: 3rem 5%; text-align: center; font-size: 0.9rem; border-top: 1px solid #222; }
         footer p { margin-bottom: 0.5rem; }
 
         .fab-whatsapp {
-            position: fixed; bottom: 25px; right: 25px;
+            position: fixed; bottom: 30px; right: 30px;
             background: var(--accent-green); color: white;
-            width: 65px; height: 65px; border-radius: 50%;
+            width: 70px; height: 70px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); z-index: 1500;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5); z-index: 1500;
             animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Bouton retour en haut */
+        #backToTop {
+            position: fixed; bottom: 30px; left: 30px;
+            background: white; color: var(--primary-color);
+            width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1400;
+            opacity: 0; pointer-events: none; transition: var(--transition);
+            font-size: 1.2rem;
+        }
+        #backToTop.show { opacity: 1; pointer-events: all; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .hero { background-attachment: scroll; }
             .menu-toggle { display: block; }
-            nav { position: fixed; top: 0; right: 0; height: 100vh; width: 75%; background: white; box-shadow: -5px 0 20px rgba(0,0,0,0.1); padding-top: 70px; transform: translateX(100%); transition: transform 0.4s ease; }
+            nav { position: fixed; top: 0; right: 0; height: 100vh; width: 80%; background: white; box-shadow: -5px 0 20px rgba(0,0,0,0.1); padding-top: 70px; transform: translateX(100%); transition: transform 0.4s ease; }
             nav.open { transform: translateX(0); }
             nav ul { flex-direction: column; align-items: center; width: 100%; }
-            /* Sur mobile, la modal prend vraiment tout l'écran en bas */
-            .modal-content { height: 92vh; max-width: 100%; border-radius: 20px 20px 0 0; }
-            .modal-close { top: 10px; right: 15px; }
+            .modal-content { height: 95vh; max-width: 100%; border-radius: 24px 24px 0 0; }
+            .modal-close { top: 15px; right: 15px; }
+            .fab-whatsapp { width: 60px; height: 60px; bottom: 20px; right: 20px; }
         }
         @media (min-width: 769px) {
-            .modal-content { height: 85vh; max-width: 600px; border-radius: 24px; margin: auto; }
+            .modal-content { height: 85vh; max-width: 600px; border-radius: 30px; margin: auto; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Scroll Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
     <!-- Header -->
     <header>
-        <div class="logo">DECOBIZ CREATIONS</div>
+        <div class="logo">DECOBIZ</div>
         <div class="menu-toggle" onclick="toggleMenu()">☰</div>
         <nav id="nav-menu">
             <ul>
@@ -296,10 +415,14 @@
 
     <!-- Hero -->
     <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>L'Art de la Décoration</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; font-weight: 300;">Sublimez votre intérieur avec nos créations artisanales uniques.</p>
-            <a href="#gallery" class="btn btn-primary">Découvrir les Packs</a>
+        <!-- Formes flottantes -->
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+
+        <div class="hero-card">
+            <h1 class="gradient-text">L'Art de la Décoration</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 2.5rem; font-weight: 300; color: #eee;">Des créations uniques pour un intérieur qui vous ressemble.</p>
+            <a href="#gallery" class="btn btn-primary">Explorer la Collection</a>
         </div>
     </section>
 
@@ -311,78 +434,106 @@
         <div class="gallery-grid">
             
             <!-- PACK 1 -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/8627544f-3e04-4c29-a114-20b3353c59aa.png?auth_key=1875226319-95acc3e0121d487da6587dc1bed433cf-0-e232bc1b8adf8f85b63e978ed25c15a3', 'Esprit Naturel', 'Vases en céramique blanche et compositions sèches pour un salon apaisant et élégant.', '39,90 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Esprit%20Naturel')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b', 'Cuisine Moderne', '<ul><li>1 Plateau rond</li><li>1 Grande citrouille</li><li>1 Petite citrouille</li></ul>', '49,90 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Cuisine%20Moderne')">
                 <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/8627544f-3e04-4c29-a114-20b3353c59aa.png?auth_key=1875226319-95acc3e0121d487da6587dc1bed433cf-0-e232bc1b8adf8f85b63e978ed25c15a3" alt="Pack Naturel">
-                </div>
-                <div class="gallery-info">
-                    <h3>Esprit Naturel</h3>
-                    <p>Céramique & Sèche</p>
-                    <div class="gallery-price">39,90 €</div>
-                    <div class="tap-hint">Voir le détails</div>
-                </div>
-            </div>
-
-            <!-- PACK 2 -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/28c2a07d-bec9-46fc-9a66-1c3df7cb2ba7.png?auth_key=1875226319-a5aadd52706a487b89e6c5bdc185b1e7-0-903546340026dead726e39f3821b0946', 'Collection Bleue', 'Une série exclusive de contenants en bleu profond pour une touche d\'élégance maritime.', '55,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Bleue')">
-                <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/28c2a07d-bec9-46fc-9a66-1c3df7cb2ba7.png?auth_key=1875226319-a5aadd52706a487b89e6c5bdc185b1e7-0-903546340026dead726e39f3821b0946" alt="Pack Bleu">
-                </div>
-                <div class="gallery-info">
-                    <h3>Collection Bleue</h3>
-                    <p>Élégance Profonde</p>
-                    <div class="gallery-price">55,00 €</div>
-                    <div class="tap-hint">Voir le détails</div>
-                </div>
-            </div>
-
-            <!-- PACK 3 -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b', 'Cuisine Moderne & Livres', 'Une ambiance citadine avec citrouilles blanches, vases et livres d\'architecture.', '49,90 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Cuisine%20Moderne')">
-                <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b" alt="Cuisine Moderne">
+                    <img src="https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b" alt="Cuisine Moderne" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Cuisine Moderne</h3>
-                    <p>Livres & Citrouilles</p>
+                    <p>3 Pièces : Plateau, citrouilles</p>
                     <div class="gallery-price">49,90 €</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
-            <!-- PACK 4 -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/649e7c87-5799-4402-bd46-8dec6cc5a4c2.jpeg?auth_key=1875232591-ef3f63ccfcf64099b0333948971eaaa1-0-2f5a5fbd93841c274ffdb5d45839d222', 'Salle de Bain Chic', 'Détails en or et marbre pour transformer votre salle d\'eau en espace spa.', '42,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salle%20de%20Bain')">
+            <!-- PACK 2 -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/649e7c87-5799-4402-bd46-8dec6cc5a4c2.jpeg?auth_key=1875232591-ef3f63ccfcf64099b0333948971eaaa1-0-2f5a5fbd93841c274ffdb5d45839d222', 'Salle de Bain Chic', '<ul><li>1 Vase</li><li>1 Porte-bougie</li><li>1 Petite citrouille</li><li>1 Plateau ovale 23 cm</li></ul>', '42,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salle%20de%20Bain')">
                 <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/649e7c87-5799-4402-bd46-8dec6cc5a4c2.jpeg?auth_key=1875232591-ef3f63ccfcf64099b0333948971eaaa1-0-2f5a5fbd93841c274ffdb5d45839d222" alt="Salle de Bain">
+                    <img src="https://z-cdn-media.chatglm.cn/files/649e7c87-5799-4402-bd46-8dec6cc5a4c2.jpeg?auth_key=1875232591-ef3f63ccfcf64099b0333948971eaaa1-0-2f5a5fbd93841c274ffdb5d45839d222" alt="Salle de Bain" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Salle de Bain Chic</h3>
-                    <p>Marbre & Or</p>
+                    <p>4 Pièces : Vase, porte-bougie, citrouille, plateau</p>
                     <div class="gallery-price">42,00 €</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
-            <!-- PACK 5 -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984', 'Collection Signature', 'L\'ensemble complet avec le panneau artisanal \'Decobiz\' et les accessoires naturels.', '65,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Signature')">
+            <!-- PACK 3 -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f', 'Soirée Cozy', 'Un bougeoir ondulé avec trois bougies pour une ambiance nocturne douce et romantique.', '45,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Soirée%20Cozy')">
                 <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Collection Signature">
+                    <img src="https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f" alt="Soirée Cozy" loading="lazy">
                 </div>
                 <div class="gallery-info">
-                    <h3>Collection Signature</h3>
-                    <p>Fait Main & Naturel</p>
+                    <h3>Soirée Cozy</h3>
+                    <p>Ambiance Bougies & Vue Nocturne</p>
+                    <div class="gallery-price">45,00 €</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 4 -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d', 'Coin Zen', '<ul><li>1 Brûleur encens</li><li>1 Vase</li><li>1 Plateau ovale 18 cm</li></ul>', '52,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Coin%20Zen')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d" alt="Coin Zen" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Coin Zen</h3>
+                    <p>3 Pièces : Brûleur, vase, plateau</p>
+                    <div class="gallery-price">52,00 €</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 5 -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665', 'Édition Romance', '<ul><li>1 Vase</li><li>1 Plateau ovale</li><li>1 Jar</li></ul>', '65,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Edition%20Romance')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665" alt="Edition Romance" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Édition Romance</h3>
+                    <p>3 Pièces : Vase, plateau, jar</p>
                     <div class="gallery-price">65,00 €</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
             <!-- PACK 6 -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e', 'Salon Moderne & Chic', 'Une composition luxueuse pour votre salon avec sculptures dorées, livres d\'art et vases design.', '75,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salon%20Moderne')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db', 'Pause Jardin', 'Vue sur le jardin, livres d\'art et petite clochette dorée pour un moment de calme.', '48,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Pause%20Jardin')">
                 <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e" alt="Salon Moderne">
+                    <img src="https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db" alt="Pause Jardin" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Pause Jardin</h3>
+                    <p>Fenêtre & Livres</p>
+                    <div class="gallery-price">48,00 €</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 7: SIGNATURE PREMIUM -->
+            <div class="gallery-item premium-pack" onclick="openModal('https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984', 'Collection Signature', '<ul><li>1 Arche décorative</li><li>2 Vases</li><li>1 Plateau ovale</li><li>1 Plateau rond</li><li>1 Boîte d’arrangement</li><li>1 Mbekhra</li><li>1 Porte-bougie</li><li>1 Plateau à boules</li><li><strong>Avec fleurs séchées + cadeau surprise 🎁</strong></li></ul>', '299,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Signature%20à%20299€')">
+                <!-- Badge Best Seller -->
+                <div class="best-seller-badge">Best Seller</div>
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Collection Signature" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Collection Signature</h3>
+                    <p>Le Pack Complet (9 Pièces) + Cadeau</p>
+                    <div class="gallery-price" style="color:var(--gold-color);">299,00 €</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 8 -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e', 'Salon Moderne', '<ul><li>2 Vases</li><li>1 Petite citrouille</li><li>1 Plateau ovale</li></ul>', '75,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salon%20Moderne')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e" alt="Salon Moderne" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Salon Moderne</h3>
-                    <p>Or & Marbre</p>
+                    <p>4 Pièces : 2 vases, citrouille, plateau</p>
                     <div class="gallery-price">75,00 €</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
@@ -399,19 +550,19 @@
         </div>
         <div class="feature-box">
             <span class="feature-icon">🚚</span>
-            <h3>Livraison Rapide</h3>
+            <h3>Livraison 20 DH</h3>
         </div>
         <div class="feature-box">
-            <span class="feature-icon">🤝</span>
-            <h3>Sur Mesure</h3>
+            <span class="feature-icon">🎁</span>
+            <h3>Cadeaux Surprise</h3>
         </div>
     </section>
 
     <!-- Footer / Contact -->
     <section id="contact" class="cta-section">
-        <h2>Envie de changer d'air ?</h2>
-        <p style="margin: 15px 0 30px 0; opacity: 0.9; font-size: 1.1rem;">Contactez-nous pour une commande personnalisée.</p>
-        <a href="https://wa.me/212610236889" style="font-size: 1.5rem; font-weight:bold; border-bottom: 2px solid white; padding-bottom: 5px;">+212 610 236 889</a>
+        <h2 style="font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 1rem;">Transformez votre espace</h2>
+        <p style="margin: 10px 0 30px 0; opacity: 0.9; font-size: 1.2rem;">Commandez maintenant et recevez une surprise.</p>
+        <a href="https://wa.me/212610236889" style="font-size: 1.3rem; font-weight:bold; border-bottom: 2px solid white; padding-bottom: 5px;">+212 610 236 889</a>
     </section>
 
     <footer>
@@ -427,28 +578,28 @@
         </svg>
     </a>
 
+    <!-- Bouton Retour en Haut -->
+    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</div>
+
     <!-- --- MODAL STRUCTURE (Popup) --- -->
     <div id="product-modal" class="modal" onclick="closeModal(event)">
         <div class="modal-content" id="modal-content-swipe">
             <span class="modal-close" onclick="closeModal(event)">&times;</span>
             
             <div class="modal-img-container">
-                <!-- Loader ajouté ici -->
                 <div class="loader"></div>
                 <img id="modal-img" src="" alt="Détail produit">
             </div>
             
             <div class="modal-details">
                 <h3 id="modal-title">Titre</h3>
-                <p id="modal-desc">Description</p>
+                <div id="modal-desc">Description</div>
                 <span id="modal-price" class="modal-price">Prix</span>
                 
-                <!-- INFO LIVRAISON -->
                 <div class="delivery-info">
                     🚚 Livraison partout au Maroc 20 DH
                 </div>
                 
-                <!-- BOUTON WHATSAPP -->
                 <a id="modal-btn" href="#" target="_blank" class="btn-modal-whatsapp">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
                     Commander sur WhatsApp
@@ -459,13 +610,45 @@
 
     <!-- Script Javascript -->
     <script>
+        // --- 1. SCROLL PROGRESS BAR ---
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+            
+            // Bouton Retour en haut
+            const backToTop = document.getElementById("backToTop");
+            if (winScroll > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        };
+
+        // --- 2. SCROLL REVEAL ANIMATION (Staggered) ---
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Délai basé sur l'index pour effet cascade
+                    setTimeout(() => {
+                        entry.target.classList.add('reveal');
+                    }, index * 100); 
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item').forEach(el => observer.observe(el));
+
         // Menu Mobile
         function toggleMenu() {
             const nav = document.getElementById('nav-menu');
             nav.classList.toggle('open');
         }
 
-        // Gestion de la Modal (Popup) avec Loader et Animation
+        // Gestion de la Modal
         const modal = document.getElementById('product-modal');
         const modalContent = document.getElementById('modal-content-swipe');
         const modalImg = document.getElementById('modal-img');
@@ -476,13 +659,12 @@
         const loader = document.querySelector('.loader');
 
         function openModal(imgSrc, title, desc, price, link) {
-            // Reset states
             modalImg.classList.remove('loaded');
             loader.style.display = 'block';
             
             modalImg.src = imgSrc;
             modalTitle.innerText = title;
-            modalDesc.innerText = desc;
+            modalDesc.innerHTML = desc;
             modalPrice.innerText = price;
             modalBtn.href = link;
             
@@ -490,7 +672,6 @@
             setTimeout(() => { modal.classList.add('show'); }, 10);
             document.body.style.overflow = 'hidden'; 
 
-            // Quand l'image est chargée
             modalImg.onload = function() {
                 loader.style.display = 'none';
                 modalImg.classList.add('loaded');
@@ -507,7 +688,6 @@
             }
         }
 
-        // Fermer avec Echap
         document.onkeydown = function(evt) {
             if (evt.keyCode == 27) {
                 modal.classList.remove('show');
@@ -522,30 +702,17 @@
         let touchStartY = 0;
         let touchEndY = 0;
 
-        modalContent.addEventListener('touchstart', e => {
-            touchStartY = e.changedTouches[0].screenY;
-        }, {passive: true});
-
+        modalContent.addEventListener('touchstart', e => { touchStartY = e.changedTouches[0].screenY; }, {passive: true});
         modalContent.addEventListener('touchend', e => {
             touchEndY = e.changedTouches[0].screenY;
             handleGesture();
         }, {passive: true});
 
         function handleGesture() {
-            // Si on glisse vers le bas de plus de 100px
-            if (touchEndY < touchStartY - 100) {
-                // Swipe Up (peut servir à fermer aussi)
-                closeModal({target: modal});
-            }
-            // Si on glisse vers le haut (c'est étrange pour fermer, mais on peut le faire)
-            // Ici on fait surtout Swipe Down pour fermer si on est en haut de l'image
+            if (touchEndY < touchStartY - 100) closeModal({target: modal});
             if (touchEndY > touchStartY + 50) {
-                // Petit seuil pour le confort
-                // On vérifie si on n'est pas en train de scroller le texte
                 const details = document.querySelector('.modal-details');
-                if(details.scrollTop === 0) {
-                    closeModal({target: modal});
-                }
+                if(details.scrollTop === 0) closeModal({target: modal});
             }
         }
     </script>
