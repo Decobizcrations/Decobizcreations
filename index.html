@@ -157,7 +157,7 @@
         .gallery-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
         .gallery-item:hover .gallery-img-container img { transform: scale(1.08); }
         
-        /* Best Seller Badge */
+        /* Best Seller Badge - CORRECTED CLASS */
         .best-seller-badge {
             position: absolute;
             top: 15px;
@@ -178,7 +178,10 @@
 
         .gallery-info { padding: 1.5rem; text-align: center; position: relative; z-index: 2; background: white; }
         .gallery-info h3 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary-color); margin-bottom: 0.5rem; }
-        .gallery-info p { font-size: 0.9rem; color: # content: #777; margin-bottom: 0.8rem; min-height: 40px; }
+        
+        /* CSS SYNTAX ERROR FIXED HERE */
+        .gallery-info p { font-size: 0.9rem; color: #777; margin-bottom: 0.8rem; min-height: 40px; }
+        
         .gallery-price { font-weight: 700; color: var(--text-color); font-size: 1.2rem; font-family: var(--font-heading); }
         
         .tap-hint { font-size: 0.75rem; color: var(--primary-color); margin-top: 1rem; opacity: 0; transform: translateY(10px); transition: var(--transition); font-weight: 700; text-transform: uppercase; }
@@ -367,7 +370,8 @@
             <!-- PACK 0: Collection Signature (PREMIUM) - BEST SELLER -->
             <div class="gallery-item premium-pack" onclick="openModal('https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984', 'Collection Signature', '<ul><li>1 Arche décorative</li><li>2 Vases</li><li>1 Plateau ovale</li><li>1 Plateau rond</li><li>1 Boîte d’arrangement</li><li>1 Mbekhra</li><li>1 Porte-bougie</li><li>1 Plateau à boules</li><li><strong>Avec fleurs séchées + cadeau surprise 🎁</strong></li></ul>', '299 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Signature%20Best%20Seller%20à%20299%20MAD')">
                 <div class="gallery-img-container">
-                    <div class="best-slider-badge">Best Seller</div>
+                    <!-- CLASS CORRECTED HERE -->
+                    <div class="best-seller-badge">Best Seller</div>
                     <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Collection Signature" loading="lazy">
                 </div>
                 <div class="gallery-info">
@@ -379,22 +383,22 @@
             </div>
 
             <!-- PACK 1: Cuisine Moderne -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b', 'Cuisine Moderne', '<ul><li>1 Plateau rond</li><li>1 Grande citrouille</li><li>1 Petite citrouille</li></ul>', '49,90 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Cuisine%20Moderne')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b', 'Cuisine Moderne', '<ul><li>1 Plateau rond</li><li>1 Grande citrouille</li><li>1 Petite citrouille</li></ul>', '49.90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Cuisine%20Moderne')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b" alt="Cuisine Moderne" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Cuisine Moderne</h3>
                     <p>3 Pièces : Plateau rond, grande & petite citrouille</p>
-                    <div class="gallery-price">49,90 MAD</div>
+                    <div class="gallery-price">49.90 MAD</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
-            <!-- PACK 2: Salle de Bain Chic -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/649e7c87-5799-4402-bd46-8dec6cc5a4c2.jpeg?auth_key=1875232591-ef3f63ccfcf64099b0333948971eaaa1-0-2f5a5fbd93841c274ffdb5d45939d222', 'Salle de Bain Chic', '<ul><li>1 Vase</li><li>1 Porte-bougie</li><li>1 Petite citrouille</li><li>1 Plateau ovale 23 cm</li></ul>', '42,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salle%20de%20Bain')">
+            <!-- PACK 2: Salle de Bain Chic (Image placeholder used for salle.jpeg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/deco2/600/600', 'Salle de Bain Chic', '<ul><li>1 Vase</li><li>1 Porte-bougie</li><li>1 Petite citrouille</li><li>1 Plateau ovale 23 cm</li></ul>', '135 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salle%20de%20Bain')">
                 <div class="gallery-img-container">
-                    <img src="salle.jpeg" alt="Salle de Bain" loading="lazy">
+                    <img src="https://picsum.photos/seed/salledebain/400/400" alt="Salle de Bain" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Salle de Bain Chic</h3>
@@ -405,20 +409,20 @@
             </div>
 
             <!-- PACK 3: Soirée Cozy -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f', 'Soirée Cozy', 'Un bougeoir ondulé avec trois bougies pour une ambiance nocturne douce et romantique.', '45,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Soirée%20Cozy')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f', 'Soirée Cozy', 'Un bougeoir ondulé avec trois bougies pour une ambiance nocturne douce et romantique.', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Soirée%20Cozy')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f" alt="Soirée Cozy" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Soirée Cozy</h3>
-                    <p>Support Bougies </p>
+                    <p>Support Bougies</p>
                     <div class="gallery-price">29 MAD</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
             <!-- PACK 4: Coin Zen -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d', 'Coin Zen', '<ul><li>1 Brûleur encens</li><li>1 Vase</li><li>1 Plateau ovale 18 cm</li></ul>', '52,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Coin%20Zen')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d', 'Coin Zen', '<ul><li>1 Brûleur encens</li><li>1 Vase</li><li>1 Plateau ovale 18 cm</li></ul>', '99 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Coin%20Zen')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d" alt="Coin Zen" loading="lazy">
                 </div>
@@ -431,7 +435,7 @@
             </div>
 
             <!-- PACK 5: Edition Romance -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665', 'Édition Romance', '<ul><li>1 Vase</li><li>1 Plateau ovale</li><li>1 Jar</li></ul>', '65,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Edition%20Romance')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665', 'Édition Romance', '<ul><li>1 Vase</li><li>1 Plateau ovale</li><li>1 Jar</li></ul>', '99 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Edition%20Romance')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665" alt="Edition Romance" loading="lazy">
                 </div>
@@ -443,23 +447,21 @@
                 </div>
             </div>
 
-            <!-- PACK 6: Pause Jardin -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db', 'Pause Jardin', 'Vue sur le jardin, livres d\'art et petite clochette dorée pour un moment de calme.', '48,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Pause%20Jardin')">
+            <!-- PACK 6: Pause Jardin (Image used) -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db', 'Le Soliflore Elancé', 'Vase d’une longueur de 15 cm, élégamment garni de fleurs séchées, idéal pour apporter une touche naturelle et décorative à votre intérieur.', '55 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Soliflore')">
                 <div class="gallery-img-container">
-                    <img src="https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db" alt="Pause Jardin" loading="lazy">
+                    <img src="https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db" alt="Le Soliflore Elancé" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Le Soliflore Elancé</h3>
-                    <p>Vase d’une longueur de 15 cm, élégamment garni de fleurs séchées, idéal pour apporter une touche naturelle et décorative à votre intérieur.</p>
+                    <p>Vase d’une longueur de 15 cm, avec fleurs séchées</p>
                     <div class="gallery-price">55 MAD</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
        
-            
-
             <!-- PACK 8: Salon Moderne -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e', 'Salon Moderne', '<ul><li>2 Vases</li><li>1 Petite citrouille</li><li>1 Plateau ovale</li></ul>', '75,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salon%20Moderne')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e', 'Salon Moderne', '<ul><li>2 Vases</li><li>1 Petite citrouille</li><li>1 Plateau ovale</li></ul>', '135 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salon%20Moderne')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e" alt="Salon Moderne" loading="lazy">
                 </div>
@@ -471,10 +473,8 @@
                 </div>
             </div>
 
-            <!-- --- AJOUTS PRÉCÉDENTS --- -->
-
             <!-- Vogue & Parfums -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7f1f5d5c-2e60-46d2-89b9-bac6f453f0b8.jpg?auth_key=1875335502-cbe2f7c9a8594ed5bb89cfa4d713a338-0-88d48d681954e8b7e1d291f3b79c4b81', 'Univers Mode & Parfums', '<ul><li>1 Plateau ovale élégant</li><li>Magazines de mode (Vogue, Dior)</li><li>3 Flacons de parfum (Déco)</li><li>Ambiance Couture</li></ul>', '249 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Univers%20Mode%20Parfums')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7f1f5d5c-2e60-46d2-89b9-bac6f453f0b8.jpg?auth_key=1875335502-cbe2f7c9a8594ed5bb89cfa4d713a338-0-88d48d681954e8b7e1d291f3b79c4b81', 'Univers Mode & Parfums', '<ul><li>1 Plateau ovale élégant</li><li>Magazines de mode (Vogue, Dior)</li><li>3 Flacons de parfum (Déco)</li><li>Ambiance Couture</li></ul>', '35 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Univers%20Mode%20Parfums')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/7f1f5d5c-2e60-46d2-89b9-bac6f453f0b8.jpg?auth_key=1875335502-cbe2f7c9a8594ed5bb89cfa4d713a338-0-88d48d681954e8b7e1d291f3b79c4b81" alt="Univers Mode & Parfums" loading="lazy">
                 </div>
@@ -487,7 +487,7 @@
             </div>
 
             <!-- Plateaux Béton -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/c53131ea-28d0-4829-aa47-367444a23a30.jpg?auth_key=1875335502-f4ec476a2a4444af912afcd3770426f5-0-3db722a14625fe15746c2199949b7140', 'Duos Béton Minimaliste', '<ul><li>1 Grand plateau rond blanc</li><li>1 Grand plateau rond gris clair</li><li>Matériau type Jesmonite</li><li>Design Industriel Chic</li></ul>', '180 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Duos%20Beton%20Minimaliste')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/c53131ea-28d0-4829-aa47-367444a23a30.jpg?auth_key=1875335502-f4ec476a2a4444af912afcd3770426f5-0-3db722a14625fe15746c2199949b7140', 'Un plateau Minimaliste', 'Un Plateau Rond 27 cm en style minimaliste.', '59 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Plateau%20Minimaliste')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/c53131ea-28d0-4829-aa47-367444a23a30.jpg?auth_key=1875335502-f4ec476a2a4444af912afcd3770426f5-0-3db722a14625fe15746c2199949b7140" alt="Duos Béton Minimaliste" loading="lazy">
                 </div>
@@ -500,7 +500,7 @@
             </div>
 
             <!-- Arche & Fleurs -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b6bdd65d-7307-4b2b-9166-34d6d4b42c78.jpg?auth_key=1875335502-f8892b81999247599d6064624401a602-0-e51c5414e058cff5e546fb8e97c58496', 'Composition Zen & Fleurs', '<ul><li>1 Arche décorative beige</li><li>1 Bouquet de fleurs séchées</li><li>Design naturel et artistique</li><li>Idéal coin lecture</li></ul>', '150 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Composition%20Zen%20Fleurs')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b6bdd65d-7307-4b2b-9166-34d6d4b42c78.jpg?auth_key=1875335502-f8892b81999247599d6064624401a602-0-e51c5414e058cff5e546fb8e97c58496', 'Composition Zen & luxe', '<ul><li>1 Arche décorative beige</li><li>1 Bouquet de fleurs séchées</li><li>Design naturel et artistique</li></ul>', '69 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Composition%20Zen')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/b6bdd65d-7307-4b2b-9166-34d6d4b42c78.jpg?auth_key=1875335502-f8892b81999247599d6064624401a602-0-e51c5414e058cff5e546fb8e97c58496" alt="Composition Zen & Fleurs" loading="lazy">
                 </div>
@@ -512,11 +512,10 @@
                 </div>
             </div>
 
-
-
-                 <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db', 'Pause Jardin', 'Vue sur le jardin, livres d\'art et petite clochette dorée pour un moment de calme.', '48,00 €', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Pause%20Jardin')">
+            <!-- Le Duo circulaire Donut (Image placeholder for minimalisme.jpeg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/donut/600/600', 'Le Duo circulaire Donut', 'Deux vases nordiques style Donut pour une déco moderne.', '149 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Duo%20Donut')">
                 <div class="gallery-img-container">
-                    <img src="minimalisme.jpeg" alt="Pause Jardin" loading="lazy">
+                    <img src="https://picsum.photos/seed/donut/400/400" alt="Le Duo circulaire Donut" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Le Duo circulaire Donut</h3>
@@ -525,8 +524,9 @@
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
+
             <!-- Bijoux & Doudou -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/c95eea1e-7174-4eb6-8282-57c7894f8e68.jpg?auth_key=1875335502-2dc8fe69132f490da06271a1b1bcf69a-0-c46f431e5d830b20ffcddd06b8894b70', 'Douceur & Éclat', '<ul><li>1 Plateau rond décoratif</li><li>Bijoux dorés (Boucles, Collier)</li><li>1 Petit doudou blanc</li><li>Touche mignonne et chic</li></ul>', '120 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Douceur%20Eclat')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/c95eea1e-7174-4eb6-8282-57c7894f8e68.jpg?auth_key=1875335502-2dc8fe69132f490da06271a1b1bcf69a-0-c46f431e5d830b20ffcddd06b8894b70', 'Douceur & Éclat', '<ul><li>1 Plateau rond décoratif</li><li>Bijoux dorés (Boucles, Collier)</li><li>1 Petit doudou blanc</li></ul>', '35 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Douceur%20Eclat')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/c95eea1e-7174-4eb6-8282-57c7894f8e68.jpg?auth_key=1875335502-2dc8fe69132f490da06271a1b1bcf69a-0-c46f431e5d830b20ffcddd06b8894b70" alt="Douceur & Éclat" loading="lazy">
                 </div>
@@ -539,7 +539,7 @@
             </div>
 
             <!-- Étoile Bijoux -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li><li>Boucles d\'oreilles dorées</li><li>Sur tissu satiné</li><li>Parfait pour les petites précieuses</li></ul>', '89 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li><li>Boucles d\'oreilles dorées</li><li>Sur tissu satiné</li></ul>', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e" alt="Étoile des Bijoux" loading="lazy">
                 </div>
@@ -550,10 +550,12 @@
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
-            <!-- Céramique & Perles -->
-        <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li><li>Boucles d\'oreilles dorées</li><li>Sur tissu satiné</li><li>Parfait pour les petites précieuses</li></ul>', '89 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
+
+            <!-- Céramique & Perles (Fixing mismatched parameters) -->
+            <!-- Image placeholder for plaa.jpeg -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/eclat/600/600', '✨ Éclat d’Élégance', 'Vide-poche raffiné pour sublimer vos bijoux avec style.', '55 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEclat%20dElegance')">
                 <div class="gallery-img-container">
-                    <img src="plaa.jpeg" alt="Étoile des Bijoux" loading="lazy">
+                    <img src="https://picsum.photos/seed/eclat/400/400" alt="Éclat d’Élégance" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>✨ Éclat d’Élégance</h3>
@@ -562,10 +564,11 @@
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
-             <!-- Céramique & Perles -->
-              <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li><li>Boucles d\'oreilles dorées</li><li>Sur tissu satiné</li><li>Parfait pour les petites précieuses</li></ul>', '89 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
+             
+             <!-- Image placeholder for rond.jpg -->
+              <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/simplicite/600/600', '🌿 Pure Simplicité', 'Vide-poche minimaliste au charme naturel.', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20Pure%20Simplicite')">
                 <div class="gallery-img-container">
-                    <img src="rond.jpg" alt="Étoile des Bijoux" loading="lazy">
+                    <img src="https://picsum.photos/seed/simplicite/400/400" alt="Pure Simplicité" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>🌿 Pure Simplicité</h3>
@@ -574,10 +577,11 @@
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
-             <!-- Céramique & Perles -->
-               <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li><li>Boucles d\'oreilles dorées</li><li>Sur tissu satiné</li><li>Parfait pour les petites précieuses</li></ul>', '89 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
+             
+             <!-- Image placeholder for pa.jpeg -->
+               <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/rosee/600/600', '💗 Douceur Rosée', 'Un pack délicat pour une touche chaleureuse et romantique.', '110 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20Douceur%20Rosee')">
                 <div class="gallery-img-container">
-                    <img src="pa.jpeg" alt="Étoile des Bijoux" loading="lazy">
+                    <img src="https://picsum.photos/seed/rosee/400/400" alt="Douceur Rosée" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>💗 Douceur Rosée</h3>
@@ -586,10 +590,11 @@
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
-             <!-- Céramique & Perles -->
-                <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li><li>Boucles d\'oreilles dorées</li><li>Sur tissu satiné</li><li>Parfait pour les petites précieuses</li></ul>', '89 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
+             
+             <!-- Image placeholder for mod.jpeg -->
+                <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/harmonie/600/600', '✨ Harmonie Moderne', 'Un ensemble décoratif chic pour une ambiance épurée et sophistiquée.', '179 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20Harmonie%20Moderne')">
                 <div class="gallery-img-container">
-                    <img src="mod.jpeg" alt="Étoile des Bijoux" loading="lazy">
+                    <img src="https://picsum.photos/seed/harmonie/400/400" alt="Harmonie Moderne" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>✨ Harmonie Moderne</h3>
@@ -598,8 +603,9 @@
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
-            <!-- Céramique & Perles -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7e525116-d6f3-46cd-85f7-54489e62a621.jpg?auth_key=1875335502-8415483bcf3d447fae53212963250c0d-0-291da134589a5ae311c75f7bf77a051d', 'Luxe Organique', '<ul><li>1 Plateau céramique irrégulier</li><li>Collier avec perles</li><li>Bracelets et boucles dorées</li><li>Style bohème chic</li></ul>', '149 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Luxe%20Organique')">
+
+            <!-- Luxe Organique -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7e525116-d6f3-46cd-85f7-54489e62a621.jpg?auth_key=1875335502-8415483bcf3d447fae53212963250c0d-0-291da134589a5ae311c75f7bf77a051d', 'Luxe Organique', '<ul><li>1 Plateau céramique irrégulier</li><li>Collier avec perles</li><li>Bracelets et boucles dorées</li></ul>', '45 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Luxe%20Organique')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/7e525116-d6f3-46cd-85f7-54489e62a621.jpg?auth_key=1875335502-8415483bcf3d447fae53212963250c0d-0-291da134589a5ae311c75f7bf77a051d" alt="Luxe Organique" loading="lazy">
                 </div>
@@ -612,7 +618,7 @@
             </div>
 
             <!-- Coquillage & Livres -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/6e2758f9-457e-4463-a0c6-20c496fd9cb3.jpg?auth_key=1875335502-102583fbaf884b0a8fe6005c83588715-0-3090cc9e3aa4b204ec739d30ede93a72', 'Élégance Livrée', '<ul><li>1 Vase forme coquillage blanc</li><li>2 Colliers dorés (dont 1 perle)</li><li>Livres d\'art Taschen</li><li> Décoration raffinée</li></ul>', '160 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lElegance%20Livree')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/6e2758f9-457e-4463-a0c6-20c496fd9cb3.jpg?auth_key=1875335502-102583fbaf884b0a8fe6005c83588715-0-3090cc9e3aa4b204ec739d30ede93a72', 'Élégance Livrée', '<ul><li>1 Vase forme coquillage blanc</li><li>2 Colliers dorés (dont 1 perle)</li></ul>', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lElegance%20Livree')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/6e2758f9-457e-4463-a0c6-20c496fd9cb3.jpg?auth_key=1875335502-102583fbaf884b0a8fe6005c83588715-0-3090cc9e3aa4b204ec739d30ede93a72" alt="Élégance Livrée" loading="lazy">
                 </div>
@@ -624,13 +630,8 @@
                 </div>
             </div>
 
-            <!-- --- ADDITIONS CORRIGÉES (Liens & Prix) --- -->
-
-
-    
-
-            <!-- Table de Mariage (Description corrigée) -->
-            <div class="gallery-item premium-pack" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7', 'Table de Mariage Complète', '<ul><li>1 Grand vase terre cuite (Coton)</li><li>Bougies & Support métallique</li><li>Coussins déco inclus</li><li>Ambiance romantique complète</li></ul>', '350 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Table%20de%20Mariage%20Complete')">
+            <!-- Table de Mariage -->
+            <div class="gallery-item premium-pack" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7', 'Plateau personnalisé de Mariage', '<ul><li>Plateau personnalisé avec coquillage</li><li>Décoration perles fines</li><li>Idéal cadeau ou table de mariage</li></ul>', '115 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Table%20de%20Mariage')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7" alt="Table de Mariage" loading="lazy">
                 </div>
@@ -642,9 +643,8 @@
                 </div>
             </div>
 
-
             <!-- Collection Lavande -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29d03165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891', 'Collection Lavande', '<ul><li>Assortiment de plateaux perlés</li><li>Bols et vases lilas</li><li>Plats ovales et ronds</li><li>Style doux et romantique</li></ul>', '220 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Lavande')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29d03165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891', 'Collection Lavande', '<ul><li>Assortiment de plateaux perlés</li><li>Bols et vases lilas</li></ul>', '165 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Lavande')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29d03165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891" alt="Collection Lavande" loading="lazy">
                 </div>
@@ -657,7 +657,7 @@
             </div>
 
             <!-- Bougies Spirale Blanche -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/5bcb02cc-3d81-46f5-a663-2a50d4c54690.jpeg?auth_key=1875337220-b8f669420423403eaa74bec0c06b3af9-0-3283e9c7dac5f99e82f5aec85a0a36d4', 'Bougies Spirale', '<ul><li>2 Porte-bougiers blancs</li><li>2 Bougies blanches torsadées</li><li>Design sculptural moderne</li><li>Pour salon ou chambre</li></ul>', '90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Spirale')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/5bcb02cc-3d81-46f5-a663-2a50d4c54690.jpeg?auth_key=1875337220-b8f669420423403eaa74bec0c06b3af9-0-3283e9c7dac5f99e82f5aec85a0a36d4', 'Bougies Spirale', '<ul><li>2 Porte-bougiers blancs</li><li>2 Bougies blanches torsadées</li></ul>', '90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Spirale')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/5bcb02cc-3d81-46f5-a663-2a50d4c54690.jpeg?auth_key=1875337220-b8f669420423403eaa74bec0c06b3af9-0-3283e9c7dac5f99e82f5aec85a0a36d4" alt="Bougies Spirale" loading="lazy">
                 </div>
@@ -669,10 +669,10 @@
                 </div>
             </div>
 
-            <!-- Bougies Abstractes Roses -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/ca2fb5ae-bc79-4c92-a502-5601d7a0ec21.jpeg?auth_key=1875337220-8ccde81c43a94f34bcda126d5da36602-0-26c6b952aeec152c56dcdbd98610fb68', 'Bougies Abstractes', '<ul><li>2 Porte-bougiers roses</li><li>Formes abstraites modernes</li><li>2 Bougies longues roses</li><li>Touche de douceur</li></ul>', '100 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Abstractes')">
+            <!-- Bougies Abstractes Roses (Image placeholder for support.jpg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/abstract/600/600', 'Bougies Abstractes', '<ul><li>2 Porte-bougiers roses</li><li>Formes abstraites modernes</li></ul>', '100 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Abstractes')">
                 <div class="gallery-img-container">
-                    <img src="support.jpg" alt="Bougies Abstractes" loading="lazy">
+                    <img src="https://picsum.photos/seed/abstract/400/400" alt="Bougies Abstractes" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Bougies Abstractes</h3>
@@ -683,20 +683,20 @@
             </div>
 
             <!-- Ambiance Automne -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/babf9619-ef45-4e47-820a-562de04ab6d3.jpeg?auth_key=1875337220-5594015d0b5c4d76951dacdcfac94633-0-855c7cd23668372fcadfac95834a1f98', 'Ambiance Automne', '<ul><li>1 Grande citrouille orange</li><li>2 Mini citrouilles décoratives</li><li>Feuilles d\'érable colorées</li><li>Décoration saisonnière</li></ul>', '120 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Ambiance%20Automne')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/babf9619-ef45-4e47-820a-562de04ab6d3.jpeg?auth_key=1875337220-5594015d0b5c4d76951dacdcfac94633-0-855c7cd23668372fcadfac95834a1f98', 'Ambiance Automne', '<ul><li>1 Grande citrouille orange</li><li>2 Mini citrouilles décoratives</li></ul>', '45 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Ambiance%20Automne')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/babf9619-ef45-4e47-820a-562de04ab6d3.jpeg?auth_key=1875337220-5594015d0b5c4d76951dacdcfac94633-0-855c7cd23668372fcadfac95834a1f98" alt="Ambiance Automne" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Ambiance Automne</h3>
-                    <p>Une Citrouille </p>
+                    <p>Une Citrouille</p>
                     <div class="gallery-price">45 MAD</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
             <!-- Vue Panoramique -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/e4db04f2-e7d3-4976-bf08-cc35dcde17a3.jpeg?auth_key=1875342913-5e109e0ff4ba4bd7849f84660d643c4a-0-a0ded792144ff71a91dc58782f467e73', 'Vue Panoramique', '<ul><li>1 Grand vase blanc (Herbes sèches)</li><li>1 Petit contenant or gravé</li><li>Vue sur la ville</li><li>Décoration murale ajourée</li></ul>', '280 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Vue%20Panoramique')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/e4db04f2-e7d3-4976-bf08-cc35dcde17a3.jpeg?auth_key=1875342913-5e109e0ff4ba4bd7849f84660d643c4a-0-a0ded792144ff71a91dc58782f467e73', 'Vue Panoramique', '<ul><li>1 Grand vase blanc (Herbes sèches)</li><li>1 Petit contenant or gravé</li></ul>', '129 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Vue%20Panoramique')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/e4db04f2-e7d3-4976-bf08-cc35dcde17a3.jpeg?auth_key=1875342913-5e109e0ff4ba4bd7849f84660d643c4a-0-a0ded792144ff71a91dc58782f467e73" alt="Vue Panoramique" loading="lazy">
                 </div>
@@ -709,28 +709,22 @@
             </div>
 
             <!-- Élégance Dorée -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/3455e540-4752-4197-a524-87e27076172c.jpeg?auth_key=1875342913-3df5af2493634d088e40fc353ab41df4-0-16bd1603e91da81914577d6f8deae64a', 'Élégance Dorée', '<ul><li>1 Vase doré élancé</li><li>1 Contenant blanc cylindrique</li><li>Couvercle décoratif</li><li>Design moderne épuré</li></ul>', '130 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lElegance%20Doree')">
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/3455e540-4752-4197-a524-87e27076172c.jpeg?auth_key=1875342913-3df5af2493634d088e40fc353ab41df4-0-16bd1603e91da81914577d6f8deae64a', 'Une touche de magie', '<ul><li>Pot cylindre blanc avec poignée</li><li>Design nervuré élégant</li></ul>', '35 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pot%20Dore')">
                 <div class="gallery-img-container">
                     <img src="https://z-cdn-media.chatglm.cn/files/3455e540-4752-4197-a524-87e27076172c.jpeg?auth_key=1875342913-3df5af2493634d088e40fc353ab41df4-0-16bd1603e91da81914577d6f8deae64a" alt="Élégance Dorée" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Une touche de magie</h3>
-                    <p>Pot </p>
+                    <p>Pot</p>
                     <div class="gallery-price">35 MAD</div>
                     <div class="tap-hint">Voir le détails</div>
                 </div>
             </div>
 
-
-
-            <!-- --- NOUVELLES AJOUTS (4 Pièces) --- -->
-
-  
-      
-            <!-- Contenant Texturé -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/861b94ed-6c57-4472-972d-5e0853cc1a0bd7ca7-82302560b0c0b6-2e3b8e915323f6f675162fc2fdac469cb7f9f8f-2278370985-0-0d92c9a723d54250cfc4231d7dd6b', 'Contemporain Texturé', '<ul><li>Pot cylindre blanc avec poignée</li><li>Design nervuré élégant</li><li>Style minimaliste moderne</li><li>Idéal pour cacher ou ranger</li></ul>', '110 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Contenant%20Texture')">
+            <!-- Contenant Texturé (Image placeholder for boite1.jpg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/texture/600/600', 'Contemporain Texturé', '<ul><li>Pot cylindre blanc avec poignée</li><li>Design nervuré élégant</li><li>Style minimaliste moderne</li></ul>', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Contenant%20Texture')">
                 <div class="gallery-img-container">
-                    <img src="boite1.jpg" alt="Contenant Texturé" loading="lazy">
+                    <img src="https://picsum.photos/seed/texture/400/400" alt="Contenant Texturé" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Contemporain Texturé</h3>
@@ -740,10 +734,10 @@
                 </div>
             </div>
 
-            <!-- Bougies Nœuds (Papillons) -->
-            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9e6b9ba-0f19-4608-b1c2-b6a4a2-4d6d4f8c28c94355977d388c6053981f-b0830-0-d7ed12be62654720bbac4ab0d662993f5616f968a', 'Bougies Nœuds', '<ul><li>Paire de bougies papillons</li><li>Design romantique</li><li>Teintes variées</li><li>Idéal pour mariage</li></ul>', '140 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
+            <!-- Bougies Nœuds (Image placeholder for support1.jpg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/noeud/600/600', 'Bougie Nœud', '<ul><li>Paire de bougies papillons</li><li>Design romantique</li></ul>', '20 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
                 <div class="gallery-img-container">
-                    <img src="support1.jpg" alt="Bougies Nœuds" loading="lazy">
+                    <img src="https://picsum.photos/seed/noeud/400/400" alt="Bougies Nœuds" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Bougie Nœud</h3>
@@ -753,10 +747,10 @@
                 </div>
             </div>
 
-
-                 <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9e6b9ba-0f19-4608-b1c2-b6a4a2-4d6d4f8c28c94355977d388c6053981f-b0830-0-d7ed12be62654720bbac4ab0d662993f5616f968a', 'Bougies Nœuds', '<ul><li>Paire de bougies papillons</li><li>Design romantique</li><li>Teintes variées</li><li>Idéal pour mariage</li></ul>', '140 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
+             <!-- Plateau personnalisé (Image placeholder for demoiselle.jpeg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/logo/600/600', 'Plateau personnalisé', 'Plateau personnalisé avec votre logo ou prénom.', '90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Plateau%20Personnalise')">
                 <div class="gallery-img-container">
-                    <img src="demoiselle.jpeg" alt="Bougies Nœuds" loading="lazy">
+                    <img src="https://picsum.photos/seed/logo/400/400" alt="Plateau personnalisé" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Plateau personnalisé </h3>
@@ -766,11 +760,11 @@
                 </div>
             </div>
 
-
             
-                 <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9e6b9ba-0f19-4608-b1c2-b6a4a2-4d6d4f8c28c94355977d388c6053981f-b0830-0-d7ed12be62654720bbac4ab0d662993f5616f968a', 'Bougies Nœuds', '<ul><li>Paire de bougies papillons</li><li>Design romantique</li><li>Teintes variées</li><li>Idéal pour mariage</li></ul>', '140 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
+             <!-- Plateau personnalisé de marriage (Image placeholder for marriage.jpeg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/mariage/600/600', 'Plateau personnalisé de marriage', 'Plateau personnalisé avec une coquillage des perles.', '115 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Plateau%20Mariage')">
                 <div class="gallery-img-container">
-                    <img src="marriage.jpeg" alt="Bougies Nœuds" loading="lazy">
+                    <img src="https://picsum.photos/seed/mariage/400/400" alt="Plateau personnalisé de marriage" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Plateau personnalisé de marriage</h3>
@@ -780,12 +774,11 @@
                 </div>
             </div>
 
-
-
             
-                 <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9e6b9ba-0f19-4608-b1c2-b6a4a2-4d6d4f8c28c94355977d388c6053981f-b0830-0-d7ed12be62654720bbac4ab0d662993f5616f968a', 'Bougies Nœuds', '<ul><li>Paire de bougies papillons</li><li>Design romantique</li><li>Teintes variées</li><li>Idéal pour mariage</li></ul>', '140 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
+             <!-- Vase strié (Image placeholder for vase1.jpg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/vase/600/600', 'Vase strié', 'Vase avec les fleurs séechéées pour une touche naturelle.', '45 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Vase%20Strie')">
                 <div class="gallery-img-container">
-                    <img src="vase1.jpg" alt="Bougies Nœuds" loading="lazy">
+                    <img src="https://picsum.photos/seed/vase/400/400" alt="Vase strié" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Vase strié</h3>
@@ -796,9 +789,10 @@
             </div>
 
             
-                 <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9e6b9ba-0f19-4608-b1c2-b6a4a2-4d6d4f8c28c94355977d388c6053981f-b0830-0-d7ed12be62654720bbac4ab0d662993f5616f968a', 'Bougies Nœuds', '<ul><li>Paire de bougies papillons</li><li>Design romantique</li><li>Teintes variées</li><li>Idéal pour mariage</li></ul>', '140 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
+             <!-- Pack EID (Image placeholder for eid.jpeg) -->
+            <div class="gallery-item" onclick="openModal('https://picsum.photos/seed/eid/600/600', 'Pack EID', 'Plateau EID et Bruleur encens pour célébrer.', '135 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20EID')">
                 <div class="gallery-img-container">
-                    <img src="eid.jpeg" alt="Bougies Nœuds" loading="lazy">
+                    <img src="https://picsum.photos/seed/eid/400/400" alt="Pack EID" loading="lazy">
                 </div>
                 <div class="gallery-info">
                     <h3>Pack EID</h3>
@@ -808,9 +802,6 @@
                 </div>
             </div>
             
-
-         
-
         </div>
     </section>
 
