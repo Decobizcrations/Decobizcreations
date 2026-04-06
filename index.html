@@ -768,7 +768,7 @@
             selectedPaymentMethod = method;
         }
 
-        function processOrder() {
+               function processOrder() {
             const name = document.getElementById('cust-name').value;
             const phone = document.getElementById('cust-phone').value;
             const address = document.getElementById('cust-address').value;
@@ -782,11 +782,15 @@
             const deliveryFee = 20;
             const grandTotal = total + deliveryFee;
 
+            // --- CONSTRUCTION DU MESSAGE WHATSAPP ---
             let message = `*NOUVELLE COMMANDE - DECOBIZ*\n\n`;
             message += `👤 *Client:* ${name}\n`;
             message += `📱 *Tél:* ${phone}\n`;
             message += `📍 *Adresse:* ${address}\n`;
-            message += `💳 *Paiement:* ${selectedPaymentMethod === 'cod' ? 'À la livraison' : 'En ligne (Carte)'}\n\n`;
+            
+            // ICI : On affiche le choix du client dans le message
+            message += `💳 *Paiement choisi:* ${selectedPaymentMethod === 'cod' ? 'À la livraison' : 'CARTE BANCAIRE (À traiter)'}\n\n`;
+            
             message += `*Panier:*\n`;
             
             cart.forEach(item => {
@@ -796,33 +800,16 @@
             message += `\n🚚 *Livraison:* ${deliveryFee} MAD`;
             message += `\n💰 *TOTAL À PAYER:* ${grandTotal} MAD`;
 
-            trackEvent('InitiateCheckout', { value: grandTotal, currency: 'MAD', content_ids: cart.map(i=>i.id) });
-
-            if (selectedPaymentMethod === 'online') {
-                const btn = document.querySelector('#checkout-form .btn-primary');
-                const originalText = btn.innerText;
-                btn.innerText = "Traitement sécurisé en cours...";
-                btn.disabled = true;
-                btn.style.opacity = "0.7";
-
-                setTimeout(() => {
-                    btn.innerText = "✅ Paiement Approuvé !";
-                    btn.style.background = "#25D366";
-                    trackEvent('Purchase', { value: grandTotal, currency: 'MAD' });
-                    
-                    setTimeout(() => {
-                        sendToWhatsapp(message);
-                        btn.disabled = false;
-                        btn.innerText = originalText;
-                        btn.style.background = "";
-                        btn.style.opacity = "1";
-                    }, 1500);
-                }, 2000);
-            } else {
-                trackEvent('Purchase', { value: grandTotal, currency: 'MAD' });
-                sendToWhatsapp(message);
+            // --- TRACKING (Optionnel) ---
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'InitiateCheckout', { value: grandTotal, currency: 'MAD' });
             }
+
+            // --- ENVOI DIRECT (PLUS D'ATTENTE) ---
+            // On envoie directement sur WhatsApp, que ce soit Cash ou Carte
+            sendToWhatsapp(message);
         }
+
 
         function sendToWhatsapp(text) {
             const phoneNumber = "212610236889";
