@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Decobiz Creations | Packs Décoratifs</title>
+    
+    <!-- Polices Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & DESIGN SYSTEM --- */
+        :root {
+            --primary-color: #8B5E3C;
+            --primary-dark: #6d4a30;
+            --secondary-color: #F9F7F2;
+            --text-color: #2c2c2c;
+            --light-text: #FFFFFF;
+            --accent-green: #25D366;
+            --accent-green-dark: #128C7E;
+            --gold-color: #D4AF37;
+            --delivery-color: #2e7d32;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+            --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
+            --shadow-gold: 0 10px 25px rgba(212, 175, 55, 0.3);
+            --radius-card: 16px;
+            --radius-btn: 50px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        img { max-width: 100%; display: block; }
+
+        /* --- SCROLL PROGRESS BAR --- */
+        .progress-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+            background: transparent; z-index: 2001;
+        }
+        .progress-bar {
+            height: 4px; background: var(--primary-color); width: 0%;
+            transition: width 0.1s;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1rem 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .menu-toggle { display: none; cursor: pointer; font-size: 1.5rem; color: var(--primary-color); padding: 5px; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-color); position: relative; }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background-color: var(--primary-color); transition: var(--transition); }
+        nav a:hover { color: var(--primary-color); }
+        nav a:hover::after { width: 100%; }
+
+        /* --- HERO SECTION (Glassmorphism) --- */
+        .hero {
+            position: relative;
+            height: 75vh;
+            min-height: 400px;
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('salle.jpeg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--light-text);
+            padding: 0 1rem;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 1rem; line-height: 1.1; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        
+        .btn {
+            display: inline-block; padding: 1rem 2.5rem; border-radius: var(--radius-btn);
+            font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px;
+            transition: var(--transition); cursor: pointer; border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .btn-primary { background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%); color: white; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 94, 60, 0.4); }
+
+        /* --- GALLERY GRID & ANIMATIONS --- */
+        .gallery { padding: 5rem 5%; background-color: #fff; }
+        .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 1rem; position: relative; display: inline-block; width: 100%; }
+        .section-subtitle { text-align: center; color: #777; margin-bottom: 3rem; font-style: italic; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
+
+        .gallery-item {
+            background: white; border-radius: var(--radius-card); overflow: hidden;
+            box-shadow: var(--shadow-soft); cursor: pointer;
+            transition: var(--transition); border: 1px solid #f0f0f0; position: relative;
+            opacity: 0; transform: translateY(50px);
+        }
+        
+        .gallery-item.reveal { opacity: 1; transform: translateY(0); }
+        .gallery-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+
+        /* Premium Style */
+        .gallery-item.premium-pack {
+            border: 2px solid var(--gold-color);
+            box-shadow: var(--shadow-gold);
+        }
+        .gallery-item.premium-pack:hover {
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold-color);
+        }
+
+        .gallery-img-container { height: 280px; overflow: hidden; position: relative; background: #f4f4f4; }
+        .gallery-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .gallery-item:hover .gallery-img-container img { transform: scale(1.08); }
+        
+        /* Best Seller Badge - CORRECTED CLASS */
+        .best-seller-badge {
+            position: absolute;
+            top: 15px;
+            left: -35px;
+            background: linear-gradient(135deg, #FFD700, #D4AF37);
+            color: #fff;
+            padding: 8px 40px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transform: rotate(-45deg);
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .gallery-info { padding: 1.5rem; text-align: center; position: relative; z-index: 2; background: white; }
+        .gallery-info h3 { font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        
+        /* CSS SYNTAX ERROR FIXED HERE */
+        .gallery-info p { font-size: 0.9rem; color: #777; margin-bottom: 0.8rem; min-height: 40px; }
+        
+        .gallery-price { font-weight: 700; color: var(--text-color); font-size: 1.2rem; font-family: var(--font-heading); }
+        
+        .tap-hint { font-size: 0.75rem; color: var(--primary-color); margin-top: 1rem; opacity: 0; transform: translateY(10px); transition: var(--transition); font-weight: 700; text-transform: uppercase; }
+        .gallery-item:hover .tap-hint { opacity: 0.8; transform: translateY(0); }
+
+        /* --- MODAL (POPUP) --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.95);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal.show { opacity: 1; }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 20px 20px 0 0;
+            width: 100%;
+            max-width: 600px;
+            height: 95vh; 
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .modal.show .modal-content { transform: translateY(0); }
+
+        .modal-close {
+            position: absolute; top: 15px; right: 15px;
+            font-size: 2.2rem; font-weight: bold; color: white; cursor: pointer; z-index: 30;
+            background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+            border-radius: 50%; width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .modal-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+
+        .modal-img-container {
+            width: 100%; flex: 2; background-color: #000;
+            display: flex; align-items: center; justify-content: center; min-height: 0; position: relative;
+        }
+        
+        .loader {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-left-color: var(--primary-color);
+            border-radius: 50%;
+            width: 40px; height: 40px;
+            animation: spin 1s linear infinite;
+            position: absolute; z-index: 5;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .modal-img-container img {
+            max-width: 100%; max-height: 100%; width: auto; height: auto;
+            object-fit: contain; 
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .modal-img-container img.loaded { opacity: 1; }
+
+        .modal-details {
+            flex: 1; padding: 2rem; text-align: center; background: white;
+            display: flex; flex-direction: column; justify-content: flex-start;
+            overflow-y: auto; border-radius: 20px 20px 0 0;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+            transform: translateY(20px); opacity: 0;
+            transition: all 0.5s ease 0.2s;
+        }
+        .modal.show .modal-details { transform: translateY(0); opacity: 1; }
+
+        .modal-details h3 { font-family: var(--font-heading); font-size: 1.6rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        
+        .modal-details ul {
+            text-align: left;
+            margin: 1rem 0;
+            padding-left: 1.2rem;
+            list-style-type: disc;
+        }
+        .modal-details li {
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .modal-price { font-size: 1.8rem; font-weight: 700; color: var(--text-color); display: block; margin-bottom: 1rem; text-align: center; }
+
+        .delivery-info {
+            font-size: 0.85rem; color: var(--delivery-color); font-weight: 700; margin-bottom: 1.2rem;
+            background: #e8f5e9; display: inline-block; padding: 6px 16px; border-radius: 30px;
+            border: 1px solid #c8e6c9;
+            text-align: center; width: 100%;
+        }
+
+        .btn-modal-whatsapp {
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-green-dark) 100%);
+            color: white; width: 100%; padding: 1.1rem; border-radius: var(--radius-btn);
+            font-weight: 800; font-size: 1.1rem; letter-spacing: 0.5px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: var(--transition); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); margin-top: auto;
+        }
+        .btn-modal-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); }
+        .btn-modal-whatsapp:active { transform: scale(0.98); }
+
+        /* --- FEATURES & FOOTER --- */
+        .features { padding: 4rem 5%; background-color: var(--secondary-color); display: flex; flex-wrap: wrap; justify-content: space-around; text-align: center; gap: 2rem; }
+        .feature-box { flex: 1 1 200px; padding: 1rem; }
+        .feature-box h3 { font-family: var(--font-heading); color: var(--primary-color); margin-top: 0.5rem; }
+
+        .cta-section { padding: 4rem 1rem; text-align: center; background: linear-gradient(135deg, var(--primary-color) 0%, #5c3d25 100%); color: white; }
+        footer { background-color: #1a1a1a; color: #aaa; padding: 3rem 5%; text-align: center; font-size: 0.9rem; border-top: 1px solid #333; }
+        footer p { margin-bottom: 0.5rem; }
+
+        .fab-whatsapp {
+            position: fixed; bottom: 25px; right: 25px;
+            background: var(--accent-green); color: white;
+            width: 65px; height: 65px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5); z-index: 1500;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero { background-attachment: scroll; }
+            .menu-toggle { display: block; }
+            nav { position: fixed; top: 0; right: 0; height: 100vh; width: 75%; background: white; box-shadow: -5px 0 20px rgba(0,0,0,0.1); padding-top: 70px; transform: translateX(100%); transition: transform 0.4s ease; }
+            nav.open { transform: translateX(0); }
+            nav ul { flex-direction: column; align-items: center; width: 100%; }
+            .modal-content { height: 92vh; max-width: 100%; border-radius: 20px 20px 0 0; }
+            .modal-close { top: 10px; right: 15px; }
+            .best-seller-badge { left: -25px; padding: 6px 30px; font-size: 0.7rem; top: 10px; }
+        }
+        @media (min-width: 769px) {
+            .modal-content { height: 85vh; max-width: 600px; border-radius: 24px; margin: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">DECOBIZ CREATIONS</div>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#home" onclick="toggleMenu()">Accueil</a></li>
+                <li><a href="#gallery" onclick="toggleMenu()">Collection</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-card">
+            <h1>L'Art de la Décoration</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; font-weight: 300;">Sublimez votre intérieur avec nos créations artisanales uniques.</p>
+            <a href="#gallery" class="btn btn-primary">Découvrir les Packs</a>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Nos Exclusivités</h2>
+        <p class="section-subtitle">Sélectionnés avec passion pour votre bien-être</p>
+        
+        <div class="gallery-grid">
+            
+            <!-- PACK 0: Collection Signature (PREMIUM) - BEST SELLER -->
+            <div class="gallery-item premium-pack" onclick="openModal('https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984', 'Collection Signature', '<ul><li>1 Arche décorative</li><li>2 Vases</li><li>1 Plateau ovale</li><li>1 Plateau rond</li><li>1 Boîte d’arrangement</li><li>1 Mbekhra</li><li>1 Porte-bougie</li><li>1 Plateau à boules</li><li><strong>Avec fleurs séchées + cadeau surprise 🎁</strong></li></ul>', '299 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Signature%20Best%20Seller%20à%20299%20MAD')">
+                <div class="gallery-img-container">
+                    <!-- CLASS CORRECTED HERE -->
+                    <div class="best-seller-badge">Best Seller</div>
+                    <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Collection Signature" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Collection Signature</h3>
+                    <p>Le Pack Complet (9 Pièces) + Cadeau</p>
+                    <div class="gallery-price" style="color:var(--primary-dark); font-size:1.4rem;">299 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 1: Cuisine Moderne -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b', 'Cuisine Moderne', '<ul><li>1 Plateau rond</li><li>1 Grande citrouille</li><li>1 Petite citrouille</li></ul>', '49.90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Cuisine%20Moderne')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b" alt="Cuisine Moderne" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Cuisine Moderne</h3>
+                    <p>3 Pièces : Plateau rond, grande & petite citrouille</p>
+                    <div class="gallery-price">49.90 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 2: Salle de Bain Chic (Image placeholder used for salle.jpeg) -->
+            <div class="gallery-item" onclick="openModal('salle.jpeg', 'Salle de Bain Chic', '<ul><li>1 Vase</li><li>1 Porte-bougie</li><li>1 Petite citrouille</li><li>1 Plateau ovale 23 cm</li></ul>', '135 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salle%20de%20Bain')">
+                <div class="gallery-img-container">
+                    <img src="salle.jpeg" alt="Salle de Bain" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Salle de Bain Chic</h3>
+                    <p>4 Pièces : Vase, porte-bougie, citrouille, plateau 23cm</p>
+                    <div class="gallery-price">135 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 3: Soirée Cozy -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f', 'Soirée Cozy', 'Un bougeoir ondulé pour trois bougies pour une ambiance nocturne douce et romantique.', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Soirée%20Cozy')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/66b33642-60e8-46c0-9f75-9126856b6ffd.jpeg?auth_key=1875248308-a21fbf51a8e94f298f645c543407eae1-0-d1182026d5e8b92d4a97245fbd4d517f" alt="Soirée Cozy" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Soirée Cozy</h3>
+                    <p>Support Bougies</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 4: Coin Zen -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d', 'Coin Zen', '<ul><li>1 Brûleur encens</li><li>1 Vase</li><li>1 Plateau ovale 18 cm</li></ul>', '99 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Coin%20Zen')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d" alt="Coin Zen" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Coin Zen</h3>
+                    <p>3 Pièces : Brûleur encens, vase, plateau 18cm</p>
+                    <div class="gallery-price">99 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 5: Edition Romance -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665', 'Édition Romance', '<ul><li>1 Vase</li><li>1 Plateau ovale</li><li>1 Pot</li></ul>', '99 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Edition%20Romance')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665" alt="Edition Romance" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Édition Romance</h3>
+                    <p>3 Pièces : Vase, plateau ovale, jar</p>
+                    <div class="gallery-price">99 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- PACK 6: Pause Jardin (Image used) -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db', 'Le Soliflore Elancé', 'Vase d’une longueur de 15 cm, élégamment garni de fleurs séchées, idéal pour apporter une touche naturelle et décorative à votre intérieur.', '55 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Soliflore')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/b9366d62-88da-43be-8789-bce269d6b1da.jpeg?auth_key=1875248308-b030881a1b4d441d974e59c313583ebb-0-4f41381a8e33d46e3da2520a100426db" alt="Le Soliflore Elancé" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Le Soliflore Elancé</h3>
+                    <p>Vase d’une longueur de 15 cm, avec fleurs séchées</p>
+                    <div class="gallery-price">55 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+       
+            <!-- PACK 8: Salon Moderne -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e', 'Salon Moderne', '<ul><li>2 Vases</li><li>1 Petite citrouille</li><li>1 Plateau ovale</li></ul>', '135 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Salon%20Moderne')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e" alt="Salon Moderne" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Salon Moderne</h3>
+                    <p>4 Pièces : 2 vases, petite citrouille, plateau</p>
+                    <div class="gallery-price">135 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Vogue & Parfums -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7f1f5d5c-2e60-46d2-89b9-bac6f453f0b8.jpg?auth_key=1875335502-cbe2f7c9a8594ed5bb89cfa4d713a338-0-88d48d681954e8b7e1d291f3b79c4b81', 'Univers Mode & Parfums', '<ul><li>1 Plateau ovale élégant</li></ul>', '35 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Univers%20Mode%20Parfums')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/7f1f5d5c-2e60-46d2-89b9-bac6f453f0b8.jpg?auth_key=1875335502-cbe2f7c9a8594ed5bb89cfa4d713a338-0-88d48d681954e8b7e1d291f3b79c4b81" alt="Univers Mode & Parfums" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Univers Mode & Parfums</h3>
+                    <p>Plateau Ovale longeur 18 cm</p>
+                    <div class="gallery-price">35 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Plateaux Béton -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/c53131ea-28d0-4829-aa47-367444a23a30.jpg?auth_key=1875335502-f4ec476a2a4444af912afcd3770426f5-0-3db722a14625fe15746c2199949b7140', 'Un plateau Minimaliste', 'Un Plateau Rond 27 cm en style minimaliste.', '59 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Plateau%20Minimaliste')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/c53131ea-28d0-4829-aa47-367444a23a30.jpg?auth_key=1875335502-f4ec476a2a4444af912afcd3770426f5-0-3db722a14625fe15746c2199949b7140" alt="Duos Béton Minimaliste" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Un plateau Minimaliste</h3>
+                    <p>Un Plateau Rond 27 cm</p>
+                    <div class="gallery-price">59 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Arche & Fleurs -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/b6bdd65d-7307-4b2b-9166-34d6d4b42c78.jpg?auth_key=1875335502-f8892b81999247599d6064624401a602-0-e51c5414e058cff5e546fb8e97c58496', 'Composition Zen & luxe', '<ul><li>1 Arche décorative </li></ul>', '69 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Composition%20Zen')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/b6bdd65d-7307-4b2b-9166-34d6d4b42c78.jpg?auth_key=1875335502-f8892b81999247599d6064624401a602-0-e51c5414e058cff5e546fb8e97c58496" alt="Composition Zen & Fleurs" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Composition Zen & luxe</h3>
+                    <p>Arche Décorative</p>
+                    <div class="gallery-price">69 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Le Duo circulaire Donut (Image placeholder for minimalisme.jpeg) -->
+            <div class="gallery-item" onclick="openModal('minimalisme.jpeg', 'Le Duo circulaire Donut', 'Deux vases nordiques style Donut pour une déco moderne.', '149 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Duo%20Donut')">
+                <div class="gallery-img-container">
+                    <img src="minimalisme.jpeg" alt="Le Duo circulaire Donut" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Le Duo circulaire Donut</h3>
+                    <p>Deux vases nordiques</p>
+                    <div class="gallery-price">149 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Bijoux & Doudou -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/c95eea1e-7174-4eb6-8282-57c7894f8e68.jpg?auth_key=1875335502-2dc8fe69132f490da06271a1b1bcf69a-0-c46f431e5d830b20ffcddd06b8894b70', 'Douceur & Éclat', '<ul><li>1 Plateau rond décoratif</li></ul>', '35 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Douceur%20Eclat')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/c95eea1e-7174-4eb6-8282-57c7894f8e68.jpg?auth_key=1875335502-2dc8fe69132f490da06271a1b1bcf69a-0-c46f431e5d830b20ffcddd06b8894b70" alt="Douceur & Éclat" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Douceur & Éclat</h3>
+                    <p>Plateau bulles rond</p>
+                    <div class="gallery-price">35 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Étoile Bijoux -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e', 'Étoile des Bijoux', '<ul><li>1 Contenant forme étoile blanc</li></ul>', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEtoile%20des%20Bijoux')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/743c009b-f6e0-4136-82b2-662b8316ec90.jpg?auth_key=1875335502-a56027aa01eb40508a34a43fedfc9a0e-0-d5008dadd13ff4affa080db979b6403e" alt="Étoile des Bijoux" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Étoile des Bijoux</h3>
+                    <p>vide-poche étoile</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Céramique & Perles (Fixing mismatched parameters) -->
+            <!-- Image placeholder for plaa.jpeg -->
+            <div class="gallery-item" onclick="openModal('plaa.jpeg', '✨ Éclat d’Élégance', 'Vide-poche raffiné pour sublimer vos bijoux avec style.', '55 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lEclat%20dElegance')">
+                <div class="gallery-img-container">
+                    <img src="plaa.jpeg" alt="Éclat d’Élégance" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>✨ Éclat d’Élégance</h3>
+                    <p>Vide-poche raffiné pour sublimer vos bijoux</p>
+                    <div class="gallery-price">55 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+             
+             <!-- Image placeholder for rond.jpg -->
+              <div class="gallery-item" onclick="openModal('rond.jpg', '🌿 Pure Simplicité', 'Vide-poche minimaliste au charme naturel.', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20Pure%20Simplicite')">
+                <div class="gallery-img-container">
+                    <img src="rond.jpg" alt="Pure Simplicité" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>🌿 Pure Simplicité</h3>
+                    <p>Vide-poche minimaliste au charme naturel</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+             
+             <!-- Image placeholder for pa.jpeg -->
+               <div class="gallery-item" onclick="openModal('pa.jpeg', '💗 Douceur Rosée', 'Un pack délicat pour une touche chaleureuse et romantique.', '110 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20Douceur%20Rosee')">
+                <div class="gallery-img-container">
+                    <img src="pa.jpeg" alt="Douceur Rosée" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>💗 Douceur Rosée</h3>
+                    <p>Un pack délicat pour une touche chaleureuse et romantique</p>
+                    <div class="gallery-price">110 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+             
+             <!-- Image placeholder for mod.jpeg -->
+                <div class="gallery-item" onclick="openModal('mod.jpeg', '✨ Harmonie Moderne', 'Un ensemble décoratif chic pour une ambiance épurée et sophistiquée.', '179 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20Harmonie%20Moderne')">
+                <div class="gallery-img-container">
+                    <img src="mod.jpeg" alt="Harmonie Moderne" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>✨ Harmonie Moderne</h3>
+                    <p> Un ensemble décoratif chic pour une ambiance épurée et sophistiquée</p>
+                    <div class="gallery-price">179 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Luxe Organique -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7e525116-d6f3-46cd-85f7-54489e62a621.jpg?auth_key=1875335502-8415483bcf3d447fae53212963250c0d-0-291da134589a5ae311c75f7bf77a051d', 'Luxe Organique', '<ul><li>1 Plateau  irrégulier</li></ul>', '45 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Luxe%20Organique')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/7e525116-d6f3-46cd-85f7-54489e62a621.jpg?auth_key=1875335502-8415483bcf3d447fae53212963250c0d-0-291da134589a5ae311c75f7bf77a051d" alt="Luxe Organique" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Luxe Organique</h3>
+                    <p>Vide poche cloud</p>
+                    <div class="gallery-price">45 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Coquillage & Livres -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/6e2758f9-457e-4463-a0c6-20c496fd9cb3.jpg?auth_key=1875335502-102583fbaf884b0a8fe6005c83588715-0-3090cc9e3aa4b204ec739d30ede93a72', 'Élégance Livrée', '<ul><li>1 vide poche coquillage</li></ul>', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20lElegance%20Livree')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/6e2758f9-457e-4463-a0c6-20c496fd9cb3.jpg?auth_key=1875335502-102583fbaf884b0a8fe6005c83588715-0-3090cc9e3aa4b204ec739d30ede93a72" alt="Élégance Livrée" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Élégance Livrée</h3>
+                    <p>Vide poche Coquillage</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Table de Mariage -->
+            <div class="gallery-item premium-pack" onclick="openModal('https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7', 'Plateau personnalisé de Mariage', '<ul><li>Plateau personnalisé avec coquillage</li><li>Décoration perles fines</li><li>Idéal cadeau ou table de mariage</li></ul>', '115 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Table%20de%20Mariage')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7" alt="Table de Mariage" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Plateau personnalisé de Mariage</h3>
+                    <p>plateau personnalisé avec une coquillage des perles</p>
+                    <div class="gallery-price" style="color:var(--primary-dark); font-size:1.4rem;">115 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Collection Lavande -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29d03165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891', 'Collection Lavande', '<ul><li>Assortiment de plateaux perlés</li><li>Bols et vases lilas</li></ul>', '165 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Collection%20Lavande')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29d03165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891" alt="Collection Lavande" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Collection Lavande</h3>
+                    <p>Assortiment Violet Perlé</p>
+                    <div class="gallery-price">165 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Bougies Spirale Blanche -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/5bcb02cc-3d81-46f5-a663-2a50d4c54690.jpeg?auth_key=1875337220-b8f669420423403eaa74bec0c06b3af9-0-3283e9c7dac5f99e82f5aec85a0a36d4', 'Bougies Spirale', '<ul><li>2 Porte-bougiers blancs</li><li>2 Bougies blanches torsadées</li></ul>', '90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Spirale')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/5bcb02cc-3d81-46f5-a663-2a50d4c54690.jpeg?auth_key=1875337220-b8f669420423403eaa74bec0c06b3af9-0-3283e9c7dac5f99e82f5aec85a0a36d4" alt="Bougies Spirale" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Support Bougie Spirale</h3>
+                    <p>Support Bougie</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Bougies Abstractes Roses (Image placeholder for support.jpg) -->
+            <div class="gallery-item" onclick="openModal('support.jpg', 'Bougies Abstractes', '<ul><li>2 Porte-bougiers roses</li><li>Formes abstraites modernes</li></ul>', '100 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Abstractes')">
+                <div class="gallery-img-container">
+                    <img src="support.jpg" alt="Bougies Abstractes" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Support Bougies Abstractes</h3>
+                    <p>Support Bougies Paire Rose Moderne</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Ambiance Automne -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/babf9619-ef45-4e47-820a-562de04ab6d3.jpeg?auth_key=1875337220-5594015d0b5c4d76951dacdcfac94633-0-855c7cd23668372fcadfac95834a1f98', 'Ambiance Automne', '<ul><li>1 Grande citrouille</li></ul>', '45 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20Ambiance%20Automne')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/babf9619-ef45-4e47-820a-562de04ab6d3.jpeg?auth_key=1875337220-5594015d0b5c4d76951dacdcfac94633-0-855c7cd23668372fcadfac95834a1f98" alt="Ambiance Automne" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Ambiance Automne</h3>
+                    <p>Une Citrouille</p>
+                    <div class="gallery-price">45 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Vue Panoramique -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/e4db04f2-e7d3-4976-bf08-cc35dcde17a3.jpeg?auth_key=1875342913-5e109e0ff4ba4bd7849f84660d643c4a-0-a0ded792144ff71a91dc58782f467e73', 'Vue Panoramique', '<ul><li>1  vase blanc (Herbes sèches)</li><li>un brûleur d encens </li><li>un plateau ovale</li></ul>', '129 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20la%20Vue%20Panoramique')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/e4db04f2-e7d3-4976-bf08-cc35dcde17a3.jpeg?auth_key=1875342913-5e109e0ff4ba4bd7849f84660d643c4a-0-a0ded792144ff71a91dc58782f467e73" alt="Vue Panoramique" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Vue Panoramique</h3>
+                    <p>Vase & brûleur essences</p>
+                    <div class="gallery-price">129 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Élégance Dorée -->
+            <div class="gallery-item" onclick="openModal('https://z-cdn-media.chatglm.cn/files/3455e540-4752-4197-a524-87e27076172c.jpeg?auth_key=1875342913-3df5af2493634d088e40fc353ab41df4-0-16bd1603e91da81914577d6f8deae64a', 'Une touche de magie', '<ul><li>Pot cylindre blanc avec poignée</li><li>Design nervuré élégant</li></ul>', '35 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pot%20Dore')">
+                <div class="gallery-img-container">
+                    <img src="https://z-cdn-media.chatglm.cn/files/3455e540-4752-4197-a524-87e27076172c.jpeg?auth_key=1875342913-3df5af2493634d088e40fc353ab41df4-0-16bd1603e91da81914577d6f8deae64a" alt="Élégance Dorée" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Une touche de magie</h3>
+                    <p>Pot</p>
+                    <div class="gallery-price">35 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Contenant Texturé (Image placeholder for boite1.jpg) -->
+            <div class="gallery-item" onclick="openModal('boite1.jpg', 'Contemporain Texturé', '<ul><li>Pot cylindre blanc avec poignée</li><li>Design nervuré élégant</li><li>Style minimaliste moderne</li></ul>', '29 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Contenant%20Texture')">
+                <div class="gallery-img-container">
+                    <img src="boite1.jpg" alt="Contenant Texturé" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Contemporain Texturé</h3>
+                    <p>Pot Cylindre Nervuré</p>
+                    <div class="gallery-price">29 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            <!-- Bougies Nœuds (Image placeholder for support1.jpg) -->
+            <div class="gallery-item" onclick="openModal('support1.jpg', 'Bougie Nœud', '<ul><li>support de bougie papillon</li><li>Design romantique</li></ul>', '20 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20les%20Bougies%20Noeuds')">
+                <div class="gallery-img-container">
+                    <img src="support1.jpg" alt="Bougies Nœuds" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Bougie Nœud</h3>
+                    <p>Support Bougie Papillon</p>
+                    <div class="gallery-price">20 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+             <!-- Plateau personnalisé (Image placeholder for demoiselle.jpeg) -->
+            <div class="gallery-item" onclick="openModal('demoiselle.jpeg', 'Plateau personnalisé', 'Plateau personnalisé avec votre logo ou prénom.', '90 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Plateau%20Personnalise')">
+                <div class="gallery-img-container">
+                    <img src="demoiselle.jpeg" alt="Plateau personnalisé" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Plateau personnalisé </h3>
+                    <p>Plateau personnalisé avec votre logo</p>
+                    <div class="gallery-price">90 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            
+             <!-- Plateau personnalisé de marriage (Image placeholder for marriage.jpeg) -->
+            <div class="gallery-item" onclick="openModal('marriage.jpeg', 'Plateau personnalisé de marriage', 'Plateau personnalisé avec une coquillage des perles.', '115 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Plateau%20Mariage')">
+                <div class="gallery-img-container">
+                    <img src="marriage.jpeg" alt="Plateau personnalisé de marriage" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Plateau personnalisé de marriage</h3>
+                    <p>Plateau personnalisé avec une coquillage des perles </p>
+                    <div class="gallery-price">115 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            
+             <!-- Vase strié (Image placeholder for vase1.jpg) -->
+            <div class="gallery-item" onclick="openModal('vase1.jpg', 'Vase strié', 'Vase avec les fleurs séechéées pour une touche naturelle.', '45 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Vase%20Strie')">
+                <div class="gallery-img-container">
+                    <img src="vase1.jpg" alt="Vase strié" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Vase strié</h3>
+                    <p>Vase avec les fleurs séechéées</p>
+                    <div class="gallery-price">45 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+
+            
+             <!-- Pack EID (Image placeholder for eid.jpeg) -->
+            <div class="gallery-item" onclick="openModal('eid.jpeg', 'Pack EID', 'Plateau EID et Bruleur encens pour célébrer.', '135 MAD', 'https://wa.me/212610236889?text=Bonjour,%20je%20commande%20le%20Pack%20EID')">
+                <div class="gallery-img-container">
+                    <img src="eid.jpeg" alt="Pack EID" loading="lazy">
+                </div>
+                <div class="gallery-info">
+                    <h3>Pack EID</h3>
+                    <p>Plateau EID et Bruleur encens</p>
+                    <div class="gallery-price">135 MAD</div>
+                    <div class="tap-hint">Voir le détails</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="feature-box">
+            <h3>Design Unique</h3>
+        </div>
+        <div class="feature-box">
+            <h3>Livraison Rapide</h3>
+        </div>
+        <div class="feature-box">
+            <h3>Sur Mesure</h3>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <section id="contact" class="cta-section">
+        <h2>Envie de changer d'air ?</h2>
+        <p style="margin: 15px 0 30px 0; opacity: 0.9; font-size: 1.1rem;">Contactez-nous pour une commande personnalisée.</p>
+        <a href="https://wa.me/212610236889" style="font-size: 1.5rem; font-weight:bold; border-bottom: 2px solid white; padding-bottom: 5px;">+212 610 236 889</a>
+    </section>
+
+    <footer>
+        <p>@decobizcreations</p>
+        <p>Création de décoration artisanale</p>
+        <p style="margin-top:1rem; opacity:0.5; font-size:0.8rem;">&copy; 2024 Decobiz Creations. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/212610236889" class="fab-whatsapp" target="_blank">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.008-.57-.008-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <!-- --- MODAL STRUCTURE (Popup) --- -->
+    <div id="product-modal" class="modal" onclick="closeModal(event)">
+        <div class="modal-content" id="modal-content-swipe">
+            <span class="modal-close" onclick="closeModal(event)">&times;</span>
+            
+            <div class="modal-img-container">
+                <div class="loader"></div>
+                <img id="modal-img" src="" alt="Détail produit">
+            </div>
+            
+            <div class="modal-details">
+                <h3 id="modal-title">Titre</h3>
+                <div id="modal-desc">Description</div>
+                <span id="modal-price" class="modal-price">Prix</span>
+                
+                <div class="delivery-info">
+                    🚚 Livraison partout au Maroc 20 DH
+                </div>
+                
+                <a id="modal-btn" href="#" target="_blank" class="btn-modal-whatsapp">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    Commander sur WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Javascript -->
+    <script>
+        // --- 1. SCROLL PROGRESS BAR ---
+        window.onscroll = function() {myFunction()};
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        }
+
+        // --- 2. SCROLL REVEAL ANIMATION ---
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Menu Mobile
+        function toggleMenu() {
+            const nav = document.getElementById('nav-menu');
+            nav.classList.toggle('open');
+        }
+
+        // Gestion de la Modal (Popup)
+        const modal = document.getElementById('product-modal');
+        const modalContent = document.getElementById('modal-content-swipe');
+        const modalImg = document.getElementById('modal-img');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalPrice = document.getElementById('modal-price');
+        const modalBtn = document.getElementById('modal-btn');
+        const loader = document.querySelector('.loader');
+
+        function openModal(imgSrc, title, desc, price, link) {
+            modalImg.classList.remove('loaded');
+            loader.style.display = 'block';
+            
+            modalImg.src = imgSrc;
+            modalTitle.innerText = title;
+            modalDesc.innerHTML = desc;
+            modalPrice.innerText = price;
+            modalBtn.href = link;
+            
+            modal.style.display = 'flex';
+            setTimeout(() => { modal.classList.add('show'); }, 10);
+            document.body.style.overflow = 'hidden'; 
+
+            modalImg.onload = function() {
+                loader.style.display = 'none';
+                modalImg.classList.add('loaded');
+            };
+        }
+
+        function closeModal(event) {
+            if (event.target === modal || event.target.classList.contains('modal-close')) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        }
+
+        document.onkeydown = function(evt) {
+            if (evt.keyCode == 27) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+        };
+
+        // --- GESTION DU SWIPE (Tactile) ---
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        modalContent.addEventListener('touchstart', e => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, {passive: true});
+
+        modalContent.addEventListener('touchend', e => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleGesture();
+        }, {passive: true});
+
+        function handleGesture() {
+            if (touchEndY < touchStartY - 100) {
+                closeModal({target: modal});
+            }
+            if (touchEndY > touchStartY + 50) {
+                const details = document.querySelector('.modal-details');
+                if(details.scrollTop === 0) {
+                    closeModal({target: modal});
+                }
+            }
+        }
+    </script>
+</body>
+</html>
