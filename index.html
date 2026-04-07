@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Decobiz Creations | Boutique Officielle - Déco Artisanale</title>
+    <title>Decobiz Creations | Boutique Officielle - Personnalisable</title>
     <meta name="description" content="Packs décoratifs artisanaux uniques. Sublimez votre intérieur avec Decobiz. Paiement à la livraison partout au Maroc.">
     
-    <!-- --- FACEBOOK PIXEL (TRACKING ACTIVÉ) --- -->
+    <!-- --- FACEBOOK PIXEL --- -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -22,7 +22,6 @@
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=1609605916958974&ev=PageView&noscript=1"
     /></noscript>
-    <!-- ------------------------------------- -->
 
     <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,26 +37,20 @@
             --primary-dark: #5D3A24;
             --terracotta-rose: #E07A78; 
             --terracotta-hover: #c96a68;
-            
             --secondary-color: #F9F7F2;
             --text-color: #2c2c2c;
             --light-text: #FFFFFF;
-            
             --whatsapp-green: #25D366;
             --whatsapp-dark: #128C7E;
             --action-btn: #1a5c37; 
-            
             --gold-color: #D4AF37;
             --danger-color: #e74c3c;
             --delivery-color: #2e7d32;
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
             --font-ui: 'Poppins', sans-serif;
-            
             --shadow-soft: 0 15px 35px rgba(0,0,0,0.05);
             --shadow-hover: 0 25px 50px rgba(0,0,0,0.1);
-            --shadow-gold: 0 10px 25px rgba(212, 175, 55, 0.3);
-            
             --radius-card: 16px;
             --radius-btn: 50px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -80,7 +73,6 @@
         button { border: none; outline: none; cursor: pointer; font-family: inherit; }
 
         /* --- UI COMPONENTS --- */
-        /* Toast Notification */
         #toast-container {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             z-index: 3000; pointer-events: none; width: 90%; max-width: 350px;
@@ -95,14 +87,13 @@
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast i { color: var(--delivery-color); font-size: 1.2rem; }
 
-        /* --- WHATSAPP FLOATING BUTTON --- */
         .whatsapp-float {
             position: fixed; width: 65px; height: 65px; bottom: 30px; right: 25px;
             background-color: var(--whatsapp-green); color: #FFF;
             border-radius: 50%; text-align: center; font-size: 32px;
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
             z-index: 2900; display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); animation: pulse-green 2. infinite;
+            transition: var(--transition); animation: pulse-green 2s infinite;
         }
         .whatsapp-float:hover { transform: scale(1.1); background-color: var(--whatsapp-dark); }
         @keyframes pulse-green {
@@ -111,17 +102,14 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* --- HEADER & NAV --- */
+        /* --- HEADER --- */
         header {
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             padding: 0.8rem 5%; position: sticky; top: 0; z-index: 1000;
             box-shadow: 0 2px 20px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center;
         }
-        .logo {
-            font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700;
-            color: var(--primary-color); letter-spacing: 1px; text-transform: uppercase;
-        }
+        .logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; text-transform: uppercase; }
         .header-actions { display: flex; align-items: center; gap: 15px; }
         .cart-btn { position: relative; background: transparent; color: var(--text-color); font-size: 1.5rem; padding: 5px; transition: var(--transition); }
         .cart-btn:hover { color: var(--primary-color); transform: scale(1.1); }
@@ -144,16 +132,32 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            position: relative; height: 80vh; min-height: 500px;
+            position: relative; height: 85vh; min-height: 550px;
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('salle.jpeg');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center;
             color: var(--light-text); padding: 0 1rem;
         }
-        .hero-content { max-width: 800px; animation: fadeInUp 1s ease-out; }
+        .hero-content { max-width: 900px; animation: fadeInUp 1s ease-out; position: relative; z-index: 2; }
         .hero h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.2; }
         
-        /* Compte à rebours */
+        .custom-banner {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+        .custom-banner i { font-size: 1.8rem; color: var(--gold-color); }
+        .custom-text { text-align: left; }
+        .custom-text strong { display: block; font-size: 1.1rem; font-family: var(--font-ui); color: white; }
+        .custom-text span { font-size: 0.85rem; opacity: 0.9; }
+
         .countdown-container {
             margin: 20px 0; display: inline-flex; gap: 15px; background: rgba(0,0,0,0.4);
             padding: 10px 20px; border-radius: 8px; backdrop-filter: blur(5px);
@@ -177,7 +181,7 @@
         .btn-primary:hover::after { left: 100%; }
         .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 94, 60, 0.4); }
 
-        /* --- GALLERY GRID --- */
+        /* --- GALLERY --- */
         .gallery { padding: 5rem 5%; max-width: 1400px; margin: 0 auto; }
         .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         .section-subtitle { text-align: center; color: #777; margin-bottom: 3rem; font-style: italic; font-size: 1.1rem; }
@@ -205,7 +209,6 @@
         .badge-stock { background: #e74c3c; color: white; right: 12px; left: auto; }
 
         .card-details { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; position: relative; }
-        
         .card-title { font-family: var(--font-heading); font-size: 1.25rem; color: var(--primary-color); margin-bottom: 0.5rem; font-weight: 600; }
         .card-price { font-weight: 700; font-size: 1.4rem; color: var(--text-color); font-family: var(--font-ui); margin: 10px 0; }
         
@@ -219,7 +222,7 @@
         }
         .product-card:hover .quick-add-btn { background: var(--primary-color); color: white; border-color: var(--primary-color); }
 
-        /* --- TESTIMONIALS (NOUVEAU) --- */
+        /* --- TESTIMONIALS --- */
         .testimonials { background: white; padding: 5rem 5%; margin-top: 4rem; border-top: 1px solid #eee; }
         .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .testi-card { background: var(--secondary-color); padding: 2rem; border-radius: 12px; position: relative; }
@@ -261,8 +264,38 @@
         .modal-title { font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         .modal-meta { display: flex; gap: 15px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #888; }
         .modal-price { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-color); font-family: var(--font-ui); }
-        .modal-desc { color: #666; margin-bottom: 2rem; font-size: 1rem; line-height: 1.8; }
+        .modal-desc { color: #666; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.8; }
         
+        .personalization-section {
+            background: #fdfbf7;
+            border: 2px dashed var(--primary-color);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .pers-title {
+            font-weight: 700; color: var(--primary-color); margin-bottom: 12px;
+            display: flex; align-items: center; gap: 10px; font-size: 1.1rem;
+        }
+        .pers-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: var(--font-ui);
+            font-size: 1rem;
+            background: white;
+            transition: 0.2s;
+            resize: vertical;
+            min-height: 60px;
+        }
+        .pers-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.1);
+        }
+        .pers-note { font-size: 0.8rem; color: #666; margin-top: 8px; font-style: italic; display: flex; align-items: center; gap: 5px; }
+
         .btn-add-cart {
             background: var(--terracotta-rose); color: white; width: 100%; padding: 1.4rem;
             border-radius: var(--radius-btn); font-weight: 700; font-size: 1.1rem;
@@ -284,13 +317,21 @@
         .cart-header h3 { font-family: var(--font-heading); color: var(--primary-color); font-size: 1.5rem; }
         
         .cart-items { flex-grow: 1; overflow-y: auto; padding: 1.5rem; }
-        .cart-item { display: flex; gap: 15px; margin-bottom: 1.5rem; border-bottom: 1px solid #f5f5f5; padding-bottom: 1rem; }
+        .cart-item { display: flex; gap: 15px; margin-bottom: 1.5rem; border-bottom: 1px solid #f5f5f5; padding-bottom: 1rem; position: relative; }
         .cart-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid #eee; }
         .item-details { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .item-name { font-weight: 700; font-size: 1rem; margin-bottom: 5px; color: var(--text-color); }
-        .item-price { color: var(--primary-color); font-weight: 600; }
-        .item-remove { color: #999; font-size: 0.8rem; cursor: pointer; margin-top: 8px; text-decoration: underline; }
-        .item-remove:hover { color: var(--danger-color); }
+        .item-variant { 
+            font-size: 0.85rem; color: var(--primary-color); background: #f4f1ea; 
+            padding: 4px 8px; border-radius: 4px; align-self: flex-start; margin-bottom: 4px; 
+            word-break: break-word; font-weight: 600; border: 1px solid rgba(139, 94, 60, 0.2);
+        }
+        .item-price { color: var(--text-color); font-weight: 600; font-size: 0.95rem; }
+        .item-remove { 
+            color: var(--danger-color); font-size: 0.8rem; cursor: pointer; margin-top: 8px; 
+            text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; 
+        }
+        .item-remove:hover { text-decoration: underline; }
         
         .cart-footer { padding: 2rem; border-top: 1px solid #eee; background: #fafafa; padding-bottom: 2rem; box-shadow: 0 -10px 30px rgba(0,0,0,0.05); }
         
@@ -335,7 +376,7 @@
         
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2rem; }
             .modal-box { height: 100vh; border-radius: 0; width: 100%; max-width: none; }
             .modal-gallery { height: 40%; }
             .modal-info { padding: 1.5rem; }
@@ -343,21 +384,20 @@
             .countdown-container { padding: 8px 15px; gap: 10px; }
             .time-val { font-size: 1.2rem; }
             .section-title { font-size: 2rem; }
+            .custom-banner { flex-direction: column; text-align: center; gap: 5px; padding: 12px; }
+            .custom-text { text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- --- NOTIFICATIONS --- -->
     <div id="toast-container"></div>
     <div class="backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
 
-    <!-- --- WHATSAPP FLOATING BUTTON --- -->
     <a href="https://wa.me/212610236889" class="whatsapp-float" target="_blank" aria-label="Contacter sur WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- --- HEADER --- -->
     <header>
         <div class="logo">DECOBIZ</div>
         <div class="header-actions">
@@ -368,20 +408,25 @@
         </div>
     </header>
 
-    <!-- --- TRUST BAR (NOUVEAU) --- -->
     <div class="trust-bar">
         <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Livraison 24/48h</div>
+        <div class="trust-item"><i class="fa-solid fa-palette"></i> Personnalisable</div>
         <div class="trust-item"><i class="fa-solid fa-hand-holding-dollar"></i> Paiement à la livraison</div>
-        <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> Satisfait ou Remboursé</div>
     </div>
 
-    <!-- --- HERO --- -->
     <section class="hero">
         <div class="hero-content">
             <h1>L'Art de la Décoration<br>Artisanale Marocaine</h1>
             <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.95;">Des pièces uniques pour un intérieur qui raconte votre histoire.</p>
             
-            <!-- COMPTE A REBOURS -->
+            <div class="custom-banner">
+                <i class="fa-solid fa-paint-roller"></i>
+                <div class="custom-text">
+                    <strong>100% Personnalisable</strong>
+                    <span>Décrivez la couleur exacte que vous souhaitez !</span>
+                </div>
+            </div>
+
             <div style="margin-bottom: 1rem; font-size: 0.9rem; opacity: 0.9;">🔥 Offre Spéciale se termine dans :</div>
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><div class="time-val" id="hours">00</div><div class="time-label">Heures</div></div>
@@ -395,23 +440,21 @@
         </div>
     </section>
 
-    <!-- --- GALLERY --- -->
     <section id="gallery" class="gallery">
         <h2 class="section-title">Nos Exclusivités</h2>
-        <p class="section-subtitle">Sélectionnées avec passion pour sublimer votre quotidien</p>
+        <p class="section-subtitle">Cliquez sur un produit pour personnaliser les couleurs</p>
         
         <div class="gallery-grid" id="product-grid">
             <!-- Les produits seront injectés ici par JavaScript -->
         </div>
     </section>
 
-    <!-- --- TESTIMONIALS (NOUVEAU) --- -->
     <section class="testimonials">
         <h2 class="section-title" style="font-size: 2rem;">Ils nous font confiance</h2>
         <div class="testi-grid">
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"J'ai reçu le pack Terracotta hier, c'est magnifique ! La qualité est au rendez-vous et la livraison était super rapide à Casa. Je recommande vivement."</p>
+                <p class="testi-text">"J'ai demandé le pack en 'Vert sauge' pour ma chambre, c'était exactement ce que je voulais. Merci pour la flexibilité !"</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Salma+B&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -422,7 +465,7 @@
             </div>
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"Enfin une déco originale ! Le pack Signature a tout changé dans mon salon. Merci Decobiz pour le petit cadeau surprise, c'était très gentil."</p>
+                <p class="testi-text">"J'ai noté 'Noir et Doré' dans la personnalisation et le résultat est sublime. Qualité au rendez-vous."</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Karim+M&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -433,7 +476,7 @@
             </div>
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"Service client au top. J'avais une question sur les dimensions, on m'a répondu tout de suite sur WhatsApp. Les plateaux sont superbes."</p>
+                <p class="testi-text">"Service client au top sur WhatsApp. J'ai pu expliquer exactement la teinte que je cherchais."</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Amal+T&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -445,7 +488,6 @@
         </div>
     </section>
 
-    <!-- --- FOOTER --- -->
     <footer style="background: #1a1a1a; color: #888; padding: 4rem 5%; text-align: center; margin-top: 0;">
         <div style="font-family: var(--font-heading); font-size: 2rem; color: white; margin-bottom: 1.5rem;">DECOBIZ CREATIONS</div>
         <p style="margin-bottom: 15px; font-size: 1.1rem; color: #ccc;">L'élégance artisanale à portée de main.</p>
@@ -464,20 +506,18 @@
             <button onclick="toggleCart()" style="font-size: 1.8rem; background:none; color: #555;">&times;</button>
         </div>
         
-        <!-- Liste des produits -->
         <div class="cart-items" id="cart-items-container">
             <p style="text-align: center; color: #999; margin-top: 3rem;">Votre panier est vide</p>
         </div>
 
-        <!-- Formulaire de Commande -->
         <div class="checkout-form" id="checkout-form">
             <h4 style="margin-bottom: 1.5rem; color: var(--primary-color); font-size: 1.3rem; font-family: var(--font-heading);">Finaliser la commande</h4>
             
             <div class="reassurance-box">
-                <i class="fa-solid fa-lock"></i>
+                <i class="fa-solid fa-palette"></i>
                 <div class="reassurance-text">
-                    <strong>Paiement 100% Sécurisé</strong>
-                    Vous payez uniquement à la réception de votre colis.
+                    <strong>Vos choix de couleurs</strong>
+                    seront transmis avec votre commande.
                 </div>
             </div>
 
@@ -500,7 +540,6 @@
             <button onclick="showCartItems()" style="width: 100%; margin-top: 15px; color: #888; background: none; text-decoration: underline; font-size: 0.9rem; padding: 10px;">Retour au panier</button>
         </div>
 
-        <!-- Footer Panier -->
         <div class="cart-footer" id="cart-footer">
             <div class="cart-summary">
                 <div class="cart-summary-row">
@@ -508,7 +547,7 @@
                     <span id="cart-subtotal">0 MAD</span>
                 </div>
                 <div class="cart-summary-row" style="color: var(--delivery-color);">
-                    <span>Livraison (Maroc)</span>
+                    <span>Livraison</span>
                     <span id="shipping-fee">Calculée à l'étape suivante</span>
                 </div>
             </div>
@@ -538,11 +577,17 @@
                 <div class="modal-price" id="modal-price">0 MAD</div>
                 <div class="modal-desc" id="modal-desc">Description...</div>
                 
+                <div class="personalization-section">
+                    <div class="pers-title"><i class="fa-solid fa-pen-fancy"></i> Personnalisation :</div>
+                    <textarea id="custom-color-input" class="pers-input" placeholder="Ex: Bleu canard, Terracotta clair, Blanc cassé..."></textarea>
+                    <div class="pers-note"><i class="fa-solid fa-lightbulb"></i> Écrivez la couleur exacte souhaitée ici.</div>
+                </div>
+
                 <button class="btn-add-cart" id="modal-add-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                     Ajouter au Panier
                 </button>
-                <p style="text-align:center; font-size:0.8rem; color:#999; margin-top:10px;"><i class="fa-solid fa-shield-halved"></i> Paiement à la livraison garanti</p>
+                <p style="text-align:center; font-size:0.8rem; color:#999; margin-top:10px;"><i class="fa-solid fa-hand-holding-heart"></i> Fait main avec passion</p>
             </div>
         </div>
     </div>
@@ -552,26 +597,26 @@
         // --- 1. CONFIGURATION ---
         const DELIVERY_FEE = 20;
         const PHONE_NUMBER = "212610236889";
-        const FREE_SHIPPING_THRESHOLD = 300; // Livraison gratuite à partir de 300 MAD
+        const FREE_SHIPPING_THRESHOLD = 300;
 
-        // --- 2. BASE DE DONNÉES PRODUITS (Enrichie pour la conversion) ---
+        // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
             {
                 id: 1,
                 title: "Collection Signature",
                 price: 299,
                 image: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984",
-                desc: "Le Pack Ultime pour sublimer toute la maison. Contient une Arche décorative, 2 Vases élégants, Plateaux servissants, Boîte d’arrangement, Mbekhra traditionnelle, Porte-bougie, Plateau à boules, un assortiment de fleurs séchées + un cadeau surprise.",
+                desc: "Le Pack Ultime. Contient une Arche décorative, 2 Vases, Plateaux, Boîte d’arrangement, Mbekhra, Porte-bougie, Plateau à boules, fleurs séchées + cadeau surprise.",
                 badge: "Best Seller",
                 badgeClass: "badge-best",
-                sold: 124 // Preuve sociale : nombre de ventes simulé
+                sold: 124
             },
             {
                 id: 33,
                 title: "Pack Rose Terracotta",
                 price: 149,
                 image: "rose.jpeg",
-                desc: "L'élégance du Terre Cuite doucement rosée. Ce pack exclusif comprend un plateau à perles pour bijoux, un plateau organique irrégulier, un plateau ovale et un petit vase texturé. La parfaite harmonie pour une chambre ou un salon cosy.",
+                desc: "L'élégance du Terre Cuite doucement rosée. Ce pack exclusif comprend un plateau à perles, un plateau organique, un plateau ovale et un petit vase texturé.",
                 badge: "Nouveau",
                 badgeClass: "badge-new",
                 sold: 45
@@ -581,7 +626,7 @@
                 title: "Salon Moderne",
                 price: 135,
                 image: "https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e",
-                desc: "4 Pièces Essentielles : 2 Vases minimalistes, une petite citrouille décorative et un grand plateau ovale. L'ensemble parfait pour rafraîchir votre salon.",
+                desc: "4 Pièces Essentielles : 2 Vases minimalistes, une petite citrouille décorative et un grand plateau ovale.",
                 sold: 89
             },
             {
@@ -591,7 +636,7 @@
                 image: "https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b",
                 desc: "3 Pièces pratiques & esthétiques : Un plateau rond central, une grande citrouille de rangement et une petite citrouille décorative.",
                 badge: "Promo",
-                badgeClass: "badge-stock", // Rouge pour attirer l'oeil
+                badgeClass: "badge-stock",
                 sold: 210
             },
             {
@@ -599,7 +644,7 @@
                 title: "Salle de Bain Chic",
                 price: 135,
                 image: "salle.jpeg",
-                desc: "4 Pièces raffinées : Un grand Vase, un porte-bougie flottant, une petite citrouille et un plateau ovale 23cm. Pour transformer votre salle d'eau en spa.",
+                desc: "4 Pièces raffinées : Un grand Vase, un porte-bougie flottant, une petite citrouille et un plateau ovale 23cm.",
                 sold: 67
             },
             {
@@ -607,7 +652,7 @@
                 title: "Coin Zen",
                 price: 99,
                 image: "https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d",
-                desc: "Pack sérénité absolue : Un Brûleur d'encens en céramique, un vase élégant type soliflore et un plateau ovale 18cm.",
+                desc: "Pack sérénité absolue : Un Brûleur d'encens en céramique, un vase élégant et un plateau ovale.",
                 sold: 55
             },
             {
@@ -631,7 +676,7 @@
                 title: "Collection Lavande",
                 price: 165,
                 image: "lavande.jpeg",
-                desc: "Assortiment Violet Perlé : Plateaux perlés, bols et vases lilas. Une touche de Provence chez vous.",
+                desc: "Assortiment Violet Perlé : Plateaux perlés, bols et vases lilas.",
                 sold: 29
             },
             {
@@ -639,7 +684,7 @@
                 title: "Pack EID",
                 price: 135,
                 image: "eid.jpeg",
-                desc: "Pack festif : Plateau EID cérémonial et Brûleur encens pour célébrer en beauté.",
+                desc: "Pack festif : Plateau EID cérémonial et Brûleur encens pour célébrer.",
                 badge: "Fête",
                 badgeClass: "badge-best",
                 sold: 156
@@ -668,7 +713,6 @@
                 desc: "Une Grande Citrouille artisanale pour décorer vos espaces saisonniers.",
                 sold: 98
             },
-            // --- Ajout d'autres items populaires ---
             {
                 id: 13,
                 title: "Le Soliflore Elancé",
@@ -707,9 +751,8 @@
             }
         ];
 
-        // --- 3. COMPTE A REBOURS (Urgency) ---
+        // --- 3. COMPTE A REBOURS ---
         function startCountdown() {
-            // Fixe la fin à minuit ce soir pour créer une urgence quotidienne
             const now = new Date();
             const end = new Date();
             end.setHours(23, 59, 59, 999);
@@ -717,17 +760,13 @@
             function update() {
                 const current = new Date();
                 let diff = end - current;
-                
-                // Si le temps est écoulé, on recommence pour le lendemain (pour la démo)
                 if (diff < 0) {
                     end.setDate(end.getDate() + 1);
                     diff = end - current;
                 }
-
                 const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
                 const s = Math.floor((diff % (1000 * 60)) / 1000);
-
                 document.getElementById('hours').innerText = h < 10 ? '0' + h : h;
                 document.getElementById('minutes').innerText = m < 10 ? '0' + m : m;
                 document.getElementById('seconds').innerText = s < 10 ? '0' + s : s;
@@ -739,9 +778,7 @@
         // --- 4. TRACKING SYSTEM ---
         function trackEvent(eventName, params = {}) {
             console.log(`[Tracking] Event: ${eventName}`, params);
-            if (typeof fbq !== 'undefined') {
-                fbq('track', eventName, params);
-            }
+            if (typeof fbq !== 'undefined') fbq('track', eventName, params);
         }
 
         // --- 5. GESTION DU PANIER ---
@@ -755,10 +792,7 @@
             trackEvent('PageView');
         });
 
-        // Fonction utilitaire pour générer un stock aléatoire (faible pour créer l'urgence)
-        function getRandomStock() {
-            return Math.floor(Math.random() * 4) + 2; // Entre 2 et 5
-        }
+        function getRandomStock() { return Math.floor(Math.random() * 4) + 2; }
 
         function renderProducts() {
             const grid = document.getElementById('product-grid');
@@ -766,7 +800,6 @@
                 const stock = getRandomStock();
                 const stockBadge = stock <= 3 ? `<span class="badge badge-stock">Plus que ${stock} !</span>` : '';
                 const socialProof = p.sold ? `<div class="social-proof"><i class="fa-solid fa-fire"></i> ${p.sold} vendus cette semaine</div>` : '';
-                
                 return `
                 <div class="product-card" onclick="openProductModal(${p.id})">
                     <div class="card-img-container">
@@ -778,31 +811,31 @@
                         <div class="card-title">${p.title}</div>
                         <div class="card-price">${p.price} MAD</div>
                         ${socialProof}
-                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id})">
-                            Ajouter au panier
-                        </button>
+                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id}, 'Couleur photo')">Ajouter au panier</button>
                     </div>
                 </div>
             `}).join('');
         }
 
         // --- 6. LOGIQUE PANIER ---
-        function addToCartById(id) {
+        function addToCartById(id, color = 'Couleur photo') {
             const product = products.find(p => p.id === id);
-            if(product) addToCart(product);
+            if(product) addToCart(product, color);
         }
 
-        function addToCart(product) {
-            const existing = cart.find(item => item.id === product.id);
+        function addToCart(product, color) {
+            // Création d'un ID unique basé sur l'ID produit et la couleur pour gérer les variantes
+            const cartId = `${product.id}-${color}`;
+            const existing = cart.find(item => item.cartId === cartId);
+            
             if (existing) {
                 existing.qty++;
             } else {
-                cart.push({ ...product, qty: 1 });
+                cart.push({ ...product, cartId: cartId, selectedColor: color, qty: 1 });
             }
             saveCart();
             updateCartUI();
             
-            // Animation du bouton panier
             const cartBtn = document.querySelector('.cart-btn');
             cartBtn.style.transform = 'scale(1.3)';
             setTimeout(() => cartBtn.style.transform = 'scale(1)', 200);
@@ -811,8 +844,9 @@
             trackEvent('AddToCart', { content_name: product.title, content_ids: [product.id], value: product.price, currency: 'MAD' });
         }
 
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
+        // Fonction de suppression CORRIGÉE
+        function removeFromCart(cartId) {
+            cart = cart.filter(item => item.cartId !== cartId);
             saveCart();
             updateCartUI();
         }
@@ -833,8 +867,6 @@
             countEl.style.display = totalQty > 0 ? 'flex' : 'none';
 
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            
-            // Calcul livraison
             let shipping = DELIVERY_FEE;
             if(subtotal >= FREE_SHIPPING_THRESHOLD) shipping = 0;
             
@@ -854,8 +886,11 @@
                         <img src="${item.image}" alt="${item.title}">
                         <div class="item-details">
                             <div class="item-name">${item.title}</div>
+                            <!-- Affichage clair de la couleur personnalisée -->
+                            <div class="item-variant"><i class="fa-solid fa-palette" style="font-size:0.7em; margin-right:5px;"></i> ${item.selectedColor}</div>
                             <div class="item-price">${item.qty} x ${item.price} MAD</div>
-                            <div class="item-remove" onclick="removeFromCart(${item.id})">Supprimer</div>
+                            <!-- Lien de suppression actif avec onClick correct -->
+                            <div class="item-remove" onclick="removeFromCart('${item.cartId}')"><i class="fa-solid fa-trash"></i> Supprimer</div>
                         </div>
                     </div>
                 `).join('');
@@ -866,7 +901,6 @@
             const sidebar = document.getElementById('cart-sidebar');
             const backdrop = document.getElementById('cart-backdrop');
             const isOpen = sidebar.classList.contains('open');
-            
             if (isOpen) {
                 sidebar.classList.remove('open');
                 backdrop.classList.remove('active');
@@ -911,17 +945,20 @@
             message += `👤 *Client:* ${name}\n`;
             message += `📱 *Tél:* ${phone}\n`;
             message += `📍 *Adresse:* ${address}\n\n`;
-            message += `📦 *Panier:*\n`;
+            message += `📦 *Détails de la commande:*\n`;
+            
+            // Boucle pour afficher produits + couleurs
             cart.forEach(item => {
-                message += `▪️ ${item.title} (x${item.qty}): ${item.price * item.qty} MAD\n`;
+                message += `▪️ ${item.title}\n`;
+                message += `   🎨 *Couleur:* ${item.selectedColor}\n`;
+                message += `   💰 Prix: ${item.qty} x ${item.price} = ${item.price * item.qty} MAD\n\n`;
             });
-            message += `\n🚚 *Livraison:* ${shipping === 0 ? 'Gratuite' : shipping + ' MAD'}`;
-            message += `\n💰 *TOTAL À PAYER:* ${grandTotal} MAD`;
+
+            message += `🚚 *Livraison:* ${shipping === 0 ? 'Gratuite' : shipping + ' MAD'}\n`;
+            message += `💰 *TOTAL À PAYER:* ${grandTotal} MAD`;
             message += `\n\n✅ *Méthode: Paiement à la livraison*`;
 
-            if (typeof fbq !== 'undefined') {
-                fbq('track', 'InitiateCheckout', { value: grandTotal, currency: 'MAD' });
-            }
+            if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', { value: grandTotal, currency: 'MAD' });
 
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
@@ -938,9 +975,16 @@
             document.getElementById('modal-price').innerText = product.price + ' MAD';
             document.getElementById('modal-desc').innerText = product.desc;
             
+            // Reset Input
+            const colorInput = document.getElementById('custom-color-input');
+            colorInput.value = "";
+            colorInput.focus();
+            
             const btn = document.getElementById('modal-add-btn');
             btn.onclick = () => {
-                addToCart(product);
+                const customColor = colorInput.value.trim();
+                const finalColor = customColor ? customColor : "Couleur de la photo";
+                addToCart(product, finalColor);
                 closeModal();
             };
 
@@ -963,16 +1007,13 @@
             const toast = document.createElement('div');
             toast.className = 'toast';
             toast.innerHTML = msg;
-            
             container.appendChild(toast);
             requestAnimationFrame(() => toast.classList.add('show'));
-
             setTimeout(() => {
                 toast.classList.remove('show');
                 setTimeout(() => toast.remove(), 400);
             }, 3000);
         }
-
     </script>
 </body>
 </html>
