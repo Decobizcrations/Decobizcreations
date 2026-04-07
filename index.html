@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | Boutique Officielle</title>
-    <meta name="description" content="Packs décoratifs artisanaux uniques. Sublimez votre intérieur avec Decobiz.">
+    <meta name="description" content="Packs décoratifs artisanaux uniques. Sublimez votre intérieur avec Decobiz. Paiement à la livraison partout au Maroc.">
     
     <!-- --- FACEBOOK PIXEL (TRACKING ACTIVÉ) --- -->
     <script>
@@ -28,20 +28,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome pour l'icône WhatsApp -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* --- VARIABLES & DESIGN SYSTEM --- */
         :root {
             --primary-color: #8B5E3C;
             --primary-dark: #6d4a30;
-            /* Nouvelle couleur Terracotta Rose demandée */
+            /* Couleur Terracotta Rose */
             --terracotta-rose: #E07A78; 
             
             --secondary-color: #F9F7F2;
             --text-color: #2c2c2c;
             --light-text: #FFFFFF;
-            --accent-green: #25D366;
-            --accent-green-dark: #128C7E;
+            /* WhatsApp & Action Colors */
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #128C7E;
+            --action-btn: #1a5c37; /* Vert foncé pour le bouton commander (meilleur contraste) */
+            
             --gold-color: #D4AF37;
             --danger-color: #e74c3c;
             --delivery-color: #2e7d32;
@@ -50,7 +55,7 @@
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
             --shadow-gold: 0 10px 25px rgba(212, 175, 55, 0.3);
-            --shadow-terracotta: 0 10px 25px rgba(224, 122, 120, 0.4); /* Ombre personnalisée */
+            --shadow-terracotta: 0 10px 25px rgba(224, 122, 120, 0.4);
             --radius-card: 16px;
             --radius-btn: 50px;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -65,7 +70,7 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 80px;
+            padding-bottom: 80px; /* Espace pour le bouton flottant */
         }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         img { max-width: 100%; display: block; }
@@ -87,9 +92,39 @@
         }
         .toast.show { opacity: 1; transform: translateY(0); }
 
+        /* --- WHATSAPP FLOATING BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: var(--whatsapp-green);
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 2900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            animation: pulse-green 2s infinite;
+        }
+        .whatsapp-float:hover {
+            background-color: var(--whatsapp-dark);
+            transform: scale(1.1);
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
         /* --- HEADER & NAV --- */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             padding: 0.8rem 5%;
             position: sticky; top: 0; z-index: 1000;
@@ -226,24 +261,51 @@
         .item-price { color: #777; font-size: 0.9rem; }
         .item-remove { color: var(--danger-color); font-size: 0.8rem; cursor: pointer; margin-top: 5px; display: inline-block; }
         
-        .cart-footer { padding: 1.5rem; border-top: 1px solid #eee; background: #fafafa; }
-        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; }
-        .btn-checkout { background: var(--accent-green); color: white; width: 100%; padding: 1rem; border-radius: var(--radius-btn); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .btn-checkout:hover { background: var(--accent-green-dark); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4); }
+        .cart-footer { padding: 1.5rem; border-top: 1px solid #eee; background: #fafafa; padding-bottom: 2rem; }
+        
+        .cart-summary {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+        .cart-summary-row {
+            display: flex; justify-content: space-between; margin-bottom: 5px;
+        }
+        .cart-total { 
+            display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; 
+            margin-bottom: 1rem; color: var(--text-color); padding-top: 10px; border-top: 2px dashed #ddd;
+        }
+        
+        .btn-checkout { 
+            background: var(--action-btn); /* Vert foncé plus lisible */
+            color: white; width: 100%; padding: 1.1rem; border-radius: var(--radius-btn); 
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(26, 92, 55, 0.3);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-checkout:hover { background: #124729; transform: translateY(-2px); }
 
         /* --- CHECKOUT FORM --- */
         .checkout-form { padding: 1.5rem; display: none; }
         .checkout-form.active { display: block; }
         .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
+        .form-group label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; color: #444; }
         .form-group input, .form-group select {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit;
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; background: #fdfdfd;
         }
+        .form-group input:focus { border-color: var(--primary-color); outline: none; }
+
+        .reassurance-text {
+            font-size: 0.8rem; color: #555; background: #e8f5e9; padding: 10px; border-radius: 8px; 
+            margin-bottom: 15px; display: flex; align-items: center; gap: 8px; text-align: center;
+        }
+        .reassurance-text i { color: var(--delivery-color); }
+
         .payment-methods { display: flex; gap: 10px; margin-top: 10px; }
         .payment-option {
-            flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; font-size: 0.85rem;
+            flex: 1; border: 1px solid #ddd; padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.2s; font-size: 0.85rem;
         }
-        .payment-option.selected { border-color: var(--accent-green); background: #e8f5e9; color: var(--accent-green-dark); font-weight: bold; }
+        .payment-option.selected { border-color: var(--whatsapp-green); background: #e8f5e9; color: var(--whatsapp-dark); font-weight: bold; }
 
         /* --- UTILS --- */
         .backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 2400; display: none; backdrop-filter: blur(3px); }
@@ -256,6 +318,7 @@
             .hero h1 { font-size: 2rem; }
             .modal-box { height: 100vh; border-radius: 0; width: 100%; max-width: none; }
             .modal-gallery { height: 40%; }
+            .whatsapp-float { width: 50px; height: 50px; bottom: 15px; right: 15px; font-size: 26px; }
         }
     </style>
 </head>
@@ -264,6 +327,11 @@
     <!-- --- NOTIFICATIONS --- -->
     <div id="toast-container"></div>
     <div class="backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
+
+    <!-- --- WHATSAPP FLOATING BUTTON --- -->
+    <a href="https://wa.me/212610236889" class="whatsapp-float" target="_blank" aria-label="Contacter sur WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <!-- --- HEADER --- -->
     <header>
@@ -298,7 +366,7 @@
     <!-- --- FOOTER --- -->
     <footer style="background: #1a1a1a; color: #888; padding: 3rem 5%; text-align: center; margin-top: 3rem;">
         <div style="font-family: var(--font-heading); font-size: 1.5rem; color: white; margin-bottom: 1rem;">DECOBIZ CREATIONS</div>
-        <p>Livraison partout au Maroc</p>
+        <p style="margin-bottom: 10px;"><i class="fa-solid fa-truck-fast" style="color:var(--primary-color); margin-right: 8px;"></i> Livraison 24h/48h partout au Maroc</p>
         <p style="font-size: 0.8rem; margin-top: 2rem;">&copy; 2024 Decobiz. Tous droits réservés.</p>
     </footer>
 
@@ -317,37 +385,51 @@
 
         <!-- Formulaire de Commande (Caché par défaut) -->
         <div class="checkout-form" id="checkout-form">
-            <h4 style="margin-bottom: 1rem; color: var(--primary-color);">Finaliser la commande</h4>
+            <h4 style="margin-bottom: 1.2rem; color: var(--primary-color); border-bottom: 1px solid #eee; padding-bottom: 10px;">Finaliser la commande</h4>
+            
+            <div class="reassurance-text">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Paiement à la livraison. Vous serez contacté pour confirmer.</span>
+            </div>
+
             <div class="form-group">
                 <label>Nom complet</label>
-                <input type="text" id="cust-name" placeholder="Votre nom">
+                <input type="text" id="cust-name" placeholder="Votre nom et prénom">
             </div>
             <div class="form-group">
-                <label>Téléphone</label>
+                <label>Téléphone (WhatsApp)</label>
                 <input type="tel" id="cust-phone" placeholder="06 XX XX XX XX">
             </div>
             <div class="form-group">
-                <label>Adresse</label>
-                <input type="text" id="cust-address" placeholder="Ville, Rue, N°...">
+                <label>Adresse complète</label>
+                <input type="text" id="cust-address" placeholder="Ville, Rue, N°, Code Postal...">
             </div>
-            <div class="form-group">
-                <label>Méthode de Paiement</label>
-                <div class="payment-methods">
-                    <div class="payment-option selected" onclick="selectPayment(this, 'cod')">Paiement à la livraison</div>
-                    <div class="payment-option" onclick="selectPayment(this, 'online')">Carte Bancaire</div>
-                </div>
-            </div>
-            <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" onclick="processOrder()">Valider & Commander</button>
-            <button onclick="showCartItems()" style="width: 100%; margin-top: 10px; color: #777; background: none; text-decoration: underline;">Retour au panier</button>
+            
+            <button class="btn btn-primary" style="width: 100%; margin-top: 15px; background: var(--whatsapp-green);" onclick="processOrder()">
+                <i class="fa-brands fa-whatsapp"></i> Valider & Commander
+            </button>
+            <button onclick="showCartItems()" style="width: 100%; margin-top: 10px; color: #777; background: none; text-decoration: underline; font-size: 0.9rem;">Retour au panier</button>
         </div>
 
         <!-- Footer Panier -->
         <div class="cart-footer" id="cart-footer">
+            <div class="cart-summary">
+                <div class="cart-summary-row">
+                    <span>Sous-total</span>
+                    <span id="cart-subtotal">0 MAD</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>Livraison (Maroc)</span>
+                    <span style="color:var(--delivery-color);">20 MAD</span>
+                </div>
+            </div>
             <div class="cart-total">
                 <span>Total</span>
                 <span id="cart-total-price">0 MAD</span>
             </div>
-            <button class="btn-checkout" onclick="showCheckout()">Commander</button>
+            <button class="btn-checkout" onclick="showCheckout()">
+                Commander <i class="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
     </aside>
 
@@ -373,7 +455,11 @@
 
     <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
-        // --- 1. BASE DE DONNÉES PRODUITS (LISTE COMPLÈTE) ---
+        // --- 1. CONFIGURATION ---
+        const DELIVERY_FEE = 20; // Frais de port fixes (20 MAD comme demandé)
+        const PHONE_NUMBER = "212610236889"; // Votre numéro WhatsApp (Format International sans +)
+
+        // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
             // --- PACKS SIGNATURES ---
             {
@@ -385,12 +471,11 @@
                 badge: "Best Seller",
                 badgeClass: "badge-best"
             },
-            // --- NOUVEAU PACK ROSE TERRACOTTA (POSITIONNÉ JUSTE APRÈS LE BEST SELLER) ---
+            // --- PACK ROSE TERRACOTTA (MIS EN AVANT) ---
             {
                 id: 33,
                 title: "Pack Rose Terracotta",
                 price: 149,
-                // Image fournie dans le contexte : scène avec plateaux roses et accessoires
                 image: "rose.jpeg",
                 desc: "L'élégance du Terre Cuite doucement rosée. Ce pack exclusif comprend un plateau à perles pour bijoux, un plateau organique irrégulier, un plateau ovale et un petit vase texturé. La parfaite harmonie pour une chambre ou un salon cosy.",
                 badge: "Nouveau",
@@ -436,42 +521,42 @@
                 title: "Vue Panoramique",
                 price: 129,
                 image: "https://z-cdn-media.chatglm.cn/files/e4db04f2-e7d3-4976-bf08-cc35dcde17a3.jpeg?auth_key=1875342913-5e109e0ff4ba4bd7849f84660d643c4a-0-a0ded792144ff71a91dc58782f467e73",
-                desc: "Ensemble complet : Vase blanc avec herbes sèches, brûleur d'encens et plateau ovale."
+                desc: "Ensemble complet : Vase blanc avec herbes sèches, brûleur d'encens et plateau ovale.",
             },
             {
                 id: 8,
                 title: "Collection Lavande",
                 price: 165,
-                image: "https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29d03165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891",
-                desc: "Assortiment Violet Perlé : Plateaux perlés, bols et vases lilas."
+                image: "https://z-cdn-media.chatglm.cn/files/a0db9126-6e94-4920-b163-7b58201e354f.jpeg?auth_key=1875342913-b7f29303165d44eb814a695ff884206b-0-7b487981bf467df1d29269e97ece5891",
+                desc: "Assortiment Violet Perlé : Plateaux perlés, bols et vases lilas.",
             },
             {
                 id: 9,
                 title: "Pack EID",
                 price: 135,
                 image: "eid.jpeg",
-                desc: "Pack festif : Plateau EID et Brûleur encens pour célébrer."
+                desc: "Pack festif : Plateau EID et Brûleur encens pour célébrer.",
             },
             {
                 id: 10,
                 title: "Douceur Rosée",
                 price: 110,
                 image: "pa.jpeg",
-                desc: "Un pack délicat pour une touche chaleureuse et romantique."
+                desc: "Un pack délicat pour une touche chaleureuse et romantique.",
             },
             {
                 id: 11,
                 title: "Harmonie Moderne",
                 price: 179,
                 image: "mod.jpeg",
-                desc: "Un ensemble décoratif chic pour une ambiance épurée et sophistiquée."
+                desc: "Un ensemble décoratif chic pour une ambiance épurée et sophistiquée.",
             },
             {
                 id: 12,
                 title: "Ambiance Automne",
                 price: 45,
                 image: "https://z-cdn-media.chatglm.cn/files/babf9619-ef45-4e47-820a-562de04ab6d3.jpeg?auth_key=1875337220-5594015d0b5c4d76951dacdcfac94633-0-855c7cd23668372fcadfac95834a1f98",
-                desc: "Une Grande Citrouille pour décorer vos espaces."
+                desc: "Une Grande Citrouille pour décorer vos espaces.",
             },
 
             // --- VASES & SOLIFLORES ---
@@ -625,22 +710,19 @@
             }
         ];
 
-        // --- 2. TRACKING SYSTEM (PIXEL & ANALYTICS) ---
+        // --- 3. TRACKING SYSTEM (PIXEL & ANALYTICS) ---
         function trackEvent(eventName, params = {}) {
             console.log(`[Tracking] Event: ${eventName}`, params);
-            
-            // Envoi à Meta Pixel
             if (typeof fbq !== 'undefined') {
                 fbq('track', eventName, params);
             }
         }
 
-        // --- 3. GESTION DU PANIER (State) ---
+        // --- 4. GESTION DU PANIER (State) ---
         let cart = JSON.parse(localStorage.getItem('decobiz_cart')) || [];
         let currentProduct = null;
-        let selectedPaymentMethod = 'cod';
 
-        // --- 4. INITIALISATION & RENDU ---
+        // --- 5. INITIALISATION & RENDU ---
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
             updateCartUI();
@@ -663,7 +745,7 @@
             `).join('');
         }
 
-        // --- 5. MODAL PRODUIT ---
+        // --- 6. MODAL PRODUIT ---
         function openProductModal(id) {
             const product = products.find(p => p.id === id);
             if (!product) return;
@@ -674,7 +756,6 @@
             document.getElementById('modal-price').innerText = product.price + ' MAD';
             document.getElementById('modal-desc').innerText = product.desc;
             
-            // Configurer le bouton d'ajout
             const btn = document.getElementById('modal-add-btn');
             btn.onclick = () => {
                 addToCart(product);
@@ -694,7 +775,7 @@
             if (e.target.id === 'product-modal') closeModal();
         });
 
-        // --- 6. LOGIQUE PANIER ---
+        // --- 7. LOGIQUE PANIER ---
         function addToCart(product) {
             const existing = cart.find(item => item.id === product.id);
             if (existing) {
@@ -721,13 +802,17 @@
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
             const totalEl = document.getElementById('cart-total-price');
+            const subtotalEl = document.getElementById('cart-subtotal');
             const countEl = document.getElementById('cart-count');
             
             const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
             countEl.innerText = totalQty;
             countEl.style.display = totalQty > 0 ? 'flex' : 'none';
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const total = subtotal + DELIVERY_FEE; // Ajout des frais de port
+            
+            subtotalEl.innerText = subtotal + ' MAD';
             totalEl.innerText = total + ' MAD';
 
             if (cart.length === 0) {
@@ -764,7 +849,7 @@
             }
         }
 
-        // --- 7. CHECKOUT & PAIEMENT ---
+        // --- 8. CHECKOUT & PAIEMENT ---
         function showCheckout() {
             if(cart.length === 0) return;
             document.getElementById('cart-items-container').style.display = 'none';
@@ -778,13 +863,7 @@
             document.getElementById('checkout-form').classList.remove('active');
         }
 
-        function selectPayment(el, method) {
-            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
-            el.classList.add('selected');
-            selectedPaymentMethod = method;
-        }
-
-               function processOrder() {
+        function processOrder() {
             const name = document.getElementById('cust-name').value;
             const phone = document.getElementById('cust-phone').value;
             const address = document.getElementById('cust-address').value;
@@ -794,42 +873,31 @@
                 return;
             }
 
-            const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const deliveryFee = 20;
-            const grandTotal = total + deliveryFee;
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const grandTotal = subtotal + DELIVERY_FEE;
 
             // --- CONSTRUCTION DU MESSAGE WHATSAPP ---
-            let message = `*NOUVELLE COMMANDE - DECOBIZ*\n\n`;
+            let message = `🌟 *NOUVELLE COMMANDE - DECOBIZ*\n\n`;
             message += `👤 *Client:* ${name}\n`;
             message += `📱 *Tél:* ${phone}\n`;
-            message += `📍 *Adresse:* ${address}\n`;
+            message += `📍 *Adresse:* ${address}\n\n`;
             
-            // ICI : On affiche le choix du client dans le message
-            message += `💳 *Paiement choisi:* ${selectedPaymentMethod === 'cod' ? 'À la livraison' : 'CARTE BANCAIRE (À traiter)'}\n\n`;
-            
-            message += `*Panier:*\n`;
-            
+            message += `📦 *Panier:*\n`;
             cart.forEach(item => {
-                message += `- ${item.title} (x${item.qty}): ${item.price * item.qty} MAD\n`;
+                message += `▪️ ${item.title} (x${item.qty}): ${item.price * item.qty} MAD\n`;
             });
 
-            message += `\n🚚 *Livraison:* ${deliveryFee} MAD`;
+            message += `\n🚚 *Livraison:* ${DELIVERY_FEE} MAD`;
             message += `\n💰 *TOTAL À PAYER:* ${grandTotal} MAD`;
+            message += `\n\n✅ *Méthode: Paiement à la livraison*`;
 
-            // --- TRACKING (Optionnel) ---
+            // --- TRACKING ---
             if (typeof fbq !== 'undefined') {
                 fbq('track', 'InitiateCheckout', { value: grandTotal, currency: 'MAD' });
             }
 
-            // --- ENVOI DIRECT (PLUS D'ATTENTE) ---
-            // On envoie directement sur WhatsApp, que ce soit Cash ou Carte
-            sendToWhatsapp(message);
-        }
-
-
-        function sendToWhatsapp(text) {
-            const phoneNumber = "212610236889";
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+            // --- ENVOI WHATSAPP ---
+            const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
 
