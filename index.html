@@ -34,6 +34,9 @@
         :root {
             --primary-color: #8B5E3C;
             --primary-dark: #6d4a30;
+            /* Nouvelle couleur Terracotta Rose demandée */
+            --terracotta-rose: #E07A78; 
+            
             --secondary-color: #F9F7F2;
             --text-color: #2c2c2c;
             --light-text: #FFFFFF;
@@ -47,6 +50,7 @@
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
             --shadow-hover: 0 20px 40px rgba(0,0,0,0.12);
             --shadow-gold: 0 10px 25px rgba(212, 175, 55, 0.3);
+            --shadow-terracotta: 0 10px 25px rgba(224, 122, 120, 0.4); /* Ombre personnalisée */
             --radius-card: 16px;
             --radius-btn: 50px;
             --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -104,7 +108,7 @@
         }
         .cart-btn:hover { color: var(--primary-color); transform: scale(1.1); }
         .cart-count {
-            position: absolute; top: -5px; right: -5px; background: var(--accent-green); color: white;
+            position: absolute; top: -5px; right: -5px; background: var(--terracotta-rose); color: white;
             font-size: 0.7rem; font-weight: bold; width: 20px; height: 20px;
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -152,6 +156,7 @@
             border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; z-index: 10;
         }
         .badge-best { background: var(--gold-color); color: white; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.4); }
+        .badge-new { background: var(--terracotta-rose); color: white; box-shadow: 0 2px 10px rgba(224, 122, 120, 0.4); }
 
         .card-details { padding: 1.2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
         .card-title { font-family: var(--font-heading); font-size: 1.15rem; color: var(--primary-color); margin-bottom: 0.5rem; }
@@ -199,7 +204,7 @@
             display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: var(--transition); margin-top: auto;
         }
-        .btn-add-cart:hover { background: var(--primary-color); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .btn-add-cart:hover { background: var(--terracotta-rose); transform: translateY(-3px); box-shadow: var(--shadow-terracotta); }
 
         /* --- CART SIDEBAR --- */
         .cart-sidebar {
@@ -379,6 +384,17 @@
                 desc: "Le Pack Ultime. Contient une Arche décorative, 2 Vases, Plateaux, Boîte d’arrangement, Mbekhra, Porte-bougie, Plateau à boules, fleurs séchées + cadeau surprise.",
                 badge: "Best Seller",
                 badgeClass: "badge-best"
+            },
+            // --- NOUVEAU PACK ROSE TERRACOTTA (POSITIONNÉ JUSTE APRÈS LE BEST SELLER) ---
+            {
+                id: 33,
+                title: "Pack Rose Terracotta",
+                price: 149,
+                // Image fournie dans le contexte : scène avec plateaux roses et accessoires
+                image: "{WhatsApp%20Image%202026-04-03%20at%2018.03.30.jpeg：画面以白色布料为场景，摆放着粉色系手工家居饰品，包含带珠边的圆形托盘（放置戒指）、不规则托盘（放置金属链）、椭圆形托盘、带纹理小罐等；上方文字为“Decobizcreations”“HANDMADE HOMEDECOR”，呈现温馨的手工家居布置风格。}",
+                desc: "L'élégance du Terre Cuite doucement rosée. Ce pack exclusif comprend un plateau à perles pour bijoux, un plateau organique irrégulier, un plateau ovale et un petit vase texturé. La parfaite harmonie pour une chambre ou un salon cosy.",
+                badge: "Nouveau",
+                badgeClass: "badge-new"
             },
             {
                 id: 2,
