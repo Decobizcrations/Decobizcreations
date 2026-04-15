@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Decobiz Creations | Boutique Officielle - Discutez avec nous</title>
-    <meta name="description" content="Packs décoratifs artisanaux uniques. Sublimez votre intérieur avec Decobiz. Paiement à la livraison partout au Maroc.">
+    <title>Decobiz Creations | Boutique Officielle - Nouveautés</title>
+    <meta name="description" content="Packs décoratifs artisanaux uniques. Nouveaux vide-poche, arches et jarres. Sublimez votre intérieur avec Decobiz. Paiement à la livraison partout au Maroc.">
     
     <!-- --- FACEBOOK PIXEL --- -->
     <script>
@@ -87,7 +87,7 @@
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast i { color: var(--delivery-color); font-size: 1.2rem; }
 
-        /* Bouton Flottant ( amélioré ) */
+        /* Bouton Flottant */
         .whatsapp-float {
             position: fixed; width: 65px; height: 65px; bottom: 30px; right: 25px;
             background-color: var(--whatsapp-green); color: #FFF;
@@ -177,7 +177,6 @@
         .btn-primary { background: var(--primary-color); color: white; }
         .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 94, 60, 0.4); }
         
-        /* Nouveau Bouton WhatsApp */
         .btn-whatsapp { 
             background: var(--whatsapp-green); color: white; 
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
@@ -361,7 +360,6 @@
         }
         .btn-checkout:hover { background: #124729; transform: translateY(-2px); }
 
-        /* Lien Aide Panier */
         .cart-help-link {
             display: block; text-align: center; margin-top: 15px; font-size: 0.9rem; 
             color: var(--whatsapp-green); font-weight: 600; text-decoration: underline;
@@ -391,7 +389,7 @@
         .backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2400; display: none; backdrop-filter: blur(4px); }
         .backdrop.active { display: block; }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
@@ -416,7 +414,7 @@
     <div class="backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
 
     <!-- Bouton Flottant (Message pré-rempli général) -->
-    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour Decobiz, je suis sur votre site et j\'aimerais avoir des conseils sur les couleurs.')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
+    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour Decobiz, je suis sur votre site et j\'aimerais avoir des conseils sur les nouvelles pièces.')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -424,8 +422,8 @@
     <header>
         <div class="logo">DECOBIZ</div>
         <div class="header-actions">
-            <!-- Nouveau Bouton Chat Header -->
-            <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser un pack.')" aria-label="Chat WhatsApp">
+            <!-- Bouton Chat Header -->
+            <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser une nouvelle pièce.')" aria-label="Chat WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </button>
             <button class="cart-btn" onclick="toggleCart()" aria-label="Panier">
@@ -444,13 +442,13 @@
     <!-- HERO avec Double CTA -->
     <section class="hero">
         <div class="hero-content">
-            <h1>L'Art de la Décoration<br>Artisanale Marocaine</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.95;">Des pièces uniques pour un intérieur qui raconte votre histoire.</p>
+            <h1>Nouvelles Créations<br>Artisanales & Uniques</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.95;">Découvrez nos derniers vide-poche, arches décoratives et jarres.</p>
             
             <div class="custom-banner">
                 <i class="fa-solid fa-paint-roller"></i>
                 <div class="custom-text">
-                    <strong>100% Personnalisable</strong>
+                    <strong>Sur Mesure</strong>
                     <span>Décrivez la couleur exacte que vous souhaitez !</span>
                 </div>
             </div>
@@ -462,13 +460,11 @@
                 <div class="time-box"><div class="time-val" id="seconds">00</div><div class="time-label">Sec</div></div>
             </div>
 
-            <!-- Boutons d'Action -->
             <div class="hero-buttons">
                 <a href="#gallery" class="btn btn-primary">
                     Voir la Collection <i class="fa-solid fa-arrow-right" style="font-size: 0.8em;"></i>
                 </a>
-                <!-- Nouveau Bouton Chat Immédiat -->
-                <button class="btn btn-whatsapp" onclick="openWhatsApp('Bonjour, je souhaite discuter d\'une commande personnalisée.')">
+                <button class="btn btn-whatsapp" onclick="openWhatsApp('Bonjour, je souhaite commander les nouvelles pièces.')">
                     <i class="fa-brands fa-whatsapp"></i> Discuter avec un conseiller
                 </button>
             </div>
@@ -489,7 +485,7 @@
         <div class="testi-grid">
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"J'ai demandé le pack en 'Vert sauge' pour ma chambre, c'était exactement ce que je voulais. Merci pour la flexibilité !"</p>
+                <p class="testi-text">"J'ai commandé le vide-poche et le plateau bijoux. La qualité est incroyable et le rendu des couleurs personnalisées est parfait."</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Salma+B&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -500,7 +496,7 @@
             </div>
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"J'ai noté 'Noir et Doré' dans la personnalisation et le résultat est sublime. Qualité au rendez-vous."</p>
+                <p class="testi-text">"Les nouvelles pièces en forme de feuille sont sublimes. Livraison rapide au Maroc."</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Karim+M&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -511,7 +507,7 @@
             </div>
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"Service client au top sur WhatsApp. J'ai pu expliquer exactement la teinte que je cherchais."</p>
+                <p class="testi-text">"J'ai noté 'Noir et Doré' pour ma jarre, c'est exactement ce que j'ai reçu. Merci Decobiz !"</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Amal+T&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -594,8 +590,7 @@
                 Commander Maintenant <i class="fa-solid fa-arrow-right"></i>
             </button>
             
-            <!-- Lien Chat Panier -->
-            <a onclick="openWhatsApp('Bonjour, j\'ai une question sur mon panier avant de commander.')" class="cart-help-link">
+            <a onclick="openWhatsApp('Bonjour, j\'ai une question sur mon panier.')" class="cart-help-link">
                 <i class="fa-brands fa-whatsapp"></i> Une question ? Discutons-en !
             </a>
         </div>
@@ -619,7 +614,7 @@
                 
                 <div class="personalization-section">
                     <div class="pers-title"><i class="fa-solid fa-pen-fancy"></i> Personnalisation :</div>
-                    <textarea id="custom-color-input" class="pers-input" placeholder="Ex: Bleu canard, Terracotta clair, Blanc cassé..."></textarea>
+                    <textarea id="custom-color-input" class="pers-input" placeholder="Ex: Bleu canard, Terracotta, Blanc cassé..."></textarea>
                     <div class="pers-note"><i class="fa-solid fa-lightbulb"></i> Écrivez la couleur exacte souhaitée ici.</div>
                 </div>
 
@@ -639,7 +634,6 @@
         const PHONE_NUMBER = "212610236889";
         const FREE_SHIPPING_THRESHOLD = 300;
 
-        // Fonction Helper pour ouvrir WhatsApp avec message pré-rempli
         function openWhatsApp(message) {
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
@@ -647,6 +641,83 @@
 
         // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
+            // --- NOUVEAUX PRODUITS (Demande Spécifique) ---
+            {
+                id: 101,
+                title: "Vide-Poche Premium",
+                price: 85,
+                image: "boite1.jpg",
+                desc: "Élégant contenant avec texture nervurée et poignée boule. Parfait pour les bijoux ou les clés. Design minimaliste et épuré.",
+                badge: "Nouveau",
+                badgeClass: "badge-new",
+                sold: 15
+            },
+            {
+                id: 102,
+                title: "Ensemble Feuille Artisanale",
+                price: 120,
+                image: "leaf.jpg",
+                desc: "Set de 3 plats en forme de feuille avec textures réalistes. Idéal pour servir des amuse-gueuches ou comme décoration murale.",
+                badge: "Original",
+                badgeClass: "badge-best",
+                sold: 8
+            },
+            {
+                id: 103,
+                title: "Bougie Rose Poudrée",
+                price: 45,
+                image: "support.jpg",
+                desc: "Bougie sculpturale rose sur son socle. Crée une ambiance chaude et romantique instantanément.",
+                sold: 32
+            },
+            {
+                id: 104,
+                title: "Supports & Bougies Déco",
+                price: 65,
+                image: "support1.jpg",
+                desc: "Lot de supports bougie avec nœuds. Parfait pour une table élégante ou une chambre cozy.",
+                sold: 19
+            },
+            {
+                id: 105,
+                title: "Vase New York Chic",
+                price: 95,
+                image: "vase1.jpg",
+                desc: "Vase blanc nervuré, accompagné d'un livre de déco et de fleurs séchées violettes. Une touche urbaine et chic.",
+                badge: "Tendance",
+                badgeClass: "badge-new",
+                sold: 24
+            },
+            {
+                id: 106,
+                title: "Plateau Écrin Bijoux",
+                price: 110,
+                image: "plaa.jpeg",
+                desc: "Plateau ovale élégant spécialement conçu pour présenter vos bijoux préférés. Finitions dorées subtiles.",
+                badge: "Cadeau",
+                badgeClass: "badge-best",
+                sold: 41
+            },
+            {
+                id: 107,
+                title: "Déco Automne & Citrouille",
+                price: 55,
+                image: "WhatsApp%20Image%202026-04-04%20at%2022.09.41.jpeg",
+                desc: "Grande citrouille artisanale orange et feuilles d'automne. Parfaite pour la saison ou la décoration permanente.",
+                sold: 67
+            },
+            {
+                id: 108,
+                title: "Plateau Perles & Peluche",
+                price: 135,
+                image: "t%C3%A9l%C3%A9chargement%20(5).jpg",
+                desc: "Plateau à perles rondes avec un petit accessoire peluche. Une touche de douceur pour votre coiffeuse.",
+                badge: "Favori",
+                badgeClass: "badge-best",
+                sold: 29
+            },
+
+            // --- ANCIENS PRODUITS (Conservation) ---
             {
                 id: 1,
                 title: "Collection Signature",
@@ -849,7 +920,7 @@
                 return `
                 <div class="product-card" onclick="openProductModal(${p.id})">
                     <div class="card-img-container">
-                        <img src="${p.image}" alt="${p.title}" loading="lazy">
+                        <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300?text=Image+Non+Disponible'">
                         ${p.badge ? `<span class="badge ${p.badgeClass || ''}">${p.badge}</span>` : ''}
                         ${stockBadge}
                     </div>
@@ -927,7 +998,7 @@
                 document.getElementById('cart-footer').style.display = 'block';
                 container.innerHTML = cart.map(item => `
                     <div class="cart-item">
-                        <img src="${item.image}" alt="${item.title}">
+                        <img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/80'">
                         <div class="item-details">
                             <div class="item-name">${item.title}</div>
                             <div class="item-variant"><i class="fa-solid fa-palette" style="font-size:0.7em; margin-right:5px;"></i> ${item.selectedColor}</div>
