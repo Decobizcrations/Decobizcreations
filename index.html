@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | Boutique Officielle - Nouveautés</title>
-    <meta name="description" content="Packs décoratifs artisanaux uniques. Nouveaux vide-poche, arches et jarres. Sublimez votre intérieur avec Decobiz. Paiement à la livraison partout au Maroc.">
+    <meta name="description" content="Packs décoratifs artisanaux uniques. Plateaux ronds, arches et bijoux. Sublimez votre intérieur avec Decobiz. Paiement à la livraison partout au Maroc.">
     
     <!-- --- FACEBOOK PIXEL --- -->
     <script>
@@ -413,17 +413,16 @@
     <div id="toast-container"></div>
     <div class="backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
 
-    <!-- Bouton Flottant (Message pré-rempli général) -->
-    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour Decobiz, je suis sur votre site et j\'aimerais avoir des conseils sur les nouvelles pièces.')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
+    <!-- Bouton Flottant -->
+    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour Decobiz, je suis sur votre site et j\'aimerais avoir des conseils.')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- HEADER avec Bouton Chat -->
+    <!-- HEADER -->
     <header>
         <div class="logo">DECOBIZ</div>
         <div class="header-actions">
-            <!-- Bouton Chat Header -->
-            <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser une nouvelle pièce.')" aria-label="Chat WhatsApp">
+            <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser une pièce.')" aria-label="Chat WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
             </button>
             <button class="cart-btn" onclick="toggleCart()" aria-label="Panier">
@@ -439,11 +438,11 @@
         <div class="trust-item"><i class="fa-solid fa-hand-holding-dollar"></i> Paiement à la livraison</div>
     </div>
 
-    <!-- HERO avec Double CTA -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Nouvelles Créations<br>Artisanales & Uniques</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.95;">Découvrez nos derniers vide-poche, arches décoratives et jarres.</p>
+            <h1>Plateaux & Arches<br>Décoratives Uniques</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.95;">Découvrez notre nouvelle sélection de plateaux ronds, arches et présentoirs bijoux.</p>
             
             <div class="custom-banner">
                 <i class="fa-solid fa-paint-roller"></i>
@@ -464,7 +463,7 @@
                 <a href="#gallery" class="btn btn-primary">
                     Voir la Collection <i class="fa-solid fa-arrow-right" style="font-size: 0.8em;"></i>
                 </a>
-                <button class="btn btn-whatsapp" onclick="openWhatsApp('Bonjour, je souhaite commander les nouvelles pièces.')">
+                <button class="btn btn-whatsapp" onclick="openWhatsApp('Bonjour, je souhaite commander les nouveaux plateaux.')">
                     <i class="fa-brands fa-whatsapp"></i> Discuter avec un conseiller
                 </button>
             </div>
@@ -485,7 +484,7 @@
         <div class="testi-grid">
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"J'ai commandé le vide-poche et le plateau bijoux. La qualité est incroyable et le rendu des couleurs personnalisées est parfait."</p>
+                <p class="testi-text">"J'ai commandé le plateau rond diamètre 14cm, la finition est parfaite pour mes bijoux."</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Salma+B&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -496,7 +495,7 @@
             </div>
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"Les nouvelles pièces en forme de feuille sont sublimes. Livraison rapide au Maroc."</p>
+                <p class="testi-text">"L'arche décorative change complètement l'ambiance de mon salon. Merci !"</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Karim+M&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -507,7 +506,7 @@
             </div>
             <div class="testi-card">
                 <i class="fa-solid fa-quote-right"></i>
-                <p class="testi-text">"J'ai noté 'Noir et Doré' pour ma jarre, c'est exactement ce que j'ai reçu. Merci Decobiz !"</p>
+                <p class="testi-text">"Support pour bijoux adorable. Le rendu coquille est exactement ce que je cherchais."</p>
                 <div class="testi-author">
                     <img src="https://ui-avatars.com/api/?name=Amal+T&background=random&color=fff" style="width:40px;height:40px;border-radius:50%;">
                     <div>
@@ -630,7 +629,7 @@
     <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         // --- 1. CONFIGURATION ---
-        const DELIVERY_FEE = 35;
+        const DELIVERY_FEE = 20;
         const PHONE_NUMBER = "212610236889";
         const FREE_SHIPPING_THRESHOLD = 300;
 
@@ -641,83 +640,142 @@
 
         // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
-            // --- NOUVEAUX PRODUITS (Demande Spécifique) ---
+            // --- NOUVEAUX PRODUITS AJOUTÉS ICI ---
             {
-                id: 101,
-                title: "Vide-Poche Premium",
-                price: 29,
-                image: "boite1.jpg",
-                desc: "Élégant contenant avec texture nervurée et poignée boule. Parfait pour les bijoux ou les clés. Design minimaliste et épuré.",
+                id: 201,
+                title: "Plateau Rond 14cm",
+                price: 55,
+                image: "rond.jpg",
+                desc: "Petit plateau rond tacheté de 14cm de diamètre. Idéal pour les anneaux ou comme décoration d'appoint.",
                 badge: "Nouveau",
+                badgeClass: "badge-new",
+                sold: 12
+            },
+            {
+                id: 202,
+                title: "Arche Décorative Cosy",
+                price: 140,
+                image: "Cosy%20home%20-%20handmade%20tray.jpg",
+                desc: "Arche décorative style 'Cosy Home' avec nervures rayonnantes. Crée un point focal unique dans votre intérieur.",
+                badge: "Tendance",
+                badgeClass: "badge-best",
+                sold: 8
+            },
+            {
+                id: 203,
+                title: "Plateau Étoile Bijoux",
+                price: 65,
+                image: "Bandeja%20Estrela%20do%20Mar.jpg",
+                desc: "Plateau en forme d'étoile parfait pour ranger vos boucles d'oreilles favorites. Design exclusif Decobiz.",
+                badge: "Cadeau",
+                badgeClass: "badge-best",
+                sold: 24
+            },
+            {
+                id: 204,
+                title: "Plateau Irrégulier Bijoux",
+                price: 95,
+                image: "jewelry%F0%9F%A4%8D.jpg",
+                desc: "Plateau organique irrégulier blanc pour exposer vos colliers et bracelets. Esthétique brute et naturelle.",
+                sold: 18
+            },
+            {
+                id: 205,
+                title: "Support Bougie Spirale",
+                price: 49,
+                image: "WhatsApp%20Image%202026-04-04%20at%2022.09.41%20(2).jpeg",
+                desc: "Élégant support blanc pour bougies spirales. Apporte une touche moderne et apaisante à votre table.",
+                sold: 30
+            },
+            {
+                id: 206,
+                title: "Coquille Livre Bijoux",
+                price: 85,
+                image: "t%C3%A9l%C3%A9chargement%20(4).jpg",
+                desc: "Présentoir coquille accompagné d'un livre de déco. La mise en scène parfaite pour vos pièces précieuses.",
+                badge: "Art",
                 badgeClass: "badge-new",
                 sold: 15
             },
             {
-                id: 102,
-                title: " Feuille Artisanale",
-                price: 35,
-                image: "leaf.jpg",
-                desc: "Set de 3 plats en forme de feuille avec textures réalistes. Idéal pour servir des amuse-gueuches ou comme décoration murale.",
-                badge: "Original",
+                id: 207,
+                title: "Lot Plateaux Béton",
+                price: 150,
+                image: "Large%20Round%20Concrete%20Tray%20_%20Jesmonite%20Table%20Display%20Tray%20_%20Decorative%20Tray%20_%20Living%20Room%20Candle%20Tray%20_%20Stone%20Tray%20_%20Aesthetic%20Tray%20_%20Cement%20-%20Etsy.jpg",
+                desc: "Lot de 2 grands plateaux ronds en style béton (Jesmonite). Blanc et Gris. Parfaits pour bougies ou rangement.",
+                badge: "Pack",
                 badgeClass: "badge-best",
+                sold: 10
+            },
+
+            // --- PRODUITS PRÉCÉDEMMENT AJOUTÉS (CONSERVATION) ---
+            {
+                id: 101,
+                title: "Vide-Poche Premium",
+                price: 85,
+                image: "boite1.jpg",
+                desc: "Élégant contenant avec texture nervurée et poignée boule. Parfait pour les bijoux ou les clés.",
+                sold: 15
+            },
+            {
+                id: 102,
+                title: "Ensemble Feuille Artisanale",
+                price: 120,
+                image: "leaf.jpg",
+                desc: "Set de 3 plats en forme de feuille avec textures réalistes.",
                 sold: 8
             },
             {
                 id: 103,
                 title: "Bougie Rose Poudrée",
-                price: 39,
+                price: 45,
                 image: "support.jpg",
-                desc: "Bougie sculpturale rose sur son socle. Crée une ambiance chaude et romantique instantanément.",
+                desc: "Bougie sculpturale rose sur son socle.",
                 sold: 32
             },
             {
                 id: 104,
-                title: "Support & Bougie Déco",
-                price: 20,
+                title: "Supports & Bougies Déco",
+                price: 65,
                 image: "support1.jpg",
-                desc: "Lot de supports bougie avec nœuds. Parfait pour une table élégante ou une chambre cozy.",
+                desc: "Lot de supports bougie avec nœuds.",
                 sold: 19
             },
             {
                 id: 105,
                 title: "Vase New York Chic",
-                price: 45,
+                price: 95,
                 image: "vase1.jpg",
-                desc: "Vase blanc nervuré, accompagné d'un livre de déco et de fleurs séchées violettes. Une touche urbaine et chic.",
-                badge: "Tendance",
-                badgeClass: "badge-new",
+                desc: "Vase blanc nervuré avec livre de déco et fleurs séchées.",
                 sold: 24
             },
             {
                 id: 106,
-                title: "Plateau  Bijoux",
-                price: 55,
+                title: "Plateau Écrin Bijoux",
+                price: 110,
                 image: "plaa.jpeg",
-                desc: "Plateau ovale élégant spécialement conçu pour présenter vos bijoux préférés. Finitions dorées subtiles.",
-                badge: "Cadeau",
-                badgeClass: "badge-best",
+                desc: "Plateau ovale élégant pour présenter vos bijoux.",
                 sold: 41
             },
             {
                 id: 107,
                 title: "Déco Automne & Citrouille",
-                price: 49,
-                image: "citrouille.jpeg",
-                desc: "Grande citrouille artisanale orange et feuilles d'automne. Parfaite pour la saison ou la décoration permanente.",
+                price: 55,
+                image: "WhatsApp%20Image%202026-04-04%20at%2022.09.41.jpeg",
+                desc: "Grande citrouille artisanale orange et feuilles d'automne.",
                 sold: 67
             },
             {
                 id: 108,
                 title: "Plateau Perles & Peluche",
                 price: 135,
-                image: "boules.jpg",
-                desc: "Plateau à perles rondes avec un petit accessoire peluche. Une touche de douceur pour votre coiffeuse.",
+                image: "t%C3%A9l%C3%A9chargement%20(5).jpg",
+                desc: "Plateau à perles rondes avec un petit accessoire peluche.",
                 badge: "Favori",
                 badgeClass: "badge-best",
                 sold: 29
             },
-
-            // --- ANCIENS PRODUITS (Conservation) ---
+            // --- ANCIEUX PRODUITS (CONSERVATION) ---
             {
                 id: 1,
                 title: "Collection Signature",
@@ -866,7 +924,6 @@
                 badgeClass: "badge-best",
                 sold: 64
             }
-            
         ];
 
         // --- 3. COMPTE A REBOURS ---
