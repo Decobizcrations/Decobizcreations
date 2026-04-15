@@ -640,7 +640,19 @@
 
         // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
-            // --- NOUVEAUX PRODUITS (Nouveautés) ---
+            // --- NOUVEAU PRODUIT AJOUTÉ (Porte-Bougles Ondulation) ---
+            {
+                id: 210,
+                title: "Porte-Bougles Ondulation",
+                price: 35,
+                image: "https://images.unsplash.com/photo-1602968477716-476c4949464d?q=80&w=600&auto=format&fit=crop", // Image placeholder correspondant à la description
+                desc: "Élégant porte-bougles à forme ondulée (Wave). Crée une ambiance sereine et chaleureuse, parfait pour les soirées douces. Idéal sur une table en bois.",
+                badge: "Coup de Cœur",
+                badgeClass: "badge-best",
+                sold: 8
+            },
+
+            // --- AUTRES NOUVEAUTÉS ---
             {
                 id: 201,
                 title: "Plateau Rond 14cm",
@@ -707,12 +719,12 @@
                 sold: 10
             },
             
-            // --- CORRECTION ICI: Plateaux Ovaux avec IDs uniques (208, 209) et placeholders ---
+            // --- Plateaux Ovaux (Corrigés) ---
             {
                 id: 208, 
                 title: "Plateau Ovale 18 cm",
                 price: 35,
-                image: "pla18.jpg", // Placeholder image
+                image: "https://images.unsplash.com/photo-1576179635667-0b2c0d098605?q=80&w=600&auto=format&fit=crop",
                 desc: "Plateau ovale compact de 18cm. Idéal pour présenter vos parfums préférés sur votre table de chevet.",
                 badge: "Nouveau",
                 badgeClass: "badge-new",
@@ -722,14 +734,14 @@
                 id: 209, 
                 title: "Plateau Ovale 23 cm",
                 price: 55,
-                image: "ovale23.jpeg", // Placeholder image
+                image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?q=80&w=600&auto=format&fit=crop",
                 desc: "Grand plateau ovale de 23cm. Design élégant pour organiser vos parfums ou objets déco avec style.",
                 badge: "Best Seller",
                 badgeClass: "badge-best",
                 sold: 64
             },
 
-            // --- AUTRES PRODUITS (Déco & Vases) ---
+            // --- AUTRES PRODUITS ---
             {
                 id: 101,
                 title: "Vide-Poche Premium",
@@ -797,7 +809,7 @@
                 sold: 29
             },
             
-            // --- COLLECTIONS & PACKS ---
+            // --- COLLECTIONS ---
             {
                 id: 1,
                 title: "Collection Signature",
