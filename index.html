@@ -103,14 +103,27 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* --- HEADER --- */
+        /* --- HEADER & SEARCH --- */
         header {
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             padding: 0.8rem 5%; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
         }
         .logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; text-transform: uppercase; }
+        
+        .header-center { flex: 1; margin: 0 20px; display: flex; justify-content: center; }
+        
+        .search-bar {
+            width: 100%; max-width: 400px; position: relative;
+        }
+        .search-input {
+            width: 100%; padding: 10px 45px 10px 20px; border-radius: 30px; border: 1px solid #ddd;
+            font-family: var(--font-ui); font-size: 0.95rem; transition: 0.3s; background: #f8f8f8;
+        }
+        .search-input:focus { outline: none; border-color: var(--primary-color); background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #999; }
+
         .header-actions { display: flex; align-items: center; gap: 15px; }
         
         .action-icon { 
@@ -131,121 +144,137 @@
         /* --- TRUST BAR --- */
         .trust-bar {
             background-color: #f1f8e9; color: var(--delivery-color);
-            padding: 10px 5%; font-size: 0.85rem; font-family: var(--font-ui);
+            padding: 8px 5%; font-size: 0.8rem; font-family: var(--font-ui);
             display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;
             border-bottom: 1px solid #e0e0e0;
         }
-        .trust-item { display: flex; align-items: center; gap: 8px; font-weight: 600; }
-        .trust-item i { font-size: 1rem; }
+        .trust-item { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+        .trust-item i { font-size: 0.9rem; }
 
         /* --- HERO SECTION --- */
         .hero {
-            position: relative; height: 90vh; min-height: 600px;
+            position: relative; height: 75vh; min-height: 500px; /* Réduit un peu pour laisser place aux packs */
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('salle.jpeg');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center;
             color: var(--light-text); padding: 0 1rem;
         }
         .hero-content { max-width: 900px; animation: fadeInUp 1s ease-out; position: relative; z-index: 2; }
-        .hero h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.2; }
+        .hero h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 0.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.5); line-height: 1.2; }
         
         .custom-banner {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            padding: 15px 25px;
+            padding: 12px 20px;
             border-radius: 50px;
             display: inline-flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 12px;
+            margin-bottom: 20px;
             border: 1px solid rgba(255,255,255,0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
         }
-        .custom-banner i { font-size: 1.8rem; color: var(--gold-color); }
+        .custom-banner i { font-size: 1.5rem; color: var(--gold-color); }
         .custom-text { text-align: left; }
-        .custom-text strong { display: block; font-size: 1.1rem; font-family: var(--font-ui); color: white; }
-        .custom-text span { font-size: 0.85rem; opacity: 0.9; }
+        .custom-text strong { display: block; font-size: 1rem; font-family: var(--font-ui); color: white; }
+        .custom-text span { font-size: 0.8rem; opacity: 0.9; }
 
-        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+        .hero-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
 
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 1rem 2.5rem; border-radius: var(--radius-btn);
-            font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 0.9rem 2rem; border-radius: var(--radius-btn);
+            font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
             transition: var(--transition); border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); font-family: var(--font-ui);
         }
         .btn-primary { background: var(--primary-color); color: white; }
-        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(139, 94, 60, 0.4); }
+        .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
         
         .btn-whatsapp { 
             background: var(--whatsapp-green); color: white; 
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); 
         }
-        .btn-whatsapp:hover { background: var(--whatsapp-dark); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6); }
+        .btn-whatsapp:hover { background: var(--whatsapp-dark); transform: translateY(-3px); }
 
         .countdown-container {
-            margin: 20px 0; display: inline-flex; gap: 15px; background: rgba(0,0,0,0.4);
-            padding: 10px 20px; border-radius: 8px; backdrop-filter: blur(5px);
+            margin: 15px 0; display: inline-flex; gap: 12px; background: rgba(0,0,0,0.4);
+            padding: 8px 15px; border-radius: 8px; backdrop-filter: blur(5px);
         }
         .time-box { text-align: center; }
-        .time-val { font-size: 1.5rem; font-weight: 700; color: var(--gold-color); font-family: var(--font-ui); line-height: 1; }
-        .time-label { font-size: 0.7rem; text-transform: uppercase; opacity: 0.8; }
+        .time-val { font-size: 1.3rem; font-weight: 700; color: var(--gold-color); font-family: var(--font-ui); line-height: 1; }
+        .time-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
 
-        /* --- FEATURED PACKS SECTION (En haut) --- */
-        .featured-section {
+        /* --- FEATURED PACKS SLIDER (Style Compact) --- */
+        .featured-slider-section {
             background: white;
-            padding: 4rem 5%;
+            padding: 20px 0; /* Plus compact */
             border-bottom: 1px solid #eee;
-            position: relative;
-            z-index: 10;
-            margin-top: -60px; /* Chevauchement élégant sur le Hero */
+            margin-top: -40px; /* Chevauchement réduit */
             border-top-left-radius: 30px;
             border-top-right-radius: 30px;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            position: relative; z-index: 10;
         }
-        .section-header { text-align: center; margin-bottom: 3rem; }
-        .section-header h2 { font-family: var(--font-heading); color: var(--primary-color); font-size: 2.2rem; margin-bottom: 0.5rem; }
-        .section-header p { color: #666; font-style: italic; }
+        .featured-header {
+            padding: 0 5%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;
+        }
+        .featured-title {
+            font-family: var(--font-heading); color: var(--primary-color); font-size: 1.5rem;
+        }
 
-        .featured-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;
-            max-width: 1200px; margin: 0 auto;
+        /* Conteneur Slider Horizontal */
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 15px;
+            padding: 10px 5% 20px 5%;
+            scrollbar-width: none; /* Firefox */
         }
+        .slider-container::-webkit-scrollbar { display: none; }
 
-        /* Carte Spéciale pour les Packs */
-        .pack-card {
-            background: white; border-radius: 20px; overflow: hidden;
-            border: 1px solid #eee; box-shadow: var(--shadow-soft);
-            transition: var(--transition); cursor: pointer; position: relative;
-            display: flex; flex-direction: column;
+        /* Carte Pack Compacte (Pour Mobile/Tablette) */
+        .pack-card-compact {
+            flex: 0 0 160px; /* Largeur fixe petite sur mobile */
+            scroll-snap-align: start;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
         }
-        .pack-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--primary-color); }
+        .pack-card-compact:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-color: var(--terracotta-rose); }
         
-        .pack-img { height: 250px; width: 100%; object-fit: cover; position: relative; }
-        
-        .pack-badge {
-            position: absolute; top: 15px; left: 15px;
+        .pack-img-compact {
+            width: 100%; height: 160px; object-fit: cover; border-top-left-radius: 12px; border-top-right-radius: 12px;
+        }
+        .pack-badge-compact {
+            position: absolute; top: 8px; left: 8px;
             background: linear-gradient(135deg, var(--gold-color), #F5D76E);
-            color: #5c4d00; padding: 5px 15px; border-radius: 20px;
-            font-weight: 700; font-size: 0.8rem; text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.4);
+            color: #5c4d00; padding: 3px 8px; border-radius: 12px;
+            font-weight: 700; font-size: 0.65rem; text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        .pack-content { padding: 1.5rem; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .pack-title { font-family: var(--font-heading); font-size: 1.4rem; color: var(--text-color); margin-bottom: 0.5rem; font-weight: 700; }
-        .pack-desc { font-size: 0.9rem; color: #777; margin-bottom: 1rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .pack-price { font-size: 1.8rem; color: var(--primary-color); font-weight: 700; font-family: var(--font-ui); margin-bottom: 1rem; }
-        
-        .btn-pack {
-            background: var(--text-color); color: white; width: 100%; padding: 12px;
-            border-radius: 12px; font-weight: 600; transition: 0.3s; display: block;
+        .pack-content-compact {
+            padding: 10px; text-align: center;
         }
-        .pack-card:hover .btn-pack { background: var(--primary-color); }
+        .pack-title-compact {
+            font-family: var(--font-heading); font-size: 0.95rem; color: var(--text-color); margin-bottom: 4px; font-weight: 600;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .pack-price-compact {
+            font-size: 1.1rem; color: var(--primary-color); font-weight: 700; font-family: var(--font-ui);
+        }
+        .btn-view-pack {
+            background: var(--text-color); color: white; font-size: 0.7rem; padding: 5px 0;
+            margin-top: 8px; border-radius: 6px; display: block; width: 100%;
+        }
+        .pack-card-compact:hover .btn-view-pack { background: var(--terracotta-rose); }
 
         /* --- GALLERY --- */
-        .gallery { padding: 5rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
-        .section-subtitle { text-align: center; color: #777; margin-bottom: 3rem; font-style: italic; font-size: 1.1rem; }
+        .gallery { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
+        .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+        .section-subtitle { text-align: center; color: #777; margin-bottom: 2rem; font-style: italic; font-size: 1rem; }
 
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; }
 
@@ -284,7 +313,7 @@
         .product-card:hover .quick-add-btn { background: var(--primary-color); color: white; border-color: var(--primary-color); }
 
         /* --- TESTIMONIALS --- */
-        .testimonials { background: white; padding: 5rem 5%; margin-top: 4rem; border-top: 1px solid #eee; }
+        .testimonials { background: white; padding: 4rem 5%; margin-top: 4rem; border-top: 1px solid #eee; }
         .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .testi-card { background: var(--secondary-color); padding: 2rem; border-radius: 12px; position: relative; }
         .testi-card i { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: #ddd; }
@@ -444,19 +473,31 @@
         
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
+            .header-center { order: 3; width: 100%; margin-top: 10px; }
+            .search-bar { max-width: 100%; }
             .hero h1 { font-size: 2rem; }
             .modal-box { height: 100vh; border-radius: 0; width: 100%; max-width: none; }
             .modal-gallery { height: 40%; }
             .modal-info { padding: 1.5rem; }
             .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; font-size: 28px; }
-            .countdown-container { padding: 8px 15px; gap: 10px; }
-            .time-val { font-size: 1.2rem; }
-            .section-title { font-size: 2rem; }
-            .custom-banner { flex-direction: column; text-align: center; gap: 5px; padding: 12px; }
+            .countdown-container { padding: 5px 10px; gap: 8px; }
+            .time-val { font-size: 1.1rem; }
+            .section-title { font-size: 1.8rem; }
+            .custom-banner { flex-direction: column; text-align: center; gap: 5px; padding: 10px; }
             .custom-text { text-align: center; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
-            .featured-section { margin-top: 0; padding: 3rem 5%; }
+            
+            /* Sur Mobile/Tablette, les packs sont en ligne */
+            .pack-card-compact { flex: 0 0 140px; } 
+            .pack-img-compact { height: 140px; }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Sur Tablette, un peu plus grand */
+            .pack-card-compact { flex: 0 0 200px; }
+            .pack-img-compact { height: 200px; }
+            .pack-title-compact { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -473,6 +514,12 @@
     <!-- HEADER -->
     <header>
         <div class="logo">DECOBIZ</div>
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" id="search-input" class="search-input" placeholder="Rechercher un produit (ex: Rose, Vase, Arche...)" onkeyup="filterProducts()">
+                <i class="fa-solid fa-search search-icon"></i>
+            </div>
+        </div>
         <div class="header-actions">
             <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser une pièce.')" aria-label="Chat WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i>
@@ -494,7 +541,7 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Plateaux & Arches<br>Décoratives Uniques</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.95;">Découvrez notre nouvelle sélection de plateaux ronds, arches et présentoirs bijoux.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 1.2rem; opacity: 0.95;">Découvrez notre nouvelle sélection de plateaux ronds, arches et présentoirs bijoux.</p>
             
             <div class="custom-banner">
                 <i class="fa-solid fa-paint-roller"></i>
@@ -504,7 +551,7 @@
                 </div>
             </div>
 
-            <div style="margin-bottom: 1rem; font-size: 0.9rem; opacity: 0.9;">🔥 Offre Spéciale se termine dans :</div>
+            <div style="margin-bottom: 1rem; font-size: 0.85rem; opacity: 0.9;">🔥 Offre Spéciale se termine dans :</div>
             <div class="countdown-container" id="countdown">
                 <div class="time-box"><div class="time-val" id="hours">00</div><div class="time-label">Heures</div></div>
                 <div class="time-box"><div class="time-val" id="minutes">00</div><div class="time-label">Min</div></div>
@@ -522,38 +569,57 @@
         </div>
     </section>
 
-    <!-- FEATURED PACKS SECTION (Signature & Terracotta) -->
-    <section id="featured-packs" class="featured-section">
-        <div class="section-header">
-            <h2>Collections Signature & Tendances</h2>
-            <p>Nos ensembles complets les plus prisés pour sublimer votre intérieur.</p>
+    <!-- FEATURED PACKS SLIDER (COMPACT) -->
+    <section id="featured-packs" class="featured-slider-section">
+        <div class="featured-header">
+            <h2 class="featured-title">Packs Tendances</h2>
+            <!-- Optionnel: Indicateurs de scroll -->
+            <div style="font-size: 0.8rem; color: #999; display: flex; gap: 5px; align-items: center;">
+                <i class="fa-solid fa-arrow-right"></i> Faites glisser
+            </div>
         </div>
-        <div class="featured-grid">
+        
+        <div class="slider-container">
             <!-- Pack Signature -->
-            <div class="pack-card" onclick="openProductModal(1)">
-                <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Pack Signature" class="pack-img" onerror="this.src='https://picsum.photos/seed/sig/400/400'">
-                <span class="pack-badge">Best Seller</span>
-                <div class="pack-content">
-                    <div>
-                        <h3 class="pack-title">Collection Signature</h3>
-                        <p class="pack-desc">Le Pack Ultime. Contient une Arche décorative, 2 Vases, Plateaux, Boîte d’arrangement, Mbekhra, Porte-bougie, Plateau à boules, fleurs séchées + cadeau surprise.</p>
-                        <div class="pack-price">299 MAD</div>
-                    </div>
-                    <button class="btn-pack">Personnaliser ce pack</button>
+            <div class="pack-card-compact" onclick="openProductModal(1)">
+                <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Pack Signature" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/sig/200/200'">
+                <span class="pack-badge-compact">Best Seller</span>
+                <div class="pack-content-compact">
+                    <h3 class="pack-title-compact">Signature</h3>
+                    <div class="pack-price-compact">299 MAD</div>
+                    <button class="btn-view-pack">Voir le pack</button>
                 </div>
             </div>
 
             <!-- Pack Rose Terracotta -->
-            <div class="pack-card" onclick="openProductModal(33)">
-                <img src="rose.jpeg" alt="Pack Rose Terracotta" class="pack-img" onerror="this.src='https://picsum.photos/seed/rose/400/400'">
-                <span class="pack-badge" style="background: #E07A78; color: white;">Nouveau</span>
-                <div class="pack-content">
-                    <div>
-                        <h3 class="pack-title">Pack Rose Terracotta</h3>
-                        <p class="pack-desc">L'élégance du Terre Cuite doucement rosée. Ce pack exclusif comprend un plateau à perles, un plateau organique, un plateau ovale et un petit vase texturé.</p>
-                        <div class="pack-price">149 MAD</div>
-                    </div>
-                    <button class="btn-pack" style="background: #E07A78;">Personnaliser ce pack</button>
+            <div class="pack-card-compact" onclick="openProductModal(33)">
+                <img src="rose.jpeg" alt="Pack Rose Terracotta" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/rose/200/200'">
+                <span class="pack-badge-compact" style="background: #E07A78; color: white;">Nouveau</span>
+                <div class="pack-content-compact">
+                    <h3 class="pack-title-compact">Rose Terracotta</h3>
+                    <div class="pack-price-compact">149 MAD</div>
+                    <button class="btn-view-pack">Voir le pack</button>
+                </div>
+            </div>
+
+            <!-- Pack Salle de Bain (Inclus ici aussi pour visibilité) -->
+            <div class="pack-card-compact" onclick="openProductModal(4)">
+                <img src="salle.jpeg" alt="Pack Salle de Bain" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/bath/200/200'">
+                <span class="pack-badge-compact" style="background: #8B5E3C; color: white;">Chic</span>
+                <div class="pack-content-compact">
+                    <h3 class="pack-title-compact">Salle de Bain</h3>
+                    <div class="pack-price-compact">135 MAD</div>
+                    <button class="btn-view-pack">Voir le pack</button>
+                </div>
+            </div>
+            
+            <!-- Pack Salon -->
+            <div class="pack-card-compact" onclick="openProductModal(2)">
+                <img src="https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e" alt="Pack Salon" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/salon/200/200'">
+                <div class="pack-content-compact">
+                    <h3 class="pack-title-compact">Salon Moderne</h3>
+                    <div class="pack-price-compact">135 MAD</div>
+                    <button class="btn-view-pack">Voir le pack</button>
                 </div>
             </div>
         </div>
@@ -565,6 +631,12 @@
         
         <div class="gallery-grid" id="product-grid">
             <!-- Les produits seront injectés ici par JavaScript -->
+        </div>
+        
+        <!-- Message si aucun résultat -->
+        <div id="no-results" style="text-align: center; width: 100%; display: none; padding: 20px;">
+            <p style="font-size: 1.2rem; color: #888;">Aucun produit ne correspond à votre recherche.</p>
+            <button onclick="document.getElementById('search-input').value=''; filterProducts();" style="color: var(--primary-color); text-decoration: underline; margin-top: 10px;">Réinitialiser la recherche</button>
         </div>
     </section>
 
@@ -718,9 +790,9 @@
     <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         // --- 1. CONFIGURATION ---
-        const DELIVERY_FEE = 35;
+        const DELIVERY_FEE = 20;
         const PHONE_NUMBER = "212610236889";
-        const FREE_SHIPPING_THRESHOLD = 400;
+        const FREE_SHIPPING_THRESHOLD = 300;
 
         function openWhatsApp(message) {
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -734,7 +806,7 @@
                 id: 210,
                 title: "Porte Bougies Ondulation",
                 price: 39,
-                image: "support5.jpeg", // Image placeholder correspondant à la description
+                image: "support5.jpeg", 
                 desc: "Support de 3 bougies elegante  à forme ondulée (Wave). Crée une ambiance sereine et chaleureuse, parfait pour les soirées douces. Idéal sur une table en bois.",
                 badge: "Coup de Cœur",
                 badgeClass: "badge-best",
@@ -1084,7 +1156,7 @@
         let currentProduct = null;
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
+            renderProducts(products); // Rend initial
             updateCartUI();
             startCountdown();
             trackEvent('PageView');
@@ -1092,9 +1164,29 @@
 
         function getRandomStock() { return Math.floor(Math.random() * 4) + 2; }
 
-        function renderProducts() {
+        // Fonction de Recherche
+        function filterProducts() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const filtered = products.filter(p => 
+                p.title.toLowerCase().includes(query) || 
+                p.desc.toLowerCase().includes(query)
+            );
+            renderProducts(filtered);
+        }
+
+        function renderProducts(productList) {
             const grid = document.getElementById('product-grid');
-            grid.innerHTML = products.map(p => {
+            const noResults = document.getElementById('no-results');
+
+            if (productList.length === 0) {
+                grid.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+
+            grid.innerHTML = productList.map(p => {
                 const stock = getRandomStock();
                 const stockBadge = stock <= 3 ? `<span class="badge badge-stock">Plus que ${stock} !</span>` : '';
                 const socialProof = p.sold ? `<div class="social-proof"><i class="fa-solid fa-fire"></i> ${p.sold} vendus cette semaine</div>` : '';
