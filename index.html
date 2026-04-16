@@ -49,9 +49,7 @@
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
             --font-ui: 'Poppins', sans-serif;
-            --shadow-soft: 0 15px 35px rgba(0,0,0,0.05);
-            --shadow-hover: 0 25px 50px rgba(0,0,0,0.1);
-            --radius-card: 16px;
+            --radius-card: 10px;
             --radius-btn: 50px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -270,20 +268,31 @@
         }
         .pack-card-compact:hover .btn-view-pack { background: var(--terracotta-rose); }
 
-        /* --- GALLERY / ALL PRODUCTS (STYLE MINI CARDS) --- */
-        .gallery { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
+        /* --- GALLERY (HORIZONTAL SCROLLING ONLY) --- */
+        .gallery { padding: 4rem 0; max-width: 100%; margin: 0 auto; }
         .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         .section-subtitle { text-align: center; color: #777; margin-bottom: 2rem; font-style: italic; font-size: 1rem; }
 
-        /* Conteneur Grid par défaut (PC), Slider sur Mobile */
+        /* Force Horizontal Layout on ALL Screens */
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Cartes plus petites */
-            gap: 15px;
+            display: flex;
+            flex-wrap: nowrap; /* Empêche le passage à la ligne */
+            overflow-x: auto; /* Scroll horizontal */
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding: 10px 5% 40px 5%; /* Espace en bas pour la scrollbar */
         }
+        
+        /* Scrollbar stylée pour PC */
+        .gallery-grid::-webkit-scrollbar { height: 8px; }
+        .gallery-grid::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        .gallery-grid::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
 
-        /* Carte Style "Promotion" (Compact) pour tous les produits */
+        /* Carte Style "Promotion" */
         .product-card {
+            flex: 0 0 auto; /* Ne réduit pas la taille */
+            width: 200px; /* Largeur fixe sur mobile */
+            scroll-snap-align: start;
             background: white; 
             border-radius: 10px; 
             border: 1px solid #eee;
@@ -293,14 +302,11 @@
             position: relative; 
             overflow: hidden;
             display: flex; flex-direction: column;
-            /* Style inspiré de l'image */
-            background: #fff;
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--primary-color); }
 
-        /* Image */
         .card-img-container { 
-            height: 180px; /* Hauteur réduite */
+            height: 180px; 
             width: 100%;
             overflow: hidden; 
             position: relative; 
@@ -312,17 +318,15 @@
         }
         .product-card:hover .card-img-container img { transform: scale(1.05); }
 
-        /* Badge "Promotion" en haut à gauche */
         .badge {
             position: absolute; top: 8px; left: 8px; padding: 4px 10px;
             border-radius: 4px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; z-index: 10;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); letter-spacing: 0.5px;
         }
         .badge-best { background: var(--gold-color); color: white; }
-        .badge-new { background: var(--terracotta-rose); color: white; } /* Badge Rose Terracotta */
+        .badge-new { background: var(--terracotta-rose); color: white; } 
         .badge-stock { background: #e74c3c; color: white; }
 
-        /* Détails */
         .card-details { 
             padding: 10px; 
             flex-grow: 1; 
@@ -331,7 +335,7 @@
             text-align: center; 
         }
         .card-title { 
-            font-family: var(--font-body); /* Police plus fine */
+            font-family: var(--font-body); 
             font-size: 0.9rem; 
             color: var(--text-color); 
             margin-bottom: 5px; 
@@ -339,13 +343,12 @@
             line-height: 1.3;
         }
         .card-price { 
-            font-weight: 700; font-size: 1.1rem; /* Prix bien visible */
+            font-weight: 700; font-size: 1.1rem; 
             color: var(--text-color); 
             font-family: var(--font-ui); 
             margin-bottom: 8px; 
         }
         
-        /* Preuve sociale masquée en mode compact pour gagner de la place */
         .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; }
         .social-proof i { color: var(--delivery-color); margin-right: 2px; }
 
@@ -532,22 +535,18 @@
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
             
-            /* Sur Mobile, la galerie devient un Slider Horizontal */
-            .gallery-grid {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-                padding-bottom: 15px;
-            }
-            .gallery-grid::-webkit-scrollbar { height: 4px; }
-            .gallery-grid::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-            
-            .product-card {
-                flex: 0 0 140px; /* Largeur fixe sur mobile comme l'image des parfums */
-                scroll-snap-align: start;
-            }
+            /* Mobile: Horizontal Scroll active */
+            .gallery-grid { gap: 15px; padding-bottom: 20px; }
+            .product-card { width: 140px; }
             .card-img-container { height: 140px; }
-            .card-title { font-size: 0.85rem; }
+            .gallery-grid::-webkit-scrollbar { display: none; } /* Cacher scrollbar mobile */
+        }
+
+        /* PC: Plus large, Scroll visible */
+        @media (min-width: 769px) {
+            .product-card { width: 240px; }
+            .card-img-container { height: 200px; }
+            .card-title { font-size: 1rem; }
         }
     </style>
 </head>
@@ -566,7 +565,7 @@
         <div class="logo">DECOBIZ</div>
         <div class="header-center">
             <div class="search-bar">
-                <input type="text" id="search-input" class="search-input" placeholder="Rechercher..." onkeyup="filterProducts()">
+                <input type="text" id="search-input" class="search-input" placeholder="Rechercher (ex: Plateau, Vase...)" onkeyup="filterProducts()">
                 <i class="fa-solid fa-search search-icon"></i>
             </div>
         </div>
@@ -676,7 +675,7 @@
 
     <section id="gallery" class="gallery">
         <h2 class="section-title">Tous nos Produits</h2>
-        <p class="section-subtitle">Cliquez sur un produit pour personnaliser les couleurs</p>
+        <p class="section-subtitle">Faites défiler pour voir la collection &rarr;</p>
         
         <div class="gallery-grid" id="product-grid">
             <!-- Les produits seront injectés ici par JavaScript -->
@@ -850,19 +849,16 @@
 
         // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
-            // --- NOUVEAU PRODUIT AJOUTÉ (Porte-Bougles Ondulation) ---
             {
                 id: 210,
                 title: "Porte Bougies Ondulation",
                 price: 39,
                 image: "support5.jpeg", 
-                desc: "Support de 3 bougies elegante  à forme ondulée (Wave). Crée une ambiance sereine et chaleureuse, parfait pour les soirées douces. Idéal sur une table en bois.",
+                desc: "Support de 3 bougies elegante  à forme ondulée (Wave). Crée une ambiance sereine et chaleureuse.",
                 badge: "Coup de Cœur",
                 badgeClass: "badge-best",
                 sold: 8
             },
-
-            // --- AUTRES NOUVEAUTÉS ---
             {
                 id: 201,
                 title: "Plateau Rond 14cm",
@@ -888,7 +884,7 @@
                 title: "Plateau Étoile Bijoux",
                 price: 29,
                 image: "etoile.jpg",
-                desc: "Plateau en forme d'étoile parfait pour ranger vos boucles d'oreilles favorites. Design exclusif Decobiz.",
+                desc: "Plateau en forme d'étoile parfait pour ranger vos boucles d'oreilles favorites.",
                 badge: "Cadeau",
                 badgeClass: "badge-best",
                 sold: 24
@@ -898,7 +894,7 @@
                 title: "Plateau Irrégulier Bijoux",
                 price: 45,
                 image: "nuage0.jpg",
-                desc: "Plateau organique irrégulier blanc pour exposer vos colliers et bracelets. Esthétique brute et naturelle.",
+                desc: "Plateau organique irrégulier blanc pour exposer vos colliers et bracelets.",
                 sold: 18
             },
             {
@@ -906,7 +902,7 @@
                 title: "Support Bougie Spirale",
                 price: 29,
                 image: "support4.jpeg",
-                desc: "Élégant support blanc pour bougies spirales. Apporte une touche moderne et apaisante à votre table.",
+                desc: "Élégant support blanc pour bougies spirales.",
                 sold: 30
             },
             {
@@ -914,7 +910,7 @@
                 title: "Coquille Bijoux",
                 price: 29,
                 image: "coquille.jpg",
-                desc: "Présentoir coquille accompagné d'un livre de déco. La mise en scène parfaite pour vos pièces précieuses.",
+                desc: "Présentoir coquille accompagné d'un livre de déco.",
                 badge: "Art",
                 badgeClass: "badge-new",
                 sold: 15
@@ -928,8 +924,6 @@
                 badgeClass: "badge-best",
                 sold: 10
             },
-            
-            // --- Plateaux Ovaux (Corrigés) ---
             {
                 id: 208, 
                 title: "Plateau Ovale 18 cm",
@@ -950,14 +944,12 @@
                 badgeClass: "badge-best",
                 sold: 64
             },
-
-            // --- AUTRES PRODUITS ---
             {
                 id: 101,
                 title: "Vide-Poche Premium",
                 price: 29,
                 image: "boite1.jpg",
-                desc: "Élégant contenant avec texture nervurée et poignée boule. Parfait pour les bijoux ou les clés.",
+                desc: "Élégant contenant avec texture nervurée et poignée boule.",
                 sold: 15
             },
             {
@@ -970,7 +962,7 @@
             },
             {
                 id: 103,
-                title: "Bougie Rose ",
+                title: "Bougie Rose",
                 price: 39,
                 image: "support.jpg",
                 desc: "Bougie sculpturale rose sur son socle.",
@@ -1018,7 +1010,6 @@
                 badgeClass: "badge-best",
                 sold: 29
             },
-            
             // --- COLLECTIONS ---
             {
                 id: 1,
@@ -1205,7 +1196,7 @@
         let currentProduct = null;
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts(products); // Rend initial avec TOUS les produits
+            renderProducts(products); // Rend initial
             updateCartUI();
             startCountdown();
             trackEvent('PageView');
@@ -1213,32 +1204,34 @@
 
         function getRandomStock() { return Math.floor(Math.random() * 4) + 2; }
 
-        // Fonction de Recherche CORRIGÉE
+        // Fonction de Recherche ROBUSTE
         function filterProducts() {
-            const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = products.filter(p => 
-                p.title.toLowerCase().includes(query) || 
-                p.desc.toLowerCase().includes(query)
-            );
-            renderProducts(filtered);
-        }
-
-        function renderProducts(productList) {
+            const input = document.getElementById('search-input');
+            const query = input.value.toLowerCase().trim();
             const grid = document.getElementById('product-grid');
             const noResults = document.getElementById('no-results');
+            
+            // Filtrage
+            const filtered = products.filter(p => {
+                const titleMatch = p.title.toLowerCase().includes(query);
+                const descMatch = p.desc.toLowerCase().includes(query);
+                return titleMatch || descMatch;
+            });
 
-            if (productList.length === 0) {
+            // Rendu
+            if (filtered.length === 0) {
                 grid.innerHTML = '';
                 noResults.style.display = 'block';
-                return;
+            } else {
+                noResults.style.display = 'none';
+                generateProductHTML(filtered, grid);
             }
-            
-            noResults.style.display = 'none';
+        }
 
-            grid.innerHTML = productList.map(p => {
+        function generateProductHTML(productList, container) {
+            container.innerHTML = productList.map(p => {
                 const stock = getRandomStock();
                 const stockBadge = stock <= 3 ? `<span class="badge badge-stock">Plus que ${stock} !</span>` : '';
-                // Masquer la preuve sociale si pas de ventes
                 const socialProof = p.sold ? `<div class="social-proof"><i class="fa-solid fa-fire"></i> ${p.sold} vendus</div>` : '';
                 
                 return `
@@ -1256,6 +1249,11 @@
                     </div>
                 </div>
             `}).join('');
+        }
+
+        function renderProducts(productList) {
+            const grid = document.getElementById('product-grid');
+            generateProductHTML(productList, grid);
         }
 
         // --- 6. LOGIQUE PANIER ---
