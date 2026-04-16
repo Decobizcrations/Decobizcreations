@@ -276,11 +276,11 @@
         /* Grille Verticale Standard */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive Columns */
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 20px;
         }
         
-        /* Carte Style "Promotion" (Compact) */
+        /* Carte Style "Promotion" */
         .product-card {
             background: white; 
             border-radius: 10px; 
@@ -294,9 +294,8 @@
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--primary-color); }
 
-        /* Image */
         .card-img-container { 
-            height: 180px; /* Hauteur réduite */
+            height: 180px; 
             width: 100%;
             overflow: hidden; 
             position: relative; 
@@ -308,7 +307,6 @@
         }
         .product-card:hover .card-img-container img { transform: scale(1.05); }
 
-        /* Badge */
         .badge {
             position: absolute; top: 8px; left: 8px; padding: 4px 10px;
             border-radius: 4px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; z-index: 10;
@@ -318,7 +316,6 @@
         .badge-new { background: var(--terracotta-rose); color: white; } 
         .badge-stock { background: #e74c3c; color: white; }
 
-        /* Détails */
         .card-details { 
             padding: 10px; 
             flex-grow: 1; 
@@ -327,21 +324,20 @@
             text-align: center; 
         }
         .card-title { 
-            font-family: var(--font-body); /* Police plus fine */
+            font-family: var(--font-body); 
             font-size: 0.9rem; 
             color: var(--text-color); 
-            margin-bottom: 5px; 
+            margin-bottom:5px; 
             font-weight: 600;
             line-height: 1.3;
         }
         .card-price { 
-            font-weight: 700; font-size: 1.1rem; /* Prix bien visible */
+            font-weight: 700; font-size: 1.1rem; 
             color: var(--text-color); 
             font-family: var(--font-ui); 
             margin-bottom: 8px; 
         }
         
-        /* Preuve sociale masquée en mode compact */
         .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; }
         .social-proof i { color: var(--delivery-color); margin-right: 2px; }
 
@@ -490,7 +486,7 @@
         /* --- CHECKOUT FORM --- */
         .checkout-form { padding: 0 2rem 2rem 2rem; display: none; }
         .checkout-form.active { display: block; animation: fadeIn 0.3s; }
-        .form-group { margin-bottom:1.2rem; }
+        .form-group { margin-bottom: 1.2rem; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: #444; font-family: var(--font-ui); }
         .form-group input, .form-group textarea {
             width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; background: #fdfdfd; transition: 0.2s;
@@ -552,7 +548,8 @@
         <div class="logo">DECOBIZ</div>
         <div class="header-center">
             <div class="search-bar">
-                <input type="text" id="search-input" class="search-input" placeholder="Rechercher (ex: Plateau, Vase...)" onkeyup="filterProducts()">
+                <!-- FIX 2: Clic sur recherche = Scroll vers Packs -->
+                <input type="text" id="search-input" class="search-input" placeholder="Rechercher (ex: Plateau, Vase...)" onkeyup="filterProducts()" onclick="document.getElementById('featured-packs').scrollIntoView({behavior: 'smooth'})">
                 <i class="fa-solid fa-search search-icon"></i>
             </div>
         </div>
@@ -825,9 +822,9 @@
     <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         // --- 1. CONFIGURATION ---
-        const DELIVERY_FEE = 35;
+        const DELIVERY_FEE = 20;
         const PHONE_NUMBER = "212610236889";
-        const FREE_SHIPPING_THRESHOLD = 400;
+        const FREE_SHIPPING_THRESHOLD = 300;
 
         function openWhatsApp(message) {
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
@@ -1297,7 +1294,14 @@
             const total = subtotal + shipping;
             
             subtotalEl.innerText = subtotal + ' MAD';
-            shippingFeeEl.innerText = shipping === 0 ? '<span style="color:green; font-weight:bold;">GRATUITE</span>' : shipping + ' MAD';
+
+            // FIX 1: Utiliser innerHTML au lieu de innerText pour que le style vert s'applique
+            if (shipping === 0) {
+                shippingFeeEl.innerHTML = '<span style="color:green; font-weight:bold;">GRATUITE</span>';
+            } else {
+                shippingFeeEl.innerText = shipping + ' MAD';
+            }
+            
             totalEl.innerText = total + ' MAD';
 
             if (cart.length === 0) {
