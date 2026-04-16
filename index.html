@@ -125,7 +125,7 @@
         .header-actions { display: flex; align-items: center; gap: 15px; }
         
         .action-icon { 
-            position: relative; background: transparent; color: var(--text-color); font-size: 1.4rem; 
+            position: relative; background: transparent; color: var(--text-color); font-size:1.4rem; 
             padding: 8px; transition: var(--transition); border-radius: 50%;
         }
         .action-icon:hover { color: var(--primary-color); background: #f5f5f5; transform: scale(1.1); }
@@ -268,31 +268,20 @@
         }
         .pack-card-compact:hover .btn-view-pack { background: var(--terracotta-rose); }
 
-        /* --- GALLERY (HORIZONTAL SCROLLING ONLY) --- */
-        .gallery { padding: 4rem 0; max-width: 100%; margin: 0 auto; }
+        /* --- GALLERY (VERTICAL GRID SCROLL) --- */
+        .gallery { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
         .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         .section-subtitle { text-align: center; color: #777; margin-bottom: 2rem; font-style: italic; font-size: 1rem; }
 
-        /* Force Horizontal Layout on ALL Screens */
+        /* Grille Verticale Standard */
         .gallery-grid {
-            display: flex;
-            flex-wrap: nowrap; /* Empêche le passage à la ligne */
-            overflow-x: auto; /* Scroll horizontal */
-            scroll-snap-type: x mandatory;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Responsive Columns */
             gap: 20px;
-            padding: 10px 5% 40px 5%; /* Espace en bas pour la scrollbar */
         }
         
-        /* Scrollbar stylée pour PC */
-        .gallery-grid::-webkit-scrollbar { height: 8px; }
-        .gallery-grid::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-        .gallery-grid::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
-
-        /* Carte Style "Promotion" */
+        /* Carte Style "Promotion" (Compact) */
         .product-card {
-            flex: 0 0 auto; /* Ne réduit pas la taille */
-            width: 200px; /* Largeur fixe sur mobile */
-            scroll-snap-align: start;
             background: white; 
             border-radius: 10px; 
             border: 1px solid #eee;
@@ -305,8 +294,9 @@
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--primary-color); }
 
+        /* Image */
         .card-img-container { 
-            height: 180px; 
+            height: 180px; /* Hauteur réduite */
             width: 100%;
             overflow: hidden; 
             position: relative; 
@@ -318,6 +308,7 @@
         }
         .product-card:hover .card-img-container img { transform: scale(1.05); }
 
+        /* Badge */
         .badge {
             position: absolute; top: 8px; left: 8px; padding: 4px 10px;
             border-radius: 4px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; z-index: 10;
@@ -327,6 +318,7 @@
         .badge-new { background: var(--terracotta-rose); color: white; } 
         .badge-stock { background: #e74c3c; color: white; }
 
+        /* Détails */
         .card-details { 
             padding: 10px; 
             flex-grow: 1; 
@@ -335,7 +327,7 @@
             text-align: center; 
         }
         .card-title { 
-            font-family: var(--font-body); 
+            font-family: var(--font-body); /* Police plus fine */
             font-size: 0.9rem; 
             color: var(--text-color); 
             margin-bottom: 5px; 
@@ -343,12 +335,13 @@
             line-height: 1.3;
         }
         .card-price { 
-            font-weight: 700; font-size: 1.1rem; 
+            font-weight: 700; font-size: 1.1rem; /* Prix bien visible */
             color: var(--text-color); 
             font-family: var(--font-ui); 
             margin-bottom: 8px; 
         }
         
+        /* Preuve sociale masquée en mode compact */
         .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; }
         .social-proof i { color: var(--delivery-color); margin-right: 2px; }
 
@@ -360,7 +353,7 @@
         .product-card:hover .quick-add-btn { background: var(--primary-color); }
 
         /* --- TESTIMONIALS --- */
-        .testimonials { background: white; padding: 4rem 5%; margin-top: 4rem; border-top: 1px solid #eee; }
+        .testimonials { background: white; padding: 4rem 5%; margin-top: 4rem; border-top:1px solid #eee; }
         .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .testi-card { background: var(--secondary-color); padding: 2rem; border-radius: 12px; position: relative; }
         .testi-card i { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: #ddd; }
@@ -497,7 +490,7 @@
         /* --- CHECKOUT FORM --- */
         .checkout-form { padding: 0 2rem 2rem 2rem; display: none; }
         .checkout-form.active { display: block; animation: fadeIn 0.3s; }
-        .form-group { margin-bottom: 1.2rem; }
+        .form-group { margin-bottom:1.2rem; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; color: #444; font-family: var(--font-ui); }
         .form-group input, .form-group textarea {
             width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; background: #fdfdfd; transition: 0.2s;
@@ -535,18 +528,12 @@
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
             
-            /* Mobile: Horizontal Scroll active */
-            .gallery-grid { gap: 15px; padding-bottom: 20px; }
-            .product-card { width: 140px; }
-            .card-img-container { height: 140px; }
-            .gallery-grid::-webkit-scrollbar { display: none; } /* Cacher scrollbar mobile */
-        }
-
-        /* PC: Plus large, Scroll visible */
-        @media (min-width: 769px) {
-            .product-card { width: 240px; }
-            .card-img-container { height: 200px; }
-            .card-title { font-size: 1rem; }
+            /* Mobile Grid: 2 colonnes */
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .card-img-container { height: 150px; }
         }
     </style>
 </head>
@@ -675,7 +662,7 @@
 
     <section id="gallery" class="gallery">
         <h2 class="section-title">Tous nos Produits</h2>
-        <p class="section-subtitle">Faites défiler pour voir la collection &rarr;</p>
+        <p class="section-subtitle">Cliquez sur un produit pour personnaliser les couleurs</p>
         
         <div class="gallery-grid" id="product-grid">
             <!-- Les produits seront injectés ici par JavaScript -->
@@ -1204,7 +1191,7 @@
 
         function getRandomStock() { return Math.floor(Math.random() * 4) + 2; }
 
-        // Fonction de Recherche ROBUSTE
+        // Fonction de Recherche
         function filterProducts() {
             const input = document.getElementById('search-input');
             const query = input.value.toLowerCase().trim();
