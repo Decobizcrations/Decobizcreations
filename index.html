@@ -196,32 +196,37 @@
         }
         .btn-outline:hover { background: white; color: var(--text-main); border-color: white; transform: translateY(-3px); }
 
-        /* --- FEATURED PACKS --- */
+        /* --- FEATURED PACKS (VERTICAL GRID) --- */
         .featured-slider-section {
             background: var(--card-bg);
-            padding: 60px 0;
-            margin-top: -60px;
+            padding: 80px 5%; /* Plus d'espace */
             position: relative; z-index: 10;
             box-shadow: 0 -20px 60px rgba(0,0,0,0.03);
+            margin-bottom: 4rem; /* Espace avant la suite */
         }
         .featured-header {
-            padding: 0 5%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
+            display: flex; justify-content: center; align-items: center; margin-bottom: 40px;
+            flex-direction: column;
+            text-align: center;
         }
         .featured-title {
-            font-family: var(--font-heading); font-size: 2rem; color: var(--text-main); font-weight: 600; letter-spacing: 1px;
+            font-family: var(--font-heading); font-size: 2.2rem; color: var(--text-main); font-weight: 600; letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        .featured-sub {
+            font-size: 0.85rem; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;
         }
 
-        .slider-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 25px;
-            padding: 20px 5% 40px 5%;
-            scrollbar-width: none;
+        /* Grid Verticale */
+        .featured-grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Colonnes par défaut PC */
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
+
         .pack-card-compact {
-            flex: 0 0 220px;
-            scroll-snap-align: start;
             background: #FFF;
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-soft);
@@ -229,22 +234,24 @@
             cursor: pointer;
             overflow: hidden;
             border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
         }
         .pack-card-compact:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
         
-        .pack-img-compact { width: 100%; height: 220px; object-fit: cover; }
-        .pack-content-compact { padding: 20px; text-align: center; }
+        .pack-img-compact { width: 100%; height: 280px; object-fit: cover; }
+        .pack-content-compact { padding: 25px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
         .pack-title-compact {
-            font-family: var(--font-heading); font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px; font-weight: 600;
+            font-family: var(--font-heading); font-size: 1.3rem; color: var(--text-main); margin-bottom: 10px; font-weight: 600;
         }
-        .pack-price-compact { font-size: 1.2rem; color: var(--primary-accent); font-family: var(--font-ui); margin-bottom: 15px; letter-spacing: 0.5px; }
+        .pack-price-compact { font-size: 1.3rem; color: var(--primary-accent); font-family: var(--font-ui); margin-bottom: 20px; letter-spacing: 0.5px; }
         .btn-view-pack {
             border-bottom: 1px solid var(--text-main); padding-bottom: 4px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-main); display: inline-block; transition: 0.3s;
         }
         .pack-card-compact:hover .btn-view-pack { border-color: var(--accent-gold); color: var(--accent-gold); }
 
         /* --- GALLERY --- */
-        .gallery { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
+        .gallery { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
         .section-title { 
             text-align: center; font-family: var(--font-heading); font-size: 2.5rem; color: var(--text-main); 
             margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 1px; 
@@ -332,7 +339,7 @@
         
         /* Mobile First: Image at top (Minimized), Content below */
         .modal-gallery {
-            flex: none; /* Don't grow */
+            flex: none; 
             width: 100%;
             height: 200px; /* IMAGE MINIMIZED HEIGHT FOR MOBILE */
             background: #F5F5F3; 
@@ -344,8 +351,8 @@
         }
         
         .modal-info {
-            flex: 1; /* Takes remaining space */
-            padding: 2rem; /* More breathing room */
+            flex: 1; 
+            padding: 2rem; 
             overflow-y: auto; 
             display: flex; flex-direction: column;
         }
@@ -358,7 +365,7 @@
             }
             
             .modal-gallery { 
-                width: 40%; /* IMAGE REDUCED TO 40% (was 50%) */
+                width: 40%; /* IMAGE REDUCED TO 40% */
                 height: 100%;
             }
             
@@ -405,16 +412,27 @@
         .cart-footer { padding: 2rem; background: #FAFAFA; border-top: 1px solid #f0f0f0; }
         .cart-total { font-size: 1.6rem; font-family: var(--font-heading); margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; display: flex; justify-content: space-between; }
 
-        /* --- RESPONSIVE TWEAKS --- */
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .featured-grid-container {
+                grid-template-columns: repeat(3, 1fr); /* 3 Colonnes Tablettes */
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .card-img-container { height: 200px; }
             .header-center { order: 3; width: 100%; margin-top: 15px; }
             .search-bar { max-width: 100%; }
-            /* Mobile Modal adjustments */
             .modal-title { font-size: 1.6rem; }
             .modal-price { font-size: 1.5rem; }
+            
+            .featured-grid-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 Colonnes Mobile */
+                gap: 20px;
+            }
+            .pack-img-compact { height: 220px; }
         }
     </style>
 </head>
@@ -465,14 +483,15 @@
         </div>
     </section>
 
-    <!-- FEATURED PACKS -->
+    <!-- FEATURED PACKS (GRID VERTICALE) -->
     <section id="featured-packs" class="featured-slider-section">
         <div class="featured-header">
             <h2 class="featured-title">Nos Favorites</h2>
-            <div style="font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px;">GLISSER POUR VOIR PLUS</div>
+            <div class="featured-sub">Sélection Exclusive</div>
         </div>
         
-        <div class="slider-container">
+        <!-- Changement : Container Grille au lieu de Slider -->
+        <div class="featured-grid-container">
             <div class="pack-card-compact" onclick="openProductModal(1)">
                 <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Pack Signature" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/sig/300/300'">
                 <div class="pack-content-compact">
@@ -600,7 +619,7 @@
         <div class="modal-box">
             <div class="modal-close" onclick="closeModal()">&times;</div>
             
-            <!-- Zone Image (Réduite pour donner la priorité au contenu) -->
+            <!-- Zone Image (Réduite) -->
             <div class="modal-gallery">
                 <img id="modal-img" src="" alt="Product">
             </div>
