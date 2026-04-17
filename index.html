@@ -49,7 +49,7 @@
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Lato', sans-serif;
             --font-ui: 'Poppins', sans-serif;
-            --radius-card: 10px;
+            --radius-card: 12px;
             --radius-btn: 50px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
@@ -73,33 +73,28 @@
         /* --- UI COMPONENTS --- */
         #toast-container {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            z-index: 3000; pointer-events: none; width: 90%; max-width: 350px;
+            z-index: 3000; pointer-events: none; width: 90%; max-width: 380px;
         }
         .toast {
-            background: white; color: var(--text-color); padding: 15px 25px; border-radius: 12px;
-            margin-top: 10px; font-size: 0.95rem; display: flex; align-items: center; gap: 12px;
+            background: white; color: var(--text-color); padding: 16px 24px; border-radius: 12px;
+            margin-top: 12px; font-size: 0.95rem; display: flex; align-items: center; gap: 12px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15); opacity: 0; transform: translateY(20px);
             transition: var(--transition); border-left: 5px solid var(--delivery-color); font-family: var(--font-ui);
             font-weight: 500;
         }
         .toast.show { opacity: 1; transform: translateY(0); }
-        .toast i { color: var(--delivery-color); font-size: 1.2rem; }
+        .toast i { color: var(--delivery-color); font-size: 1.3rem; }
 
         /* Bouton Flottant */
         .whatsapp-float {
-            position: fixed; width: 65px; height: 65px; bottom: 30px; right: 25px;
+            position: fixed; width: 60px; height: 60px; bottom: 25px; right: 20px;
             background-color: var(--whatsapp-green); color: #FFF;
-            border-radius: 50%; text-align: center; font-size: 32px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            border-radius: 50%; text-align: center; font-size: 30px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             z-index: 2900; display: flex; align-items: center; justify-content: center;
-            transition: var(--transition); animation: pulse-green 2s infinite;
+            transition: var(--transition);
         }
         .whatsapp-float:hover { transform: scale(1.1); background-color: var(--whatsapp-dark); }
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
 
         /* --- HEADER & SEARCH --- */
         header {
@@ -141,7 +136,7 @@
 
         /* --- TRUST BAR --- */
         .trust-bar {
-            background-color: #f1f8e9; color: var(--delivery-color);
+            background-color: #e8f5e9; color: var(--delivery-color);
             padding: 8px 5%; font-size: 0.8rem; font-family: var(--font-ui);
             display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;
             border-bottom: 1px solid #e0e0e0;
@@ -151,7 +146,7 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            position: relative; height: 75vh; min-height: 500px; 
+            position: relative; height: 70vh; min-height: 500px; 
             background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('salle.jpeg');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center;
@@ -187,9 +182,7 @@
         .btn-primary { background: var(--primary-color); color: white; }
         .btn-primary:hover { background: var(--primary-dark); transform: translateY(-3px); }
         
-        .btn-whatsapp { 
-            background: var(--whatsapp-green); color: white; 
-        }
+        .btn-whatsapp { background: var(--whatsapp-green); color: white; }
         .btn-whatsapp:hover { background: var(--whatsapp-dark); transform: translateY(-3px); }
 
         .countdown-container {
@@ -242,9 +235,7 @@
         }
         .pack-card-compact:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); border-color: var(--terracotta-rose); }
         
-        .pack-img-compact {
-            width: 100%; height: 160px; object-fit: cover;
-        }
+        .pack-img-compact { width: 100%; height: 160px; object-fit: cover; }
         .pack-badge-compact {
             position: absolute; top: 8px; left: 8px;
             background: linear-gradient(135deg, var(--gold-color), #F5D76E);
@@ -252,16 +243,12 @@
             font-weight: 700; font-size: 0.65rem; text-transform: uppercase;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .pack-content-compact {
-            padding: 10px; text-align: center;
-        }
+        .pack-content-compact { padding: 10px; text-align: center; }
         .pack-title-compact {
             font-family: var(--font-heading); font-size: 0.95rem; color: var(--text-color); margin-bottom: 4px; font-weight: 600;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .pack-price-compact {
-            font-size: 1.1rem; color: var(--primary-color); font-weight: 700; font-family: var(--font-ui);
-        }
+        .pack-price-compact { font-size: 1.1rem; color: var(--primary-color); font-weight: 700; font-family: var(--font-ui); }
         .btn-view-pack {
             background: var(--text-color); color: white; font-size: 0.7rem; padding: 5px 0;
             margin-top: 8px; border-radius: 6px; display: block; width: 100%;
@@ -273,38 +260,23 @@
         .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         .section-subtitle { text-align: center; color: #777; margin-bottom: 2rem; font-style: italic; font-size: 1rem; }
 
-        /* Grille Verticale Standard */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 20px;
         }
         
-        /* Carte Style "Promotion" */
         .product-card {
-            background: white; 
-            border-radius: 10px; 
-            border: 1px solid #eee;
+            background: white; border-radius: 10px; border: 1px solid #eee;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            cursor: pointer; 
-            transition: var(--transition);
-            position: relative; 
-            overflow: hidden;
+            cursor: pointer; transition: var(--transition);
+            position: relative; overflow: hidden;
             display: flex; flex-direction: column;
         }
         .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); border-color: var(--primary-color); }
 
-        .card-img-container { 
-            height: 180px; 
-            width: 100%;
-            overflow: hidden; 
-            position: relative; 
-            background: #f4f4f4; 
-        }
-        .card-img-container img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 0.4s ease; 
-        }
+        .card-img-container { height: 180px; width: 100%; overflow: hidden; position: relative; background: #f4f4f4; }
+        .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
         .product-card:hover .card-img-container img { transform: scale(1.05); }
 
         .badge {
@@ -316,37 +288,20 @@
         .badge-new { background: var(--terracotta-rose); color: white; } 
         .badge-stock { background: #e74c3c; color: white; }
 
-        .card-details { 
-            padding: 10px; 
-            flex-grow: 1; 
-            display: flex; flex-direction: column; 
-            justify-content: space-between; 
-            text-align: center; 
-        }
-        .card-title { 
-            font-family: var(--font-body); 
-            font-size: 0.9rem; 
-            color: var(--text-color); 
-            margin-bottom:5px; 
-            font-weight: 600;
-            line-height: 1.3;
-        }
-        .card-price { 
-            font-weight: 700; font-size: 1.1rem; 
-            color: var(--text-color); 
-            font-family: var(--font-ui); 
-            margin-bottom: 8px; 
-        }
+        .card-details { padding: 10px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+        .card-title { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-color); margin-bottom:5px; font-weight: 600; line-height: 1.3; }
+        .card-price { font-weight: 700; font-size: 1.1rem; color: var(--text-color); font-family: var(--font-ui); margin-bottom: 8px; }
         
         .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; }
         .social-proof i { color: var(--delivery-color); margin-right: 2px; }
 
+        /* Bouton d'achat rapide amélioré */
         .quick-add-btn {
             background: var(--text-color); color: white; width: 100%;
-            padding: 6px; border-radius: 4px; margin-top: auto; font-weight: 600;
-            font-size: 0.75rem; transition: 0.2s; border: none;
+            padding: 10px; border-radius: 6px; margin-top: auto; font-weight: 600;
+            font-size: 0.8rem; transition: 0.2s; border: none;
         }
-        .product-card:hover .quick-add-btn { background: var(--primary-color); }
+        .product-card:hover .quick-add-btn { background: var(--primary-color); transform: scale(1.02); }
 
         /* --- TESTIMONIALS --- */
         .testimonials { background: white; padding: 4rem 5%; margin-top: 4rem; border-top:1px solid #eee; }
@@ -404,20 +359,12 @@
             display: flex; align-items: center; gap: 10px; font-size: 1.1rem;
         }
         .pers-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: var(--font-ui);
-            font-size: 1rem;
-            background: white;
-            transition: 0.2s;
-            resize: vertical;
-            min-height: 60px;
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+            font-family: var(--font-ui); font-size: 1rem; background: white;
+            transition: 0.2s; resize: vertical; min-height: 60px;
         }
         .pers-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
+            outline: none; border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.1);
         }
         .pers-note { font-size: 0.8rem; color: #666; margin-top: 8px; font-style: italic; display: flex; align-items: center; gap: 5px; }
@@ -524,11 +471,7 @@
             .hero-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; }
             
-            /* Mobile Grid: 2 colonnes */
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
             .card-img-container { height: 150px; }
         }
     </style>
@@ -548,8 +491,8 @@
         <div class="logo">DECOBIZ</div>
         <div class="header-center">
             <div class="search-bar">
-                <!-- FIX 2: Clic sur recherche = Scroll vers Packs -->
-                <input type="text" id="search-input" class="search-input" placeholder="Rechercher (ex: Plateau, Vase...)" onkeyup="filterProducts()" onclick="document.getElementById('featured-packs').scrollIntoView({behavior: 'smooth'})">
+                <!-- AMELIORATION: Scrolle vers les produits au clic -->
+                <input type="text" id="search-input" class="search-input" placeholder="Rechercher (ex: Plateau, Vase...)" onclick="focusSearch()" onkeyup="filterProducts()">
                 <i class="fa-solid fa-search search-icon"></i>
             </div>
         </div>
@@ -805,9 +748,9 @@
                 <div class="modal-desc" id="modal-desc">Description...</div>
                 
                 <div class="personalization-section">
-                    <div class="pers-title"><i class="fa-solid fa-pen-fancy"></i> Personnalisation :</div>
+                    <div class="pers-title"><i class="fa-solid fa-pen-fancy"></i> Personnalisation (Optionnel) :</div>
                     <textarea id="custom-color-input" class="pers-input" placeholder="Ex: Bleu canard, Terracotta, Blanc cassé..."></textarea>
-                    <div class="pers-note"><i class="fa-solid fa-lightbulb"></i> Écrivez la couleur exacte souhaitée ici.</div>
+                    <div class="pers-note"><i class="fa-solid fa-lightbulb"></i> Laissez vide pour la couleur de la photo.</div>
                 </div>
 
                 <button class="btn-add-cart" id="modal-add-btn">
@@ -1188,7 +1131,7 @@
 
         function getRandomStock() { return Math.floor(Math.random() * 4) + 2; }
 
-        // Fonction de Recherche
+        // Fonction de Recherche avec Scroll Auto
         function filterProducts() {
             const input = document.getElementById('search-input');
             const query = input.value.toLowerCase().trim();
@@ -1212,10 +1155,15 @@
             }
         }
 
+        // Fonction appelée au clic sur la recherche (Scroll Auto)
+        function focusSearch() {
+            document.getElementById('featured-packs').scrollIntoView({behavior: 'smooth'});
+        }
+
         function generateProductHTML(productList, container) {
             container.innerHTML = productList.map(p => {
                 const stock = getRandomStock();
-                const stockBadge = stock <= 3 ? `<span class="badge badge-stock">Plus que ${stock} !</span>` : '';
+                const stockBadge = stock <= 3 ? `<span class="badge badge-stock">Dernières pièces !</span>` : '';
                 const socialProof = p.sold ? `<div class="social-proof"><i class="fa-solid fa-fire"></i> ${p.sold} vendus</div>` : '';
                 
                 return `
@@ -1229,7 +1177,7 @@
                         <div class="card-title">${p.title}</div>
                         <div class="card-price">${p.price} MAD</div>
                         ${socialProof}
-                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id}, 'Couleur photo')">Ajouter</button>
+                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id}, 'Couleur photo')">Acheter</button>
                     </div>
                 </div>
             `}).join('');
@@ -1294,8 +1242,7 @@
             const total = subtotal + shipping;
             
             subtotalEl.innerText = subtotal + ' MAD';
-
-            // FIX 1: Utiliser innerHTML au lieu de innerText pour que le style vert s'applique
+            
             if (shipping === 0) {
                 shippingFeeEl.innerHTML = '<span style="color:green; font-weight:bold;">GRATUITE</span>';
             } else {
@@ -1402,7 +1349,6 @@
             
             const colorInput = document.getElementById('custom-color-input');
             colorInput.value = "";
-            colorInput.focus();
             
             const btn = document.getElementById('modal-add-btn');
             btn.onclick = () => {
