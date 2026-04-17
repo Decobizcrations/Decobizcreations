@@ -63,7 +63,7 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 90px;
+            padding-bottom: 90px; /* Espace pour le mobile */
         }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         img { max-width: 100%; display: block; }
@@ -85,24 +85,25 @@
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast i { color: var(--delivery-color); font-size: 1.3rem; }
 
-        /* Bouton Flottant WhatsApp (PRIORITE 1) */
+        /* Bouton Flottant WhatsApp (Optimisé Mobile) */
         .whatsapp-float {
-            position: fixed; width: 65px; height: 65px; bottom: 25px; right: 20px;
+            position: fixed; width: 60px; height: 60px; bottom: 20px; right: 20px;
             background-color: var(--whatsapp-green); color: #FFF;
-            border-radius: 50%; text-align: center; font-size: 35px;
+            border-radius: 50%; text-align: center; font-size: 30px;
             box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
             z-index: 2900; display: flex; align-items: center; justify-content: center;
             transition: var(--transition);
             animation: pulse-green 2s infinite;
         }
-        .whatsapp-float:hover { transform: scale(1.1); background-color: var(--whatsapp-dark); }
+        /* Sur mobile, on le met un peu plus haut pour éviter de gêner le scroll */
+        .whatsapp-float:active { transform: scale(0.95); }
         @keyframes pulse-green {
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
             70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* --- HEADER & SEARCH --- */
+        /* --- HEADER & SEARCH (RESPONSIVE) --- */
         header {
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
@@ -111,7 +112,7 @@
         }
         .logo { font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--primary-color); letter-spacing: 1px; text-transform: uppercase; }
         
-        .header-center { flex: 1; margin: 0 20px; display: flex; justify-content: center; }
+        .header-center { flex: 1; margin: 0 20px; display: flex; justify-content: center; order: 2; }
         
         .search-bar {
             width: 100%; max-width: 400px; position: relative;
@@ -123,7 +124,7 @@
         .search-input:focus { outline: none; border-color: var(--primary-color); background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #999; }
 
-        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .header-actions { display: flex; align-items: center; gap: 15px; order: 3; }
         
         .action-icon { 
             position: relative; background: transparent; color: var(--text-color); font-size:1.4rem; 
@@ -140,15 +141,15 @@
             border: 2px solid white;
         }
 
-        /* --- TRUST BAR (PRIORITE 1) --- */
+        /* --- TRUST BAR --- */
         .trust-bar {
             background-color: #e8f5e9; color: var(--delivery-color);
-            padding: 8px 5%; font-size: 0.8rem; font-family: var(--font-ui);
-            display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;
+            padding: 8px 5%; font-size: 0.75rem; font-family: var(--font-ui);
+            display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;
             border-bottom: 1px solid #e0e0e0;
             font-weight: 600;
         }
-        .trust-item { display: flex; align-items: center; gap: 6px; font-weight: 700; }
+        .trust-item { display: flex; align-items: center; gap: 6px; font-weight: 700; white-space: nowrap; }
         .trust-item i { font-size: 0.9rem; }
 
         /* --- HERO SECTION --- */
@@ -200,7 +201,7 @@
         .time-val { font-size: 1.3rem; font-weight: 700; color: var(--gold-color); font-family: var(--font-ui); line-height: 1; }
         .time-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
 
-        /* --- FEATURED PACKS SLIDER (Compact) --- */
+        /* --- FEATURED PACKS SLIDER (Mobile Friendly) --- */
         .featured-slider-section {
             background: white;
             padding: 20px 0; 
@@ -225,6 +226,8 @@
             gap: 15px;
             padding: 10px 5% 20px 5%;
             scrollbar-width: none;
+            /* Scroll fluide pour mobile */
+            -webkit-overflow-scrolling: touch;
         }
         .slider-container::-webkit-scrollbar { display: none; }
 
@@ -262,15 +265,16 @@
         }
         .pack-card-compact:hover .btn-view-pack { background: var(--terracotta-rose); }
 
-        /* --- GALLERY (VERTICAL GRID SCROLL) --- */
+        /* --- GALLERY (RESPONSIVE GRID) --- */
         .gallery { padding: 4rem 5%; max-width: 1400px; margin: 0 auto; }
         .section-title { text-align: center; font-family: var(--font-heading); font-size: 2.2rem; color: var(--primary-color); margin-bottom: 0.5rem; }
         .section-subtitle { text-align: center; color: #777; margin-bottom: 2rem; font-style: italic; font-size: 1rem; }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+            /* Grille adaptative automatique */
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
         }
         
         .product-card {
@@ -302,7 +306,7 @@
         .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; display: flex; justify-content: center; align-items: center; gap: 4px; }
         .social-proof i { color: var(--gold-color); }
 
-        /* Bouton d'achat rapide amélioré (PRIORITE 1) */
+        /* Bouton d'achat rapide (Tactile) */
         .quick-add-btn {
             background: var(--text-color); color: white; width: 100%;
             padding: 10px; border-radius: 6px; margin-top: auto; font-weight: 600;
@@ -319,7 +323,7 @@
         .testi-author { font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 10px; }
         .stars { color: var(--gold-color); font-size: 0.9rem; }
 
-        /* --- PRODUCT MODAL --- */
+        /* --- PRODUCT MODAL (RESPONSIVE) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
@@ -384,7 +388,7 @@
         }
         .btn-add-cart:hover { background: var(--terracotta-hover); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(224, 122, 120, 0.5); }
 
-        /* --- CART SIDEBAR --- */
+        /* --- CART SIDEBAR (Mobile Adaptation) --- */
         .cart-sidebar {
             position: fixed; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%;
             background: white; z-index: 2500; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
@@ -461,25 +465,62 @@
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE MEDIA QUERIES (Le coeur du responsive) --- */
         @media (max-width: 768px) {
+            /* Mobile Adaptations */
             .header-center { order: 3; width: 100%; margin-top: 10px; }
             .search-bar { max-width: 100%; }
+            
             .hero h1 { font-size: 2rem; }
-            .modal-box { height: 100vh; border-radius: 0; width: 100%; max-width: none; }
-            .modal-gallery { height: 40%; }
-            .modal-info { padding: 1.5rem; }
-            .whatsapp-float { width: 55px; height: 55px; bottom: 20px; right: 20px; font-size: 28px; }
+            .hero { height: 60vh; min-height: 400px; }
+            
+            .modal-box { 
+                height: 100vh; 
+                width: 100%; 
+                max-width: none; 
+                border-radius: 0;
+            }
+            .modal-gallery { height: 40%; flex: 1; }
+            .modal-info { padding: 1.5rem; flex: 1.5; }
+            
+            .whatsapp-float { 
+                width: 55px; height: 55px; bottom: 20px; right: 15px; font-size: 28px;
+            }
+            
             .countdown-container { padding: 5px 10px; gap: 8px; }
             .time-val { font-size: 1.1rem; }
+            
             .section-title { font-size: 1.8rem; }
-            .custom-banner { flex-direction: column; text-align: center; gap: 5px; padding: 10px; }
+            .custom-banner { 
+                flex-direction: column; text-align: center; gap: 5px; padding: 10px; width: 100%; box-sizing: border-box;
+            }
             .custom-text { text-align: center; }
             .hero-buttons { flex-direction: column; width: 100%; }
-            .btn { width: 100%; }
+            .btn { width: 100%; padding: 0.8rem; }
             
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            /* Grid Mobile: 2 colonnes optimales pour le toucher */
+            .gallery-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 10px;
+            }
             .card-img-container { height: 150px; }
+            .card-title { font-size: 0.85rem; }
+            .quick-add-btn { padding: 8px; font-size: 0.75rem; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            /* Tablet Adaptations */
+            .gallery-grid { 
+                grid-template-columns: repeat(3, 1fr); 
+            }
+            .hero h1 { font-size: 2.2rem; }
+        }
+
+        @media (min-width: 1025px) {
+            /* Desktop */
+            .gallery-grid { 
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            }
         }
     </style>
 </head>
@@ -488,12 +529,12 @@
     <div id="toast-container"></div>
     <div class="backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
 
-    <!-- Bouton Flottant WhatsApp (PRIORITE 1) -->
+    <!-- Bouton Flottant WhatsApp (Priorité 1) -->
     <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour, je veux commander ce produit')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- HEADER -->
+    <!-- HEADER (Responsive) -->
     <header>
         <div class="logo">DECOBIZ</div>
         <div class="header-center">
@@ -513,15 +554,15 @@
         </div>
     </header>
 
-    <!-- TRUST BAR (PRIORITE 1) -->
+    <!-- TRUST BAR (Responsive) -->
     <div class="trust-bar">
-        <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Livraison partout au Maroc</div>
+        <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Livraison partout</div>
         <div class="trust-item"><i class="fa-solid fa-hand-holding-dollar"></i> Paiement à la livraison</div>
-        <div class="trust-item"><i class="fa-solid fa-lock"></i> Paiement sécurisé</div>
-        <div class="trust-item"><i class="fa-brands fa-whatsapp"></i> Support WhatsApp</div>
+        <div class="trust-item"><i class="fa-solid fa-lock"></i> Sécurisé</div>
+        <div class="trust-item"><i class="fa-brands fa-whatsapp"></i> Support</div>
     </div>
 
-    <!-- HERO -->
+    <!-- HERO SECTION (Responsive) -->
     <section class="hero">
         <div class="hero-content">
             <h1>Plateaux & Arches<br>Décoratives Uniques</h1>
@@ -553,7 +594,7 @@
         </div>
     </section>
 
-    <!-- FEATURED PACKS SLIDER (COMPACT) -->
+    <!-- FEATURED PACKS SLIDER (Mobile Friendly) -->
     <section id="featured-packs" class="featured-slider-section">
         <div class="featured-header">
             <h2 class="featured-title">Packs Tendances</h2>
@@ -673,7 +714,7 @@
         <p style="font-size: 0.9rem;">&copy; 2024 Decobiz. Tous droits réservés.</p>
     </footer>
 
-    <!-- --- CART SIDEBAR --- -->
+    <!-- --- CART SIDEBAR (Responsive) --- -->
     <aside class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h3>Votre Panier</h3>
@@ -773,8 +814,8 @@
     <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         // --- 1. CONFIGURATION ---
-        const DELIVERY_FEE = 35; // CORRECTION: Livraison 35 DH
-        const FREE_SHIPPING_THRESHOLD = 399; // CORRECTION: Gratuit dès 399 DH
+        const DELIVERY_FEE = 35; // Livraison 35 DH
+        const FREE_SHIPPING_THRESHOLD = 399; // Gratuit dès 399 DH
         const PHONE_NUMBER = "212610236889";
 
         function openWhatsApp(message) {
@@ -782,7 +823,7 @@
             window.open(url, '_blank');
         }
 
-        // --- 2. BASE DE DONNÉES PRODUITS (Textes marketing appliqués) ---
+        // --- 2. BASE DE DONNÉES PRODUITS ---
         const products = [
             {
                 id: 210,
