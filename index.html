@@ -50,7 +50,7 @@
             --radius-md: 16px;
             --radius-lg: 24px;
             
-            --font-heading: 'Cormorant Garamond', serif; /* Très élégant */
+            --font-heading: 'Cormorant Garamond', serif;
             --font-body: 'Lato', sans-serif;
             --font-ui: 'Montserrat', sans-serif;
             
@@ -88,7 +88,7 @@
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast i { color: var(--accent-gold); font-size: 1.4rem; }
 
-        /* Bouton Flottant WhatsApp (Version Élégante) */
+        /* Bouton Flottant WhatsApp */
         .whatsapp-float {
             position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
             background-color: var(--success-green); color: #FFF;
@@ -98,7 +98,7 @@
         }
         .whatsapp-float:hover { transform: translateY(-5px) scale(1.05); background-color: #243925; }
 
-        /* --- HEADER (Minimaliste & Chic) --- */
+        /* --- HEADER --- */
         header {
             background-color: rgba(250, 249, 246, 0.95);
             backdrop-filter: blur(15px);
@@ -121,7 +121,7 @@
         .search-bar { width: 100%; max-width: 400px; position: relative; }
         .search-input {
             width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid transparent;
-            background: #EFEEEC; /* Gris très clair */
+            background: #EFEEEC;
             font-family: var(--font-ui); font-size: 0.9rem; transition: 0.3s; color: var(--text-main);
         }
         .search-input:focus { 
@@ -148,12 +148,12 @@
             box-shadow: 0 2px 8px rgba(197, 160, 89, 0.4);
         }
 
-        /* --- HERO SECTION (Cinematic) --- */
+        /* --- HERO SECTION --- */
         .hero {
             position: relative; height: 85vh; min-height: 600px; 
             background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('salle.jpeg');
             background-size: cover; background-position: center;
-            background-attachment: fixed; /* Effet Parallax */
+            background-attachment: fixed;
             display: flex; align-items: center; justify-content: center; text-align: center;
             color: white; padding: 0 1rem;
         }
@@ -163,8 +163,8 @@
             font-size: 3.5rem; 
             margin-bottom: 1rem; 
             line-height: 1.1;
-            letter-spacing: -0.5px; /* Pour les grandes polices serifs */
-            font-weight: 400; /* Élégance = finesse, pas gras */
+            letter-spacing: -0.5px;
+            font-weight: 400;
             text-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
         
@@ -181,7 +181,7 @@
 
         .btn {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 1rem 2.5rem; border-radius: 4px; /* Carré arrondi = plus moderne que rond */
+            padding: 1rem 2.5rem; border-radius: 4px;
             font-weight: 500; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
             transition: var(--transition); font-family: var(--font-ui);
         }
@@ -196,11 +196,11 @@
         }
         .btn-outline:hover { background: white; color: var(--text-main); border-color: white; transform: translateY(-3px); }
 
-        /* --- FEATURED PACKS (Clean Slider) --- */
+        /* --- FEATURED PACKS --- */
         .featured-slider-section {
             background: var(--card-bg);
             padding: 60px 0;
-            margin-top: -60px; /* Chevauchement élégant */
+            margin-top: -60px;
             position: relative; z-index: 10;
             box-shadow: 0 -20px 60px rgba(0,0,0,0.03);
         }
@@ -220,7 +220,7 @@
             scrollbar-width: none;
         }
         .pack-card-compact {
-            flex: 0 0 220px; /* Plus large */
+            flex: 0 0 220px;
             scroll-snap-align: start;
             background: #FFF;
             border-radius: var(--radius-md);
@@ -243,7 +243,7 @@
         }
         .pack-card-compact:hover .btn-view-pack { border-color: var(--accent-gold); color: var(--accent-gold); }
 
-        /* --- GALLERY (Aesthetic Grid) --- */
+        /* --- GALLERY --- */
         .gallery { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
         .section-title { 
             text-align: center; font-family: var(--font-heading); font-size: 2.5rem; color: var(--text-main); 
@@ -254,7 +254,7 @@
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 40px; /* Plus d'espace */
+            gap: 40px;
         }
         
         .product-card {
@@ -288,7 +288,6 @@
         .social-proof { font-size: 0.75rem; color: var(--text-muted); margin-top: auto; font-family: var(--font-ui); letter-spacing: 0.5px; }
         .social-proof i { color: var(--accent-gold); margin-right: 5px; }
 
-        /* Bouton Achat (Minimaliste) */
         .quick-add-btn {
             width: 100%; padding: 15px 0; border-radius: var(--radius-sm);
             background: var(--text-main); color: white; font-weight: 500;
@@ -297,14 +296,14 @@
         }
         .product-card:hover .quick-add-btn { background: var(--accent-gold); }
 
-        /* --- TESTIMONIALS (Clean Layout) --- */
+        /* --- TESTIMONIALS --- */
         .testimonials { background: white; padding: 6rem 5%; margin-top: 6rem; }
         .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
         .testi-card { background: var(--bg-color); padding: 3rem; position: relative; border-radius: var(--radius-md); }
         .testi-text { font-family: var(--font-heading); font-style: italic; font-size: 1.1rem; color: var(--text-main); line-height: 1.6; margin-bottom: 2rem; }
         .testi-author { font-weight: 600; font-family: var(--font-ui); letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; color: var(--text-muted); }
 
-        /* --- MODAL (Fullscreen Aesthetic) --- */
+        /* --- MODAL (FULLSCREEN WITH MINIMIZED IMAGE) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(44, 42, 41, 0.6); backdrop-filter: blur(12px);
@@ -321,40 +320,79 @@
         }
         .modal-overlay.active .modal-box { transform: scale(1); }
         
-        @media(min-width: 900px) { .modal-box { flex-direction: row; height: 80vh; } }
-
+        /* CLOSE BUTTON */
         .modal-close {
             position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
-            background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 20; transition: 0.3s; font-size: 1.2rem;
+            background: rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 30; transition: 0.3s; font-size: 1.2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-        .modal-close:hover { background: var(--text-main); color: white; }
+        .modal-close:hover { background: white; transform: rotate(90deg); }
 
-        .modal-gallery { flex: 1; background: #F5F5F3; display: flex; align-items: center; justify-content: center; position: relative; }
+        /* MODAL LAYOUT STRATEGY */
         
-        .modal-info { flex: 1; padding: 4rem; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; }
-        .modal-title { font-family: var(--font-heading); font-size: 2.5rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.1; }
-        .modal-price { font-size: 2rem; margin-bottom: 2rem; font-family: var(--font-ui); font-weight: 600; color: var(--primary-accent); }
-        .modal-desc { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; font-size: 1.05rem; }
+        /* Mobile First: Image at top (Minimized), Content below */
+        .modal-gallery {
+            flex: none; /* Don't grow */
+            width: 100%;
+            height: 200px; /* IMAGE MINIMIZED HEIGHT FOR MOBILE */
+            background: #F5F5F3; 
+            display: flex; align-items: center; justify-content: center; 
+            position: relative;
+        }
+        .modal-gallery img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        
+        .modal-info {
+            flex: 1; /* Takes remaining space */
+            padding: 2rem; /* More breathing room */
+            overflow-y: auto; 
+            display: flex; flex-direction: column;
+        }
+
+        /* Desktop: Image Left (Minimized width), Content Right (Maximized width) */
+        @media(min-width: 900px) { 
+            .modal-box { 
+                flex-direction: row; 
+                height: 80vh; 
+            }
+            
+            .modal-gallery { 
+                width: 40%; /* IMAGE REDUCED TO 40% (was 50%) */
+                height: 100%;
+            }
+            
+            .modal-info { 
+                width: 60%; /* CONTENT TAKES 60% */
+                padding: 4rem;
+                justify-content: center;
+            }
+        }
+
+        /* TEXT & BUTTONS STYLING */
+        .modal-title { font-family: var(--font-heading); font-size: 2.2rem; color: var(--text-main); margin-bottom: 0.5rem; line-height: 1.1; }
+        .modal-price { font-size: 1.8rem; margin-bottom: 1.5rem; font-family: var(--font-ui); font-weight: 600; color: var(--primary-accent); }
+        .modal-desc { color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; font-size: 1rem; }
         
         .personalization-section {
-            background: var(--bg-color); padding: 25px; border-radius: var(--radius-md); margin-bottom: 2rem; border: 1px solid rgba(0,0,0,0.05);
+            background: #fafafa; padding: 20px; border-radius: var(--radius-sm); margin-bottom: 2rem; border: 1px solid #eee;
         }
+        .pers-label { display:block; margin-bottom: 10px; font-weight: 600; font-size: 0.9rem; color: var(--primary-accent); letter-spacing: 0.5px;}
         .pers-input {
-            width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: var(--radius-sm);
-            font-family: var(--font-ui); background: white; font-size: 1rem; resize: vertical; min-height: 80px;
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: var(--radius-sm);
+            font-family: var(--font-ui); background: white; font-size: 0.95rem; resize: vertical; min-height: 70px;
         }
-        .pers-input:focus { outline: none; border-color: var(--primary-accent); }
+        .pers-input:focus { outline: none; border-color: var(--primary-accent); box-shadow: 0 0 0 3px rgba(141, 110, 99, 0.1); }
 
         .btn-add-cart {
-            background: var(--text-main); color: white; padding: 1.5rem;
+            background: var(--text-main); color: white; padding: 1.2rem;
             border-radius: var(--radius-sm); font-weight: 600; font-size: 1rem; letter-spacing: 1px;
             display: flex; align-items: center; justify-content: center; gap: 12px;
-            transition: 0.3s; margin-top: auto;
+            transition: 0.3s; width: 100%;
         }
-        .btn-add-cart:hover { background: var(--primary-accent); transform: translateY(-2px); }
+        .btn-add-cart:hover { background: var(--primary-accent); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(141, 110, 99, 0.3); }
 
-        /* --- CART SIDEBAR (Modern) --- */
+        /* --- CART SIDEBAR --- */
         .cart-sidebar {
             position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100%;
             background: white; z-index: 2500; box-shadow: -10px 0 40px rgba(0,0,0,0.1);
@@ -367,22 +405,23 @@
         .cart-footer { padding: 2rem; background: #FAFAFA; border-top: 1px solid #f0f0f0; }
         .cart-total { font-size: 1.6rem; font-family: var(--font-heading); margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; display: flex; justify-content: space-between; }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE TWEAKS --- */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .card-img-container { height: 200px; }
-            .modal-info { padding: 2rem; }
-            .modal-title { font-size: 1.8rem; }
             .header-center { order: 3; width: 100%; margin-top: 15px; }
             .search-bar { max-width: 100%; }
+            /* Mobile Modal adjustments */
+            .modal-title { font-size: 1.6rem; }
+            .modal-price { font-size: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <div id="toast-container"></div>
-    <div class="backdrop" id="cart-backdrop" onclick="toggleCart()" style="background: rgba(44, 42, 41, 0.5); backdrop-filter: blur(4px);"></div>
+    <div class="backdrop" id="cart-backdrop" onclick="toggleCart()" style="background: rgba(44, 42, 41, 0.5); backdrop-filter: blur(4px); display:none; position:fixed; top:0; left:0; width:100%; height:100%; z-index:2400;"></div>
 
     <!-- Bouton Flottant WhatsApp -->
     <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour, je veux commander ce produit')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
@@ -392,7 +431,12 @@
     <!-- HEADER -->
     <header>
         <div class="logo">Decobiz</div>
-        
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" id="search-input" class="search-input" placeholder="Rechercher une création..." onclick="focusSearch()" onkeyup="filterProducts()">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+        </div>
         <div class="header-actions">
             <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser une pièce.')" aria-label="Chat">
                 <i class="fa-brands fa-whatsapp"></i>
@@ -404,7 +448,7 @@
         </div>
     </header>
 
-    <!-- HERO (Aesthetic) -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <h1>L'Artisanat<br>Sublimez Votre Intérieur</h1>
@@ -555,18 +599,22 @@
     <div class="modal-overlay" id="product-modal">
         <div class="modal-box">
             <div class="modal-close" onclick="closeModal()">&times;</div>
+            
+            <!-- Zone Image (Réduite pour donner la priorité au contenu) -->
             <div class="modal-gallery">
                 <img id="modal-img" src="" alt="Product">
             </div>
+            
+            <!-- Zone Info (Prioritaire) -->
             <div class="modal-info">
-                <div style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Handmade • Maroc</div>
+                <div style="margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px;">HANDMADE MAROC</div>
                 <h2 class="modal-title" id="modal-title">Titre</h2>
                 <div class="modal-price" id="modal-price">0 MAD</div>
                 <div class="modal-desc" id="modal-desc">Description...</div>
                 
                 <div class="personalization-section">
-                    <div style="margin-bottom: 10px; font-weight: 600; color: var(--primary-accent);">Personnalisation</div>
-                    <textarea id="custom-color-input" class="pers-input" placeholder="Précisez la couleur souhaitée (ex: Terracotta, Bleu nuit...). Laissez vide pour la couleur de la photo."></textarea>
+                    <label class="pers-label" for="custom-color-input">Personnalisation (Optionnel)</label>
+                    <textarea id="custom-color-input" class="pers-input" placeholder="Ex: Terracotta, Bleu nuit... Laissez vide pour la couleur de la photo."></textarea>
                 </div>
 
                 <button class="btn-add-cart" id="modal-add-btn">
@@ -718,6 +766,7 @@
             const totalEl = document.getElementById('cart-total-price');
             const countEl = document.getElementById('cart-count');
             const shippingFeeEl = document.getElementById('shipping-fee');
+            const backdrop = document.getElementById('cart-backdrop');
             
             const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
             countEl.innerText = totalQty;
@@ -757,11 +806,11 @@
             const isOpen = sidebar.classList.contains('open');
             if (isOpen) {
                 sidebar.classList.remove('open');
-                backdrop.classList.remove('active');
+                backdrop.style.display = 'none';
                 setTimeout(showCartItems, 300);
             } else {
                 sidebar.classList.add('open');
-                backdrop.classList.add('active');
+                backdrop.style.display = 'block';
                 showCartItems();
             }
         }
