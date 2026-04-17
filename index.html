@@ -85,16 +85,22 @@
         .toast.show { opacity: 1; transform: translateY(0); }
         .toast i { color: var(--delivery-color); font-size: 1.3rem; }
 
-        /* Bouton Flottant */
+        /* Bouton Flottant WhatsApp (PRIORITE 1) */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 25px; right: 20px;
+            position: fixed; width: 65px; height: 65px; bottom: 25px; right: 20px;
             background-color: var(--whatsapp-green); color: #FFF;
-            border-radius: 50%; text-align: center; font-size: 30px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            border-radius: 50%; text-align: center; font-size: 35px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
             z-index: 2900; display: flex; align-items: center; justify-content: center;
             transition: var(--transition);
+            animation: pulse-green 2s infinite;
         }
         .whatsapp-float:hover { transform: scale(1.1); background-color: var(--whatsapp-dark); }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         /* --- HEADER & SEARCH --- */
         header {
@@ -134,14 +140,15 @@
             border: 2px solid white;
         }
 
-        /* --- TRUST BAR --- */
+        /* --- TRUST BAR (PRIORITE 1) --- */
         .trust-bar {
             background-color: #e8f5e9; color: var(--delivery-color);
             padding: 8px 5%; font-size: 0.8rem; font-family: var(--font-ui);
             display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;
             border-bottom: 1px solid #e0e0e0;
+            font-weight: 600;
         }
-        .trust-item { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+        .trust-item { display: flex; align-items: center; gap: 6px; font-weight: 700; }
         .trust-item i { font-size: 0.9rem; }
 
         /* --- HERO SECTION --- */
@@ -292,10 +299,10 @@
         .card-title { font-family: var(--font-body); font-size: 0.9rem; color: var(--text-color); margin-bottom:5px; font-weight: 600; line-height: 1.3; }
         .card-price { font-weight: 700; font-size: 1.1rem; color: var(--text-color); font-family: var(--font-ui); margin-bottom: 8px; }
         
-        .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; }
-        .social-proof i { color: var(--delivery-color); margin-right: 2px; }
+        .social-proof { font-size: 0.6rem; color: #999; margin-top: 5px; display: flex; justify-content: center; align-items: center; gap: 4px; }
+        .social-proof i { color: var(--gold-color); }
 
-        /* Bouton d'achat rapide amélioré */
+        /* Bouton d'achat rapide amélioré (PRIORITE 1) */
         .quick-add-btn {
             background: var(--text-color); color: white; width: 100%;
             padding: 10px; border-radius: 6px; margin-top: auto; font-weight: 600;
@@ -481,8 +488,8 @@
     <div id="toast-container"></div>
     <div class="backdrop" id="cart-backdrop" onclick="toggleCart()"></div>
 
-    <!-- Bouton Flottant -->
-    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour Decobiz, je suis sur votre site et j\'aimerais avoir des conseils.')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
+    <!-- Bouton Flottant WhatsApp (PRIORITE 1) -->
+    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour, je veux commander ce produit')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
@@ -491,7 +498,6 @@
         <div class="logo">DECOBIZ</div>
         <div class="header-center">
             <div class="search-bar">
-                <!-- AMELIORATION: Scrolle vers les produits au clic -->
                 <input type="text" id="search-input" class="search-input" placeholder="Rechercher (ex: Plateau, Vase...)" onclick="focusSearch()" onkeyup="filterProducts()">
                 <i class="fa-solid fa-search search-icon"></i>
             </div>
@@ -507,10 +513,12 @@
         </div>
     </header>
 
+    <!-- TRUST BAR (PRIORITE 1) -->
     <div class="trust-bar">
-        <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Livraison 24/48h</div>
-        <div class="trust-item"><i class="fa-solid fa-palette"></i> Personnalisable</div>
+        <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Livraison partout au Maroc</div>
         <div class="trust-item"><i class="fa-solid fa-hand-holding-dollar"></i> Paiement à la livraison</div>
+        <div class="trust-item"><i class="fa-solid fa-lock"></i> Paiement sécurisé</div>
+        <div class="trust-item"><i class="fa-brands fa-whatsapp"></i> Support WhatsApp</div>
     </div>
 
     <!-- HERO -->
@@ -765,23 +773,23 @@
     <!-- --- JAVASCRIPT LOGIC --- -->
     <script>
         // --- 1. CONFIGURATION ---
-        const DELIVERY_FEE = 20;
+        const DELIVERY_FEE = 35; // CORRECTION: Livraison 35 DH
+        const FREE_SHIPPING_THRESHOLD = 399; // CORRECTION: Gratuit dès 399 DH
         const PHONE_NUMBER = "212610236889";
-        const FREE_SHIPPING_THRESHOLD = 300;
 
         function openWhatsApp(message) {
             const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
             window.open(url, '_blank');
         }
 
-        // --- 2. BASE DE DONNÉES PRODUITS ---
+        // --- 2. BASE DE DONNÉES PRODUITS (Textes marketing appliqués) ---
         const products = [
             {
                 id: 210,
                 title: "Porte Bougies Ondulation",
                 price: 39,
                 image: "support5.jpeg", 
-                desc: "Support de 3 bougies elegante  à forme ondulée (Wave). Crée une ambiance sereine et chaleureuse.",
+                desc: "Créez une ambiance sereine et spa relaxante chez vous grâce à ces supports élégants.",
                 badge: "Coup de Cœur",
                 badgeClass: "badge-best",
                 sold: 8
@@ -791,7 +799,7 @@
                 title: "Plateau Rond 14cm",
                 price: 29,
                 image: "rond.jpg",
-                desc: "Petit plateau rond tacheté de 14cm de diamètre. Idéal pour les anneaux ou comme décoration d'appoint.",
+                desc: "L'accessoire parfait pour sublimer vos bagues et vos bijoux préférés.",
                 badge: "Nouveau",
                 badgeClass: "badge-new",
                 sold: 12
@@ -801,7 +809,7 @@
                 title: "Arche Décorative Cosy",
                 price: 79,
                 image: "arch.jpg",
-                desc: "Arche décorative style 'Cosy Home' avec nervures rayonnantes. Crée un point focal unique dans votre intérieur.",
+                desc: "Transformez votre intérieur en un cocon douillet et design.",
                 badge: "Tendance",
                 badgeClass: "badge-best",
                 sold: 8
@@ -811,7 +819,7 @@
                 title: "Plateau Étoile Bijoux",
                 price: 29,
                 image: "etoile.jpg",
-                desc: "Plateau en forme d'étoile parfait pour ranger vos boucles d'oreilles favorites.",
+                desc: "Offrez-vous le luxe de ranger vos boucles d'oreilles sur une étoile.",
                 badge: "Cadeau",
                 badgeClass: "badge-best",
                 sold: 24
@@ -821,7 +829,7 @@
                 title: "Plateau Irrégulier Bijoux",
                 price: 45,
                 image: "nuage0.jpg",
-                desc: "Plateau organique irrégulier blanc pour exposer vos colliers et bracelets.",
+                desc: "Design organique et moderne pour un look naturel et apaisant.",
                 sold: 18
             },
             {
@@ -829,7 +837,7 @@
                 title: "Support Bougie Spirale",
                 price: 29,
                 image: "support4.jpeg",
-                desc: "Élégant support blanc pour bougies spirales.",
+                desc: "Une touche d'élégance minimaliste pour vos soirées romantiques.",
                 sold: 30
             },
             {
@@ -837,7 +845,7 @@
                 title: "Coquille Bijoux",
                 price: 29,
                 image: "coquille.jpg",
-                desc: "Présentoir coquille accompagné d'un livre de déco.",
+                desc: "Rapportez l'océan chez vous avec ce présentoir unique.",
                 badge: "Art",
                 badgeClass: "badge-new",
                 sold: 15
@@ -847,7 +855,7 @@
                 title: "Plateau Rond 23 cm",
                 price: 59,
                 image: "rondla.jpg",
-                desc: "Grand plateau ronds en style béton (Jesmonite). Parfait pour bougies ou rangement.",
+                desc: "Un statement piece puissant pour vos bougies et vos rangements.",
                 badgeClass: "badge-best",
                 sold: 10
             },
@@ -856,7 +864,7 @@
                 title: "Plateau Ovale 18 cm",
                 price: 35,
                 image: "pla18.jpg",
-                desc: "Plateau ovale compact de 18cm. Idéal pour présenter vos parfums préférés sur votre table de chevet.",
+                desc: "Idéal sur votre table de chevet pour organiser vos parfums.",
                 badge: "Nouveau",
                 badgeClass: "badge-new",
                 sold: 12
@@ -866,7 +874,7 @@
                 title: "Plateau Ovale 23 cm",
                 price: 55,
                 image: "ovale23.jpeg",
-                desc: "Grand plateau ovale de 23cm. Design élégant pour organiser vos parfums ou objets déco avec style.",
+                desc: "L'élégance fonctionnelle : organisez vos objets avec style.",
                 badge: "Best Seller",
                 badgeClass: "badge-best",
                 sold: 64
@@ -876,7 +884,7 @@
                 title: "Vide-Poche Premium",
                 price: 29,
                 image: "boite1.jpg",
-                desc: "Élégant contenant avec texture nervurée et poignée boule.",
+                desc: "Design texture nerveuse pour un effet tactile unique.",
                 sold: 15
             },
             {
@@ -884,7 +892,7 @@
                 title: "Ensemble Feuille Artisanale",
                 price: 29,
                 image: "leaf.jpg",
-                desc: "Set de 3 plats en forme de feuille avec textures réalistes.",
+                desc: "Apportez la nature chez vous avec des textures réalistes.",
                 sold: 8
             },
             {
@@ -892,7 +900,7 @@
                 title: "Bougie Rose",
                 price: 39,
                 image: "support.jpg",
-                desc: "Bougie sculpturale rose sur son socle.",
+                desc: "Un objet sculptural qui parfume et décore votre pièce.",
                 sold: 32
             },
             {
@@ -900,7 +908,7 @@
                 title: "Support & Bougie Déco",
                 price: 20,
                 image: "support1.jpg",
-                desc: "Lot de supports bougie avec nœuds.",
+                desc: "Le duo parfait pour une déco chaleureuse.",
                 sold: 19
             },
             {
@@ -908,7 +916,7 @@
                 title: "Vase New York Chic",
                 price: 45,
                 image: "vase1.jpg",
-                desc: "Vase blanc nervuré avec livre de déco et fleurs séchées.",
+                desc: "Le style urbain et élégant pour votre salon.",
                 sold: 24
             },
             {
@@ -916,7 +924,7 @@
                 title: "Plateau Bijoux",
                 price: 55,
                 image: "plaa.jpeg",
-                desc: "Plateau ovale élégant pour présenter vos bijoux.",
+                desc: "Exposez vos trésors avec élégance.",
                 sold: 41
             },
             {
@@ -924,7 +932,7 @@
                 title: "Déco Automne & Citrouille",
                 price: 49,
                 image: "citrouille.jpeg",
-                desc: "Grande citrouille artisanale orange et feuilles d'automne.",
+                desc: "Apportez la chaleur de l'automne dans votre foyer.",
                 sold: 67
             },
             {
@@ -932,7 +940,7 @@
                 title: "Plateau Perles & Peluche",
                 price: 35,
                 image: "boules.jpg",
-                desc: "Plateau à perles rondes avec un petit accessoire peluche.",
+                desc: "Douceur et style pour un look irrésistiblement cute.",
                 badge: "Favori",
                 badgeClass: "badge-best",
                 sold: 29
@@ -943,7 +951,7 @@
                 title: "Collection Signature",
                 price: 299,
                 image: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984",
-                desc: "Le Pack Ultime. Contient une Arche décorative, 2 Vases, Plateaux, Boîte d’arrangement, Mbekhra, Porte-bougie, Plateau à boules, fleurs séchées + cadeau surprise.",
+                desc: "Le Pack Ultime pour transformer votre maison. Contient Arche, Vases, Plateaux et plus encore.",
                 badge: "Best Seller",
                 badgeClass: "badge-best",
                 sold: 124
@@ -953,7 +961,7 @@
                 title: "Pack Rose Terracotta",
                 price: 149,
                 image: "rose.jpeg",
-                desc: "L'élégance du Terre Cuite doucement rosée. Ce pack exclusif comprend un plateau à perles, un plateau organique, un plateau ovale et un petit vase texturé.",
+                desc: "L'élégance du Terre Cuite doucement rosée. Pack exclusif pour un look tendance.",
                 badge: "Nouveau",
                 badgeClass: "badge-new",
                 sold: 45
@@ -963,7 +971,7 @@
                 title: "Salon Moderne",
                 price: 135,
                 image: "https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e",
-                desc: "4 Pièces Essentielles : 2 Vases minimalistes, une petite citrouille décorative et un grand plateau ovale.",
+                desc: "4 Pièces Essentielles pour un salon moderne et épuré.",
                 sold: 89
             },
             {
@@ -971,7 +979,7 @@
                 title: "Cuisine Moderne",
                 price: 49,
                 image: "https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b",
-                desc: "3 Pièces pratiques & esthétiques : Un plateau rond central, une grande citrouille de rangement et une petite citrouille décorative.",
+                desc: "Pratique & esthétique : Organisez votre cuisine avec style.",
                 badge: "Promo",
                 badgeClass: "badge-stock",
                 sold: 210
@@ -981,7 +989,7 @@
                 title: "Salle de Bain Chic",
                 price: 135,
                 image: "salle.jpeg",
-                desc: "4 Pièces raffinées : Un grand Vase, un porte-bougie flottant, une petite citrouille et un plateau ovale 23cm.",
+                desc: "Transformez votre salle de bain en un spa luxueux.",
                 sold: 67
             },
             {
@@ -989,7 +997,7 @@
                 title: "Coin Zen",
                 price: 99,
                 image: "https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d",
-                desc: "Pack sérénité absolue : Un Brûleur d'encens en céramique, un vase élégant et un plateau ovale.",
+                desc: "Pack sérénité absolue pour méditer et se détendre.",
                 sold: 55
             },
             {
@@ -1177,7 +1185,7 @@
                         <div class="card-title">${p.title}</div>
                         <div class="card-price">${p.price} MAD</div>
                         ${socialProof}
-                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id}, 'Couleur photo')">Acheter</button>
+                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id}, 'Couleur photo')">Acheter maintenant</button>
                     </div>
                 </div>
             `}).join('');
