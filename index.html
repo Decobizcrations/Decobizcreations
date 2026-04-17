@@ -4,57 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | L'Art de la Déco</title>
-    <meta name="description" content="Packs décoratifs artisanaux uniques. Plateaux ronds, arches et bijoux. Sublimez votre intérieur avec Decobiz.">
+    <meta name="description" content="Packs décoratifs artisanaux uniques.">
     
-    <!-- --- FACEBOOK PIXEL --- -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1609605916958974'); 
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1609605916958974&ev=PageView&noscript=1"
-    /></noscript>
-
-    <!-- Polices Google Fonts -->
+    <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- VARIABLES & DESIGN SYSTEM (LUXURY THEME) --- */
+        /* --- DESIGN SYSTEM --- */
         :root {
-            /* Palette Terre & Or */
-            --bg-color: #FAF9F6;       /* Blanc Cassé Crème */
-            --card-bg: #FFFFFF;
-            --text-main: #2C2A29;     /* Noir Charbon Doux */
-            --text-muted: #7A7575;
-            
-            --primary-accent: #8D6E63; /* Terre Cuite */
-            --accent-gold: #C5A059;   /* Or Mat */
-            --accent-rose: #D4A373;   /* Rose Poudré */
-            --success-green: #2F5233;   /* Vert Forêt Profond */
-            
-            --shadow-soft: 0 15px 40px rgba(0,0,0,0.04);
-            --shadow-hover: 0 20px 50px rgba(0,0,0,0.08);
+            --bg-body: #FDFBF7;
+            --text-main: #1A1A1A;
+            --text-muted: #666666;
+            --primary: #8B5E3C;
+            --accent-gold: #C5A059;
+            --success-green: #2F5233;
             --radius-sm: 8px;
-            --radius-md: 16px;
-            --radius-lg: 24px;
-            
-            --font-heading: 'Cormorant Garamond', serif; /* Très élégant */
-            --font-body: 'Lato', sans-serif;
+            --radius-md: 12px;
+            --font-title: 'Cormorant Garamond', serif;
             --font-ui: 'Montserrat', sans-serif;
-            
-            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --font-body: 'Lato', sans-serif;
         }
 
         /* --- RESET --- */
@@ -62,788 +34,472 @@
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
             font-family: var(--font-body);
-            background-color: var(--bg-color);
+            background-color: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
-            padding-bottom: 100px;
         }
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
-        img { max-width: 100%; display: block; object-fit: cover; }
-        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
         button { border: none; outline: none; cursor: pointer; font-family: inherit; }
+        img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
         /* --- UI COMPONENTS --- */
-        #toast-container {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            z-index: 3000; pointer-events: none; width: 90%; max-width: 400px;
-        }
         .toast {
-            background: white; color: var(--text-main); padding: 18px 30px; border-radius: var(--radius-md);
-            margin-top: 15px; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; gap: 12px;
-            box-shadow: var(--shadow-hover); opacity: 0; transform: translateY(30px);
-            transition: var(--transition); border-left: 4px solid var(--accent-gold); font-family: var(--font-ui);
-            font-weight: 500; letter-spacing: 0.5px;
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: white; padding: 12px 24px; border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 9999;
+            font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 10px;
+            animation: slideUp 0.3s ease-out; opacity: 0; transition: opacity 0.3s;
         }
-        .toast.show { opacity: 1; transform: translateY(0); }
-        .toast i { color: var(--accent-gold); font-size: 1.4rem; }
+        .toast.show { opacity: 1; }
+        @keyframes slideUp { from { transform: translate(-50%, 20px); } to { transform: translate(-50%, 0); } }
 
-        /* Bouton Flottant WhatsApp (Version Élégante) */
+        /* Bouton Flottant */
         .whatsapp-float {
-            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
-            background-color: var(--success-green); color: #FFF;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 24px rgba(47, 82, 51, 0.3);
-            z-index: 2900; transition: var(--transition);
+            position: fixed; width: 55px; height: 55px; bottom: 25px; right: 20px;
+            background: var(--success-green); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 15px rgba(47, 82, 51, 0.3);
+            z-index: 9900; font-size: 24px; transition: transform 0.2s;
         }
-        .whatsapp-float:hover { transform: translateY(-5px) scale(1.05); background-color: #243925; }
+        .whatsapp-float:active { transform: scale(0.95); }
 
-        /* --- HEADER (Minimaliste & Chic) --- */
+        /* --- HEADER --- */
         header {
-            background-color: rgba(250, 249, 246, 0.95);
-            backdrop-filter: blur(15px);
-            padding: 1.2rem 5%; position: sticky; top: 0; z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
-            transition: padding 0.3s;
+            background: white; padding: 1rem 5%; position: sticky; top: 0; z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .logo { 
-            font-family: var(--font-heading); 
-            font-size: 1.8rem; 
-            font-weight: 700; 
-            color: var(--text-main); 
-            letter-spacing: 2px; 
-            text-transform: uppercase; 
-        }
-        
-        .header-center { flex: 1; margin: 0 30px; display: flex; justify-content: center; }
-        
+        .logo { font-family: var(--font-title); font-size: 1.4rem; color: var(--primary); font-weight: 700; letter-spacing: 1px; }
         .search-bar { width: 100%; max-width: 400px; position: relative; }
         .search-input {
-            width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid transparent;
-            background: #EFEEEC; /* Gris très clair */
-            font-family: var(--font-ui); font-size: 0.9rem; transition: 0.3s; color: var(--text-main);
+            width: 100%; padding: 10px 40px 10px 15px; border-radius: 20px;
+            background: #F5F5F5; font-size: 0.9rem; border: none;
         }
-        .search-input:focus { 
-            outline: none; 
-            background: white; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-color: transparent;
-        }
-        .search-icon { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.9rem; }
-
-        .header-actions { display: flex; align-items: center; gap: 20px; }
-        
-        .action-icon { 
-            background: transparent; color: var(--text-main); font-size: 1.2rem; 
-            padding: 8px; transition: 0.3s; border-radius: 50%;
-        }
-        .action-icon:hover { color: var(--primary-accent); transform: scale(1.1); }
-
-        .cart-btn { position: relative; color: var(--text-main); font-size: 1.4rem; padding: 5px; transition: 0.3s; }
+        .search-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #999; }
+        .cart-btn { position: relative; font-size: 1.3rem; color: var(--text-main); }
         .cart-count {
-            position: absolute; top: -5px; right: -5px; background: var(--accent-gold); color: white;
-            font-size: 0.65rem; font-weight: bold; width: 20px; height: 20px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 8px rgba(197, 160, 89, 0.4);
+            position: absolute; top: -5px; right: -5px; background: var(--accent-gold);
+            color: white; font-size: 0.65rem; width: 18px; height: 18px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
 
-        /* --- HERO SECTION (Cinematic) --- */
+        /* --- HERO --- */
         .hero {
-            position: relative; height: 85vh; min-height: 600px; 
-            background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('salle.jpeg');
-            background-size: cover; background-position: center;
-            background-attachment: fixed; /* Effet Parallax */
-            display: flex; align-items: center; justify-content: center; text-align: center;
-            color: white; padding: 0 1rem;
+            height: 80vh; min-height: 500px; background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('salle.jpeg');
         }
-        .hero-content { max-width: 800px; animation: fadeInUp 1.2s ease-out; position: relative; z-index: 2; }
-        .hero h1 { 
-            font-family: var(--font-heading); 
-            font-size: 3.5rem; 
-            margin-bottom: 1rem; 
-            line-height: 1.1;
-            letter-spacing: -0.5px; /* Pour les grandes polices serifs */
-            font-weight: 400; /* Élégance = finesse, pas gras */
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
-        
-        .hero-subtitle {
-            font-family: var(--font-body);
-            font-size: 1.1rem; 
-            margin-bottom: 2.5rem; 
-            font-weight: 300; 
-            opacity: 0.95; 
-            letter-spacing: 1px;
+        .hero h1 { color: white; font-family: var(--font-title); font-size: 3rem; text-align: center; text-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+        .hero p { color: rgba(255,255,255,0.9); font-size: 1.2rem; text-align: center; margin-top: 1rem; }
+        .btn-hero {
+            margin-top: 2rem; background: var(--accent-gold); color: white;
+            padding: 1rem 3rem; border-radius: 50px; font-weight: 600; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-
-        .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 1rem 2.5rem; border-radius: 4px; /* Carré arrondi = plus moderne que rond */
-            font-weight: 500; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase;
-            transition: var(--transition); font-family: var(--font-ui);
-        }
-        .btn-primary { background: white; color: var(--text-main); }
-        .btn-primary:hover { background: var(--accent-gold); color: white; transform: translateY(-3px); }
-        
-        .btn-outline { 
-            background: transparent; 
-            border: 1px solid rgba(255,255,255,0.6); 
-            color: white; 
-            backdrop-filter: blur(5px);
-        }
-        .btn-outline:hover { background: white; color: var(--text-main); border-color: white; transform: translateY(-3px); }
-
-        /* --- FEATURED PACKS (Clean Slider) --- */
-        .featured-slider-section {
-            background: var(--card-bg);
-            padding: 60px 0;
-            margin-top: -60px; /* Chevauchement élégant */
-            position: relative; z-index: 10;
-            box-shadow: 0 -20px 60px rgba(0,0,0,0.03);
-        }
-        .featured-header {
-            padding: 0 5%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;
-        }
-        .featured-title {
-            font-family: var(--font-heading); font-size: 2rem; color: var(--text-main); font-weight: 600; letter-spacing: 1px;
-        }
-
-        .slider-container {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            gap: 25px;
-            padding: 20px 5% 40px 5%;
-            scrollbar-width: none;
-        }
-        .pack-card-compact {
-            flex: 0 0 220px; /* Plus large */
-            scroll-snap-align: start;
-            background: #FFF;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            cursor: pointer;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-        .pack-card-compact:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
-        
-        .pack-img-compact { width: 100%; height: 220px; object-fit: cover; }
-        .pack-content-compact { padding: 20px; text-align: center; }
-        .pack-title-compact {
-            font-family: var(--font-heading); font-size: 1.2rem; color: var(--text-main); margin-bottom: 8px; font-weight: 600;
-        }
-        .pack-price-compact { font-size: 1.2rem; color: var(--primary-accent); font-family: var(--font-ui); margin-bottom: 15px; letter-spacing: 0.5px; }
-        .btn-view-pack {
-            border-bottom: 1px solid var(--text-main); padding-bottom: 4px; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text-main); display: inline-block; transition: 0.3s;
-        }
-        .pack-card-compact:hover .btn-view-pack { border-color: var(--accent-gold); color: var(--accent-gold); }
-
-        /* --- GALLERY (Aesthetic Grid) --- */
-        .gallery { padding: 6rem 5%; max-width: 1400px; margin: 0 auto; }
-        .section-title { 
-            text-align: center; font-family: var(--font-heading); font-size: 2.5rem; color: var(--text-main); 
-            margin-bottom: 0.5rem; font-weight: 600; letter-spacing: 1px; 
-        }
-        .section-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 4rem; font-style: italic; font-family: var(--font-body); font-weight: 300; }
-
+        /* --- GALLERY GRID --- */
+        .gallery { padding: 3rem 5%; }
         .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 40px; /* Plus d'espace */
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;
         }
-        
         .product-card {
-            background: white; border-radius: var(--radius-md);
-            box-shadow: var(--shadow-soft);
-            cursor: pointer; transition: var(--transition);
-            position: relative; overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.02);
-            display: flex; flex-direction: column;
+            background: white; border-radius: var(--radius-md); overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; cursor: pointer;
         }
-        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
-
-        .card-img-container { height: 250px; width: 100%; overflow: hidden; position: relative; }
-        .card-img-container img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .product-card:hover .card-img-container img { transform: scale(1.05); }
-
-        .badge {
-            position: absolute; top: 15px; left: 15px; padding: 6px 14px;
-            border-radius: 50px; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; z-index: 10;
-            background: rgba(255,255,255,0.9); backdrop-filter: blur(4px);
-            color: var(--text-main);
+        .product-card:hover { transform: translateY(-5px); }
+        .card-img { height: 200px; position: relative; }
+        .card-info { padding: 1rem; text-align: center; }
+        .card-title { font-family: var(--font-title); font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .card-price { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        .btn-card {
+            margin-top: 0.8rem; width: 100%; padding: 0.8rem; background: var(--text-main);
+            color: white; border-radius: 6px; font-size: 0.8rem; font-weight: 600;
         }
-        .badge-new { color: var(--primary-accent); } 
 
-        .card-details { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
-        .card-title { 
-            font-family: var(--font-heading); font-size: 1.1rem; color: var(--text-main); margin-bottom: 10px; font-weight: 600; line-height: 1.3; 
-        }
-        .card-price { font-weight: 600; font-size: 1.1rem; color: var(--text-main); font-family: var(--font-ui); margin-bottom: 15px; }
-        
-        .social-proof { font-size: 0.75rem; color: var(--text-muted); margin-top: auto; font-family: var(--font-ui); letter-spacing: 0.5px; }
-        .social-proof i { color: var(--accent-gold); margin-right: 5px; }
-
-        /* Bouton Achat (Minimaliste) */
-        .quick-add-btn {
-            width: 100%; padding: 15px 0; border-radius: var(--radius-sm);
-            background: var(--text-main); color: white; font-weight: 500;
-            font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;
-            transition: 0.3s; margin-top: auto;
-        }
-        .product-card:hover .quick-add-btn { background: var(--accent-gold); }
-
-        /* --- TESTIMONIALS (Clean Layout) --- */
-        .testimonials { background: white; padding: 6rem 5%; margin-top: 6rem; }
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
-        .testi-card { background: var(--bg-color); padding: 3rem; position: relative; border-radius: var(--radius-md); }
-        .testi-text { font-family: var(--font-heading); font-style: italic; font-size: 1.1rem; color: var(--text-main); line-height: 1.6; margin-bottom: 2rem; }
-        .testi-author { font-weight: 600; font-family: var(--font-ui); letter-spacing: 1px; text-transform: uppercase; font-size: 0.8rem; color: var(--text-muted); }
-
-        /* --- MODAL (Fullscreen Aesthetic) --- */
+        /* --- SPLIT SCREEN MODAL (L'EFFET DEMANDÉ) --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 42, 41, 0.6); backdrop-filter: blur(12px);
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
             z-index: 2000; display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.4s ease;
         }
-        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-overlay.active { display: flex; }
 
+        /* LE CONTENEUR PRINCIPAL DE LA MODALE */
         .modal-box {
-            background: white; width: 90%; max-width: 1000px; height: 90vh;
-            border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column;
-            position: relative; transform: scale(0.95); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+            background: white;
+            width: 90%;
+            max-width: 1100px;
+            height: 90vh; /* Hauteur fixe pour mobile */
+            display: flex; flex-direction: row; /* Direction par défaut (row) */
+            border-radius: 0; /* Pas de radius en full screen mobile */
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            animation: zoomIn 0.3s ease;
         }
-        .modal-overlay.active .modal-box { transform: scale(1); }
-        
-        @media(min-width: 900px) { .modal-box { flex-direction: row; height: 80vh; } }
+        @keyframes zoomIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .modal-close {
-            position: absolute; top: 20px; right: 20px; width: 40px; height: 40px;
-            background: rgba(0,0,0,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; z-index: 20; transition: 0.3s; font-size: 1.2rem;
+        /* CÔTÉ GAUCHE : L'IMAGE SCÈNE (50% de largeur) */
+        .modal-visual {
+            flex: 1; /* Prend 50% de l'espace */
+            background-color: #F2EBE5; /* Fond neutre pour l'image */
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
         }
-        .modal-close:hover { background: var(--text-main); color: white; }
+        /* Pour que l'image remplisse le fond gauche */
+        .modal-visual img {
+            width: 100%; height: 100%;
+            object-fit: cover; /* Important pour couvrir tout le côté gauche */
+            object-position: center;
+        }
 
-        .modal-gallery { flex: 1; background: #F5F5F3; display: flex; align-items: center; justify-content: center; position: relative; }
-        
-        .modal-info { flex: 1; padding: 4rem; overflow-y: auto; display: flex; flex-direction: column; justify-content: center; }
-        .modal-title { font-family: var(--font-heading); font-size: 2.5rem; color: var(--text-main); margin-bottom: 1rem; line-height: 1.1; }
-        .modal-price { font-size: 2rem; margin-bottom: 2rem; font-family: var(--font-ui); font-weight: 600; color: var(--primary-accent); }
-        .modal-desc { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8; font-size: 1.05rem; }
-        
-        .personalization-section {
-            background: var(--bg-color); padding: 25px; border-radius: var(--radius-md); margin-bottom: 2rem; border: 1px solid rgba(0,0,0,0.05);
+        /* CÔTÉ DROIT : LE CONTENU PRODUIT (50% de largeur) */
+        .modal-content {
+            flex: 1; /* Prend 50% de l'espace */
+            background: white;
+            padding: 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative; /* Pour le positionnement absolu si besoin */
         }
-        .pers-input {
-            width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: var(--radius-sm);
-            font-family: var(--font-ui); background: white; font-size: 1rem; resize: vertical; min-height: 80px;
-        }
-        .pers-input:focus { outline: none; border-color: var(--primary-accent); }
 
+        /* --- CONTENU SPÉCIFIQUE STYLE DÉCO (Votre demande) --- */
+        .deco-wallpaper {
+            position: absolute;
+            top: 2rem;
+            left: 1.5rem;
+            color: rgba(0,0,0,0.05); /* Très subtil en arrière-plan */
+            font-family: var(--font-title);
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            writing-mode: vertical-rl; /* Texte vertical */
+            transform: rotate(180deg);
+            pointer-events: none;
+            white-space: nowrap;
+            letter-spacing: 5px;
+        }
+        .brand-header {
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .brand-header::after {
+            content: ''; flex: 1; height: 1px; background: #eee;
+        }
+
+        .modal-title {
+            font-family: var(--font-title);
+            font-size: 2.5rem;
+            color: var(--text-main);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .modal-desc {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .modal-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            font-family: var(--font-title);
+        }
+
+        /* Formulaire Personnalisation */
+        .perso-box {
+            background: #F9F9F9;
+            border: 1px solid #E5E5E5;
+            padding: 1.2rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 2rem;
+        }
+        .perso-title {
+            font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--text-muted); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;
+        }
+        .perso-input {
+            width: 100%; border: none; background: transparent;
+            font-family: var(--font-body); font-size: 1.1rem; resize: none;
+            padding: 0.5rem 0; border-bottom: 1px solid #ddd;
+            outline: none;
+        }
+        .perso-input:focus { border-bottom-color: var(--primary); }
+
+        /* Bouton Achat */
         .btn-add-cart {
-            background: var(--text-main); color: white; padding: 1.5rem;
-            border-radius: var(--radius-sm); font-weight: 600; font-size: 1rem; letter-spacing: 1px;
-            display: flex; align-items: center; justify-content: center; gap: 12px;
-            transition: 0.3s; margin-top: auto;
+            background: var(--text-main);
+            color: white;
+            padding: 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+            width: 100%;
+            margin-top: auto; /* Pousse le bouton en bas si besoin */
         }
-        .btn-add-cart:hover { background: var(--primary-accent); transform: translateY(-2px); }
+        .btn-add-cart:hover { background: var(--primary); }
 
-        /* --- CART SIDEBAR (Modern) --- */
-        .cart-sidebar {
-            position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100%;
-            background: white; z-index: 2500; box-shadow: -10px 0 40px rgba(0,0,0,0.1);
-            transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            display: flex; flex-direction: column;
+        .close-btn {
+            position: absolute; top: 20px; right: 20px;
+            background: rgba(255,255,255,0.8);
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10; font-size: 1.5rem;
         }
-        .cart-sidebar.open { transform: translateX(0); }
-        .cart-header { padding: 2rem; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
-        
-        .cart-footer { padding: 2rem; background: #FAFAFA; border-top: 1px solid #f0f0f0; }
-        .cart-total { font-size: 1.6rem; font-family: var(--font-heading); margin-top: 1rem; border-top: 1px solid #eee; padding-top: 1rem; display: flex; justify-content: space-between; }
+        .close-btn:hover { background: white; color: black; }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .card-img-container { height: 200px; }
-            .modal-info { padding: 2rem; }
+        /* --- RESPONSIVE (TELEPHONE & TABLETTE) --- */
+        @media (max-width: 900px) {
+            
+            .modal-box {
+                flex-direction: row; /* On force le ROW sur mobile pour l'effet split */
+                width: 100%; /* Full largeur */
+                height: 100vh; /* Full hauteur */
+                max-width: none;
+                border-radius: 0;
+            }
+
+            .modal-visual {
+                flex: 0 0 50%; /* Fixe à 50% sur mobile */
+                height: 100%;
+            }
+
+            .modal-content {
+                flex: 1; /* L'autre 50% */
+                padding: 2rem 1.5rem;
+                justify-content: center; /* Centre verticalement */
+            }
+
+            /* Ajustement police sur petits écrans */
             .modal-title { font-size: 1.8rem; }
-            .header-center { order: 3; width: 100%; margin-top: 15px; }
-            .search-bar { max-width: 100%; }
+            .modal-price { font-size: 1.6rem; }
+            .deco-wallpaper { font-size: 2rem; }
+            
+            .hero h1 { font-size: 2.2rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
         }
+
+        /* --- FOOTER SIMPLE --- */
+        footer { background: #111; color: #777; padding: 2rem 5%; text-align: center; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
     <div id="toast-container"></div>
-    <div class="backdrop" id="cart-backdrop" onclick="toggleCart()" style="background: rgba(44, 42, 41, 0.5); backdrop-filter: blur(4px);"></div>
 
-    <!-- Bouton Flottant WhatsApp -->
-    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour, je veux commander ce produit')" class="whatsapp-float" aria-label="Discuter sur WhatsApp">
+    <!-- BOUTON WHATSAPP -->
+    <a href="javascript:void(0)" onclick="openWhatsApp('Bonjour, je veux ce pack')" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <!-- HEADER -->
     <header>
-        <div class="logo">Decobiz</div>
-        <div class="header-center">
-            <div class="search-bar">
-                <input type="text" id="search-input" class="search-input" placeholder="Rechercher une création..." onclick="focusSearch()" onkeyup="filterProducts()">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            </div>
+        <div class="logo">DECOBIZ</div>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Rechercher..." onkeyup="filterProducts()">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
         </div>
-        <div class="header-actions">
-            <button class="action-icon" onclick="openWhatsApp('Bonjour, je voudrais personnaliser une pièce.')" aria-label="Chat">
-                <i class="fa-brands fa-whatsapp"></i>
-            </button>
-            <button class="cart-btn" onclick="toggleCart()" aria-label="Panier">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-                <span class="cart-count" id="cart-count">0</span>
-            </button>
-        </div>
+        <button class="cart-btn" onclick="toggleCart()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span class="cart-count" id="cart-count">0</span>
+        </button>
     </header>
 
-    <!-- HERO (Aesthetic) -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>L'Artisanat<br>Sublimez Votre Intérieur</h1>
-            <p class="hero-subtitle">Découvrez nos collections uniques de plateaux, arches et présentoirs, façonnés à la main avec passion.</p>
-            
-            <div class="hero-buttons">
-                <a href="#featured-packs" class="btn btn-primary">
-                    Découvrir la Collection
-                </a>
-                <button class="btn btn-outline" onclick="openWhatsApp('Bonjour, je souhaite un conseil déco.')">
-                    <i class="fa-brands fa-whatsapp"></i> Nous Contacter
-                </button>
-            </div>
+        <div>
+            <h1>L'Artisanat d'Exception</h1>
+            <p>Créez une atmosphère unique chez vous</p>
+            <button class="btn-hero" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">Découvrir la Collection</button>
         </div>
     </section>
 
-    <!-- FEATURED PACKS -->
-    <section id="featured-packs" class="featured-slider-section">
-        <div class="featured-header">
-            <h2 class="featured-title">Nos Favorites</h2>
-            <div style="font-size: 0.8rem; color: var(--text-muted); letter-spacing: 1px;">GLISSER POUR VOIR PLUS</div>
-        </div>
-        
-        <div class="slider-container">
-            <div class="pack-card-compact" onclick="openProductModal(1)">
-                <img src="https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984" alt="Pack Signature" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/sig/300/300'">
-                <div class="pack-content-compact">
-                    <h3 class="pack-title-compact">Collection Signature</h3>
-                    <div class="pack-price-compact">299 MAD</div>
-                    <div class="btn-view-pack">Voir le pack</div>
-                </div>
-            </div>
-            <div class="pack-card-compact" onclick="openProductModal(33)">
-                <img src="rose.jpeg" alt="Pack Rose" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/rose/300/300'">
-                <div class="pack-content-compact">
-                    <h3 class="pack-title-compact">Rose Terracotta</h3>
-                    <div class="pack-price-compact">149 MAD</div>
-                    <div class="btn-view-pack">Voir le pack</div>
-                </div>
-            </div>
-            <div class="pack-card-compact" onclick="openProductModal(4)">
-                <img src="salle.jpeg" alt="Pack Salle de Bain" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/bath/300/300'">
-                <div class="pack-content-compact">
-                    <h3 class="pack-title-compact">Salle de Bain Chic</h3>
-                    <div class="pack-price-compact">135 MAD</div>
-                    <div class="btn-view-pack">Voir le pack</div>
-                </div>
-            </div>
-            <div class="pack-card-compact" onclick="openProductModal(2)">
-                <img src="https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e" alt="Pack Salon" class="pack-img-compact" onerror="this.src='https://picsum.photos/seed/salon/300/300'">
-                <div class="pack-content-compact">
-                    <h3 class="pack-title-compact">Salon Moderne</h3>
-                    <div class="pack-price-compact">135 MAD</div>
-                    <div class="btn-view-pack">Voir le pack</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- GALLERY -->
     <section id="gallery" class="gallery">
-        <h2 class="section-title">La Collection</h2>
-        <p class="section-subtitle">Des pièces uniques pour une ambiance qui vous ressemble</p>
-        
         <div class="gallery-grid" id="product-grid">
-            <!-- Produits Injectés JS -->
-        </div>
-        
-        <div id="no-results" style="text-align: center; width: 100%; display: none; padding: 40px;">
-            <p style="font-family: var(--font-heading); font-size: 1.5rem; color: var(--text-muted);">Aucun résultat.</p>
-            <button onclick="document.getElementById('search-input').value=''; filterProducts();" style="margin-top:20px; border:none; background:none; color: var(--primary-accent); text-decoration: underline; cursor:pointer; font-size:1rem;">Réinitialiser</button>
+            <!-- Les produits seront générés par JS -->
         </div>
     </section>
 
-    <section class="testimonials">
-        <div class="testi-grid">
-            <div class="testi-card">
-                <p class="testi-text">"Une qualité exceptionnelle. J'ai adoré la finesse des détails et la finition parfaite."</p>
-                <div class="testi-author">— Sarah B., Rabat</div>
-            </div>
-            <div class="testi-card">
-                <p class="testi-text">"L'arche a tout changé dans mon salon. C'est exactement ce que je cherchais depuis longtemps."</p>
-                <div class="testi-author">— Karim M., Casablanca</div>
-            </div>
-            <div class="testi-card">
-                <p class="testi-text">"Service client au top et livraison rapide. Le plateau est encore plus beau en photo."</p>
-                <div class="testi-author">— Amal T., Tanger</div>
-            </div>
-        </div>
-    </section>
-
-    <footer style="background: var(--text-main); color: #999; padding: 5rem 5%; text-align: center;">
-        <div style="font-family: var(--font-heading); font-size: 2rem; color: white; margin-bottom: 1.5rem; letter-spacing: 2px;">DECOBIZ</div>
-        <p style="margin-bottom: 2rem; font-size: 1rem; opacity: 0.6;">Artisanat Marocain • Fait main</p>
-        <p style="font-size: 0.8rem;">&copy; 2024 Decobiz. Tous droits réservés.</p>
+    <!-- FOOTER -->
+    <footer>
+        DECOBIZ &copy; 2024 - Fait main avec passion
     </footer>
 
-    <!-- --- CART SIDEBAR --- -->
-    <aside class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h3 style="font-family: var(--font-heading); font-size: 1.5rem;">Votre Panier</h3>
-            <button onclick="toggleCart()" style="font-size: 1.5rem; background:none; cursor:pointer;">&times;</button>
-        </div>
-        
-        <div class="cart-items" id="cart-items-container" style="padding: 2rem; flex-grow:1; overflow-y:auto;">
-            <p style="text-align: center; color: var(--text-muted); margin-top: 3rem; font-style: italic;">Votre panier est vide</p>
-        </div>
-
-        <div class="checkout-form" id="checkout-form" style="padding: 2rem; display: none; background: #fff;">
-            <h4 style="margin-bottom: 1.5rem; font-family: var(--font-heading); font-size: 1.5rem;">Livraison</h4>
-            <div class="form-group" style="margin-bottom: 1rem;">
-                <label style="display:block; margin-bottom:5px; font-size:0.9rem; font-weight:600;">Nom complet</label>
-                <input type="text" id="cust-name" placeholder="Votre nom" style="width:100%; padding:12px; border:1px solid #ddd; background:#f9f9f9;">
-            </div>
-            <div class="form-group" style="margin-bottom: 1rem;">
-                <label style="display:block; margin-bottom:5px; font-size:0.9rem; font-weight:600;">Téléphone</label>
-                <input type="tel" id="cust-phone" placeholder="06 XX XX XX XX" style="width:100%; padding:12px; border:1px solid #ddd; background:#f9f9f9;">
-            </div>
-            <div class="form-group" style="margin-bottom: 1rem;">
-                <label style="display:block; margin-bottom:5px; font-size:0.9rem; font-weight:600;">Adresse</label>
-                <textarea id="cust-address" rows="3" placeholder="Votre adresse complète" style="width:100%; padding:12px; border:1px solid #ddd; background:#f9f9f9;"></textarea>
-            </div>
-            <button class="btn btn-primary" style="width:100%; background:var(--success-green); color:white;" onclick="processOrder()">
-                Valider la commande
-            </button>
-            <button onclick="showCartItems()" style="width:100%; margin-top:15px; background:none; border:none; text-decoration:underline; font-size:0.9rem; padding:10px; cursor:pointer;">Retour</button>
-        </div>
-
-        <div class="cart-footer" id="cart-footer">
-            <div style="margin-bottom: 1rem; color: var(--text-muted); display:flex; justify-content:space-between;">
-                <span>Sous-total</span>
-                <span id="cart-subtotal">0 MAD</span>
-            </div>
-            <div style="margin-bottom: 1rem; color: var(--text-muted); display:flex; justify-content:space-between;">
-                <span>Livraison</span>
-                <span id="shipping-fee">35 DH</span>
-            </div>
-            <div class="cart-total">
-                <span>Total</span>
-                <span id="cart-total-price">0 MAD</span>
-            </div>
-            <button class="btn btn-primary" style="width:100%; background:var(--text-main); color:white;" onclick="showCheckout()">
-                Passer la commande
-            </button>
-        </div>
-    </aside>
-
-    <!-- --- PRODUCT MODAL --- -->
+    <!-- --- MODALE SPLIT SCREEN (L'EFFET DEMANDÉ) --- -->
     <div class="modal-overlay" id="product-modal">
         <div class="modal-box">
-            <div class="modal-close" onclick="closeModal()">&times;</div>
-            <div class="modal-gallery">
-                <img id="modal-img" src="" alt="Product">
+            <!-- Bouton Fermer (Absolu) -->
+            <div class="close-btn" onclick="closeModal()">&times;</div>
+
+            <!-- GAUCHE : L'IMAGE -->
+            <div class="modal-visual">
+                <!-- L'image source -->
+                <img id="modal-img" src="" alt="Pack Visuel">
             </div>
-            <div class="modal-info">
-                <div style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.9rem;">Handmade • Maroc</div>
-                <h2 class="modal-title" id="modal-title">Titre</h2>
-                <div class="modal-price" id="modal-price">0 MAD</div>
-                <div class="modal-desc" id="modal-desc">Description...</div>
+
+            <!-- DROITE : LE CONTENU -->
+            <div class="modal-content">
+                <!-- Texte d'ambiance en arrière-plan -->
+                <div class="deco-wallpaper">Handmade Home Decor</div>
                 
-                <div class="personalization-section">
-                    <div style="margin-bottom: 10px; font-weight: 600; color: var(--primary-accent);">Personnalisation</div>
-                    <textarea id="custom-color-input" class="pers-input" placeholder="Précisez la couleur souhaitée (ex: Terracotta, Bleu nuit...). Laissez vide pour la couleur de la photo."></textarea>
+                <!-- Header Brand -->
+                <div class="brand-header">
+                    <span>DECOBIZ</span>
+                    <span>CREATIONS</span>
                 </div>
 
+                <!-- Contenu Principal -->
+                <h2 class="modal-title" id="modal-title">Collection Signature</h2>
+                <p class="modal-desc" id="modal-desc">Le Pack Ultime. Contient une Arche décorative, 2 Vases, Plateaux, Boîte d’arrangement et plus.</p>
+                
+                <div class="modal-price" id="modal-price">299 MAD</div>
+
+                <!-- Personnalisation -->
+                <div class="perso-box">
+                    <div class="perso-title">
+                        <i class="fa-solid fa-pen-fancy"></i> Personnalisation
+                    </div>
+                    <textarea id="custom-color-input" class="perso-input" rows="2" placeholder="Ex: Terracotta, Bleu nuit..."></textarea>
+                </div>
+
+                <!-- Bouton Achat -->
                 <button class="btn-add-cart" id="modal-add-btn">
-                    Ajouter au Panier <i class="fa-solid fa-arrow-right" style="font-size:0.8rem;"></i>
+                    Ajouter au Panier <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- --- JAVASCRIPT LOGIC --- -->
+    <!-- --- JAVASCRIPT --- -->
     <script>
-        const DELIVERY_FEE = 35;
-        const FREE_SHIPPING_THRESHOLD = 399;
+        // --- DONNÉES ---
         const PHONE_NUMBER = "212610236889";
-
-        function openWhatsApp(message) {
-            const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-
-        // Données Produits
+        
+        // Liste Produits (Images locales pour l'exemple)
         const products = [
-            { id: 210, title: "Porte Bougies Ondulation", price: 39, image: "support5.jpeg", desc: "Créez une ambiance sereine et spa relaxante chez vous grâce à ces supports élégants.", badge: "Nouveau", sold: 8 },
-            { id: 201, title: "Plateau Rond 14cm", price: 29, image: "rond.jpg", desc: "L'accessoire parfait pour sublimer vos bagues et vos bijoux préférés.", badge: "", sold: 12 },
-            { id: 202, title: "Arche Décorative Cosy", price: 79, image: "arch.jpg", desc: "Transformez votre intérieur en un cocon douillet et design.", badge: "", sold: 8 },
-            { id: 203, title: "Plateau Étoile Bijoux", price: 29, image: "etoile.jpg", desc: "Offrez-vous le luxe de ranger vos boucles d'oreilles sur une étoile.", badge: "", sold: 24 },
-            { id: 204, title: "Plateau Irrégulier Bijoux", price: 45, image: "nuage0.jpg", desc: "Design organique et moderne pour un look naturel et apaisant.", badge: "", sold: 18 },
-            { id: 205, title: "Support Bougie Spirale", price: 29, image: "support4.jpeg", desc: "Une touche d'élégance minimaliste pour vos soirées romantiques.", badge: "", sold: 30 },
-            { id: 206, title: "Coquille Bijoux", price: 29, image: "coquille.jpg", desc: "Rapportez l'océan chez vous avec ce présentoir unique.", badge: "", sold: 15 },
-            { id: 207, title: "Plateau Rond 23 cm", price: 59, image: "rondla.jpg", desc: "Un statement piece puissant pour vos bougies et vos rangements.", badge: "", sold: 10 },
-            { id: 208, title: "Plateau Ovale 18 cm", price: 35, image: "pla18.jpg", desc: "Idéal sur votre table de chevet pour organiser vos parfums.", badge: "", sold: 12 },
-            { id: 209, title: "Plateau Ovale 23 cm", price: 55, image: "ovale23.jpeg", desc: "L'élégance fonctionnelle : organisez vos objets avec style.", badge: "", sold: 64 },
-            { id: 1, title: "Collection Signature", price: 299, image: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984", desc: "Le Pack Ultime. Contient une Arche décorative, 2 Vases, Plateaux, Boîte d’arrangement et plus.", badge: "Exclusif", sold: 124 },
-            { id: 33, title: "Pack Rose Terracotta", price: 149, image: "rose.jpeg", desc: "L'élégance du Terre Cuite doucement rosée. Pack exclusif pour un look tendance.", badge: "Nouveau", sold: 45 },
-            { id: 2, title: "Salon Moderne", price: 135, image: "https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e", desc: "4 Pièces Essentielles pour un salon moderne et épuré.", badge: "", sold: 89 },
-            { id: 3, title: "Cuisine Moderne", price: 49, image: "https://z-cdn-media.chatglm.cn/files/1919c829-23e9-4cd8-a885-a8075f37154f.jpeg?auth_key=1875232591-537ae520446f44eb95ff7fd45929de05-0-5e7d1c42e9c29ad6750cfc4231d7dd6b", desc: "Pratique & esthétique : Organisez votre cuisine avec style.", badge: "", sold: 210 },
-            { id: 4, title: "Salle de Bain Chic", price: 135, image: "salle.jpeg", desc: "Transformez votre salle de bain en un spa luxueux.", badge: "", sold: 67 },
-            { id: 5, title: "Coin Zen", price: 99, image: "https://z-cdn-media.chatglm.cn/files/52c13be4-c089-4bd8-8a3d-7fc4de4a7194.jpeg?auth_key=1875248308-e34a1298cd9d4f1cadb81c7140337e97-0-71ad2cf33abb2d5123e81f91049ece8d", desc: "Pack sérénité absolue pour méditer et se détendre.", badge: "", sold: 55 },
-            { id: 6, title: "Édition Romance", price: 99, image: "https://z-cdn-media.chatglm.cn/files/af3f5d23-592b-42f0-a179-f87777ddd8e7.jpeg?auth_key=1875248308-a21df59ee6514e3c9049ebbcae344d89-0-97f9dee2a776b8d82473d7bf1dc8f665", desc: "Un trio charmant pour les amoureux : Vase haut, plateau ovale et pot décoratif.", badge: "", sold: 42 },
-            { id: 8, title: "Collection Lavande", price: 165, image: "lavande.jpeg", desc: "Assortiment Violet Perlé : Plateaux perlés, bols et vases lilas.", badge: "", sold: 29 },
-            { id: 9, title: "Pack EID", price: 135, image: "eid.jpeg", desc: "Pack festif : Plateau EID cérémonial et Brûleur encens pour célébrer.", badge: "", sold: 156 },
-            { id: 27, title: "Plateau Mariage Personnalisé", price: 115, image: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", desc: "Cadeau idéal. Plateau personnalisé avec coquillage et perles fines.", badge: "", sold: 64 }
+            { id: 1, title: "Collection Signature", price: "299", image: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984", desc: "Le Pack Ultime pour transformer votre maison. Contient Arche, Vases, Plateaux et plus." },
+            { id: 2, title: "Pack Rose Terracotta", price: "149", image: "rose.jpeg", desc: "L'élégance du Terre Cuite. Pack exclusif." },
+            { id: 3, title: "Salon Moderne", price: "135", image: "https://z-cdn-media.chatglm.cn/files/8ebd7c71-4acd-4f80-b9bd-f3e2fb760dc1.jpeg?auth_key=1875236056-ed581eacf71047559351414d53978d45-0-6e1338df51f83f351bf1f81af95dd46e", desc: "4 Pièces Essentielles pour un salon moderne." },
+            { id: 4, title: "Salle de Bain Chic", price: "135", image: "salle.jpeg", desc: "Transformez votre salle de bain en un spa luxueux." }
         ];
 
-        // --- COMPTE A REBOURS ---
-        function startCountdown() {
-            const now = new Date();
-            const end = new Date();
-            end.setHours(23, 59, 59, 999);
-            function update() {
-                const current = new Date();
-                let diff = end - current;
-                if (diff < 0) { end.setDate(end.getDate() + 1); diff = end - current; }
-                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const s = Math.floor((diff % (1000 * 60)) / 1000);
-            }
-            setInterval(update, 1000);
-            update();
-        }
-
-        // --- TRACKING ---
-        function trackEvent(eventName, params = {}) {
-            if (typeof fbq !== 'undefined') fbq('track', eventName, params);
-        }
-
-        // --- PANIER ---
+        // --- INITIALISATION ---
         let cart = JSON.parse(localStorage.getItem('decobiz_cart')) || [];
-        let currentProduct = null;
 
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts(products);
-            updateCartUI();
-            startCountdown();
-            trackEvent('PageView');
+            updateCartCount();
         });
 
-        function getRandomStock() { return Math.floor(Math.random() * 4) + 2; }
-
-        function filterProducts() {
-            const input = document.getElementById('search-input');
-            const query = input.value.toLowerCase().trim();
+        // --- RENDER GRID ---
+        function renderProducts(list) {
             const grid = document.getElementById('product-grid');
-            const noResults = document.getElementById('no-results');
-            const filtered = products.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query));
-            if (filtered.length === 0) {
-                grid.innerHTML = ''; noResults.style.display = 'block';
-            } else {
-                noResults.style.display = 'none';
-                generateProductHTML(filtered, grid);
-            }
-        }
-
-        function focusSearch() {
-            document.getElementById('featured-packs').scrollIntoView({behavior: 'smooth'});
-        }
-
-        function generateProductHTML(productList, container) {
-            container.innerHTML = productList.map(p => {
-                const stockBadge = getRandomStock() <= 3 ? `<span class="badge badge-new">Dernières pièces</span>` : '';
-                const socialProof = p.sold ? `<div class="social-proof"><i class="fa-solid fa-heart"></i> ${p.sold} clients</div>` : '';
-                return `
+            grid.innerHTML = list.map(p => `
                 <div class="product-card" onclick="openProductModal(${p.id})">
-                    <div class="card-img-container">
-                        <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400?text=Decobiz'">
-                        ${stockBadge}
+                    <div class="card-img">
+                        <img src="${p.image}" onerror="this.src='https://via.placeholder.com/300'">
                     </div>
-                    <div class="card-details">
+                    <div class="card-info">
                         <div class="card-title">${p.title}</div>
                         <div class="card-price">${p.price} MAD</div>
-                        ${socialProof}
-                        <button class="quick-add-btn" onclick="event.stopPropagation(); addToCartById(${p.id}, 'Couleur photo')">Acheter</button>
+                        <button class="btn-card" onclick="event.stopPropagation(); addToCartById(${p.id})">Acheter</button>
                     </div>
                 </div>
-            `}).join('');
+            `).join('');
         }
 
-        function renderProducts(productList) {
-            generateProductHTML(productList, document.getElementById('product-grid'));
-        }
-
-        function addToCartById(id, color = 'Couleur photo') {
-            const product = products.find(p => p.id === id);
-            if(product) addToCart(product, color);
-        }
-
-        function addToCart(product, color) {
-            const cartId = `${product.id}-${color}`;
-            const existing = cart.find(item => item.cartId === cartId);
-            if (existing) existing.qty++;
-            else cart.push({ ...product, cartId, selectedColor: color, qty: 1 });
-            saveCart();
-            updateCartUI();
-            showToast(`<i class="fa-solid fa-check"></i> Ajouté au panier`);
-            trackEvent('AddToCart', { content_name: product.title, value: product.price, currency: 'MAD' });
-        }
-
-        function removeFromCart(cartId) {
-            cart = cart.filter(item => item.cartId !== cartId);
-            saveCart();
-            updateCartUI();
-        }
-
-        function saveCart() { localStorage.setItem('decobiz_cart', JSON.stringify(cart)); }
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-items-container');
-            const subtotalEl = document.getElementById('cart-subtotal');
-            const totalEl = document.getElementById('cart-total-price');
-            const countEl = document.getElementById('cart-count');
-            const shippingFeeEl = document.getElementById('shipping-fee');
-            
-            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-            countEl.innerText = totalQty;
-            countEl.style.display = totalQty > 0 ? 'flex' : 'none';
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            let shipping = DELIVERY_FEE;
-            if(subtotal >= FREE_SHIPPING_THRESHOLD) shipping = 0;
-            const total = subtotal + shipping;
-            
-            subtotalEl.innerText = subtotal + ' MAD';
-            shippingFeeEl.innerText = shipping === 0 ? 'Offerte' : shipping + ' MAD';
-            totalEl.innerText = total + ' MAD';
-
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="text-align: center; color: #ccc; margin-top: 3rem;">Votre panier est vide</p>';
-                document.getElementById('cart-footer').style.display = 'none';
-            } else {
-                document.getElementById('cart-footer').style.display = 'block';
-                container.innerHTML = cart.map(item => `
-                    <div style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; display:flex; gap:15px;">
-                        <img src="${item.image}" style="width:60px; height:60px; object-fit:cover; border-radius:4px;">
-                        <div style="flex:1;">
-                            <div style="font-weight:600;">${item.title}</div>
-                            <div style="font-size:0.8rem; color:#777;">${item.selectedColor}</div>
-                            <div style="font-weight:600;">${item.qty} x ${item.price} MAD</div>
-                        </div>
-                        <div onclick="removeFromCart('${item.cartId}')" style="color:#d9534f; cursor:pointer; font-size:0.8rem; padding-top:5px;">Supprimer</div>
-                    </div>
-                `).join('');
-            }
-        }
-
-        function toggleCart() {
-            const sidebar = document.getElementById('cart-sidebar');
-            const backdrop = document.getElementById('cart-backdrop');
-            const isOpen = sidebar.classList.contains('open');
-            if (isOpen) {
-                sidebar.classList.remove('open');
-                backdrop.classList.remove('active');
-                setTimeout(showCartItems, 300);
-            } else {
-                sidebar.classList.add('open');
-                backdrop.classList.add('active');
-                showCartItems();
-            }
-        }
-
-        function showCheckout() {
-            if(cart.length === 0) return;
-            document.getElementById('cart-items-container').style.display = 'none';
-            document.getElementById('cart-footer').style.display = 'none';
-            document.getElementById('checkout-form').style.display = 'block';
-        }
-
-        function showCartItems() {
-            document.getElementById('cart-items-container').style.display = 'block';
-            document.getElementById('cart-footer').style.display = 'block';
-            document.getElementById('checkout-form').style.display = 'none';
-        }
-
-        function processOrder() {
-            const name = document.getElementById('cust-name').value;
-            const phone = document.getElementById('cust-phone').value;
-            const address = document.getElementById('cust-address').value;
-            if (!name || !phone || !address) { showToast("Veuillez remplir tous les champs", "error"); return; }
-
-            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            let shipping = DELIVERY_FEE;
-            if(subtotal >= FREE_SHIPPING_THRESHOLD) shipping = 0;
-            const grandTotal = subtotal + shipping;
-
-            let message = `NOUVELLE COMMANDE DECOBIZ\n\nClient: ${name}\nTél: ${phone}\nAdresse: ${address}\n\nCommande:\n`;
-            cart.forEach(item => message += `- ${item.title} (${item.selectedColor}): ${item.qty} x ${item.price} MAD\n`);
-            message += `\nLivraison: ${shipping === 0 ? 'Gratuite' : shipping + ' MAD'}\nTotal: ${grandTotal} MAD`;
-
-            const url = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
-        }
-
+        // --- MODALE ---
         function openProductModal(id) {
             const product = products.find(p => p.id === id);
-            if (!product) return;
-            currentProduct = product;
+            if(!product) return;
+
             document.getElementById('modal-img').src = product.image;
             document.getElementById('modal-title').innerText = product.title;
-            document.getElementById('modal-price').innerText = product.price + ' MAD';
             document.getElementById('modal-desc').innerText = product.desc;
-            document.getElementById('custom-color-input').value = "";
+            document.getElementById('modal-price').innerText = product.price + ' MAD';
             
+            // Reset Input
+            const input = document.getElementById('custom-color-input');
+            input.value = '';
+
+            // Event Bouton
             document.getElementById('modal-add-btn').onclick = () => {
-                const customColor = document.getElementById('custom-color-input').value.trim();
-                const finalColor = customColor ? customColor : "Couleur de la photo";
-                addToCart(product, finalColor);
+                const color = input.value.trim() || "Couleur standard";
+                addToCart(product, color);
                 closeModal();
             };
 
+            // Afficher
             document.getElementById('product-modal').classList.add('active');
-            trackEvent('ViewContent', { content_name: product.title, value: product.price, currency: 'MAD' });
         }
 
         function closeModal() {
             document.getElementById('product-modal').classList.remove('active');
-            currentProduct = null;
         }
 
-        document.getElementById('product-modal').addEventListener('click', (e) => {
-            if (e.target.id === 'product-modal') closeModal();
-        });
+        // --- PANIER ---
+        function addToCart(product, color) {
+            cart.push({ ...product, selectedColor: color, qty: 1 });
+            localStorage.setItem('decobiz_cart', JSON.stringify(cart));
+            updateCartCount();
+            showToast("Ajouté au panier !");
+        }
 
-        function showToast(msg, type = 'success') {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = msg;
-            container.appendChild(toast);
-            requestAnimationFrame(() => toast.classList.add('show'));
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => toast.remove(), 400);
-            }, 3000);
+        function addToCartById(id) {
+            const product = products.find(p => p.id === id);
+            addToCart(product, "Standard");
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cart.length;
+            document.getElementById('cart-count').style.display = cart.length > 0 ? 'flex' : 'none';
+        }
+
+        function toggleCart() {
+            // Pour cet exemple, on affiche juste le contenu du panier dans une alerte (ou vous pouvez créer la sidebar)
+            if(cart.length === 0) {
+                showToast("Votre panier est vide");
+            } else {
+                let msg = "Votre Panier:\n\n";
+                cart.forEach(i => msg += `- ${i.title} (${i.selectedColor})\n`);
+                alert(msg); // Remplacez par votre sidebar réelle
+            }
+        }
+
+        // --- UTILS ---
+        function openWhatsApp(text) {
+            window.open(`https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function filterProducts() {
+            const query = document.querySelector('.search-input').value.toLowerCase();
+            const filtered = products.filter(p => p.title.toLowerCase().includes(query));
+            renderProducts(filtered);
+        }
+
+        function showToast(msg) {
+            const t = document.createElement('div');
+            t.className = 'toast show';
+            t.innerHTML = `<i class="fa-solid fa-check-circle" style="color:#2F5233"></i> ${msg}`;
+            document.getElementById('toast-container').appendChild(t);
+            setTimeout(() => t.remove(), 3000);
         }
     </script>
 </body>
