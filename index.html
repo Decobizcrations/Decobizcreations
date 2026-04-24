@@ -289,6 +289,65 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* --- WHATSAPP FLOAT BUTTON --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--accent-gold); /* Utilise la couleur Or du thème */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 990; /* En dessous du panier (1000) et lightbox (9999) */
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #b08d45; /* Légèrement plus sombre au survol */
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(197, 160, 89, 0.5);
+        }
+
+        .whatsapp-float i {
+            font-size: 32px;
+            line-height: 60px;
+        }
+        
+        /* Pulse animation pour attirer l'attention */
+        .whatsapp-float::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            opacity: 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            70% { transform: scale(1.4); opacity: 0; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        
+        /* Sur mobile, remonte un peu le bouton pour ne pas gêner le scroll */
+        @media (max-width: 600px) {
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+            .whatsapp-float i { font-size: 26px; line-height: 50px; }
+        }
+
     </style>
 </head>
 <body>
@@ -378,6 +437,11 @@
         </div>
         <p>&copy; 2024 Decobiz.</p>
     </footer>
+
+    <!-- BOUTON WHATSAPP FLOTTANT -->
+    <a href="https://wa.me/212610236889" class="whatsapp-float" target="_blank" aria-label="Contacter sur WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <!-- LIGHTBOX -->
     <div id="lightbox"><div id="lightbox-close" class="cursor-pointer">&times;</div><img id="lightbox-img" src="" alt="Agrandissement"></div>
