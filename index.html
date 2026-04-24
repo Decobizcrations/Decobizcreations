@@ -141,7 +141,7 @@
             display: grid; grid-template-columns: 1fr; gap: 20px;
         }
         @media (min-width: 768px) {
-            .packs-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
+            .packs-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         }
 
         .promo-card {
@@ -149,6 +149,7 @@
             box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.05);
             display: flex; flex-direction: column; transition: 0.3s;
         }
+        .promo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .promo-img-wrapper { height: 250px; position: relative; overflow: hidden; }
         .promo-img { width: 100%; height: 100%; object-fit: cover; }
         .promo-content { padding: 25px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
@@ -165,6 +166,33 @@
             width: 100%; padding: 12px; background: var(--text-main); color: white; font-weight: 700; text-transform: uppercase; border-radius: 6px;
             font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px;
         }
+        .btn-promo:hover { background: var(--accent-gold); }
+
+        /* --- FEEDBACK SECTION (NEW) --- */
+        .feedback-section {
+            background: #fff;
+            padding: 60px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .feedback-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        .feedback-card {
+            background: var(--bg-color);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+        }
+        .stars { color: var(--accent-gold); margin-bottom: 10px; font-size: 1.1rem; }
+        .feedback-text { font-style: italic; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 15px; line-height: 1.6; }
+        .feedback-author { font-weight: 700; font-family: var(--font-heading); color: var(--text-main); font-size: 0.9rem; }
+        .verified-badge { color: var(--success-green); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-top: 5px; display: block; }
 
         /* --- CATALOGUE --- */
         .section-padding { padding: 60px 0; }
@@ -210,14 +238,14 @@
             position: relative; animation: fadeInUp 0.3s;
         }
         .shipping-top-bar {
-        background: var(--accent-gold); 
-        color: white; 
-        padding: 8px 0; 
-        text-align: center;
-        font-weight: 700; 
-        font-size: 0.8rem; 
-        letter-spacing: 0.5px;
-    }
+            background: var(--accent-gold); 
+            color: white; 
+            padding: 8px 0; 
+            text-align: center;
+            font-weight: 700; 
+            font-size: 0.8rem; 
+            letter-spacing: 0.5px;
+        }
         .custom-modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
         .custom-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 20px; text-align: center; font-style: italic; }
         .form-group { margin-bottom: 15px; }
@@ -268,7 +296,7 @@
     <div class="promo-top-bar">
         <i class="fa-solid fa-pen-nib"></i> TOUS NOS ARTICLES SONT PERSONNALISABLES
     </div>
- <div class="shipping-top-bar">
+    <div class="shipping-top-bar">
         <i class="fa-solid fa-truck-fast"></i> LIVRAISON GRATUITE PARTOUT AU MAROC DÈS 399 DH
     </div>
     <header>
@@ -297,6 +325,39 @@
                 <h2 class="section-title">Les Packs Exclusifs</h2>
             </div>
             <div class="packs-grid" id="promo-container"></div>
+        </div>
+    </section>
+
+    <!-- SECTION FEEDBACKS AJOUTÉE -->
+    <section class="feedback-section">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 30px;">Ce qu'ils en pensent</h2>
+            <div class="feedback-grid">
+                <div class="feedback-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="feedback-text">"Incroyable ! J'ai reçu le pack brûleur et la qualité est au rendez-vous. L'odeur est divine et ça fait tout mon salon."</p>
+                    <div class="feedback-author">Sarah B.</div>
+                    <span class="verified-badge"><i class="fa-solid fa-check-circle"></i> Achat vérifié</span>
+                </div>
+                <div class="feedback-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="feedback-text">"Livraison rapide à Casablanca. Les pièces sont emballées avec soin et le design est exactement comme sur les photos."</p>
+                    <div class="feedback-author">Karim M.</div>
+                    <span class="verified-badge"><i class="fa-solid fa-check-circle"></i> Achat vérifié</span>
+                </div>
+                <div class="feedback-card">
+                    <div class="stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="feedback-text">"Service client au top. J'ai demandé une personnalisation et ils ont tout fait pour me satisfaire. Je recommande à 100%."</p>
+                    <div class="feedback-author">Layla T.</div>
+                    <span class="verified-badge"><i class="fa-solid fa-check-circle"></i> Achat vérifié</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -392,9 +453,12 @@
 
     <script>
         // --- DONNÉES PRODUITS ---
-        // IMPORTANT : TOUS LES PRODUITS ONTS MAINTENANT customType: "color"
+        // IMPORTANT : TOUS LES PRODUITS ONT MAINTENANT customType: "color"
         // SAUF le Plateau Personnalisé qui garde "logo" (gravure requise)
         const products = [
+            // --- NOUVEAU PACK BRULEUR AJOUTÉ ICI ---
+            { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", trending: true, isPromo: true, desc: "Contient 4 pièces (Bruleurs)", customType: "color" },
+
             { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale.", customType: "color" },
             { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Récipient cylindrique, Citrouille et Tray design.", customType: "color" },
             { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984", trending: true, isPromo: true, desc: "Notre best-seller absolu.", customType: "color" },
@@ -411,7 +475,7 @@
             { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", trending: true, desc: "Duo de vases cylindriques blancs.", customType: "color" },
             { id: 205, title: "Plateau Rond 16 cm", price: 29, img: "rond.jpg", trending: false, desc: "Petit bol rond tacheté.", customType: "color" },
             { id: 206, title: "Vase Fenêtre Cosy", price: 55, img: "cozy.jpeg", trending: false, desc: "Grand vase blanc avec pampas.", customType: "color" },
-            { id: 207, title: "Support Bougies Vague", price: 39, img: "support5.jpeg", trending: false, desc: "Bougies sur support ondulé.", customType: "color" },
+            { id: 207, title: "Support Bougies Vague", price: 39, img: "support6.jpeg", trending: false, desc: "Bougies sur support ondulé.", customType: "color" },
             { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", trending: true, desc: "Vase blanc avec roses rouges.", customType: "color" },
             { id: 209, title: "Plateau Irrégulier Chic", price: 55, img: "pla.jpg", trending: false, desc: "Tray gris irrégulier.", customType: "color" },
 
