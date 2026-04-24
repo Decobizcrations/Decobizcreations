@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | Artisanat d'Exception</title>
-    <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Livraison partout au Maroc.">
+    <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible. Livraison partout au Maroc.">
 
     <!-- --- FACEBOOK PIXEL --- -->
     <script>
@@ -111,7 +111,7 @@
         /* --- HERO --- */
         .hero {
             position: relative; height: 70vh; min-height: 450px;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('parose.png'); /* Utilisation d'une nouvelle image pour le Hero */
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('rose.jpeg');
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px;
         }
@@ -201,6 +201,32 @@
             background: transparent; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; border-radius: 4px;
             transition: 0.2s; color: var(--text-main); letter-spacing: 1px;
         }
+        .prod-btn:hover { background: var(--text-main); color: white; }
+
+        /* --- MODAL PERSONNALISATION --- */
+        .custom-modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 10000;
+            display: none; justify-content: center; align-items: center; padding: 20px;
+        }
+        .custom-modal-content {
+            background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 100%;
+            position: relative; animation: fadeInUp 0.3s;
+        }
+        .custom-modal-close {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999;
+        }
+        .custom-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 20px; text-align: center; font-style: italic; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 5px; color: #555; }
+        .custom-input {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;
+            font-family: var(--font-body); font-size: 1rem;
+        }
+        .btn-custom-confirm {
+            width: 100%; padding: 14px; background: var(--primary-accent); color: white;
+            font-weight: 700; border-radius: 6px; cursor: pointer; margin-top: 10px;
+        }
 
         /* --- CART SIDEBAR --- */
         .cart-sidebar {
@@ -222,6 +248,7 @@
         .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; background: #eee; }
         .cart-item-info { flex: 1; }
         .cart-item-title { font-weight: 700; font-size: 0.9rem; font-family: var(--font-heading); margin-bottom: 4px; }
+        .cart-item-details { font-size: 0.75rem; color: #666; font-style: italic; margin-bottom: 4px; }
         .cart-item-price { color: var(--primary-accent); font-weight: 700; font-size: 0.9rem; }
         .remove-btn { color: var(--danger-soft); font-size: 0.75rem; font-weight: 700; cursor: pointer; text-transform: uppercase; margin-top: 5px; display: inline-block; }
 
@@ -230,7 +257,6 @@
 
         /* --- CHECKOUT FORM --- */
         .checkout-form-container { padding: 20px; animation: fadeIn 0.3s; }
-        .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 6px; color: #555; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-ui); }
         .form-input {
             width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 6px;
@@ -258,7 +284,7 @@
 
     <!-- PROMO BAR -->
     <div class="promo-top-bar">
-        <i class="fa-solid fa-bolt"></i> OFFRE LIMITÉE : NOUVEAUX ARRIVAGES & PACKS À -40%
+        <i class="fa-solid fa-pen-nib"></i> NOUVEAU : PERSONNALISEZ VOS PIECES AVEC NOMS & COULEURS
     </div>
 
     <!-- HEADER -->
@@ -275,7 +301,7 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>L'Élégance de la<br>Simplicité Moderne</h1>
+            <h1>Votre Déco,<br>Vos Couleurs, Votre Style</h1>
             <button class="btn-hero" onclick="document.getElementById('promo-packs').scrollIntoView({behavior:'smooth', block:'start'})">
                 Découvrir la Collection <i class="fa-solid fa-arrow-down"></i>
             </button>
@@ -300,7 +326,7 @@
     <section id="catalogue" class="section-padding">
         <div class="container">
             <h2 class="section-title">Dernières Pièces</h2>
-            <div class="section-subtitle">Sélection Unique & Fait Main</div>
+            <div class="section-subtitle">Sélection Unique & Personnalisable</div>
             <div class="grid-layout" id="product-grid">
                 <!-- JS Injection -->
             </div>
@@ -322,6 +348,32 @@
     <div id="lightbox">
         <div id="lightbox-close">&times;</div>
         <img id="lightbox-img" src="" alt="Agrandissement">
+    </div>
+
+    <!-- MODAL PERSONNALISATION -->
+    <div class="custom-modal-overlay" id="custom-modal">
+        <div class="custom-modal-content">
+            <span class="custom-modal-close" onclick="closeCustomModal()">&times;</span>
+            <h3 class="custom-title">Personnaliser votre pièce</h3>
+            <div id="modal-product-info" style="text-align: center; margin-bottom: 15px; font-weight: bold; color: var(--primary-accent);"></div>
+            
+            <!-- Champ pour la couleur -->
+            <div class="form-group">
+                <label>Couleur souhaitée (Optionnel)</label>
+                <input type="text" id="custom-color" class="custom-input" placeholder="Ex: Blanc cassé, Terracotta, Doré...">
+            </div>
+
+            <!-- Champ pour le texte (Logo/Nom) - Visible uniquement pour Demoiselle -->
+            <div class="form-group" id="group-custom-text" style="display: none;">
+                <label>Texte / Logo à graver (Requis)</label>
+                <input type="text" id="custom-text" class="custom-input" placeholder="Ex: Prénom, Marque...">
+                <small style="color: #888; font-size: 0.8rem;">Ce texte sera gravé sur le plateau.</small>
+            </div>
+
+            <button class="btn-custom-confirm" onclick="confirmAddToCart()">
+                Ajouter au panier <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
     </div>
 
     <!-- CART SIDEBAR -->
@@ -412,7 +464,7 @@
                 img: "salon.jpeg",
                 trending: true,
                 isPromo: true,
-                desc: "Vase  herbe, Porte bougie assortie, Petite citrouille, Plateau ovale."
+                desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale."
             },
             {
                 id: 102,
@@ -442,17 +494,55 @@
                 img: "packcitrouille.jpeg", 
                 trending: true, 
                 isPromo: true,
-                desc: "Composition sur plateau rond : Citrouilles  en taille variée."
+                desc: "Composition sur plateau rond : Citrouilles en taille variée."
             },
 
-            // --- NOUVELLES PIÈCES (Ajoutées) ---
+            // --- NOUVELLES PIÈCES PERSONNALISABLES ---
+            { 
+                id: 301, 
+                title: "Plateau Demoiselle", 
+                price: 120, 
+                img: "demoiselle.jpeg", 
+                trending: true, 
+                desc: "Élégant plateau ovale blanc avec finition dorée.",
+                customType: "logo", // Permet la gravure de logo/nom
+            },
+            { 
+                id: 302, 
+                title: "Collection Rose Poudré", 
+                price: 99, 
+                img: "rose.jpeg", 
+                trending: true, 
+                desc: "Set complet d'accessoires déco en teintes douces.",
+                customType: "color" // Permet le choix de la couleur
+            },
+            { 
+                id: 303, 
+                title: "Vase Cosmopolite", 
+                price: 79, 
+                img: "WhatsApp%20Image%202026-04-04%20at%2021.55.47.jpeg", 
+                trending: false, 
+                desc: "Vase texturé avec arrangement sec et éléments dorés.",
+                customType: "color"
+            },
+            { 
+                id: 304, 
+                title: "Ensemble Nature Urbaine", 
+                price: 89, 
+                img: "WhatsApp%20Image%202026-04-03%20at%2018.03.31.jpeg", 
+                trending: true, 
+                desc: "Composition vase, lune céramique et plante verte.",
+                customType: "color"
+            },
+
+            // --- AUTRES PIÈCES ---
             { 
                 id: 201, 
                 title: "Tray Nuage & Or", 
                 price: 89, 
                 img: "nuage0.jpg", 
                 trending: true, 
-                desc: "Plateau céramique forme nuage avec finition dorée et présentation de bijoux." 
+                desc: "Plateau céramique forme nuage avec finition dorée." 
             },
             { 
                 id: 202, 
@@ -460,7 +550,7 @@
                 price: 99, 
                 img: "parose.png", 
                 trending: true, 
-                desc: "Composition complète sur cuisine : Vases texturés, plateau et livres déco." 
+                desc: "Composition complète sur cuisine." 
             },
             { 
                 id: 203, 
@@ -468,7 +558,7 @@
                 price: 45, 
                 img: "support4.jpeg", 
                 trending: false, 
-                desc: "Bougie blanche sur support spiralé élégant. Touche minimaliste." 
+                desc: "Bougie blanche sur support spiralé élégant." 
             },
             { 
                 id: 204, 
@@ -476,7 +566,7 @@
                 price: 39, 
                 img: "jar.jpeg", 
                 trending: true, 
-                desc: "Duo de vases cylindriques blancs et un vase doré mat. Design pur." 
+                desc: "Duo de vases cylindriques blancs et un vase doré mat." 
             },
             { 
                 id: 205, 
@@ -492,7 +582,7 @@
                 price: 55, 
                 img: "WhatsApp%20Image%202026-04-03%20at%2017.56.03%20(3).jpeg", 
                 trending: false, 
-                desc: "Grand vase blanc avec pampas, livres et clochette. Idéal rebord de fenêtre." 
+                desc: "Grand vase blanc avec pampas, livres et clochette." 
             },
             { 
                 id: 207, 
@@ -500,11 +590,11 @@
                 price: 39, 
                 img: "support5.jpeg", 
                 trending: false, 
-                desc: "Bougies sur support ondulé. Ambiance zen et relaxing." 
+                desc: "Bougies sur support ondulé." 
             },
             { 
                 id: 208, 
-                title: "Vase  Profond", 
+                title: "Vase Profond", 
                 price: 99, 
                 img: "WhatsApp%20Image%202026-04-03%20at%2017.56.03%20(1).jpeg", 
                 trending: true, 
@@ -516,7 +606,7 @@
                 price: 55, 
                 img: "pla.jpg", 
                 trending: false, 
-                desc: "Tray gris irrégulier avec mini flacons dorés. Esthétique organique." 
+                desc: "Tray gris irrégulier avec mini flacons dorés." 
             },
 
             // --- ANCIENNES PIÈCES CONSERVÉES ---
@@ -541,6 +631,7 @@
 
         let cart = [];
         let currentShipping = 0;
+        let currentProductForCustom = null; // Pour stocker le produit en cours de personnalisation
         const FREE_SHIPPING_THRESHOLD = 399;
 
         // --- LIGHTBOX LOGIC ---
@@ -598,7 +689,7 @@
                             ${discountTag}
                         </div>
 
-                        <button class="btn-promo" onclick="addToCart(${p.id})">
+                        <button class="btn-promo" onclick="checkCustom(${p.id})">
                             <i class="fa-solid fa-cart-plus"></i> Ajouter
                         </button>
                     </div>
@@ -610,19 +701,90 @@
             const gridProducts = products.filter(p => !p.isPromo);
             const grid = document.getElementById('product-grid');
             
-            grid.innerHTML = gridProducts.map(p => `
+            grid.innerHTML = gridProducts.map(p => {
+                // Badge Personnalisable
+                const customBadge = p.customType ? '<div class="badge-trend" style="background:var(--accent-gold); left:8px; right:auto;">Personnalisable</div>' : (p.trending ? '<div class="badge-trend">Tendance</div>' : '');
+
+                return `
                 <div class="product-card">
-                    ${p.trending ? '<div class="badge-trend">Tendance</div>' : ''}
+                    ${customBadge}
                     <div class="prod-img-container">
                         <img src="${p.img}" class="prod-img" alt="${p.title}" loading="lazy" onclick="openLightbox('${p.img}')" onerror="this.src='https://via.placeholder.com/400x400?text=Decobiz'">
                     </div>
                     <div class="prod-info">
                         <div class="prod-title">${p.title}</div>
                         <div class="prod-price">${p.price} MAD</div>
-                        <button class="prod-btn" onclick="addToCart(${p.id})">Ajouter</button>
+                        <button class="prod-btn" onclick="checkCustom(${p.id})">Ajouter</button>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
+        }
+
+        // --- CUSTOM MODAL LOGIC ---
+        function checkCustom(id) {
+            const product = products.find(p => p.id === id);
+            if (product.customType) {
+                openCustomModal(product);
+            } else {
+                addToCart(id);
+            }
+        }
+
+        function openCustomModal(product) {
+            currentProductForCustom = product;
+            const modal = document.getElementById('custom-modal');
+            const title = document.getElementById('modal-product-info');
+            const colorInput = document.getElementById('custom-color');
+            const textGroup = document.getElementById('group-custom-text');
+            const textInput = document.getElementById('custom-text');
+
+            title.innerText = `Personnalisation : ${product.title}`;
+            colorInput.value = "";
+            textInput.value = "";
+
+            // Si c'est un type Logo (Demoiselle), on force le texte
+            if (product.customType === 'logo') {
+                textGroup.style.display = 'block';
+            } else {
+                textGroup.style.display = 'none';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeCustomModal() {
+            document.getElementById('custom-modal').style.display = 'none';
+            currentProductForCustom = null;
+        }
+
+        function confirmAddToCart() {
+            if (!currentProductForCustom) return;
+
+            const color = document.getElementById('custom-color').value;
+            const text = document.getElementById('custom-text').value;
+
+            // Validation pour Demoiselle (Logo requis)
+            if (currentProductForCustom.customType === 'logo' && text.trim() === "") {
+                alert("Veuillez entrer le texte ou le logo à graver pour ce plateau.");
+                return;
+            }
+
+            // Création de l'objet panier avec variantes
+            const cartItem = { ...currentProductForCustom };
+            cartItem.customDetails = [];
+
+            if (color) cartItem.customDetails.push(`Couleur: ${color}`);
+            if (text) cartItem.customDetails.push(`Gravure: "${text}"`);
+
+            cart.push(cartItem);
+            updateCartUI();
+            closeCustomModal();
+            
+            const btn = document.getElementById('cart-count');
+            btn.style.transform = 'scale(1.5)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 200);
+
+            toggleCart(true);
         }
 
         // --- CART LOGIC ---
@@ -669,11 +831,19 @@
                 let subtotal = 0;
                 container.innerHTML = cart.map((item, index) => {
                     subtotal += item.price;
+                    
+                    // Affichage des détails de personnalisation
+                    let detailsHtml = '';
+                    if(item.customDetails && item.customDetails.length > 0) {
+                        detailsHtml = `<div class="cart-item-details"><i class="fa-solid fa-wand-magic-sparkles"></i> ${item.customDetails.join(' | ')}</div>`;
+                    }
+
                     return `
                     <div class="cart-item">
                         <img src="${item.img}" class="cart-item-img" onerror="this.src='https://via.placeholder.com/80'">
                         <div class="cart-item-info">
                             <div class="cart-item-title">${item.title}</div>
+                            ${detailsHtml}
                             <div class="cart-item-price">${item.price} MAD</div>
                             <div class="remove-btn" onclick="removeFromCart(${index})">Retirer</div>
                         </div>
@@ -736,7 +906,15 @@
             if(document.getElementById('form-total-price')) {
                 document.getElementById('form-total-price').value = total + ' MAD';
                 document.getElementById('form-shipping-fee').value = fee + ' MAD';
-                document.getElementById('form-order-details').value = cart.map(i => `- ${i.title}`).join('\n');
+                // Formatage des détails pour inclure la personnalisation
+                const orderDetails = cart.map(i => {
+                    let line = `- ${i.title} (${i.price} MAD)`;
+                    if(i.customDetails && i.customDetails.length > 0) {
+                        line += `\n   > ${i.customDetails.join(', ')}`;
+                    }
+                    return line;
+                }).join('\n');
+                document.getElementById('form-order-details').value = orderDetails;
             }
             updateCartUI();
         }
