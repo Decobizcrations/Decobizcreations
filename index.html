@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | Artisanat d'Exception</title>
-    <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible. Livraison partout au Maroc.">
+    <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible sur TOUS les articles. Livraison partout au Maroc.">
 
     <!-- --- FACEBOOK PIXEL --- -->
     <script>
@@ -34,7 +34,6 @@
             --success-green: #2F5233; --danger-soft: #E57373; --promo-red: #D32F2F;
             --shadow-soft: 0 10px 30px rgba(0,0,0,0.05); --shadow-hover: 0 15px 40px rgba(0,0,0,0.1);
             --radius-md: 12px;
-            /* --- POLICE TIMES NEW ROMAN --- */
             --font-heading: 'Times New Roman', Times, serif;
             --font-body: 'Times New Roman', Times, serif;
             --font-ui: 'Times New Roman', Times, serif;
@@ -56,7 +55,7 @@
         .text-center { text-align: center; }
         .cursor-pointer { cursor: pointer; }
 
-        /* --- LIGHTBOX (FULL SCREEN IMAGE) --- */
+        /* --- LIGHTBOX --- */
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 9999;
@@ -78,7 +77,7 @@
             width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
         }
 
-        /* --- TOP BANNERS --- */
+        /* --- BANNERS --- */
         .promo-top-bar {
             background: var(--promo-red); color: white; padding: 6px 0; text-align: center;
             font-weight: 700; text-transform: uppercase; font-size: 0.7rem;
@@ -129,7 +128,7 @@
         }
         .btn-hero:active { transform: scale(0.95); }
 
-        /* --- PROMO PACKS SECTION --- */
+        /* --- PROMO PACKS --- */
         .section-promo {
             background: #fff; padding: 50px 0; margin-top: -40px; position: relative; z-index: 10;
             border-bottom: 1px solid #eee;
@@ -139,9 +138,7 @@
         }
         
         .packs-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            display: grid; grid-template-columns: 1fr; gap: 20px;
         }
         @media (min-width: 768px) {
             .packs-grid { grid-template-columns: repeat(3, 1fr); gap: 30px; }
@@ -152,15 +149,12 @@
             box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.05);
             display: flex; flex-direction: column; transition: 0.3s;
         }
-
         .promo-img-wrapper { height: 250px; position: relative; overflow: hidden; }
         .promo-img { width: 100%; height: 100%; object-fit: cover; }
-        
         .promo-content { padding: 25px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
         .promo-title { font-family: var(--font-heading); font-size: 1.4rem; font-style: italic; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .promo-desc { color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem; line-height: 1.5; flex-grow: 1; }
         
-        /* Styles Prix Unifiés */
         .price-wrapper { display: flex; align-items: baseline; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;}
         .old-price { text-decoration: line-through; color: #999; font-size: 0.9rem; font-weight: 400; }
         .current-price { color: var(--text-main); font-size: 1.5rem; font-weight: 800; font-family: var(--font-heading); font-style: italic; }
@@ -172,26 +166,17 @@
             font-size: 0.85rem; letter-spacing: 1px; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px;
         }
 
-        /* --- CATALOGUE GRID --- */
+        /* --- CATALOGUE --- */
         .section-padding { padding: 60px 0; }
         .section-title { text-align: center; font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px; color: var(--text-main); font-style: italic; }
         .section-subtitle { text-align: center; color: var(--primary-accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
         
-        .grid-layout { 
-            display: grid; 
-            grid-template-columns: 1fr;
-            gap: 20px; 
-        }
-        @media (min-width: 600px) {
-            .grid-layout { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (min-width: 900px) {
-            .grid-layout { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
-        }
+        .grid-layout { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        @media (min-width: 600px) { .grid-layout { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 900px) { .grid-layout { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); } }
         
         .product-card { background: white; border-radius: 12px; overflow: hidden; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; position: relative; display: flex; flex-direction: column; }
         
-        /* Badges */
         .badge-wrapper { position: absolute; top: 8px; left: 8px; right: 8px; display: flex; justify-content: space-between; z-index: 2; pointer-events: none; }
         .badge { padding: 3px 8px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase; border-radius: 4px; letter-spacing: 1px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); pointer-events: auto; }
         .badge-trend { background: var(--text-main); color: white; }
@@ -214,7 +199,7 @@
         }
         .prod-btn:hover { background: var(--text-main); color: white; }
 
-        /* --- MODAL PERSONNALISATION --- */
+        /* --- MODAL --- */
         .custom-modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); z-index: 10000;
@@ -224,37 +209,24 @@
             background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 100%;
             position: relative; animation: fadeInUp 0.3s;
         }
-        .custom-modal-close {
-            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999;
-        }
+        .custom-modal-close { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
         .custom-title { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 20px; text-align: center; font-style: italic; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 5px; color: #555; }
-        .custom-input {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;
-            font-family: var(--font-body); font-size: 1rem;
-        }
-        .btn-custom-confirm {
-            width: 100%; padding: 14px; background: var(--primary-accent); color: white;
-            font-weight: 700; border-radius: 6px; cursor: pointer; margin-top: 10px;
-        }
+        .custom-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; }
+        .btn-custom-confirm { width: 100%; padding: 14px; background: var(--primary-accent); color: white; font-weight: 700; border-radius: 6px; cursor: pointer; margin-top: 10px; }
 
-        /* --- CART SIDEBAR --- */
+        /* --- CART --- */
         .cart-sidebar {
             position: fixed; top: 0; right: 0; width: 100%; max-width: 380px; height: 100vh;
             background: white; z-index: 2000; box-shadow: -5px 0 20px rgba(0,0,0,0.1);
             transform: translateX(100%); transition: transform 0.3s ease-out; display: flex; flex-direction: column;
         }
-        @media (max-width: 400px) {
-            .cart-sidebar { max-width: 100%; }
-        }
-        
+        @media (max-width: 400px) { .cart-sidebar { max-width: 100%; } }
         .cart-sidebar.open { transform: translateX(0); }
-        
         .cart-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; background: #fcfcfc; }
         .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
         .cart-footer { padding: 20px; border-top: 1px solid #eee; background: #fcfcfc; }
-        
         .cart-item { display: flex; gap: 15px; margin-bottom: 20px; border-bottom: 1px solid #f5f5f5; padding-bottom: 15px; }
         .cart-item-img { width: 60px; height: 60px; object-fit: cover; border-radius: 6px; background: #eee; }
         .cart-item-info { flex: 1; }
@@ -266,26 +238,17 @@
         .total-row { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.2rem; margin-top: 10px; margin-bottom: 15px; font-family: var(--font-heading); font-style: italic; }
         .shipping-row { display: flex; justify-content: space-between; font-size: 0.85rem; color: #777; margin-bottom: 6px; font-family: var(--font-ui); }
 
-        /* --- CHECKOUT FORM --- */
+        /* --- CHECKOUT --- */
         .checkout-form-container { padding: 20px; animation: fadeIn 0.3s; }
         .form-group label { display: block; font-size: 0.75rem; font-weight: 700; margin-bottom: 6px; color: #555; text-transform: uppercase; letter-spacing: 1px; font-family: var(--font-ui); }
-        .form-input {
-            width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 6px;
-            font-family: var(--font-body); font-size: 1rem; transition: 0.3s; background: #fff;
-        }
+        .form-input { width: 100%; padding: 14px; border: 1px solid #ddd; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; transition: 0.3s; background: #fff; }
         .form-input:focus { border-color: var(--primary-accent); outline: none; }
-        .btn-submit {
-            width: 100%; padding: 16px; background: var(--success-green); color: white;
-            font-weight: 700; text-transform: uppercase; border-radius: 6px; font-size: 0.9rem;
-            transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px;
-        }
+        .btn-submit { width: 100%; padding: 16px; background: var(--success-green); color: white; font-weight: 700; text-transform: uppercase; border-radius: 6px; font-size: 0.9rem; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 10px; }
         
-        /* Success */
         .success-msg { text-align: center; padding: 40px 20px; color: var(--success-green); }
         .success-msg i { font-size: 3rem; margin-bottom: 15px; color: var(--success-green); }
         .order-id-box { background: #f1f8e9; color: var(--success-green); padding: 8px 15px; border-radius: 20px; font-weight: 700; display: inline-block; margin: 10px 0; }
 
-        /* --- ANIMATIONS --- */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -293,12 +256,10 @@
 </head>
 <body>
 
-    <!-- PROMO BAR -->
     <div class="promo-top-bar">
-        <i class="fa-solid fa-pen-nib"></i> NOUVEAU : PERSONNALISEZ VOS PIÈCES AVEC NOMS & COULEURS
+        <i class="fa-solid fa-pen-nib"></i> TOUS NOS ARTICLES SONT PERSONNALISABLES
     </div>
 
-    <!-- HEADER -->
     <header>
         <div class="container header-flex">
             <div class="logo">Decobiz.</div>
@@ -309,7 +270,6 @@
         </div>
     </header>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <h1>Votre Déco,<br>Vos Couleurs, Votre Style</h1>
@@ -319,32 +279,24 @@
         </div>
     </section>
 
-    <!-- PROMO PACKS SECTION -->
     <section id="promo-packs" class="section-promo">
         <div class="container">
             <div class="text-center" style="margin-bottom: 30px;">
                 <span class="promo-label">Compositions Complètes</span>
                 <h2 class="section-title">Les Packs Exclusifs</h2>
             </div>
-
-            <div class="packs-grid" id="promo-container">
-                <!-- JS Injection -->
-            </div>
+            <div class="packs-grid" id="promo-container"></div>
         </div>
     </section>
 
-    <!-- CATALOGUE -->
     <section id="catalogue" class="section-padding">
         <div class="container">
-            <h2 class="section-title">Toutes les Pièces & Packs</h2>
-            <div class="section-subtitle">Personnalisation disponible sur sélection</div>
-            <div class="grid-layout" id="product-grid">
-                <!-- JS Injection -->
-            </div>
+            <h2 class="section-title">Toutes les Pièces</h2>
+            <div class="section-subtitle">Personnalisation disponible sur chaque article</div>
+            <div class="grid-layout" id="product-grid"></div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer style="background:var(--text-main); color:#999; padding:40px 20px; text-align:center; font-size:0.85rem;">
         <div style="color:white; font-size:1.5rem; font-family:var(--font-heading); margin-bottom:10px; font-style: italic;">DECOBIZ</div>
         <p style="margin-bottom:20px; opacity: 0.7;">Artisanat marocain authentique et design moderne.</p>
@@ -355,11 +307,8 @@
         <p>&copy; 2024 Decobiz.</p>
     </footer>
 
-    <!-- LIGHTBOX (GALERIE IMAGE) -->
-    <div id="lightbox">
-        <div id="lightbox-close" class="cursor-pointer">&times;</div>
-        <img id="lightbox-img" src="" alt="Agrandissement">
-    </div>
+    <!-- LIGHTBOX -->
+    <div id="lightbox"><div id="lightbox-close" class="cursor-pointer">&times;</div><img id="lightbox-img" src="" alt="Agrandissement"></div>
 
     <!-- MODAL PERSONNALISATION -->
     <div class="custom-modal-overlay" id="custom-modal">
@@ -368,22 +317,18 @@
             <h3 class="custom-title">Personnaliser votre pièce</h3>
             <div id="modal-product-info" style="text-align: center; margin-bottom: 15px; font-weight: bold; color: var(--primary-accent);"></div>
             
-            <!-- Champ pour la couleur -->
             <div class="form-group">
                 <label>Couleur souhaitée (Optionnel)</label>
                 <input type="text" id="custom-color" class="custom-input" placeholder="Ex: Blanc cassé, Terracotta, Doré...">
             </div>
 
-            <!-- Champ pour le texte (Logo/Nom) - Visible uniquement pour Demoiselle -->
             <div class="form-group" id="group-custom-text" style="display: none;">
                 <label>Texte / Logo à graver (Requis)</label>
                 <input type="text" id="custom-text" class="custom-input" placeholder="Ex: Prénom, Marque...">
                 <small style="color: #888; font-size: 0.8rem;">Ce texte sera gravé sur le plateau.</small>
             </div>
 
-            <button class="btn-custom-confirm" onclick="confirmAddToCart()">
-                Ajouter au panier <i class="fa-solid fa-arrow-right"></i>
-            </button>
+            <button class="btn-custom-confirm" onclick="confirmAddToCart()">Ajouter au panier <i class="fa-solid fa-arrow-right"></i></button>
         </div>
     </div>
 
@@ -391,70 +336,39 @@
     <div class="cart-sidebar" id="cart-sidebar">
         <div class="cart-header">
             <h3 style="font-family: var(--font-heading); font-size:1.3rem; font-style: italic;">Votre Panier</h3>
-            <!-- FIX: Bouton fermer avec fonction dédiée -->
             <div onclick="closeCartSidebar()" class="cursor-pointer" style="font-size:1.5rem; color:#888;">&times;</div>
         </div>
-
-        <!-- VUE PANIER -->
         <div id="cart-view" style="display: flex; flex-direction: column; height: 100%;">
             <div class="cart-body" id="cart-items-container"></div>
             <div class="cart-footer" id="cart-footer">
-                <div class="shipping-row">
-                    <span>Sous-total</span>
-                    <span id="cart-subtotal">0 MAD</span>
-                </div>
-                <div class="shipping-row">
-                    <span>Livraison</span>
-                    <span id="shipping-display">--</span>
-                </div>
-                <div class="total-row">
-                    <span>Total</span>
-                    <span id="cart-total">0 MAD</span>
-                </div>
+                <div class="shipping-row"><span>Sous-total</span><span id="cart-subtotal">0 MAD</span></div>
+                <div class="shipping-row"><span>Livraison</span><span id="shipping-display">--</span></div>
+                <div class="total-row"><span>Total</span><span id="cart-total">0 MAD</span></div>
                 <button class="btn-submit" onclick="showCheckout()">Commander</button>
             </div>
         </div>
-
-        <!-- VUE FORMULAIRE -->
         <div id="checkout-view" style="display:none; height:100%; overflow-y:auto;">
             <div class="checkout-form-container">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                     <h3 style="font-family:var(--font-heading); font-size:1.2rem; font-style: italic;">Livraison</h3>
-                    <!-- FIX: Bouton retour avec fonction dédiée -->
                     <button onclick="hideCheckout()" class="cursor-pointer" style="color:#888; font-size:0.8rem; text-decoration:underline; border:none; background:none;">Retour</button>
                 </div>
-                
                 <form id="order-form" action="https://formspree.io/f/xeevpgvy" method="POST">
                     <input type="hidden" name="order_details" id="form-order-details">
                     <input type="hidden" name="total_price" id="form-total-price">
                     <input type="hidden" name="shipping_fee" id="form-shipping-fee">
-
-                    <div class="form-group">
-                        <label>Nom complet</label>
-                        <input type="text" name="name" class="form-input" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Téléphone</label>
-                        <input type="tel" name="phone" class="form-input" placeholder="06..." required>
-                    </div>
-                    <div class="form-group">
-                        <label>Adresse</label>
-                        <textarea name="address" class="form-input" rows="2" placeholder="Rue, Quartier..." required></textarea>
-                    </div>
+                    <div class="form-group"><label>Nom complet</label><input type="text" name="name" class="form-input" placeholder="Votre nom" required></div>
+                    <div class="form-group"><label>Téléphone</label><input type="tel" name="phone" class="form-input" placeholder="06..." required></div>
+                    <div class="form-group"><label>Adresse</label><textarea name="address" class="form-input" rows="2" placeholder="Rue, Quartier..." required></textarea></div>
                     <div class="form-group">
                         <label>Ville</label>
                         <input type="text" name="city" id="city-input" class="form-input" placeholder="Ex: Casablanca" required onblur="updateShippingText(this.value)">
                         <small id="shipping-msg" style="color: var(--primary-accent); font-weight:700; display:block; margin-top:5px; font-size:0.8rem;"></small>
                     </div>
-
-                    <button type="submit" class="btn-submit" id="submit-btn">
-                        Valider <i class="fa-solid fa-check"></i>
-                    </button>
+                    <button type="submit" class="btn-submit" id="submit-btn">Valider <i class="fa-solid fa-check"></i></button>
                 </form>
             </div>
         </div>
-
-        <!-- MESSAGE SUCCÈS -->
         <div id="success-view" style="display:none; height:100%; align-items:center; justify-content:center;">
             <div class="success-msg">
                 <i class="fa-solid fa-circle-check"></i>
@@ -467,199 +381,62 @@
 
     <script>
         // --- DONNÉES PRODUITS ---
-        // J'ai ajouté des oldPrice et customType à plusieurs produits pour la démo
+        // IMPORTANT : TOUS LES PRODUITS ONTS MAINTENANT customType: "color"
+        // SAUF le Plateau Personnalisé qui garde "logo" (gravure requise)
         const products = [
-            // --- PROMO PACKS ---
-            {
-                id: 101,
-                title: "Pack Salon Moderne",
-                price: 135,
-                oldPrice: 149,
-                img: "salon.jpeg",
-                trending: true,
-                isPromo: true,
-                desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale.",
-                customType: "color"
-            },
-            {
-                id: 102,
-                title: "Pack Salle de Bain",
-                price: 135,
-                oldPrice: 149,
-                img: "salle.jpeg",
-                trending: true,
-                isPromo: true,
-                desc: "Vase herbe, Récipient cylindrique, Citrouille et Tray design. Parfait sur marbre.",
-                customType: "color"
-            },
-            { 
-                id: 17, 
-                title: "Pack Signature", 
-                price: 299, 
-                oldPrice: 499, 
-                img: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984", 
-                trending: true, 
-                isPromo: true,
-                desc: "Notre best-seller absolu. Une composition équilibrée pour un effet 'wow' garanti.",
-                customType: "color"
-            },
-            { 
-                id: 103, 
-                title: "Pack Citrouille Gourmet", 
-                price: 49, 
-                oldPrice: 100, 
-                img: "packcitrouille.jpeg", 
-                trending: true, 
-                isPromo: true,
-                desc: "Composition sur plateau rond : Citrouilles en taille variée.",
-                customType: "color"
-            },
+            { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale.", customType: "color" },
+            { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Récipient cylindrique, Citrouille et Tray design.", customType: "color" },
+            { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "https://z-cdn-media.chatglm.cn/files/99c56cad-f59d-4d68-98fe-d8255971397f.jpeg?auth_key=1875236056-743a214627a04323a8c5bd49d49fe5db-0-711bd80781bd6cf17ac73410528e0984", trending: true, isPromo: true, desc: "Notre best-seller absolu.", customType: "color" },
+            { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", trending: true, isPromo: true, desc: "Composition sur plateau rond.", customType: "color" },
+            
+            { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", trending: true, desc: "Élégant plateau ovale blanc avec finition dorée.", customType: "logo" },
+            { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", trending: true, desc: "Set complet d'accessoires déco en teintes douces.", customType: "color" },
+            { id: 303, title: "Vase Cosmopolite", price: 129, img: "bruleur.jpeg", trending: false, desc: "Vase texturé avec arrangement sec.", customType: "color" },
+            { id: 304, title: "Ensemble Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", trending: true, desc: "Composition vase, lune céramique et plante.", customType: "color" },
 
-            // --- PIÈCES PERSONNALISABLES ---
-            { 
-                id: 301, 
-                title: "Plateau Personnalisé", 
-                price: 75, 
-                img: "demoiselle.jpeg", 
-                trending: true, 
-                desc: "Élégant plateau ovale blanc avec finition dorée.",
-                customType: "logo", // Permet la gravure de logo/nom
-                oldPrice: 90
-            },
-            { 
-                id: 302, 
-                title: "Collection Rose Poudré", 
-                price: 149, 
-                img: "rose.jpeg", 
-                trending: true, 
-                desc: "Set complet d'accessoires déco en teintes douces.",
-                customType: "color", // Permet le choix de la couleur
-                oldPrice: 180
-            },
-            { 
-                id: 303, 
-                title: "Vase Cosmopolite", 
-                price: 129, 
-                img: "bruleur.jpeg", 
-                trending: false, 
-                desc: "Vase texturé avec arrangement sec et éléments dorés.",
-                customType: "color"
-            },
-            { 
-                id: 304, 
-                title: "Ensemble Nature Urbaine", 
-                price: 89, 
-                img: "croissant.jpeg", 
-                trending: true, 
-                desc: "Composition vase, lune céramique et plante verte.",
-                customType: "color",
-                oldPrice: 120
-            },
+            { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", trending: true, desc: "Plateau céramique forme nuage.", customType: "color" },
+            { id: 202, title: "Set Par Rose Édition", price: 99, img: "parose.png", trending: true, desc: "Composition complète sur cuisine.", customType: "color" },
+            { id: 203, title: "Support Spirale Luxe", price: 29, img: "support4.jpeg", trending: false, desc: "Bougie blanche sur support spiralé.", customType: "color" },
+            { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", trending: true, desc: "Duo de vases cylindriques blancs.", customType: "color" },
+            { id: 205, title: "Plateau Rond 16 cm", price: 29, img: "rond.jpg", trending: false, desc: "Petit bol rond tacheté.", customType: "color" },
+            { id: 206, title: "Vase Fenêtre Cosy", price: 55, img: "cozy.jpeg", trending: false, desc: "Grand vase blanc avec pampas.", customType: "color" },
+            { id: 207, title: "Support Bougies Vague", price: 39, img: "support5.jpeg", trending: false, desc: "Bougies sur support ondulé.", customType: "color" },
+            { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", trending: true, desc: "Vase blanc avec roses rouges.", customType: "color" },
+            { id: 209, title: "Plateau Irrégulier Chic", price: 55, img: "pla.jpg", trending: false, desc: "Tray gris irrégulier.", customType: "color" },
 
-            // --- AUTRES PIÈCES (CERTAINES AVEC OLD PRICE) ---
-            { 
-                id: 201, 
-                title: "Tray Nuage ", 
-                price: 45, 
-                oldPrice: 60,
-                img: "nuage0.jpg", 
-                trending: true, 
-                desc: "Plateau céramique forme nuage avec finition dorée." 
-            },
-            { 
-                id: 202, 
-                title: "Set Par Rose Édition", 
-                price: 99, 
-                img: "parose.png", 
-                trending: true, 
-                desc: "Composition complète sur cuisine.",
-                customType: "color" 
-            },
-            { 
-                id: 203, 
-                title: "Support Spirale Luxe", 
-                price: 29, 
-                img: "support4.jpeg", 
-                trending: false, 
-                desc: "Bougie blanche sur support spiralé élégant." 
-            },
-            { 
-                id: 204, 
-                title: "Pot Trio", 
-                price: 39, 
-                oldPrice: 50,
-                img: "jar.jpeg", 
-                trending: true, 
-                desc: "Duo de vases cylindriques blancs et un vase doré mat." 
-            },
-            { 
-                id: 205, 
-                title: "Plateau Rond 16 cm ", 
-                price: 29, 
-                img: "rond.jpg", 
-                trending: false, 
-                desc: "Petit bol rond tacheté avec arrangement floral sec délicat." 
-            },
-            { 
-                id: 206, 
-                title: "Vase Fenêtre Cosy", 
-                price: 55, 
-                img: "cozy.jpeg", 
-                trending: false, 
-                desc: "Grand vase blanc avec pampas, livres et clochette." 
-            },
-            { 
-                id: 207, 
-                title: "Support Bougies Vague Calme", 
-                price: 39, 
-                img: "support5.jpeg", 
-                trending: false, 
-                desc: "Bougies sur support ondulé." 
-            },
-            { 
-                id: 208, 
-                title: "Vase Profond", 
-                price: 99, 
-                oldPrice: 140,
-                img: "profond.jpeg", 
-                trending: true, 
-                desc: "Vase blanc avec roses rouges profondes sur marbre gris." 
-            },
-            { 
-                id: 209, 
-                title: "Plateau Irrégulier Chic", 
-                price: 55, 
-                img: "pla.jpg", 
-                trending: false, 
-                desc: "Tray gris irrégulier avec mini flacons dorés." 
-            },
-
-            // --- ANCIENNES PIÈCES CONSERVÉES ---
-            { id: 1, title: "Support Bougies", price: 35, img: "support.jpg", trending: false },
-            { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", trending: false },
-            { id: 3, title: "Vase Minimaliste", price: 149, img: "minimalisme.jpeg", trending: false },
-            { id: 4, title: "Boîte Rond Striée", price: 29, img: "boite1.jpg", trending: false },
-            { id: 5, title: "Plateau Bulles", price: 35, img: "boules2.jpeg", trending: true },
-            { id: 6, title: "Vide Poche feuille", price: 35, img: "leaf.jpg", trending: false },
-            { id: 7, title: "Support Nœud", price: 20, img: "support1.jpg", trending: false },
-            { id: 8, title: "Vase Fleur Violet", price: 45, img: "vase1.jpg", trending: false },
-            { id: 9, title: "Set rose", price: 129, img: "pa.jpeg", trending: false },
-            { id: 10, title: "Arche Cosy", price: 79, img: "arch.jpg", trending: false },
-            { id: 11, title: "Plateau Étoile", price: 29, img: "etoile.jpg", trending: false },
-            { id: 12, title: "Coquille Bijoux", price: 29, img: "coquille.jpg", trending: false },
-            { id: 13, title: "Plateau Rond 23cm", price: 59, img: "rondla.jpg", trending: false },
-            { id: 14, title: "Plateau Ovale23cm", price: 55, img: "ovale23.jpeg", trending: false },
-            { id: 15, title: "Collection Lavande", price: 165, img: "lavande.jpeg", trending: false },
-            { id: 16, title: "Pack EID", price: 135, img: "eid.jpeg", trending: false },
-            { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", trending: false }
+            // --- ANCIENNES PIÈCES CONSERVÉES (TOUS PERSONNALISABLES) ---
+            { id: 1, title: "Support Bougies", price: 35, img: "support.jpg", trending: false, customType: "color" },
+            { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", trending: false, customType: "color" },
+            { id: 3, title: "Vase Minimaliste", price: 149, img: "minimalisme.jpeg", trending: false, customType: "color" },
+            { id: 4, title: "Boîte Rond Striée", price: 29, img: "boite1.jpg", trending: false, customType: "color" },
+            { id: 5, title: "Plateau Bulles", price: 35, img: "boules2.jpeg", trending: true, customType: "color" },
+            { id: 6, title: "Vide Poche feuille", price: 35, img: "leaf.jpg", trending: false, customType: "color" },
+            { id: 7, title: "Support Nœud", price: 20, img: "support1.jpg", trending: false, customType: "color" },
+            { id: 8, title: "Vase Fleur Violet", price: 45, img: "vase1.jpg", trending: false, customType: "color" },
+            { id: 9, title: "Set rose", price: 129, img: "pa.jpeg", trending: false, customType: "color" },
+            { id: 10, title: "Arche Cosy", price: 79, img: "arch.jpg", trending: false, customType: "color" },
+            { id: 11, title: "Plateau Étoile", price: 29, img: "etoile.jpg", trending: false, customType: "color" },
+            { id: 12, title: "Coquille Bijoux", price: 29, img: "coquille.jpg", trending: false, customType: "color" },
+            { id: 13, title: "Plateau Rond 23cm", price: 59, img: "rondla.jpg", trending: false, customType: "color" },
+            { id: 14, title: "Plateau Ovale23cm", price: 55, img: "ovale23.jpeg", trending: false, customType: "color" },
+            { id: 15, title: "Collection Lavande", price: 165, img: "lavande.jpeg", trending: false, customType: "color" },
+            { id: 16, title: "Pack EID", price: 135, img: "eid.jpeg", trending: false, customType: "color" },
+            { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", trending: false, customType: "color" }
         ];
+
+        function ensureOldPrices() {
+            products.forEach(p => {
+                if (!p.oldPrice) {
+                    p.oldPrice = Math.round(p.price * 1.25);
+                }
+            });
+        }
 
         let cart = [];
         let currentShipping = 0;
-        let currentProductForCustom = null; // Pour stocker le produit en cours de personnalisation
+        let currentProductForCustom = null;
         const FREE_SHIPPING_THRESHOLD = 399;
 
-        // --- LIGHTBOX LOGIC ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxClose = document.getElementById('lightbox-close');
@@ -669,36 +446,27 @@
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
-
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
-
         lightboxClose.addEventListener('click', closeLightbox);
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-        // --- INITIALISATION ---
         document.addEventListener('DOMContentLoaded', () => {
+            ensureOldPrices();
             renderPromoSection();
             renderGrid();
         });
 
-        // --- RENDER FUNCTIONS ---
         function renderPromoSection() {
             const promoProducts = products.filter(p => p.isPromo);
             const container = document.getElementById('promo-container');
-            
             container.innerHTML = promoProducts.map(p => {
                 const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
                 const discountTag = discount > 0 ? `<span class="promo-tag">-${discount}%</span>` : '';
                 const isOnSale = p.oldPrice ? 'on-sale' : '';
-
                 return `
                 <div class="promo-card">
                     <div class="promo-img-wrapper">
@@ -708,71 +476,49 @@
                         <div class="promo-label">${p.trending ? 'Best Seller' : 'Nouveau'}</div>
                         <h3 class="promo-title">${p.title}</h3>
                         <p class="promo-desc">${p.desc}</p>
-                        
                         <div class="price-wrapper">
                             ${p.oldPrice ? `<span class="old-price">${p.oldPrice} DH</span>` : ''}
                             <span class="current-price ${isOnSale}">${p.price} DH</span>
                             ${discountTag}
                         </div>
-
-                        <button class="btn-promo" onclick="checkCustom(${p.id})">
-                            <i class="fa-solid fa-cart-plus"></i> Ajouter
-                        </button>
+                        <button class="btn-promo" onclick="openCustomModalById(${p.id})"><i class="fa-solid fa-cart-plus"></i> Ajouter</button>
                     </div>
                 </div>
             `}).join('');
         }
 
         function renderGrid() {
-            // Affiche tout ce qui n'est pas "isPromo"
             const gridProducts = products.filter(p => !p.isPromo);
             const grid = document.getElementById('product-grid');
-            
             grid.innerHTML = gridProducts.map(p => {
-                // Gestion des badges
                 let badgesHtml = '';
-                if (p.customType) {
-                    badgesHtml += `<div class="badge badge-custom">Personnalisable</div>`;
-                }
-                if (p.oldPrice) {
-                    badgesHtml += `<div class="badge badge-trend" style="background:var(--promo-red)">Promo</div>`;
-                } else if (p.trending) {
-                    badgesHtml += `<div class="badge badge-trend">Tendance</div>`;
-                }
+                badgesHtml += `<div class="badge badge-custom">Personnalisable</div>`; // Tous personnalisables
+                badgesHtml += `<div class="badge badge-trend" style="background:var(--promo-red)">Promo</div>`; // Tous en promo
 
-                // Gestion des prix
                 let priceHtml = '';
-                if (p.oldPrice) {
-                    priceHtml += `<span class="prod-old-price">${p.oldPrice} DH</span>`;
-                }
+                if (p.oldPrice) { priceHtml += `<span class="prod-old-price">${p.oldPrice} DH</span>`; }
                 priceHtml += `<span class="prod-price ${p.oldPrice ? 'on-sale' : ''}">${p.price} MAD</span>`;
 
                 return `
                 <div class="product-card">
-                    <div class="badge-wrapper">
-                        ${badgesHtml}
-                    </div>
+                    <div class="badge-wrapper">${badgesHtml}</div>
                     <div class="prod-img-container">
                         <img src="${p.img}" class="prod-img" alt="${p.title}" loading="lazy" onclick="openLightbox('${p.img}')" onerror="this.src='https://via.placeholder.com/400x400?text=Decobiz'">
                     </div>
                     <div class="prod-info">
                         <div class="prod-title">${p.title}</div>
                         <div class="prod-price-wrapper">${priceHtml}</div>
-                        <button class="prod-btn" onclick="checkCustom(${p.id})">Ajouter</button>
+                        <button class="prod-btn" onclick="openCustomModalById(${p.id})">Ajouter</button>
                     </div>
                 </div>
             `}).join('');
         }
 
-        // --- CUSTOM MODAL LOGIC ---
-        function checkCustom(id) {
+        // --- LOGIQUE MODALE UNIFIÉE ---
+        // Plus besoin de checkCustom, on ouvre direct la modale
+        function openCustomModalById(id) {
             const product = products.find(p => p.id === id);
-            // Si customType est défini, on ouvre la modale, sinon on ajoute direct
-            if (product.customType) {
-                openCustomModal(product);
-            } else {
-                addToCart(id);
-            }
+            openCustomModal(product);
         }
 
         function openCustomModal(product) {
@@ -804,20 +550,16 @@
 
         function confirmAddToCart() {
             if (!currentProductForCustom) return;
-
             const color = document.getElementById('custom-color').value;
             const text = document.getElementById('custom-text').value;
 
-            // Validation pour Demoiselle (Logo requis)
             if (currentProductForCustom.customType === 'logo' && text.trim() === "") {
                 alert("Veuillez entrer le texte ou le logo à graver pour ce plateau.");
                 return;
             }
 
-            // Création de l'objet panier avec variantes
             const cartItem = { ...currentProductForCustom };
             cartItem.customDetails = [];
-
             if (color) cartItem.customDetails.push(`Couleur: ${color}`);
             if (text) cartItem.customDetails.push(`Gravure: "${text}"`);
 
@@ -832,18 +574,7 @@
             toggleCart(true);
         }
 
-        // --- CART LOGIC ---
-        function addToCart(id) {
-            const product = products.find(p => p.id === id);
-            cart.push(product);
-            updateCartUI();
-            
-            const btn = document.getElementById('cart-count');
-            btn.style.transform = 'scale(1.5)';
-            setTimeout(() => btn.style.transform = 'scale(1)', 200);
-
-            toggleCart(true);
-        }
+        function addToCart(id) { /* Plus utilisé car tout passe par la modale */ }
 
         function removeFromCart(index) {
             cart.splice(index, 1);
@@ -876,13 +607,10 @@
                 let subtotal = 0;
                 container.innerHTML = cart.map((item, index) => {
                     subtotal += item.price;
-                    
-                    // Affichage des détails de personnalisation
                     let detailsHtml = '';
                     if(item.customDetails && item.customDetails.length > 0) {
                         detailsHtml = `<div class="cart-item-details"><i class="fa-solid fa-wand-magic-sparkles"></i> ${item.customDetails.join(' | ')}</div>`;
                     }
-
                     return `
                     <div class="cart-item">
                         <img src="${item.img}" class="cart-item-img" onerror="this.src='https://via.placeholder.com/80'">
@@ -896,7 +624,6 @@
                 }).join('');
                 
                 subtotalEl.innerText = subtotal + ' MAD';
-                
                 const cityInput = document.getElementById('city-input');
                 const city = cityInput ? cityInput.value : "";
                 let shipping = calculateShipping(subtotal, city);
@@ -904,33 +631,26 @@
 
                 shippingEl.innerText = shipping === 0 ? "Gratuite 🎉" : shipping + ' MAD';
                 shippingEl.style.color = shipping === 0 ? "var(--success-green)" : "#555";
-
                 totalEl.innerText = (subtotal + shipping) + ' MAD';
             }
         }
 
-        // --- SIDEBAR NAVIGATION (FIX BUG) ---
         function toggleCart(forceOpen = false) {
             if(cart.length === 0 && !forceOpen) return;
             const sidebar = document.getElementById('cart-sidebar');
             sidebar.classList.toggle('open');
             if(sidebar.classList.contains('open')) hideCheckout();
         }
-
-        // Fonction explicite pour fermer (corrige le bug du X)
         function closeCartSidebar() {
-            const sidebar = document.getElementById('cart-sidebar');
-            sidebar.classList.remove('open');
+            document.getElementById('cart-sidebar').classList.remove('open');
         }
 
-        // --- CHECKOUT ---
         function showCheckout() {
             if(cart.length === 0) return;
             document.getElementById('cart-view').style.display = 'none';
             document.getElementById('checkout-view').style.display = 'block';
             updateShippingText(document.getElementById('city-input').value);
         }
-
         function hideCheckout() {
             document.getElementById('cart-view').style.display = 'flex';
             document.getElementById('checkout-view').style.display = 'none';
@@ -939,10 +659,8 @@
         function updateShippingText(city) {
             const subtotal = cart.reduce((sum, i) => sum + i.price, 0);
             const shippingMsg = document.getElementById('shipping-msg');
-            
             let fee = 0;
             let msg = "";
-
             if (subtotal >= FREE_SHIPPING_THRESHOLD) {
                 fee = 0; msg = "Livraison offerte !";
             } else if (city.toLowerCase().includes('khouribga')) {
@@ -950,15 +668,12 @@
             } else {
                 fee = 35; msg = city ? "Livraison standard" : "";
             }
-            
             shippingMsg.innerText = msg;
             currentShipping = fee;
-            
             const total = subtotal + fee;
             if(document.getElementById('form-total-price')) {
                 document.getElementById('form-total-price').value = total + ' MAD';
                 document.getElementById('form-shipping-fee').value = fee + ' MAD';
-                // Formatage des détails pour inclure la personnalisation
                 const orderDetails = cart.map(i => {
                     let line = `- ${i.title} (${i.price} MAD)`;
                     if(i.customDetails && i.customDetails.length > 0) {
@@ -971,16 +686,13 @@
             updateCartUI();
         }
 
-        // --- FORM SUBMISSION ---
         var form = document.getElementById("order-form");
         async function handleSubmit(event) {
             event.preventDefault();
             var data = new FormData(event.target);
-            
             const btn = document.getElementById('submit-btn');
             btn.disabled = true;
             btn.innerHTML = 'Traitement...';
-
             fetch(event.target.action, {
                 method: form.method,
                 body: data,
