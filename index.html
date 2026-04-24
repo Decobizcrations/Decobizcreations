@@ -111,7 +111,7 @@
         /* --- HERO --- */
         .hero {
             position: relative; height: 70vh; min-height: 450px;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('salle.jpeg');
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('parose.png'); /* Utilisation d'une nouvelle image pour le Hero */
             background-size: cover; background-position: center;
             display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px;
         }
@@ -258,7 +258,7 @@
 
     <!-- PROMO BAR -->
     <div class="promo-top-bar">
-        <i class="fa-solid fa-bolt"></i> OFFRE LIMITÉE : PACKS SIGNATURE, SALON & BAIN À -40%
+        <i class="fa-solid fa-bolt"></i> OFFRE LIMITÉE : NOUVEAUX ARRIVAGES & PACKS À -40%
     </div>
 
     <!-- HEADER -->
@@ -275,9 +275,9 @@
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>L'Artisanat qui<br>Transforme votre Intérieur</h1>
+            <h1>L'Élégance de la<br>Simplicité Moderne</h1>
             <button class="btn-hero" onclick="document.getElementById('promo-packs').scrollIntoView({behavior:'smooth', block:'start'})">
-                Découvrir les Packs <i class="fa-solid fa-arrow-down"></i>
+                Découvrir la Collection <i class="fa-solid fa-arrow-down"></i>
             </button>
         </div>
     </section>
@@ -286,7 +286,7 @@
     <section id="promo-packs" class="section-promo">
         <div class="container">
             <div class="text-center" style="margin-bottom: 30px;">
-                <span class="promo-label">Nos meilleures ventes</span>
+                <span class="promo-label">Compositions Complètes</span>
                 <h2 class="section-title">Les Packs Exclusifs</h2>
             </div>
 
@@ -299,8 +299,8 @@
     <!-- CATALOGUE -->
     <section id="catalogue" class="section-padding">
         <div class="container">
-            <h2 class="section-title">La Collection</h2>
-            <div class="section-subtitle">Pièces uniques & Fait main</div>
+            <h2 class="section-title">Dernières Pièces</h2>
+            <div class="section-subtitle">Sélection Unique & Fait Main</div>
             <div class="grid-layout" id="product-grid">
                 <!-- JS Injection -->
             </div>
@@ -310,7 +310,7 @@
     <!-- FOOTER -->
     <footer style="background:var(--text-main); color:#999; padding:40px 20px; text-align:center; font-size:0.85rem;">
         <div style="color:white; font-size:1.5rem; font-family:var(--font-heading); margin-bottom:10px; font-style: italic;">DECOBIZ</div>
-        <p style="margin-bottom:20px; opacity: 0.7;">Artisanat marocain authentique.</p>
+        <p style="margin-bottom:20px; opacity: 0.7;">Artisanat marocain authentique et design moderne.</p>
         <div style="display:flex; justify-content:center; gap:20px; margin-bottom:20px;">
             <a href="#"><i class="fa-brands fa-instagram"></i></a> &nbsp;
             <a href="#"><i class="fa-brands fa-facebook"></i></a>
@@ -401,8 +401,9 @@
     </div>
 
     <script>
-        // --- DONNÉES PRODUITS ---
+        // --- DONNÉES PRODUITS (MISE À JOUR) ---
         const products = [
+            // --- PROMO PACKS ---
             {
                 id: 101,
                 title: "Pack Salon Moderne",
@@ -433,6 +434,92 @@
                 isPromo: true,
                 desc: "Notre best-seller absolu. Une composition équilibrée pour un effet 'wow' garanti."
             },
+            { 
+                id: 103, 
+                title: "Pack Citrouille Gourmet", 
+                price: 180, 
+                oldPrice: 220, 
+                img: "packcitrouille.jpeg", 
+                trending: true, 
+                isPromo: true,
+                desc: "Composition sur plateau rond : Citrouilles blanches en taille variée, livres d'art 'Architecture' et vase floral."
+            },
+
+            // --- NOUVELLES PIÈCES (Ajoutées) ---
+            { 
+                id: 201, 
+                title: "Tray Nuage & Or", 
+                price: 89, 
+                img: "nuage0.jpg", 
+                trending: true, 
+                desc: "Plateau céramique forme nuage avec finition dorée et présentation de bijoux." 
+            },
+            { 
+                id: 202, 
+                title: "Set Par Rose Édition", 
+                price: 159, 
+                img: "parose.png", 
+                trending: true, 
+                desc: "Composition complète sur cuisine : Vases texturés, plateau et livres déco." 
+            },
+            { 
+                id: 203, 
+                title: "Support Spirale Luxe", 
+                price: 45, 
+                img: "support4.jpeg", 
+                trending: false, 
+                desc: "Bougie blanche sur support spiralé élégant. Touche minimaliste." 
+            },
+            { 
+                id: 204, 
+                title: "Vases Or & Blanc", 
+                price: 129, 
+                img: "WhatsApp%20Image%202026-04-04%20at%2022.09.41%20(4).jpeg", 
+                trending: true, 
+                desc: "Duo de vases cylindriques blancs et un vase doré mat. Design pur." 
+            },
+            { 
+                id: 205, 
+                title: "Compotier Nature", 
+                price: 35, 
+                img: "rond.jpg", 
+                trending: false, 
+                desc: "Petit bol rond tacheté avec arrangement floral sec délicat." 
+            },
+            { 
+                id: 206, 
+                title: "Vase Fenêtre Cosy", 
+                price: 79, 
+                img: "WhatsApp%20Image%202026-04-03%20at%2017.56.03%20(3).jpeg", 
+                trending: false, 
+                desc: "Grand vase blanc avec pampas, livres et clochette. Idéal rebord de fenêtre." 
+            },
+            { 
+                id: 207, 
+                title: "Bougie Vague Calme", 
+                price: 55, 
+                img: "support5.jpeg", 
+                trending: false, 
+                desc: "Bougies sur support ondulé. Ambiance zen et relaxing." 
+            },
+            { 
+                id: 208, 
+                title: "Vase Rose Profond", 
+                price: 99, 
+                img: "WhatsApp%20Image%202026-04-03%20at%2017.56.03%20(1).jpeg", 
+                trending: true, 
+                desc: "Vase blanc avec roses rouges profondes sur marbre gris." 
+            },
+            { 
+                id: 209, 
+                title: "Plateau Irrégulier Chic", 
+                price: 65, 
+                img: "pla.jpg", 
+                trending: false, 
+                desc: "Tray gris irrégulier avec mini flacons dorés. Esthétique organique." 
+            },
+
+            // --- ANCIENNES PIÈCES CONSERVÉES ---
             { id: 1, title: "Support Bougies", price: 35, img: "support.jpg", trending: false },
             { id: 2, title: "Citrouille Déco", price: 49, img: "citrouille.jpeg", trending: false },
             { id: 3, title: "Vase Minimaliste", price: 149, img: "minimalisme.jpeg", trending: false },
@@ -464,19 +551,18 @@
         function openLightbox(src) {
             lightboxImg.src = src;
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Empêcher le scroll derrière
+            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             lightbox.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Réactiver le scroll
+            document.body.style.overflow = 'auto';
         }
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox) closeLightbox();
         });
-        // Fermer avec Echap
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightbox();
         });
