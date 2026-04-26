@@ -165,26 +165,8 @@
             display: flex; flex-direction: column; transition: 0.3s;
         }
         .promo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-        
-        /* --- MODIFICATION IMAGE PACKS POUR VUE COMPLÈTE --- */
-        .promo-img-wrapper { 
-            position: relative; 
-            overflow: hidden; 
-            /* Assure que le conteneur a assez de place */
-            min-height: 350px; 
-            width: 100%;
-        }
-        
-        .promo-img { 
-            width: 100%; 
-            /* Force une hauteur minimale pour que l'image soit toujours grande */
-            min-height: 350px; 
-            object-fit: cover; 
-            /* Centrage parfait */
-            object-position: center; 
-            display: block;
-        }
-
+        .promo-img-wrapper { position: relative; overflow: hidden; min-height: 350px; width: 100%; }
+        .promo-img { width: 100%; min-height: 350px; object-fit: cover; object-position: center; display: block; }
         .promo-content { padding: 25px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
         .promo-title { font-family: var(--font-heading); font-size: 1.4rem; font-style: italic; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .promo-desc { color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem; line-height: 1.5; flex-grow: 1; }
@@ -343,7 +325,6 @@
             .cart-item-row { flex-direction: column; align-items: flex-start; }
             .cart-item-img { width: 100%; height: 200px; margin-bottom: 10px; }
             .cart-remove-btn { position: absolute; top: 10px; right: 10px; }
-            /* Ajustement mobile packs pour éviter défilement trop long */
             .promo-img-wrapper { min-height: 250px; }
             .promo-img { min-height: 250px; }
         }
@@ -354,8 +335,14 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .success-screen { text-align: center; padding-top: 50px; }
-        .success-icon { font-size: 4rem; color: var(--success-green); margin-bottom: 20px; }
+        .success-screen { text-align: center; padding-top: 20px; padding-bottom: 20px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .success-icon { font-size: 4rem; color: var(--success-green); margin-bottom: 20px; animation: bounce 2s infinite; }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
     </style>
 </head>
 <body>
@@ -445,7 +432,7 @@
     </a>
 
     <!-- LIGHTBOX -->
-    <div id="lightbox"><div id="lightbox-close" class="cursor-pointer">&times;</div><img id="lightbox-img" src="" alt="Agrandissement"></div>
+    <div id="lightbox"><div id="lightbox-close" class="cursor-pointer">&times;</div><img id="lightbox-img" src="" alt="Agradissement"></div>
 
     <!-- MODAL PERSONNALISATION -->
     <div class="custom-modal-overlay" id="custom-modal">
@@ -613,7 +600,6 @@
                 const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
                 const discountTag = discount > 0 ? `<span class="promo-tag">-${discount}%</span>` : '';
                 const isOnSale = p.oldPrice ? 'on-sale' : '';
-                // Ajout de loading="eager" pour charger immédiatement
                 return `
                 <div class="promo-card">
                     <div class="promo-img-wrapper">
@@ -848,34 +834,51 @@
             updateCartUI();
         }
 
-        // --- SOUMISSION FORMULAIRE ---
+        // --- SOUMISSION FORMULAIRE AMÉLIORÉE POUR MOBILE ---
         var form = document.getElementById("order-form");
         async function handleSubmit(event) {
             event.preventDefault();
             var data = new FormData(event.target);
             const btn = document.getElementById('submit-btn');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
+            const originalBtnText = btn.innerHTML;
             
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
+            // 1. État de chargement
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement en cours...';
+            
+            try {
+                const response = await fetch(event.target.action, {
+                    method: form.method,
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+
                 if (response.ok) {
+                    // 2. Succès
                     document.getElementById('checkout-view-form').classList.add('hidden');
                     document.getElementById('success-view-final').classList.remove('hidden');
                     document.getElementById('order-id-display').innerText = `#CMD-${Math.floor(Math.random()*9000)+1000}`;
+                    
+                    // Facebook Pixel
                     fbq('track', 'Purchase', {value: data.get('total_price'), currency: 'MAD'});
-                    cart = []; updateCartCountBadge();
+                    
+                    // Reset cart
+                    cart = []; 
+                    updateCartCountBadge();
+                    
+                    // 3. SCROLL VERS LE HAUT (Correction mobile)
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    btn.disabled = false;
-                    btn.innerHTML = 'Erreur. Réessayez.';
+                    // 4. Erreur serveur
+                    throw new Error("Erreur serveur");
                 }
-            }).catch(error => {
+            } catch (error) {
+                // 5. Gestion d'erreur visible
+                console.error(error);
+                alert("Une erreur est survenue lors de l'envoi. Veuillez vérifier votre connexion ou réessayer.");
                 btn.disabled = false;
-                btn.innerHTML = 'Erreur réseau.';
-            });
+                btn.innerHTML = originalBtnText;
+            }
         }
         form.addEventListener("submit", handleSubmit);
 
