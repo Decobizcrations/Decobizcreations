@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport optimisé pour TOUS les appareils (Mobile, PC, Tablette) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | Artisanat d'Exception</title>
     <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible sur TOUS les articles. Livraison partout au Maroc.">
@@ -44,7 +43,7 @@
             --shadow-hover: 0 15px 40px rgba(0,0,0,0.1);
             --radius-md: 12px;
             --font-heading: 'Times New Roman', Times, serif;
-            --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police plus lisible sur écran */
+            --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             --font-ui: 'Segoe UI', sans-serif;
         }
         
@@ -53,10 +52,10 @@
         body { 
             font-family: var(--font-body); 
             background: var(--bg-color); color: var(--text-main); line-height: 1.6; 
-            padding-bottom: 80px; overflow-x: hidden; /* Empêche le scroll horizontal sur mobile */
+            padding-bottom: 80px; overflow-x: hidden; 
         }
         
-        img { max-width: 100%; display: block; object-fit: cover; cursor: zoom-in; transition: 0.3s; }
+        img { max-width: 100%; display: block; object-fit: cover; cursor: zoom-in; transition: 0.3s; height: auto; }
         a { text-decoration: none; color: inherit; }
         button { border: none; outline: none; cursor: pointer; font-family: inherit; }
         ul { list-style: none; }
@@ -153,7 +152,6 @@
             color: var(--promo-red); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 8px; display: block;
         }
         
-        /* Grille Responsive Adaptative */
         .packs-grid {
             display: grid; grid-template-columns: 1fr; gap: 20px;
         }
@@ -167,8 +165,26 @@
             display: flex; flex-direction: column; transition: 0.3s;
         }
         .promo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-        .promo-img-wrapper { height: 250px; position: relative; overflow: hidden; }
-        .promo-img { width: 100%; height: 100%; object-fit: cover; }
+        
+        /* --- MODIFICATION IMAGE PACKS POUR VUE COMPLÈTE --- */
+        .promo-img-wrapper { 
+            position: relative; 
+            overflow: hidden; 
+            /* Assure que le conteneur a assez de place */
+            min-height: 350px; 
+            width: 100%;
+        }
+        
+        .promo-img { 
+            width: 100%; 
+            /* Force une hauteur minimale pour que l'image soit toujours grande */
+            min-height: 350px; 
+            object-fit: cover; 
+            /* Centrage parfait */
+            object-position: center; 
+            display: block;
+        }
+
         .promo-content { padding: 25px; text-align: left; flex-grow: 1; display: flex; flex-direction: column; }
         .promo-title { font-family: var(--font-heading); font-size: 1.4rem; font-style: italic; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
         .promo-desc { color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem; line-height: 1.5; flex-grow: 1; }
@@ -245,22 +261,20 @@
         .custom-input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-family: var(--font-body); font-size: 1rem; }
         .btn-custom-confirm { width: 100%; padding: 14px; background: var(--primary-accent); color: white; font-weight: 700; border-radius: 6px; cursor: pointer; margin-top: 10px; }
 
-        /* --- FULL CART PAGE (NOUVEAU DESIGN) --- */
+        /* --- FULL CART PAGE --- */
         .cart-full-page {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100vh;
             background: var(--bg-color);
             z-index: 5000;
-            transform: translateY(100%); /* Caché vers le bas */
+            transform: translateY(100%);
             transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
             display: flex;
             flex-direction: column;
             overflow-y: auto;
         }
         
-        .cart-full-page.open {
-            transform: translateY(0); /* Monte vers le haut */
-        }
+        .cart-full-page.open { transform: translateY(0); }
 
         .cart-header-sticky {
             background: white;
@@ -274,23 +288,11 @@
             z-index: 10;
         }
 
-        .cart-container {
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
-            padding: 20px;
-            flex: 1;
-        }
+        .cart-container { max-width: 800px; margin: 0 auto; width: 100%; padding: 20px; flex: 1; }
 
         .cart-item-row {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 15px;
-            box-shadow: var(--shadow-soft);
-            align-items: center;
+            background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px;
+            display: flex; gap: 15px; box-shadow: var(--shadow-soft); align-items: center;
         }
 
         .cart-item-img { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #eee; flex-shrink: 0; }
@@ -302,10 +304,7 @@
         .cart-remove-btn:hover { background: var(--danger-soft); color: white; }
 
         .cart-summary-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 30px;
+            background: white; padding: 20px; border-radius: 12px; margin-top: 30px;
             box-shadow: var(--shadow-soft);
         }
 
@@ -313,19 +312,9 @@
         .summary-row.total { font-size: 1.3rem; font-weight: 800; font-family: var(--font-heading); font-style: italic; border-top: 1px solid #eee; padding-top: 15px; margin-top: 15px; }
 
         .btn-checkout-large {
-            width: 100%;
-            padding: 16px;
-            background: var(--success-green);
-            color: white;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
+            width: 100%; padding: 16px; background: var(--success-green); color: white;
+            font-weight: 700; text-transform: uppercase; border-radius: 8px; font-size: 1rem;
+            margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 10px;
             transition: 0.3s;
         }
         .btn-checkout-large:hover { background: #263e29; transform: translateY(-2px); }
@@ -354,6 +343,9 @@
             .cart-item-row { flex-direction: column; align-items: flex-start; }
             .cart-item-img { width: 100%; height: 200px; margin-bottom: 10px; }
             .cart-remove-btn { position: absolute; top: 10px; right: 10px; }
+            /* Ajustement mobile packs pour éviter défilement trop long */
+            .promo-img-wrapper { min-height: 250px; }
+            .promo-img { min-height: 250px; }
         }
 
         footer { background: var(--text-main); color: #999; padding: 40px 20px; text-align: center; font-size: 0.85rem; }
@@ -477,7 +469,7 @@
         </div>
     </div>
 
-    <!-- FULL CART PAGE (Remplace la sidebar) -->
+    <!-- FULL CART PAGE -->
     <div class="cart-full-page" id="cart-page">
         
         <!-- Header du Panier -->
@@ -490,7 +482,6 @@
 
         <!-- VUE LISTE PRODUITS -->
         <div id="cart-view-list" class="cart-container">
-            <!-- Les items seront injectés ici -->
             <div id="cart-items-container"></div>
 
             <div class="cart-summary-box">
@@ -622,6 +613,7 @@
                 const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
                 const discountTag = discount > 0 ? `<span class="promo-tag">-${discount}%</span>` : '';
                 const isOnSale = p.oldPrice ? 'on-sale' : '';
+                // Ajout de loading="eager" pour charger immédiatement
                 return `
                 <div class="promo-card">
                     <div class="promo-img-wrapper">
@@ -677,11 +669,10 @@
                 closeCartPage();
             } else {
                 if(cart.length === 0) {
-                    // Panier vide : on affiche une petite notification ou on ouvre quand même
-                    // Ici on ouvre pour montrer que c'est vide
+                    // Panier vide
                 }
                 cartPage.classList.add('open');
-                document.body.style.overflow = 'hidden'; // Bloquer le scroll du fond
+                document.body.style.overflow = 'hidden';
                 updateCartUI();
             }
         }
@@ -740,8 +731,6 @@
             cart.push(cartItem);
             updateCartCountBadge();
             closeCustomModal();
-            
-            // Ouvrir le panier automatiquement pour montrer l'ajout
             toggleCartPage();
         }
 
@@ -779,7 +768,7 @@
                 subtotalEl.innerText = "0 MAD";
                 shippingEl.innerText = "--";
                 totalEl.innerText = "0 MAD";
-                document.querySelector('.cart-summary-box').style.display = 'none'; // Cacher le résumé si vide
+                document.querySelector('.cart-summary-box').style.display = 'none';
             } else {
                 document.querySelector('.cart-summary-box').style.display = 'block';
                 let subtotal = 0;
@@ -805,7 +794,6 @@
                 
                 subtotalEl.innerText = subtotal + ' MAD';
                 
-                // Calcul frais de port (si ville déjà saisie ou standard)
                 const cityInput = document.getElementById('city-input');
                 const city = cityInput ? cityInput.value : "";
                 let shipping = calculateShipping(subtotal, city);
@@ -844,7 +832,6 @@
             shippingMsg.innerText = msg;
             currentShipping = fee;
             
-            // Mettre à jour le total caché pour le formulaire
             const total = subtotal + fee;
             if(document.getElementById('form-total-price')) {
                 document.getElementById('form-total-price').value = total + ' MAD';
