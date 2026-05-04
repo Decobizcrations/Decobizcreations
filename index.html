@@ -2,7 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- Astuce importante pour iPhone iOS : pageshow -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>Decobiz Creations | Artisanat d'Exception</title>
     <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible sur TOUS les articles. Livraison partout au Maroc.">
 
@@ -53,6 +55,8 @@
             font-family: var(--font-body); 
             background: var(--bg-color); color: var(--text-main); line-height: 1.6; 
             padding-bottom: 80px; overflow-x: hidden; 
+            /* Correction scroll iOS */
+            -webkit-overflow-scrolling: touch; 
         }
         
         img { max-width: 100%; display: block; object-fit: cover; transition: 0.3s; height: auto; cursor: pointer; }
@@ -362,15 +366,18 @@
         .summary-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1rem; color: #666; }
         .summary-row.total { font-size: 1.5rem; font-weight: 800; font-family: var(--font-heading); font-style: italic; border-top: 2px solid #eee; padding-top: 20px; margin-top: 20px; color: var(--text-main); }
 
+        /* Style bouton spécifique pour iPhone (comme un lien) */
         .btn-checkout-large {
+            display: flex;
             width: 100%; padding: 18px; background: var(--success-green); color: white;
             font-weight: 700; text-transform: uppercase; border-radius: 8px; font-size: 1rem;
-            margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 10px;
+            margin-top: 25px; justify-content: center; align-items: center; gap: 10px;
             transition: 0.3s; letter-spacing: 1px;
+            text-decoration: none; /* Important car c'est une balise <a> */
+            user-select: none;
+            -webkit-user-select: none;
         }
         .btn-checkout-large:hover { background: #263e29; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(47, 82, 51, 0.3); }
-        .btn-checkout-large i { transition: transform 0.3s; }
-        .btn-checkout-large:hover i { transform: translateX(5px); }
 
         /* --- CHECKOUT --- */
         .checkout-container { max-width: 600px; margin: 0 auto; padding: 20px; position: relative; z-index: 20; background: var(--bg-color); }
@@ -409,7 +416,8 @@
             .cart-remove-btn { position: absolute; top: 15px; right: 15px; }
             .sig-title { font-size: 1.8rem; }
             .sig-price { font-size: 2rem; }
-            .btn-sig, .btn-checkout-large { font-size: 0.9rem; }
+            .btn-sig { font-size: 0.9rem; }
+            .btn-checkout-large { font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -580,10 +588,11 @@
                 <div class="summary-row"><span>Sous-total</span><span id="cart-subtotal">0 MAD</span></div>
                 <div class="summary-row"><span>Livraison</span><span id="shipping-display">--</span></div>
                 <div class="summary-row total"><span>Total</span><span id="cart-total">0 MAD</span></div>
-                <!-- IMPORTANT: onclick utilise App.showCheckoutForm -->
-                <button class="btn-checkout-large" id="btn-go-to-checkout" onclick="App.showCheckoutForm()">
+                
+                <!-- CORRECTION IPHONE : Utilisation d'une balise <a> stylisée au lieu de <button> -->
+                <a href="#checkout" onclick="App.showCheckoutForm(); return false;" class="btn-checkout-large" id="btn-go-to-checkout">
                     Passer la commande <i class="fa-solid fa-arrow-right"></i>
-                </button>
+                </a>
             </div>
         </div>
 
@@ -686,6 +695,7 @@
                     this.renderGrid();
                     this.setupLightbox();
                     this.setupForm();
+                    this.fixIOSBackButton();
                 } catch (e) {
                     console.error("Erreur d'initialisation:", e);
                 }
@@ -709,34 +719,54 @@
             },
 
             showCheckoutForm: function() {
-                // DEBUG: Vérifier que la fonction est appelée
-                console.log("showCheckoutForm appelé");
-                
-                const btn = document.getElementById('btn-go-to-checkout');
-                
-                // Ajout d'un état visuel de chargement pour confirmer le clic
-                if(btn) {
-                    const originalText = btn.innerHTML;
-                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Chargement...';
-                    setTimeout(() => { btn.innerHTML = originalText; }, 500);
-                }
+                // Utilisation d'un timeout léger pour s'assurer que le rendu est fait avant de cacher
+                setTimeout(() => {
+                    const cartList = document.getElementById('cart-view-list');
+                    const checkoutForm = document.getElementById('checkout-view-form');
 
-                const cartList = document.getElementById('cart-view-list');
-                const checkoutForm = document.getElementById('checkout-view-form');
-
-                if (cartList && checkoutForm) {
-                    cartList.classList.add('hidden');
-                    checkoutForm.classList.remove('hidden');
-                    checkoutForm.style.display = 'block'; // Force l'affichage
-                    this.updateShippingCalculation(document.getElementById('city-input').value);
-                } else {
-                    alert("Erreur: Impossible de trouver le formulaire.");
-                }
+                    if (cartList && checkoutForm) {
+                        cartList.classList.add('hidden');
+                        checkoutForm.classList.remove('hidden');
+                        // Forcer l'affichage via style inline pour Safari
+                        checkoutForm.style.display = 'block';
+                        
+                        // Scroll vers le haut du formulaire
+                        checkoutForm.scrollIntoView({ behavior: 'smooth' });
+                        
+                        this.updateShippingCalculation(document.getElementById('city-input').value);
+                    }
+                }, 10);
             },
 
             hideCheckoutForm: function() {
                 document.getElementById('checkout-view-form').classList.add('hidden');
+                document.getElementById('checkout-view-form').style.display = 'none';
                 document.getElementById('cart-view-list').classList.remove('hidden');
+            },
+
+            /* --- FIX IPHONE BACK BUTTON --- */
+            fixIOSBackButton: function() {
+                // Ce code écoute l'événement spécifique de Safari iOS "pageshow"
+                window.addEventListener('pageshow', (event) => {
+                    if (event.persisted) {
+                        // Si Safari a restauré la page depuis le cache (Back Button)
+                        console.log("Restauration depuis le cache iOS (Back Button)");
+                        // On force une réinitialisation propre de l'état du panier
+                        const cartPage = document.getElementById('cart-page');
+                        const checkoutForm = document.getElementById('checkout-view-form');
+                        const cartList = document.getElementById('cart-view-list');
+                        
+                        // S'assurer que si on revient, le panier est bien visible et non bloqué
+                        if (cartPage.classList.contains('open')) {
+                            if (checkoutForm.classList.contains('hidden') === false) {
+                                // Si on était sur le checkout et qu'on revient, on remet le panier liste
+                                this.hideCheckoutForm();
+                            }
+                            // Rafraîchir l'affichage du panier
+                            this.updateCartUI();
+                        }
+                    }
+                });
             },
 
             /* --- LOGIC --- */
@@ -778,8 +808,6 @@
             },
 
             confirmAddToCart: function() {
-                // Récupérer le produit actuellement stocké (on simplifie ici en re-trouvant le dernier ouvert ou via une variable globale temporaire)
-                // Pour simplifier ce code robuste, on utilise l'ID du titre
                 const title = document.getElementById('modal-product-info').innerText;
                 const product = this.data.products.find(p => p.title === title);
 
