@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz Creations | Artisanat d'Exception</title>
     <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible sur TOUS les articles. Livraison partout au Maroc.">
 
@@ -73,6 +73,7 @@
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
         /* --- LIGHTBOX --- */
         #lightbox {
@@ -368,9 +369,11 @@
             transition: 0.3s; letter-spacing: 1px;
         }
         .btn-checkout-large:hover { background: #263e29; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(47, 82, 51, 0.3); }
+        .btn-checkout-large i { transition: transform 0.3s; }
+        .btn-checkout-large:hover i { transform: translateX(5px); }
 
         /* --- CHECKOUT --- */
-        .checkout-container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .checkout-container { max-width: 600px; margin: 0 auto; padding: 20px; position: relative; z-index: 20; background: var(--bg-color); }
         .form-input { width: 100%; padding: 16px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 1rem; transition: 0.3s; background: #fff; margin-bottom: 20px; }
         .form-input:focus { border-color: var(--accent-gold); outline: none; box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1); }
         .btn-back { color: #666; text-decoration: underline; background: none; border: none; font-weight: 600; cursor: pointer; margin-bottom: 20px; display: inline-block; font-size: 0.9rem; }
@@ -422,7 +425,7 @@
     <header>
         <div class="container header-flex">
             <div class="logo">Decobiz.</div>
-            <div class="cart-icon cursor-pointer" onclick="toggleCartPage()">
+            <div class="cart-icon cursor-pointer" onclick="App.toggleCartPage()">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span class="badge-count" id="cart-count" style="display:none;">0</span>
             </div>
@@ -446,7 +449,7 @@
             </div>
             
             <div class="signature-card">
-                <div class="sig-image-area" onclick="openLightbox('pack9.png')">
+                <div class="sig-image-area" onclick="App.openLightbox('pack9.png')">
                     <img src="pack9.png" alt="Pack Signature" onerror="this.src='https://via.placeholder.com/600x600?text=Pack+Signature'">
                 </div>
                 <div class="sig-content-area">
@@ -478,7 +481,7 @@
                         <input type="text" id="sig-color-input" class="sig-color-input" placeholder="Ex: Doré, Noir, Terracotta...">
                     </div>
 
-                    <button class="btn-sig" onclick="quickAddSignature()">
+                    <button class="btn-sig" onclick="App.quickAddSignature()">
                         <i class="fa-solid fa-bolt"></i> Acheter Rapidement
                     </button>
                     <p style="font-size: 0.75rem; color: #999; margin-top: 10px; text-align: center;">Satisfait ou Remboursé sous 14 jours</p>
@@ -544,7 +547,7 @@
     <!-- MODAL PERSONNALISATION -->
     <div class="custom-modal-overlay" id="custom-modal">
         <div class="custom-modal-content">
-            <span class="custom-modal-close cursor-pointer" onclick="closeCustomModal()">&times;</span>
+            <span class="custom-modal-close cursor-pointer" onclick="App.closeCustomModal()">&times;</span>
             <h3 class="custom-title">Personnaliser</h3>
             <div id="modal-product-info" style="text-align: center; margin-bottom: 20px; font-weight: bold; color: var(--primary-accent); font-size: 1.1rem;"></div>
             
@@ -558,7 +561,7 @@
                 <input type="text" id="custom-text" class="custom-input" placeholder="Ex: Prénom, Marque...">
             </div>
 
-            <button class="btn-custom-confirm" onclick="confirmAddToCart()">Ajouter au panier <i class="fa-solid fa-check"></i></button>
+            <button class="btn-custom-confirm" onclick="App.confirmAddToCart()">Ajouter au panier <i class="fa-solid fa-check"></i></button>
         </div>
     </div>
 
@@ -566,7 +569,7 @@
     <div class="cart-full-page" id="cart-page">
         <div class="cart-header-sticky">
             <h3 style="font-family: var(--font-heading); font-size:1.4rem; font-style: italic;">Votre Panier</h3>
-            <button onclick="closeCartPage()" class="cursor-pointer" style="font-size:1.5rem; background:none; color:#333;">
+            <button onclick="App.closeCartPage()" class="cursor-pointer" style="font-size:1.5rem; background:none; color:#333;">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
@@ -577,14 +580,15 @@
                 <div class="summary-row"><span>Sous-total</span><span id="cart-subtotal">0 MAD</span></div>
                 <div class="summary-row"><span>Livraison</span><span id="shipping-display">--</span></div>
                 <div class="summary-row total"><span>Total</span><span id="cart-total">0 MAD</span></div>
-                <button class="btn-checkout-large" onclick="showCheckoutForm()">
+                <!-- IMPORTANT: onclick utilise App.showCheckoutForm -->
+                <button class="btn-checkout-large" id="btn-go-to-checkout" onclick="App.showCheckoutForm()">
                     Passer la commande <i class="fa-solid fa-arrow-right"></i>
                 </button>
             </div>
         </div>
 
         <div id="checkout-view-form" class="checkout-container hidden">
-            <button onclick="hideCheckoutForm()" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Retour au panier</button>
+            <button onclick="App.hideCheckoutForm()" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Retour au panier</button>
             <h3 style="font-family:var(--font-heading); font-size:1.6rem; margin-bottom:25px; text-align:center;">Livraison & Paiement</h3>
             
             <form id="order-form" method="POST">
@@ -602,7 +606,7 @@
                 </div>
                 <div class="form-group">
                     <label>Ville</label>
-                    <input type="text" name="city" id="city-input" class="form-input" placeholder="Ex: Casablanca" required oninput="updateShippingCalculation(this.value)">
+                    <input type="text" name="city" id="city-input" class="form-input" placeholder="Ex: Casablanca" required oninput="App.updateShippingCalculation(this.value)">
                 </div>
                 <div class="form-group">
                     <label>Adresse</label>
@@ -629,78 +633,115 @@
     <canvas id="confetti" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:99999; display:none;"></canvas>
 
     <script>
-        // --- INITIALIZATION ROBUSTE ---
-        // On attend que tout le DOM soit prêt pour éviter les erreurs de chargement
-        document.addEventListener('DOMContentLoaded', () => {
-            initApp();
-        });
+        /**
+         * APPLICATION ISOLÉE ET SÉCURISÉE
+         * Tout le code est encapsulé dans l'objet "App" pour éviter les conflits.
+         */
+        const App = {
+            data: {
+                products: [
+                    { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", trending: true, isPromo: true, desc: "9 pièces : Arc, Plateaux, Vases, Boîte...", customType: "color" },
+                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale.", customType: "color" },
+                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Récipient cylindrique, Citrouille et Tray design.", customType: "color" },
+                    { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", trending: true, isPromo: true, desc: "Composition sur plateau rond.", customType: "color" },
+                    { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", trending: true, isPromo: true, desc: "Contient 4 pièces (Bruleurs)", customType: "color" },
+                    { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", trending: true, desc: "Élégant plateau ovale blanc avec finition dorée.", customType: "logo" },
+                    { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", trending: true, desc: "Set complet d'accessoires déco en teintes douces.", customType: "color" },
+                    { id: 303, title: "Vase Cosmopolite", price: 129, img: "bruleur.jpeg", trending: false, desc: "Vase texturé avec arrangement sec.", customType: "color" },
+                    { id: 304, title: "Ensemble Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", trending: true, desc: "Composition vase, lune céramique et plante.", customType: "color" },
+                    { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", trending: true, desc: "Plateau céramique forme nuage.", customType: "color" },
+                    { id: 202, title: "Set Par Rose Édition", price: 99, img: "parose.png", trending: true, desc: "Composition complète sur cuisine.", customType: "color" },
+                    { id: 203, title: "Support Spirale Luxe", price: 29, img: "support4.jpeg", trending: false, desc: "Bougie blanche sur support spiralé.", customType: "color" },
+                    { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", trending: true, desc: "Duo de vases cylindriques blancs.", customType: "color" },
+                    { id: 205, title: "Plateau Rond 16 cm", price: 29, img: "rond.jpg", trending: false, desc: "Petit bol rond tacheté.", customType: "color" },
+                    { id: 206, title: "Vase Fenêtre Cosy", price: 55, img: "cozy.jpeg", trending: false, desc: "Grand vase blanc avec pampas.", customType: "color" },
+                    { id: 207, title: "Support Bougies Vague", price: 39, img: "support6.jpg", trending: false, desc: "Bougies sur support ondulé.", customType: "color" },
+                    { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", trending: true, desc: "Vase blanc avec roses rouges.", customType: "color" },
+                    { id: 209, title: "Plateau Irrégulier Chic", price: 55, img: "pla.jpg", trending: false, desc: "Tray gris irrégulier.", customType: "color" },
+                    { id: 1, title: "Support Bougies", price: 35, img: "support.jpg", trending: false, customType: "color" },
+                    { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", trending: false, customType: "color" },
+                    { id: 3, title: "Vase Minimaliste", price: 149, img: "minimalisme.jpeg", trending: false, customType: "color" },
+                    { id: 4, title: "Boîte Rond Striée", price: 29, img: "boite1.jpg", trending: false, customType: "color" },
+                    { id: 5, title: "Plateau Bulles", price: 35, img: "boules2.jpeg", trending: true, customType: "color" },
+                    { id: 6, title: "Vide Poche feuille", price: 35, img: "leaf.jpg", trending: false, customType: "color" },
+                    { id: 7, title: "Support Nœud", price: 20, img: "support1.jpg", trending: false, customType: "color" },
+                    { id: 8, title: "Vase Fleur Violet", price: 45, img: "vase1.jpg", trending: false, customType: "color" },
+                    { id: 9, title: "Set rose", price: 129, img: "pa.jpeg", trending: false, customType: "color" },
+                    { id: 10, title: "Arche Cosy", price: 79, img: "arch.jpg", trending: false, customType: "color" },
+                    { id: 11, title: "Plateau Étoile", price: 29, img: "etoile.jpg", trending: false, customType: "color" },
+                    { id: 12, title: "Coquille Bijoux", price: 29, img: "coquille.jpg", trending: false, customType: "color" },
+                    { id: 13, title: "Plateau Rond 23cm", price: 59, img: "rondla.jpg", trending: false, customType: "color" },
+                    { id: 14, title: "Plateau Ovale23cm", price: 55, img: "ovale23.jpeg", trending: false, customType: "color" },
+                    { id: 15, title: "Collection Lavande", price: 165, img: "lavande.jpeg", trending: false, customType: "color" },
+                    { id: 16, title: "Pack EID", price: 135, img: "eid.jpeg", trending: false, customType: "color" },
+                    { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", trending: false, customType: "color" }
+                ],
+                cart: [],
+                FREE_SHIPPING_THRESHOLD: 399
+            },
 
-        function initApp() {
-            // --- DONNÉES PRODUITS ---
-            const products = [
-                { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", trending: true, isPromo: true, desc: "9 pièces : Arc, Plateaux, Vases, Boîte...", customType: "color" },
-                { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale.", customType: "color" },
-                { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", trending: true, isPromo: true, desc: "Vase herbe, Récipient cylindrique, Citrouille et Tray design.", customType: "color" },
-                { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", trending: true, isPromo: true, desc: "Composition sur plateau rond.", customType: "color" },
-                { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", trending: true, isPromo: true, desc: "Contient 4 pièces (Bruleurs)", customType: "color" },
-                { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", trending: true, desc: "Élégant plateau ovale blanc avec finition dorée.", customType: "logo" },
-                { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", trending: true, desc: "Set complet d'accessoires déco en teintes douces.", customType: "color" },
-                { id: 303, title: "Vase Cosmopolite", price: 129, img: "bruleur.jpeg", trending: false, desc: "Vase texturé avec arrangement sec.", customType: "color" },
-                { id: 304, title: "Ensemble Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", trending: true, desc: "Composition vase, lune céramique et plante.", customType: "color" },
-                { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", trending: true, desc: "Plateau céramique forme nuage.", customType: "color" },
-                { id: 202, title: "Set Par Rose Édition", price: 99, img: "parose.png", trending: true, desc: "Composition complète sur cuisine.", customType: "color" },
-                { id: 203, title: "Support Spirale Luxe", price: 29, img: "support4.jpeg", trending: false, desc: "Bougie blanche sur support spiralé.", customType: "color" },
-                { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", trending: true, desc: "Duo de vases cylindriques blancs.", customType: "color" },
-                { id: 205, title: "Plateau Rond 16 cm", price: 29, img: "rond.jpg", trending: false, desc: "Petit bol rond tacheté.", customType: "color" },
-                { id: 206, title: "Vase Fenêtre Cosy", price: 55, img: "cozy.jpeg", trending: false, desc: "Grand vase blanc avec pampas.", customType: "color" },
-                { id: 207, title: "Support Bougies Vague", price: 39, img: "support6.jpg", trending: false, desc: "Bougies sur support ondulé.", customType: "color" },
-                { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", trending: true, desc: "Vase blanc avec roses rouges.", customType: "color" },
-                { id: 209, title: "Plateau Irrégulier Chic", price: 55, img: "pla.jpg", trending: false, desc: "Tray gris irrégulier.", customType: "color" },
-                { id: 1, title: "Support Bougies", price: 35, img: "support.jpg", trending: false, customType: "color" },
-                { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", trending: false, customType: "color" },
-                { id: 3, title: "Vase Minimaliste", price: 149, img: "minimalisme.jpeg", trending: false, customType: "color" },
-                { id: 4, title: "Boîte Rond Striée", price: 29, img: "boite1.jpg", trending: false, customType: "color" },
-                { id: 5, title: "Plateau Bulles", price: 35, img: "boules2.jpeg", trending: true, customType: "color" },
-                { id: 6, title: "Vide Poche feuille", price: 35, img: "leaf.jpg", trending: false, customType: "color" },
-                { id: 7, title: "Support Nœud", price: 20, img: "support1.jpg", trending: false, customType: "color" },
-                { id: 8, title: "Vase Fleur Violet", price: 45, img: "vase1.jpg", trending: false, customType: "color" },
-                { id: 9, title: "Set rose", price: 129, img: "pa.jpeg", trending: false, customType: "color" },
-                { id: 10, title: "Arche Cosy", price: 79, img: "arch.jpg", trending: false, customType: "color" },
-                { id: 11, title: "Plateau Étoile", price: 29, img: "etoile.jpg", trending: false, customType: "color" },
-                { id: 12, title: "Coquille Bijoux", price: 29, img: "coquille.jpg", trending: false, customType: "color" },
-                { id: 13, title: "Plateau Rond 23cm", price: 59, img: "rondla.jpg", trending: false, customType: "color" },
-                { id: 14, title: "Plateau Ovale23cm", price: 55, img: "ovale23.jpeg", trending: false, customType: "color" },
-                { id: 15, title: "Collection Lavande", price: 165, img: "lavande.jpeg", trending: false, customType: "color" },
-                { id: 16, title: "Pack EID", price: 135, img: "eid.jpeg", trending: false, customType: "color" },
-                { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", trending: false, customType: "color" }
-            ];
+            init: function() {
+                try {
+                    this.renderPromoSection();
+                    this.renderGrid();
+                    this.setupLightbox();
+                    this.setupForm();
+                } catch (e) {
+                    console.error("Erreur d'initialisation:", e);
+                }
+            },
 
-            let cart = [];
-            let currentShipping = 0;
-            let currentProductForCustom = null;
-            const FREE_SHIPPING_THRESHOLD = 399;
+            /* --- UI NAVIGATION --- */
+            toggleCartPage: function() {
+                const cartPage = document.getElementById('cart-page');
+                if (cartPage.classList.contains('open')) {
+                    this.closeCartPage();
+                } else {
+                    cartPage.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                    this.updateCartUI();
+                }
+            },
 
-            /* --- LIGHTBOX LOGIC --- */
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const closeBtn = document.getElementById('lightbox-close');
-
-            window.openLightbox = function(src) {
-                lightboxImg.src = src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-            window.closeLightbox = function() {
-                lightbox.classList.remove('active');
+            closeCartPage: function() {
+                document.getElementById('cart-page').classList.remove('open');
                 document.body.style.overflow = 'auto';
-            }
-            closeBtn.addEventListener('click', window.closeLightbox);
-            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) window.closeLightbox(); });
-            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') window.closeLightbox(); });
+            },
 
-            /* --- PACK SIGNATURE LOGIC --- */
-            window.quickAddSignature = function() {
-                const product = products.find(p => p.id === 17);
+            showCheckoutForm: function() {
+                // DEBUG: Vérifier que la fonction est appelée
+                console.log("showCheckoutForm appelé");
+                
+                const btn = document.getElementById('btn-go-to-checkout');
+                
+                // Ajout d'un état visuel de chargement pour confirmer le clic
+                if(btn) {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Chargement...';
+                    setTimeout(() => { btn.innerHTML = originalText; }, 500);
+                }
+
+                const cartList = document.getElementById('cart-view-list');
+                const checkoutForm = document.getElementById('checkout-view-form');
+
+                if (cartList && checkoutForm) {
+                    cartList.classList.add('hidden');
+                    checkoutForm.classList.remove('hidden');
+                    checkoutForm.style.display = 'block'; // Force l'affichage
+                    this.updateShippingCalculation(document.getElementById('city-input').value);
+                } else {
+                    alert("Erreur: Impossible de trouver le formulaire.");
+                }
+            },
+
+            hideCheckoutForm: function() {
+                document.getElementById('checkout-view-form').classList.add('hidden');
+                document.getElementById('cart-view-list').classList.remove('hidden');
+            },
+
+            /* --- LOGIC --- */
+            quickAddSignature: function() {
+                const product = this.data.products.find(p => p.id === 17);
                 const colorInput = document.getElementById('sig-color-input');
                 const colorValue = colorInput.value.trim();
 
@@ -710,15 +751,236 @@
                     return;
                 }
 
-                addToCartWithCustom(product, colorValue, "");
-            }
+                this.addToCartWithCustom(product, colorValue, "");
+            },
 
-            /* --- RENDER FUNCTIONS --- */
-            renderPromoSection();
-            renderGrid();
+            openCustomModalById: function(id) {
+                this.openCustomModal(this.data.products.find(p => p.id === id));
+            },
 
-            function renderPromoSection() {
-                const promoProducts = products.filter(p => p.isPromo && p.id !== 17);
+            openCustomModal: function(product) {
+                const modal = document.getElementById('custom-modal');
+                const title = document.getElementById('modal-product-info');
+                const colorInput = document.getElementById('custom-color');
+                const textGroup = document.getElementById('group-custom-text');
+                const textInput = document.getElementById('custom-text');
+
+                title.innerText = product.title;
+                colorInput.value = ""; textInput.value = "";
+                
+                textGroup.style.display = product.customType === 'logo' ? 'block' : 'none';
+                
+                modal.style.display = 'flex';
+            },
+
+            closeCustomModal: function() {
+                document.getElementById('custom-modal').style.display = 'none';
+            },
+
+            confirmAddToCart: function() {
+                // Récupérer le produit actuellement stocké (on simplifie ici en re-trouvant le dernier ouvert ou via une variable globale temporaire)
+                // Pour simplifier ce code robuste, on utilise l'ID du titre
+                const title = document.getElementById('modal-product-info').innerText;
+                const product = this.data.products.find(p => p.title === title);
+
+                if (!product) return;
+                
+                const color = document.getElementById('custom-color').value;
+                const text = document.getElementById('custom-text').value;
+
+                if (product.customType === 'logo' && text.trim() === "") {
+                    alert("Veuillez entrer le texte à graver pour ce plateau.");
+                    return;
+                }
+                this.addToCartWithCustom(product, color, text);
+                this.closeCustomModal();
+            },
+
+            addToCartWithCustom: function(product, color, text) {
+                const cartItem = { ...product };
+                cartItem.customDetails = [];
+                
+                if (color) cartItem.customDetails.push(`Couleur: ${color}`);
+                if (text) cartItem.customDetails.push(`Gravure: "${text}"`);
+
+                this.data.cart.push(cartItem);
+                this.updateCartCountBadge();
+                this.toggleCartPage();
+            },
+
+            removeFromCart: function(index) {
+                this.data.cart.splice(index, 1);
+                this.updateCartUI();
+                this.updateCartCountBadge();
+            },
+
+            updateCartCountBadge: function() {
+                const countEl = document.getElementById('cart-count');
+                countEl.innerText = this.data.cart.length;
+                countEl.style.display = this.data.cart.length > 0 ? 'flex' : 'none';
+            },
+
+            calculateShipping: function(subtotal, city) {
+                if (subtotal >= this.data.FREE_SHIPPING_THRESHOLD) return 0;
+                if (city && city.toLowerCase().includes('khouribga')) return 20;
+                return 35;
+            },
+
+            updateCartUI: function() {
+                const container = document.getElementById('cart-items-container');
+                const subtotalEl = document.getElementById('cart-subtotal');
+                const shippingEl = document.getElementById('shipping-display');
+                const totalEl = document.getElementById('cart-total');
+                
+                if (this.data.cart.length === 0) {
+                    container.innerHTML = `
+                        <div class="text-center" style="padding: 60px 0; color:#aaa;">
+                            <i class="fa-solid fa-basket-shopping" style="font-size:3.5rem; margin-bottom:20px; opacity:0.3;"></i>
+                            <p style="font-size:1.2rem;">Votre panier est vide</p>
+                            <button onclick="App.closeCartPage()" style="margin-top:20px; color:var(--primary-accent); font-weight:bold; border:1px solid #ddd; padding:10px 20px; border-radius:20px;">Découvrir la boutique</button>
+                        </div>`;
+                    subtotalEl.innerText = "0 MAD";
+                    shippingEl.innerText = "--";
+                    totalEl.innerText = "0 MAD";
+                    document.querySelector('.cart-summary-box').style.display = 'none';
+                } else {
+                    document.querySelector('.cart-summary-box').style.display = 'block';
+                    let subtotal = 0;
+                    container.innerHTML = this.data.cart.map((item, index) => {
+                        subtotal += item.price;
+                        let detailsHtml = '';
+                        if(item.customDetails && item.customDetails.length > 0) {
+                            detailsHtml = `<div class="cart-item-details"><i class="fa-solid fa-palette"></i> ${item.customDetails.join(' | ')}</div>`;
+                        }
+                        return `
+                        <div class="cart-item-row">
+                            <div style="position:relative;">
+                                <img src="${item.img}" class="cart-item-img" onerror="this.src='https://via.placeholder.com/80'">
+                                <button class="cart-remove-btn" onclick="App.removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <div class="cart-item-info">
+                                <div class="cart-item-title">${item.title}</div>
+                                ${detailsHtml}
+                                <div class="cart-item-price">${item.price} MAD</div>
+                            </div>
+                        </div>`;
+                    }).join('');
+                    
+                    subtotalEl.innerText = subtotal + ' MAD';
+                    const city = document.getElementById('city-input').value;
+                    let shipping = this.calculateShipping(subtotal, city);
+                    
+                    if (shipping === 0) {
+                        shippingEl.innerText = "Gratuite 🎉";
+                    } else {
+                        shippingEl.innerText = shipping + ' MAD';
+                    }
+                    
+                    totalEl.innerText = (subtotal + shipping) + ' MAD';
+                }
+            },
+
+            updateShippingCalculation: function(city) {
+                const subtotal = this.data.cart.reduce((sum, i) => sum + i.price, 0);
+                const shippingMsg = document.getElementById('shipping-msg');
+                let fee = 0; let msg = "";
+                
+                if (subtotal >= this.data.FREE_SHIPPING_THRESHOLD) {
+                    fee = 0; msg = "🎉 Livraison offerte !";
+                } else if (city && city.toLowerCase().includes('khouribga')) {
+                    fee = 20; msg = "Tarif Préféré (20 DH)";
+                } else {
+                    fee = 35; msg = city ? "Livraison Standard (35 DH)" : "";
+                }
+                if(shippingMsg) shippingMsg.innerText = msg;
+                
+                const total = subtotal + fee;
+                const formTotal = document.getElementById('form-total-price');
+                const formShipping = document.getElementById('form-shipping-fee');
+                const formDetails = document.getElementById('form-order-details');
+                
+                if(formTotal) {
+                    formTotal.value = total + ' MAD';
+                    formShipping.value = fee + ' MAD';
+                    formDetails.value = this.data.cart.map(i => {
+                        let line = `- ${i.title} (${i.price} MAD)`;
+                        if(i.customDetails && i.customDetails.length > 0) {
+                            line += `\n   > ${i.customDetails.join(', ')}`;
+                        }
+                        return line;
+                    }).join('\n');
+                }
+                this.updateCartUI();
+            },
+
+            setupForm: async function() {
+                const form = document.getElementById("order-form");
+                if(!form) return;
+
+                form.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+                    const btn = document.getElementById('submit-btn');
+                    const originalBtnText = btn.innerHTML;
+                    
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
+                    
+                    try {
+                        const data = new FormData(event.target);
+                        const response = await fetch("https://formspree.io/f/xeevpgvy", { 
+                            method: 'POST', 
+                            body: data, 
+                            headers: { 'Accept': 'application/json' } 
+                        });
+                        
+                        if (response.ok) {
+                            document.getElementById('checkout-view-form').classList.add('hidden');
+                            document.getElementById('success-view-final').classList.remove('hidden');
+                            document.getElementById('order-id-display').innerText = `Commande #CMD-${Math.floor(Math.random()*90000)+10000}`;
+                            
+                            if(typeof fbq !== 'undefined') {
+                                fbq('track', 'Purchase', {value: data.get('total_price'), currency: 'MAD'});
+                            }
+                            this.data.cart = []; 
+                            this.updateCartCountBadge();
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                            this.startConfetti(); 
+                        } else {
+                            const responseData = await response.json();
+                            throw new Error(responseData.error || "Erreur serveur");
+                        }
+                    } catch (error) {
+                        console.error(error);
+                        alert("Une erreur est survenue : " + error.message + ". Veuillez réessayer.");
+                        btn.disabled = false;
+                        btn.innerHTML = originalBtnText;
+                    }
+                });
+            },
+
+            setupLightbox: function() {
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImg = document.getElementById('lightbox-img');
+                const closeBtn = document.getElementById('lightbox-close');
+
+                this.openLightbox = function(src) {
+                    lightboxImg.src = src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                
+                const closeFn = () => {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                };
+
+                closeBtn.addEventListener('click', closeFn);
+                lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeFn(); });
+                document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeFn(); });
+            },
+
+            renderPromoSection: function() {
+                const promoProducts = this.data.products.filter(p => p.isPromo && p.id !== 17);
                 const container = document.getElementById('promo-container');
                 container.innerHTML = promoProducts.map(p => {
                     const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
@@ -726,7 +988,7 @@
                     const isOnSale = p.oldPrice ? 'on-sale' : '';
                     return `
                     <div class="promo-card">
-                        <div class="promo-img-wrapper" onclick="openLightbox('${p.img}')">
+                        <div class="promo-img-wrapper" onclick="App.openLightbox('${p.img}')">
                             ${discountTag}
                             <img src="${p.img}" class="promo-img" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/600x600?text=Decobiz'">
                         </div>
@@ -737,14 +999,14 @@
                                 ${p.oldPrice ? `<span class="old-price">${p.oldPrice} DH</span>` : ''}
                                 <span class="current-price ${isOnSale}">${p.price} DH</span>
                             </div>
-                            <button class="btn-promo" onclick="openCustomModalById(${p.id})">Acheter</button>
+                            <button class="btn-promo" onclick="App.openCustomModalById(${p.id})">Acheter</button>
                         </div>
                     </div>
                 `}).join('');
-            }
+            },
 
-            function renderGrid() {
-                const gridProducts = products.filter(p => !p.isPromo);
+            renderGrid: function() {
+                const gridProducts = this.data.products.filter(p => !p.isPromo);
                 const grid = document.getElementById('product-grid');
                 grid.innerHTML = gridProducts.map(p => {
                     let badgesHtml = '';
@@ -758,256 +1020,19 @@
                     return `
                     <div class="product-card">
                         <div class="badge-wrapper">${badgesHtml}</div>
-                        <div class="prod-img-container" onclick="openLightbox('${p.img}')">
+                        <div class="prod-img-container" onclick="App.openLightbox('${p.img}')">
                             <img src="${p.img}" class="prod-img" alt="${p.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x400?text=Decobiz'">
                         </div>
                         <div class="prod-info">
                             <div class="prod-title">${p.title}</div>
                             <div class="prod-price-wrapper">${priceHtml}</div>
-                            <button class="prod-btn" onclick="openCustomModalById(${p.id})">Ajouter</button>
+                            <button class="prod-btn" onclick="App.openCustomModalById(${p.id})">Ajouter</button>
                         </div>
                     </div>
                 `}).join('');
-            }
+            },
 
-            /* --- CART LOGIC --- */
-            window.toggleCartPage = function() {
-                const cartPage = document.getElementById('cart-page');
-                if (cartPage.classList.contains('open')) {
-                    closeCartPage();
-                } else {
-                    cartPage.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                    updateCartUI();
-                }
-            }
-
-            function closeCartPage() {
-                document.getElementById('cart-page').classList.remove('open');
-                document.body.style.overflow = 'auto';
-            }
-
-            window.openCustomModalById = function(id) {
-                openCustomModal(products.find(p => p.id === id));
-            }
-
-            window.openCustomModal = function(product) {
-                currentProductForCustom = product;
-                const modal = document.getElementById('custom-modal');
-                const title = document.getElementById('modal-product-info');
-                const colorInput = document.getElementById('custom-color');
-                const textGroup = document.getElementById('group-custom-text');
-                const textInput = document.getElementById('custom-text');
-
-                title.innerText = product.title;
-                colorInput.value = ""; textInput.value = "";
-                
-                textGroup.style.display = product.customType === 'logo' ? 'block' : 'none';
-                
-                modal.style.display = 'flex';
-            }
-
-            window.closeCustomModal = function() {
-                document.getElementById('custom-modal').style.display = 'none';
-                currentProductForCustom = null;
-            }
-
-            window.confirmAddToCart = function() {
-                if (!currentProductForCustom) return;
-                const color = document.getElementById('custom-color').value;
-                const text = document.getElementById('custom-text').value;
-
-                if (currentProductForCustom.customType === 'logo' && text.trim() === "") {
-                    alert("Veuillez entrer le texte à graver pour ce plateau.");
-                    return;
-                }
-                addToCartWithCustom(currentProductForCustom, color, text);
-                closeCustomModal();
-            }
-
-            function addToCartWithCustom(product, color, text) {
-                const cartItem = { ...product };
-                cartItem.customDetails = [];
-                
-                if (color) cartItem.customDetails.push(`Couleur: ${color}`);
-                if (text) cartItem.customDetails.push(`Gravure: "${text}"`);
-
-                cart.push(cartItem);
-                updateCartCountBadge();
-                toggleCartPage();
-            }
-
-            window.removeFromCart = function(index) {
-                cart.splice(index, 1);
-                updateCartUI();
-                updateCartCountBadge();
-            }
-
-            function updateCartCountBadge() {
-                const countEl = document.getElementById('cart-count');
-                countEl.innerText = cart.length;
-                countEl.style.display = cart.length > 0 ? 'flex' : 'none';
-            }
-
-            function calculateShipping(subtotal, city) {
-                if (subtotal >= FREE_SHIPPING_THRESHOLD) return 0;
-                if (city && city.toLowerCase().includes('khouribga')) return 20;
-                return 35;
-            }
-
-            function updateCartUI() {
-                const container = document.getElementById('cart-items-container');
-                const subtotalEl = document.getElementById('cart-subtotal');
-                const shippingEl = document.getElementById('shipping-display');
-                const totalEl = document.getElementById('cart-total');
-                
-                if (cart.length === 0) {
-                    container.innerHTML = `
-                        <div class="text-center" style="padding: 60px 0; color:#aaa;">
-                            <i class="fa-solid fa-basket-shopping" style="font-size:3.5rem; margin-bottom:20px; opacity:0.3;"></i>
-                            <p style="font-size:1.2rem;">Votre panier est vide</p>
-                            <button onclick="closeCartPage()" style="margin-top:20px; color:var(--primary-accent); font-weight:bold; border:1px solid #ddd; padding:10px 20px; border-radius:20px;">Découvrir la boutique</button>
-                        </div>`;
-                    subtotalEl.innerText = "0 MAD";
-                    shippingEl.innerText = "--";
-                    totalEl.innerText = "0 MAD";
-                    document.querySelector('.cart-summary-box').style.display = 'none';
-                } else {
-                    document.querySelector('.cart-summary-box').style.display = 'block';
-                    let subtotal = 0;
-                    container.innerHTML = cart.map((item, index) => {
-                        subtotal += item.price;
-                        let detailsHtml = '';
-                        if(item.customDetails && item.customDetails.length > 0) {
-                            detailsHtml = `<div class="cart-item-details"><i class="fa-solid fa-palette"></i> ${item.customDetails.join(' | ')}</div>`;
-                        }
-                        return `
-                        <div class="cart-item-row">
-                            <div style="position:relative;">
-                                <img src="${item.img}" class="cart-item-img" onerror="this.src='https://via.placeholder.com/80'">
-                                <button class="cart-remove-btn" onclick="removeFromCart(${index})"><i class="fa-solid fa-trash"></i></button>
-                            </div>
-                            <div class="cart-item-info">
-                                <div class="cart-item-title">${item.title}</div>
-                                ${detailsHtml}
-                                <div class="cart-item-price">${item.price} MAD</div>
-                            </div>
-                        </div>`;
-                    }).join('');
-                    
-                    subtotalEl.innerText = subtotal + ' MAD';
-                    const city = document.getElementById('city-input').value;
-                    let shipping = calculateShipping(subtotal, city);
-                    currentShipping = shipping;
-                    
-                    // Correction bug affichage Livraison Gratuite
-                    if (shipping === 0) {
-                        shippingEl.innerText = "Gratuite 🎉";
-                    } else {
-                        shippingEl.innerText = shipping + ' MAD';
-                    }
-                    
-                    totalEl.innerText = (subtotal + shipping) + ' MAD';
-                }
-            }
-
-            /* --- CHECKOUT LOGIC --- */
-            window.showCheckoutForm = function() {
-                const cartList = document.getElementById('cart-view-list');
-                const checkoutForm = document.getElementById('checkout-view-form');
-                
-                // Sécurité : vérifier que les éléments existent
-                if (cartList && checkoutForm) {
-                    cartList.classList.add('hidden');
-                    checkoutForm.classList.remove('hidden');
-                    updateShippingCalculation(document.getElementById('city-input').value);
-                } else {
-                    alert("Erreur d'affichage du formulaire. Veuillez réessayer.");
-                }
-            }
-
-            window.hideCheckoutForm = function() {
-                document.getElementById('checkout-view-form').classList.add('hidden');
-                document.getElementById('cart-view-list').classList.remove('hidden');
-            }
-
-            window.updateShippingCalculation = function(city) {
-                const subtotal = cart.reduce((sum, i) => sum + i.price, 0);
-                const shippingMsg = document.getElementById('shipping-msg');
-                let fee = 0; let msg = "";
-                
-                if (subtotal >= FREE_SHIPPING_THRESHOLD) {
-                    fee = 0; msg = "🎉 Livraison offerte !";
-                } else if (city && city.toLowerCase().includes('khouribga')) {
-                    fee = 20; msg = "Tarif Préféré (20 DH)";
-                } else {
-                    fee = 35; msg = city ? "Livraison Standard (35 DH)" : "";
-                }
-                if(shippingMsg) shippingMsg.innerText = msg;
-                currentShipping = fee;
-                
-                const total = subtotal + fee;
-                const formTotal = document.getElementById('form-total-price');
-                const formShipping = document.getElementById('form-shipping-fee');
-                const formDetails = document.getElementById('form-order-details');
-                
-                if(formTotal) {
-                    formTotal.value = total + ' MAD';
-                    formShipping.value = fee + ' MAD';
-                    formDetails.value = cart.map(i => {
-                        let line = `- ${i.title} (${i.price} MAD)`;
-                        if(i.customDetails && i.customDetails.length > 0) {
-                            line += `\n   > ${i.customDetails.join(', ')}`;
-                        }
-                        return line;
-                    }).join('\n');
-                }
-                updateCartUI();
-            }
-
-            /* --- FORM HANDLING --- */
-            const form = document.getElementById("order-form");
-            async function handleSubmit(event) {
-                event.preventDefault();
-                var data = new FormData(event.target);
-                const btn = document.getElementById('submit-btn');
-                const originalBtnText = btn.innerHTML;
-                
-                btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
-                
-                try {
-                    const response = await fetch("https://formspree.io/f/xeevpgvy", { 
-                        method: 'POST', 
-                        body: data, 
-                        headers: { 'Accept': 'application/json' } 
-                    });
-                    
-                    if (response.ok) {
-                        document.getElementById('checkout-view-form').classList.add('hidden');
-                        document.getElementById('success-view-final').classList.remove('hidden');
-                        document.getElementById('order-id-display').innerText = `Commande #CMD-${Math.floor(Math.random()*90000)+10000}`;
-                        
-                        fbq('track', 'Purchase', {value: data.get('total_price'), currency: 'MAD'});
-                        cart = []; 
-                        updateCartCountBadge();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                        startConfetti(); 
-                    } else {
-                        const responseData = await response.json();
-                        throw new Error(responseData.error || "Erreur serveur");
-                    }
-                } catch (error) {
-                    console.error(error);
-                    alert("Une erreur est survenue : " + error.message + ". Veuillez réessayer.");
-                    btn.disabled = false;
-                    btn.innerHTML = originalBtnText;
-                }
-            }
-            form.addEventListener("submit", handleSubmit);
-
-            /* --- CONFETTI EFFECT --- */
-            window.startConfetti = function() {
+            startConfetti: function() {
                 const canvas = document.getElementById('confetti');
                 const ctx = canvas.getContext('2d');
                 canvas.width = window.innerWidth;
@@ -1029,7 +1054,7 @@
                     });
                 }
                 
-                function update() {
+                const update = () => {
                     ctx.clearRect(0,0,canvas.width, canvas.height);
                     let active = false;
                     pieces.forEach(p => {
@@ -1041,10 +1066,15 @@
                     });
                     if(active) requestAnimationFrame(update);
                     else canvas.style.display = 'none';
-                }
+                };
                 update();
             }
-        }
+        };
+
+        // Lancer l'application quand le DOM est prêt
+        document.addEventListener('DOMContentLoaded', () => {
+            App.init();
+        });
     </script>
 </body>
 </html>
