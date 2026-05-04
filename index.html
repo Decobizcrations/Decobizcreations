@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
-    <!-- Polices Modernes -->
+    <!-- Polices -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Decobiz Créations | L'Art de la Personnalisation</title>
-    <meta name="description" content="Personnalisez tous vos articles artisanaux. Livraison offerte dès 399 DH.">
+    <title>Decobiz Créations | Personnalisation Totale</title>
+    <meta name="description" content="Décoration artisanale personnalisable.">
 
-    <!-- --- FACEBOOK PIXEL --- -->
+    <!-- Facebook Pixel -->
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -34,33 +34,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- DESIGN SYSTEM & VARIABLES --- */
+        /* --- DESIGN SYSTEM --- */
         :root {
-            /* Palette Premium */
-            --bg-color: #F9FAFB; 
-            --surface-color: #FFFFFF;
-            --surface-glass: rgba(255, 255, 255, 0.85);
+            --bg-body: #F8F9FA; 
+            --surface: #FFFFFF;
             
-            --text-main: #111827; 
+            --text-main: #1F2937; 
             --text-muted: #6B7280;
             
-            --primary: #1F2937; /* Gris Anthracite élégant */
-            --accent: #D4AF37; /* Or métallique */
-            --accent-hover: #B5952F;
-            --success: #10B981;
+            --primary: #111111;
+            --accent: #D4AF37;
+            --accent-light: #FFFBEB;
             
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.15);
+            --success: #10B981;
+            --danger: #EF4444;
+            
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             
             --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-full: 9999px;
+            --radius-lg: 16px;
             
             --font-heading: 'Playfair Display', serif; 
             --font-body: 'Inter', sans-serif;
-            
             --header-height: 70px;
         }
         
@@ -68,248 +65,147 @@
         
         body { 
             font-family: var(--font-body); 
-            background-color: var(--bg-color); 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            overflow-x: hidden;
+            background-color: var(--bg-body); 
+            color: var(--text-main); line-height: 1.6; overflow-x: hidden;
             padding-top: var(--header-height);
         }
 
-        /* --- TYPOGRAPHY & UTILS --- */
-        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-main); line-height: 1.2; }
+        h1, h2, h3 { font-family: var(--font-heading); color: var(--primary); line-height: 1.2; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .flex-center { display: flex; align-items: center; justify-content: center; }
         .hidden { display: none !important; }
 
         /* --- BUTTONS --- */
         .btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            padding: 14px 28px; border-radius: var(--radius-full);
-            font-weight: 600; font-size: 1rem; cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none; outline: none; width: 100%;
+            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 14px 24px; border-radius: var(--radius-md);
+            font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.2s;
+            border: none; width: 100%; outline: none;
         }
-        .btn-primary {
-            background: var(--primary); color: white;
-            box-shadow: var(--shadow-md);
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); background: #374151; }
+        .btn-primary { background: var(--primary); color: white; box-shadow: var(--shadow-sm); }
+        .btn-primary:active { transform: scale(0.98); }
         
         .btn-accent {
-            background: linear-gradient(135deg, var(--accent) 0%, #E5C158 100%);
-            color: white;
-            box-shadow: var(--shadow-glow);
-            position: relative; overflow: hidden;
+            background: linear-gradient(135deg, var(--accent) 0%, #b8860b 100%);
+            color: white; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-        .btn-accent::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
-        }
-        .btn-accent:hover::after { left: 100%; }
-        .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
-
-        .btn-outline {
-            background: transparent; border: 2px solid var(--primary); color: var(--primary);
-        }
-        .btn-outline:hover { background: var(--primary); color: white; }
+        .btn-accent:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
         /* --- HEADER --- */
         header { 
-            position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
-            background: var(--surface-glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            z-index: 1000; transition: all 0.3s ease;
+            position: fixed; top: 0; width: 100%; height: var(--header-height);
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05); z-index: 1000;
         }
         .header-inner { display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); display: flex; align-items: center; gap: 5px; }
+        .logo i { color: var(--accent); }
         
-        .logo { 
-            font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; 
-            color: var(--primary); letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px;
+        .cart-trigger { position: relative; cursor: pointer; padding: 8px; }
+        .cart-count {
+            position: absolute; top: -2px; right: -2px; background: var(--danger); color: white;
+            font-size: 0.7rem; width: 20px; height: 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 700;
+            transform: scale(0); transition: transform 0.3s;
         }
-        .logo span { color: var(--accent); }
-
-        .nav-actions { display: flex; gap: 16px; align-items: center; }
-        
-        .cart-btn { position: relative; cursor: pointer; padding: 8px; transition: transform 0.2s; }
-        .cart-btn:active { transform: scale(0.9); }
-        .cart-badge {
-            position: absolute; top: -2px; right: -2px; 
-            background: var(--error-color, #EF4444); color: white; 
-            font-size: 0.65rem; font-weight: 700; min-width: 18px; height: 18px; 
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; border: 2px solid white; padding: 0 4px;
-            transform: scale(0); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .cart-badge.active { transform: scale(1); }
+        .cart-count.active { transform: scale(1); }
 
         /* --- HERO --- */
         .hero {
-            position: relative; min-height: 90vh; margin-top: calc(var(--header-height) * -1);
+            position: relative; min-height: 85vh; margin-top: calc(var(--header-height) * -1);
             display: flex; align-items: center; justify-content: center; text-align: center;
-            padding: 80px 20px;
+            padding: 40px 20px; background: #111; color: white;
         }
         .hero-bg {
             position: absolute; inset: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), url('rose.jpeg');
-            background-size: cover; background-position: center;
-            z-index: -1;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('rose.jpeg');
+            background-size: cover; background-position: center; z-index: 0;
         }
-        .hero-content { color: white; max-width: 800px; animation: fadeUp 1s ease-out; }
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); color: white; margin-bottom: 20px; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; margin-bottom: 32px; font-weight: 300; }
-        
-        /* --- MARKETING BARS --- */
-        .trust-banner {
-            background: white; padding: 30px 0; border-bottom: 1px solid rgba(0,0,0,0.05);
+        .hero-content { position: relative; z-index: 1; max-width: 800px; }
+        .hero h1 { color: white; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; }
+        .hero-tagline {
+            display: inline-block; background: var(--accent); color: white;
+            padding: 5px 15px; font-size: 0.85rem; font-weight: 700; border-radius: 50px; margin-bottom: 20px;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center; }
-        .trust-item i { color: var(--accent); font-size: 1.5rem; margin-bottom: 10px; }
-        .trust-item h4 { font-size: 0.9rem; margin-bottom: 4px; font-family: var(--font-body); font-weight: 700; }
-        .trust-item p { font-size: 0.8rem; color: var(--text-muted); }
 
-        /* --- PRODUCTS --- */
-        .section { padding: 80px 0; }
-        .section-header { text-align: center; margin-bottom: 50px; }
-        .section-subtitle { 
-            display: inline-block; text-transform: uppercase; letter-spacing: 2px; 
-            font-size: 0.8rem; font-weight: 700; color: var(--accent); margin-bottom: 10px;
+        /* --- PRODUCT GRID --- */
+        .section { padding: 60px 0; }
+        .grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+        
+        .card {
+            background: var(--surface); border-radius: var(--radius-lg);
+            overflow: hidden; transition: all 0.3s ease; border: 1px solid #eee;
+            display: flex; flex-direction: column; position: relative;
         }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
         
-        .product-grid { display: grid; gap: 30px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+        .card-img-wrapper { position: relative; aspect-ratio: 1/1; overflow: hidden; background: #f0f0f0; }
+        .card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .card:hover .card-img { transform: scale(1.08); }
         
-        .product-card {
-            background: var(--surface-color); border-radius: var(--radius-lg);
-            overflow: hidden; transition: all 0.4s ease;
-            box-shadow: var(--shadow-sm); display: flex; flex-direction: column;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-        .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-        
-        .p-img-wrapper { position: relative; aspect-ratio: 1/1; overflow: hidden; background: #f1f1f1; }
-        .p-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .product-card:hover .p-img { transform: scale(1.08); }
-        
-        .p-badges { position: absolute; top: 15px; left: 15px; z-index: 2; display: flex; flex-direction: column; gap: 5px; }
-        .badge { 
-            padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.7rem; font-weight: 700; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); backdrop-filter: blur(4px);
-        }
-        .badge-sale { background: #FEF2F2; color: #DC2626; border: 1px solid rgba(220, 38, 38, 0.1); }
-        .badge-hot { background: #D4AF37; color: white; animation: pulse 2s infinite; }
+        .card-badges { position: absolute; top: 10px; left: 10px; z-index: 2; display: flex; flex-direction: column; gap: 5px; }
+        .badge { padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; color: white; background: var(--accent); }
 
-        .p-info { padding: 20px; text-align: center; flex: 1; display: flex; flex-direction: column; }
-        .p-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-heading); }
-        .p-price-box { margin-bottom: 16px; }
-        .p-price { font-size: 1.25rem; font-weight: 700; color: var(--primary); }
-        .p-old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.9rem; margin-left: 8px; }
+        .card-body { padding: 16px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .card-title { font-size: 1rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-heading); }
+        .card-desc { font-size: 0.8rem; color: #666; margin-bottom: 12px; min-height: 2.4em; }
         
-        /* --- FEATURED PRODUCT (SPLIT) --- */
-        .featured-product {
-            background: var(--surface-color); border-radius: var(--radius-lg); overflow: hidden;
-            box-shadow: var(--shadow-md); display: grid; grid-template-columns: 1fr; margin-bottom: 60px;
-        }
-        @media(min-width: 900px) { .featured-product { grid-template-columns: 1fr 1fr; } }
-        
-        .fp-img { position: relative; height: 400px; width: 100%; }
-        .fp-img img { width: 100%; height: 100%; object-fit: cover; }
-        .fp-content { padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-        
+        .price-box { margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .current-price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+        .old-price { font-size: 0.9rem; text-decoration: line-through; color: #9CA3AF; }
+
         /* --- CART DRAWER --- */
         .drawer-overlay {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 2000;
-            opacity: 0; visibility: hidden; transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000;
+            opacity: 0; visibility: hidden; transition: 0.3s;
         }
         .drawer-overlay.active { opacity: 1; visibility: visible; }
-
+        
         .drawer {
-            position: fixed; top: 0; right: 0; width: 100%; max-width: 450px; height: 100%;
-            background: var(--surface-color); z-index: 2001;
-            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%;
+            background: white; z-index: 2001; transform: translateX(100%); transition: transform 0.3s;
+            display: flex; flex-direction: column;
         }
         .drawer.open { transform: translateX(0); }
+        .drawer-header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
+        .drawer-body { flex: 1; overflow-y: auto; padding: 20px; }
+        .drawer-footer { padding: 20px; background: white; border-top: 1px solid #eee; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
 
-        .drawer-header { padding: 24px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
-        .drawer-body { flex: 1; overflow-y: auto; padding: 24px; background: #FAFAFA; }
-        .drawer-footer { padding: 24px; background: white; border-top: 1px solid #f0f0f0; box-shadow: 0 -5px 20px rgba(0,0,0,0.05); }
-
-        .cart-item {
-            background: white; padding: 16px; border-radius: var(--radius-md); margin-bottom: 16px;
-            display: flex; gap: 16px; align-items: center; border: 1px solid rgba(0,0,0,0.03);
-            animation: slideInRight 0.3s ease;
-        }
-        .cart-item-img { width: 70px; height: 70px; border-radius: 8px; object-fit: cover; background: #eee; }
+        .cart-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: center; background: #FAFAFA; padding: 10px; border-radius: 8px; }
+        .cart-item-img { width: 60px; height: 60px; border-radius: 8px; object-fit: cover; }
         .cart-item-info { flex: 1; }
-        .cart-item-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; }
-        .cart-item-meta { font-size: 0.8rem; color: var(--accent); font-weight: 500; }
-        .cart-item-remove { color: var(--text-muted); cursor: pointer; padding: 8px; transition: color 0.2s; }
-        .cart-item-remove:hover { color: var(--error-color, #EF4444); }
+        .cart-item-meta { font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-top: 2px; }
+        .cart-remove { color: #EF4444; cursor: pointer; padding: 5px; font-size: 0.9rem; }
 
-        .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9rem; color: var(--text-muted); }
-        .summary-total { font-size: 1.4rem; font-weight: 700; color: var(--primary); margin-top: 16px; font-family: var(--font-heading); }
-
-        /* --- MODALS --- */
+        /* --- MODAL --- */
         .modal-backdrop {
             position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 3000;
-            display: none; align-items: center; justify-content: center;
-            backdrop-filter: blur(8px); padding: 20px;
+            display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); padding: 20px;
         }
-        .modal-backdrop.active { display: flex; animation: fadeIn 0.2s ease; }
+        .modal-backdrop.active { display: flex; }
         
         .modal-content {
-            background: white; width: 100%; max-width: 500px; border-radius: var(--radius-lg);
-            padding: 32px; box-shadow: var(--shadow-lg); position: relative;
-            animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border-top: 4px solid var(--accent);
+            background: white; width: 100%; max-width: 450px; border-radius: var(--radius-lg);
+            padding: 24px; box-shadow: var(--shadow-lg); position: relative; border-top: 4px solid var(--accent);
         }
-
         .form-group { margin-bottom: 20px; }
-        .form-label { display: block; margin-bottom: 8px; font-weight: 500; font-size: 0.9rem; color: var(--text-main); }
-        .form-input { 
-            width: 100%; padding: 14px; border: 1px solid #E5E7EB; 
-            border-radius: var(--radius-md); font-size: 1rem; font-family: inherit;
-            transition: 0.2s; background: #F9FAFB;
-        }
-        .form-input:focus { border-color: var(--accent); background: white; outline: none; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
+        .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: #374151; }
+        .form-input { width: 100%; padding: 12px; border: 1px solid #D1D5DB; border-radius: 8px; background: #F9FAFB; }
+        .form-input:focus { border-color: var(--accent); outline: none; background: white; }
 
-        /* --- SUCCESS ANIMATION --- */
-        .success-view { text-align: center; padding: 20px; }
+        /* --- SUCCESS --- */
+        .success-box { text-align: center; }
         .success-icon {
-            width: 80px; height: 80px; background: #D1FAE5; color: #10B981;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; margin: 0 auto 20px; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 60px; height: 60px; background: #D1FAE5; color: #059669; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 16px;
         }
-        .success-title { font-size: 1.8rem; margin-bottom: 10px; font-family: var(--font-heading); color: var(--primary); }
-        .success-msg { color: var(--text-muted); margin-bottom: 30px; }
 
-        /* --- FOOTER --- */
-        footer { background: var(--primary); color: white; padding: 60px 0 30px; margin-top: 80px; }
-        .footer-content { text-align: center; }
+        footer { background: var(--primary); color: white; padding: 40px 0 20px; margin-top: 60px; text-align: center; }
         .wa-float {
-            position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px;
-            background: #25D366; color: white; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 900;
-            transition: transform 0.3s; font-size: 1.8rem;
-        }
-        .wa-float:hover { transform: scale(1.1) rotate(10deg); }
-
-        /* --- KEYFRAMES --- */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes scaleUp { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes popIn { 0% { transform: scale(0); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
-
-        /* Responsive Fixes */
-        @media (max-width: 768px) {
-            .hero { min-height: auto; padding: 120px 20px 60px; }
-            .section { padding: 50px 0; }
-            .fp-img { height: 300px; }
+            position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px;
+            background: #25D366; color: white; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 900;
         }
     </style>
 </head>
@@ -318,12 +214,10 @@
     <!-- HEADER -->
     <header>
         <div class="container header-inner">
-            <a href="#" class="logo"><i class="fa-solid fa-couch"></i> Decobiz<span>.</span></a>
-            <div class="nav-actions">
-                <div class="cart-btn" onclick="App.toggleCart()">
-                    <i class="fa-solid fa-bag-shopping" style="font-size: 1.4rem;"></i>
-                    <div class="cart-badge" id="cart-count">0</div>
-                </div>
+            <a href="#" class="logo"><i class="fa-solid fa-gem"></i> Decobiz.</a>
+            <div class="cart-trigger" onclick="App.toggleCart()">
+                <i class="fa-solid fa-bag-shopping" style="font-size: 1.3rem;"></i>
+                <div class="cart-count" id="cart-count">0</div>
             </div>
         </div>
     </header>
@@ -332,80 +226,27 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>L'Art de la Déco, <br>100% Personnalisable.</h1>
-            <p>Créez un intérieur qui vous ressemble. Design artisanal, livraison rapide.</p>
-            <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
-                <button class="btn btn-accent" onclick="document.getElementById('collection').scrollIntoView({behavior:'smooth'})">
-                    Découvrir la Collection <i class="fa-solid fa-arrow-down"></i>
-                </button>
-                <div style="font-size: 0.9rem; opacity: 0.8;">
-                    <i class="fa-solid fa-truck-fast"></i> Livraison offerte dès 399 DH
-                </div>
-            </div>
+            <div class="hero-tagline"><i class="fa-solid fa-fire"></i> Vente Flash</div>
+            <h1>L'Art de la Déco<br>100% Personnalisable</h1>
+            <p style="margin-bottom: 30px; opacity: 0.9;">Choisissez vos articles et sélectionnez la couleur de vos rêves.</p>
+            <button class="btn btn-accent" onclick="document.getElementById('catalogue').scrollIntoView({behavior:'smooth'})">
+                Je commande <i class="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
     </section>
 
-    <!-- TRUST SIGNALS -->
-    <div class="trust-banner">
-        <div class="container trust-grid">
-            <div class="trust-item">
-                <i class="fa-solid fa-pen-nib"></i>
-                <h4>100% Personnalisable</h4>
-                <p>Gravure & couleurs</p>
-            </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-hand-holding-heart"></i>
-                <h4>Fait Main</h4>
-                <p>Artisanat local</p>
-            </div>
-            <div class="trust-item">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h4>Paiement Sécurisé</h4>
-                <p>À la livraison</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- MAIN COLLECTION -->
-    <section id="collection" class="section">
+    <!-- CATALOGUE -->
+    <section id="catalogue" class="section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Nouveautés & Tendances</span>
-                <h2>Nos Créations Favorites</h2>
-                <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto;">Des pièces uniques pour sublimer chaque coin de votre maison.</p>
-            </div>
-
-            <!-- PACK SIGNATURE (Featured) -->
-            <div class="featured-product">
-                <div class="fp-img">
-                    <img src="pack9.png" alt="Pack Signature" onerror="this.src='https://picsum.photos/seed/deco9/600/600'">
-                    <div class="p-badges">
-                        <span class="badge badge-hot">Best-Seller</span>
-                        <span class="badge badge-sale">-40%</span>
-                    </div>
-                </div>
-                <div class="fp-content">
-                    <span style="color: var(--accent); font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Exclusivité Web</span>
-                    <h3 style="font-size: 2rem; margin: 10px 0;">Pack Signature 9 Pièces</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 24px;">L'ensemble complet pour transformer votre salon. Design contemporain et finitions dorées.</p>
-                    
-                    <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 30px;">
-                        <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary);">299 DH</span>
-                        <span style="text-decoration: line-through; color: var(--text-muted);">499 DH</span>
-                    </div>
-                    
-                    <button class="btn btn-primary" onclick="App.openCustomModalById(17)">
-                        <i class="fa-solid fa-paintbrush"></i> Personnaliser ce pack
-                    </button>
-                    <div style="margin-top: 15px; font-size: 0.8rem; color: #EF4444; font-weight: 600;">
-                        <i class="fa-solid fa-fire"></i> Ne bientôt plus en stock !
-                    </div>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2>Collection Exclusive</h2>
+                <div style="color: var(--accent); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px;">
+                    Tous les produits sont personnalisables
                 </div>
             </div>
 
-            <!-- GRID -->
-            <div class="product-grid" id="product-grid">
-                <!-- JS Generated -->
+            <div class="grid" id="product-grid">
+                <!-- JS GENERATED -->
             </div>
         </div>
     </section>
@@ -414,461 +255,346 @@
     <div class="drawer-overlay" id="cart-overlay" onclick="App.toggleCart()"></div>
     <div class="drawer" id="cart-drawer">
         <div class="drawer-header">
-            <h3>Votre Panier <span id="cart-count-header" style="font-size: 0.8em; color: var(--text-muted); font-weight: 400;">(0)</span></h3>
-            <button onclick="App.toggleCart()" style="background:none; border:none; cursor:pointer; font-size:1.2rem;"><i class="fa-solid fa-xmark"></i></button>
+            <h3>Votre Panier</h3>
+            <button onclick="App.toggleCart()" style="background:none; border:none; font-size:1.2rem;"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        
-        <div class="drawer-body" id="cart-items">
-            <!-- Items injected via JS -->
-        </div>
-
+        <div class="drawer-body" id="cart-items"></div>
         <div class="drawer-footer">
-            <!-- Free Shipping Progress -->
-            <div id="shipping-progress-container" style="margin-bottom: 20px; display: none;">
-                <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:5px; font-weight:600; color:var(--text-muted);">
-                    <span>Livraison offerte</span>
-                    <span id="shipping-remaining-text">Plus que 50 DH</span>
-                </div>
-                <div style="width: 100%; height: 6px; background: #eee; border-radius: 10px; overflow: hidden;">
-                    <div id="shipping-bar" style="height: 100%; width: 0%; background: var(--success); transition: width 0.5s ease;"></div>
-                </div>
-            </div>
-
-            <div class="summary-row">
-                <span>Sous-total</span>
-                <span id="subtotal-display">0 DH</span>
-            </div>
-            <div class="summary-row">
-                <span>Livraison</span>
-                <span id="shipping-display">--</span>
-            </div>
-            <div class="summary-row summary-total">
+            <div style="display:flex; justify-content:space-between; margin-bottom:15px;">
                 <span>Total</span>
-                <span id="total-display">0 DH</span>
+                <span id="subtotal-display" style="font-weight:700;">0 DH</span>
             </div>
-            
-            <button class="btn btn-accent" style="margin-top: 20px;" id="btn-checkout" onclick="App.goToCheckout()">
-                Valider ma commande <i class="fa-solid fa-lock"></i>
-            </button>
+            <div id="shipping-msg" style="font-size:0.8rem; color:var(--accent); text-align:center; margin-bottom:10px; display:none;">Livraison offerte !</div>
+            <button class="btn btn-primary" onclick="App.goToCheckout()">Valider la commande</button>
         </div>
     </div>
 
-    <!-- CUSTOM & CHECKOUT MODAL (Unified) -->
-    <div class="modal-backdrop" id="main-modal">
+    <!-- CUSTOMIZATION MODAL (FORMULAIRE DYNAMIQUE) -->
+    <div class="modal-backdrop" id="custom-modal">
         <div class="modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3>Personnalisation</h3>
+                <button onclick="App.closeModal()" style="background:none; border:none;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
             
-            <!-- VIEW 1: CUSTOMIZATION -->
-            <div id="view-custom">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
-                    <h3 style="font-size: 1.4rem;">Personnalisation</h3>
-                    <button onclick="App.closeModal()" style="background:none; border:none; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div id="custom-product-info" style="margin-bottom: 20px; padding: 10px; background: #f9f9f9; border-radius: 8px;">
-                    <!-- Injected by JS -->
-                </div>
-                <form id="custom-form" onsubmit="App.confirmAddToCart(event)">
-                    <div class="form-group">
-                        <label class="form-label">Couleur / Finition souhaitée <span style="color:red">*</span></label>
-                        <input type="text" id="custom-color" class="form-input" placeholder="Ex: Doré, Blanc, Terracotta..." required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Gravure ou Message (Optionnel)</label>
-                        <input type="text" id="custom-text" class="form-input" placeholder="Prénom, date, citation...">
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Ajouter au panier <i class="fa-solid fa-cart-plus"></i>
-                    </button>
-                </form>
+            <div id="selected-product-preview" style="display:flex; gap:10px; align-items:center; margin-bottom:20px; background:var(--bg-body); padding:10px; border-radius:8px;">
+                <!-- Injecté par JS -->
             </div>
 
-            <!-- VIEW 2: CHECKOUT FORM -->
-            <div id="view-checkout" class="hidden">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
-                    <h3 style="font-size: 1.4rem;">Livraison</h3>
-                    <button onclick="App.closeModal()" style="background:none; border:none; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+            <form id="custom-form" onsubmit="App.confirmAddToCart(event)">
+                <!-- CHAMP COMMUN : COULEUR -->
+                <div class="form-group">
+                    <label class="form-label">Couleur souhaitée <span style="color:var(--danger)">*</span></label>
+                    <input type="text" id="custom-color" class="form-input" placeholder="Ex: Blanc, Doré, Noir..." required>
                 </div>
-                <form id="checkout-form" onsubmit="App.submitOrder(event)">
-                    <div class="form-group">
-                        <label class="form-label">Nom complet</label>
-                        <input type="text" name="name" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Téléphone</label>
-                        <input type="tel" name="phone" class="form-input" required inputmode="tel">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Ville</label>
-                        <input type="text" name="city" id="city-input" class="form-input" required oninput="App.calcShipping(this.value)">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Adresse complète</label>
-                        <textarea name="address" class="form-input" rows="2" required></textarea>
-                    </div>
-                    
-                    <div id="shipping-msg" style="margin-bottom: 15px; font-size: 0.9rem; font-weight: 600; color: var(--success);"></div>
 
-                    <button type="submit" class="btn btn-accent" id="btn-submit-order">
-                        Confirmer la commande <i class="fa-solid fa-check"></i>
-                    </button>
-                </form>
-            </div>
-
-            <!-- VIEW 3: SUCCESS MESSAGE -->
-            <div id="view-success" class="hidden success-view">
-                <div class="success-icon">
-                    <i class="fa-solid fa-check"></i>
+                <!-- CHAMP CONDITIONNEL : GRAVURE (Pour Plateaux Personnalisé & Mariage) -->
+                <div class="form-group hidden" id="engraving-group">
+                    <label class="form-label">Gravure souhaitée</label>
+                    <input type="text" id="custom-engraving" class="form-input" placeholder="Prénom, Date, Mot...">
                 </div>
-                <h2 class="success-title">Merci !</h2>
-                <p class="success-msg">Votre commande a été enregistrée avec succès. <br>Nous vous contacterons très bientôt par téléphone pour la finalisation.</p>
-                <button class="btn btn-outline" onclick="App.resetSite()">
-                    Retour à la boutique
+                
+                <button type="submit" class="btn btn-accent">
+                    Ajouter au panier <i class="fa-solid fa-check"></i>
                 </button>
-            </div>
+            </form>
+        </div>
+    </div>
 
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-backdrop" id="checkout-modal">
+        <div class="modal-content">
+            <div id="checkout-view">
+                <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+                    <h3>Livraison</h3>
+                    <button onclick="App.closeCheckout()" style="background:none; border:none;"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <form id="order-form" onsubmit="App.submitOrder(event)">
+                    <div class="form-group"><label class="form-label">Nom complet</label><input type="text" name="name" class="form-input" required></div>
+                    <div class="form-group"><label class="form-label">Téléphone</label><input type="tel" name="phone" class="form-input" required></div>
+                    <div class="form-group"><label class="form-label">Ville</label><input type="text" name="city" id="city-input" class="form-input" required oninput="App.calcShipping(this.value)"></div>
+                    <div class="form-group"><label class="form-label">Adresse</label><textarea name="address" class="form-input" rows="2" required></textarea></div>
+                    <div id="shipping-feedback" style="margin-bottom:15px; font-size:0.85rem; color:var(--success); font-weight:600;"></div>
+                    <button type="submit" class="btn btn-primary" id="btn-submit">Confirmer</button>
+                </form>
+            </div>
+            <div id="success-view" class="hidden success-box">
+                <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+                <h3>Merci !</h3>
+                <p style="color:#666; margin-bottom:20px;">Commande reçue.</p>
+                <button class="btn btn-primary" onclick="App.resetSite()">Retour</button>
+            </div>
         </div>
     </div>
 
     <!-- WHATSAPP -->
-    <a href="https://wa.me/212610236889" class="wa-float" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <a href="https://wa.me/212610236889" class="wa-float" target="_blank"><i class="fa-brands fa-whatsapp" style="font-size:1.5rem;"></i></a>
 
     <!-- FOOTER -->
-    <footer>
-        <div class="container footer-content">
-            <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 10px;">Decobiz.</h2>
-            <p style="opacity: 0.7;">L'excellence artisanale marocaine.</p>
-            <p style="font-size: 0.8rem; margin-top: 30px; opacity: 0.5;">&copy; 2024 Decobiz Créations. Tous droits réservés.</p>
-        </div>
-    </footer>
+    <footer><div class="container"><h3>Decobiz.</h3><p style="opacity:0.6;">Artisanat Marocain.</p></div></footer>
 
     <script>
         const App = {
             data: {
                 products: [
-                    { id: 17, title: "Pack Signature (9 Pièces)", price: 299, oldPrice: 499, img: "pack9.png", desc: "Complet et élégant", badge: "Best-Seller" },
-                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", desc: "Minimaliste chic", badge: "Promo" },
-                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", desc: "Spa à domicile", badge: null },
-                    { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", desc: "Art de la table", badge: "Tendance" },
-                    { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", desc: "Contient 4 brûleurs", badge: "Nouveau" },
-                    { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", desc: "Design organique", badge: null },
-                    { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", desc: "Teintes douces", badge: "Favori" },
-                    { id: 303, title: "Vase Cosmopolite", price: 129, img: "bruleur.jpeg", desc: "Texture unique", badge: null },
-                    { id: 304, title: "Ensemble Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", desc: "Nature & Design", badge: null },
-                    { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", desc: "Forme éthérée", badge: null },
-                    { id: 202, title: "Set Par Rose", price: 99, img: "parose.png", desc: "Cuisine raffinée", badge: null },
-                    { id: 203, title: "Support Spirale Luxe", price: 29, oldPrice: 40, img: "support4.jpeg", desc: "Bougie incluse", badge: "Solde" },
-                    { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", desc: "Ensemble 3 vases", badge: null },
-                    { id: 205, title: "Plateau Rond 16 cm", price: 29, oldPrice: 35, img: "rond.jpg", desc: "Petit format", badge: null },
-                    { id: 206, title: "Vase Fenêtre Cosy", price: 55, oldPrice: 60, img: "cozy.jpeg", desc: "Grand modèle blanc", badge: null },
-                    { id: 207, title: "Support Bougies Vague", price: 39, oldPrice: 50, img: "support6.jpg", desc: "Ondulation fluide", badge: null },
-                    { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", desc: "Pour grands bouquets", badge: null },
-                    { id: 209, title: "Plateau Irrégulier", price: 55, oldPrice: 60, img: "pla.jpg", desc: "Style Brut", badge: null }
+                    { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", desc: "9 Pièces uniques pour sublimer votre salon.", badge: "BESTSELLER", type: "standard" },
+                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", desc: "Ensemble chic pour un intérieur contemporain.", badge: "PROMO", type: "standard" },
+                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", desc: "Transformez votre salle d'eau en spa.", badge: "PROMO", type: "standard" },
+                    { id: 103, title: "Pack Citrouille", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", desc: "Art de la table festif et chaleureux.", badge: "SOLDE", type: "standard" },
+                    { id: 900, title: "Pack Burning", price: 149, oldPrice: 249, img: "packbruleur.jpeg", desc: "4 Brûleurs parfumés design.", badge: "LIMITÉ", type: "standard" },
+                    // PLATEAUX (Type : custom)
+                    { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", desc: "Élégance ovale pour vos services.", badge: "NOUVEAU", type: "custom" },
+                    { id: 18, title: "Plateau Mariage", price: 115, oldPrice: 149, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", desc: "Cadeau de mariage sublime.", badge: "MARIAGE", type: "custom" },
+                    // RESTE DES PRODUITS (Type : standard)
+                    { id: 302, title: "Collection Rose", price: 149, oldPrice: 180, img: "rose.jpeg", desc: "Teintes douces et romantiques.", badge: "FÉMININ", type: "standard" },
+                    { id: 303, title: "Vase Cosmopolite", price: 129, oldPrice: 160, img: "bruleur.jpeg", desc: "Design texturé urbain.", badge: "TENDANCE", type: "standard" },
+                    { id: 304, title: "Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", desc: "L'union de la nature et du design.", badge: "NATURE", type: "standard" },
+                    { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", desc: "Forme organique et aérienne.", badge: "DOUX", type: "standard" },
+                    { id: 202, title: "Set Par Rose", price: 99, oldPrice: 130, img: "parose.png", desc: "Set de service cuisine raffiné.", badge: "CUISINE", type: "standard" },
+                    { id: 203, title: "Support Spirale", price: 29, oldPrice: 40, img: "support4.jpeg", desc: "Support bougie design moderne.", badge: "SOLDE", type: "standard" },
+                    { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", desc: "Set de 3 vases cylindriques.", badge: "ENSEMBLE", type: "standard" },
+                    { id: 205, title: "Plateau Rond 16cm", price: 29, oldPrice: 35, img: "rond.jpg", desc: "Petit bol rond multifonction.", badge: "PRATIQUE", type: "standard" },
+                    { id: 206, title: "Vase Cosy", price: 55, oldPrice: 60, img: "cozy.jpeg", desc: "Grand vase blanc épuré.", badge: "CLASSIQUE", type: "standard" },
+                    { id: 207, title: "Support Vague", price: 39, oldPrice: 50, img: "support6.jpg", desc: "Support ondulé pour bougies.", badge: "WAVE", type: "standard" },
+                    { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", desc: "Parfait pour grands bouquets.", badge: "GRAND", type: "standard" },
+                    { id: 209, title: "Tray Irrégulier", price: 55, oldPrice: 60, img: "pla.jpg", desc: "Design asymétrique brut.", badge: "BRUT", type: "standard" },
+                    { id: 1, title: "Support Bougies", price: 35, oldPrice: 40, img: "support.jpg", desc: "Minimalisme pur.", badge: "MINIMAL", type: "standard" },
+                    { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", desc: "Décoration automnale unique.", badge: "AUTOMNE", type: "standard" },
+                    { id: 3, title: "Vase Minimaliste", price: 149, oldPrice: 180, img: "minimalisme.jpeg", desc: "Ligne épurée intemporelle.", badge: "CHIC", type: "standard" },
+                    { id: 4, title: "Boîte Striée", price: 29, oldPrice: 35, img: "boite1.jpg", desc: "Rangement chic et décoratif.", badge: "RANGEMENT", type: "standard" },
+                    { id: 5, title: "Plateau Bulles", price: 35, oldPrice: 45, img: "boules2.jpeg", desc: "Effet 3D organique.", badge: "3D", type: "standard" },
+                    { id: 6, title: "Vide Poche", price: 35, oldPrice: 40, img: "leaf.jpg", desc: "Forme feuille naturelle.", badge: "NATURE", type: "standard" },
+                    { id: 7, title: "Support Nœud", price: 20, oldPrice: 30, img: "support1.jpg", desc: "Détail élégant en nœud.", badge: "ÉLÉGANCE", type: "standard" },
+                    { id: 8, title: "Vase Violet", price: 45, oldPrice: 50, img: "vase1.jpg", desc: "Touche de couleur vive.", badge: "COULEUR", type: "standard" },
+                    { id: 9, title: "Set Rose", price: 129, oldPrice: 150, img: "pa.jpeg", desc: "Harmonie parfaite.", badge: "SET", type: "standard" },
+                    { id: 10, title: "Arche Cosy", price: 79, oldPrice: 90, img: "arch.jpg", desc: "Arc décoratif mural.", badge: "MURAL", type: "standard" },
+                    { id: 11, title: "Plateau Étoile", price: 29, oldPrice: 35, img: "etoile.jpg", desc: "Forme étoilée festive.", badge: "FÊTE", type: "standard" },
+                    { id: 12, title: "Coquille", price: 29, oldPrice: 35, img: "coquille.jpg", desc: "Pour vos bijoux précieux.", badge: "BIJOUX", type: "standard" },
+                    { id: 13, title: "Plateau Rond 23cm", price: 59, oldPrice: 70, img: "rondla.jpg", desc: "Grand format pratique.", badge: "GRAND", type: "standard" },
+                    { id: 14, title: "Plateau Ovale 23cm", price: 55, oldPrice: 65, img: "ovale23.jpeg", desc: "Élégance ovale standard.", badge: "CLASSIQUE", type: "standard" },
+                    { id: 15, title: "Lavande", price: 165, oldPrice: 199, img: "lavande.jpeg", desc: "Parfum et couleur Provence.", badge: "PARFUM", type: "standard" },
+                    { id: 16, title: "Pack EID", price: 135, oldPrice: 149, img: "eid.jpeg", desc: "Décoration de fête complète.", badge: "FÊTE", type: "standard" }
                 ],
                 cart: [],
-                currentProduct: null,
-                freeShippingThreshold: 399
+                selectedProduct: null
             },
 
             init: function() {
                 this.renderGrid();
-                // Listen for back button on mobile to close drawer
-                window.addEventListener('popstate', () => {
-                    document.getElementById('cart-drawer').classList.remove('open');
-                    document.getElementById('cart-overlay').classList.remove('active');
-                });
             },
 
-            /* --- RENDERING --- */
             renderGrid: function() {
                 const grid = document.getElementById('product-grid');
-                grid.innerHTML = this.data.products.filter(p => p.id !== 17).map(p => {
-                    const badgeHTML = p.badge ? `<div class="p-badges"><span class="badge badge-hot">${p.badge}</span></div>` : '';
-                    const discount = p.oldPrice ? `<span class="p-old-price">${p.oldPrice} DH</span>` : '';
+                grid.innerHTML = this.data.products.map(p => {
+                    const badgeHTML = p.badge ? `<div class="card-badges"><span class="badge">${p.badge}</span></div>` : '';
+                    const oldPriceHTML = p.oldPrice ? `<span class="old-price">${p.oldPrice} DH</span>` : '';
                     return `
-                    <div class="product-card">
-                        <div class="p-img-wrapper">
-                            ${badgeHTML}
-                            <img src="${p.img}" class="p-img" loading="lazy" alt="${p.title}" onerror="this.src='https://picsum.photos/seed/${p.id}/400/400'">
+                    <div class="card">
+                        ${badgeHTML}
+                        <div class="card-img-wrapper">
+                            <img src="${p.img}" class="card-img" loading="lazy" onerror="this.src='https://picsum.photos/seed/${p.id}/400/400'">
                         </div>
-                        <div class="p-info">
-                            <div class="p-title">${p.title}</div>
-                            <div style="font-size: 0.85rem; color: #888; margin-bottom: 8px;">${p.desc}</div>
-                            <div class="p-price-box">
-                                <span class="p-price">${p.price} DH</span>
-                                ${discount}
+                        <div class="card-body">
+                            <div class="card-title">${p.title}</div>
+                            <div class="card-desc">${p.desc}</div>
+                            <div class="price-box">
+                                <span class="current-price">${p.price} DH</span>
+                                ${oldPriceHTML}
                             </div>
-                            <button class="btn btn-outline" onclick="App.openCustomModalById(${p.id})">
-                                <i class="fa-solid fa-pen-fancy"></i> Personnaliser
+                            <button class="btn btn-primary" onclick="App.openCustomModal(${p.id})">
+                                <i class="fa-solid fa-cart-plus"></i> Ajouter au panier
                             </button>
                         </div>
                     </div>
                 `}).join('');
             },
 
+            openCustomModal: function(id) {
+                const product = this.data.products.find(p => p.id === id);
+                if(!product) return;
+                this.data.selectedProduct = product;
+
+                // Afficher les infos du produit dans la modale
+                document.getElementById('selected-product-preview').innerHTML = `
+                    <img src="${product.img}" style="width:50px; height:50px; border-radius:6px; object-fit:cover;">
+                    <div>
+                        <div style="font-weight:600; font-size:0.9rem;">${product.title}</div>
+                        <div style="color:var(--accent); font-weight:700;">${product.price} DH</div>
+                    </div>
+                `;
+                
+                // Reset Form
+                document.getElementById('custom-form').reset();
+
+                // LOGIQUE D'AFFICHAGE DU CHAMP GRAVURE
+                const engravingGroup = document.getElementById('engraving-group');
+                if(product.type === "custom") {
+                    // C'est un plateau personnalisé ou mariage -> Afficher Gravure
+                    engravingGroup.classList.remove('hidden');
+                } else {
+                    // Produit standard -> Masquer Gravure
+                    engravingGroup.classList.add('hidden');
+                }
+                
+                // Show Modal
+                document.getElementById('custom-modal').classList.add('active');
+            },
+
+            confirmAddToCart: function(e) {
+                e.preventDefault();
+                const color = document.getElementById('custom-color').value;
+                const engravingInput = document.getElementById('custom-engraving');
+                const engraving = engravingInput.value;
+                
+                if(!this.data.selectedProduct) return;
+
+                const item = { ...this.data.selectedProduct };
+                // On stocke toujours la couleur
+                item.customs = [color];
+                
+                // Si c'est un plateau (type custom) et qu'il y a une gravure, on l'ajoute
+                if(this.data.selectedProduct.type === "custom" && engraving) {
+                    item.customs.push(`Gravure: ${engraving}`);
+                }
+
+                this.data.cart.push(item);
+                this.updateCount();
+                
+                // Animation + Fermeture
+                const badge = document.getElementById('cart-count');
+                badge.style.transform = "scale(1.4)";
+                setTimeout(() => badge.style.transform = "scale(1)", 200);
+                
+                this.closeModal();
+                this.toggleCart(); // Ouvrir le panier pour montrer l'ajout
+            },
+
+            updateCount: function() {
+                const el = document.getElementById('cart-count');
+                el.innerText = this.data.cart.length;
+                if(this.data.cart.length > 0) el.classList.add('active');
+                else el.classList.remove('active');
+            },
+
             renderCart: function() {
                 const container = document.getElementById('cart-items');
-                const totalItems = this.data.cart.length;
-                document.getElementById('cart-count').innerText = totalItems;
-                document.getElementById('cart-count-header').innerText = `(${totalItems})`;
-                
-                if(totalItems > 0) document.getElementById('cart-count').classList.add('active');
-                else document.getElementById('cart-count').classList.remove('active');
+                const subtotalEl = document.getElementById('subtotal-display');
+                const shipMsg = document.getElementById('shipping-msg');
+                const btn = document.querySelector('.drawer-footer .btn');
 
                 if (this.data.cart.length === 0) {
-                    container.innerHTML = `
-                        <div style="text-align: center; padding: 40px 0; color: #999;">
-                            <i class="fa-solid fa-basket-shopping" style="font-size: 3rem; margin-bottom: 15px; opacity: 0.3;"></i>
-                            <p>Votre panier est vide</p>
-                            <button class="btn btn-outline" onclick="App.toggleCart()" style="margin-top:20px;">Commencer mes achats</button>
-                        </div>
-                    `;
-                    document.getElementById('btn-checkout').style.display = 'none';
-                    this.updateTotals(0);
-                    document.getElementById('shipping-progress-container').style.display = 'none';
+                    container.innerHTML = `<div style="text-align:center; padding:30px; color:#888;">Panier vide.</div>`;
+                    subtotalEl.innerText = "0 DH";
+                    btn.style.display = 'none';
+                    shipMsg.style.display = 'none';
                     return;
                 }
 
-                document.getElementById('btn-checkout').style.display = 'flex';
+                btn.style.display = 'flex';
                 let subtotal = 0;
                 container.innerHTML = this.data.cart.map((item, idx) => {
                     subtotal += item.price;
-                    const details = item.customs ? `<div class="cart-item-meta"><i class="fa-solid fa-paintbrush"></i> ${item.customs.join(', ')}</div>` : '';
+                    const customText = item.customs ? `<div class="cart-item-meta"><i class="fa-solid fa-palette"></i> ${item.customs.join(', ')}</div>` : '';
                     return `
                     <div class="cart-item">
                         <img src="${item.img}" class="cart-item-img" onerror="this.src='https://picsum.photos/seed/${item.id}/100/100'">
                         <div class="cart-item-info">
-                            <div class="cart-item-title">${item.title}</div>
-                            ${details}
-                            <div style="font-weight: 700; font-size: 0.95rem;">${item.price} DH</div>
+                            <div class="card-title" style="font-size:0.9rem;">${item.title}</div>
+                            ${customText}
+                            <div style="font-weight:700; color:var(--primary);">${item.price} DH</div>
                         </div>
-                        <div class="cart-item-remove" onclick="App.removeFromCart(${idx})">
-                            <i class="fa-solid fa-trash"></i>
-                        </div>
-                    </div>
-                `}).join('');
+                        <div class="cart-remove" onclick="App.removeFromCart(${idx})"><i class="fa-solid fa-trash"></i></div>
+                    </div>`;
+                }).join('');
 
-                this.updateTotals(subtotal);
+                subtotalEl.innerText = subtotal + " DH";
+                if(subtotal >= 399) { shipMsg.style.display = 'block'; } else { shipMsg.style.display = 'none'; }
             },
 
-            updateTotals: function(subtotal) {
-                // Shipping Logic
-                let shipping = 35;
-                let isFree = false;
-                
-                if (subtotal >= this.data.freeShippingThreshold) {
-                    shipping = 0;
-                    isFree = true;
-                }
-
-                // Progress Bar
-                const progressContainer = document.getElementById('shipping-progress-container');
-                if (subtotal < this.data.freeShippingThreshold && subtotal > 0) {
-                    progressContainer.style.display = 'block';
-                    const remaining = this.data.freeShippingThreshold - subtotal;
-                    const percent = (subtotal / this.data.freeShippingThreshold) * 100;
-                    document.getElementById('shipping-bar').style.width = `${percent}%`;
-                    document.getElementById('shipping-remaining-text').innerText = `Plus que ${remaining} DH pour la livraison offerte !`;
-                } else if (isFree) {
-                    progressContainer.style.display = 'block';
-                    document.getElementById('shipping-bar').style.width = `100%`;
-                    document.getElementById('shipping-remaining-text').innerText = `Offerte ! 🎉`;
-                } else {
-                    progressContainer.style.display = 'none';
-                }
-
-                const total = subtotal + shipping;
-                document.getElementById('subtotal-display').innerText = subtotal + " DH";
-                document.getElementById('shipping-display').innerText = isFree ? "Gratuite" : shipping + " DH";
-                document.getElementById('total-display').innerText = total + " DH";
-            },
-
-            /* --- ACTIONS --- */
             toggleCart: function() {
                 const drawer = document.getElementById('cart-drawer');
                 const overlay = document.getElementById('cart-overlay');
                 const isOpen = drawer.classList.contains('open');
-
-                if (isOpen) {
+                
+                if(isOpen) {
                     drawer.classList.remove('open');
                     overlay.classList.remove('active');
                 } else {
                     this.renderCart();
                     drawer.classList.add('open');
                     overlay.classList.add('active');
-                    window.scrollTo(0,0);
-                    // Push state to handle back button
-                    history.pushState({view: 'cart'}, '', '#cart');
                 }
             },
 
-            /* --- CUSTOMIZATION MODAL --- */
-            openCustomModalById: function(id) {
-                const product = this.data.products.find(p => p.id === id);
-                if(!product) return;
-                this.openCustomModal(product);
-            },
-
-            openCustomModal: function(product) {
-                this.data.currentProduct = product;
-                
-                // Setup Modal Content
-                document.getElementById('custom-product-info').innerHTML = `
-                    <div style="display:flex; gap:10px; align-items:center;">
-                        <img src="${product.img}" style="width:50px; height:50px; border-radius:6px; object-fit:cover;">
-                        <div>
-                            <div style="font-weight:600;">${product.title}</div>
-                            <div style="font-size:0.9rem; color:var(--accent); font-weight:700;">${product.price} DH</div>
-                        </div>
-                    </div>
-                `;
-
-                // Reset Form
-                document.getElementById('custom-form').reset();
-
-                // Show View 1
-                this.showModalView('view-custom');
-            },
-
-            confirmAddToCart: function(e) {
-                e.preventDefault();
-                const color = document.getElementById('custom-color').value;
-                const text = document.getElementById('custom-text').value;
-                
-                if(!this.data.currentProduct) return;
-
-                const item = { ...this.data.currentProduct };
-                item.customs = [color];
-                if(text) item.customs.push(text);
-
-                this.data.cart.push(item);
-                
-                // Close Modal, Open Cart
-                this.closeModal();
-                this.toggleCart();
-            },
-
-            removeFromCart: function(index) {
-                this.data.cart.splice(index, 1);
+            removeFromCart: function(idx) {
+                this.data.cart.splice(idx, 1);
                 this.renderCart();
+                this.updateCount();
             },
 
-            /* --- CHECKOUT --- */
+            closeModal: function() {
+                document.getElementById('custom-modal').classList.remove('active');
+            },
+
             goToCheckout: function() {
-                this.toggleCart(); // Close drawer
-                
-                // Setup Checkout View
-                document.getElementById('city-input').value = ''; // Reset city
-                document.getElementById('shipping-msg').innerText = '';
-                
-                this.showModalView('view-checkout');
+                this.toggleCart();
+                document.getElementById('checkout-modal').classList.add('active');
+            },
+
+            closeCheckout: function() {
+                document.getElementById('checkout-modal').classList.remove('active');
             },
 
             calcShipping: function(city) {
-                const subtotal = this.data.cart.reduce((a, b) => a + b.price, 0);
+                const subtotal = this.data.cart.reduce((a,b)=>a+b.price, 0);
                 let msg = "";
-                
-                if (subtotal >= this.data.freeShippingThreshold) {
-                    msg = "Frais de port offerts !";
-                } else if (city.toLowerCase().includes('khouribga')) {
-                    msg = "Tarif Préféré (20 DH)";
-                } else if (city.length > 2) {
-                    msg = "Frais de port standard (35 DH)";
-                }
-                
-                document.getElementById('shipping-msg').innerText = msg;
+                if(subtotal >= 399) msg = "Livraison offerte validée !";
+                else if(city.toLowerCase().includes('khouribga')) msg = "Tarif Préféré : 20 DH";
+                else if(city.length > 2) msg = "Frais de port standard : 35 DH";
+                document.getElementById('shipping-feedback').innerText = msg;
             },
 
-            /* --- SUBMIT & SUCCESS --- */
             submitOrder: async function(e) {
                 e.preventDefault();
-                const btn = document.getElementById('btn-submit-order');
-                const originalContent = btn.innerHTML;
-                
-                // Loading State
+                const btn = document.getElementById('btn-submit');
                 btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Traitement en cours...';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>...';
 
-                const form = e.target;
-                const formData = new FormData(form);
-                
-                // Add Order Details
-                const orderItems = this.data.cart.map(i => `- ${i.title} (${i.price}DH) [${i.customs.join(', ')}]`).join('\n');
-                formData.append('order_details', orderItems);
-                formData.append('total_price', document.getElementById('total-display').innerText);
+                const formData = new FormData(e.target);
+                formData.append('order_details', this.data.cart.map(i => `- ${i.title} (${i.price}DH) [${i.customs.join(', ')}]`).join('\n'));
+                formData.append('total_price', document.getElementById('subtotal-display').innerText);
 
                 try {
-                    // Attempt Fetch
-                    const response = await fetch("https://formspree.io/f/xeevpgvy", {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
-                    });
-
-                    if (response.ok) {
-                        this.showSuccess();
-                    } else {
-                        throw new Error('Server error');
-                    }
-                } catch (error) {
-                    // Fallback: Native submit
-                    const formElement = document.getElementById('checkout-form');
-                    formElement.action = "https://formspree.io/f/xeevpgvy";
-                    formElement.method = "POST";
-                    
-                    // Create hidden submit trigger
-                    const submitInput = document.createElement('input');
-                    submitInput.type = 'submit';
-                    submitInput.style.display = 'none';
-                    formElement.appendChild(submitInput);
-                    submitInput.click();
-
-                    // If fallback is used, we simulate success after a delay 
-                    // (since the page might redirect or unload, this is a safety net for SPA feel)
-                    setTimeout(() => {
-                        this.showSuccess(); 
-                    }, 2000);
+                    const response = await fetch("https://formspree.io/f/xeevpgvy", { method:'POST', body:formData });
+                    if(response.ok) { this.showSuccess(); } 
+                    else { throw new Error('Erreur'); }
+                } catch (err) {
+                    const form = document.getElementById('order-form');
+                    form.action = "https://formspree.io/f/xeevpgvy";
+                    form.method = "POST";
+                    form.appendChild(document.createElement('input')).type='submit'.click();
+                    setTimeout(() => this.showSuccess(), 2000);
                 } finally {
-                    // Restore button (in case of error/fallback delay)
-                    setTimeout(() => {
-                        btn.disabled = false;
-                        btn.innerHTML = originalContent;
-                    }, 3000);
+                    setTimeout(() => { btn.disabled = false; btn.innerHTML = 'Confirmer'; }, 3000);
                 }
             },
 
             showSuccess: function() {
-                this.showModalView('view-success');
-                // Track conversion
-                if(typeof fbq !== 'undefined') fbq('track', 'Purchase');
+                document.getElementById('checkout-view').classList.add('hidden');
+                document.getElementById('success-view').classList.remove('hidden');
             },
 
             resetSite: function() {
                 this.data.cart = [];
-                this.closeModal();
-                this.renderCart();
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            },
-
-            /* --- UTILS --- */
-            showModalView: function(viewId) {
-                document.getElementById('main-modal').classList.add('active');
-                
-                // Hide all views
-                ['view-custom', 'view-checkout', 'view-success'].forEach(id => {
-                    document.getElementById(id).classList.add('hidden');
-                });
-                
-                // Show target
-                document.getElementById(viewId).classList.remove('hidden');
-            },
-
-            closeModal: function() {
-                document.getElementById('main-modal').classList.remove('active');
+                this.closeCheckout();
+                document.getElementById('checkout-view').classList.remove('hidden');
+                document.getElementById('success-view').classList.add('hidden');
+                document.getElementById('order-form').reset();
+                this.updateCount();
+                window.scrollTo(0,0);
             }
         };
 
-        // Start App
         document.addEventListener('DOMContentLoaded', () => App.init());
     </script>
 </body>
