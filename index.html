@@ -185,7 +185,7 @@
         
         .product-info { padding: 24px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
         .product-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-heading); }
-        .product-price { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px; }
+        .product-price { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px; }
         .product-old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.9rem; margin-right: 8px; }
 
         /* --- PACK SIGNATURE CARD (Spécial) --- */
@@ -204,7 +204,7 @@
         .sig-list li { position: relative; padding-left: 24px; margin-bottom: 12px; }
         .sig-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; }
 
-        /* --- CART DRAWER (Panneau coulissant) --- */
+        /* --- CART DRAWER (Panneau Coulissant) --- */
         .cart-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5); z-index: 2000;
@@ -232,9 +232,8 @@
         .cart-item-img { width: 80px; height: 80px; border-radius: var(--radius-sm); object-fit: cover; background: #eee; flex-shrink: 0; }
         .cart-item-details { flex: 1; }
         .cart-item-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
-        .cart-item-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 4px; }
-        .cart-item-price { font-weight: 700; color: var(--primary-dark); }
-        .cart-remove { color: var(--error-color); font-size: 0.85rem; cursor: pointer; text-decoration: underline; margin-top: 4px; display: inline-block; }
+        .cart-item-meta { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 4px; }
+        .cart-remove { color: var(--error-color); font-size: 0.875rem; cursor: pointer; text-decoration: underline; }
 
         .cart-footer { 
             padding: 24px; background: white; border-top: 1px solid var(--accent-soft);
@@ -245,7 +244,7 @@
         .summary-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 0.95rem; }
         .summary-total { font-weight: 700; font-size: 1.25rem; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--accent-soft); font-family: var(--font-heading); }
 
-        /* --- STICKY ACTION BAR (Pour iPhone/Modern) --- */
+        /* --- STICKY ACTION BAR (Pour iPhone) --- */
         .sticky-action-bar {
             position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 10;
         }
@@ -253,7 +252,7 @@
             width: 100%; background: var(--primary-dark); color: white;
             padding: 18px; border-radius: var(--radius-lg); font-weight: 700; font-size: 1.1rem;
             box-shadow: var(--shadow-lg); display: flex; justify-content: center; align-items: center; gap: 10px;
-            user-select: none; -webkit-tap-highlight-color: transparent;
+            user-select: none; -webkit-user-select: none;
         }
         .btn-checkout:active { transform: scale(0.98); }
 
@@ -271,14 +270,10 @@
         .form-input { width: 100%; padding: 14px 16px; border: 1px solid #E2E8F0; border-radius: var(--radius-sm); font-size: 1rem; font-family: inherit; transition: 0.2s; }
         .form-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); outline: none; }
 
-        /* --- LIGHTBOX --- */
-        .lightbox {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4000;
-            display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .lightbox.active { display: flex; opacity: 1; }
-        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
         /* --- WHATSAPP & FOOTER --- */
         .wa-float {
@@ -292,10 +287,14 @@
         footer { background: var(--primary-dark); color: white; padding: 60px 0 30px; text-align: center; }
         .footer-logo { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 16px; font-style: italic; }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4000;
+            display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 600px) {
@@ -333,43 +332,39 @@
         </div>
     </section>
 
-    <!-- PRODUCTS SECTION -->
+    <!-- PRODUCTS -->
     <section id="products" class="section">
         <div class="container">
             <h2 class="section-title">Nos Créations</h2>
             <p class="section-subtitle">Collection Complète</p>
 
-            <!-- PACK SIGNATURE (Mise en avant) -->
+            <!-- Produit Star (Pack Signature) -->
             <div class="signature-card">
                 <div class="sig-img-area">
                     <img src="pack9.png" alt="Pack Signature" onerror="this.src='https://via.placeholder.com/600x800?text=Pack+Signature'">
                 </div>
                 <div class="sig-content">
                     <span class="badge badge-trend">Best Seller</span>
-                    <h3 style="font-size: 2rem; margin: 10px 0;">Pack Signature</h3>
-                    <p style="color: var(--text-muted);">Une collection complète pour sublimer votre intérieur.</p>
-                    <ul class="sig-list">
-                        <li>Arc décoratif & Plateaux</li>
-                        <li>Vases & Boîtes élégantes</li>
-                        <li>Cadeau Surprise inclus</li>
-                    </ul>
-                    <div style="margin: 20px 0;">
+                    <h3 style="font-size: 2rem; margin-bottom: 10px;">Pack Signature</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">L'ensemble complet pour sublimer votre salon. 9 Pièces uniques.</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Couleur souhaitée</label>
+                        <input type="text" id="sig-color" class="form-input" placeholder="Ex: Doré, Noir...">
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
                         <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary-dark);">299 DH</span>
                         <span style="text-decoration: line-through; color: var(--text-muted); margin-left: 10px;">499 DH</span>
                     </div>
                     
-                    <div class="form-group">
-                        <label class="form-label">Couleur souhaitée</label>
-                        <input type="text" id="sig-color" class="form-input" placeholder="Ex: Doré, Noir, Terracotta...">
-                    </div>
-
                     <button class="btn-primary" style="width: 100%;" onclick="App.addSignature()">
                         Ajouter au panier <i class="fa-solid fa-plus"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- GRILLE TOUS LES PRODUITS -->
+            <!-- Grille Produits -->
             <div class="grid" id="product-grid"></div>
         </div>
     </section>
@@ -399,7 +394,7 @@
         </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
+    <!-- CHECKOUT FORM (Overlay) -->
     <div class="modal-backdrop" id="checkout-modal">
         <div class="modal">
             <div style="display:flex; justify-content:space-between; margin-bottom:24px;">
@@ -407,7 +402,8 @@
                 <button onclick="App.closeCheckout()" style="background:none; font-size:1.5rem;"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
-            <form id="order-form" onsubmit="App.submitOrder(event)">
+            <!-- IMPORTANT: form ne contient plus d'attribut action. Géré par JS. -->
+            <form id="order-form">
                 <input type="hidden" name="order_details" id="form-details">
                 <input type="hidden" name="total_price" id="form-total">
                 
@@ -459,10 +455,10 @@
             // --- LISTE COMPLÈTE DES PRODUITS ---
             data: {
                 products: [
-                    { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", desc: "9 pièces : Arc, Plateaux, Vases, Boîte...", type: "color" },
-                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", desc: "Vase herbe, Porte bougie assortie, Petite citrouille, Plateau ovale.", type: "color" },
-                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", desc: "Vase herbe, Récipient cylindrique, Citrouille et Tray design.", type: "color" },
-                    { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", desc: "Composition sur plateau rond.", type: "color" },
+                    { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", desc: "9 pièces uniques.", type: "color" },
+                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", desc: "Moderne & Élégant.", type: "color" },
+                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", desc: "Spa à domicile.", type: "color" },
+                    { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", desc: "Art de la table.", type: "color" },
                     { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", desc: "Contient 4 pièces (Bruleurs)", type: "color" },
                     { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", desc: "Élégant plateau ovale blanc avec finition dorée.", type: "color" },
                     { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", desc: "Set complet d'accessoires déco en teintes douces.", type: "color" },
@@ -493,7 +489,7 @@
                     { id: 14, title: "Plateau Ovale 23cm", price: 55, img: "ovale23.jpeg", desc: "Élégance ovale.", type: "color" },
                     { id: 15, title: "Collection Lavande", price: 165, img: "lavande.jpeg", desc: "Parfum de provence.", type: "color" },
                     { id: 16, title: "Pack EID", price: 135, img: "eid.jpeg", desc: "Joyeux fêtes.", type: "color" },
-                    { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", desc: "Célebration.", type: "color" }
+                    { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", desc: "Célébration.", type: "color" }
                 ],
                 cart: [],
                 freeShipping: 399
@@ -501,7 +497,7 @@
 
             init: function() {
                 this.renderGrid();
-                // Fix iOS
+                // Fix iOS Back Button
                 window.addEventListener('pageshow', (e) => {
                     if(e.persisted && document.getElementById('cart-drawer').classList.contains('open')) {
                         this.renderCart();
@@ -524,7 +520,6 @@
 
             renderGrid: function() {
                 const grid = document.getElementById('product-grid');
-                // On affiche tout SAUF le pack signature (id 17)
                 grid.innerHTML = this.data.products.filter(p => p.id !== 17).map(p => {
                     const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
                     return `
@@ -627,9 +622,9 @@
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.title}</div>
                             <div class="cart-item-meta">${item.custom ? 'Couleur: '+item.custom : 'Standard'}</div>
-                            <div class="cart-item-price">${item.price} DH</div>
-                            <div class="cart-remove" onclick="App.removeFromCart(${idx})">Supprimer</div>
+                            <div class="cart-item-price" style="font-weight:700;">${item.price} DH</div>
                         </div>
+                        <div class="cart-remove" onclick="App.removeFromCart(${idx})">Supprimer</div>
                     </div>`;
                 }).join('');
                 subtotalEl.innerText = subtotal + " DH";
@@ -652,21 +647,55 @@
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
 
-                const data = new FormData(e.target);
-                data.append('order_details', this.data.cart.map(i => `- ${i.title} (${i.price}DH)`).join('\n'));
+                const form = document.getElementById('order-form');
+                const formData = new FormData(form);
+                formData.append('order_details', this.data.cart.map(i => `- ${i.title} (${i.price}DH)`).join('\n'));
 
                 try {
-                    const res = await fetch("https://formspree.io/f/xeevpgvy", { method:'POST', body:data });
-                    if(res.ok) {
+                    // TENTATIVE 1 : Méthode Moderne (Fetch)
+                    let response = await fetch("https://formspree.io/f/xeevpgvy", { 
+                        method: 'POST', 
+                        body: formData, 
+                        headers: { 'Accept': 'application/json' } 
+                    });
+
+                    if (response.ok) {
                         alert("Commande reçue avec succès ! Merci.");
                         location.reload();
                     } else {
-                        throw new Error("Erreur serveur");
+                        throw new Error("Fetch failed");
                     }
-                } catch (err) {
-                    alert("Erreur: " + err.message);
-                    btn.disabled = false;
-                    btn.innerHTML = oldText;
+                } catch (error) {
+                    console.warn("Fetch moderne échoué, tentative de secours...", error);
+                    
+                    // TENTATIVE 2 : Méthode de compatibilité (Fallback)
+                    // Cette méthode contourne les bloquages de certains navigateurs mobiles
+                    try {
+                        const submitBtn = document.createElement('input');
+                        submitBtn.type = 'submit';
+                        submitBtn.style.display = 'none';
+                        form.appendChild(submitBtn);
+                        
+                        // Redirection classique du formulaire
+                        form.action = "https://formspree.io/f/xeevpgvy";
+                        form.method = "POST";
+                        
+                        // Simulation de soumission
+                        submitBtn.click();
+                        
+                        // Si on arrive ici sans redirection, c'est une erreur bloquante
+                        setTimeout(() => {
+                            btn.disabled = false;
+                            btn.innerHTML = oldText;
+                            alert("Erreur de connexion. Veuillez vérifier votre internet ou essayer de nouveau.");
+                        }, 2000);
+
+                    } catch (fallbackError) {
+                        console.error(fallbackError);
+                        alert("Erreur critique. Veuillez nous contacter sur WhatsApp.");
+                        btn.disabled = false;
+                        btn.innerHTML = oldText;
+                    }
                 }
             },
             
@@ -677,7 +706,16 @@
             }
         };
 
+        // Démarrage
         document.addEventListener('DOMContentLoaded', () => App.init());
+        
+        // Configuration du formulaire au chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById("order-form");
+            if(form) {
+                form.addEventListener("submit", (e) => App.submitOrder(e));
+            }
+        });
     </script>
 </body>
 </html>
