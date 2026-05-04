@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Decobiz Créations | Artisanat Moderne</title>
-    <meta name="description" content="Découvrez la collection Decobiz complète. Design moderne, livraison partout au Maroc.">
+    <title>Decobiz Créations | Personnalisation Totale</title>
+    <meta name="description" content="Personnalisez tous vos articles. Livraison offerte dès 399 DH.">
 
     <!-- --- FACEBOOK PIXEL --- -->
     <script>
@@ -165,7 +165,7 @@
         .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; }
         .section-subtitle { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 3rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
 
-        /* --- PRODUCT GRID (Full Images) --- */
+        /* --- PRODUCT GRID --- */
         .grid { display: grid; gap: 40px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
         
         .product-card {
@@ -185,7 +185,7 @@
         
         .product-info { padding: 24px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; }
         .product-title { font-size: 1.25rem; font-weight: 600; margin-bottom: 8px; font-family: var(--font-heading); }
-        .product-price { font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px; }
+        .product-price { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px; }
         .product-old-price { text-decoration: line-through; color: var(--text-muted); font-size: 0.9rem; margin-right: 8px; }
 
         /* --- PACK SIGNATURE CARD (Spécial) --- */
@@ -204,7 +204,7 @@
         .sig-list li { position: relative; padding-left: 24px; margin-bottom: 12px; }
         .sig-list li::before { content: '✓'; position: absolute; left: 0; color: var(--accent-gold); font-weight: bold; }
 
-        /* --- CART DRAWER (Panneau Coulissant) --- */
+        /* --- CART DRAWER (Panneau coulissant) --- */
         .cart-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5); z-index: 2000;
@@ -232,8 +232,9 @@
         .cart-item-img { width: 80px; height: 80px; border-radius: var(--radius-sm); object-fit: cover; background: #eee; flex-shrink: 0; }
         .cart-item-details { flex: 1; }
         .cart-item-title { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
-        .cart-item-meta { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 4px; }
-        .cart-remove { color: var(--error-color); font-size: 0.875rem; cursor: pointer; text-decoration: underline; }
+        .cart-item-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 4px; font-style: italic; }
+        .cart-item-price { font-weight: 700; color: var(--primary-dark); font-size: 1.1rem; }
+        .cart-remove { color: var(--error-color); font-size: 0.85rem; cursor: pointer; text-decoration: underline; }
 
         .cart-footer { 
             padding: 24px; background: white; border-top: 1px solid var(--accent-soft);
@@ -256,24 +257,46 @@
         }
         .btn-checkout:active { transform: scale(0.98); }
 
-        /* --- MODAL --- */
+        /* --- MODAL PERSONNALISATION (Petit Dégradé) --- */
         .modal-backdrop {
             position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 3000;
             display: none; align-items: center; justify-content: center;
             backdrop-filter: blur(5px); padding: 20px;
         }
         .modal-backdrop.active { display: flex; animation: fadeIn 0.2s; }
-        .modal { background: white; width: 100%; max-width: 500px; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-lg); position: relative; }
-        
+        .modal { 
+            background: linear-gradient(145deg, #ffffff 0%, #fff9f0 100%); /* Petit Dégradé Blanc/Or Clair */
+            width: 100%; max-width: 500px; border-radius: var(--radius-lg); 
+            padding: 32px; box-shadow: var(--shadow-lg); position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.2); /* Bordure subtile dorée */
+        }
         .form-group { margin-bottom: 20px; }
         .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--primary-dark); }
-        .form-input { width: 100%; padding: 14px 16px; border: 1px solid #E2E8F0; border-radius: var(--radius-sm); font-size: 1rem; font-family: inherit; transition: 0.2s; }
+        .form-input { 
+            width: 100%; padding: 14px 16px; border: 1px solid #E2E8F0; 
+            border-radius: var(--radius-sm); font-size: 1rem; font-family: inherit;
+            transition: 0.2s; background: rgba(255,255,255,0.5);
+        }
         .form-input:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); outline: none; }
+        
+        /* Bouton Ajouter avec dégradé */
+        .btn-custom-confirm {
+            width: 100%; padding: 16px;
+            background: linear-gradient(135deg, #D4AF37 0%, #b8860b 100%); /* Dégradé Doré */
+            color: white; font-weight: 700; border-radius: var(--radius-md);
+            cursor: pointer; margin-top: 10px; font-size: 1rem; text-transform: uppercase;
+            letter-spacing: 1px; transition: 0.3s; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+        .btn-custom-confirm:hover { filter: brightness(1.1); transform: translateY(-2px); }
 
-        /* --- ANIMATIONS --- */
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        /* --- LIGHTBOX --- */
+        .lightbox {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4000;
+            display: none; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
 
         /* --- WHATSAPP & FOOTER --- */
         .wa-float {
@@ -287,14 +310,10 @@
         footer { background: var(--primary-dark); color: white; padding: 60px 0 30px; text-align: center; }
         .footer-logo { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 16px; font-style: italic; }
 
-        /* --- LIGHTBOX --- */
-        .lightbox {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 4000;
-            display: none; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s;
-        }
-        .lightbox.active { display: flex; opacity: 1; }
-        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 600px) {
@@ -324,8 +343,8 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <h1>L'Art de la Déco,<br>Signature Exclusive.</h1>
-            <p>Design artisanal contemporain pour des intérieurs d'exception.</p>
+            <h1>L'Art de la Déco,<br>100% Personnalisable.</h1>
+            <p>Design artisanal contemporain pour des intérieurs d'exception. Livraison offerte dès 399 DH.</p>
             <button class="btn-accent" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
                 Découvrir la Collection <i class="fa-solid fa-arrow-down"></i>
             </button>
@@ -336,35 +355,30 @@
     <section id="products" class="section">
         <div class="container">
             <h2 class="section-title">Nos Créations</h2>
-            <p class="section-subtitle">Collection Complète</p>
+            <p class="section-subtitle">Personnalisation Disponible sur TOUT</p>
 
-            <!-- Produit Star (Pack Signature) -->
+            <!-- PRODUIT STAR (Pack Signature) -->
             <div class="signature-card">
                 <div class="sig-img-area">
                     <img src="pack9.png" alt="Pack Signature" onerror="this.src='https://via.placeholder.com/600x800?text=Pack+Signature'">
+                    <div style="position:absolute; top:20px; left:20px;" class="badge badge-sale">PROMO -40%</div>
                 </div>
                 <div class="sig-content">
-                    <span class="badge badge-trend">Best Seller</span>
                     <h3 style="font-size: 2rem; margin-bottom: 10px;">Pack Signature</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">L'ensemble complet pour sublimer votre salon. 9 Pièces uniques.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">L'ensemble complet pour sublimer votre intérieur. 9 Pièces uniques.</p>
                     
-                    <div class="form-group">
-                        <label class="form-label">Couleur souhaitée</label>
-                        <input type="text" id="sig-color" class="form-input" placeholder="Ex: Doré, Noir...">
-                    </div>
-
                     <div style="margin-bottom: 20px;">
                         <span style="font-size: 2.5rem; font-weight: 700; color: var(--primary-dark);">299 DH</span>
                         <span style="text-decoration: line-through; color: var(--text-muted); margin-left: 10px;">499 DH</span>
                     </div>
                     
-                    <button class="btn-primary" style="width: 100%;" onclick="App.addSignature()">
-                        Ajouter au panier <i class="fa-solid fa-plus"></i>
+                    <button class="btn-primary" style="width: 100%;" onclick="App.openCustomModalById(17)">
+                        Personnaliser <i class="fa-solid fa-paint-brush"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Grille Produits -->
+            <!-- GRILLE TOUS LES PRODUITS -->
             <div class="grid" id="product-grid"></div>
         </div>
     </section>
@@ -373,8 +387,8 @@
     <div class="cart-overlay" id="cart-overlay" onclick="App.toggleCart()"></div>
     <div class="cart-drawer" id="cart-drawer">
         <div class="cart-header">
-            <h3 style="margin:0;">Votre Panier</h3>
-            <button onclick="App.toggleCart()" style="background:none; padding:8px;"><i class="fa-solid fa-xmark" style="font-size:1.25rem;"></i></button>
+            <h3 style="margin: 0;">Votre Panier</h3>
+            <button onclick="App.toggleCart()" style="background: none; padding: 8px;"><i class="fa-solid fa-xmark" style="font-size: 1.25rem;"></i></button>
         </div>
         
         <div class="cart-body" id="cart-items">
@@ -397,13 +411,12 @@
     <!-- CHECKOUT FORM (Overlay) -->
     <div class="modal-backdrop" id="checkout-modal">
         <div class="modal">
-            <div style="display:flex; justify-content:space-between; margin-bottom:24px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
                 <h3>Finaliser la commande</h3>
-                <button onclick="App.closeCheckout()" style="background:none; font-size:1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+                <button onclick="App.closeCheckout()" style="background: none; font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
             </div>
             
-            <!-- IMPORTANT: form ne contient plus d'attribut action. Géré par JS. -->
-            <form id="order-form">
+            <form id="order-form" onsubmit="App.submitOrder(event)">
                 <input type="hidden" name="order_details" id="form-details">
                 <input type="hidden" name="total_price" id="form-total">
                 
@@ -424,7 +437,7 @@
                     <textarea name="address" class="form-input" rows="3" placeholder="Rue, Quartier, N°..." required></textarea>
                 </div>
                 
-                <div id="shipping-info" style="margin-bottom:20px; font-size:0.9rem; color:var(--primary-dark); font-weight:600; text-align:center;"></div>
+                <div id="shipping-info" style="margin-bottom: 20px; font-size: 0.9rem; color: var(--primary-dark); font-weight: 600; text-align: center;"></div>
 
                 <button type="submit" class="btn-accent" id="btn-submit">
                     Valider ma commande <i class="fa-solid fa-check"></i>
@@ -455,41 +468,41 @@
             // --- LISTE COMPLÈTE DES PRODUITS ---
             data: {
                 products: [
-                    { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", desc: "9 pièces uniques.", type: "color" },
-                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", desc: "Moderne & Élégant.", type: "color" },
-                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", desc: "Spa à domicile.", type: "color" },
-                    { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", desc: "Art de la table.", type: "color" },
-                    { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", desc: "Contient 4 pièces (Bruleurs)", type: "color" },
-                    { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", desc: "Élégant plateau ovale blanc avec finition dorée.", type: "color" },
-                    { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", desc: "Set complet d'accessoires déco en teintes douces.", type: "color" },
-                    { id: 303, title: "Vase Cosmopolite", price: 129, img: "bruleur.jpeg", desc: "Vase texturé avec arrangement sec.", type: "color" },
-                    { id: 304, title: "Ensemble Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", desc: "Composition vase, lune céramique et plante.", type: "color" },
-                    { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", desc: "Plateau céramique forme nuage.", type: "color" },
-                    { id: 202, title: "Set Par Rose Édition", price: 99, img: "parose.png", desc: "Composition complète sur cuisine.", type: "color" },
-                    { id: 203, title: "Support Spirale Luxe", price: 29, img: "support4.jpeg", desc: "Bougie blanche sur support spiralé.", type: "color" },
-                    { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", desc: "Duo de vases cylindriques blancs.", type: "color" },
-                    { id: 205, title: "Plateau Rond 16 cm", price: 29, img: "rond.jpg", desc: "Petit bol rond tacheté.", type: "color" },
-                    { id: 206, title: "Vase Fenêtre Cosy", price: 55, img: "cozy.jpeg", desc: "Grand vase blanc avec pampas.", type: "color" },
-                    { id: 207, title: "Support Bougies Vague", price: 39, img: "support6.jpg", desc: "Bougies sur support ondulé.", type: "color" },
-                    { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", desc: "Vase blanc avec roses rouges.", type: "color" },
-                    { id: 209, title: "Plateau Irrégulier Chic", price: 55, img: "pla.jpg", desc: "Tray gris irrégulier.", type: "color" },
-                    { id: 1, title: "Support Bougies", price: 35, img: "support.jpg", desc: "Support minimaliste.", type: "color" },
-                    { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", desc: "Citrouille design.", type: "color" },
-                    { id: 3, title: "Vase Minimaliste", price: 149, img: "minimalisme.jpeg", desc: "Ligne épurée.", type: "color" },
-                    { id: 4, title: "Boîte Rond Striée", price: 29, img: "boite1.jpg", desc: "Rangement chic.", type: "color" },
-                    { id: 5, title: "Plateau Bulles", price: 35, img: "boules2.jpeg", desc: "Design organique.", type: "color" },
-                    { id: 6, title: "Vide Poche feuille", price: 35, img: "leaf.jpg", desc: "Pratique et joli.", type: "color" },
-                    { id: 7, title: "Support Nœud", price: 20, img: "support1.jpg", desc: "Détail élégant.", type: "color" },
-                    { id: 8, title: "Vase Fleur Violet", price: 45, img: "vase1.jpg", desc: "Touche de couleur.", type: "color" },
-                    { id: 9, title: "Set rose", price: 129, img: "pa.jpeg", desc: "Harmonie parfaite.", type: "color" },
-                    { id: 10, title: "Arche Cosy", price: 79, img: "arch.jpg", desc: "Arc décoratif.", type: "color" },
-                    { id: 11, title: "Plateau Étoile", price: 29, img: "etoile.jpg", desc: "Forme étoilée.", type: "color" },
-                    { id: 12, title: "Coquille Bijoux", price: 29, img: "coquille.jpg", desc: "Rangement précieux.", type: "color" },
-                    { id: 13, title: "Plateau Rond 23cm", price: 59, img: "rondla.jpg", desc: "Grand format.", type: "color" },
-                    { id: 14, title: "Plateau Ovale 23cm", price: 55, img: "ovale23.jpeg", desc: "Élégance ovale.", type: "color" },
-                    { id: 15, title: "Collection Lavande", price: 165, img: "lavande.jpeg", desc: "Parfum de provence.", type: "color" },
-                    { id: 16, title: "Pack EID", price: 135, img: "eid.jpeg", desc: "Joyeux fêtes.", type: "color" },
-                    { id: 18, title: "Plateau Mariage", price: 115, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", desc: "Célébration.", type: "color" }
+                    { id: 17, title: "Pack Signature", price: 299, oldPrice: 499, img: "pack9.png", desc: "9 pièces uniques.", type: "full" },
+                    { id: 101, title: "Pack Salon Moderne", price: 135, oldPrice: 149, img: "salon.jpeg", desc: "Moderne & Élégant.", type: "full" },
+                    { id: 102, title: "Pack Salle de Bain", price: 135, oldPrice: 149, img: "salle.jpeg", desc: "Spa à domicile.", type: "full" },
+                    { id: 103, title: "Pack Citrouille Gourmet", price: 49, oldPrice: 100, img: "packcitrouille.jpeg", desc: "Art de la table.", type: "full" },
+                    { id: 900, title: "Pack Burning Collection", price: 149, oldPrice: 249, img: "packbruleur.jpeg", desc: "Contient 4 pièces (Bruleurs)", type: "full" },
+                    { id: 301, title: "Plateau Personnalisé", price: 75, oldPrice: 90, img: "demoiselle.jpeg", desc: "Élégant plateau ovale.", type: "full" },
+                    { id: 302, title: "Collection Rose Poudré", price: 149, oldPrice: 180, img: "rose.jpeg", desc: "Teintes douces.", type: "full" },
+                    { id: 303, title: "Vase Cosmopolite", price: 129, img: "bruleur.jpeg", desc: "Vase texturé.", type: "full" },
+                    { id: 304, title: "Ensemble Nature Urbaine", price: 89, oldPrice: 120, img: "croissant.jpeg", desc: "Nature & Design.", type: "full" },
+                    { id: 201, title: "Tray Nuage", price: 45, oldPrice: 60, img: "nuage0.jpg", desc: "Forme organique.", type: "full" },
+                    { id: 202, title: "Set Par Rose Édition", price: 99, img: "parose.png", desc: "Cuisine chic.", type: "full" },
+                    { id: 203, title: "Support Spirale Luxe", price: 29, oldPrice: 40, img: "support4.jpeg", desc: "Bougie blanche.", type: "full" },
+                    { id: 204, title: "Pot Trio", price: 39, oldPrice: 50, img: "jar.jpeg", desc: "Vases cylindriques.", type: "full" },
+                    { id: 205, title: "Plateau Rond 16 cm", price: 29, oldPrice: 35, img: "rond.jpg", desc: "Petit bol rond.", type: "full" },
+                    { id: 206, title: "Vase Fenêtre Cosy", price: 55, oldPrice: 60, img: "cozy.jpeg", desc: "Grand vase blanc.", type: "full" },
+                    { id: 207, title: "Support Bougies Vague", price: 39, oldPrice: 50, img: "support6.jpg", desc: "Support ondulé.", type: "full" },
+                    { id: 208, title: "Vase Profond", price: 99, oldPrice: 140, img: "profond.jpeg", desc: "Roses rouges.", type: "full" },
+                    { id: 209, title: "Plateau Irrégulier Chic", price: 55, oldPrice: 60, img: "pla.jpg", desc: "Tray gris.", type: "full" },
+                    { id: 1, title: "Support Bougies", price: 35, oldPrice: 40, img: "support.jpg", desc: "Minimaliste.", type: "full" },
+                    { id: 2, title: "Citrouille Déco", price: 49, oldPrice: 60, img: "citrouille.jpeg", desc: "Design unique.", type: "full" },
+                    { id: 3, title: "Vase Minimaliste", price: 149, oldPrice: 180, img: "minimalisme.jpeg", desc: "Ligne épurée.", type: "full" },
+                    { id: 4, title: "Boîte Rond Striée", price: 29, oldPrice: 35, img: "boite1.jpg", desc: "Rangement chic.", type: "full" },
+                    { id: 5, title: "Plateau Bulles", price: 35, oldPrice: 45, img: "boules2.jpeg", desc: "Design organique.", type: "full" },
+                    { id: 6, title: "Vide Poche feuille", price: 35, oldPrice: 40, img: "leaf.jpg", desc: "Naturel.", type: "full" },
+                    { id: 7, title: "Support Nœud", price: 20, oldPrice: 30, img: "support1.jpg", desc: "Élégant.", type: "full" },
+                    { id: 8, title: "Vase Fleur Violet", price: 45, oldPrice: 50, img: "vase1.jpg", desc: "Touche de couleur.", type: "full" },
+                    { id: 9, title: "Set rose", price: 129, oldPrice: 150, img: "pa.jpeg", desc: "Harmonie.", type: "full" },
+                    { id: 10, title: "Arche Cosy", price: 79, oldPrice: 90, img: "arch.jpg", desc: "Arc décoratif.", type: "full" },
+                    { id: 11, title: "Plateau Étoile", price: 29, oldPrice: 35, img: "etoile.jpg", desc: "Forme étoilée.", type: "full" },
+                    { id: 12, title: "Coquille Bijoux", price: 29, oldPrice: 35, img: "coquille.jpg", desc: "Précieux.", type: "full" },
+                    { id: 13, title: "Plateau Rond 23cm", price: 59, oldPrice: 70, img: "rondla.jpg", desc: "Grand format.", type: "full" },
+                    { id: 14, title: "Plateau Ovale 23cm", price: 55, oldPrice: 65, img: "ovale23.jpeg", desc: "Élégance ovale.", type: "full" },
+                    { id: 15, title: "Collection Lavande", price: 165, oldPrice: 199, img: "lavande.jpeg", desc: "Parfum de Provence.", type: "full" },
+                    { id: 16, title: "Pack EID", price: 135, oldPrice: 149, img: "eid.jpeg", desc: "Joyeux fêtes.", type: "full" },
+                    { id: 18, title: "Plateau Mariage", price: 115, oldPrice: 149, img: "https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7", desc: "Célébration.", type: "full" }
                 ],
                 cart: [],
                 freeShipping: 399
@@ -520,48 +533,124 @@
 
             renderGrid: function() {
                 const grid = document.getElementById('product-grid');
+                // Afficher TOUT SAUF le pack signature (id 17) qui est déjà affiché en haut
                 grid.innerHTML = this.data.products.filter(p => p.id !== 17).map(p => {
                     const discount = p.oldPrice ? Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100) : 0;
                     return `
                     <div class="product-card">
                         <div class="product-img-wrapper" onclick="App.showImg('${p.img}')">
-                            ${discount > 0 ? `<div class="badge badge-sale">-${discount}%</div>` : ''}
+                            ${p.oldPrice ? `<div class="badge badge-sale">PROMO -${discount}%</div>` : ''}
                             <img src="${p.img}" class="product-img" loading="lazy" alt="${p.title}">
                         </div>
                         <div class="product-info">
                             <div class="product-title">${p.title}</div>
-                            <div style="margin-bottom: 12px; font-size:0.9rem; color:var(--text-muted);">${p.desc}</div>
+                            <div style="margin-bottom: 12px; font-size: 0.9rem; color: var(--text-muted);">${p.desc}</div>
                             <div class="product-price">
                                 ${p.oldPrice ? `<span class="product-old-price">${p.oldPrice} DH</span>` : ''}
                                 ${p.price} DH
                             </div>
-                            <button class="btn-outline" style="width:100%" onclick="App.addToCart(${p.id})">
-                                Ajouter
+                            <!-- Bouton Personnaliser pour TOUT -->
+                            <button class="btn-outline" style="width: 100%;" onclick="App.openCustomModalById(${p.id})">
+                                <i class="fa-solid fa-pen-fancy"></i> Personnaliser
                             </button>
                         </div>
                     </div>
                 `}).join('');
             },
 
-            addSignature: function() {
-                const color = document.getElementById('sig-color').value;
-                if(!color) { alert("Merci de choisir une couleur."); return; }
-                this.addToCart(17, color);
+            /* --- MODAL LOGIC (TOUJOURS PERSONNALISABLE) --- */
+            openCustomModalById: function(id) {
+                this.openCustomModal(this.data.products.find(p => p.id === id));
+            },
+
+            openCustomModal: function(product) {
+                const modal = document.getElementById('checkout-modal'); // Réutilisation de la classe modal pour la personnalisation
+                // ATTENTION: J'utilise 'checkout-modal' comme conteneur générique pour éviter de créer trop de divs dans le HTML
+                // Je dois créer un conteneur dédié dans le HTML ou le réutiliser intelligemment.
+                // Pour ce code, je vais utiliser l'élément avec ID 'checkout-modal' mais je change son contenu dynamiquement.
+                
+                const contentDiv = document.querySelector('#checkout-modal .modal');
+                const headerDiv = contentDiv.querySelector('div:first-child');
+                const formDiv = contentDiv.querySelector('form');
+                
+                // Masquer le formulaire de commande
+                formDiv.style.display = 'none';
+                
+                // Afficher le titre du produit
+                if(headerDiv) headerDiv.innerHTML = `<h3>Personnaliser : ${product.title}</h3>`;
+                
+                // Créer le formulaire de personnalisation s'il n'existe pas ou le réinitialiser
+                let customForm = document.getElementById('custom-form');
+                if(!customForm) {
+                    customForm = document.createElement('div');
+                    customForm.id = 'custom-form';
+                    customForm.style.marginBottom = '24px';
+                    contentDiv.insertBefore(customForm, formDiv);
+                    
+                    customForm.innerHTML = `
+                        <div class="form-group">
+                            <label class="form-label">Couleur souhaitée</label>
+                            <input type="text" id="custom-color" class="form-input" placeholder="Ex: Doré, Terracotta...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Gravure / Message (Optionnel)</label>
+                            <input type="text" id="custom-text" class="form-input" placeholder="Prénom, Date, Mot...">
+                        </div>
+                        <button type="button" class="btn-custom-confirm" onclick="App.confirmAddToCart()">
+                            Ajouter au panier <i class="fa-solid fa-check"></i>
+                        </button>
+                    `;
+                } else {
+                    customForm.style.display = 'block';
+                }
+                
+                // Sauvegarder le produit courant
+                this.currentProductForCustom = product;
+                
+                document.getElementById('checkout-modal').classList.add('active');
+            },
+
+            confirmAddToCart: function() {
+                const color = document.getElementById('custom-color').value;
+                const text = document.getElementById('custom-text').value;
+                
+                if (!this.currentProductForCustom) return;
+                
+                // Ajouter au panier (la couleur est obligatoire visuellement, text optionnel)
+                // Si aucune couleur, on peut mettre "Standard" ou laisser vide. Ici je laisse vide si vide.
+                this.addToCart(this.currentProductForCustom.id, color, text);
+                
+                // Fermer la modale et ouvrir le panier
+                this.closeCustomModal();
                 this.toggleCart();
             },
 
-            addToCart: function(id, customColor = null) {
+            closeCustomModal: function() {
+                document.getElementById('checkout-modal').classList.remove('active');
+                // Réinitialiser pour la prochaine fois
+                const customForm = document.getElementById('custom-form');
+                if(customForm) customForm.style.display = 'none';
+                
+                // Remettre le formulaire de commande
+                const formDiv = document.querySelector('#checkout-modal form');
+                if(formDiv) formDiv.style.display = 'block';
+                
+                // Remettre le titre checkout
+                const headerDiv = document.querySelector('#checkout-modal .modal div:first-child');
+                if(headerDiv) headerDiv.innerHTML = `<h3>Finaliser la commande</h3><button onclick="App.closeCheckout()" style="background:none; font-size:1.5rem;"><i class="fa-solid fa-xmark"></i></button>`;
+            },
+
+            addToCart: function(id, color, text) {
                 const product = this.data.products.find(p => p.id === id);
                 if(!product) return;
 
                 const cartItem = { ...product };
-                if(customColor) cartItem.custom = customColor;
+                cartItem.customs = [];
+                if(color) cartItem.customs.push(color);
+                if(text) cartItem.customs.push(text);
                 
                 this.data.cart.push(cartItem);
                 this.updateCount();
-                
-                // Feedback visuel immédiat
-                if(!customColor) alert(`${product.title} ajouté au panier !`);
             },
 
             removeFromCart: function(index) {
@@ -583,7 +672,7 @@
                 
                 if(sub >= this.data.freeShipping) { fee = 0; msg = "🎉 Offerte !"; }
                 else if(city && city.toLowerCase().includes('khouribga')) { fee = 20; msg = "Préféré (20 DH)"; }
-                else { msg = "Standard (35 DH)"; }
+                else { msg = city ? "Standard (35 DH)" : ""; }
 
                 document.getElementById('shipping-display').innerText = fee === 0 ? "Gratuite" : fee + " DH";
                 document.getElementById('total-display').innerText = (sub + fee) + " DH";
@@ -601,9 +690,9 @@
                 if(this.data.cart.length === 0) {
                     container.innerHTML = `
                         <div class="text-center" style="padding-top: 40px; color: var(--text-muted);">
-                            <i class="fa-solid fa-basket-shopping" style="font-size:3rem; opacity:0.2; margin-bottom:16px;"></i>
+                            <i class="fa-solid fa-basket-shopping" style="font-size: 3rem; opacity: 0.2; margin-bottom: 16px;"></i>
                             <p>Votre panier est vide.</p>
-                            <button class="btn-outline" onclick="App.toggleCart()" style="margin-top:16px;">Continuer mes achats</button>
+                            <button class="btn-outline" onclick="App.toggleCart()" style="margin-top: 16px;">Continuer mes achats</button>
                         </div>`;
                     subtotalEl.innerText = "0 DH";
                     document.getElementById('shipping-display').innerText = "--";
@@ -616,23 +705,28 @@
                 let subtotal = 0;
                 container.innerHTML = this.data.cart.map((item, idx) => {
                     subtotal += item.price;
+                    let customText = item.customs && item.customs.length > 0 ? `<div class="cart-item-meta">${item.customs.join(', ')}</div>` : '';
                     return `
                     <div class="cart-item">
                         <img src="${item.img}" class="cart-item-img">
                         <div class="cart-item-details">
                             <div class="cart-item-title">${item.title}</div>
-                            <div class="cart-item-meta">${item.custom ? 'Couleur: '+item.custom : 'Standard'}</div>
-                            <div class="cart-item-price" style="font-weight:700;">${item.price} DH</div>
+                            ${customText}
+                            <div class="cart-item-price">${item.price} DH</div>
                         </div>
                         <div class="cart-remove" onclick="App.removeFromCart(${idx})">Supprimer</div>
                     </div>`;
                 }).join('');
-                subtotalEl.innerText = subtotal + " DH";
+                subtotalEl.innerText = subtotal + ' DH';
                 this.calcShipping(document.getElementById('city-input').value);
             },
 
             goToCheckout: function() {
+                // Fermer la modale de personnalisation si ouverte
+                this.closeCustomModal();
                 this.toggleCart(); // Ferme le panier
+                
+                // Ouvrir la modale checkout
                 document.getElementById('checkout-modal').classList.add('active');
             },
 
@@ -647,19 +741,13 @@
                 btn.disabled = true;
                 btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Traitement...';
 
-                const form = document.getElementById('order-form');
-                const formData = new FormData(form);
-                formData.append('order_details', this.data.cart.map(i => `- ${i.title} (${i.price}DH)`).join('\n'));
+                const data = new FormData(e.target);
+                data.append('order_details', this.data.cart.map(i => `- ${i.title} (${i.price}DH) ${i.customs ? '('+i.customs.join(', ')+')' : ''}`).join('\n'));
 
                 try {
-                    // TENTATIVE 1 : Méthode Moderne (Fetch)
-                    let response = await fetch("https://formspree.io/f/xeevpgvy", { 
-                        method: 'POST', 
-                        body: formData, 
-                        headers: { 'Accept': 'application/json' } 
-                    });
-
-                    if (response.ok) {
+                    // TENTATIVE 1 : FETCH
+                    const res = await fetch("https://formspree.io/f/xeevpgvy", { method:'POST', body:data });
+                    if(res.ok) {
                         alert("Commande reçue avec succès ! Merci.");
                         location.reload();
                     } else {
@@ -667,35 +755,20 @@
                     }
                 } catch (error) {
                     console.warn("Fetch moderne échoué, tentative de secours...", error);
+                    // TENTATIVE 2 : FORM SUBMIT CLASSIQUE
+                    const form = document.getElementById("order-form");
+                    const input = document.createElement('input');
+                    input.type = 'submit';
+                    input.style.display = 'none';
+                    form.appendChild(input);
+                    form.action = "https://formspree.io/f/xeevpgvy";
+                    form.method = "POST";
+                    input.click();
                     
-                    // TENTATIVE 2 : Méthode de compatibilité (Fallback)
-                    // Cette méthode contourne les bloquages de certains navigateurs mobiles
-                    try {
-                        const submitBtn = document.createElement('input');
-                        submitBtn.type = 'submit';
-                        submitBtn.style.display = 'none';
-                        form.appendChild(submitBtn);
-                        
-                        // Redirection classique du formulaire
-                        form.action = "https://formspree.io/f/xeevpgvy";
-                        form.method = "POST";
-                        
-                        // Simulation de soumission
-                        submitBtn.click();
-                        
-                        // Si on arrive ici sans redirection, c'est une erreur bloquante
-                        setTimeout(() => {
-                            btn.disabled = false;
-                            btn.innerHTML = oldText;
-                            alert("Erreur de connexion. Veuillez vérifier votre internet ou essayer de nouveau.");
-                        }, 2000);
-
-                    } catch (fallbackError) {
-                        console.error(fallbackError);
-                        alert("Erreur critique. Veuillez nous contacter sur WhatsApp.");
+                    setTimeout(() => {
                         btn.disabled = false;
                         btn.innerHTML = oldText;
-                    }
+                    }, 3000);
                 }
             },
             
@@ -708,14 +781,6 @@
 
         // Démarrage
         document.addEventListener('DOMContentLoaded', () => App.init());
-        
-        // Configuration du formulaire au chargement
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById("order-form");
-            if(form) {
-                form.addEventListener("submit", (e) => App.submitOrder(e));
-            }
-        });
     </script>
 </body>
 </html>
