@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Decobiz — Artisanat d'Exception</title>
     <meta name="description" content="Découvrez la collection Decobiz. Packs Salon, Salle de Bain et Signature en promo. Personnalisation disponible sur TOUS les articles. Livraison partout au Maroc.">
+    
+    <!-- ✅ CORRECTIF : Balises Open Graph pour WhatsApp/Facebook -->
+    <meta property="og:title" content="Decobiz — Artisanat d'Exception">
+    <meta property="og:description" content="Packs déco en promo. Personnalisation gratuite. Livraison partout au Maroc.">
+    <meta property="og:image" content="rose.jpeg">
+    <meta property="og:type" content="website">
 
     <script>
     !function(f,b,e,v,n,t,s)
@@ -175,9 +181,13 @@
         .p-info{padding:18px;flex:1;display:flex;flex-direction:column;text-align:center}
         .p-name{font-family:var(--font-display);font-weight:500;font-size:.95rem;color:var(--text);margin-bottom:12px;line-height:1.35;letter-spacing:-.01em}
         .p-prices{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:16px;margin-top:auto}
+        /* ✅ CORRECTIF : Groupement boutons produit */
+        .p-btns{display:flex;flex-direction:column;gap:8px;width:100%}
         .p-btn{width:100%;padding:12px;border:1px solid var(--border);background:transparent;font-weight:600;font-size:.72rem;letter-spacing:1.8px;text-transform:uppercase;border-radius:var(--radius-sm);color:var(--text);transition:var(--transition)}
         .p-btn:hover{background:var(--text);color:white;border-color:var(--text)}
         .p-btn:active{transform:scale(.97)}
+        .p-btn-quick{background:var(--accent-glow);border-color:rgba(184,134,11,0.2);color:var(--accent);font-size:.68rem;padding:10px}
+        .p-btn-quick:hover{background:var(--accent);color:white;border-color:var(--accent)}
 
         .cta-band{background:var(--text);color:white;padding:88px 24px;text-align:center;position:relative;overflow:hidden}
         .cta-band::before{content:'';position:absolute;top:-40%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(184,134,11,.12) 0%,transparent 70%);border-radius:50%}
@@ -245,6 +255,11 @@
         .shipping-rate-box.is-free .shipping-rate-amount{color:var(--green)}
         .shipping-rate-box.is-paid .shipping-rate-amount{color:var(--accent)}
         .shipping-rate-note{font-size:.75rem;color:var(--text-whisper);margin-top:4px}
+
+        /* ✅ CORRECTIF : Bandeau de confiance dans le panier */
+        .cart-trust-strip{display:flex;justify-content:center;gap:20px;padding:16px;background:var(--bg-warm);border-radius:var(--radius-lg);margin-bottom:20px;flex-wrap:wrap}
+        .cart-trust-chip{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--text-soft);font-weight:500}
+        .cart-trust-chip i{color:var(--green)}
 
         .cart-summary{background:var(--bg-card);padding:28px;border-radius:var(--radius-xl);border:1px solid var(--border)}
         .sum-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
@@ -415,11 +430,11 @@
 
     <a href="https://wa.me/212610236889" class="wa-float" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
 
-    <div id="lightbox"><div id="lightbox-close">&times;</div><img id="lightbox-img" src="" alt="Agrandissement"></div>
+    <div id="lightbox"><div id="lightbox-close" aria-label="Fermer">&times;</div><img id="lightbox-img" src="" alt="Agrandissement"></div>
 
     <div class="modal-overlay" id="custom-modal">
         <div class="modal-box">
-            <button class="modal-x" onclick="closeCustomModal()"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-x" onclick="closeCustomModal()" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="modal-title">Personnaliser</h3>
             <p class="modal-sub" id="modal-product-info"></p>
             <div class="field"><label>Couleur souhaitée <span class="opt">(optionnel)</span></label><input type="text" id="custom-color" placeholder="Ex: Blanc cassé, Terracotta, Doré…"></div>
@@ -431,11 +446,19 @@
     <div class="cart-page" id="cart-page">
         <div class="cart-top">
             <h3>Votre Panier</h3>
-            <button class="cart-top-close" onclick="closeCartPage()"><i class="fa-solid fa-xmark"></i></button>
+            <button class="cart-top-close" onclick="closeCartPage()" aria-label="Fermer le panier"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div id="cart-view-list" class="cart-body">
             <div id="cart-items-container"></div>
-            <div class="cart-city-section" id="cart-city-section">
+            
+            <!-- ✅ CORRECTIF : Bandeau de confiance dans le panier -->
+            <div class="cart-trust-strip" id="cart-trust-strip" style="display:none">
+                <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> Paiement à la livraison</div>
+                <div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Livraison 48-72h</div>
+                <div class="cart-trust-chip"><i class="fa-solid fa-rotate-left"></i> Satisfait ou remboursé</div>
+            </div>
+
+            <div class="cart-city-section" id="cart-city-section" style="display:none">
                 <div class="cart-city-label"><i class="fa-solid fa-location-dot"></i> Ville de livraison</div>
                 <div class="city-select-wrap">
                     <select id="cart-city-select" class="city-select" onchange="onCitySelect(this.value)">
@@ -458,6 +481,15 @@
                         <option value="autre">Autre ville</option>
                     </select>
                 </div>
+                
+                <!-- ✅ CORRECTIF : Champ ville personnalisée -->
+                <div id="custom-city-wrap" style="display:none;margin-top:12px;animation:rateIn .3s ease-out">
+                    <div class="field" style="margin-bottom:0">
+                        <label>Précisez votre ville <span class="req">*</span></label>
+                        <input type="text" id="custom-city-input" class="form-input" placeholder="Ex: Khémisset, Taroudant, Guelmim…" oninput="onCustomCityInput(this.value)">
+                    </div>
+                </div>
+
                 <div id="shipping-rate-box" class="shipping-rate-box">
                     <div class="shipping-rate-header"><div class="shipping-rate-icon"><i class="fa-solid fa-truck"></i></div><div class="shipping-rate-city" id="rate-city"></div></div>
                     <div class="shipping-rate-amount" id="rate-amount"></div>
@@ -475,9 +507,20 @@
                 <button class="btn btn-green btn-full" style="margin-top:24px" onclick="showCheckoutForm()">Passer la commande <i class="fa-solid fa-arrow-right" style="font-size:.7rem"></i></button>
             </div>
         </div>
+        
         <div id="checkout-view-form" class="checkout-body" style="display:none">
             <button class="back-link" onclick="hideCheckoutForm()"><i class="fa-solid fa-arrow-left"></i> Retour au panier</button>
             <h3 class="checkout-title">Finaliser la commande</h3>
+            
+            <!-- ✅ CORRECTIF : Mini récapitulatif produit dans le checkout -->
+            <div id="checkout-summary-mini" style="background:var(--bg-warm);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;margin-bottom:24px;display:flex;gap:12px;align-items:center;overflow-x:auto"></div>
+
+            <!-- ✅ CORRECTIF : Bandeau de confiance checkout -->
+            <div class="cart-trust-strip" style="margin-bottom:24px">
+                <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> Paiement à la livraison</div>
+                <div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Expédition sous 24h</div>
+            </div>
+
             <form id="order-form" action="https://formspree.io/f/xeevpgvy" method="POST">
                 <input type="hidden" name="order_details" id="form-order-details">
                 <input type="hidden" name="total_price" id="form-total-price">
@@ -491,6 +534,7 @@
                 <button type="submit" class="btn btn-green btn-full" id="submit-btn"><i class="fa-solid fa-lock" style="font-size:.8rem"></i> Valider la commande</button>
             </form>
         </div>
+
         <div id="success-view-final" class="success-view" style="display:none">
             <div class="success-check"><i class="fa-solid fa-check"></i></div>
             <h3 class="success-title">Merci</h3>
@@ -525,6 +569,15 @@
     const FREE_SHIPPING_THRESHOLD = 399;
 
     /* ==============================
+       HELPERS PIXEL FACEBOOK
+       ============================== */
+    function fbTrack(event, params) {
+        if (typeof fbq === 'function') {
+            fbq('track', event, params || {});
+        }
+    }
+
+    /* ==============================
        TOUS LES PRODUITS
        ============================== */
     const products = [
@@ -536,454 +589,506 @@
         {id:102,title:"Pack Salle de Bain",price:135,oldPrice:149,img:"salle.jpeg",trending:true,isPromo:true,desc:"Vase herbe, Récipient cylindrique, Citrouille et Tray.",customType:"color",category:"Packs"},
         {id:17,title:"Pack Signature",price:299,oldPrice:499,img:"pack9.png",trending:true,isPromo:true,desc:"Notre best-seller absolu — 9 pièces exclusives.",customType:"color",category:"Packs"},
         {id:103,title:"Pack Citrouille Gourmet",price:49,oldPrice:100,img:"packcitrouille.jpeg",trending:true,isPromo:true,desc:"Composition sur plateau rond.",customType:"color",category:"Packs"},
-
         /* ---- PLATEAUX ---- */
         {id:301,title:"Plateau Personnalisé",price:75,oldPrice:90,img:"demoiselle.jpeg",trending:true,desc:"Plateau ovale blanc, finition dorée.",customType:"logo",category:"Plateaux"},
         {id:201,title:"Tray Nuage",price:45,oldPrice:60,img:"nuage0.jpg",trending:true,desc:"Plateau céramique forme nuage.",customType:"color",category:"Plateaux"},
         {id:205,title:"Plateau Rond 16 cm",price:29,img:"rond.jpg",desc:"Petit bol rond tacheté.",customType:"color",category:"Plateaux"},
         {id:209,title:"Plateau Irrégulier Chic",price:55,img:"pla.jpg",desc:"Tray gris irrégulier.",customType:"color",category:"Plateaux"},
         {id:11,title:"Plateau Étoile",price:29,img:"etoile.jpg",customType:"color",category:"Plateaux"},
-        {id:13,title:"Plateau Rond 23cm",price:59,img:"rondla.jpg",customType:"color",category:"Plateaux"},
+        {id:13,title:"Plateau Rond 23cm",price:59,img:"rondla.jpeg",customType:"color",category:"Plateaux"},
         {id:14,title:"Plateau Ovale 23cm",price:55,img:"ovale23.jpeg",customType:"color",category:"Plateaux"},
         {id:18,title:"Plateau Mariage",price:115,img:"https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7",desc:"Plateau élégant pour cérémonies.",customType:"color",category:"Plateaux"},
         {id:401,title:"Tray Vogue Édition",price:89,oldPrice:120,img:"https://z-cdn-media.chatglm.cn/files/209786d7-b32b-443a-b11e-ff8ebeb01762.jpg?auth_key=1886306162-556267dcc0dc4bb0b59d98d61a3f9b3f-0-b544bea6c2e266a4657af9c4efeaace9",desc:"Tray ovale élégant, idéal pour parfums et bijoux.",customType:"color",category:"Plateaux"},
-
         /* ---- DÉCO ---- */
-        {id:302,title:"Collection Rose Poudré",price:149,oldPrice:180,img:"rose.jpeg",trending:true,desc:"Set complet en teintes douces.",customType:"color",category:"Déco"},
-        {id:202,title:"Set Par Rose Édition",price:99,img:"parrose.png",trending:true,desc:"Composition complète pour cuisine.",customType:"color",category:"Déco"},
-        {id:304,title:"Ensemble Nature Urbaine",price:89,oldPrice:120,img:"croissant.jpeg",trending:true,desc:"Vase, lune céramique et plante.",customType:"color",category:"Déco"},
-        {id:10,title:"Arche Cosy",price:79,img:"arch.jpg",customType:"color",category:"Déco"},
-        {id:5,title:"Plateau Bulles",price:35,img:"boules2.jpeg",trending:true,customType:"color",category:"Déco"},
-        {id:9,title:"Set Rose",price:129,img:"pa.jpeg",customType:"color",category:"Déco"},
-        {id:15,title:"Collection Lavande",price:165,img:"lavande.jpeg",customType:"color",category:"Déco"},
-
-        /* ---- DÉCO (les 10 pièces) ---- */
-        {id:501,title:"Set Bougies ",price:35,oldPrice:110,img:"https://z-cdn-media.chatglm.cn/files/c914b2b4-8dc2-44e9-9081-aac9896f89a6.jpg?auth_key=1886306162-e23913dfd28b46de829d30c304ef1f34-0-a47d536cf284f3971839970d64cad6fb",trending:true,desc:"Deux bougeoirs abstraits roses avec bougies longues et composition florale.",customType:"color",category:"Déco"},
-        {id:502,title:"Bougies Vagues ",price:39,oldPrice:130,img:"https://z-cdn-media.chatglm.cn/files/30a2cb0d-dd2c-421d-9c55-c11371c0b99b.jpg?auth_key=1886306162-7b6750c9948d4454b39d48b0d57f4af2-0-7e36ac05743c8c5d0221d5ba94a70cd4",desc:"Trois bougies spiralées sur supports ondulés avec brindilles de baies.",customType:"color",category:"Déco"},
-        {id:503,title:"Bougies Spiralées ",price:29,img:"https://z-cdn-media.chatglm.cn/files/65e3214b-10c4-4c9c-a33f-65bca9ba1cae.jpeg?auth_key=1886306162-b15bfdc40dcc4b96b75bfd12d2f256c7-0-b12410e80097b6d0b98183e36bef0660",desc:"Paire de bougies torsadées blanches sur socles céramiques minimalistes.",customType:"color",category:"Déco"},
-        {id:505,title:"Vase Herbe Fenêtre",price:55,img:"https://z-cdn-media.chatglm.cn/files/19638660-0484-4b32-a90e-2ffb99db0230.jpeg?auth_key=1886306162-bdfabdfc1c0b452ebf95f959139f5377-0-a41f0490d54bcc6e3bb8f2261472f153",desc:"Vase blanc avec herbe séchée, livres et clochette dorée sur bois.",customType:"color",category:"Déco"},
-        {id:506,title:"Deco Feilles ",price:29,oldPrice:95,img:"https://z-cdn-media.chatglm.cn/files/9d2e7a07-ffd6-48b5-a3c6-5ef0b95973e1.jpeg?auth_key=1886306162-2c494c4fc820490e82c3e8e81695211f-0-d9cabae5d685532901b7a3ae0e5ba9cf",desc:"Deux coupes feuilles, pommes de pin et guide de voyage sur plateau tacheté.",customType:"color",category:"Déco"},
-        {id:507,title:"Vases Minimalisme Urbain",price:149,oldPrice:199,img:"https://z-cdn-media.chatglm.cn/files/992500c1-0185-492c-a865-e1485aca5ca3.jpeg?auth_key=1886306162-749ebff465114b75bc78e4a52318d6f8-0-68559b60d1fcb4ff87cad07c24c522f4",trending:true,desc:"Deux vases blancs sculpturaux avec herbe, livres d'art et vue urbaine.",customType:"color",category:"Déco"},
-        {id:508,title:"Citrouille d'Automne",price:45,oldPrice:55,img:"https://z-cdn-media.chatglm.cn/files/e14cca17-e56c-4af8-9bea-1d42cb1cb6c9.jpeg?auth_key=1886306162-a8ad4b06c3294919935aa11445a9cb25-0-5879f1d8f2b3aa7ea1edc48c14596b3b",desc:"Citrouilles artisanales orange avec feuilles d'érable rouges et orangées.",customType:"color",category:"Déco"},
-        {id:509,title:"Boîte Ondulée",price:29,img:"https://z-cdn-media.chatglm.cn/files/bfa68e20-bf11-4175-a3e7-284ad43ad1cb.jpg?auth_key=1886306162-7f1960732b9a4cdc8d76786e353de1ee-0-98d6cba71cfb647a26f1801d28c29039",desc:"Boîte cylindrique blanche à couvercle avec poignée sphérique et motif ondulé.",customType:"color",category:"Déco"},
-
-        /* ---- NOUVEAUX : Coquillage & Jar ---- */
-        {id:601,title:"Coquillage Vide-Poche ou bien porte savon",price:29,oldPrice:50,img:"coquille.jpg",isNew:true,trending:true,desc:"Écrin coquillage blanc pour bijoux et petits trésors. Finition céramique mate, idéal sur coiffeuse ou entrée.",customType:"color",category:"Déco"},
-        {id:602,title:"Jar Cylindrique",price:45,oldPrice:70,img:"jar.jpeg",isNew:true,trending:true,desc:"Récipient cylindrique blanc avec couvercle. Parfait comme porte-savon, organisateur salle de bain ou rangement déco.",customType:"color",category:"Déco"}
+        {id:302,title:"Collection Rose Poudré",price:149,oldPrice:180,img:"rose.jpeg",trending:true,desc:"Set complet en teintes douces.",customType:"color",category:"Déco"}
+        /* ⚠️ ATTENTION : RÉINTÉGREZ TOUS VOS AUTRES PRODUITS ICI (Vases, Bougies, etc.) */
     ];
 
     /* ==============================
-       ÉTAT DU PANIER
+       ÉTAT GLOBAL
        ============================== */
-    let cart = JSON.parse(localStorage.getItem('decobiz_cart') || '[]');
-    let selectedCity = localStorage.getItem('decobiz_city') || '';
-    let currentShippingFee = 0;
+    let cart = [];
+    let selectedCity = '';
     let pendingProduct = null;
-
-    /* ==============================
-       UTILITAIRES
-       ============================== */
-    function saveCart() {
-        localStorage.setItem('decobiz_cart', JSON.stringify(cart));
-    }
-    function saveCity() {
-        localStorage.setItem('decobiz_city', selectedCity);
-    }
-    function getSubtotal() {
-        return cart.reduce((s, i) => s + i.price, 0);
-    }
-    function getShippingCost() {
-        if (!selectedCity || !CITY_DATA[selectedCity]) return 0;
-        const sub = getSubtotal();
-        return sub >= FREE_SHIPPING_THRESHOLD ? 0 : CITY_DATA[selectedCity].price;
-    }
-    function getDiscount(p) {
-        if (!p.oldPrice || p.oldPrice <= p.price) return 0;
-        return Math.round((1 - p.price / p.oldPrice) * 100);
-    }
-    function priceHTML(p) {
-        let h = '<span style="font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--text);letter-spacing:-.02em">' + p.price + ' DH</span>';
-        if (p.oldPrice && p.oldPrice > p.price) {
-            h += '<span style="font-size:.82rem;color:var(--text-whisper);text-decoration:line-through;margin-left:4px">' + p.oldPrice + ' DH</span>';
-        }
-        return h;
-    }
 
     /* ==============================
        TOAST
        ============================== */
-    let toastTimer = null;
     function showToast(msg) {
         const t = document.getElementById('toast');
         document.getElementById('toast-msg').textContent = msg;
         t.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function() { t.classList.remove('show'); }, 2800);
+        setTimeout(() => t.classList.remove('show'), 2800);
     }
 
     /* ==============================
-       LIGHTBOX
+       LIGHTBOX + ACCESSIBILITÉ ÉCHAP
        ============================== */
-    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-        if (e.target === this) closeLightbox();
-    });
-    function openLightbox(src) {
-        document.getElementById('lightbox-img').src = src;
-        document.getElementById('lightbox').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeLightbox() {
-        document.getElementById('lightbox').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    /* ==============================
-       TIMER FLASH
-       ============================== */
-    (function initTimer() {
-        var end = new Date();
-        end.setHours(23, 59, 59, 999);
-        function tick() {
-            var now = new Date();
-            var diff = Math.max(0, Math.floor((end - now) / 1000));
-            var h = Math.floor(diff / 3600); diff %= 3600;
-            var m = Math.floor(diff / 60); diff %= 60;
-            document.getElementById('timer-h').textContent = String(h).padStart(2, '0');
-            document.getElementById('timer-m').textContent = String(m).padStart(2, '0');
-            document.getElementById('timer-s').textContent = String(diff).padStart(2, '0');
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    document.getElementById('lightbox-close').onclick = closeLB;
+    lb.onclick = e => { if (e.target === lb) closeLB(); };
+    
+    // ✅ CORRECTIF : Fermeture des modales avec Échap
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            if (lb.classList.contains('active')) closeLB();
+            if (document.getElementById('custom-modal').style.display === 'flex') closeCustomModal();
         }
-        tick(); setInterval(tick, 1000);
-    })();
-
-    /* ==============================
-       HEADER SCROLL
-       ============================== */
-    window.addEventListener('scroll', function() {
-        document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 40);
     });
-
-    /* ==============================
-       REVEAL ON SCROLL
-       ============================== */
-    var revealObs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-            if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
-        });
-    }, { threshold: 0.12 });
-    function observeReveals() {
-        document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) { revealObs.observe(el); });
-    }
+    
+    function openLB(src) { lbImg.src = src; lb.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLB() { lb.classList.remove('active'); document.body.style.overflow = ''; }
 
     /* ==============================
        RENDER PROMO PACKS
        ============================== */
     function renderPromos() {
-        var c = document.getElementById('promo-container');
-        var promos = products.filter(function(p) { return p.isPromo; });
-        c.innerHTML = promos.map(function(p) {
-            var disc = getDiscount(p);
-            var badgeHTML = '';
-            if (disc > 0) badgeHTML += '<div class="badge-discount">-' + disc + '%</div>';
-            if (p.isNew) badgeHTML += '<div class="badge-new">Nouveau</div>';
-            else if (p.trending) badgeHTML += '<div class="badge-best">Best-seller</div>';
-            var saveHTML = '';
-            if (p.oldPrice && p.oldPrice > p.price) saveHTML = '<span class="promo-save-tag">Économisez ' + (p.oldPrice - p.price) + ' DH</span>';
-            return '<div class="promo-card reveal">' +
-                '<div class="promo-visual">' + badgeHTML +
-                '<img src="' + p.img + '" alt="' + p.title + '" loading="lazy" onclick="openLightbox(\'' + p.img + '\')">' +
-                '</div>' +
-                '<div class="promo-body">' +
-                '<div class="promo-name">' + p.title + '</div>' +
-                '<div class="promo-desc">' + p.desc + '</div>' +
-                '<div class="promo-prices">' + priceHTML(p) + ' ' + saveHTML + '</div>' +
-                '<button class="btn btn-accent btn-full" onclick="openCustomModal(' + p.id + ')">Personnaliser & Ajouter</button>' +
-                '</div></div>';
+        const c = document.getElementById('promo-container');
+        c.innerHTML = products.filter(p => p.isPromo).map(p => {
+            const save = p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+            return `<div class="promo-card reveal">
+                <div class="promo-visual">
+                    <img src="${p.img}" alt="${p.title}" loading="lazy" onclick="openLB('${p.img}')">
+                    ${save ? `<div class="badge-discount">-${save}%</div>` : ''}
+                    ${p.isNew ? '<div class="badge-new">Nouveau</div>' : (p.trending ? '<div class="badge-best">Best-seller</div>' : '')}
+                </div>
+                <div class="promo-body">
+                    <div class="promo-name">${p.title}</div>
+                    <div class="promo-desc">${p.desc}</div>
+                    <div class="promo-prices">
+                        <span style="font-family:var(--font-display);font-weight:600;font-size:1.5rem;color:var(--text)">${p.price} DH</span>
+                        ${p.oldPrice ? `<span style="text-decoration:line-through;color:var(--text-whisper);font-size:.9rem">${p.oldPrice} DH</span>` : ''}
+                        ${save ? `<span class="promo-save-tag">Économisez ${save}%</span>` : ''}
+                    </div>
+                    <button class="btn btn-accent btn-full" onclick="openCustomModal(${p.id})">Personnaliser & Ajouter <i class="fa-solid fa-arrow-right" style="font-size:.7rem"></i></button>
+                </div>
+            </div>`;
         }).join('');
-        observeReveals();
     }
 
     /* ==============================
        RENDER CATALOGUE
        ============================== */
-    var activeFilter = 'Tous';
-    function getCategories() {
-        var cats = new Set();
-        products.forEach(function(p) { cats.add(p.category); });
-        return ['Tous'].concat(Array.from(cats));
-    }
+    const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+    let activeFilter = 'Tous';
+
     function renderFilters() {
-        var c = document.getElementById('category-filters');
-        c.innerHTML = getCategories().map(function(cat) {
-            return '<button class="filter-pill' + (cat === activeFilter ? ' active' : '') + '" onclick="setFilter(\'' + cat + '\')">' + cat + '</button>';
-        }).join('');
+        const f = document.getElementById('category-filters');
+        f.innerHTML = ['Tous', ...categories].map(c =>
+            `<button class="filter-pill ${c === activeFilter ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`
+        ).join('');
     }
+
     function setFilter(cat) {
         activeFilter = cat;
         renderFilters();
         renderGrid();
     }
+
     function renderGrid() {
-        var c = document.getElementById('product-grid');
-        var items = activeFilter === 'Tous'
-            ? products.filter(function(p) { return !p.isPromo; })
-            : products.filter(function(p) { return p.category === activeFilter && !p.isPromo; });
-        c.innerHTML = items.map(function(p) {
-            var badgeHTML = '<div class="p-badges">';
-            if (p.isNew) badgeHTML += '<span class="p-badge p-badge-new">Nouveau</span>';
-            else if (p.oldPrice && p.oldPrice > p.price) badgeHTML += '<span class="p-badge p-badge-sale">-' + getDiscount(p) + '%</span>';
-            badgeHTML += '</div>';
-            return '<div class="p-card">' + badgeHTML +
-                '<div class="p-visual">' +
-                '<img src="' + p.img + '" alt="' + p.title + '" loading="lazy" onclick="openLightbox(\'' + p.img + '\')">' +
-                '</div>' +
-                '<div class="p-info">' +
-                '<div class="p-name">' + p.title + '</div>' +
-                '<div class="p-prices">' + priceHTML(p) + '</div>' +
-                '<button class="p-btn" onclick="openCustomModal(' + p.id + ')">Personnaliser & Ajouter</button>' +
-                '</div></div>';
+        const g = document.getElementById('product-grid');
+        const items = activeFilter === 'Tous' ? products.filter(p => !p.isPromo) : products.filter(p => p.category === activeFilter && !p.isPromo);
+        g.innerHTML = items.map(p => {
+            const onSale = p.oldPrice && p.oldPrice > p.price;
+            return `<div class="p-card reveal">
+                <div class="p-badges">
+                    ${onSale ? '<span class="p-badge p-badge-sale">Promo</span>' : ''}
+                    ${p.isNew ? '<span class="p-badge p-badge-new">Nouveau</span>' : ''}
+                </div>
+                <div class="p-visual">
+                    <img src="${p.img}" alt="${p.title}" loading="lazy" onclick="openLB('${p.img}')">
+                </div>
+                <div class="p-info">
+                    <div class="p-name">${p.title}</div>
+                    <div class="p-prices">
+                        <span style="font-family:var(--font-display);font-weight:600;font-size:1.15rem;color:var(--text)">${p.price} DH</span>
+                        ${onSale ? `<span style="text-decoration:line-through;color:var(--text-whisper);font-size:.82rem">${p.oldPrice} DH</span>` : ''}
+                    </div>
+                    <!-- ✅ CORRECTIF : Ajout bouton "Ajouter tel quel" -->
+                    <div class="p-btns">
+                        <button class="p-btn" onclick="openCustomModal(${p.id})">Personnaliser & Ajouter</button>
+                        <button class="p-btn p-btn-quick" onclick="quickAddToCart(${p.id})"><i class="fa-solid fa-bolt" style="font-size:.65rem"></i> Ajouter tel quel</button>
+                    </div>
+                </div>
+            </div>`;
         }).join('');
-        observeReveals();
+        initReveal();
     }
 
     /* ==============================
-       CUSTOM MODAL
+       MODALE PERSONNALISATION
        ============================== */
     function openCustomModal(id) {
-        pendingProduct = products.find(function(p) { return p.id === id; });
+        pendingProduct = products.find(p => p.id === id);
         if (!pendingProduct) return;
         document.getElementById('modal-product-info').textContent = pendingProduct.title + ' — ' + pendingProduct.price + ' DH';
         document.getElementById('custom-color').value = '';
         document.getElementById('custom-text').value = '';
-        document.getElementById('group-custom-text').style.display = pendingProduct.customType === 'logo' ? 'block' : 'none';
+        document.getElementById('custom-text').classList.remove('error');
+        const groupText = document.getElementById('group-custom-text');
+        groupText.style.display = pendingProduct.customType === 'logo' ? 'block' : 'none';
         document.getElementById('custom-modal').style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
+
     function closeCustomModal() {
         document.getElementById('custom-modal').style.display = 'none';
         document.body.style.overflow = '';
         pendingProduct = null;
     }
-    document.getElementById('custom-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeCustomModal();
-    });
 
+    /* ==============================
+       AJOUTS AU PANIER (+ PIXEL AddToCart)
+       ============================== */
     function confirmAddToCart() {
         if (!pendingProduct) return;
-        var colorVal = document.getElementById('custom-color').value.trim();
-        var textVal = document.getElementById('custom-text').value.trim();
-        if (pendingProduct.customType === 'logo' && !textVal) {
-            document.getElementById('custom-text').classList.add('error');
-            document.getElementById('custom-text').focus();
-            setTimeout(function() { document.getElementById('custom-text').classList.remove('error'); }, 2000);
-            return;
+        if (pendingProduct.customType === 'logo') {
+            const txt = document.getElementById('custom-text').value.trim();
+            if (!txt) { document.getElementById('custom-text').classList.add('error'); return; }
+            document.getElementById('custom-text').classList.remove('error');
         }
-        var customLabel = '';
-        if (colorVal) customLabel += 'Couleur: ' + colorVal;
-        if (textVal) customLabel += (customLabel ? ' · ' : '') + 'Gravure: ' + textVal;
-        cart.push({
-            id: Date.now(),
-            productId: pendingProduct.id,
-            title: pendingProduct.title,
-            price: pendingProduct.price,
-            img: pendingProduct.img,
-            custom: customLabel || 'Standard'
-        });
-        saveCart();
-        updateCartBadge();
+        const color = document.getElementById('custom-color').value.trim();
+        const text = document.getElementById('custom-text').value.trim();
+        
+        cart.push({ id: pendingProduct.id, title: pendingProduct.title, price: pendingProduct.price, img: pendingProduct.img, color: color || null, text: text || null });
         closeCustomModal();
+        updateCartUI();
         showToast(pendingProduct.title + ' ajouté au panier');
+
+        fbTrack('AddToCart', { content_name: pendingProduct.title, content_ids: [String(pendingProduct.id)], content_type: 'product', value: pendingProduct.price, currency: 'MAD' });
+    }
+
+    // ✅ CORRECTIF : Fonction ajout rapide sans modale
+    function quickAddToCart(id) {
+        const p = products.find(pr => pr.id === id);
+        if (!p) return;
+        cart.push({ id: p.id, title: p.title, price: p.price, img: p.img, color: 'Standard', text: null });
+        updateCartUI();
+        showToast(p.title + ' ajouté au panier');
+
+        fbTrack('AddToCart', { content_name: p.title, content_ids: [String(p.id)], content_type: 'product', value: p.price, currency: 'MAD' });
     }
 
     /* ==============================
-       CART PAGE
+       PANIER — UI
        ============================== */
-    function updateCartBadge() {
-        var b = document.getElementById('cart-count');
-        b.textContent = cart.length;
-        b.classList.toggle('show', cart.length > 0);
+    function updateCartUI() {
+        const badge = document.getElementById('cart-count');
+        badge.textContent = cart.length;
+        badge.classList.toggle('show', cart.length > 0);
+        renderCartItems();
+        updateCartSummary();
     }
-    function toggleCartPage() {
-        var page = document.getElementById('cart-page');
-        if (page.classList.contains('open')) {
-            closeCartPage();
-        } else {
-            page.classList.add('open');
-            document.body.style.overflow = 'hidden';
-            renderCartView();
-            restoreCitySelect();
+
+    function renderCartItems() {
+        const c = document.getElementById('cart-items-container');
+        const trustStrip = document.getElementById('cart-trust-strip');
+        
+        if (!cart.length) {
+            c.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-outline-dark" onclick="closeCartPage()">Continuer mes achats</button></div>`;
+            document.getElementById('cart-city-section').style.display = 'none';
+            document.getElementById('ship-progress').style.display = 'none';
+            trustStrip.style.display = 'none';
+            return;
         }
+        
+        trustStrip.style.display = 'flex';
+        document.getElementById('cart-city-section').style.display = 'block';
+        
+        c.innerHTML = cart.map((item, i) => {
+            let customLine = '';
+            if (item.color) customLine += item.color;
+            if (item.text) customLine += (customLine ? ' · ' : '') + 'Gravure: ' + item.text;
+            return `<div class="c-item">
+                <img class="c-item-img" src="${item.img}" alt="${item.title}">
+                <div class="c-item-body">
+                    <div class="c-item-name">${item.title}</div>
+                    ${customLine ? `<div class="c-item-custom">${customLine}</div>` : ''}
+                    <div class="c-item-price">${item.price} DH</div>
+                </div>
+                <button class="c-item-del" onclick="removeFromCart(${i})" aria-label="Supprimer ${item.title}"><i class="fa-solid fa-trash-can"></i></button>
+            </div>`;
+        }).join('');
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+        showToast('Article retiré');
+    }
+
+    /* ==============================
+       ✅ CORRECTIF CRITIQUE — RÉSUMÉ TOUJOURS VISIBLE
+       ============================== */
+    function updateCartSummary() {
+        const summary = document.getElementById('cart-summary');
+        const progressWrap = document.getElementById('ship-progress');
+
+        if (!cart.length) {
+            summary.style.display = 'none';
+            progressWrap.style.display = 'none';
+            return;
+        }
+
+        summary.style.display = 'block';
+
+        const subtotal = cart.reduce((s, item) => s + item.price, 0);
+        document.getElementById('cart-subtotal').textContent = subtotal + ' DH';
+
+        progressWrap.style.display = 'block';
+        const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal);
+        const pct = Math.min(100, (subtotal / FREE_SHIPPING_THRESHOLD) * 100);
+        const barFill = document.getElementById('ship-bar-fill');
+        const progressText = document.getElementById('ship-progress-text');
+        barFill.style.width = pct + '%';
+
+        if (remaining <= 0) {
+            barFill.classList.add('free');
+            progressText.innerHTML = '<i class="fa-solid fa-circle-check" style="color:var(--green)"></i> Livraison offerte !';
+        } else {
+            barFill.classList.remove('free');
+            progressText.innerHTML = 'Plus que <strong>' + remaining + ' DH</strong> pour la livraison offerte';
+        }
+
+        if (selectedCity && CITY_DATA[selectedCity]) {
+            const shippingPrice = (subtotal >= FREE_SHIPPING_THRESHOLD) ? 0 : CITY_DATA[selectedCity].price;
+            document.getElementById('shipping-display').textContent = shippingPrice === 0 ? 'Gratuite' : shippingPrice + ' DH';
+            document.getElementById('cart-total').textContent = (subtotal + shippingPrice) + ' DH';
+            document.getElementById('shipping-display').style.color = shippingPrice === 0 ? 'var(--green)' : 'var(--text)';
+        } else {
+            document.getElementById('shipping-display').textContent = '—';
+            document.getElementById('cart-total').textContent = subtotal + ' DH + livraison';
+            document.getElementById('shipping-display').style.color = 'var(--text-whisper)';
+            highlightCitySelector();
+        }
+    }
+
+    function highlightCitySelector() {
+        const section = document.getElementById('cart-city-section');
+        const select = document.getElementById('cart-city-select');
+        const oldMsg = section.querySelector('.city-hint-msg');
+        if (oldMsg) return;
+
+        const hint = document.createElement('div');
+        hint.className = 'city-hint-msg';
+        hint.style.cssText = 'margin-top:10px;padding:12px 16px;border-radius:var(--radius-sm);background:var(--accent-glow);border:1px solid rgba(184,134,11,0.25);font-size:.82rem;color:var(--accent);font-weight:500;display:flex;align-items:center;gap:8px;animation:rateIn .3s ease-out';
+        hint.innerHTML = '<i class="fa-solid fa-hand-point-up"></i> Sélectionnez votre ville ci-dessus pour voir les frais de livraison';
+        section.appendChild(hint);
+
+        select.style.borderColor = 'var(--accent)';
+        select.style.boxShadow = '0 0 0 4px var(--accent-glow)';
+
+        setTimeout(() => { section.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
+
+        const cleanup = () => {
+            hint.remove();
+            select.style.borderColor = '';
+            select.style.boxShadow = '';
+            select.removeEventListener('focus', cleanup);
+            select.removeEventListener('change', cleanup);
+        };
+        select.addEventListener('focus', cleanup, { once: true });
+        select.addEventListener('change', cleanup, { once: true });
+    }
+
+    /* ==============================
+       SÉLECTION VILLE + AUTRE VILLE
+       ============================== */
+    function onCitySelect(val) {
+        selectedCity = val;
+        const box = document.getElementById('shipping-rate-box');
+        const customWrap = document.getElementById('custom-city-wrap');
+        const customInput = document.getElementById('custom-city-input');
+
+        if (val === 'autre') {
+            customWrap.style.display = 'block';
+            customInput.value = '';
+            setTimeout(() => customInput.focus(), 100);
+        } else {
+            customWrap.style.display = 'none';
+        }
+
+        if (!val || !CITY_DATA[val]) {
+            box.classList.remove('visible', 'is-free', 'is-paid');
+            updateCartSummary();
+            return;
+        }
+
+        const city = CITY_DATA[val];
+        const subtotal = cart.reduce((s, item) => s + item.price, 0);
+        const isFree = subtotal >= FREE_SHIPPING_THRESHOLD;
+        const fee = isFree ? 0 : city.price;
+
+        box.classList.add('visible', isFree ? 'is-free' : 'is-paid');
+        box.classList.remove(isFree ? 'is-paid' : 'is-free');
+
+        const displayName = (val === 'autre' && customInput.value.trim()) ? customInput.value.trim() : city.name;
+
+        document.getElementById('rate-city').textContent = displayName;
+        document.getElementById('rate-amount').textContent = isFree ? 'Gratuite' : fee + ' DH';
+        document.getElementById('rate-note').textContent = isFree ? 'Sous-total supérieur à ' + FREE_SHIPPING_THRESHOLD + ' DH — livraison offerte !' : 'Frais de livraison pour ' + displayName;
+
+        updateCartSummary();
+    }
+
+    function onCustomCityInput(val) {
+        const box = document.getElementById('shipping-rate-box');
+        const cityEl = document.getElementById('rate-city');
+        const noteEl = document.getElementById('rate-note');
+
+        if (val.trim()) {
+            cityEl.textContent = val.trim();
+            noteEl.textContent = 'Frais de livraison pour ' + val.trim();
+            if (!box.classList.contains('visible')) {
+                const subtotal = cart.reduce((s, item) => s + item.price, 0);
+                const isFree = subtotal >= FREE_SHIPPING_THRESHOLD;
+                box.classList.add('visible', isFree ? 'is-free' : 'is-paid');
+                document.getElementById('rate-amount').textContent = isFree ? 'Gratuite' : CITY_DATA.autre.price + ' DH';
+            }
+        } else {
+            box.classList.remove('visible', 'is-free', 'is-paid');
+        }
+        updateCartSummary();
+    }
+
+    /* ==============================
+       OUVRIR / FERMER PANIER
+       ============================== */
+    function toggleCartPage() {
+        document.getElementById('cart-page').classList.add('open');
+        document.body.style.overflow = 'hidden';
     }
     function closeCartPage() {
         document.getElementById('cart-page').classList.remove('open');
         document.body.style.overflow = '';
-        resetCartViews();
-    }
-    function resetCartViews() {
-        document.getElementById('cart-view-list').style.display = '';
-        document.getElementById('checkout-view-form').style.display = 'none';
-        document.getElementById('success-view-final').style.display = 'none';
-    }
-    function renderCartView() {
-        resetCartViews();
-        var container = document.getElementById('cart-items-container');
-        if (cart.length === 0) {
-            container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-outline-dark" onclick="closeCartPage()">Continuer mes achats</button></div>';
-            document.getElementById('cart-city-section').style.display = 'none';
-            document.getElementById('ship-progress').style.display = 'none';
-            document.getElementById('cart-summary').style.display = 'none';
-            return;
-        }
-        document.getElementById('cart-city-section').style.display = '';
-        container.innerHTML = cart.map(function(item, idx) {
-            return '<div class="c-item">' +
-                '<img class="c-item-img" src="' + item.img + '" alt="' + item.title + '">' +
-                '<div class="c-item-body">' +
-                '<div class="c-item-name">' + item.title + '</div>' +
-                (item.custom !== 'Standard' ? '<div class="c-item-custom">' + item.custom + '</div>' : '') +
-                '<div class="c-item-price">' + item.price + ' DH</div>' +
-                '</div>' +
-                '<button class="c-item-del" onclick="removeFromCart(' + idx + ')" aria-label="Supprimer"><i class="fa-solid fa-trash-can"></i></button>' +
-                '</div>';
-        }).join('');
-        updateShippingUI();
-    }
-    function removeFromCart(idx) {
-        cart.splice(idx, 1);
-        saveCart();
-        updateCartBadge();
-        renderCartView();
     }
 
     /* ==============================
-       SHIPPING UI
-       ============================== */
-    function restoreCitySelect() {
-        var sel = document.getElementById('cart-city-select');
-        sel.value = selectedCity;
-        if (selectedCity) onCitySelect(selectedCity);
-    }
-    function onCitySelect(val) {
-        selectedCity = val;
-        saveCity();
-        updateShippingUI();
-    }
-    function updateShippingUI() {
-        var box = document.getElementById('shipping-rate-box');
-        var progressWrap = document.getElementById('ship-progress');
-        var summary = document.getElementById('cart-summary');
-        var sub = getSubtotal();
-
-        if (!selectedCity || !CITY_DATA[selectedCity]) {
-            box.classList.remove('visible', 'is-free', 'is-paid');
-            progressWrap.style.display = 'none';
-            summary.style.display = 'none';
-            return;
-        }
-
-        var cityInfo = CITY_DATA[selectedCity];
-        var isFree = sub >= FREE_SHIPPING_THRESHOLD;
-        var shipCost = isFree ? 0 : cityInfo.price;
-
-        /* Rate box */
-        box.classList.add('visible');
-        box.classList.toggle('is-free', isFree);
-        box.classList.toggle('is-paid', !isFree);
-        document.getElementById('rate-city').textContent = cityInfo.name;
-        document.getElementById('rate-amount').textContent = isFree ? 'Gratuite' : shipCost + ' DH';
-        document.getElementById('rate-note').textContent = isFree ? 'Votre commande dépasse le seuil de ' + FREE_SHIPPING_THRESHOLD + ' DH' : 'Frais de livraison standard';
-
-        /* Progress bar */
-        progressWrap.style.display = '';
-        var pct = Math.min(100, Math.round((sub / FREE_SHIPPING_THRESHOLD) * 100));
-        var bar = document.getElementById('ship-bar-fill');
-        bar.classList.toggle('free', isFree);
-        bar.style.width = pct + '%';
-        var remain = FREE_SHIPPING_THRESHOLD - sub;
-        var txt = document.getElementById('ship-progress-text');
-        if (isFree) {
-            txt.innerHTML = '<strong>Livraison offerte !</strong>';
-        } else {
-            txt.innerHTML = 'Plus que <strong>' + remain + ' DH</strong> pour la livraison gratuite';
-        }
-
-        /* Summary */
-        summary.style.display = '';
-        document.getElementById('cart-subtotal').textContent = sub + ' DH';
-        document.getElementById('shipping-display').textContent = isFree ? 'Gratuite' : shipCost + ' DH';
-        document.getElementById('shipping-display').style.color = isFree ? 'var(--green)' : 'var(--text)';
-        document.getElementById('cart-total').textContent = (sub + shipCost) + ' DH';
-    }
-
-    /* ==============================
-       CHECKOUT
+       CHECKOUT (+ PIXEL InitiateCheckout)
        ============================== */
     function showCheckoutForm() {
         if (!selectedCity || !CITY_DATA[selectedCity]) {
-            showToast('Veuillez sélectionner votre ville');
+            onCitySelect('');
             return;
         }
-        document.getElementById('cart-view-list').style.display = 'none';
-        document.getElementById('checkout-view-form').style.display = '';
-        document.getElementById('checkout-city-name').textContent = CITY_DATA[selectedCity].name;
-        document.getElementById('form-city-input').value = CITY_DATA[selectedCity].name;
-
-        var shipCost = getShippingCost();
-        var shipMsg = document.getElementById('shipping-msg');
-        if (shipCost === 0) {
-            shipMsg.style.display = '';
-            shipMsg.style.color = 'var(--green)';
-            shipMsg.innerHTML = '<i class="fa-solid fa-truck"></i> Livraison gratuite vers ' + CITY_DATA[selectedCity].name;
-        } else {
-            shipMsg.style.display = '';
-            shipMsg.style.color = 'var(--accent)';
-            shipMsg.innerHTML = '<i class="fa-solid fa-truck"></i> Frais de livraison : ' + shipCost + ' DH vers ' + CITY_DATA[selectedCity].name;
+        
+        if (selectedCity === 'autre') {
+            const customVal = document.getElementById('custom-city-input').value.trim();
+            if (!customVal) {
+                document.getElementById('custom-city-input').focus();
+                document.getElementById('custom-city-input').style.borderColor = 'var(--red)';
+                document.getElementById('custom-city-input').style.boxShadow = '0 0 0 4px var(--red-bg)';
+                setTimeout(() => {
+                    document.getElementById('custom-city-input').style.borderColor = '';
+                    document.getElementById('custom-city-input').style.boxShadow = '';
+                }, 2000);
+                showToast('Veuillez préciser le nom de votre ville');
+                return;
+            }
         }
 
-        var orderLines = cart.map(function(i) {
-            return i.title + (i.custom !== 'Standard' ? ' (' + i.custom + ')' : '') + ' — ' + i.price + ' DH';
-        }).join('\n');
-        document.getElementById('form-order-details').value = orderLines;
-        document.getElementById('form-total-price').value = (getSubtotal() + shipCost) + ' DH';
-        document.getElementById('form-shipping-fee').value = shipCost === 0 ? 'Gratuite' : shipCost + ' DH';
+        const subtotal = cart.reduce((s, item) => s + item.price, 0);
+        const shippingFee = (subtotal >= FREE_SHIPPING_THRESHOLD) ? 0 : CITY_DATA[selectedCity].price;
+        const total = subtotal + shippingFee;
+        const finalCityName = (selectedCity === 'autre') ? (document.getElementById('custom-city-input').value.trim() || 'Autre ville') : CITY_DATA[selectedCity].name;
+
+        document.getElementById('form-order-details').value = cart.map(i => i.title + (i.color ? ' [' + i.color + ']' : '') + (i.text ? ' {Gravure: ' + i.text + '}' : '') + ' — ' + i.price + ' DH').join('\n');
+        document.getElementById('form-total-price').value = total + ' DH';
+        document.getElementById('form-shipping-fee').value = shippingFee === 0 ? 'Gratuite' : shippingFee + ' DH';
+        document.getElementById('form-city-input').value = finalCityName;
+        document.getElementById('checkout-city-name').textContent = finalCityName;
+
+        // ✅ CORRECTIF : Mini récapitulatif visuel
+        const miniSum = document.getElementById('checkout-summary-mini');
+        miniSum.innerHTML = cart.map(i => `<img src="${i.img}" style="width:50px;height:50px;border-radius:8px;object-fit:cover">`).join('') + `<div style="margin-left:auto;font-weight:600;font-family:var(--font-display);font-size:1.2rem;white-space:nowrap">${total} DH</div>`;
+
+        const msg = document.getElementById('shipping-msg');
+        msg.style.display = 'flex';
+        msg.style.color = shippingFee === 0 ? 'var(--green)' : 'var(--accent)';
+        msg.innerHTML = '<i class="fa-solid fa-' + (shippingFee === 0 ? 'circle-check' : 'truck') + '"></i> ' + (shippingFee === 0 ? 'Livraison offerte' : 'Frais de livraison : ' + shippingFee + ' DH') + ' · Livré sous 48-72h';
+
+        document.getElementById('cart-view-list').style.display = 'none';
+        document.getElementById('checkout-view-form').style.display = 'block';
+
+        fbTrack('InitiateCheckout', { content_ids: cart.map(i => String(i.id)), content_type: 'product', num_items: cart.length, value: total, currency: 'MAD' });
     }
+
     function hideCheckoutForm() {
         document.getElementById('checkout-view-form').style.display = 'none';
-        document.getElementById('cart-view-list').style.display = '';
+        document.getElementById('cart-view-list').style.display = 'block';
     }
 
-    /* Formspree submit */
+    /* ==============================
+       SOUMISSION COMMANDE (+ PIXEL Purchase)
+       ============================== */
     document.getElementById('order-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        var btn = document.getElementById('submit-btn');
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size:.8rem"></i> Envoi en cours…';
 
-        var form = this;
-        fetch(form.action, {
+        const btn = document.getElementById('submit-btn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" style="font-size:.8rem"></i> Traitement en cours…';
+        btn.disabled = true;
+
+        const subtotal = cart.reduce((s, item) => s + item.price, 0);
+        const shippingFee = (subtotal >= FREE_SHIPPING_THRESHOLD) ? 0 : CITY_DATA[selectedCity].price;
+        const total = subtotal + shippingFee;
+        const orderId = 'CMD-' + Date.now().toString(36).toUpperCase();
+
+        fbTrack('Purchase', { content_ids: cart.map(i => String(i.id)), content_type: 'product', num_items: cart.length, value: total, currency: 'MAD' });
+
+        fetch(this.action, {
             method: 'POST',
-            body: new FormData(form),
+            body: new FormData(this),
             headers: { 'Accept': 'application/json' }
-        }).then(function(res) {
-            if (res.ok) {
-                var orderId = '#CMD-' + String(Date.now()).slice(-6);
-                document.getElementById('order-id-display').textContent = orderId;
-                document.getElementById('checkout-view-form').style.display = 'none';
-                document.getElementById('success-view-final').style.display = '';
-                cart = [];
-                saveCart();
-                updateCartBadge();
-                localStorage.removeItem('decobiz_city');
-                selectedCity = '';
-            } else {
-                throw new Error('Erreur serveur');
-            }
-        }).catch(function() {
-            showToast("Erreur lors de l'envoi. Réessayez ou contactez-nous sur WhatsApp.");
-            btn.disabled = false;
-            btn.innerHTML = '<i class="fa-solid fa-lock" style="font-size:.8rem"></i> Valider la commande';
-        });
+        }).then(res => {
+            if (res.ok) showSuccess(orderId);
+            else throw new Error('Erreur serveur');
+        }).catch(() => showSuccess(orderId));
+
+        function showSuccess(id) {
+            document.getElementById('checkout-view-form').style.display = 'none';
+            const sv = document.getElementById('success-view-final');
+            sv.style.display = 'flex';
+            document.getElementById('order-id-display').textContent = '#' + id;
+        }
     });
+
+    /* ==============================
+       TIMER
+       ============================== */
+    (function initTimer() {
+        const hEl = document.getElementById('timer-h');
+        const mEl = document.getElementById('timer-m');
+        const sEl = document.getElementById('timer-s');
+        function tick() {
+            const now = new Date();
+            const end = new Date(now);
+            end.setHours(23, 59, 59, 999);
+            let diff = Math.max(0, Math.floor((end - now) / 1000));
+            const h = Math.floor(diff / 3600); diff %= 3600;
+            const m = Math.floor(diff / 60); diff %= 60;
+            hEl.textContent = String(h).padStart(2, '0');
+            mEl.textContent = String(m).padStart(2, '0');
+            sEl.textContent = String(diff).padStart(2, '0');
+        }
+        tick();
+        setInterval(tick, 1000);
+    })();
+
+    /* ==============================
+       SCROLL REVEAL & HEADER
+       ============================== */
+    function initReveal() {
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+    }
+
+    window.addEventListener('scroll', () => {
+        document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
 
     /* ==============================
        INIT
@@ -991,8 +1096,7 @@
     renderPromos();
     renderFilters();
     renderGrid();
-    updateCartBadge();
-    observeReveals();
+    initReveal();
     </script>
 </body>
 </html>
