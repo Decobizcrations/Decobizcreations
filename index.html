@@ -567,7 +567,7 @@ const REVIEWS=[
 const HERO_IMG='https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d';
 const P=(id,name,price,oldPrice,img,category,desc,o={})=>({id,name,price,oldPrice,img,category,desc,isPromo:!!o.pack,sale:!!oldPrice,customType:o.logo?'logo':'color'});
 const products=[
- P(888,'Pack Brutalist',189,299,HERO_IMG,'Packs','Deux Vases de luxe, plateau design, bougie brute et éléments décoratifs.',{pack:1}),
+ P(888,'Pack Brutalist',189,299,'brutalist.png','Packs','Deux Vases de luxe, plateau design, bougie brute et éléments décoratifs.',{pack:1}),
  P(889,'Pack Impériale',199,450,'https://z-cdn-media.chatglm.cn/files/4caf9536-8baf-4bbc-b368-d341fa7ecfd2.png?auth_key=1886284791-1296056eb57c42d3a971b8b2d74d274a-0-e4990acd9f2dd6f3138b5921069b9a9e','Packs','Pack de 6 pièces : Vase avec fleurs séchées, citrouille, support bougie, arch tray et déco feuille.',{pack:1}),
  P(900,'Pack Burning Collection',149,249,'packbruleur.jpeg','Packs',"Contient 4 pièces — Brûleurs d'encens design.",{pack:1}),
  P(101,'Pack Salon Moderne',135,149,'salon.jpeg','Packs','Vase herbe, Porte bougie, Citrouille, Plateau ovale.',{pack:1}),
