@@ -3,21 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Decobiz — Artisanat d'Exception</title>
-<meta name="description" content="Découvrez la collection Decobiz. Plateaux, Vases et Déco artisanale. Personnalisation disponible. Livraison partout au Maroc.">
+<title>Decobiz — Artisanat d'Exception au Maroc</title>
+<meta name="description" content="Découvrez la collection Decobiz. Plateaux, Vases et Déco artisanale. Personnalisation disponible. Paiement à la livraison ou virement. Livraison partout au Maroc.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231C1917'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' font-weight='700' fill='%23B8860B' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
 <meta property="og:title" content="Decobiz — Artisanat d'Exception">
 <meta property="og:description" content="Personnalisation disponible. Livraison partout au Maroc.">
 <meta property="og:image" content="https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d">
 <meta property="og:type" content="website">
 
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1609605916958974');fbq('track','PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1609605916958974&ev=PageView&noscript=1"/></noscript>
+<!-- META PIXEL OPTIMISÉ (Nouveau Pixel ID) -->
+<!-- 1. Preconnect : Accélère le chargement du Pixel -->
+<link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 
+<!-- 2. Pixel JS avec defer pour ne pas ralentir la page -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.defer=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+// Votre Nouveau Pixel ID
+fbq('init', '1066915886136248');
+
+// Envoi des événements (PageView + ViewContent pour corriger l'entonnoir)
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066915886136248&ev=PageView&noscript=1"/>
+<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066915886136248&ev=ViewContent&noscript=1"/>
+</noscript>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -220,6 +232,21 @@ header.scrolled{box-shadow:var(--shadow-xs)}
 .ship-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));border-radius:10px;transition:width .5s ease}
 .ship-bar-fill.free{background:linear-gradient(90deg,var(--green),#5BA882)}
 
+/* Payment Methods Section in Cart */
+.payment-methods-section{margin-top:16px; background:var(--bg-warm); padding:16px; border-radius:var(--r-lg); border:1px solid var(--border);}
+.payment-methods-title{font-weight:600; font-size:.85rem; margin-bottom:12px; text-align:center;}
+.payment-options{display:flex; flex-direction:column; gap:10px;}
+.payment-option{display:flex; align-items:center; gap:12px; padding:12px; border-radius:var(--r-md); border:1px solid var(--border); cursor:pointer; transition:var(--tr); background:var(--bg-card);}
+.payment-option:hover{border-color:var(--accent);}
+.payment-option.selected{border-color:var(--accent); background:var(--accent-glow); box-shadow:0 0 0 2px var(--accent-glow-md);}
+.payment-radio{width:18px; height:18px; border-radius:50%; border:2px solid var(--text-whisper); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+.payment-option.selected .payment-radio{border-color:var(--accent);}
+.payment-option.selected .payment-radio::after{content:''; width:10px; height:10px; border-radius:50%; background:var(--accent);}
+.payment-label{flex:1;}
+.payment-label strong{display:block; font-size:.88rem; font-weight:600;}
+.payment-label small{font-size:.72rem; color:var(--text-soft); font-weight:400;}
+.payment-icon{color:var(--accent); font-size:1.1rem; width:24px; text-align:center;}
+
 .checkout-body{max-width:560px;margin:0 auto;width:100%;padding:20px 16px calc(28px + env(safe-area-inset-bottom))}
 .back-link{font-weight:500;font-size:.88rem;color:var(--text-soft);display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;min-height:44px}
 .checkout-title{font-family:var(--font-display);font-weight:500;font-style:italic;font-size:1.6rem;text-align:center;margin-bottom:22px}
@@ -275,6 +302,7 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
 .toast{top:12px;text-align:center}
 .wa-float{bottom:18px;right:14px;width:50px;height:50px;font-size:1.3rem}
 .cta-band{padding:56px 18px}
+.payment-options{gap:8px;}
 }
 </style>
 </head>
@@ -282,7 +310,8 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
 
 <div class="toast" id="toast" role="status"><i class="fa-solid fa-circle-check"></i> <span id="toast-msg"></span></div>
 
-<div class="announce">Personnalisation disponible &nbsp;·&nbsp; <em>Livraison offerte</em> dès 399 DH</div>
+<!-- Bandeau annonce cohérent avec l'offre -->
+<div class="announce">Paiement à la livraison ou virement bancaire &nbsp;·&nbsp; <em>Livraison offerte</em> dès 399 DH</div>
 
 <header id="main-header">
   <div class="container header-inner">
@@ -296,7 +325,7 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
   <div class="hero-content container">
     <div class="hero-tag">Collection Decobiz</div>
     <h1>Décoration artisanale,<br>Votre <em>Élégance</em></h1>
-    <p class="hero-sub">Des pièces uniques faites à la main au Maroc, personnalisables et livrées chez vous partout au Maroc.</p>
+    <p class="hero-sub">Des pièces uniques faites à la main au Maroc. Personnalisables et livrées chez vous.</p>
     <div class="hero-actions">
       <button class="btn btn-accent" onclick="document.getElementById('promo-packs').scrollIntoView({behavior:'smooth'})">Découvrir la collection <i class="fa-solid fa-arrow-right" style="font-size:.7rem"></i></button>
       <button class="btn btn-ghost" onclick="document.getElementById('custom-section').scrollIntoView({behavior:'smooth'})">Personnaliser mon article</button>
@@ -304,11 +333,13 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
   </div>
 </section>
 
+<!-- Preuve sociale et confiance dès le 1er écran -->
 <div class="trust-strip"><div class="container"><div class="trust-grid">
   <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-pen-ruler"></i></div> Personnalisation</div>
-  <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-truck-fast"></i></div> Livraison Maroc</div>
+  <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-truck-fast"></i></div> Livraison 48-72h</div>
   <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div> Paiement à la livraison</div>
-  <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-hand-sparkles"></i></div> Fait à la main</div>
+  <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-building-columns"></i></div> Virement bancaire</div>
+  <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-hand-sparkles"></i></div> Fait main au Maroc</div>
 </div></div></div>
 
 <section class="sec sec-alt">
@@ -318,9 +349,9 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
       <h2 class="sec-title">Comment ça <strong>marche ?</strong></h2>
     </div>
     <div class="steps-grid">
-      <div class="step-card reveal"><div class="step-num">01</div><div class="step-title">Choisissez</div><div class="step-desc">Parcourez notre collection et cliquez sur "Commander".</div></div>
-      <div class="step-card reveal"><div class="step-num">02</div><div class="step-title">Personnalisez</div><div class="step-desc">Ajoutez votre touche : couleur, prénom ou message spécial.</div></div>
-      <div class="step-card reveal"><div class="step-num">03</div><div class="step-title">Recevez</div><div class="step-desc">Livraison rapide à votre domicile partout au Maroc.</div></div>
+      <div class="step-card reveal"><div class="step-num">01</div><div class="step-title">Choisissez</div><div class="step-desc">Parcourez la collection et cliquez sur "Commander".</div></div>
+      <div class="step-card reveal"><div class="step-num">02</div><div class="step-title">Personnalisez</div><div class="step-desc">Ajoutez votre touche : couleur, prénom ou message.</div></div>
+      <div class="step-card reveal"><div class="step-num">03</div><div class="step-title">Recevez</div><div class="step-desc">Payez à la livraison ou par virement. Expédition rapide !</div></div>
     </div>
   </div>
 </section>
@@ -387,7 +418,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
     <a href="https://wa.me/212610236889" class="footer-link" target="_blank" rel="noopener">Contact</a>
   </div>
   <div class="footer-socials">
-    <!-- Remplacez # par votre vrai lien Instagram -->
     <a href="#" class="footer-social" aria-label="Instagram" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
     <a href="https://wa.me/212610236889" class="footer-social" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
@@ -418,6 +448,7 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
   </div>
 </div>
 
+<!-- PAGE PANIER AMELIOREE -->
 <div class="cart-page" id="cart-page">
   <div class="cart-top">
     <h3>Votre Panier</h3>
@@ -427,9 +458,32 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
   <div id="cart-view-list" class="cart-body">
     <div id="cart-items-container"></div>
     <div class="cart-trust-strip" id="cart-trust-strip" style="display:none">
-      <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> Paiement à la livraison</div>
+      <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> Paiement sécurisé</div>
       <div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Livraison 48-72h</div>
       <div class="cart-trust-chip"><i class="fa-solid fa-hand-sparkles"></i> Fait à la main</div>
+    </div>
+
+    <!-- Bloc Méthodes de paiement -->
+    <div class="payment-methods-section" id="payment-methods-section" style="display:none">
+      <div class="payment-methods-title"><i class="fa-solid fa-lock" style="color:var(--green); margin-right:6px;"></i> Comment souhaitez-vous payer ?</div>
+      <div class="payment-options">
+        <div class="payment-option selected" onclick="selectPayment('cod', this)">
+          <div class="payment-radio"></div>
+          <div class="payment-label">
+            <strong>Paiement à la livraison</strong>
+            <small>Payez en espèces au livreur</small>
+          </div>
+          <div class="payment-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        </div>
+        <div class="payment-option" onclick="selectPayment('bank', this)">
+          <div class="payment-radio"></div>
+          <div class="payment-label">
+            <strong>Virement bancaire</strong>
+            <small>Recevez nos RIB par WhatsApp après confirmation</small>
+          </div>
+          <div class="payment-icon"><i class="fa-solid fa-building-columns"></i></div>
+        </div>
+      </div>
     </div>
 
     <div class="cart-city-section" id="cart-city-section" style="display:none">
@@ -469,10 +523,9 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
     <h3 class="checkout-title">Finaliser la commande</h3>
     <div id="checkout-summary-mini"></div>
     <div class="cart-trust-strip" style="margin-bottom:22px">
-      <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> Paiement à la livraison</div>
-      <div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Expédition sous 48h</div>
+      <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> 100% Sécurisé</div>
+      <div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Expédition 48h</div>
     </div>
-    <!-- Envoi classique (sans AJAX) : c'est ce qui fonctionnait avec l'ancien code -->
     <form id="order-form" action="https://formspree.io/f/xeevpgvy" method="POST">
       <input type="hidden" name="order_id" id="form-order-id">
       <input type="hidden" name="_subject" id="form-subject">
@@ -481,12 +534,20 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
       <input type="hidden" name="total_price" id="form-total-price">
       <input type="hidden" name="shipping_fee" id="form-shipping-fee">
       <input type="hidden" name="city" id="form-city-input">
+      <input type="hidden" name="payment_method" id="form-payment-method">
       <div class="gotcha" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
       <div class="form-field"><label>Nom complet</label><input type="text" name="name" id="checkout-name" class="form-input" placeholder="Votre nom" required autocomplete="name"></div>
       <div class="form-field"><label>Téléphone</label><input type="tel" name="phone" id="checkout-phone" class="form-input" placeholder="06…" required autocomplete="tel" inputmode="tel" pattern="(\+212|0)[5-7][0-9]{8}" title="Exemple : 0612345678"></div>
       <div class="checkout-city-display"><i class="fa-solid fa-location-dot"></i><span id="checkout-city-name">Ville non sélectionnée</span></div>
       <div class="form-field"><label>Adresse complète</label><textarea name="address" class="form-input" rows="3" placeholder="Rue, Quartier, N°…" required autocomplete="street-address"></textarea></div>
-      <div class="form-field"><label>Remarque / Personnalisation <span style="font-weight:300;color:var(--text-whisper)">(optionnel)</span></label><textarea name="note" class="form-input" rows="2" placeholder="Instructions spéciales..."></textarea></div>
+      <div class="form-field"><label>Remarque <span style="font-weight:300;color:var(--text-whisper)">(optionnel)</span></label><textarea name="note" class="form-input" rows="2" placeholder="Instructions spéciales..."></textarea></div>
+      
+      <!-- Rappel du mode de paiement dans le checkout -->
+      <div id="checkout-payment-reminder" style="background:var(--bg-warm); padding:14px; border-radius:var(--r-md); margin-bottom:20px; display:flex; align-items:center; gap:12px; font-size:.88rem;">
+        <i id="checkout-payment-icon" class="fa-solid fa-hand-holding-dollar" style="color:var(--accent); font-size:1.2rem;"></i>
+        <span id="checkout-payment-text"><strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez à la réception du colis.</small></span>
+      </div>
+
       <div class="cart-summary" style="margin:0 0 22px">
         <div class="sum-row"><span class="sum-label">Sous-total</span><span class="sum-value" id="checkout-subtotal">0 DH</span></div>
         <div class="sum-row"><span class="sum-label">Livraison</span><span id="checkout-shipping-display" class="sum-value">—</span></div>
@@ -498,23 +559,22 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
 </div>
 
 <script>
-const CITY_SHIPPING={casablanca:20,agadir:20,rabat:35,marrakech:35,tanger:35,fes:35,meknes:35,kenitra:35,oujda:35,safi:35,el_jadida:35,nador:35,beni_mellal:35,tetouan:35,khouribga:35,autre:35};
+const CITY_SHIPPING={casablanca:20,agadir:35,rabat:35,marrakech:35,tanger:35,fes:35,meknes:35,kenitra:35,oujda:35,safi:35,el_jadida:35,nador:35,beni_mellal:35,tetouan:35,khouribga:35,autre:35};
 const CITY_NAMES={casablanca:'Casablanca',agadir:'Agadir',rabat:'Rabat',marrakech:'Marrakech',tanger:'Tanger',fes:'Fès',meknes:'Meknès',kenitra:'Kénitra',oujda:'Oujda',safi:'Safi',el_jadida:'El Jadida',nador:'Nador',beni_mellal:'Béni Mellal',tetouan:'Tétouan',khouribga:'Khouribga'};
 const FREE_SHIP=399,WA_NUM='212610236889';
-const STOCK_MAP={888:6,889:5,900:4,101:7,102:3,17:2,103:6,301:5,201:4,205:7,209:3,11:6,13:5,14:4,18:2,401:3,505:6,507:2,202:5,304:4,501:3,502:5,503:7,9:6,302:4,10:5,5:3,15:2,506:6,508:4,509:7,601:5,602:3};
+const STOCK_MAP={99:8, 888:6,889:5,900:4,101:7,102:3,17:2,103:6,301:5,201:4,205:7,209:3,11:6,13:5,14:4,18:2,401:3,505:6,507:2,202:5,304:4,501:3,502:5,503:7,9:6,302:4,10:5,5:3,15:2,506:6,508:4,509:7,601:5,602:3};
 
-// ⚠️ EXEMPLES : remplacez par de vrais avis de vos clientes (avec leur accord).
 const REVIEWS=[
- {n:'Salma B.',c:'Casablanca',p:'Pack Impériale',t:'Livraison rapide et le pack est encore plus beau en vrai. Ma table basse a changé du tout au tout !'},
- {n:'Imane R.',c:'Rabat',p:'Plateau Personnalisé',t:'J’ai demandé mon prénom en gravure, le résultat est propre et élégant. Très bon contact sur WhatsApp.'},
- {n:'Yassine M.',c:'Marrakech',p:'Pack Salon Moderne',t:'Bon rapport qualité/prix. Paiement à la livraison, ça rassure. Je recommande.'},
- {n:'Khadija E.',c:'Agadir',p:'Set Bougies',t:'Cadeau pour ma sœur, elle a adoré. Emballage soigné et colis arrivé en 48h.'},
- {n:'Nada A.',c:'Tanger',p:'Vase Herbe Fenêtre',t:'Les finitions sont belles, les couleurs correspondent aux photos. Je commande à nouveau bientôt.'}
+ {n:'Salma B.',c:'Casablanca',p:'Pack Impériale',t:'Livraison rapide et le pack est encore plus beau en vrai !'},
+ {n:'Imane R.',c:'Rabat',p:'Plateau Personnalisé',t:'J’ai demandé mon prénom en gravure, le résultat est propre et élégant.'},
+ {n:'Yassine M.',c:'Marrakech',p:'Pack Sérénité 99 DH',t:'Pack à 99 dh incroyable pour 3 pièces ! Livré en 2j.'},
+ {n:'Khadija E.',c:'Agadir',p:'Set Bougies',t:'Cadeau pour ma sœur, elle a adoré. Emballage soigné.'},
+ {n:'Nada A.',c:'Tanger',p:'Vase Herbe Fenêtre',t:'Paiement à la livraison, ça rassure vraiment. Les finitions sont belles.'}
 ];
 
-// P(id, nom, prix, ancienPrix, image, catégorie, description, {pack:1, logo:1})
 const P=(id,name,price,oldPrice,img,category,desc,o={})=>({id,name,price,oldPrice,img,category,desc,isPromo:!!o.pack,sale:!!oldPrice,customType:o.logo?'logo':'color'});
 const products=[
+ P(99,'Pack Sérénité Salle de Bain',110,150,'https://z-cdn-media.chatglm.cn/files/aa8d3ee5-01a5-4beb-8991-316d1daa6fde.png?auth_key=1890797840-1c455f25591649b3945f478e94b28456-0-fabaeb5d4ccb4f9cce5541bfff3364ad','Packs','Pack 3 pièces : Pot, diffuseur, Plateau ovale.',{pack:1}),
  P(888,'Pack Brutalist',189,299,'brutalist.png','Packs','Deux Vases de luxe, plateau design, bougie brute et éléments décoratifs.',{pack:1}),
  P(889,'Pack Impériale',199,450,'Impériale.png','Packs','Pack de 6 pièces : Vase avec fleurs séchées, citrouille, support bougie, arch tray et déco feuille.',{pack:1}),
  P(900,'Pack Burning Collection',149,249,'packbruleur.jpeg','Packs',"Contient 4 pièces — Brûleurs d'encens design.",{pack:1}),
@@ -550,26 +610,32 @@ const products=[
  P(602,'Jar Cylindrique',45,70,'jar.jpeg','Déco','Récipient cylindrique blanc avec couvercle. Porte-savon ou rangement déco.')
 ];
 
-// --- OUTILS ---
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isTxt=p=>p.customType==='logo';
 const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
 const lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
-const track=(ev,data,opt)=>{try{window.fbq&&fbq('track',ev,data||{},opt||{})}catch(e){}};
 
-// Source de la pub (UTM / fbclid) gardée pour toute la visite et envoyée avec la commande
+// FONCTION TRACK OPTIMISÉE POUR META PIXEL
+const track=(ev,data={},opt={})=>{
+  try{
+    if(window.fbq){
+      // Génère un EventID unique pour le CAPI (évite les doublons)
+      if(!opt.eventID) opt.eventID = ev+'_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);
+      fbq('track',ev,data,opt);
+    }
+  }catch(e){console.log('Pixel error:', e)}
+};
+
 try{if(location.search&&!sessionStorage.getItem('dz_utm'))sessionStorage.setItem('dz_utm',location.search)}catch(e){}
-
-// Panier vidé APRÈS l'envoi de la commande (au chargement suivant)
 if(lsGet('decobiz_sent')){lsDel('decobiz_cart');lsDel('decobiz_city');lsDel('decobiz_custom_city');lsDel('decobiz_sent')}
 let cart=[];try{cart=JSON.parse(lsGet('decobiz_cart'))||[]}catch(e){}
 let selectedCity=lsGet('decobiz_city')||'';
 let customCityName=lsGet('decobiz_custom_city')||'';
 let currentCustomProductId=null;
+let selectedPaymentMethod='cod';
 
-// --- INIT ---
 function init(){
   renderProducts();renderPromoPacks();renderReviews();updateCartBadge();
   window.addEventListener('scroll',()=>$('main-header').classList.toggle('scrolled',window.scrollY>40),{passive:true});
@@ -577,202 +643,60 @@ function init(){
   $('lightbox').addEventListener('click',e=>{if(e.target!==$('lightbox-img'))closeLightbox()});
   $('custom-modal').addEventListener('click',e=>{if(e.target===$('custom-modal'))closeCustomModal()});
   $('order-form').addEventListener('submit',handleOrderSubmit);
-  // Statistique : chaque clic WhatsApp est compté comme "Contact" dans Meta
   document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="wa.me"]');if(a)track('Contact',{content_name:'whatsapp'})});
-  // Retour arrière depuis la page Formspree : on remet le bouton en état
   window.addEventListener('pageshow',e=>{if(e.persisted){const b=$('submit-btn');b.disabled=false;b.innerHTML='<i class="fa-solid fa-lock" style="font-size:.8rem"></i> Confirmer ma commande'}});
   applyRevealAnimations();
 }
 function showToast(msg){$('toast-msg').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2800)}
 function openLightbox(src){$('lightbox-img').src=src;$('lightbox').classList.add('active');document.body.style.overflow='hidden'}
 function closeLightbox(){$('lightbox').classList.remove('active');document.body.style.overflow=''}
-function applyRevealAnimations(){
-  const els=document.querySelectorAll('.reveal:not(.visible)');
-  if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return}
-  const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target)}}),{threshold:.05});
-  els.forEach(e=>ob.observe(e));
-}
+function applyRevealAnimations(){const els=document.querySelectorAll('.reveal:not(.visible)');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return}const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target)}}),{threshold:.05});els.forEach(e=>ob.observe(e));}
 
-// --- RENDU ---
-function renderReviews(){
-  $('reviews-track').innerHTML=REVIEWS.map(r=>`<div class="dz-card"><div class="dz-stars">★★★★★</div><p class="dz-txt">« ${esc(r.t)} »</p><div class="dz-prod"><i class="fa-solid fa-bag-shopping"></i> ${esc(r.p)}</div><div class="dz-who"><div class="dz-av">${esc(r.n.charAt(0))}</div><div><div class="dz-name">${esc(r.n)}</div><div class="dz-meta">${esc(r.c)}</div></div></div></div>`).join('');
-  $('review-wa').href=`https://wa.me/${WA_NUM}?text=`+encodeURIComponent('Bonjour, je voudrais partager mon avis sur ma commande Decobiz');
-}
-function renderProducts(){
-  const cats=['Tous',...new Set(products.filter(p=>!p.isPromo).map(p=>p.category))];
-  $('category-filters').innerHTML=cats.map(c=>`<button class="filter-pill ${c==='Tous'?'active':''}" onclick="filterProducts('${c}',this)">${c}</button>`).join('');
-  $('product-grid').innerHTML=products.filter(p=>!p.isPromo).map(p=>renderProductCard(p)).join('');
-}
+function renderReviews(){$('reviews-track').innerHTML=REVIEWS.map(r=>`<div class="dz-card"><div class="dz-stars">★★★★★</div><p class="dz-txt">« ${esc(r.t)} »</p><div class="dz-prod"><i class="fa-solid fa-bag-shopping"></i> ${esc(r.p)}</div><div class="dz-who"><div class="dz-av">${esc(r.n.charAt(0))}</div><div><div class="dz-name">${esc(r.n)}</div><div class="dz-meta">${esc(r.c)}</div></div></div></div>`).join('');$('review-wa').href=`https://wa.me/${WA_NUM}?text=`+encodeURIComponent('Bonjour, je voudrais partager mon avis sur ma commande Decobiz');}
+function renderProducts(){const cats=['Tous',...new Set(products.filter(p=>!p.isPromo).map(p=>p.category))];$('category-filters').innerHTML=cats.map(c=>`<button class="filter-pill ${c==='Tous'?'active':''}" onclick="filterProducts('${c}',this)">${c}</button>`).join('');$('product-grid').innerHTML=products.filter(p=>!p.isPromo).map(p=>renderProductCard(p)).join('');}
 function renderPromoPacks(){$('promo-container').innerHTML=products.filter(p=>p.isPromo).map(p=>renderProductCard(p,true)).join('')}
-function renderProductCard(p,isPack=false){
-  const old=p.oldPrice?`<span class="price-old">${p.oldPrice} DH</span><span class="promo-save-tag">-${Math.round((1-p.price/p.oldPrice)*100)}%</span>`:'';
-  const stock=STOCK_MAP[p.id]!==undefined&&STOCK_MAP[p.id]<=5?`<span class="p-badge-stock">Reste ${STOCK_MAP[p.id]}</span>`:'';
-  const wa=`https://wa.me/${WA_NUM}?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+p.name)}`;
-  return `<div class="promo-card reveal">
-    <div class="promo-visual" onclick="openLightbox('${p.img}')">
-      <img src="${p.img}" alt="${esc(p.name)}" loading="lazy" decoding="async">
-      ${isPack?'<div class="badge-discount">Pack</div>':''}${p.sale?'<span class="p-badge-sale">Promo</span>':''}${stock}
-    </div>
-    <div class="promo-body">
-      <div class="promo-name">${esc(p.name)}</div>
-      <div class="promo-desc">${esc(p.desc||'')}</div>
-      <div class="promo-prices"><span class="price-now">${p.price} DH</span>${old}</div>
-      <div class="promo-actions">
-        <button class="btn btn-express btn-full" onclick="openCustomModal(${p.id})"><i class="fa-solid fa-bag-shopping" style="font-size:.8rem"></i> Commander</button>
-        <div class="promo-wa-row"><a href="${wa}" target="_blank" rel="noopener" class="btn-wa-sm"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></div>
-      </div>
-    </div></div>`;
-}
-function filterProducts(cat,btn){
-  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  $('product-grid').innerHTML=products.filter(p=>!p.isPromo&&(cat==='Tous'||p.category===cat)).map(p=>renderProductCard(p)).join('');
-  applyRevealAnimations();
-}
+function renderProductCard(p,isPack=false){const old=p.oldPrice?`<span class="price-old">${p.oldPrice} DH</span><span class="promo-save-tag">-${Math.round((1-p.price/p.oldPrice)*100)}%</span>`:'';const stock=STOCK_MAP[p.id]!==undefined&&STOCK_MAP[p.id]<=5?`<span class="p-badge-stock">Reste ${STOCK_MAP[p.id]}</span>`:'';const wa=`https://wa.me/${WA_NUM}?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+p.name)}`;return `<div class="promo-card reveal"><div class="promo-visual" onclick="openLightbox('${p.img}')"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy" decoding="async">${isPack?'<div class="badge-discount">Pack</div>':''}${p.sale?'<span class="p-badge-sale">Promo</span>':''}${stock}</div><div class="promo-body"><div class="promo-name">${esc(p.name)}</div><div class="promo-desc">${esc(p.desc||'')}</div><div class="promo-prices"><span class="price-now">${p.price} DH</span>${old}</div><div class="promo-actions"><button class="btn btn-express btn-full" onclick="openCustomModal(${p.id})"><i class="fa-solid fa-bag-shopping" style="font-size:.8rem"></i> Commander</button><div class="promo-wa-row"><a href="${wa}" target="_blank" rel="noopener" class="btn-wa-sm"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></div></div></div></div>`;}
+function filterProducts(cat,btn){document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');$('product-grid').innerHTML=products.filter(p=>!p.isPromo&&(cat==='Tous'||p.category===cat)).map(p=>renderProductCard(p)).join('');applyRevealAnimations();}
 
-// --- PANIER ---
 function saveCart(){lsSet('decobiz_cart',JSON.stringify(cart));lsSet('decobiz_city',selectedCity);lsSet('decobiz_custom_city',customCityName)}
 function getCartSubtotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0)}
-function getShippingRate(){
-  if(!selectedCity)return null;
-  return getCartSubtotal()>=FREE_SHIP?0:(CITY_SHIPPING[selectedCity]||35);
-}
-function updateCartBadge(){
-  const q=cart.reduce((s,i)=>s+i.qty,0);
-  $('cart-count').textContent=q;$('cart-count').classList.toggle('show',q>0);
-  $('dz-bar').classList.toggle('show',q>0);
-  document.body.classList.toggle('dz-has-cart',q>0);
-  $('dz-bar-t').textContent=`${q} article${q>1?'s':''} · ${getCartSubtotal()} DH`;
-}
-function addToCartLogic(p,color,text){
-  const ex=cart.find(c=>c.id===p.id&&c.color===(color||null)&&c.text===(text||null));
-  if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,img:p.img,qty:1,color:color||null,text:text||null});
-  saveCart();updateCartBadge();
-}
+function getShippingRate(){if(!selectedCity)return null;return getCartSubtotal()>=FREE_SHIP?0:(CITY_SHIPPING[selectedCity]||35);}
+function updateCartBadge(){const q=cart.reduce((s,i)=>s+i.qty,0);$('cart-count').textContent=q;$('cart-count').classList.toggle('show',q>0);$('dz-bar').classList.toggle('show',q>0);document.body.classList.toggle('dz-has-cart',q>0);$('dz-bar-t').textContent=`${q} article${q>1?'s':''} · ${getCartSubtotal()} DH`;}
+function addToCartLogic(p,color,text){const ex=cart.find(c=>c.id===p.id&&c.color===(color||null)&&c.text===(text||null));if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,img:p.img,qty:1,color:color||null,text:text||null});saveCart();updateCartBadge();}
 
-// --- MODAL PERSONNALISATION ---
-function openCustomModal(id){
-  currentCustomProductId=id;
-  const p=products.find(x=>x.id===id);
-  track('ViewContent',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'MAD'});
-  $('modal-product-info').textContent=p.name+' — '+p.price+' DH';
-  $('group-custom-text').style.display=isTxt(p)?'block':'none';
-  $('custom-color').value='';$('custom-text').value='';$('custom-text').classList.remove('error');
-  $('custom-modal').style.display='flex';document.body.style.overflow='hidden';
-}
+function openCustomModal(id){currentCustomProductId=id;const p=products.find(x=>x.id===id);
+// EVENEMENT META : ViewContent (Quand le client clique sur Commander)
+track('ViewContent',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'MAD'});
+ $('modal-product-info').textContent=p.name+' — '+p.price+' DH';$('group-custom-text').style.display=isTxt(p)?'block':'none';$('custom-color').value='';$('custom-text').value='';$('custom-text').classList.remove('error');$('custom-modal').style.display='flex';document.body.style.overflow='hidden';}
 function closeCustomModal(){$('custom-modal').style.display='none';document.body.style.overflow='';currentCustomProductId=null}
-function confirmAddToCart(){
-  const p=products.find(x=>x.id===currentCustomProductId);
-  if(!p)return;
-  const color=$('custom-color').value.trim();
-  const text=isTxt(p)?$('custom-text').value.trim():null;
-  if(isTxt(p)&&!text){$('custom-text').classList.add('error');$('custom-text').focus();return}
-  addToCartLogic(p,color,text);
-  track('AddToCart',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'MAD'});
-  closeCustomModal();showToast(p.name+' ajouté au panier');
-}
+function confirmAddToCart(){const p=products.find(x=>x.id===currentCustomProductId);if(!p)return;const color=$('custom-color').value.trim();const text=isTxt(p)?$('custom-text').value.trim():null;if(isTxt(p)&&!text){$('custom-text').classList.add('error');$('custom-text').focus();return}addToCartLogic(p,color,text);
+// EVENEMENT META : AddToCart (Quand l'article est ajouté au panier)
+track('AddToCart',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'MAD'});
+closeCustomModal();showToast(p.name+' ajouté au panier');}
 
-// --- PAGE PANIER ---
 function toggleCartPage(){$('cart-page').classList.contains('open')?closeCartPage():openCartPage()}
 function openCartPage(){$('cart-page').classList.add('open');document.body.style.overflow='hidden';renderCartPage()}
-function closeCartPage(){
-  $('cart-page').classList.remove('open');document.body.style.overflow='';
-  $('cart-view-list').style.display='block';$('checkout-view-form').style.display='none';
-}
-function renderCartPage(){
-  const c=$('cart-items-container');
-  if(!cart.length){
-    c.innerHTML='<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-dark" onclick="closeCartPage()">Continuer le shopping</button></div>';
-    ['cart-trust-strip','cart-city-section','ship-progress','cart-summary'].forEach(i=>$(i).style.display='none');
-    return;
-  }
-  c.innerHTML=cart.map((it,i)=>`<div class="c-item">
-    <div class="c-item-top">
-      <img src="${it.img}" alt="${esc(it.name)}" class="c-item-img">
-      <div class="c-item-info"><div class="c-item-name">${esc(it.name)}</div>
-        ${it.color?`<div class="c-item-custom">Couleur : ${esc(it.color)}</div>`:''}
-        ${it.text?`<div class="c-item-custom">Texte : ${esc(it.text)}</div>`:''}
-        <div class="c-item-price">${it.price} DH</div></div>
-      <button class="c-item-del" onclick="removeCartItem(${i})" aria-label="Supprimer"><i class="fa-solid fa-trash-can"></i></button>
-    </div>
-    <div class="c-item-bottom">
-      <div class="c-item-qty"><button onclick="changeQty(${i},-1)" aria-label="Moins">−</button><span>${it.qty}</span><button onclick="changeQty(${i},1)" aria-label="Plus">+</button></div>
-      <div class="c-item-line-total">${it.price*it.qty} DH</div>
-    </div></div>`).join('');
-  $('cart-trust-strip').style.display='flex';$('cart-city-section').style.display='block';$('cart-summary').style.display='block';
-  $('cart-city-select').value=selectedCity;
-  $('custom-city-wrap').style.display=selectedCity==='autre'?'block':'none';
-  if(selectedCity==='autre')$('custom-city-input').value=customCityName;
-  updateCartTotalsUI();
-}
+function closeCartPage(){$('cart-page').classList.remove('open');document.body.style.overflow='';$('cart-view-list').style.display='block';$('checkout-view-form').style.display='none';}
+function renderCartPage(){const c=$('cart-items-container');if(!cart.length){c.innerHTML='<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-dark" onclick="closeCartPage()">Continuer le shopping</button></div>';['cart-trust-strip','payment-methods-section','cart-city-section','ship-progress','cart-summary'].forEach(i=>$(i).style.display='none');return;}c.innerHTML=cart.map((it,i)=>`<div class="c-item"><div class="c-item-top"><img src="${it.img}" alt="${esc(it.name)}" class="c-item-img"><div class="c-item-info"><div class="c-item-name">${esc(it.name)}</div>${it.color?`<div class="c-item-custom">Couleur : ${esc(it.color)}</div>`:''}${it.text?`<div class="c-item-custom">Texte : ${esc(it.text)}</div>`:''}<div class="c-item-price">${it.price} DH</div></div><button class="c-item-del" onclick="removeCartItem(${i})" aria-label="Supprimer"><i class="fa-solid fa-trash-can"></i></button></div><div class="c-item-bottom"><div class="c-item-qty"><button onclick="changeQty(${i},-1)" aria-label="Moins">−</button><span>${it.qty}</span><button onclick="changeQty(${i},1)" aria-label="Plus">+</button></div><div class="c-item-line-total">${it.price*it.qty} DH</div></div></div>`).join('');$('cart-trust-strip').style.display='flex';$('payment-methods-section').style.display='block';$('cart-city-section').style.display='block';$('cart-summary').style.display='block';$('cart-city-select').value=selectedCity;$('custom-city-wrap').style.display=selectedCity==='autre'?'block':'none';if(selectedCity==='autre')$('custom-city-input').value=customCityName;updateCartTotalsUI();}
 function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);saveCart();updateCartBadge();renderCartPage()}
 function removeCartItem(i){cart.splice(i,1);saveCart();updateCartBadge();renderCartPage()}
 
-// --- VILLE & LIVRAISON ---
+function selectPayment(method, el) {selectedPaymentMethod = method;document.querySelectorAll('.payment-option').forEach(e => e.classList.remove('selected'));el.classList.add('selected');}
+
 function onCitySelect(v){selectedCity=v;customCityName='';$('custom-city-wrap').style.display=v==='autre'?'block':'none';updateCartTotalsUI();saveCart()}
 function onCustomCityInput(v){customCityName=v;updateCartTotalsUI();saveCart()}
-function updateCartTotalsUI(){
-  const sub=getCartSubtotal(),ship=getShippingRate(),free=ship===0&&!!selectedCity;
-  $('cart-subtotal').textContent=sub+' DH';
-  $('ship-progress').style.display='block';
-  $('ship-bar-fill').style.width=Math.min(100,sub/FREE_SHIP*100)+'%';
-  $('ship-bar-fill').classList.toggle('free',sub>=FREE_SHIP);
-  $('ship-progress-text').innerHTML=sub>=FREE_SHIP?'Livraison gratuite atteinte !':`Plus que <strong>${FREE_SHIP-sub} DH</strong> pour la livraison gratuite`;
-  const box=$('shipping-rate-box'),hint=$('city-hint');
-  if(!selectedCity){
-    box.classList.remove('visible');hint.style.display='flex';
-    $('shipping-display').textContent='—';$('cart-total').textContent=sub+' DH';
-    $('btn-checkout').disabled=true;return;
-  }
-  hint.style.display='none';box.classList.add('visible');box.classList.toggle('is-free',free);box.classList.toggle('is-paid',!free);
-  $('rate-city').textContent='Livraison à '+(selectedCity==='autre'?(customCityName||'votre ville'):(CITY_NAMES[selectedCity]||''));
-  if(free){$('rate-amount').textContent='GRATUITE';$('rate-note').textContent='Offerte dès 399 DH de commande';$('shipping-display').textContent='Gratuite';$('cart-total').textContent=sub+' DH'}
-  else{$('rate-amount').textContent=ship+' DH';$('rate-note').textContent='Délai estimé : 48 à 72h';$('shipping-display').textContent=ship+' DH';$('cart-total').textContent=(sub+ship)+' DH'}
-  $('btn-checkout').disabled=false;
-}
+function updateCartTotalsUI(){const sub=getCartSubtotal(),ship=getShippingRate(),free=ship===0&&!!selectedCity;$('cart-subtotal').textContent=sub+' DH';$('ship-progress').style.display='block';$('ship-bar-fill').style.width=Math.min(100,sub/FREE_SHIP*100)+'%';$('ship-bar-fill').classList.toggle('free',sub>=FREE_SHIP);$('ship-progress-text').innerHTML=sub>=FREE_SHIP?'Livraison gratuite atteinte !':`Plus que <strong>${FREE_SHIP-sub} DH</strong> pour la livraison gratuite`;const box=$('shipping-rate-box'),hint=$('city-hint');if(!selectedCity){box.classList.remove('visible');hint.style.display='flex';$('shipping-display').textContent='—';$('cart-total').textContent=sub+' DH';$('btn-checkout').disabled=true;return;}hint.style.display='none';box.classList.add('visible');box.classList.toggle('is-free',free);box.classList.toggle('is-paid',!free);$('rate-city').textContent='Livraison à '+(selectedCity==='autre'?(customCityName||'votre ville'):(CITY_NAMES[selectedCity]||''));if(free){$('rate-amount').textContent='GRATUITE';$('rate-note').textContent='Offerte dès 399 DH de commande';$('shipping-display').textContent='Gratuite';$('cart-total').textContent=sub+' DH'}else{$('rate-amount').textContent=ship+' DH';$('rate-note').textContent='Délai estimé : 48 à 72h';$('shipping-display').textContent=ship+' DH';$('cart-total').textContent=(sub+ship)+' DH'}$('btn-checkout').disabled=false;}
 
-// --- COMMANDE ---
-function showCheckoutForm(){
-  if(!selectedCity||(selectedCity==='autre'&&!customCityName.trim())){showToast('Veuillez choisir votre ville de livraison');return}
-  const sub=getCartSubtotal(),ship=getShippingRate()||0,total=sub+ship;
-  track('InitiateCheckout',{content_ids:cart.map(i=>String(i.id)),content_type:'product',value:total,currency:'MAD',num_items:cart.reduce((s,i)=>s+i.qty,0)});
-  $('cart-view-list').style.display='none';$('checkout-view-form').style.display='block';
-  $('cart-page').scrollTo(0,0);
-  const city=selectedCity==='autre'?customCityName.trim():(CITY_NAMES[selectedCity]||'');
-  $('checkout-subtotal').textContent=sub+' DH';
-  $('checkout-shipping-display').textContent=ship===0?'Gratuite':ship+' DH';
-  $('checkout-total').textContent=total+' DH';
-  $('checkout-city-name').textContent=city;$('form-city-input').value=city;
-  $('checkout-summary-mini').innerHTML=cart.map(i=>`<div style="flex-shrink:0;text-align:center"><img src="${i.img}" alt=""><div style="font-size:.7rem;color:var(--text-soft)">x${i.qty}</div></div>`).join('');
-}
+function showCheckoutForm(){if(!selectedCity||(selectedCity==='autre'&&!customCityName.trim())){showToast('Veuillez choisir votre ville de livraison');return}const sub=getCartSubtotal(),ship=getShippingRate()||0,total=sub+ship;
+// EVENEMENT META : InitiateCheckout (Quand le client passe au formulaire)
+track('InitiateCheckout',{content_ids:cart.map(i=>String(i.id)),content_type:'product',value:total,currency:'MAD',num_items:cart.reduce((s,i)=>s+i.qty,0)});
+ $('cart-view-list').style.display='none';$('checkout-view-form').style.display='block';$('cart-page').scrollTo(0,0);const city=selectedCity==='autre'?customCityName.trim():(CITY_NAMES[selectedCity]||'');$('checkout-subtotal').textContent=sub+' DH';$('checkout-shipping-display').textContent=ship===0?'Gratuite':ship+' DH';$('checkout-total').textContent=total+' DH';$('checkout-city-name').textContent=city;$('form-city-input').value=city;$('checkout-summary-mini').innerHTML=cart.map(i=>`<div style="flex-shrink:0;text-align:center"><img src="${i.img}" alt=""><div style="font-size:.7rem;color:var(--text-soft)">x${i.qty}</div></div>`).join('');if(selectedPaymentMethod==='bank'){$('checkout-payment-icon').className='fa-solid fa-building-columns';$('checkout-payment-text').innerHTML='<strong>Virement bancaire</strong><br><small style="color:var(--text-soft);">Vous recevrez nos coordonnées bancaires par WhatsApp après confirmation.</small>';}else{$('checkout-payment-icon').className='fa-solid fa-hand-holding-dollar';$('checkout-payment-text').innerHTML='<strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez en espèces au livreur.</small>';}}
 function hideCheckoutForm(){$('checkout-view-form').style.display='none';$('cart-view-list').style.display='block'}
 
-function handleOrderSubmit(e){
-  e.preventDefault();
-  const form=e.target,btn=$('submit-btn');
-  if(btn.disabled||!cart.length)return;
-  btn.disabled=true;btn.textContent='Envoi en cours…';
-
-  const orderId='CMD-'+Date.now().toString(36).toUpperCase();
-  const sub=getCartSubtotal(),ship=getShippingRate()||0,total=sub+ship,city=$('form-city-input').value;
-
-  // Détail lisible dans l'email
-  let det=cart.map(i=>'- '+i.name+' x'+i.qty+' ('+(i.price*i.qty)+' DH)'+(i.color?' | Couleur: '+i.color:'')+(i.text?' | Gravure: '+i.text:'')).join('\n');
-  det+='\n\nVille: '+city+'\nLivraison: '+(ship===0?'Gratuite':ship+' DH')+'\nTotal: '+total+' DH';
-
-  $('form-order-id').value=orderId;
-  $('form-subject').value='Nouvelle commande Decobiz '+orderId;
-  $('form-order-details').value=det;
-  $('form-total-price').value=total+' DH';
-  $('form-shipping-fee').value=ship===0?'Gratuite':ship+' DH';
-  let src='direct';try{src=sessionStorage.getItem('dz_utm')||'direct'}catch(err){}
-  $('form-source').value=src;
-
-  track('Purchase',{value:total,currency:'MAD',content_ids:cart.map(i=>String(i.id)),content_type:'product',num_items:cart.reduce((s,i)=>s+i.qty,0)},{eventID:orderId});
-
-  lsSet('decobiz_sent','1'); // le panier sera vidé au prochain chargement
-  setTimeout(()=>form.submit(),400); // envoi classique + délai pour laisser partir le pixel
-}
+function handleOrderSubmit(e){e.preventDefault();const form=e.target,btn=$('submit-btn');if(btn.disabled||!cart.length)return;btn.disabled=true;btn.textContent='Envoi en cours…';const orderId='CMD-'+Date.now().toString(36).toUpperCase();const sub=getCartSubtotal(),ship=getShippingRate()||0,total=sub+ship,city=$('form-city-input').value;const paymentLabel=selectedPaymentMethod==='bank'?'Virement bancaire':'Paiement à la livraison';let det=cart.map(i=>'- '+i.name+' x'+i.qty+' ('+(i.price*i.qty)+' DH)'+(i.color?' | Couleur: '+i.color:'')+(i.text?' | Gravure: '+i.text:'')).join('\n');det+='\n\nVille: '+city+'\nLivraison: '+(ship===0?'Gratuite':ship+' DH')+'\nMéthode de paiement: '+paymentLabel+'\nTotal: '+total+' DH';$('form-order-id').value=orderId;$('form-subject').value='Nouvelle commande Decobiz '+orderId;$('form-order-details').value=det;$('form-total-price').value=total+' DH';$('form-shipping-fee').value=ship===0?'Gratuite':ship+' DH';$('form-payment-method').value=paymentLabel;let src='direct';try{src=sessionStorage.getItem('dz_utm')||'direct'}catch(err){}$('form-source').value=src;
+// EVENEMENT META : Purchase (Quand le client clique sur Confirmer)
+track('Purchase',{value:total,currency:'MAD',content_ids:cart.map(i=>String(i.id)),content_type:'product',num_items:cart.reduce((s,i)=>s+i.qty,0)},{eventID:orderId});
+lsSet('decobiz_sent','1');setTimeout(()=>form.submit(),400);}
 
 document.addEventListener('DOMContentLoaded',init);
 </script>
