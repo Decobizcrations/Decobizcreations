@@ -11,16 +11,11 @@
 <meta property="og:image" content="https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d">
 <meta property="og:type" content="website">
 
-<!-- META PIXEL OPTIMISÉ -->
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.defer=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
 fbq('init', '1066915886136248');
-
-// On envoie uniquement le PageView au chargement. 
-// Le ViewContent sera envoyé dynamiquement quand on cliquera sur "Commander"
 fbq('track', 'PageView');
 </script>
 <noscript>
@@ -461,18 +456,12 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
       <div class="payment-options">
         <div class="payment-option selected" onclick="selectPayment('cod', this)">
           <div class="payment-radio"></div>
-          <div class="payment-label">
-            <strong>Paiement à la livraison</strong>
-            <small>Payez en espèces au livreur</small>
-          </div>
+          <div class="payment-label"><strong>Paiement à la livraison</strong><small>Payez en espèces au livreur</small></div>
           <div class="payment-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
         </div>
         <div class="payment-option" onclick="selectPayment('bank', this)">
           <div class="payment-radio"></div>
-          <div class="payment-label">
-            <strong>Virement bancaire</strong>
-            <small>Recevez nos RIB par WhatsApp après confirmation</small>
-          </div>
+          <div class="payment-label"><strong>Virement bancaire</strong><small>Recevez nos RIB par WhatsApp après confirmation</small></div>
           <div class="payment-icon"><i class="fa-solid fa-building-columns"></i></div>
         </div>
       </div>
@@ -486,21 +475,12 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
           <option value="casablanca">Casablanca</option><option value="agadir">Agadir</option><option value="rabat">Rabat</option><option value="marrakech">Marrakech</option><option value="tanger">Tanger</option><option value="fes">Fès</option><option value="meknes">Meknès</option><option value="kenitra">Kénitra</option><option value="oujda">Oujda</option><option value="safi">Safi</option><option value="el_jadida">El Jadida</option><option value="nador">Nador</option><option value="beni_mellal">Béni Mellal</option><option value="tetouan">Tétouan</option><option value="khouribga">Khouribga</option><option value="autre">Autre ville</option>
         </select>
       </div>
-      <div id="custom-city-wrap" style="display:none;margin-top:12px">
-        <div class="field" style="margin-bottom:0"><label>Précisez votre ville <span class="req">*</span></label><input type="text" id="custom-city-input" class="form-input" placeholder="Ex: Khémisset, Taroudant…" autocomplete="address-level2" oninput="onCustomCityInput(this.value)"></div>
-      </div>
+      <div id="custom-city-wrap" style="display:none;margin-top:12px"><div class="field" style="margin-bottom:0"><label>Précisez votre ville <span class="req">*</span></label><input type="text" id="custom-city-input" class="form-input" placeholder="Ex: Khémisset, Taroudant…" autocomplete="address-level2" oninput="onCustomCityInput(this.value)"></div></div>
       <div id="city-hint" class="city-hint-msg" style="display:none"><i class="fa-solid fa-hand-point-up"></i> <span>Sélectionnez votre ville pour calculer la livraison</span></div>
-      <div id="shipping-rate-box" class="shipping-rate-box">
-        <div class="shipping-rate-header"><div class="shipping-rate-icon"><i class="fa-solid fa-truck"></i></div><div class="shipping-rate-city" id="rate-city"></div></div>
-        <div class="shipping-rate-amount" id="rate-amount"></div>
-        <div class="shipping-rate-note" id="rate-note"></div>
-      </div>
+      <div id="shipping-rate-box" class="shipping-rate-box"><div class="shipping-rate-header"><div class="shipping-rate-icon"><i class="fa-solid fa-truck"></i></div><div class="shipping-rate-city" id="rate-city"></div></div><div class="shipping-rate-amount" id="rate-amount"></div><div class="shipping-rate-note" id="rate-note"></div></div>
     </div>
 
-    <div id="ship-progress" class="ship-progress-wrap" style="display:none">
-      <div class="ship-progress-text" id="ship-progress-text"></div>
-      <div class="ship-bar"><div class="ship-bar-fill" id="ship-bar-fill"></div></div>
-    </div>
+    <div id="ship-progress" class="ship-progress-wrap" style="display:none"><div class="ship-progress-text" id="ship-progress-text"></div><div class="ship-bar"><div class="ship-bar-fill" id="ship-bar-fill"></div></div></div>
 
     <div class="cart-summary" id="cart-summary" style="display:none">
       <div class="sum-row"><span class="sum-label">Sous-total</span><span class="sum-value" id="cart-subtotal">0 DH</span></div>
@@ -514,36 +494,17 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
     <button class="back-link" onclick="hideCheckoutForm()"><i class="fa-solid fa-arrow-left"></i> Retour au panier</button>
     <h3 class="checkout-title">Finaliser la commande</h3>
     <div id="checkout-summary-mini"></div>
-    <div class="cart-trust-strip" style="margin-bottom:22px">
-      <div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> 100% Sécurisé</div>
-      <div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Expédition 48h-96h</div>
-    </div>
+    <div class="cart-trust-strip" style="margin-bottom:22px"><div class="cart-trust-chip"><i class="fa-solid fa-shield-halved"></i> 100% Sécurisé</div><div class="cart-trust-chip"><i class="fa-solid fa-truck-fast"></i> Expédition 48h-96h</div></div>
     <form id="order-form" action="https://formspree.io/f/xeevpgvy" method="POST">
-      <input type="hidden" name="order_id" id="form-order-id">
-      <input type="hidden" name="_subject" id="form-subject">
-      <input type="hidden" name="source_pub" id="form-source">
-      <input type="hidden" name="order_details" id="form-order-details">
-      <input type="hidden" name="total_price" id="form-total-price">
-      <input type="hidden" name="shipping_fee" id="form-shipping-fee">
-      <input type="hidden" name="city" id="form-city-input">
-      <input type="hidden" name="payment_method" id="form-payment-method">
+      <input type="hidden" name="order_id" id="form-order-id"><input type="hidden" name="_subject" id="form-subject"><input type="hidden" name="source_pub" id="form-source"><input type="hidden" name="order_details" id="form-order-details"><input type="hidden" name="total_price" id="form-total-price"><input type="hidden" name="shipping_fee" id="form-shipping-fee"><input type="hidden" name="city" id="form-city-input"><input type="hidden" name="payment_method" id="form-payment-method">
       <div class="gotcha" aria-hidden="true"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
       <div class="form-field"><label>Nom complet</label><input type="text" name="name" id="checkout-name" class="form-input" placeholder="Votre nom" required autocomplete="name"></div>
       <div class="form-field"><label>Téléphone</label><input type="tel" name="phone" id="checkout-phone" class="form-input" placeholder="06…" required autocomplete="tel" inputmode="tel" pattern="(\+212|0)[5-7][0-9]{8}" title="Exemple : 0612345678"></div>
       <div class="checkout-city-display"><i class="fa-solid fa-location-dot"></i><span id="checkout-city-name">Ville non sélectionnée</span></div>
       <div class="form-field"><label>Adresse complète</label><textarea name="address" class="form-input" rows="3" placeholder="Rue, Quartier, N°…" required autocomplete="street-address"></textarea></div>
       <div class="form-field"><label>Remarque <span style="font-weight:300;color:var(--text-whisper)">(optionnel)</span></label><textarea name="note" class="form-input" rows="2" placeholder="Instructions spéciales..."></textarea></div>
-      
-      <div id="checkout-payment-reminder" style="background:var(--bg-warm); padding:14px; border-radius:var(--r-md); margin-bottom:20px; display:flex; align-items:center; gap:12px; font-size:.88rem;">
-        <i id="checkout-payment-icon" class="fa-solid fa-hand-holding-dollar" style="color:var(--accent); font-size:1.2rem;"></i>
-        <span id="checkout-payment-text"><strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez à la réception du colis.</small></span>
-      </div>
-
-      <div class="cart-summary" style="margin:0 0 22px">
-        <div class="sum-row"><span class="sum-label">Sous-total</span><span class="sum-value" id="checkout-subtotal">0 DH</span></div>
-        <div class="sum-row"><span class="sum-label">Livraison</span><span id="checkout-shipping-display" class="sum-value">—</span></div>
-        <div class="sum-row total"><span class="sum-label">Total</span><span class="sum-value" id="checkout-total">0 DH</span></div>
-      </div>
+      <div id="checkout-payment-reminder" style="background:var(--bg-warm); padding:14px; border-radius:var(--r-md); margin-bottom:20px; display:flex; align-items:center; gap:12px; font-size:.88rem;"><i id="checkout-payment-icon" class="fa-solid fa-hand-holding-dollar" style="color:var(--accent); font-size:1.2rem;"></i><span id="checkout-payment-text"><strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez à la réception du colis.</small></span></div>
+      <div class="cart-summary" style="margin:0 0 22px"><div class="sum-row"><span class="sum-label">Sous-total</span><span class="sum-value" id="checkout-subtotal">0 DH</span></div><div class="sum-row"><span class="sum-label">Livraison</span><span id="checkout-shipping-display" class="sum-value">—</span></div><div class="sum-row total"><span class="sum-label">Total</span><span class="sum-value" id="checkout-total">0 DH</span></div></div>
       <button type="submit" class="btn btn-green btn-full" id="submit-btn"><i class="fa-solid fa-lock" style="font-size:.8rem"></i> Confirmer ma commande</button>
     </form>
   </div>
@@ -553,7 +514,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
 const CITY_SHIPPING={casablanca:20,agadir:35,rabat:35,marrakech:35,tanger:35,fes:35,meknes:35,kenitra:35,oujda:35,safi:35,el_jadida:35,nador:35,beni_mellal:35,tetouan:35,khouribga:35,autre:35};
 const CITY_NAMES={casablanca:'Casablanca',agadir:'Agadir',rabat:'Rabat',marrakech:'Marrakech',tanger:'Tanger',fes:'Fès',meknes:'Meknès',kenitra:'Kénitra',oujda:'Oujda',safi:'Safi',el_jadida:'El Jadida',nador:'Nador',beni_mellal:'Béni Mellal',tetouan:'Tétouan',khouribga:'Khouribga'};
 const FREE_SHIP=399,WA_NUM='212610236889';
-const STOCK_MAP={99:8, 888:6,889:5,900:4,101:7,102:3,17:2,103:6,301:5,201:4,205:7,209:3,11:6,13:5,14:4,18:2,401:3,505:6,507:2,202:5,304:4,501:3,502:5,503:7,9:6,302:4,10:5,5:3,15:2,506:6,508:4,509:7,601:5,602:3};
 
 const REVIEWS=[
  {n:'Salma B.',c:'Casablanca',p:'Pack Impériale',t:'Livraison rapide et le pack est encore plus beau en vrai !'},
@@ -564,6 +524,8 @@ const REVIEWS=[
 ];
 
 const P=(id,name,price,oldPrice,img,category,desc,o={})=>({id,name,price,oldPrice,img,category,desc,isPromo:!!o.pack,sale:!!oldPrice,customType:o.logo?'logo':'color'});
+
+// LISTE COMPLETE DES PRODUITS
 const products=[
  P(99,'Pack Sérénité Salle de Bain',110,150,'https://z-cdn-media.chatglm.cn/files/aa8d3ee5-01a5-4beb-8991-316d1daa6fde.png?auth_key=1890797840-1c455f25591649b3945f478e94b28456-0-fabaeb5d4ccb4f9cce5541bfff3364ad','Packs','Pack 3 pièces : Pot, diffuseur, Plateau ovale.',{pack:1}),
  P(888,'Pack Brutalist',189,299,'brutalist.png','Packs','Deux Vases de luxe, plateau design, bougie brute et éléments décoratifs.',{pack:1}),
@@ -580,7 +542,25 @@ const products=[
  P(11,'Plateau Étoile',29,null,'etoile.jpg','Plateaux',"Plateau en forme d'étoile."),
  P(13,'Plateau Rond 23cm',59,null,'rondla.jpg','Plateaux','Plateau rond 23 centimètres.'),
  P(14,'Plateau Ovale 23cm',55,null,'ovale23.jpeg','Plateaux','Plateau ovale 23 centimètres.'),
- P(18,'Plateau Mariage',115,null,'https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7','Plateaux','Plateau de mariage élégant.')
+ P(18,'Plateau Mariage',115,null,'https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7','Plateaux','Plateau élégant pour cérémonies.'),
+ P(401,'Tray Vogue Édition',89,120,'https://z-cdn-media.chatglm.cn/files/209786d7-b32b-443a-b11e-ff8ebeb01762.jpg?auth_key=1886306162-556267dcc0dc4bb0b59d98d61a3f9b3f-0-b544bea6c2e266a4657af9c4efeaace9','Plateaux','Tray ovale élégant, idéal pour parfums et bijoux.'),
+ P(505,'Vase Herbe Fenêtre',55,null,'https://z-cdn-media.chatglm.cn/files/19638660-0484-4b32-a90e-2ffb99db0230.jpeg?auth_key=1886306162-bdfabdfc1c0b452ebf95f959139f5377-0-a41f0490d54bcc6e3bb8f2261472f153','Vases','Vase blanc avec herbe séchée, livres et clochette dorée sur bois.'),
+ P(507,'Vases Minimalisme Urbain',149,199,'https://z-cdn-media.chatglm.cn/files/992500c1-0185-492c-a865-e1485aca5ca3.jpeg?auth_key=1886306162-749ebff465114b75bc78e4a52318d6f8-0-68559b60d1fcb4ff87cad07c24c522f4','Vases',"Deux vases blancs sculpturaux avec herbe, livres d'art et vue urbaine."),
+ P(202,'Set Par Rose Édition',99,null,'parose.png','Vases','Composition complète pour cuisine.'),
+ P(304,'Ensemble Nature Urbaine',89,120,'croissant.jpeg','Vases','Vase, lune céramique et plante.'),
+ P(501,'Set Bougies',35,110,'https://z-cdn-media.chatglm.cn/files/c914b2b4-8dc2-44e9-9081-aac9896f89a6.jpg?auth_key=1886306162-e23913dfd28b46de829d30c304ef1f34-0-a47d536cf284f3971839970d64cad6fb','Support Bougie','Deux bougeoirs abstraits roses avec bougies longues et composition florale.'),
+ P(502,'Bougies Vagues',39,130,'https://z-cdn-media.chatglm.cn/files/30a2cb0d-dd2c-421d-9c55-c11371c0b99b.jpg?auth_key=1886306162-7b6750c9948d4454b39d48b0d57f4af2-0-7e36ac05743c8c5d0221d5ba94a70cd4','Support Bougie','Trois bougies spiralées sur supports ondulés avec brindilles de baies.'),
+ P(503,'Bougies Spiralées',29,null,'https://z-cdn-media.chatglm.cn/files/65e3214b-10c4-4c9c-a33f-65bca9ba1cae.jpeg?auth_key=1886306162-b15bfdc40dcc4b96b75bfd12d2f256c7-0-b12410e80097b6d0b98183e36bef0660','Support Bougie','Paire de bougies torsadées blanches sur socles céramiques minimalistes.'),
+ P(9,'Set Rose',129,null,'pa.jpeg','Vases','Set décoratif rose.'),
+ P(302,'Collection Rose Poudré',149,180,'rose.jpeg','Déco','Set complet en teintes douces.'),
+ P(10,'Arche Cosy',79,null,'arch.jpg','Plateaux','Arche décorative cosy.'),
+ P(5,'Plateau Bulles',35,null,'boules2.jpeg','Plateaux','Plateau à bulles décoratif.'),
+ P(15,'Collection Lavande',165,null,'lavande.jpeg','Plateaux','Collection décorative lavande.'),
+ P(506,'Deco Feuilles',29,95,'https://z-cdn-media.chatglm.cn/files/9d2e7a07-ffd6-48b5-a3c6-5ef0b95973e1.jpeg?auth_key=1886306162-2c494c4fc820490e82c3e8e81695211f-0-d9cabae5d685532901b7a3ae0e5ba9cf','Déco','Deux coupes feuilles, pommes de pin et guide de voyage sur plateau tacheté.'),
+ P(508,"Citrouille d'Automne",45,55,'https://z-cdn-media.chatglm.cn/files/e14cca17-e56c-4af8-9bea-1d42cb1cb6c9.jpeg?auth_key=1886306162-a8ad4b06c3294919935aa11445a9cb25-0-5879f1d8f2b3aa7ea1edc48c14596b3b','Déco',"Citrouilles artisanales orange avec feuilles d'érable rouges et orangées."),
+ P(509,'Boîte Ondulée',29,null,'https://z-cdn-media.chatglm.cn/files/bfa68e20-bf11-4175-a3e7-284ad43ad1cb.jpg?auth_key=1886306162-7f1960732b9a4cdc8d76786e353de1ee-0-98d6cba71cfb647a26f1801d28c29039','Déco','Boîte cylindrique blanche à couvercle avec poignée sphérique et motif ondulé.'),
+ P(601,'Coquillage Vide-Poche',29,50,'coquille.jpg','Déco','Écrin coquillage blanc pour bijoux et petits trésors. Finition céramique mate.'),
+ P(602,'Jar Cylindaire',45,70,'jar.jpeg','Déco','Récipient cylindrique blanc avec couvercle. Porte-savon ou rangement déco.')
 ];
 
 let cart = [];
@@ -589,25 +569,15 @@ let selectedPayment = 'cod';
 let selectedCity = '';
 let shippingCost = 0;
 
-// --- FONCTIONS MODALES & PANIER --- //
-
 function openCustomModal(productId) {
     currentProduct = products.find(p => p.id === productId);
     if (!currentProduct) return;
-    
     document.getElementById('modal-product-info').textContent = currentProduct.name + ' — ' + currentProduct.price + ' DH';
     document.getElementById('group-custom-text').style.display = currentProduct.customType === 'logo' ? 'block' : 'none';
     document.getElementById('custom-color').value = '';
     document.getElementById('custom-text').value = '';
     document.getElementById('custom-modal').style.display = 'flex';
-
-    // ✅ EVENEMENT FACEBOOK : VUE DE CONTENU (Déclenché quand on clique sur Commander)
-    fbq('track', 'ViewContent', {
-        content_name: currentProduct.name,
-        content_ids: [currentProduct.id],
-        value: currentProduct.price,
-        currency: 'MAD'
-    });
+    fbq('track', 'ViewContent', { content_name: currentProduct.name, content_ids: [currentProduct.id], value: currentProduct.price, currency: 'MAD' });
 }
 
 function closeCustomModal() { document.getElementById('custom-modal').style.display = 'none'; }
@@ -616,186 +586,92 @@ function confirmAddToCart() {
     if (!currentProduct) return;
     const customColor = document.getElementById('custom-color').value.trim();
     const customText = document.getElementById('custom-text').value.trim();
-
-    if (currentProduct.customType === 'logo' && !customText) {
-        document.getElementById('custom-text').classList.add('error');
-        return;
-    }
+    if (currentProduct.customType === 'logo' && !customText) { document.getElementById('custom-text').classList.add('error'); return; }
     document.getElementById('custom-text').classList.remove('error');
-
     const custom = [];
     if (customColor) custom.push('Couleur: ' + customColor);
     if (customText) custom.push('Gravure: ' + customText);
-
-    cart.push({
-        id: currentProduct.id,
-        name: currentProduct.name,
-        price: currentProduct.price,
-        img: currentProduct.img,
-        qty: 1,
-        custom: custom.join(' | ')
-    });
-
-    closeCustomModal();
-    updateCartUI();
-    showToast('Ajouté au panier !');
-
-    // ✅ EVENEMENT FACEBOOK : AJOUT AU PANIER
-    fbq('track', 'AddToCart', {
-        content_name: currentProduct.name,
-        content_ids: [currentProduct.id],
-        value: currentProduct.price,
-        currency: 'MAD'
-    });
+    cart.push({ id: currentProduct.id, name: currentProduct.name, price: currentProduct.price, img: currentProduct.img, qty: 1, custom: custom.join(' | ') });
+    closeCustomModal(); updateCartUI(); showToast('Ajouté au panier !');
+    fbq('track', 'AddToCart', { content_name: currentProduct.name, content_ids: [currentProduct.id], value: currentProduct.price, currency: 'MAD' });
 }
 
 function showCheckoutForm() {
     if (!selectedCity) { showToast('Veuillez sélectionner votre ville'); return; }
     document.getElementById('cart-view-list').style.display = 'none';
     document.getElementById('checkout-view-form').style.display = 'block';
-
     const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
     document.getElementById('checkout-subtotal').textContent = subtotal + ' DH';
     document.getElementById('checkout-shipping-display').textContent = shippingCost + ' DH';
     document.getElementById('checkout-total').textContent = (subtotal + shippingCost) + ' DH';
-
-    // ✅ EVENEMENT FACEBOOK : PAIEMENT INITIE
-    fbq('track', 'InitiateCheckout', {
-        value: subtotal,
-        currency: 'MAD'
-    });
+    fbq('track', 'InitiateCheckout', { value: subtotal, currency: 'MAD' });
 }
 
-function hideCheckoutForm() {
-    document.getElementById('cart-view-list').style.display = 'block';
-    document.getElementById('checkout-view-form').style.display = 'none';
-}
-
-function showToast(msg) {
-    const t = document.getElementById('toast');
-    document.getElementById('toast-msg').textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
-}
-
+function hideCheckoutForm() { document.getElementById('cart-view-list').style.display = 'block'; document.getElementById('checkout-view-form').style.display = 'none'; }
+function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toast-msg').textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 2500); }
 function toggleCartPage() { document.getElementById('cart-page').classList.contains('open') ? closeCartPage() : openCartPage(); }
 function openCartPage() { document.getElementById('cart-page').classList.add('open'); document.body.style.overflow='hidden'; }
 function closeCartPage() { document.getElementById('cart-page').classList.remove('open'); document.body.style.overflow=''; }
 
 function selectPayment(method, el) {
-    selectedPayment = method;
-    document.querySelectorAll('.payment-option').forEach(e => e.classList.remove('selected'));
-    el.classList.add('selected');
-    const icon = document.getElementById('checkout-payment-icon');
-    const text = document.getElementById('checkout-payment-text');
+    selectedPayment = method; document.querySelectorAll('.payment-option').forEach(e => e.classList.remove('selected')); el.classList.add('selected');
+    const icon = document.getElementById('checkout-payment-icon'); const text = document.getElementById('checkout-payment-text');
     if(method === 'cod') { icon.className = 'fa-solid fa-hand-holding-dollar'; text.innerHTML = '<strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez à la réception du colis.</small>'; } 
     else { icon.className = 'fa-solid fa-building-columns'; text.innerHTML = '<strong>Virement bancaire</strong><br><small style="color:var(--text-soft);">Recevez nos RIB par WhatsApp après confirmation.</small>'; }
 }
 
 function onCitySelect(val) {
-    selectedCity = val;
-    document.getElementById('custom-city-wrap').style.display = val === 'autre' ? 'block' : 'none';
+    selectedCity = val; document.getElementById('custom-city-wrap').style.display = val === 'autre' ? 'block' : 'none';
     if (val === 'autre') { document.getElementById('city-hint').style.display = 'flex'; shippingCost = 0; }
     else if (!val) { shippingCost = 0; document.getElementById('city-hint').style.display='none'; }
     else { document.getElementById('city-hint').style.display = 'none'; const sub = cart.reduce((s,i)=>s+i.price*i.qty,0); shippingCost = sub >= FREE_SHIP ? 0 : CITY_SHIPPING[val]; selectedCity = CITY_NAMES[val] || val; }
     updateCartUI();
 }
-
 function onCustomCityInput(val) { if(val.length > 2) { selectedCity = val; const sub = cart.reduce((s,i)=>s+i.price*i.qty,0); shippingCost = sub >= FREE_SHIP ? 0 : 35; updateCartUI(); } }
-
 function removeFromCart(index) { cart.splice(index, 1); if(cart.length === 0) selectedCity=''; updateCartUI(); }
 function changeQty(index, delta) { cart[index].qty += delta; if(cart[index].qty < 1) cart.splice(index, 1); updateCartUI(); }
 
 function updateCartUI() {
-    const badge = document.getElementById('cart-count');
-    const totalQty = cart.reduce((s,i)=>s+i.qty,0);
-    badge.textContent = totalQty; badge.classList.toggle('show', totalQty > 0);
-    const container = document.getElementById('cart-items-container');
-
-    if(cart.length === 0) {
-        container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-accent" onclick="closeCartPage()">Continuer le shopping</button></div>';
-        document.getElementById('cart-summary').style.display = 'none'; document.getElementById('cart-city-section').style.display = 'none'; document.getElementById('payment-methods-section').style.display = 'none'; document.getElementById('cart-trust-strip').style.display = 'none';
-        return;
-    }
-
+    const badge = document.getElementById('cart-count'); const totalQty = cart.reduce((s,i)=>s+i.qty,0); badge.textContent = totalQty; badge.classList.toggle('show', totalQty > 0); const container = document.getElementById('cart-items-container');
+    if(cart.length === 0) { container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-accent" onclick="closeCartPage()">Continuer le shopping</button></div>'; document.getElementById('cart-summary').style.display = 'none'; document.getElementById('cart-city-section').style.display = 'none'; document.getElementById('payment-methods-section').style.display = 'none'; document.getElementById('cart-trust-strip').style.display = 'none'; return; }
     document.getElementById('cart-trust-strip').style.display = 'flex'; document.getElementById('payment-methods-section').style.display = 'block'; document.getElementById('cart-city-section').style.display = 'block'; document.getElementById('cart-summary').style.display = 'block';
-
     container.innerHTML = cart.map((item, idx) => `<div class="c-item"><div class="c-item-top"><img src="${item.img}" class="c-item-img" alt="${item.name}"><div class="c-item-info"><div class="c-item-name">${item.name}</div>${item.custom ? '<div class="c-item-custom">'+item.custom+'</div>' : ''}<div class="c-item-price">${item.price} DH</div></div><button class="c-item-del" onclick="removeFromCart(${idx})"><i class="fa-solid fa-trash"></i></button></div><div class="c-item-bottom"><div class="c-item-qty"><button onclick="changeQty(${idx}, -1)">−</button><span>${item.qty}</span><button onclick="changeQty(${idx}, 1)">+</button></div><div class="c-item-line-total">${item.price * item.qty} DH</div></div></div>`).join('');
-
-    const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
-    document.getElementById('cart-subtotal').textContent = subtotal + ' DH';
-    document.getElementById('shipping-display').textContent = selectedCity ? (shippingCost === 0 ? 'Offerte' : shippingCost + ' DH') : '—';
-    document.getElementById('cart-total').textContent = (subtotal + shippingCost) + ' DH';
+    const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0); document.getElementById('cart-subtotal').textContent = subtotal + ' DH'; document.getElementById('shipping-display').textContent = selectedCity ? (shippingCost === 0 ? 'Offerte' : shippingCost + ' DH') : '—'; document.getElementById('cart-total').textContent = (subtotal + shippingCost) + ' DH';
 }
 
-// ✅ EVENEMENT FACEBOOK : ACHAT (Sur le formulaire)
 document.getElementById('order-form').addEventListener('submit', function(e) {
-    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
-    const total = subtotal + shippingCost;
-
-    fbq('track', 'Purchase', {
-        value: total,
-        currency: 'MAD'
-    });
-    
-    document.getElementById('form-order-id').value = 'DEC-' + Date.now();
-    document.getElementById('form-subject').value = 'Nouvelle commande Decobiz - ' + document.getElementById('checkout-name').value;
-    document.getElementById('form-city-input').value = selectedCity;
-    document.getElementById('form-payment-method').value = selectedPayment;
-    document.getElementById('form-total-price').value = total;
-    document.getElementById('form-shipping-fee').value = shippingCost;
-    document.getElementById('form-order-details').value = cart.map(i => `${i.name} (x${i.qty}) ${i.custom ? '['+i.custom+']' : ''} = ${i.price * i.qty} DH`).join('\n');
+    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0); const total = subtotal + shippingCost;
+    fbq('track', 'Purchase', { value: total, currency: 'MAD' });
+    document.getElementById('form-order-id').value = 'DEC-' + Date.now(); document.getElementById('form-subject').value = 'Nouvelle commande Decobiz - ' + document.getElementById('checkout-name').value; document.getElementById('form-city-input').value = selectedCity; document.getElementById('form-payment-method').value = selectedPayment; document.getElementById('form-total-price').value = total; document.getElementById('form-shipping-fee').value = shippingCost; document.getElementById('form-order-details').value = cart.map(i => `${i.name} (x${i.qty}) ${i.custom ? '['+i.custom+']' : ''} = ${i.price * i.qty} DH`).join('\n');
 });
 
-
-// --- RENDU DES PRODUITS & INIT --- //
-
+// --- RENDU AVEC BOUTON WHATSAPP --- //
 function renderProducts() {
-    const promoContainer = document.getElementById('promo-container');
-    const gridContainer = document.getElementById('product-grid');
-    const filtersContainer = document.getElementById('category-filters');
-    
-    const categories = ['Tous', ...new Set(products.map(p => p.category))];
-    filtersContainer.innerHTML = categories.map((c, i) => `<button class="filter-pill ${i === 0 ? 'active' : ''}" onclick="filterProducts('${c}', this)">${c}</button>`).join('');
-
-    const promoProducts = products.filter(p => p.isPromo);
-    const singleProducts = products.filter(p => !p.isPromo);
-    promoContainer.innerHTML = promoProducts.map(p => buildCard(p)).join('');
-    gridContainer.innerHTML = singleProducts.map(p => buildCard(p)).join('');
+    const promoContainer = document.getElementById('promo-container'); const gridContainer = document.getElementById('product-grid'); const filtersContainer = document.getElementById('category-filters');
+    const categories = ['Tous', ...new Set(products.map(p => p.category))]; filtersContainer.innerHTML = categories.map((c, i) => `<button class="filter-pill ${i === 0 ? 'active' : ''}" onclick="filterProducts('${c}', this)">${c}</button>`).join('');
+    promoContainer.innerHTML = products.filter(p => p.isPromo).map(p => buildCard(p)).join(''); gridContainer.innerHTML = products.filter(p => !p.isPromo).map(p => buildCard(p)).join('');
 }
 
 function buildCard(p) {
     const discount = p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
-    return `<div class="promo-card"><div class="promo-visual"><img src="${p.img}" alt="${p.name}" onclick="document.getElementById('lightbox-img').src='${p.img}'; document.getElementById('lightbox').classList.add('active');"> ${p.sale ? '<div class="p-badge-sale">Promo</div>' : ''} </div><div class="promo-body"><div class="promo-name">${p.name}</div><div class="promo-desc">${p.desc}</div><div class="promo-prices"><span class="price-now">${p.price} DH</span> ${p.oldPrice ? '<span class="price-old">'+p.oldPrice+' DH</span>' : ''} ${discount ? '<span class="promo-save-tag">-'+discount+'%</span>' : ''} </div><div class="promo-actions"><button class="btn btn-express btn-full" onclick="openCustomModal(${p.id})"><i class="fa-solid fa-bag-shopping" style="font-size:.8rem"></i> Commander</button></div></div></div>`;
+    const waMsg = encodeURIComponent(`Bonjour, je suis intéressé(e) par : ${p.name} (${p.price} DH)`);
+    const waLink = `https://wa.me/${WA_NUM}?text=${waMsg}`;
+    
+    return `<div class="promo-card"><div class="promo-visual"><img src="${p.img}" alt="${p.name}" onclick="document.getElementById('lightbox-img').src='${p.img}'; document.getElementById('lightbox').classList.add('active');"> ${p.sale ? '<div class="p-badge-sale">Promo</div>' : ''} </div><div class="promo-body"><div class="promo-name">${p.name}</div><div class="promo-desc">${p.desc}</div><div class="promo-prices"><span class="price-now">${p.price} DH</span> ${p.oldPrice ? '<span class="price-old">'+p.oldPrice+' DH</span>' : ''} ${discount ? '<span class="promo-save-tag">-'+discount+'%</span>' : ''} </div><div class="promo-actions"><button class="btn btn-express btn-full" onclick="openCustomModal(${p.id})"><i class="fa-solid fa-bag-shopping" style="font-size:.8rem"></i> Commander</button><a href="${waLink}" target="_blank" rel="noopener" class="btn btn-wa-sm btn-full" style="justify-content:center; padding:12px 14px; font-size:.75rem; letter-spacing:0.5px;"><i class="fa-brands fa-whatsapp" style="font-size:1rem"></i> Commander via WhatsApp</a></div></div></div>`;
 }
 
-function filterProducts(category, btn) {
-    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    const gridContainer = document.getElementById('product-grid');
-    const filtered = category === 'Tous' ? products.filter(p => !p.isPromo) : products.filter(p => p.category === category && !p.isPromo);
-    gridContainer.innerHTML = filtered.map(p => buildCard(p)).join('');
-}
+function filterProducts(category, btn) { document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active')); btn.classList.add('active'); const gridContainer = document.getElementById('product-grid'); const filtered = category === 'Tous' ? products.filter(p => !p.isPromo) : products.filter(p => p.category === category && !p.isPromo); gridContainer.innerHTML = filtered.map(p => buildCard(p)).join(''); }
 
 document.getElementById('lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
 document.getElementById('lightbox').onclick = (e) => { if(e.target === document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('active'); };
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderProducts();
-    updateCartUI();
-
-    const track = document.getElementById('reviews-track');
-    track.innerHTML = REVIEWS.map(r => `<div class="dz-card"><div class="dz-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="dz-txt">"${r.t}"</div><div class="dz-prod">${r.p}</div><div class="dz-who"><div class="dz-av">${r.n.charAt(0)}</div><div><div class="dz-name">${r.n}</div><div class="dz-meta">${r.c}</div></div></div></div>`).join('');
+    renderProducts(); updateCartUI();
+    const track = document.getElementById('reviews-track'); track.innerHTML = REVIEWS.map(r => `<div class="dz-card"><div class="dz-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="dz-txt">"${r.t}"</div><div class="dz-prod">${r.p}</div><div class="dz-who"><div class="dz-av">${r.n.charAt(0)}</div><div><div class="dz-name">${r.n}</div><div class="dz-meta">${r.c}</div></div></div></div>`).join('');
     document.getElementById('review-wa').href = `https://wa.me/${WA_NUM}?text=${encodeURIComponent('Bonjour, je souhaite partager mon avis sur ma commande Decobiz !')}`;
-
     window.addEventListener('scroll', () => { document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 10); });
-
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }}); }, { threshold: 0.1 });
-    revealEls.forEach(el => observer.observe(el));
-
-    const dzBar = document.getElementById('dz-bar'); const dzText = document.getElementById('dz-bar-t');
-    window.addEventListener('scroll', () => { if(window.scrollY > 600 && cart.length > 0) { dzBar.classList.add('show'); const t = cart.reduce((s,i)=>s+i.price*i.qty,0); dzText.textContent = t + ' DH — '+ cart.reduce((s,i)=>s+i.qty,0) +' article(s)'; document.body.classList.add('dz-has-cart'); } else { dzBar.classList.remove('show'); document.body.classList.remove('dz-has-cart'); } });
+    const revealEls = document.querySelectorAll('.reveal'); const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }}); }, { threshold: 0.1 }); revealEls.forEach(el => observer.observe(el));
+    const dzBar = document.getElementById('dz-bar'); const dzText = document.getElementById('dz-bar-t'); window.addEventListener('scroll', () => { if(window.scrollY > 600 && cart.length > 0) { dzBar.classList.add('show'); const t = cart.reduce((s,i)=>s+i.price*i.qty,0); dzText.textContent = t + ' DH — '+ cart.reduce((s,i)=>s+i.qty,0) +' article(s)'; document.body.classList.add('dz-has-cart'); } else { dzBar.classList.remove('show'); document.body.classList.remove('dz-has-cart'); } });
 });
 </script>
 </body>
