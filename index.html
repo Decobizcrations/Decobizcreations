@@ -11,25 +11,22 @@
 <meta property="og:image" content="https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d">
 <meta property="og:type" content="website">
 
-<!-- META PIXEL OPTIMISÉ (Nouveau Pixel ID) -->
-<!-- 1. Preconnect : Accélère le chargement du Pixel -->
+<!-- META PIXEL OPTIMISÉ -->
 <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
 
-<!-- 2. Pixel JS avec defer pour ne pas ralentir la page -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.defer=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
 
-// Votre Nouveau Pixel ID
 fbq('init', '1066915886136248');
 
-// Envoi des événements (PageView + ViewContent pour corriger l'entonnoir)
+// On envoie uniquement le PageView au chargement. 
+// Le ViewContent sera envoyé dynamiquement quand on cliquera sur "Commander"
 fbq('track', 'PageView');
-fbq('track', 'ViewContent');
 </script>
 <noscript>
 <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066915886136248&ev=PageView&noscript=1"/>
-<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066915886136248&ev=ViewContent&noscript=1"/>
 </noscript>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -232,7 +229,6 @@ header.scrolled{box-shadow:var(--shadow-xs)}
 .ship-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-soft));border-radius:10px;transition:width .5s ease}
 .ship-bar-fill.free{background:linear-gradient(90deg,var(--green),#5BA882)}
 
-/* Payment Methods Section in Cart */
 .payment-methods-section{margin-top:16px; background:var(--bg-warm); padding:16px; border-radius:var(--r-lg); border:1px solid var(--border);}
 .payment-methods-title{font-weight:600; font-size:.85rem; margin-bottom:12px; text-align:center;}
 .payment-options{display:flex; flex-direction:column; gap:10px;}
@@ -310,7 +306,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
 
 <div class="toast" id="toast" role="status"><i class="fa-solid fa-circle-check"></i> <span id="toast-msg"></span></div>
 
-<!-- Bandeau annonce cohérent avec l'offre -->
 <div class="announce">Paiement à la livraison ou virement bancaire &nbsp;·&nbsp; <em>Livraison offerte</em> dès 399 DH</div>
 
 <header id="main-header">
@@ -333,7 +328,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
   </div>
 </section>
 
-<!-- Preuve sociale et confiance dès le 1er écran -->
 <div class="trust-strip"><div class="container"><div class="trust-grid">
   <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-pen-ruler"></i></div> Personnalisation</div>
   <div class="trust-chip"><div class="trust-chip-icon"><i class="fa-solid fa-truck-fast"></i></div> Livraison 48-72h</div>
@@ -448,7 +442,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
   </div>
 </div>
 
-<!-- PAGE PANIER AMELIOREE -->
 <div class="cart-page" id="cart-page">
   <div class="cart-top">
     <h3>Votre Panier</h3>
@@ -463,7 +456,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
       <div class="cart-trust-chip"><i class="fa-solid fa-hand-sparkles"></i> Fait à la main</div>
     </div>
 
-    <!-- Bloc Méthodes de paiement -->
     <div class="payment-methods-section" id="payment-methods-section" style="display:none">
       <div class="payment-methods-title"><i class="fa-solid fa-lock" style="color:var(--green); margin-right:6px;"></i> Comment souhaitez-vous payer ?</div>
       <div class="payment-options">
@@ -542,7 +534,6 @@ header{padding:10px 0}.logo{font-size:1.4rem}.header-cart{width:42px;height:42px
       <div class="form-field"><label>Adresse complète</label><textarea name="address" class="form-input" rows="3" placeholder="Rue, Quartier, N°…" required autocomplete="street-address"></textarea></div>
       <div class="form-field"><label>Remarque <span style="font-weight:300;color:var(--text-whisper)">(optionnel)</span></label><textarea name="note" class="form-input" rows="2" placeholder="Instructions spéciales..."></textarea></div>
       
-      <!-- Rappel du mode de paiement dans le checkout -->
       <div id="checkout-payment-reminder" style="background:var(--bg-warm); padding:14px; border-radius:var(--r-md); margin-bottom:20px; display:flex; align-items:center; gap:12px; font-size:.88rem;">
         <i id="checkout-payment-icon" class="fa-solid fa-hand-holding-dollar" style="color:var(--accent); font-size:1.2rem;"></i>
         <span id="checkout-payment-text"><strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez à la réception du colis.</small></span>
@@ -589,116 +580,223 @@ const products=[
  P(11,'Plateau Étoile',29,null,'etoile.jpg','Plateaux',"Plateau en forme d'étoile."),
  P(13,'Plateau Rond 23cm',59,null,'rondla.jpg','Plateaux','Plateau rond 23 centimètres.'),
  P(14,'Plateau Ovale 23cm',55,null,'ovale23.jpeg','Plateaux','Plateau ovale 23 centimètres.'),
- P(18,'Plateau Mariage',115,null,'https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7','Plateaux','Plateau élégant pour cérémonies.'),
- P(401,'Tray Vogue Édition',89,120,'https://z-cdn-media.chatglm.cn/files/209786d7-b32b-443a-b11e-ff8ebeb01762.jpg?auth_key=1886306162-556267dcc0dc4bb0b59d98d61a3f9b3f-0-b544bea6c2e266a4657af9c4efeaace9','Plateaux','Tray ovale élégant, idéal pour parfums et bijoux.'),
- P(505,'Vase Herbe Fenêtre',55,null,'https://z-cdn-media.chatglm.cn/files/19638660-0484-4b32-a90e-2ffb99db0230.jpeg?auth_key=1886306162-bdfabdfc1c0b452ebf95f959139f5377-0-a41f0490d54bcc6e3bb8f2261472f153','Vases','Vase blanc avec herbe séchée, livres et clochette dorée sur bois.'),
- P(507,'Vases Minimalisme Urbain',149,199,'https://z-cdn-media.chatglm.cn/files/992500c1-0185-492c-a865-e1485aca5ca3.jpeg?auth_key=1886306162-749ebff465114b75bc78e4a52318d6f8-0-68559b60d1fcb4ff87cad07c24c522f4','Vases',"Deux vases blancs sculpturaux avec herbe, livres d'art et vue urbaine."),
- P(202,'Set Par Rose Édition',99,null,'parose.png','Vases','Composition complète pour cuisine.'),
- P(304,'Ensemble Nature Urbaine',89,120,'croissant.jpeg','Vases','Vase, lune céramique et plante.'),
- P(501,'Set Bougies',35,110,'https://z-cdn-media.chatglm.cn/files/c914b2b4-8dc2-44e9-9081-aac9896f89a6.jpg?auth_key=1886306162-e23913dfd28b46de829d30c304ef1f34-0-a47d536cf284f3971839970d64cad6fb','Support Bougie','Deux bougeoirs abstraits roses avec bougies longues et composition florale.'),
- P(502,'Bougies Vagues',39,130,'https://z-cdn-media.chatglm.cn/files/30a2cb0d-dd2c-421d-9c55-c11371c0b99b.jpg?auth_key=1886306162-7b6750c9948d4454b39d48b0d57f4af2-0-7e36ac05743c8c5d0221d5ba94a70cd4','Support Bougie','Trois bougies spiralées sur supports ondulés avec brindilles de baies.'),
- P(503,'Bougies Spiralées',29,null,'https://z-cdn-media.chatglm.cn/files/65e3214b-10c4-4c9c-a33f-65bca9ba1cae.jpeg?auth_key=1886306162-b15bfdc40dcc4b96b75bfd12d2f256c7-0-b12410e80097b6d0b98183e36bef0660','Support Bougie','Paire de bougies torsadées blanches sur socles céramiques minimalistes.'),
- P(9,'Set Rose',129,null,'pa.jpeg','Vases','Set décoratif rose.'),
- P(302,'Collection Rose Poudré',149,180,'rose.jpeg','Déco','Set complet en teintes douces.'),
- P(10,'Arche Cosy',79,null,'arch.jpg','Plateaux','Arche décorative cosy.'),
- P(5,'Plateau Bulles',35,null,'boules2.jpeg','Plateaux','Plateau à bulles décoratif.'),
- P(15,'Collection Lavande',165,null,'lavande.jpeg','Plateaux','Collection décorative lavande.'),
- P(506,'Deco Feuilles',29,95,'https://z-cdn-media.chatglm.cn/files/9d2e7a07-ffd6-48b5-a3c6-5ef0b95973e1.jpeg?auth_key=1886306162-2c494c4fc820490e82c3e8e81695211f-0-d9cabae5d685532901b7a3ae0e5ba9cf','Déco','Deux coupes feuilles, pommes de pin et guide de voyage sur plateau tacheté.'),
- P(508,"Citrouille d'Automne",45,55,'https://z-cdn-media.chatglm.cn/files/e14cca17-e56c-4af8-9bea-1d42cb1cb6c9.jpeg?auth_key=1886306162-a8ad4b06c3294919935aa11445a9cb25-0-5879f1d8f2b3aa7ea1edc48c14596b3b','Déco',"Citrouilles artisanales orange avec feuilles d'érable rouges et orangées."),
- P(509,'Boîte Ondulée',29,null,'https://z-cdn-media.chatglm.cn/files/bfa68e20-bf11-4175-a3e7-284ad43ad1cb.jpg?auth_key=1886306162-7f1960732b9a4cdc8d76786e353de1ee-0-98d6cba71cfb647a26f1801d28c29039','Déco','Boîte cylindrique blanche à couvercle avec poignée sphérique et motif ondulé.'),
- P(601,'Coquillage Vide-Poche',29,50,'coquille.jpg','Déco','Écrin coquillage blanc pour bijoux et petits trésors. Finition céramique mate.'),
- P(602,'Jar Cylindrique',45,70,'jar.jpeg','Déco','Récipient cylindrique blanc avec couvercle. Porte-savon ou rangement déco.')
+ P(18,'Plateau Mariage',115,null,'https://z-cdn-media.chatglm.cn/files/7cb167c2-627a-46ea-bcd1-a74547c0ad75.jpeg?auth_key=1875337220-7e19d2bd7c574cd4b4e9ce96e43bb2ad-0-de3689e91bf860fe1647fa5870b2ebb7','Plateaux','Plateau de mariage élégant.')
 ];
 
-const $=id=>document.getElementById(id);
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const isTxt=p=>p.customType==='logo';
-const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
-const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
-const lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
+let cart = [];
+let currentProduct = null;
+let selectedPayment = 'cod';
+let selectedCity = '';
+let shippingCost = 0;
 
-// FONCTION TRACK OPTIMISÉE POUR META PIXEL
-const track=(ev,data={},opt={})=>{
-  try{
-    if(window.fbq){
-      // Génère un EventID unique pour le CAPI (évite les doublons)
-      if(!opt.eventID) opt.eventID = ev+'_'+Date.now()+'_'+Math.random().toString(36).substr(2,9);
-      fbq('track',ev,data,opt);
-    }
-  }catch(e){console.log('Pixel error:', e)}
-};
+// --- FONCTIONS MODALES & PANIER --- //
 
-try{if(location.search&&!sessionStorage.getItem('dz_utm'))sessionStorage.setItem('dz_utm',location.search)}catch(e){}
-if(lsGet('decobiz_sent')){lsDel('decobiz_cart');lsDel('decobiz_city');lsDel('decobiz_custom_city');lsDel('decobiz_sent')}
-let cart=[];try{cart=JSON.parse(lsGet('decobiz_cart'))||[]}catch(e){}
-let selectedCity=lsGet('decobiz_city')||'';
-let customCityName=lsGet('decobiz_custom_city')||'';
-let currentCustomProductId=null;
-let selectedPaymentMethod='cod';
+function openCustomModal(productId) {
+    currentProduct = products.find(p => p.id === productId);
+    if (!currentProduct) return;
+    
+    document.getElementById('modal-product-info').textContent = currentProduct.name + ' — ' + currentProduct.price + ' DH';
+    document.getElementById('group-custom-text').style.display = currentProduct.customType === 'logo' ? 'block' : 'none';
+    document.getElementById('custom-color').value = '';
+    document.getElementById('custom-text').value = '';
+    document.getElementById('custom-modal').style.display = 'flex';
 
-function init(){
-  renderProducts();renderPromoPacks();renderReviews();updateCartBadge();
-  window.addEventListener('scroll',()=>$('main-header').classList.toggle('scrolled',window.scrollY>40),{passive:true});
-  $('lightbox-close').addEventListener('click',closeLightbox);
-  $('lightbox').addEventListener('click',e=>{if(e.target!==$('lightbox-img'))closeLightbox()});
-  $('custom-modal').addEventListener('click',e=>{if(e.target===$('custom-modal'))closeCustomModal()});
-  $('order-form').addEventListener('submit',handleOrderSubmit);
-  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[href*="wa.me"]');if(a)track('Contact',{content_name:'whatsapp'})});
-  window.addEventListener('pageshow',e=>{if(e.persisted){const b=$('submit-btn');b.disabled=false;b.innerHTML='<i class="fa-solid fa-lock" style="font-size:.8rem"></i> Confirmer ma commande'}});
-  applyRevealAnimations();
+    // ✅ EVENEMENT FACEBOOK : VUE DE CONTENU (Déclenché quand on clique sur Commander)
+    fbq('track', 'ViewContent', {
+        content_name: currentProduct.name,
+        content_ids: [currentProduct.id],
+        value: currentProduct.price,
+        currency: 'MAD'
+    });
 }
-function showToast(msg){$('toast-msg').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2800)}
-function openLightbox(src){$('lightbox-img').src=src;$('lightbox').classList.add('active');document.body.style.overflow='hidden'}
-function closeLightbox(){$('lightbox').classList.remove('active');document.body.style.overflow=''}
-function applyRevealAnimations(){const els=document.querySelectorAll('.reveal:not(.visible)');if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('visible'));return}const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');ob.unobserve(e.target)}}),{threshold:.05});els.forEach(e=>ob.observe(e));}
 
-function renderReviews(){$('reviews-track').innerHTML=REVIEWS.map(r=>`<div class="dz-card"><div class="dz-stars">★★★★★</div><p class="dz-txt">« ${esc(r.t)} »</p><div class="dz-prod"><i class="fa-solid fa-bag-shopping"></i> ${esc(r.p)}</div><div class="dz-who"><div class="dz-av">${esc(r.n.charAt(0))}</div><div><div class="dz-name">${esc(r.n)}</div><div class="dz-meta">${esc(r.c)}</div></div></div></div>`).join('');$('review-wa').href=`https://wa.me/${WA_NUM}?text=`+encodeURIComponent('Bonjour, je voudrais partager mon avis sur ma commande Decobiz');}
-function renderProducts(){const cats=['Tous',...new Set(products.filter(p=>!p.isPromo).map(p=>p.category))];$('category-filters').innerHTML=cats.map(c=>`<button class="filter-pill ${c==='Tous'?'active':''}" onclick="filterProducts('${c}',this)">${c}</button>`).join('');$('product-grid').innerHTML=products.filter(p=>!p.isPromo).map(p=>renderProductCard(p)).join('');}
-function renderPromoPacks(){$('promo-container').innerHTML=products.filter(p=>p.isPromo).map(p=>renderProductCard(p,true)).join('')}
-function renderProductCard(p,isPack=false){const old=p.oldPrice?`<span class="price-old">${p.oldPrice} DH</span><span class="promo-save-tag">-${Math.round((1-p.price/p.oldPrice)*100)}%</span>`:'';const stock=STOCK_MAP[p.id]!==undefined&&STOCK_MAP[p.id]<=5?`<span class="p-badge-stock">Reste ${STOCK_MAP[p.id]}</span>`:'';const wa=`https://wa.me/${WA_NUM}?text=${encodeURIComponent('Bonjour, je suis intéressé par : '+p.name)}`;return `<div class="promo-card reveal"><div class="promo-visual" onclick="openLightbox('${p.img}')"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy" decoding="async">${isPack?'<div class="badge-discount">Pack</div>':''}${p.sale?'<span class="p-badge-sale">Promo</span>':''}${stock}</div><div class="promo-body"><div class="promo-name">${esc(p.name)}</div><div class="promo-desc">${esc(p.desc||'')}</div><div class="promo-prices"><span class="price-now">${p.price} DH</span>${old}</div><div class="promo-actions"><button class="btn btn-express btn-full" onclick="openCustomModal(${p.id})"><i class="fa-solid fa-bag-shopping" style="font-size:.8rem"></i> Commander</button><div class="promo-wa-row"><a href="${wa}" target="_blank" rel="noopener" class="btn-wa-sm"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></div></div></div></div>`;}
-function filterProducts(cat,btn){document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));btn.classList.add('active');$('product-grid').innerHTML=products.filter(p=>!p.isPromo&&(cat==='Tous'||p.category===cat)).map(p=>renderProductCard(p)).join('');applyRevealAnimations();}
+function closeCustomModal() { document.getElementById('custom-modal').style.display = 'none'; }
 
-function saveCart(){lsSet('decobiz_cart',JSON.stringify(cart));lsSet('decobiz_city',selectedCity);lsSet('decobiz_custom_city',customCityName)}
-function getCartSubtotal(){return cart.reduce((s,i)=>s+i.price*i.qty,0)}
-function getShippingRate(){if(!selectedCity)return null;return getCartSubtotal()>=FREE_SHIP?0:(CITY_SHIPPING[selectedCity]||35);}
-function updateCartBadge(){const q=cart.reduce((s,i)=>s+i.qty,0);$('cart-count').textContent=q;$('cart-count').classList.toggle('show',q>0);$('dz-bar').classList.toggle('show',q>0);document.body.classList.toggle('dz-has-cart',q>0);$('dz-bar-t').textContent=`${q} article${q>1?'s':''} · ${getCartSubtotal()} DH`;}
-function addToCartLogic(p,color,text){const ex=cart.find(c=>c.id===p.id&&c.color===(color||null)&&c.text===(text||null));if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,img:p.img,qty:1,color:color||null,text:text||null});saveCart();updateCartBadge();}
+function confirmAddToCart() {
+    if (!currentProduct) return;
+    const customColor = document.getElementById('custom-color').value.trim();
+    const customText = document.getElementById('custom-text').value.trim();
 
-function openCustomModal(id){currentCustomProductId=id;const p=products.find(x=>x.id===id);
-// EVENEMENT META : ViewContent (Quand le client clique sur Commander)
-track('ViewContent',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'MAD'});
- $('modal-product-info').textContent=p.name+' — '+p.price+' DH';$('group-custom-text').style.display=isTxt(p)?'block':'none';$('custom-color').value='';$('custom-text').value='';$('custom-text').classList.remove('error');$('custom-modal').style.display='flex';document.body.style.overflow='hidden';}
-function closeCustomModal(){$('custom-modal').style.display='none';document.body.style.overflow='';currentCustomProductId=null}
-function confirmAddToCart(){const p=products.find(x=>x.id===currentCustomProductId);if(!p)return;const color=$('custom-color').value.trim();const text=isTxt(p)?$('custom-text').value.trim():null;if(isTxt(p)&&!text){$('custom-text').classList.add('error');$('custom-text').focus();return}addToCartLogic(p,color,text);
-// EVENEMENT META : AddToCart (Quand l'article est ajouté au panier)
-track('AddToCart',{content_ids:[String(p.id)],content_name:p.name,content_type:'product',value:p.price,currency:'MAD'});
-closeCustomModal();showToast(p.name+' ajouté au panier');}
+    if (currentProduct.customType === 'logo' && !customText) {
+        document.getElementById('custom-text').classList.add('error');
+        return;
+    }
+    document.getElementById('custom-text').classList.remove('error');
 
-function toggleCartPage(){$('cart-page').classList.contains('open')?closeCartPage():openCartPage()}
-function openCartPage(){$('cart-page').classList.add('open');document.body.style.overflow='hidden';renderCartPage()}
-function closeCartPage(){$('cart-page').classList.remove('open');document.body.style.overflow='';$('cart-view-list').style.display='block';$('checkout-view-form').style.display='none';}
-function renderCartPage(){const c=$('cart-items-container');if(!cart.length){c.innerHTML='<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-dark" onclick="closeCartPage()">Continuer le shopping</button></div>';['cart-trust-strip','payment-methods-section','cart-city-section','ship-progress','cart-summary'].forEach(i=>$(i).style.display='none');return;}c.innerHTML=cart.map((it,i)=>`<div class="c-item"><div class="c-item-top"><img src="${it.img}" alt="${esc(it.name)}" class="c-item-img"><div class="c-item-info"><div class="c-item-name">${esc(it.name)}</div>${it.color?`<div class="c-item-custom">Couleur : ${esc(it.color)}</div>`:''}${it.text?`<div class="c-item-custom">Texte : ${esc(it.text)}</div>`:''}<div class="c-item-price">${it.price} DH</div></div><button class="c-item-del" onclick="removeCartItem(${i})" aria-label="Supprimer"><i class="fa-solid fa-trash-can"></i></button></div><div class="c-item-bottom"><div class="c-item-qty"><button onclick="changeQty(${i},-1)" aria-label="Moins">−</button><span>${it.qty}</span><button onclick="changeQty(${i},1)" aria-label="Plus">+</button></div><div class="c-item-line-total">${it.price*it.qty} DH</div></div></div>`).join('');$('cart-trust-strip').style.display='flex';$('payment-methods-section').style.display='block';$('cart-city-section').style.display='block';$('cart-summary').style.display='block';$('cart-city-select').value=selectedCity;$('custom-city-wrap').style.display=selectedCity==='autre'?'block':'none';if(selectedCity==='autre')$('custom-city-input').value=customCityName;updateCartTotalsUI();}
-function changeQty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);saveCart();updateCartBadge();renderCartPage()}
-function removeCartItem(i){cart.splice(i,1);saveCart();updateCartBadge();renderCartPage()}
+    const custom = [];
+    if (customColor) custom.push('Couleur: ' + customColor);
+    if (customText) custom.push('Gravure: ' + customText);
 
-function selectPayment(method, el) {selectedPaymentMethod = method;document.querySelectorAll('.payment-option').forEach(e => e.classList.remove('selected'));el.classList.add('selected');}
+    cart.push({
+        id: currentProduct.id,
+        name: currentProduct.name,
+        price: currentProduct.price,
+        img: currentProduct.img,
+        qty: 1,
+        custom: custom.join(' | ')
+    });
 
-function onCitySelect(v){selectedCity=v;customCityName='';$('custom-city-wrap').style.display=v==='autre'?'block':'none';updateCartTotalsUI();saveCart()}
-function onCustomCityInput(v){customCityName=v;updateCartTotalsUI();saveCart()}
-function updateCartTotalsUI(){const sub=getCartSubtotal(),ship=getShippingRate(),free=ship===0&&!!selectedCity;$('cart-subtotal').textContent=sub+' DH';$('ship-progress').style.display='block';$('ship-bar-fill').style.width=Math.min(100,sub/FREE_SHIP*100)+'%';$('ship-bar-fill').classList.toggle('free',sub>=FREE_SHIP);$('ship-progress-text').innerHTML=sub>=FREE_SHIP?'Livraison gratuite atteinte !':`Plus que <strong>${FREE_SHIP-sub} DH</strong> pour la livraison gratuite`;const box=$('shipping-rate-box'),hint=$('city-hint');if(!selectedCity){box.classList.remove('visible');hint.style.display='flex';$('shipping-display').textContent='—';$('cart-total').textContent=sub+' DH';$('btn-checkout').disabled=true;return;}hint.style.display='none';box.classList.add('visible');box.classList.toggle('is-free',free);box.classList.toggle('is-paid',!free);$('rate-city').textContent='Livraison à '+(selectedCity==='autre'?(customCityName||'votre ville'):(CITY_NAMES[selectedCity]||''));if(free){$('rate-amount').textContent='GRATUITE';$('rate-note').textContent='Offerte dès 399 DH de commande';$('shipping-display').textContent='Gratuite';$('cart-total').textContent=sub+' DH'}else{$('rate-amount').textContent=ship+' DH';$('rate-note').textContent='Délai estimé : 48 à 72h';$('shipping-display').textContent=ship+' DH';$('cart-total').textContent=(sub+ship)+' DH'}$('btn-checkout').disabled=false;}
+    closeCustomModal();
+    updateCartUI();
+    showToast('Ajouté au panier !');
 
-function showCheckoutForm(){if(!selectedCity||(selectedCity==='autre'&&!customCityName.trim())){showToast('Veuillez choisir votre ville de livraison');return}const sub=getCartSubtotal(),ship=getShippingRate()||0,total=sub+ship;
-// EVENEMENT META : InitiateCheckout (Quand le client passe au formulaire)
-track('InitiateCheckout',{content_ids:cart.map(i=>String(i.id)),content_type:'product',value:total,currency:'MAD',num_items:cart.reduce((s,i)=>s+i.qty,0)});
- $('cart-view-list').style.display='none';$('checkout-view-form').style.display='block';$('cart-page').scrollTo(0,0);const city=selectedCity==='autre'?customCityName.trim():(CITY_NAMES[selectedCity]||'');$('checkout-subtotal').textContent=sub+' DH';$('checkout-shipping-display').textContent=ship===0?'Gratuite':ship+' DH';$('checkout-total').textContent=total+' DH';$('checkout-city-name').textContent=city;$('form-city-input').value=city;$('checkout-summary-mini').innerHTML=cart.map(i=>`<div style="flex-shrink:0;text-align:center"><img src="${i.img}" alt=""><div style="font-size:.7rem;color:var(--text-soft)">x${i.qty}</div></div>`).join('');if(selectedPaymentMethod==='bank'){$('checkout-payment-icon').className='fa-solid fa-building-columns';$('checkout-payment-text').innerHTML='<strong>Virement bancaire</strong><br><small style="color:var(--text-soft);">Vous recevrez nos coordonnées bancaires par WhatsApp après confirmation.</small>';}else{$('checkout-payment-icon').className='fa-solid fa-hand-holding-dollar';$('checkout-payment-text').innerHTML='<strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez en espèces au livreur.</small>';}}
-function hideCheckoutForm(){$('checkout-view-form').style.display='none';$('cart-view-list').style.display='block'}
+    // ✅ EVENEMENT FACEBOOK : AJOUT AU PANIER
+    fbq('track', 'AddToCart', {
+        content_name: currentProduct.name,
+        content_ids: [currentProduct.id],
+        value: currentProduct.price,
+        currency: 'MAD'
+    });
+}
 
-function handleOrderSubmit(e){e.preventDefault();const form=e.target,btn=$('submit-btn');if(btn.disabled||!cart.length)return;btn.disabled=true;btn.textContent='Envoi en cours…';const orderId='CMD-'+Date.now().toString(36).toUpperCase();const sub=getCartSubtotal(),ship=getShippingRate()||0,total=sub+ship,city=$('form-city-input').value;const paymentLabel=selectedPaymentMethod==='bank'?'Virement bancaire':'Paiement à la livraison';let det=cart.map(i=>'- '+i.name+' x'+i.qty+' ('+(i.price*i.qty)+' DH)'+(i.color?' | Couleur: '+i.color:'')+(i.text?' | Gravure: '+i.text:'')).join('\n');det+='\n\nVille: '+city+'\nLivraison: '+(ship===0?'Gratuite':ship+' DH')+'\nMéthode de paiement: '+paymentLabel+'\nTotal: '+total+' DH';$('form-order-id').value=orderId;$('form-subject').value='Nouvelle commande Decobiz '+orderId;$('form-order-details').value=det;$('form-total-price').value=total+' DH';$('form-shipping-fee').value=ship===0?'Gratuite':ship+' DH';$('form-payment-method').value=paymentLabel;let src='direct';try{src=sessionStorage.getItem('dz_utm')||'direct'}catch(err){}$('form-source').value=src;
-// EVENEMENT META : Purchase (Quand le client clique sur Confirmer)
-track('Purchase',{value:total,currency:'MAD',content_ids:cart.map(i=>String(i.id)),content_type:'product',num_items:cart.reduce((s,i)=>s+i.qty,0)},{eventID:orderId});
-lsSet('decobiz_sent','1');setTimeout(()=>form.submit(),400);}
+function showCheckoutForm() {
+    if (!selectedCity) { showToast('Veuillez sélectionner votre ville'); return; }
+    document.getElementById('cart-view-list').style.display = 'none';
+    document.getElementById('checkout-view-form').style.display = 'block';
 
-document.addEventListener('DOMContentLoaded',init);
+    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    document.getElementById('checkout-subtotal').textContent = subtotal + ' DH';
+    document.getElementById('checkout-shipping-display').textContent = shippingCost + ' DH';
+    document.getElementById('checkout-total').textContent = (subtotal + shippingCost) + ' DH';
+
+    // ✅ EVENEMENT FACEBOOK : PAIEMENT INITIE
+    fbq('track', 'InitiateCheckout', {
+        value: subtotal,
+        currency: 'MAD'
+    });
+}
+
+function hideCheckoutForm() {
+    document.getElementById('cart-view-list').style.display = 'block';
+    document.getElementById('checkout-view-form').style.display = 'none';
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function toggleCartPage() { document.getElementById('cart-page').classList.contains('open') ? closeCartPage() : openCartPage(); }
+function openCartPage() { document.getElementById('cart-page').classList.add('open'); document.body.style.overflow='hidden'; }
+function closeCartPage() { document.getElementById('cart-page').classList.remove('open'); document.body.style.overflow=''; }
+
+function selectPayment(method, el) {
+    selectedPayment = method;
+    document.querySelectorAll('.payment-option').forEach(e => e.classList.remove('selected'));
+    el.classList.add('selected');
+    const icon = document.getElementById('checkout-payment-icon');
+    const text = document.getElementById('checkout-payment-text');
+    if(method === 'cod') { icon.className = 'fa-solid fa-hand-holding-dollar'; text.innerHTML = '<strong>Paiement à la livraison</strong><br><small style="color:var(--text-soft);">Vous payez à la réception du colis.</small>'; } 
+    else { icon.className = 'fa-solid fa-building-columns'; text.innerHTML = '<strong>Virement bancaire</strong><br><small style="color:var(--text-soft);">Recevez nos RIB par WhatsApp après confirmation.</small>'; }
+}
+
+function onCitySelect(val) {
+    selectedCity = val;
+    document.getElementById('custom-city-wrap').style.display = val === 'autre' ? 'block' : 'none';
+    if (val === 'autre') { document.getElementById('city-hint').style.display = 'flex'; shippingCost = 0; }
+    else if (!val) { shippingCost = 0; document.getElementById('city-hint').style.display='none'; }
+    else { document.getElementById('city-hint').style.display = 'none'; const sub = cart.reduce((s,i)=>s+i.price*i.qty,0); shippingCost = sub >= FREE_SHIP ? 0 : CITY_SHIPPING[val]; selectedCity = CITY_NAMES[val] || val; }
+    updateCartUI();
+}
+
+function onCustomCityInput(val) { if(val.length > 2) { selectedCity = val; const sub = cart.reduce((s,i)=>s+i.price*i.qty,0); shippingCost = sub >= FREE_SHIP ? 0 : 35; updateCartUI(); } }
+
+function removeFromCart(index) { cart.splice(index, 1); if(cart.length === 0) selectedCity=''; updateCartUI(); }
+function changeQty(index, delta) { cart[index].qty += delta; if(cart[index].qty < 1) cart.splice(index, 1); updateCartUI(); }
+
+function updateCartUI() {
+    const badge = document.getElementById('cart-count');
+    const totalQty = cart.reduce((s,i)=>s+i.qty,0);
+    badge.textContent = totalQty; badge.classList.toggle('show', totalQty > 0);
+    const container = document.getElementById('cart-items-container');
+
+    if(cart.length === 0) {
+        container.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"><i class="fa-solid fa-bag-shopping"></i></div><p>Votre panier est vide</p><button class="btn btn-accent" onclick="closeCartPage()">Continuer le shopping</button></div>';
+        document.getElementById('cart-summary').style.display = 'none'; document.getElementById('cart-city-section').style.display = 'none'; document.getElementById('payment-methods-section').style.display = 'none'; document.getElementById('cart-trust-strip').style.display = 'none';
+        return;
+    }
+
+    document.getElementById('cart-trust-strip').style.display = 'flex'; document.getElementById('payment-methods-section').style.display = 'block'; document.getElementById('cart-city-section').style.display = 'block'; document.getElementById('cart-summary').style.display = 'block';
+
+    container.innerHTML = cart.map((item, idx) => `<div class="c-item"><div class="c-item-top"><img src="${item.img}" class="c-item-img" alt="${item.name}"><div class="c-item-info"><div class="c-item-name">${item.name}</div>${item.custom ? '<div class="c-item-custom">'+item.custom+'</div>' : ''}<div class="c-item-price">${item.price} DH</div></div><button class="c-item-del" onclick="removeFromCart(${idx})"><i class="fa-solid fa-trash"></i></button></div><div class="c-item-bottom"><div class="c-item-qty"><button onclick="changeQty(${idx}, -1)">−</button><span>${item.qty}</span><button onclick="changeQty(${idx}, 1)">+</button></div><div class="c-item-line-total">${item.price * item.qty} DH</div></div></div>`).join('');
+
+    const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    document.getElementById('cart-subtotal').textContent = subtotal + ' DH';
+    document.getElementById('shipping-display').textContent = selectedCity ? (shippingCost === 0 ? 'Offerte' : shippingCost + ' DH') : '—';
+    document.getElementById('cart-total').textContent = (subtotal + shippingCost) + ' DH';
+}
+
+// ✅ EVENEMENT FACEBOOK : ACHAT (Sur le formulaire)
+document.getElementById('order-form').addEventListener('submit', function(e) {
+    const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+    const total = subtotal + shippingCost;
+
+    fbq('track', 'Purchase', {
+        value: total,
+        currency: 'MAD'
+    });
+    
+    document.getElementById('form-order-id').value = 'DEC-' + Date.now();
+    document.getElementById('form-subject').value = 'Nouvelle commande Decobiz - ' + document.getElementById('checkout-name').value;
+    document.getElementById('form-city-input').value = selectedCity;
+    document.getElementById('form-payment-method').value = selectedPayment;
+    document.getElementById('form-total-price').value = total;
+    document.getElementById('form-shipping-fee').value = shippingCost;
+    document.getElementById('form-order-details').value = cart.map(i => `${i.name} (x${i.qty}) ${i.custom ? '['+i.custom+']' : ''} = ${i.price * i.qty} DH`).join('\n');
+});
+
+
+// --- RENDU DES PRODUITS & INIT --- //
+
+function renderProducts() {
+    const promoContainer = document.getElementById('promo-container');
+    const gridContainer = document.getElementById('product-grid');
+    const filtersContainer = document.getElementById('category-filters');
+    
+    const categories = ['Tous', ...new Set(products.map(p => p.category))];
+    filtersContainer.innerHTML = categories.map((c, i) => `<button class="filter-pill ${i === 0 ? 'active' : ''}" onclick="filterProducts('${c}', this)">${c}</button>`).join('');
+
+    const promoProducts = products.filter(p => p.isPromo);
+    const singleProducts = products.filter(p => !p.isPromo);
+    promoContainer.innerHTML = promoProducts.map(p => buildCard(p)).join('');
+    gridContainer.innerHTML = singleProducts.map(p => buildCard(p)).join('');
+}
+
+function buildCard(p) {
+    const discount = p.oldPrice ? Math.round((1 - p.price / p.oldPrice) * 100) : 0;
+    return `<div class="promo-card"><div class="promo-visual"><img src="${p.img}" alt="${p.name}" onclick="document.getElementById('lightbox-img').src='${p.img}'; document.getElementById('lightbox').classList.add('active');"> ${p.sale ? '<div class="p-badge-sale">Promo</div>' : ''} </div><div class="promo-body"><div class="promo-name">${p.name}</div><div class="promo-desc">${p.desc}</div><div class="promo-prices"><span class="price-now">${p.price} DH</span> ${p.oldPrice ? '<span class="price-old">'+p.oldPrice+' DH</span>' : ''} ${discount ? '<span class="promo-save-tag">-'+discount+'%</span>' : ''} </div><div class="promo-actions"><button class="btn btn-express btn-full" onclick="openCustomModal(${p.id})"><i class="fa-solid fa-bag-shopping" style="font-size:.8rem"></i> Commander</button></div></div></div>`;
+}
+
+function filterProducts(category, btn) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const gridContainer = document.getElementById('product-grid');
+    const filtered = category === 'Tous' ? products.filter(p => !p.isPromo) : products.filter(p => p.category === category && !p.isPromo);
+    gridContainer.innerHTML = filtered.map(p => buildCard(p)).join('');
+}
+
+document.getElementById('lightbox-close').onclick = () => document.getElementById('lightbox').classList.remove('active');
+document.getElementById('lightbox').onclick = (e) => { if(e.target === document.getElementById('lightbox')) document.getElementById('lightbox').classList.remove('active'); };
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    updateCartUI();
+
+    const track = document.getElementById('reviews-track');
+    track.innerHTML = REVIEWS.map(r => `<div class="dz-card"><div class="dz-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="dz-txt">"${r.t}"</div><div class="dz-prod">${r.p}</div><div class="dz-who"><div class="dz-av">${r.n.charAt(0)}</div><div><div class="dz-name">${r.n}</div><div class="dz-meta">${r.c}</div></div></div></div>`).join('');
+    document.getElementById('review-wa').href = `https://wa.me/${WA_NUM}?text=${encodeURIComponent('Bonjour, je souhaite partager mon avis sur ma commande Decobiz !')}`;
+
+    window.addEventListener('scroll', () => { document.getElementById('main-header').classList.toggle('scrolled', window.scrollY > 10); });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }}); }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    const dzBar = document.getElementById('dz-bar'); const dzText = document.getElementById('dz-bar-t');
+    window.addEventListener('scroll', () => { if(window.scrollY > 600 && cart.length > 0) { dzBar.classList.add('show'); const t = cart.reduce((s,i)=>s+i.price*i.qty,0); dzText.textContent = t + ' DH — '+ cart.reduce((s,i)=>s+i.qty,0) +' article(s)'; document.body.classList.add('dz-has-cart'); } else { dzBar.classList.remove('show'); document.body.classList.remove('dz-has-cart'); } });
+});
 </script>
 </body>
 </html>
