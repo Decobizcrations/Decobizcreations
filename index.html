@@ -14,9 +14,11 @@
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1066915886136248');
+fbq('init','1609605916958974');  // 2e jeu de données (celui lié à la pub Instagram ?)
 fbq('track','PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1066915886136248&ev=PageView&noscript=1"/></noscript>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1609605916958974&ev=PageView&noscript=1"/></noscript>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -286,6 +288,47 @@ footer{background:#0A221B;border-top:3px solid var(--ac)}
 .po.on{background:rgba(183,134,58,.1)}
 .lowst{color:#8A5A12}
 </style>
+<style>
+/* ===== Animations ===== */
+#prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#B7863A,#E0B96A);z-index:100001}
+.mq{background:#0C2A22;color:var(--ac2);overflow:hidden;white-space:nowrap;padding:13px 0;font-family:var(--fd);font-style:italic;font-size:1.2rem}
+.mqt{display:inline-block;animation:mq 30s linear infinite}
+.mq span{margin:0 18px}.mq em{font-style:normal;font-size:.7rem;color:#2F6B55}
+@keyframes mq{to{transform:translateX(-50%)}}
+.hero h1 em{background:linear-gradient(100deg,#E0B96A,#FFF3CF,#E0B96A,#B7863A);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shm 5s linear infinite}
+@keyframes shm{to{background-position:-250% 0}}
+.arch{animation:rise 1.1s .2s both,flt 7s 1.4s ease-in-out infinite}
+@keyframes flt{50%{transform:translateY(-14px)}}
+.hbtn .b-ac{animation:ring 2.4s infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(224,185,106,.6)}70%,100%{box-shadow:0 0 0 16px rgba(224,185,106,0)}}
+.btn i.fa-arrow-right{transition:transform .3s}.btn:hover i.fa-arrow-right{transform:translateX(5px)}
+.rv0{opacity:0;transform:translateY(36px) scale(.97)}
+.rv0.in{opacity:1;transform:none;transition:opacity .8s,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.pc .stk b{transform:scaleX(0);transform-origin:left;transition:transform 1.3s .5s cubic-bezier(.2,.7,.2,1)}
+.pc.go .stk b{transform:none}
+.stk .fa-fire{display:inline-block;animation:fl .9s infinite alternate}
+@keyframes fl{to{transform:scale(1.3) rotate(-8deg);color:#E8741E}}
+.pop{animation:pop .65s}
+@keyframes pop{30%{transform:scale(1.3) rotate(-10deg)}60%{transform:scale(.94)}}
+#dzb.on{animation:rise .5s}
+.wy i{transition:transform .4s}.wy:hover i{transform:rotate(-8deg) scale(1.12)}
+</style>
+<style>
+/* ===== Diaporama animé dans l'arche + étincelles ===== */
+.hero{position:relative}.hg{z-index:1}
+.arch{overflow:hidden;background-color:#0F2F27}
+.arch:after{display:none}
+.arch .sl{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.14);transition:opacity 1.2s}
+.arch .sl.on{opacity:1;animation:kb 7s linear forwards}
+@keyframes kb{to{transform:scale(1)}}
+.acap{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:3;background:rgba(12,42,34,.88);backdrop-filter:blur(8px);color:var(--ac2);font-family:var(--fd);font-style:italic;font-size:1.1rem;padding:10px 24px;border-radius:30px;border:1px solid rgba(224,185,106,.5);white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis;transition:background .3s}
+.acap:hover{background:var(--ac2);color:#0C2A22}
+.adots{position:absolute;bottom:78px;left:0;right:0;display:flex;justify-content:center;gap:7px;z-index:3}
+.adots i{width:7px;height:7px;border-radius:7px;background:rgba(255,255,255,.5);transition:all .4s}
+.adots i.on{width:24px;background:var(--ac2)}
+.spk{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--ac2);box-shadow:0 0 10px 2px rgba(224,185,106,.7);opacity:0;pointer-events:none;animation:spk var(--t) var(--dl) infinite}
+@keyframes spk{0%{opacity:0;transform:translateY(0) scale(.5)}20%{opacity:.9}100%{opacity:0;transform:translateY(-160px) scale(1.2)}}
+</style>
 </head>
 <body>
 
@@ -307,6 +350,8 @@ footer{background:#0A221B;border-top:3px solid var(--ac)}
     <button class="btn b-gh" onclick="go('catalogue')">Personnaliser un article</button>
   </div>
 </div><div class="arch"></div></div></section>
+
+<div class="mq"><div class="mqt"><span>Fait main au Maroc</span><em>◆</em><span>Personnalisation offerte</span><em>◆</em><span>Paiement à la livraison</span><em>◆</em><span>Livraison 48-72h</span><em>◆</em><span>Livraison offerte dès 399 DH</span><em>◆</em><span>Fait main au Maroc</span><em>◆</em><span>Personnalisation offerte</span><em>◆</em><span>Paiement à la livraison</span><em>◆</em><span>Livraison 48-72h</span><em>◆</em><span>Livraison offerte dès 399 DH</span><em>◆</em></div></div>
 
 <div class="trust"><div class="wrap tg">
   <span><i class="fa-solid fa-pen-ruler"></i>Personnalisation</span>
@@ -635,6 +680,74 @@ document.addEventListener('DOMContentLoaded',()=>{
     $('dzb').classList.toggle('on',on);document.body.classList.toggle('hc2',on);
     if(on)$('dzt').textContent=sub()+' DH — '+cart.reduce((s,i)=>s+i.qty,0)+' article(s)';
   });
+});
+</script>
+<script>
+(function(){
+  // barre de progression du scroll
+  const pg=document.createElement('div');pg.id='prog';document.body.appendChild(pg);
+  addEventListener('scroll',()=>{pg.style.width=(scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%'},{passive:true});
+
+  // apparition progressive au scroll (cartes, sections, FAQ…)
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;io.unobserve(el);el.classList.add('in','go');
+    setTimeout(()=>{el.classList.remove('rv0','in');el.style.removeProperty('--d')},1300);
+  }),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  function reveal(){
+    document.querySelectorAll('.pc,.wy,.sh,.faq details,.cta>*').forEach(el=>{
+      if(el.dataset.rv)return;el.dataset.rv=1;
+      const i=[...el.parentNode.children].indexOf(el);
+      el.style.setProperty('--d',(i%4)*.09+'s');el.classList.add('rv0');io.observe(el);
+    });
+  }
+  reveal();
+  ['grid','packs'].forEach(id=>new MutationObserver(reveal).observe($(id),{childList:true}));
+
+  // l'article « vole » vers le panier
+  const _add=addToCart;
+  addToCart=function(){
+    const src=cur&&cur.img,mb=document.querySelector('#cm .mb'),r=mb.getBoundingClientRect();
+    _add();
+    if(!src)return;
+    const c=document.querySelector('.cartbtn').getBoundingClientRect(),x=r.left+r.width/2-45,y=r.top+70;
+    const im=new Image();im.src=src;
+    Object.assign(im.style,{position:'fixed',zIndex:100000,width:'90px',height:'90px',objectFit:'contain',background:'#fff',borderRadius:'14px',boxShadow:'0 10px 30px rgba(0,0,0,.3)',left:x+'px',top:y+'px',pointerEvents:'none'});
+    document.body.appendChild(im);
+    const done=()=>{im.remove();[document.querySelector('.cartbtn'),$('cnt')].forEach(el=>{el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop')})};
+    if(!im.animate){done();return}
+    im.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:`translate(${c.left+c.width/2-45-x}px,${c.top+c.height/2-45-y}px) scale(.18)`,opacity:.5}],{duration:850,easing:'cubic-bezier(.55,-.1,.7,.9)'}).onfinish=done;
+  };
+})();
+</script>
+<script>
+(function(){
+  const hero=document.querySelector('.hero'),arch=document.querySelector('.arch');
+  // étincelles dorées qui montent dans le hero
+  for(let i=0;i<22;i++){
+    const e=document.createElement('span');e.className='spk';
+    e.style.cssText=`left:${Math.random()*100}%;top:${40+Math.random()*60}%;--t:${4+Math.random()*5}s;--dl:${Math.random()*6}s;transform:scale(${.5+Math.random()})`;
+    hero.appendChild(e);
+  }
+  // diaporama : photo d'ambiance puis les packs best-sellers (clic = commander)
+  const sl=[{img:'https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d',t:'Fait main au Maroc'}];
+  [889,888,17,99].forEach(id=>{const p=products.find(x=>x.id===id);if(p)sl.push({img:p.img,t:p.name+' · '+p.price+' DH',id})});
+  arch.innerHTML=sl.map((x,i)=>`<img class="sl${i?'':' on'}" src="${x.img}" alt="${x.t}">`).join('')
+    +'<div class="adots">'+sl.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')+'</div>'
+    +'<button class="acap" aria-label="Voir ce produit"></button>';
+  const imgs=arch.querySelectorAll('.sl'),dots=arch.querySelectorAll('.adots i'),cap=arch.querySelector('.acap');
+  let k=0;
+  const show=n=>{k=n;imgs.forEach((m,i)=>m.classList.toggle('on',i===n));dots.forEach((d,i)=>d.classList.toggle('on',i===n));cap.textContent=sl[n].t};
+  show(0);
+  let tm=setInterval(()=>show((k+1)%sl.length),4200);
+  cap.onclick=()=>sl[k].id?openModal(sl[k].id):go('promo-packs');
+  dots.forEach((d,i)=>d.onclick=()=>{show(i);clearInterval(tm);tm=setInterval(()=>show((k+1)%sl.length),4200)});
+})();
+</script>
+<script>
+// ViewContent dès l'arrivée sur la page (avant : seulement à l'ouverture d'un produit)
+document.addEventListener('DOMContentLoaded',function(){
+  px('ViewContent',{content_name:'Accueil Decobiz',content_type:'product',content_ids:products.filter(p=>p.pack).map(p=>String(p.id)),currency:PIXEL_CURRENCY});
 });
 </script>
 </body>
