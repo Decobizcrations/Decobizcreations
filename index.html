@@ -84,6 +84,10 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 .ok{text-align:center;padding:60px 20px}.ok .ck{width:76px;height:76px;border-radius:50%;background:var(--gbg);color:var(--green);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px}.ok h3{font-family:var(--disp);font-style:italic;font-size:2rem;font-weight:500}.ok .id{display:inline-block;background:var(--gbg);color:var(--green);font-weight:700;padding:8px 20px;border-radius:100px;margin:14px 0 24px}
 .empty{text-align:center;padding:60px 0;color:var(--soft)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.up{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}.u{flex:0 0 130px;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px;text-align:center}.u img{width:100%;aspect-ratio:1;border-radius:8px}.un{font-size:.75rem;line-height:1.2;margin:6px 0 2px;min-height:2.4em}.u .btn{padding:6px 8px;font-size:.72rem;margin-top:6px;width:100%}
+.ben{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}@media(min-width:760px){.ben{grid-template-columns:repeat(4,1fr)}}.ben div{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px 14px;text-align:center}.ben i{color:var(--acc);font-size:1.5rem;margin-bottom:10px;display:block}.ben b{display:block;font-size:.92rem;margin-bottom:2px}.ben span{font-size:.78rem;color:var(--soft)}
+.faq{max-width:720px;margin:0 auto}.faq details{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px 18px;margin-bottom:10px}.faq summary{font-weight:600;cursor:pointer}.faq p{color:var(--soft);font-size:.92rem;margin-top:10px}
+.row.sv{color:var(--green);font-weight:600}
 </style>
 </head>
 <body>
@@ -92,20 +96,21 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 <header><div class="container hd"><div class="logo">Decobiz<span>.</span></div><button class="cart-btn" onclick="openCart()" aria-label="Panier"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cnt">0</span></button></div></header>
 
 <section class="hero"><div class="hero-c">
-<h1>Votre déco,<br>votre <b>élégance</b></h1>
-<p>Packs, plateaux et vases artisanaux, personnalisés à votre goût et livrés chez vous partout au Maroc.</p>
-<div class="acts"><a class="btn btn-gold" href="#packs">Voir les packs en promo</a><a class="btn btn-line" style="color:#fff;border-color:rgba(255,255,255,.3)" href="#catalogue">Tout le catalogue</a></div>
+<h1>Transformez votre salon <b>dès 29 DH</b></h1>
+<p>Packs déco jusqu'à -55%, personnalisés gratuitement à vos couleurs, livrés chez vous partout au Maroc. Vous payez uniquement à la réception.</p>
+<div class="acts"><a class="btn btn-gold" href="#packs">Profiter des promos du jour</a><a class="btn btn-line" style="color:#fff;border-color:rgba(255,255,255,.3)" href="#catalogue">Tout le catalogue</a></div>
 <div class="hero-pts"><span><i class="fa-solid fa-hand-holding-dollar"></i>Paiement à la livraison</span><span><i class="fa-solid fa-truck-fast"></i>Livraison 48-72h</span></div>
 </div></section>
 
 <div class="trust"><div class="container"><span><i class="fa-solid fa-pen-ruler"></i>Sur mesure</span><span><i class="fa-solid fa-truck-fast"></i>Livraison Maroc</span><span><i class="fa-solid fa-shield-halved"></i>Payez à la réception</span><span><i class="fa-solid fa-heart"></i>Fait avec passion</span></div></div>
 <div class="flash"><i class="fa-solid fa-fire"></i> Promo du jour, fin à minuit <span class="t" id="tm">00:00:00</span></div>
 
-<section id="packs" class="sec alt"><div class="container"><div class="sh"><h2>Les packs best-sellers</h2><p>Tout ce qu'il faut en un seul pack. Économisez jusqu'à 55%.</p></div><div class="grid-p" id="packs-grid"></div></div></section>
+<section id="packs" class="sec alt"><div class="container"><div class="sh"><h2>Les packs best-sellers</h2><p>Tout ce qu'il faut en un seul pack. Économisez jusqu'à 55%. Livraison offerte dès 399 DH.</p></div><div class="grid-p" id="packs-grid"></div></div></section>
 
-<section class="sec"><div class="container"><div class="sh"><h2>Comment commander</h2></div><div class="steps"><div><i class="fa-solid fa-hand-pointer"></i><b>1. Choisissez</b><span>Un pack ou un article, avec la couleur ou la gravure de votre choix.</span></div><div><i class="fa-solid fa-pen"></i><b>2. Validez</b><span>Nom, téléphone, adresse. Aucun paiement en ligne.</span></div><div><i class="fa-solid fa-box-open"></i><b>3. Recevez et payez</b><span>Livraison en 48-72h, vous payez au livreur.</span></div></div></div></section>
+<section class="sec"><div class="container"><div class="sh"><h2>Pourquoi commander chez Decobiz</h2></div><div class="ben"><div><i class="fa-solid fa-hand-holding-dollar"></i><b>Payez à la livraison</b><span>Aucun paiement en ligne, vous réglez au livreur.</span></div><div><i class="fa-solid fa-palette"></i><b>Personnalisation gratuite</b><span>Couleur ou gravure, sur tous les articles.</span></div><div><i class="fa-solid fa-truck-fast"></i><b>Livraison 48-72h</b><span>Partout au Maroc, offerte dès 399 DH.</span></div><div><i class="fa-brands fa-whatsapp"></i><b>Réponse rapide</b><span>Une question ? On vous répond sur WhatsApp.</span></div></div></div></section>
+<section class="sec alt"><div class="container"><div class="sh"><h2>Comment commander</h2></div><div class="steps"><div><i class="fa-solid fa-hand-pointer"></i><b>1. Choisissez</b><span>Un pack ou un article, avec la couleur ou la gravure de votre choix.</span></div><div><i class="fa-solid fa-pen"></i><b>2. Validez</b><span>Nom, téléphone, adresse. Aucun paiement en ligne.</span></div><div><i class="fa-solid fa-box-open"></i><b>3. Recevez et payez</b><span>Livraison en 48-72h, vous payez au livreur.</span></div></div></div></section>
 
-<section class="sec alt"><div class="container"><div class="sh"><h2>Ce que disent nos clients</h2></div><div class="reviews">
+<section class="sec"><div class="container"><div class="sh"><h2>Ce que disent nos clients</h2></div><div class="reviews">
 <!-- REMPLACEZ par de vrais avis (idéalement avec photo / capture WhatsApp) -->
 <div class="rv"><div class="st">★★★★★</div><p>"La qualité est au rendez-vous et ça fait tout mon salon."</p><b>Sarah B.</b></div>
 <div class="rv"><div class="st">★★★★★</div><p>"Livraison rapide. Le design est exactement comme sur les photos."</p><b>Karim M.</b></div>
@@ -114,7 +119,14 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 
 <section id="catalogue" class="sec"><div class="container"><div class="sh"><h2>Toute la collection</h2><p>Choisissez, personnalisez, recevez.</p></div><div class="filters" id="filters"></div><div class="grid-c" id="grid"></div></div></section>
 
-<section class="cta"><h2>Une question sur votre commande ?</h2><p>Écrivez-nous sur WhatsApp, on vous répond rapidement.</p><a class="btn btn-wa" href="https://wa.me/212610236889" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Écrire sur WhatsApp</a></section>
+<section class="sec alt"><div class="container"><div class="sh"><h2>Questions fréquentes</h2></div><div class="faq">
+<details><summary>Comment je paie ?</summary><p>À la livraison, en espèces, directement au livreur. Rien à payer en ligne.</p></details>
+<details><summary>Quel est le délai de livraison ?</summary><p>Entre 48 et 72 heures selon votre ville. Nous vous appelons pour confirmer votre commande avant l'expédition.</p></details>
+<details><summary>Combien coûte la livraison ?</summary><p>Le tarif dépend de votre ville et s'affiche dans votre panier avant de commander. Elle est offerte dès 399 DH d'achat.</p></details>
+<details><summary>Comment fonctionne la personnalisation ?</summary><p>Elle est gratuite. Choisissez la couleur souhaitée (et le texte à graver sur les plateaux personnalisés) au moment de commander. Pour un projet particulier, écrivez-nous sur WhatsApp.</p></details>
+<details><summary>Et si mon produit ne me convient pas ?</summary><p>Vérifiez votre colis à la réception. En cas de problème, contactez-nous sur WhatsApp et nous trouvons une solution.</p></details>
+</div></div></section>
+<section class="cta"><h2>Un doute avant de commander ?</h2><p>Écrivez-nous sur WhatsApp, on vous répond rapidement.</p><a class="btn btn-wa" href="https://wa.me/212610236889" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Écrire sur WhatsApp</a></section>
 
 <footer><div class="logo">Decobiz<span style="color:var(--acc2)">.</span></div><p>Artisanat marocain et design contemporain</p>
 <div class="fs"><!-- METTEZ vos vrais liens Instagram / Facebook --><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><a href="https://wa.me/212610236889" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div>
@@ -136,7 +148,9 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 <!-- PANIER / CHECKOUT / SUCCÈS -->
 <div class="page" id="page">
 <div class="pt"><h3 id="pt-t">Votre panier</h3><button class="x" style="position:static" onclick="closeCart()" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button></div>
-<div class="pw" id="v-cart"><div id="items"></div><div id="cart-foot"></div></div>
+<div class="pw" id="v-cart"><div id="items"></div>
+<div id="city-box" style="display:none;margin:6px 0 4px"><label style="display:block;font-weight:600;font-size:.85rem;margin-bottom:6px"><i class="fa-solid fa-location-dot" style="color:var(--acc);margin-right:6px"></i>Votre ville de livraison</label><input class="inp" id="c-city" list="cities" autocomplete="address-level2" placeholder="Tapez votre ville (ex : Casablanca)"><datalist id="cities"></datalist><div id="city-note" style="font-size:.82rem;color:var(--acc);margin-top:6px;font-weight:500"></div></div>
+<div id="cart-foot"></div></div>
 <div class="pw" id="v-check" style="display:none">
 <button onclick="showView('cart')" style="color:var(--soft);font-size:.85rem;margin-bottom:14px"><i class="fa-solid fa-arrow-left"></i> Retour au panier</button>
 <div class="sum" style="margin:0 0 18px" id="mini"></div>
@@ -144,7 +158,7 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 <input type="hidden" name="order_details" id="f-det"><input type="hidden" name="total_price" id="f-tot"><input type="hidden" name="shipping_fee" id="f-ship"><input type="hidden" name="order_id" id="f-oid">
 <div class="fld"><label>Nom complet</label><input class="inp" name="name" id="c-name" autocomplete="name" placeholder="Votre nom" required></div>
 <div class="fld"><label>Téléphone (WhatsApp)</label><input class="inp" name="phone" id="c-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78" required></div>
-<div class="fld"><label>Ville</label><input class="inp" name="city" id="c-city" list="cities" autocomplete="address-level2" placeholder="Ex : Casablanca" required><datalist id="cities"><option>Casablanca<option>Rabat<option>Marrakech<option>Tanger<option>Agadir<option>Fès<option>Meknès<option>Kénitra<option>Oujda<option>Tétouan<option>Safi<option>El Jadida<option>Nador<option>Béni Mellal<option>Khouribga</datalist></div>
+<div class="fld"><label>Ville de livraison</label><div class="inp" id="city-show" style="background:var(--warm)"></div><input type="hidden" name="city" id="f-city"></div>
 <div class="fld"><label>Adresse complète</label><textarea class="inp" name="address" id="c-addr" rows="2" autocomplete="street-address" placeholder="Rue, quartier, n°…" required></textarea></div>
 <div class="sum" style="margin:0 0 14px"><div class="row"><span>Livraison</span><span id="k-ship"></span></div><div class="row t"><span>À payer à la livraison</span><span id="k-tot"></span></div></div>
 <button class="btn btn-green btn-full" id="submit"><i class="fa-solid fa-lock"></i> Confirmer ma commande</button>
@@ -155,7 +169,10 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 </div>
 
 <script>
-const PX='1609605916958974',FREE=399,SHIP=35,WA='212610236889',FORM='https://formspree.io/f/xeevpgvy';
+const PX='1609605916958974',FREE=399,WA='212610236889',FORM='https://formspree.io/f/xeevpgvy';
+/* ===== TARIFS DE LIVRAISON PAR VILLE (DH) — MODIFIEZ ICI selon vos vrais prix ===== */
+const RATES={'Casablanca':25,'Rabat':30,'Kénitra':30,'El Jadida':30,'Marrakech':35,'Fès':35,'Meknès':35,'Tanger':35,'Agadir':40,'Safi':40,'Béni Mellal':40,'Khouribga':35,'Oujda':45,'Nador':45,'Tétouan':40};
+const DEFAULT_RATE=45; /* ville non listée */
 const HERO='https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d';
 const $=id=>document.getElementById(id),dh=n=>n+' DH';
 const track=(ev,d,o)=>{try{o?fbq('track',ev,d,o):fbq('track',ev,d)}catch(e){}};
@@ -205,7 +222,7 @@ const disc=p=>p.old?Math.round((1-p.price/p.old)*100):0;
 let cart=L('decobiz_cart')||[],cur=null,mode='cart',filter='all',lastId='';
 const saveCart=()=>L('decobiz_cart',cart);
 const subtotal=()=>cart.reduce((s,i)=>s+i.price*i.qty,0);
-const shipFee=()=>subtotal()>=FREE||!cart.length?0:SHIP;
+const shipFee=()=>{if(!cart.length||subtotal()>=FREE)return 0;return rateFor($('c-city').value)};
 
 /* Compte à rebours honnête : jusqu'à minuit (heure locale du visiteur) */
 function tick(){const n=new Date(),e=new Date(n);e.setHours(24,0,0,0);let s=Math.floor((e-n)/1000);const p=x=>String(x).padStart(2,'0');$('tm').textContent=p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60)}
@@ -234,11 +251,11 @@ function modalGo(m){
   const disp=[c&&'Couleur : '+c,t&&'Gravure : '+t].filter(Boolean).join(' · ')||'Standard';
   if(m=='buy')cart=[];
   addToCart(cur,disp);closeModal();
-  if(m=='buy'){openCart();showView('check')}else toast('Ajouté au panier')
+  if(m=='buy')openCart();else toast('Ajouté au panier')
 }
 function addToCart(p,disp){
   track('AddToCart',{content_name:p.name,content_ids:[String(p.id)],content_type:'product',value:p.price,currency:'MAD'});
-  const ex=cart.find(i=>i.id==p.id&&i.custom==disp);ex?ex.qty++:cart.push({id:p.id,name:p.name,price:p.price,img:p.img,custom:disp,qty:1});
+  const ex=cart.find(i=>i.id==p.id&&i.custom==disp);ex?ex.qty++:cart.push({id:p.id,name:p.name,price:p.price,old:p.old||p.price,img:p.img,custom:disp,qty:1});
   saveCart();refresh()
 }
 
@@ -250,40 +267,50 @@ function refresh(){
   renderCart()
 }
 function renderCart(){
-  const box=$('items'),foot=$('cart-foot');
+  const box=$('items'),foot=$('cart-foot');$('city-box').style.display=cart.length?'block':'none';
   if(!cart.length){box.innerHTML='<div class="empty"><p style="margin-bottom:20px">Votre panier est vide</p><button class="btn btn-dark" onclick="closeCart()">Voir les produits</button></div>';foot.innerHTML='';return}
   box.innerHTML=cart.map((i,x)=>`<div class="it"><img src="${i.img}" alt="${i.name}"><div style="flex:1;min-width:0"><div class="n">${i.name}</div>${i.custom!='Standard'?`<div class="c">${i.custom}</div>`:''}<div class="pp">${dh(i.price*i.qty)}</div><div class="qty"><button onclick="qty(${x},-1)" aria-label="Moins">−</button><span>${i.qty}</span><button onclick="qty(${x},1)" aria-label="Plus">+</button></div></div><button class="del" onclick="qty(${x},-99)" aria-label="Supprimer"><i class="fa-solid fa-trash-can"></i></button></div>`).join('');
-  const s=subtotal(),f=shipFee(),rest=FREE-s;
+  const s=subtotal(),f=shipFee(),rest=FREE-s,sv=cart.reduce((a,i)=>a+((i.old||i.price)-i.price)*i.qty,0);
   foot.innerHTML=`<div class="bt">${f==0?'<b style="color:var(--green)">Livraison offerte !</b>':'Plus que <b style="color:var(--acc)">'+dh(rest)+'</b> pour la livraison gratuite'}</div><div class="bar"><i class="${f==0?'f':''}" style="width:${Math.min(100,s/FREE*100)}%"></i></div>
-  <div class="sum"><div class="row"><span>Sous-total</span><span>${dh(s)}</span></div><div class="row"><span>Livraison</span><span>${f?dh(f):'Gratuite'}</span></div><div class="row t"><span>Total</span><span>${dh(s+f)}</span></div>
+  ${upsell(s)}<div class="sum"><div class="row"><span>Sous-total</span><span>${dh(s)}</span></div>${sv>0?`<div class="row sv"><span>Vous économisez</span><span>-${dh(sv)}</span></div>`:''}<div class="row"><span>Livraison</span><span>${f===null?'Choisissez votre ville ci-dessus':f?dh(f):'Gratuite'}</span></div><div class="row t"><span>${f===null?'Total (hors livraison)':'Total'}</span><span>${dh(s+(f||0))}</span></div>
   <button class="btn btn-green btn-full" style="margin-top:16px" onclick="showView('check')">Passer la commande</button><p style="text-align:center;font-size:.76rem;color:var(--soft);margin-top:10px"><i class="fa-solid fa-shield-halved" style="color:var(--green)"></i> Paiement à la livraison · Livraison 48-72h</p></div>`
 }
+function upsell(s){const ids=cart.map(i=>i.id),rest=FREE-s;let c=products.filter(p=>!p.pack&&p.price<=80&&!ids.includes(p.id));
+  if(rest>0)c.sort((a,b)=>Math.abs(a.price-rest)-Math.abs(b.price-rest));c=c.slice(0,4);if(!c.length)return'';
+  return`<div style="margin-top:18px"><div style="font-weight:600;font-size:.9rem;margin-bottom:8px">${rest>0?'Ajoutez un article et profitez de la livraison offerte plus vite':'Complétez votre déco'}</div><div class="up">${c.map(p=>`<div class="u"><img src="${p.img}" alt="${p.name}" loading="lazy"><div class="un">${p.name}</div><b>${dh(p.price)}</b><button class="btn btn-line" onclick="addToCart(byId(${p.id}),'Standard')">+ Ajouter</button></div>`).join('')}</div></div>`}
 function qty(i,d){cart[i].qty+=d;if(cart[i].qty<=0)cart.splice(i,1);saveCart();refresh()}
-function openCart(){refresh();$('page').classList.add('on');document.body.style.overflow='hidden';showView('cart')}
+function openCart(){const sv=L('decobiz_customer')||{};if(sv.city&&!$('c-city').value)$('c-city').value=sv.city;refresh();$('page').classList.add('on');document.body.style.overflow='hidden';showView('cart')}
 function closeCart(){$('page').classList.remove('on');document.body.style.overflow=''}
 function showView(v){
-  if(v=='check'){if(!cart.length)return;prepCheckout()}
+  if(v=='check'){if(!cart.length)return;if(!$('c-city').value.trim()){toast('Choisissez votre ville pour calculer la livraison');$('c-city').focus();return}prepCheckout()}
   $('v-cart').style.display=v=='cart'?'block':'none';$('v-check').style.display=v=='check'?'block':'none';$('v-ok').style.display=v=='ok'?'block':'none';
   $('pt-t').textContent=v=='cart'?'Votre panier':v=='check'?'Finaliser la commande':'Commande envoyée';$('page').scrollTop=0
 }
 function prepCheckout(){
-  const s=subtotal(),f=shipFee();
+  const s=subtotal();
   track('InitiateCheckout',{content_ids:cart.map(i=>String(i.id)),content_type:'product',value:s,currency:'MAD',num_items:cart.reduce((a,i)=>a+i.qty,0)});
   $('mini').innerHTML=cart.map(i=>`<div class="row" style="color:var(--text)"><span>${i.name} ×${i.qty}</span><span>${dh(i.price*i.qty)}</span></div>`).join('');
-  $('k-ship').textContent=f?dh(f):'Gratuite';$('k-tot').textContent=dh(s+f);
-  const c=L('decobiz_customer')||{};if(c.name&&!$('c-name').value)$('c-name').value=c.name;if(c.phone&&!$('c-phone').value)$('c-phone').value=c.phone;if(c.city&&!$('c-city').value)$('c-city').value=c.city
+  updateShip();$('f-city').value=$('c-city').value.trim();$('city-show').textContent=$('c-city').value.trim();
+  const c=L('decobiz_customer')||{};if(c.name&&!$('c-name').value)$('c-name').value=c.name;if(c.phone&&!$('c-phone').value)$('c-phone').value=c.phone;updateShip()
 }
 
 /* Envoi de la commande */
 const phoneOK=v=>/^(0|212|\+212)[5-7]\d{8}$/.test(v.replace(/[\s.\-]/g,''));
 const clean=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z]/g,'');
+const RK={};Object.keys(RATES).forEach(k=>RK[clean(k)]=RATES[k]);
+$('cities').innerHTML=Object.keys(RATES).map(k=>'<option value="'+k+'">').join('');
+const rateFor=c=>(!c||!c.trim())?null:(RK[clean(c)]??DEFAULT_RATE);
+function updateShip(){const s=subtotal(),f=shipFee(),c=$('c-city').value.trim();
+  $('k-ship').textContent=f===null?'Saisissez votre ville':f?dh(f):'Gratuite';$('k-tot').textContent=dh(s+(f||0));
+  $('city-note').textContent=f===null?'':f===0?'Livraison offerte à '+c:'Livraison à '+c+' : '+dh(f)}
+$('c-city').addEventListener('input',()=>{updateShip();renderCart()});
 $('form').addEventListener('submit',async function(e){
   e.preventDefault();
   const name=$('c-name').value.trim(),phone=$('c-phone').value.trim(),city=$('c-city').value.trim(),addr=$('c-addr').value.trim();
-  let bad=null;[['c-name',name.length<3],['c-phone',!phoneOK(phone)],['c-city',!city],['c-addr',addr.length<5]].forEach(([id,b])=>{$(id).classList.toggle('err',b);if(b&&!bad)bad=id});
+  let bad=null;[['c-name',name.length<3],['c-phone',!phoneOK(phone)],['c-addr',addr.length<5]].forEach(([id,b])=>{$(id).classList.toggle('err',b);if(b&&!bad)bad=id});
   if(bad){$(bad).focus();toast(bad=='c-phone'?'Numéro invalide (ex : 0612345678)':'Veuillez remplir ce champ');return}
   const btn=$('submit');btn.disabled=true;btn.innerHTML='Envoi en cours…';
-  const oid='CMD-'+Date.now().toString(36).toUpperCase(),s=subtotal(),f=shipFee(),tot=s+f;
+  const oid='CMD-'+Date.now().toString(36).toUpperCase(),s=subtotal(),f=shipFee()||0,tot=s+f;
   let det=cart.map(i=>'- '+i.name+' x'+i.qty+' ('+dh(i.price*i.qty)+')'+(i.custom!='Standard'?' → '+i.custom:'')).join('\n')+'\n\nVille: '+city+'\nLivraison: '+(f?dh(f):'Gratuite')+'\nTotal à payer: '+dh(tot);
   $('f-det').value=det;$('f-tot').value=dh(tot);$('f-ship').value=f?dh(f):'Gratuite';$('f-oid').value=oid;
   try{
