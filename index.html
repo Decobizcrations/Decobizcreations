@@ -168,6 +168,10 @@ body.go .w>i{transform:none}
 @media(prefers-reduced-motion:reduce){#intro,.lbx{display:none}.w>i{transform:none!important}.film p span{opacity:1}}
 .hero h1 b{background:none;color:var(--acc2);animation:none;-webkit-background-clip:border-box}
 .hero h1 b .w>i{background:linear-gradient(100deg,#D9B35B 20%,#fff3cf 45%,#D9B35B 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+
+.mdiv{display:flex;align-items:center;gap:12px;margin:18px 0 12px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}.mdiv::before,.mdiv::after{content:'';flex:1;height:1px;background:var(--bd)}
+.msum{background:var(--warm);padding:14px 16px;margin:6px 0 4px;font-size:.84rem;color:var(--soft)}.msum #m-line{margin-bottom:8px}.msum #m-line b{color:var(--green)}.msum .mt{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--bd);padding-top:10px;color:var(--text)}.msum .mt b{font-family:var(--disp);font-size:1.6rem}
+select.inp{appearance:auto}
 </style>
 </head>
 <body>
@@ -223,11 +227,18 @@ body.go .w>i{transform:none}
 
 <!-- MODAL PERSONNALISATION -->
 <div class="ov" id="modal"><div class="mb"><button class="x" onclick="closeModal()" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
-<h3>Personnaliser</h3><p class="sub" id="m-info"></p>
+<h3>Votre commande</h3><p class="sub" id="m-info"></p>
 <div class="fld"><label>Couleur souhaitée <small>(optionnel)</small></label><input class="inp" id="m-color" placeholder="Ex : blanc cassé, terracotta, doré…" autocomplete="off"></div>
 <div class="fld" id="m-logo-f" style="display:none"><label>Texte à graver *</label><input class="inp" id="m-logo" maxlength="40" placeholder="Prénom, marque…" autocomplete="off"></div>
-<div class="perks"><span><i class="fa-solid fa-check"></i>Personnalisation gratuite</span><span><i class="fa-solid fa-check"></i>Payez à la livraison</span></div>
-<div style="display:flex;flex-direction:column;gap:8px"><button class="btn btn-gold btn-full" onclick="modalGo('buy')"><i class="fa-solid fa-bolt"></i> Commander maintenant</button><button class="btn btn-line btn-full" onclick="modalGo('cart')">Ajouter au panier</button></div>
+<div class="fld"><label>Quantité</label><select class="inp" id="m-qty"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option></select></div>
+<div class="mdiv"><span>Vos coordonnées de livraison</span></div>
+<div class="fld"><label>Nom complet</label><input class="inp" id="m-name" autocomplete="name" placeholder="Votre nom"></div>
+<div class="fld"><label>Téléphone (WhatsApp)</label><input class="inp" id="m-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="06 12 34 56 78"></div>
+<div class="fld"><label>Ville</label><input class="inp" id="m-city" list="cities" autocomplete="address-level2" placeholder="Ex : Casablanca"></div>
+<div class="fld"><label>Adresse complète</label><textarea class="inp" id="m-addr" rows="2" autocomplete="street-address" placeholder="Rue, quartier, n°…"></textarea></div>
+<div class="msum"><div id="m-line"></div><div class="mt"><span>À payer à la livraison</span><b id="m-tot"></b></div></div>
+<div class="perks"><span><i class="fa-solid fa-check"></i>Personnalisation gratuite</span><span><i class="fa-solid fa-check"></i>Vérifiez avant de payer</span><span><i class="fa-solid fa-check"></i>Livraison 48-72h</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><button class="btn btn-gold btn-full" id="m-go" onclick="expressOrder()"><i class="fa-solid fa-lock"></i> Confirmer ma commande</button><button class="btn btn-line btn-full" onclick="modalGo('cart')">Ajouter au panier et continuer</button></div>
 </div></div>
 
 <!-- PANIER / CHECKOUT / SUCCÈS (tout reste sur le site) -->
@@ -435,6 +446,34 @@ reveal();
   const lit=()=>{const f=$('fp');if(!f)return;const r=f.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(innerHeight*.55+r.height)));sp.forEach((x,i)=>x.classList.toggle('on',i<=p*sp.length-.001))};
   addEventListener('scroll',lit,{passive:true});lit();
 })();
+
+/* ===== COMMANDE EXPRESS (1 seule fenêtre) ===== */
+function mUpd(){if(!cur)return;const q=+$('m-qty').value||1,sub=cur.price*q,city=$('m-city').value.trim(),f=sub>=FREE?0:rateFor(city),tot=sub+(f||0);
+  $('m-line').innerHTML=(f===0?'<b>Livraison offerte !</b>':'Plus que <b>'+dh(FREE-sub)+'</b> pour la livraison offerte')+' · '+cur.name+' ×'+q+' : '+dh(sub)+(f===null?'<br>Livraison : saisissez votre ville':f?'<br>Livraison : '+dh(f):'');
+  $('m-tot').textContent=dh(tot);$('m-go').innerHTML='<i class="fa-solid fa-lock"></i> Confirmer ma commande · '+dh(tot)}
+const _om=openModal;openModal=function(id,m){_om(id,m);const c=L('decobiz_customer')||{};$('m-qty').value='1';$('m-name').value=c.name||'';$('m-phone').value=c.phone||'';$('m-city').value=c.city||'';$('m-addr').value='';['m-name','m-phone','m-city','m-addr'].forEach(x=>$(x).classList.remove('err'));mUpd()};
+['m-qty','m-city'].forEach(x=>{$(x).addEventListener('input',mUpd);$(x).addEventListener('change',mUpd)});
+async function expressOrder(){
+  const c=$('m-color').value.trim(),t=$('m-logo').value.trim(),name=$('m-name').value.trim(),phone=$('m-phone').value.trim(),city=$('m-city').value.trim(),addr=$('m-addr').value.trim(),q=+$('m-qty').value||1;
+  let bad=null;[['m-logo',cur.logo&&!t],['m-name',name.length<3],['m-phone',!phoneOK(phone)],['m-city',!city],['m-addr',addr.length<5]].forEach(([id,b])=>{$(id).classList.toggle('err',b);if(b&&!bad)bad=id});
+  if(bad){$(bad).focus();toast(bad=='m-phone'?'Numéro invalide (ex : 0612345678)':bad=='m-city'?'Indiquez votre ville':'Veuillez remplir ce champ');return}
+  const custom=[c&&'Couleur : '+c,t&&'Gravure : '+t].filter(Boolean).join(' · ')||'Standard',sub=cur.price*q,f=sub>=FREE?0:(rateFor(city)||0),tot=sub+f,oid='CMD-'+Date.now().toString(36).toUpperCase();
+  const det='- '+cur.name+' x'+q+' ('+dh(sub)+')'+(custom!='Standard'?' → '+custom:'')+'\n\nVille: '+city+'\nLivraison: '+(f?dh(f):'Gratuite')+'\nTotal à payer: '+dh(tot);
+  const fd=new FormData();Object.entries({name,phone,city,address:addr,order_details:det,total_price:dh(tot),shipping_fee:f?dh(f):'Gratuite',order_id:oid}).forEach(([k,v])=>fd.append(k,v));
+  const btn=$('m-go');btn.disabled=true;btn.innerHTML='Envoi en cours…';
+  try{
+    const r=await fetch(FORM,{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!r.ok)throw 0;
+    L('decobiz_customer',{name,phone,city});
+    let ph=phone.replace(/\D/g,'');if(ph.startsWith('0'))ph='212'+ph.slice(1);const parts=name.split(/\s+/);
+    try{fbq('init',PX,{ph,fn:clean(parts[0]),ln:clean(parts.slice(1).join('')),ct:clean(city),country:'ma'})}catch(x){}
+    const d={content_name:cur.name,content_ids:[String(cur.id)],content_type:'product',value:tot,currency:'MAD',num_items:q};
+    track('InitiateCheckout',d);track('Purchase',d,{eventID:oid});
+    $('ok-id').textContent='#'+oid;
+    $('ok-wa').href='https://wa.me/'+WA+'?text='+encodeURIComponent('Bonjour, voici ma commande '+oid+' :\n'+det+'\n\nNom: '+name+'\nTél: '+phone+'\nAdresse: '+addr);
+    closeModal();$('page').classList.add('on');document.body.style.overflow='hidden';showView('ok')
+  }catch(err){toast('Échec de l\'envoi. Réessayez ou commandez par WhatsApp.')}
+  btn.disabled=false;mUpd()
+}
 renderFilters();renderPacks();renderGrid();refresh();
 </script>
 </body>
