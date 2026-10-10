@@ -102,10 +102,76 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 .ben{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}@media(min-width:760px){.ben{grid-template-columns:repeat(4,1fr)}}.ben div{background:var(--card);border:1px solid var(--bd);padding:26px 14px;text-align:center}.ben i{color:var(--acc);font-size:1.5rem;margin-bottom:12px;display:block}.ben b{display:block;font-family:var(--disp);font-size:1.15rem;margin-bottom:2px}.ben span{font-size:.78rem;color:var(--soft)}
 .faq{max-width:720px;margin:0 auto}.faq details{background:var(--card);border:1px solid var(--bd);padding:16px 18px;margin-bottom:10px}.faq summary{font-weight:500;cursor:pointer}.faq p{color:var(--soft);font-size:.92rem;margin-top:10px}
 .row.sv{color:var(--green);font-weight:600}
+
+/* ===== CINÉMA & ANIMATIONS ===== */
+.hero{overflow:hidden;background:#14110F}
+.hero-bg{position:absolute;inset:-6% 0;background-size:cover;background-position:center 30%;animation:kb 22s ease-in-out infinite alternate;will-change:transform}
+@keyframes kb{from{transform:scale(1.02) translate3d(0,0,0)}to{transform:scale(1.16) translate3d(-1.5%,-1%,0)}}
+.hero::before{z-index:1;background:radial-gradient(ellipse at 30% 100%,rgba(14,12,10,.55),transparent 60%),linear-gradient(to top,rgba(14,12,10,.95),rgba(14,12,10,.38) 60%,rgba(14,12,10,.3))}
+.hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 160px rgba(0,0,0,.55);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");opacity:.07;mix-blend-mode:overlay;animation:grain 1s steps(4) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(3%,3%)}}
+.hero-c{z-index:2}
+.hero-c>*{opacity:0;transform:translateY(34px);filter:blur(8px);animation:rise 1.1s cubic-bezier(.2,.7,.2,1) forwards}
+.hero-c>:nth-child(1){animation-delay:.2s}.hero-c>:nth-child(2){animation-delay:.45s}.hero-c>:nth-child(3){animation-delay:.75s}.hero-c>:nth-child(4){animation-delay:1s}.hero-c>:nth-child(5){animation-delay:1.2s}
+@keyframes rise{to{opacity:1;transform:none;filter:none}}
+.eyebrow::before{transform-origin:left;animation:line 1.2s .3s both}@keyframes line{from{transform:scaleX(0)}}
+.hero h1 b{background:linear-gradient(100deg,#D9B35B 20%,#fff3cf 45%,#D9B35B 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
+@keyframes shine{to{background-position:-250% 0}}
+.scrollcue{position:absolute;bottom:22px;right:24px;z-index:2;width:1px;height:64px;background:rgba(255,255,255,.25);overflow:hidden}.scrollcue::after{content:'';position:absolute;left:0;top:-100%;width:1px;height:100%;background:var(--acc2);animation:cue 2s ease-in-out infinite}@keyframes cue{to{top:100%}}
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--gold);z-index:100000}
+header{transition:padding .35s,box-shadow .35s}header.sc{padding:6px 0;box-shadow:0 8px 30px rgba(20,17,15,.08)}
+.mq{background:#0E0C0A;overflow:hidden;white-space:nowrap;padding:14px 0;border-top:1px solid rgba(217,179,91,.2);border-bottom:1px solid rgba(217,179,91,.2)}
+.mq div{display:inline-block;animation:mq 32s linear infinite;font-family:var(--disp);font-style:italic;font-size:1.25rem;color:var(--acc2)}.mq span{margin:0 26px}.mq i{font-size:.5rem;color:rgba(255,255,255,.35);vertical-align:middle}
+@keyframes mq{to{transform:translateX(-50%)}}
+.rz{opacity:0;transform:translateY(46px) scale(.98);filter:blur(6px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1),filter .9s}
+.rz.in{opacity:1;transform:none;filter:none}
+.sh h2::after{width:0;transition:width 1.2s .3s cubic-bezier(.2,.7,.2,1)}.sh.in h2::after{width:56px}
+.btn-gold{position:relative;overflow:hidden}.btn-gold::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sweep 4.5s 1.5s infinite}
+@keyframes sweep{0%,60%{left:-80%}100%{left:140%}}
+.pc,.cc{transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .5s,opacity .9s,filter .9s}
+.pc.in:hover{transform:translateY(-8px)}
+.pv::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(14,12,10,.28),transparent 45%);opacity:0;transition:.5s;pointer-events:none}.pc:hover .pv::after,.cc:hover .pv::after{opacity:1}
+.badge.pop{animation:pop .5s}@keyframes pop{40%{transform:scale(1.7)}}
+.cart-btn.pop{animation:wig .6s}@keyframes wig{25%{transform:rotate(-12deg)}50%{transform:rotate(10deg)}75%{transform:rotate(-5deg)}}
+.ov[style*="flex"] .mb{animation:mi .45s cubic-bezier(.2,.8,.2,1)}@keyframes mi{from{opacity:0;transform:translateY(30px) scale(.96)}}
+.ov[style*="flex"]{animation:fi .3s}@keyframes fi{from{opacity:0}}
+.flash .fa-fire{animation:fl 1.2s ease-in-out infinite}@keyframes fl{50%{transform:scale(1.35) rotate(-8deg)}}
+.wa-float{animation:pulse 2.4s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%,100%{box-shadow:0 0 0 18px rgba(37,211,102,0)}}
+.ig{background:radial-gradient(circle at 20% 20%,rgba(217,179,91,.18),transparent 45%),radial-gradient(circle at 85% 80%,rgba(221,42,123,.15),transparent 45%),#0E0C0A}
+.tag.r{background-size:200% 100%;animation:shine 4s linear infinite}
+@media(prefers-reduced-motion:reduce){.rz,.hero-c>*{opacity:1!important;transform:none!important;filter:none!important}}
+
+/* ===== MODE TRÈS CINÉMA ===== */
+#intro{position:fixed;inset:0;z-index:200000;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:ifb 0s 4s forwards}
+@keyframes ifb{to{visibility:hidden}}
+#intro .cp{position:absolute;left:0;right:0;height:50.5%;background:#0E0C0A;transition:transform 1.1s cubic-bezier(.77,0,.175,1)}
+#intro .cp.t{top:0}#intro .cp.b{bottom:0}
+#intro.open .cp.t{transform:translateY(-101%)}#intro.open .cp.b{transform:translateY(101%)}
+#intro .lg{position:relative;z-index:2;text-align:center;font-family:var(--disp);color:#fff;text-transform:uppercase;font-size:clamp(2rem,9vw,3.8rem);letter-spacing:.5em;padding-left:.5em;opacity:0;animation:lg 1.4s .2s cubic-bezier(.2,.7,.2,1) forwards;transition:opacity .5s}
+#intro .lg span{color:var(--acc2)}
+#intro .lg::after{content:'';display:block;height:1px;width:0;margin:18px auto 0;background:var(--gold);animation:lw 1.2s .6s forwards}
+@keyframes lg{from{opacity:0;letter-spacing:1em;filter:blur(10px)}to{opacity:1;letter-spacing:.5em;filter:none}}@keyframes lw{to{width:120px}}
+#intro.open .lg{opacity:0!important}
+.hero-c>*{animation-play-state:paused}body.go .hero-c>*{animation-play-state:running}
+body.go .hero-bg{animation-play-state:running}
+.hero-c>h1.split{opacity:1;transform:none;filter:none;animation:none}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em;margin-bottom:-.12em}.w>i{display:inline-block;font-style:inherit;transform:translateY(115%) rotate(4deg);transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+body.go .w>i{transform:none}
+.lbx{position:absolute;left:0;right:0;height:13vh;background:#0E0C0A;z-index:3;transition:height 1.8s .2s cubic-bezier(.77,0,.175,1);pointer-events:none}.lbx.t{top:0}.lbx.b{bottom:0}body.go .lbx{height:0}
+.rz .pv img,.rz .u img{transform:scale(1.3);transition:transform 1.8s cubic-bezier(.2,.7,.2,1)}.rz.in .pv img{transform:scale(1)}.rz.in:hover .pv img{transform:scale(1.07)}
+.pc::after,.cc::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--mx,50%) var(--my,50%),rgba(217,179,91,.2),transparent 55%)}.pc,.cc{position:relative}.pc:hover::after,.cc:hover::after{opacity:1}
+.film{background:#0E0C0A;padding:130px 20px;text-align:center;position:relative;overflow:hidden}
+.film::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(217,179,91,.14),transparent 60%)}
+.film small{position:relative;display:block;font-size:.72rem;letter-spacing:.35em;text-transform:uppercase;color:var(--acc2);margin-bottom:26px}
+.film p{position:relative;max-width:900px;margin:0 auto;font-family:var(--disp);font-style:italic;font-size:clamp(2rem,6.4vw,4.2rem);line-height:1.15;color:#fff}
+.film p span{opacity:.16;transition:opacity .5s}.film p span.on{opacity:1}.film p span.g.on{color:var(--acc2)}
+@media(prefers-reduced-motion:reduce){#intro,.lbx{display:none}.w>i{transform:none!important}.film p span{opacity:1}}
+.hero h1 b{background:none;color:var(--acc2);animation:none;-webkit-background-clip:border-box}
+.hero h1 b .w>i{background:linear-gradient(100deg,#D9B35B 20%,#fff3cf 45%,#D9B35B 70%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 5s linear infinite}
 </style>
 </head>
 <body>
-<div class="toast" id="toast"></div>
+<div id="intro"><div class="cp t"></div><div class="cp b"></div><div class="lg">Decobiz<span>.</span></div></div><div class="prog" id="prog"></div><div class="toast" id="toast"></div>
 <div class="announce">Paiement à la livraison · <b>Livraison offerte</b> dès 399 DH · Personnalisation gratuite</div>
 <header><div class="container hd"><div class="logo">Decobiz<span>.</span></div><div class="hr"><a class="soc" href="https://instagram.com/decobizcreations" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a class="soc" href="https://facebook.com/decobizcreations" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a><button class="cart-btn" onclick="openCart()" aria-label="Panier"><i class="fa-solid fa-bag-shopping"></i><span class="badge" id="cnt">0</span></button></div></div></header>
 
@@ -118,6 +184,7 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 </div></section>
 
 <div class="trust"><div class="container"><span><i class="fa-solid fa-gem"></i>Finitions premium</span><span><i class="fa-solid fa-pen-ruler"></i>Sur mesure</span><span><i class="fa-solid fa-truck-fast"></i>Livraison Maroc</span><span><i class="fa-solid fa-shield-halved"></i>Payez à la réception</span></div></div>
+<div class="mq" aria-hidden="true"><div><span>Packs signature</span><i>◆</i><span>Personnalisation gratuite</span><i>◆</i><span>Paiement à la livraison</span><i>◆</i><span>Livraison partout au Maroc</span><i>◆</i><span>Artisanat &amp; design</span><i>◆</i><span>Packs signature</span><i>◆</i><span>Personnalisation gratuite</span><i>◆</i><span>Paiement à la livraison</span><i>◆</i><span>Livraison partout au Maroc</span><i>◆</i><span>Artisanat &amp; design</span><i>◆</i><span>Packs signature</span><i>◆</i><span>Personnalisation gratuite</span><i>◆</i><span>Paiement à la livraison</span><i>◆</i><span>Livraison partout au Maroc</span><i>◆</i><span>Artisanat &amp; design</span><i>◆</i><span>Packs signature</span><i>◆</i><span>Personnalisation gratuite</span><i>◆</i><span>Paiement à la livraison</span><i>◆</i><span>Livraison partout au Maroc</span><i>◆</i><span>Artisanat &amp; design</span><i>◆</i></div></div>
 <div class="flash"><i class="fa-solid fa-fire"></i> Offres du jour, fin à minuit <span class="t" id="tm">00:00:00</span></div>
 
 <section id="packs" class="sec alt"><div class="container"><div class="sh"><small>Best-sellers</small><h2>Les packs signature</h2><p>Tout ce qu'il faut en un seul pack. Économisez jusqu'à 55%.</p></div><div class="grid-p" id="packs-grid"></div></div></section>
@@ -125,6 +192,7 @@ body:not(.has-cart) .wa-float{bottom:20px}body:not(.has-cart){padding-bottom:0}
 <section class="sec"><div class="container"><div class="sh"><small>Nos engagements</small><h2>Pourquoi Decobiz</h2></div><div class="ben"><div><i class="fa-solid fa-hand-holding-dollar"></i><b>Payez à la livraison</b><span>Aucun paiement en ligne, vous réglez au livreur.</span></div><div><i class="fa-solid fa-palette"></i><b>Personnalisation gratuite</b><span>Couleur ou gravure, sur tous les articles.</span></div><div><i class="fa-solid fa-truck-fast"></i><b>Livraison 48-72h</b><span>Partout au Maroc, offerte dès 399 DH.</span></div><div><i class="fa-brands fa-whatsapp"></i><b>Réponse rapide</b><span>Une question ? On vous répond sur WhatsApp.</span></div></div></div></section>
 <section class="sec alt"><div class="container"><div class="sh"><small>Simple &amp; rapide</small><h2>Comment commander</h2></div><div class="steps"><div><i class="fa-solid fa-hand-pointer"></i><b>1. Choisissez</b><span>Un pack ou un article, avec la couleur ou la gravure de votre choix.</span></div><div><i class="fa-solid fa-pen"></i><b>2. Validez ici</b><span>Nom, téléphone, adresse, sans quitter le site.</span></div><div><i class="fa-solid fa-box-open"></i><b>3. Recevez et payez</b><span>Livraison en 48-72h, vous payez au livreur.</span></div></div></div></section>
 
+<section class="film"><small>L'esprit Decobiz</small><p id="fp"><span>Chaque</span> <span>pièce</span> <span>raconte</span> <span>une</span> <span class="g">histoire,</span> <span>la</span> <span>vôtre</span> <span>commence</span> <span class="g">ici.</span></p></section>
 <section class="sec"><div class="container"><div class="sh"><small>Avis clients</small><h2>Ce que disent nos clients</h2></div><div class="reviews">
 <!-- REMPLACEZ par de vrais avis (idéalement avec photo / capture WhatsApp) -->
 <div class="rv"><div class="st">★★★★★</div><p>"La qualité est au rendez-vous et ça fait tout mon salon."</p><b>Sarah B.</b></div>
@@ -192,7 +260,7 @@ const RATES={'Casablanca':35,'Rabat':35,'Kénitra':35,'El Jadida':35,'Marrakech'
 const DEFAULT_RATE=35;
 const HERO='https://z-cdn-media.chatglm.cn/files/a1cc8444-c3c6-44bc-9b9b-2ef8e79b1df9.png?auth_key=1886283921-9d4c214babb94d7e9e4c7dcf659c31a2-0-61e0aef666a0c091d3689fb939ad182d';
 const $=id=>document.getElementById(id),dh=n=>n+' DH';
-$('hero').style.backgroundImage="url('"+HERO+"')";
+{const b=document.createElement('div');b.className='hero-bg';b.style.backgroundImage="url('"+HERO+"')";$('hero').prepend(b);const sc=document.createElement('div');sc.className='scrollcue';$('hero').appendChild(sc)}
 const track=(ev,d,o)=>{try{o?fbq('track',ev,d,o):fbq('track',ev,d)}catch(e){}};
 const L=(k,v)=>{try{return v===undefined?JSON.parse(localStorage.getItem(k)):localStorage.setItem(k,JSON.stringify(v))}catch(e){return null}};
 const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800)};
@@ -341,6 +409,32 @@ $('form').addEventListener('submit',async function(e){
 });
 document.addEventListener('click',e=>{if(e.target.closest('a[href*="wa.me"]'))track('Contact',{})});
 
+
+/* ===== ANIMATIONS ===== */
+const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+function reveal(){document.querySelectorAll('.sh,.ben>div,.steps>div,.rv,.pc,.cc,.faq details,.ig>*,.cta>*').forEach(el=>{if(el.dataset.rz)return;el.dataset.rz=1;el.classList.add('rz');const i=[...el.parentNode.children].indexOf(el);el.style.transitionDelay=(i%4)*90+'ms';rio.observe(el)})}
+const _rp=renderPacks,_rg=renderGrid;renderPacks=function(){_rp();reveal()};renderGrid=function(){_rg();reveal()};
+const _atc=addToCart;addToCart=function(p,d){_atc(p,d);['cnt','cart-b'].forEach(id=>{const e=$(id)||document.querySelector('.cart-btn');e.classList.remove('pop');void e.offsetWidth;e.classList.add('pop')})};
+let tk=0;addEventListener('scroll',()=>{if(tk)return;tk=requestAnimationFrame(()=>{tk=0;const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;$('prog').style.width=(h>0?y/h*100:0)+'%';document.querySelector('header').classList.toggle('sc',y>40);const b=document.querySelector('.hero-bg');if(b&&y<innerHeight*1.2)b.style.marginTop=(y*.22)+'px'})},{passive:true});
+reveal();
+
+/* ===== INTRO + TITRE + FILM ===== */
+(function(){
+  const it=$('intro'),h=document.querySelector('.hero h1'),hero=$('hero');
+  let n=0;const wrap=(node)=>[...node.childNodes].forEach(c=>{if(c.nodeType==3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(t=>{if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(' '));return}const w=document.createElement('span');w.className='w';const i=document.createElement('i');i.textContent=t;i.style.transitionDelay=(1.5+n++*.12)+'s';w.appendChild(i);f.appendChild(w)});c.replaceWith(f)}else wrap(c)});
+  h.classList.add('split');wrap(h);
+  ['t','b'].forEach(k=>{const d=document.createElement('div');d.className='lbx '+k;hero.appendChild(d)});
+  let seen=false;try{seen=sessionStorage.getItem('dbintro')}catch(e){}
+  const go=()=>document.body.classList.add('go');
+  if(seen||matchMedia('(prefers-reduced-motion:reduce)').matches){it.remove();go()}
+  else{try{sessionStorage.setItem('dbintro',1)}catch(e){}
+    setTimeout(()=>it.classList.add('open'),1700);setTimeout(go,2000);setTimeout(()=>it.remove(),3200)}
+  document.querySelectorAll('.pc,.cc').forEach(()=>{});
+  document.addEventListener('mousemove',e=>{const c=e.target.closest&&e.target.closest('.pc,.cc');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')},{passive:true});
+  const sp=[...document.querySelectorAll('#fp span')];
+  const lit=()=>{const f=$('fp');if(!f)return;const r=f.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(innerHeight*.55+r.height)));sp.forEach((x,i)=>x.classList.toggle('on',i<=p*sp.length-.001))};
+  addEventListener('scroll',lit,{passive:true});lit();
+})();
 renderFilters();renderPacks();renderGrid();refresh();
 </script>
 </body>
